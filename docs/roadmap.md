@@ -20,16 +20,17 @@ immutable predecessor are machine-audited.
 Build deterministic trace tooling and prove reset/NMI, mapper writes, main
 dispatch, input, and the complete bank-transition graph.
 
-### 3. Chapter execution evidence - In Progress
+### 3. Chapter execution evidence - Complete
 
 Capture boot/title, city, underground, cave, underwater, transition, and ending
 scenarios. Identify each chapter's initialization, frame, update, collision,
 render, and exit paths.
 
-### 4. Semantic source layout - Planned
+### 4. Semantic source layout - In Progress
 
 Replace the four monolithic physical-bank listings with address-ordered common,
-world, audio, and data modules. Keep every module at or below 700 lines.
+world, audio, and data modules. Keep every module at or below 700 lines. Banks 0
+and 3 are complete; banks 1 and 2 remain preservation listings.
 
 ### 5. RAM and object systems - Planned
 

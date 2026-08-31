@@ -23,11 +23,13 @@
 - Known: CadEditor disables enemy editing for all four configurations.
 - Unknown: enemy, item, NPC, boss, trigger, door, and projectile records.
 
-## AUDIO-001 - driver ownership
+## AUDIO-002 - command and stream semantics
 
-- Known: frame/NMI code is duplicated across banks and bank 3 contains extensive
-  presentation data.
-- Unknown: which sound routines and streams are shared, copied, or bank-local.
+- Known: all four banks carry independently validated local drivers. Their
+  request limits, effect RTS tables, 17-command dispatch tables, and accepted
+  track counts are recorded in `config/audio_dispatch.json`.
+- Unknown: semantic names for individual effects, music commands, track headers,
+  and stream fields beyond their proven control-flow roles.
 
 ## REV-001 - Revision A
 

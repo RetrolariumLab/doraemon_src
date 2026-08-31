@@ -1,0 +1,325 @@
+; Doraemon PRG bank 0 $D113-$D3A8
+; World 1 underground collision tests and manhole return transition
+; Generated deterministically from pinned Ghidra/GhidraNes facts
+
+Bank0_Func_D113:
+    LDA $9B
+    BEQ Bank0_Label_D11D
+    LDA $76
+    CMP #$C6
+    BCS Bank0_Label_D137
+
+Bank0_Label_D11D:
+    LDX #$04
+    LDY #$1A
+    JSR Bank0_Func_D1C3
+    BCS Bank0_Label_D137
+    LDX #$0A
+    LDY #$1A
+    JSR Bank0_Func_D1C3
+    BCS Bank0_Label_D137
+    LDA #$01
+    STA $7C
+    LDA #$00
+    STA $7D
+
+Bank0_Label_D137:
+    RTS
+
+Bank0_Func_D138:
+    LDA #$E8
+    STA $7D
+    LDA #$01
+    STA $7C
+    LDA #$12
+    JSR World1_Audio_QueueEffect
+
+Bank0_Func_D145:
+    LDA $7D
+    AND #$80
+    STA $00
+    LDA $7D
+    LSR A
+    ORA $00
+    LSR A
+    ORA $00
+    ADC $76
+    STA $76
+    INC $7D
+    LDA $7D
+    BMI Bank0_Label_D165
+    CMP #$18
+    BCC Bank0_Label_D165
+    LDA #$18
+    STA $7D
+
+Bank0_Label_D165:
+    LDA $7D
+    BMI Bank0_Label_D186
+    LDA $9B
+    BEQ Bank0_Label_D173
+    LDA $76
+    CMP #$C6
+    BCS Bank0_Label_D1AB
+
+Bank0_Label_D173:
+    LDX #$04
+    LDY #$1A
+    JSR Bank0_Func_D1C3
+    BCS Bank0_Label_D1AB
+    LDX #$0A
+    LDY #$1A
+    JSR Bank0_Func_D1C3
+    BCS Bank0_Label_D1AB
+    RTS
+
+Bank0_Label_D186:
+    LDX #$04
+    LDY #$02
+    JSR Bank0_Func_D1C3
+    BCS Bank0_Label_D199
+    LDX #$0A
+    LDY #$02
+    JSR Bank0_Func_D1C3
+    BCS Bank0_Label_D199
+    RTS
+
+Bank0_Label_D199:
+    LDA $76
+    CLC
+    ADC #$0A
+    AND #$F8
+    STA $76
+    DEC $76
+    DEC $76
+    LDA #$00
+    STA $7D
+    RTS
+
+Bank0_Label_D1AB:
+    LDA $1C
+    AND #$07
+    CLC
+    ADC #$02
+    STA $00
+    CLC
+    ADC $76
+    AND #$F8
+    SEC
+    SBC $00
+    STA $76
+    LDA #$00
+    STA $7C
+    RTS
+
+Bank0_Func_D1C3:
+    STX $04
+    LDA $1B
+    AND #$07
+    CLC
+    ADC $75
+    CLC
+    ADC $04
+    LSR A
+    LSR A
+    LSR A
+    CLC
+    ADC $5B
+    TAX
+    STY $04
+    LDA $1C
+    AND #$07
+    CLC
+    ADC $76
+    CLC
+    ADC $04
+    LSR A
+    LSR A
+    LSR A
+    CLC
+    ADC $5C
+    TAY
+    JSR Bank0_Func_A6A7
+    CPY #$42
+    RTS
+    .byte $40, $22, $20, $00, $80, $22, $20, $00, $CA, $22, $20, $0A, $00, $42, $20, $00
+    .byte $40, $42, $40, $00, $20, $02, $C0, $00, $E0, $02, $C0, $C0, $A0, $42, $40, $40
+    .byte $60, $42, $40, $00, $18, $10, $00, $FF, $38, $10, $01, $FF, $78, $10, $02, $02
+    .byte $38, $10, $03, $FF, $18, $10, $04, $FF, $18, $10, $05, $06, $B8, $10, $05, $06
+    .byte $D8, $10, $08, $07, $18, $10, $08, $07
+
+Bank0_TryEnterWorld1Manhole:
+    LDA $21
+    AND #$80
+    BEQ Bank0_Label_D243
+    LDA $81
+    CMP #$01
+    BEQ Bank0_EnterWorld1Manhole
+
+Bank0_Label_D243:
+    RTS
+
+Bank0_EnterWorld1Manhole:
+    LDA a:$06A0
+    AND #$FE
+    STA a:$06A0
+    LDA #$00
+    STA a:$02AA
+    STA a:$02AB
+    STA $82
+    STA $83
+    STA $B2
+    JSR Bank0_Func_C93E
+    JSR Bank0_Func_C949
+    JSR Bank0_Func_C954
+    LDX $80
+    LDA a:$0546,X
+    STA $81
+    TAY
+    LDA a:$04E6,X
+    CLC
+    ADC #$04
+    STA $75
+    LDA a:$0516,X
+    SEC
+    SBC #$14
+    STA $76
+    LDA #$00
+    STA $77
+    STA $78
+    STA $7F
+
+Bank0_Label_D283:
+    JSR Bank0_Func_94F1
+    LDA #$00
+    STA $61
+    STA $62
+    JSR Bank0_Func_8706
+    LDA $61
+    ORA $62
+    BNE Bank0_Label_D283
+    LDX #$0A
+
+Bank0_Label_D297:
+    JSR Bank0_Func_94F1
+    DEX
+    BNE Bank0_Label_D297
+    LDX #$00
+    LDA #$12
+    JSR World1_Audio_QueueEffect
+
+Bank0_Label_D2A4:
+    JSR Bank0_Func_94F1
+    TXA
+    LSR A
+    LSR A
+    TAY
+    LDA a:$D3A3,Y
+    CLC
+    ADC $76
+    STA $76
+    INX
+    CPX #$14
+    BNE Bank0_Label_D2A4
+    JSR Bank0_Func_C95F
+    JSR Bank0_Func_C96A
+    LDX $81
+    JMP Bank0_InitWorld1SideView
+
+Bank0_Func_D2C3:
+    PHA
+    LDA #$00
+    STA a:$02AA
+    STA a:$02AB
+    STA $82
+    STA $83
+    STA $B2
+    JSR Bank0_Func_C95F
+    JSR Bank0_Func_C96A
+    JSR Bank0_Func_C93E
+    JSR Bank0_Func_C949
+    JSR Bank0_Func_C954
+    PLA
+    ASL A
+    ASL A
+    TAX
+    LDA a:$D37E,X
+    STA $5B
+    LDA a:$D37F,X
+    STA $5C
+    LDA a:$D380,X
+    STA a:$04E6
+    CLC
+    ADC #$04
+    STA $75
+    LDA a:$D381,X
+    STA a:$0516
+    SEC
+    SBC #$14
+    STA $76
+    LDA #$00
+    STA $79
+    LDA #$00
+    STA $77
+    LDA #$00
+    STA $7F
+    LDA #$00
+    STA $78
+    LDA #$00
+    STA $7A
+    JSR Bank0_Func_9614
+    LDA #$EF
+    STA $66
+    LDA #$B2
+    STA $67
+    LDA #$89
+    STA $68
+    LDA #$D9
+    STA $69
+    LDA #$00
+    STA $29
+    LDA $5C
+    CMP #$40
+    BCS Bank0_Label_D33A
+    LDA #$01
+    STA $29
+
+Bank0_Label_D33A:
+    LDX #$00
+
+Bank0_Label_D33C:
+    LDA a:$0680,X
+    STA a:$06A0,X
+    LDA a:$0690,X
+    STA a:$0680,X
+    INX
+    CPX #$10
+    BNE Bank0_Label_D33C
+    JSR Bank0_Func_C95F
+    JSR Bank0_Func_C96A
+    JSR Bank0_Func_83BD
+    JSR Bank0_Func_9535
+    JSR Bank0_Func_A7DB
+    JSR Bank0_Func_843B
+    JSR Bank0_Func_95ED
+    LDX #$00
+
+Bank0_Label_D364:
+    JSR Bank0_Func_94F1
+    TXA
+    LSR A
+    LSR A
+    TAY
+    LDA a:$D3A2,Y
+    CLC
+    ADC $76
+    STA $76
+    INX
+    CPX #$1C
+    BNE Bank0_Label_D364
+    LDX #$7F
+    TXS
+    JMP Bank0_Label_82C1
+    .byte $E0, $E0, $70, $90, $B0, $D0, $70, $90, $92, $66, $70, $90, $3E, $68, $70, $90
+    .byte $3A, $9A, $70, $90, $00, $5C, $30, $70, $DE, $00, $70, $70, $64, $34, $70, $90
+    .byte $10, $26, $70, $90, $FD, $FE, $FF, $00, $01, $02, $03

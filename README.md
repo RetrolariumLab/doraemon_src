@@ -36,8 +36,8 @@ incrementally without weakening byte identity.
 - `make verify` proves the assembled 163,856-byte image is byte-identical to the
   reference.
 
-The current static listing contains 5,697 Ghidra instructions in bank 0, 3,655
-in bank 1, 4,708 in bank 2, and 1,593 in bank 3. Identical common code through
+The current static listing contains 6,340 Ghidra instructions in bank 0, 4,162
+in bank 1, 5,391 in bank 2, and 2,332 in bank 3. Identical common code through
 `$8270` is conservatively propagated between banks when the bytes match.
 Unclassified bytes remain explicit `.byte` data rather than speculative code.
 
@@ -114,11 +114,12 @@ scripts/run_ghidra.py       deterministic per-bank headless analysis
 scripts/generate_disassembly.py  Ghidra facts to canonical ca65 source
 scripts/map_data.py         CadEditor region validator
 scripts/verify_rom.py       focused byte-difference diagnostics
-src/banks/bank_0.asm        world 1 / city and underground bank
+src/banks/bank_0.asm        generated bank 0 semantic include map
 src/banks/bank_1.asm        world 2 / cave shooter bank
 src/banks/bank_2.asm        world 3 / underwater bank
 src/banks/bank_3.asm        generated bank 3 semantic include map
-src/common/                 shared shell boot, gateways, and vectors
+src/common/                 bank-local boot, gateways, and vectors
+src/world1/                 city, underground, rendering, map, and audio modules
 src/shell/                  title, ending, game-over, and transition code
 src/rendering/              shell PPU and text services
 src/audio/                  effect driver, music engine, and stream data

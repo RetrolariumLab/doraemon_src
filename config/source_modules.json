@@ -2,6 +2,202 @@
   "schema_version": 1,
   "modules": [
     {
+      "bank": 0,
+      "start": "0x8000",
+      "end": "0x827C",
+      "path": "common/bank0_boot_and_gateways.asm",
+      "responsibility": "Bank 0 reset, NMI, input, mapper switching, and cross-bank gateways"
+    },
+    {
+      "bank": 0,
+      "start": "0x827D",
+      "end": "0x856B",
+      "path": "world1/main_loop_and_ppu.asm",
+      "responsibility": "World 1 initialization, main frame loop, and queued PPU writes"
+    },
+    {
+      "bank": 0,
+      "start": "0x856C",
+      "end": "0x8A6B",
+      "path": "world1/player_and_camera.asm",
+      "responsibility": "World 1 player state, directional movement, and camera-relative positioning"
+    },
+    {
+      "bank": 0,
+      "start": "0x8A6C",
+      "end": "0x8F9D",
+      "path": "world1/object_motion.asm",
+      "responsibility": "World 1 object coordinate stepping, animation, and collision helpers"
+    },
+    {
+      "bank": 0,
+      "start": "0x8F9E",
+      "end": "0x95CA",
+      "path": "world1/entity_handlers.asm",
+      "responsibility": "World 1 entity behavior handlers and object update services"
+    },
+    {
+      "bank": 0,
+      "start": "0x95CB",
+      "end": "0x9909",
+      "path": "world1/frame_rendering.asm",
+      "responsibility": "World 1 frame synchronization, PPU preparation, and sprite traversal"
+    },
+    {
+      "bank": 0,
+      "start": "0x990A",
+      "end": "0xA380",
+      "path": "world1/sprite_rendering.asm",
+      "responsibility": "World 1 metasprite composition, OAM placement, and animation data"
+    },
+    {
+      "bank": 0,
+      "start": "0xA381",
+      "end": "0xA509",
+      "path": "world1/map_scrolling.asm",
+      "responsibility": "World 1 scroll advancement and nametable edge selection"
+    },
+    {
+      "bank": 0,
+      "start": "0xA50A",
+      "end": "0xA87D",
+      "path": "world1/map_streaming.asm",
+      "responsibility": "World 1 metatile decoding and incremental nametable streaming"
+    },
+    {
+      "bank": 0,
+      "start": "0xA87E",
+      "end": "0xA9EE",
+      "path": "world1/ppu_update_queue.asm",
+      "responsibility": "World 1 buffered PPU update packet construction"
+    },
+    {
+      "bank": 0,
+      "start": "0xA9EF",
+      "end": "0xAAEE",
+      "path": "world1/data/block_attributes.asm",
+      "responsibility": "World 1 CadEditor block attribute table"
+    },
+    {
+      "bank": 0,
+      "start": "0xAAEF",
+      "end": "0xAEEE",
+      "path": "world1/data/small_blocks.asm",
+      "responsibility": "World 1 CadEditor small metatile table"
+    },
+    {
+      "bank": 0,
+      "start": "0xAEEF",
+      "end": "0xB2EE",
+      "path": "world1/data/big_blocks.asm",
+      "responsibility": "World 1 CadEditor large metatile table"
+    },
+    {
+      "bank": 0,
+      "start": "0xB2EF",
+      "end": "0xC2EE",
+      "path": "world1/data/city_map.asm",
+      "responsibility": "World 1 64 by 64 city map"
+    },
+    {
+      "bank": 0,
+      "start": "0xC2EF",
+      "end": "0xC92E",
+      "path": "world1/data/underground_map.asm",
+      "responsibility": "World 1 64 by 25 underground map"
+    },
+    {
+      "bank": 0,
+      "start": "0xC92F",
+      "end": "0xCB60",
+      "path": "world1/city_objects.asm",
+      "responsibility": "World 1 city object state initialization and interaction handlers"
+    },
+    {
+      "bank": 0,
+      "start": "0xCB61",
+      "end": "0xCDB4",
+      "path": "world1/city_transitions.asm",
+      "responsibility": "World 1 city item interactions and door transition sequence"
+    },
+    {
+      "bank": 0,
+      "start": "0xCDB5",
+      "end": "0xD112",
+      "path": "world1/underground_main.asm",
+      "responsibility": "World 1 side-view underground initialization, frame loop, and movement"
+    },
+    {
+      "bank": 0,
+      "start": "0xD113",
+      "end": "0xD3A8",
+      "path": "world1/underground_collisions.asm",
+      "responsibility": "World 1 underground collision tests and manhole return transition"
+    },
+    {
+      "bank": 0,
+      "start": "0xD3A9",
+      "end": "0xD76F",
+      "path": "world1/underground_transitions.asm",
+      "responsibility": "World 1 underground room changes, completion paths, and entity updates"
+    },
+    {
+      "bank": 0,
+      "start": "0xD770",
+      "end": "0xE315",
+      "path": "world1/underground_objects_and_tables.asm",
+      "responsibility": "World 1 underground object spawning and chapter-specific tables"
+    },
+    {
+      "bank": 0,
+      "start": "0xE316",
+      "end": "0xE68C",
+      "path": "world1/audio_effect_dispatch.asm",
+      "responsibility": "World 1 audio-effect arbitration, RTS dispatch, and early handlers"
+    },
+    {
+      "bank": 0,
+      "start": "0xE68D",
+      "end": "0xE948",
+      "path": "world1/audio_effect_handlers.asm",
+      "responsibility": "World 1 remaining audio-effect handlers"
+    },
+    {
+      "bank": 0,
+      "start": "0xE949",
+      "end": "0xE9FC",
+      "path": "world1/audio_apu_helpers.asm",
+      "responsibility": "World 1 APU write helpers and channel reset"
+    },
+    {
+      "bank": 0,
+      "start": "0xE9FD",
+      "end": "0xEB64",
+      "path": "world1/music_engine.asm",
+      "responsibility": "World 1 four-channel music sequencer and command dispatch"
+    },
+    {
+      "bank": 0,
+      "start": "0xEB65",
+      "end": "0xEE33",
+      "path": "world1/music_commands.asm",
+      "responsibility": "World 1 music command handlers and stream reader"
+    },
+    {
+      "bank": 0,
+      "start": "0xEE34",
+      "end": "0xFFF9",
+      "path": "world1/music_data.asm",
+      "responsibility": "World 1 APU period tables, track headers, and music streams"
+    },
+    {
+      "bank": 0,
+      "start": "0xFFFA",
+      "end": "0xFFFF",
+      "path": "common/bank0_vectors.asm",
+      "responsibility": "Bank 0 NMI, RESET, and IRQ vectors"
+    },
+    {
       "bank": 3,
       "start": "0x8000",
       "end": "0x827C",
