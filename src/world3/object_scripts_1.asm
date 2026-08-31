@@ -4,7 +4,7 @@
 
 Bank2_Func_9A3B:
     LDX $07
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     ASL A
     TAY
     LDA a:$D9AC,Y
@@ -34,10 +34,10 @@ Bank2_Label_9A59:
 Bank2_Label_9A72:
     JSR Bank2_Func_9EF1
     BCC Bank2_Label_9A84
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     CLC
     ADC $3E
-    STA a:$0608,X
+    STA a:World3EntityX,X
     CMP #$E0
     BCC Bank2_Label_9A94
 
@@ -62,10 +62,10 @@ Bank2_Label_9A98:
 Bank2_Label_9AA1:
     JSR Bank2_Func_9EB9
     BCC Bank2_Label_9AB3
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     SEC
     SBC $3E
-    STA a:$0608,X
+    STA a:World3EntityX,X
     CMP #$10
     BCS Bank2_Label_9AC3
 
@@ -90,10 +90,10 @@ Bank2_Label_9AC7:
 Bank2_Label_9AD0:
     JSR Bank2_Func_9F2D
     BCC Bank2_Label_9AE2
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     SEC
     SBC $3E
-    STA a:$0610,X
+    STA a:World3EntityY,X
     CMP #$20
     BCS Bank2_Label_9AEA
 
@@ -115,10 +115,10 @@ Bank2_Label_9AEE:
 Bank2_Label_9AF7:
     JSR Bank2_Func_9F67
     BCC Bank2_Label_9B09
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     CLC
     ADC $3E
-    STA a:$0610,X
+    STA a:World3EntityY,X
     CMP #$C0
     BCC Bank2_Label_9B11
 
@@ -268,8 +268,8 @@ Bank2_Label_9C0D:
 
 Bank2_Label_9C0F:
     CLC
-    ADC a:$0608,X
-    STA a:$0608,X
+    ADC a:World3EntityX,X
+    STA a:World3EntityX,X
     INC a:$0640,X
     LDA a:$0640,X
     TAY
@@ -286,8 +286,8 @@ Bank2_Label_9C2C:
 
 Bank2_Label_9C2E:
     CLC
-    ADC a:$0610,X
-    STA a:$0610,X
+    ADC a:World3EntityY,X
+    STA a:World3EntityY,X
     INC a:$0640,X
     RTS
 
@@ -298,12 +298,12 @@ Bank2_Label_9C39:
     LDA a:$0640,X
     TAY
     LDA ($40),Y
-    STA a:$0608,X
+    STA a:World3EntityX,X
     INC a:$0640,X
     LDA a:$0640,X
     TAY
     LDA ($40),Y
-    STA a:$0610,X
+    STA a:World3EntityY,X
     INC a:$0640,X
     LDA #$00
     STA a:$0668,X
@@ -345,7 +345,7 @@ Bank2_Label_9C94:
 
 Bank2_Label_9CA3:
     INC a:$0640,X
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     CMP $8C
     BCS Bank2_Label_9CB3
     INC a:$0640,X
@@ -360,7 +360,7 @@ Bank2_Label_9CB3:
 
 Bank2_Label_9CBF:
     INC a:$0640,X
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     CMP $8D
     BCS Bank2_Label_9CCF
     INC a:$0640,X
@@ -398,11 +398,11 @@ Bank2_Label_9D03:
     BNE Bank2_Label_9D18
     LDA $3E
     BEQ Bank2_Label_9D17
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     CMP #$04
     BEQ Bank2_Label_9D17
     LDA #$00
-    STA a:$0600,X
+    STA a:World3EntityState,X
 
 Bank2_Label_9D17:
     RTS

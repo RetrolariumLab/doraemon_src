@@ -98,7 +98,7 @@ Bank2_Reset:
 Bank2_Label_80AC:
     STA a:$0400,X
     STA a:$0500,X
-    STA a:$0600,X
+    STA a:World3EntityState,X
     STA a:$0700,X
     INX
     BNE Bank2_Label_80AC

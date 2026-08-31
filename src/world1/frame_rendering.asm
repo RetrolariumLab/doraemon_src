@@ -112,18 +112,18 @@ Bank0_Func_9674:
     BNE Bank0_Label_968D
     JSR Bank0_Func_96BC
     JSR Bank0_Func_96A0
-    JSR Bank0_Func_98C8
-    JSR Bank0_Func_986A
-    JSR Bank0_Func_978F
-    JSR Bank0_Func_9801
+    JSR World1_RenderEntitySlots38_47
+    JSR World1_RenderEntitySlots30_37
+    JSR World1_RenderEntitySlots00_09
+    JSR World1_RenderEntitySlots10_29
     RTS
 
 Bank0_Label_968D:
     JSR Bank0_Func_96A0
-    JSR Bank0_Func_9801
-    JSR Bank0_Func_978F
-    JSR Bank0_Func_986A
-    JSR Bank0_Func_98C8
+    JSR World1_RenderEntitySlots10_29
+    JSR World1_RenderEntitySlots00_09
+    JSR World1_RenderEntitySlots30_37
+    JSR World1_RenderEntitySlots38_47
     JSR Bank0_Func_96BC
     RTS
 
@@ -140,7 +140,7 @@ Bank0_Func_96A0:
     STA $49
     LDA $78
     STA $4A
-    JSR Bank0_Func_992A
+    JSR World1_ComposeMetasprite
     RTS
 
 Bank0_Func_96BC:
@@ -264,12 +264,12 @@ Bank0_Label_9756:
     STA $49
     LDA #$01
     STA $4A
-    JSR Bank0_Func_992A
+    JSR World1_ComposeMetasprite
 
 Bank0_Label_978E:
     RTS
 
-Bank0_Func_978F:
+World1_RenderEntitySlots00_09:
     LDA $82
     BEQ Bank0_Label_979A
     LDA FrameCounter
@@ -286,7 +286,7 @@ Bank0_Label_979A:
 
 Bank0_Label_97A4:
     LDY $0A
-    LDA a:$0400,Y
+    LDA a:World1EntityType,Y
     BEQ Bank0_Label_97B2
     JSR Bank0_Func_97D2
     LDA $50
@@ -305,7 +305,7 @@ Bank0_Label_97BB:
 
 Bank0_Label_97BF:
     LDY $0A
-    LDA a:$0400,Y
+    LDA a:World1EntityType,Y
     BEQ Bank0_Label_97CD
     JSR Bank0_Func_97D2
     LDA $50
@@ -319,7 +319,7 @@ Bank0_Label_97D1:
     RTS
 
 Bank0_Func_97D2:
-    LDA a:$0400,Y
+    LDA a:World1EntityType,Y
     CMP #$D0
     BCC Bank0_Label_97E0
     LDA FrameCounter
@@ -328,23 +328,23 @@ Bank0_Func_97D2:
     RTS
 
 Bank0_Label_97E0:
-    LDA a:$0490,Y
+    LDA a:World1EntityPositionHigh,Y
     STA $46
     LSR A
     LSR A
     STA $48
-    LDA a:$04C0,Y
+    LDA a:World1EntityX,Y
     STA $45
-    LDA a:$04F0,Y
+    LDA a:World1EntityY,Y
     STA $47
-    LDA a:$0460,Y
+    LDA a:World1EntityRenderFlags,Y
     STA $4A
-    LDA a:$0430,Y
+    LDA a:World1EntityMetasprite,Y
     STA $49
-    JSR Bank0_Func_992A
+    JSR World1_ComposeMetasprite
     RTS
 
-Bank0_Func_9801:
+World1_RenderEntitySlots10_29:
     LDA $82
     BEQ Bank0_Label_980C
     LDA FrameCounter
@@ -364,7 +364,7 @@ Bank0_Label_980C:
 
 Bank0_Label_981C:
     LDY $0A
-    LDA a:$040A,Y
+    LDA a:World1EntityType+$0A,Y
     BEQ Bank0_Label_982A
     JSR Bank0_Func_984A
     LDA $50
@@ -383,7 +383,7 @@ Bank0_Label_9833:
 
 Bank0_Label_9837:
     LDY $0A
-    LDA a:$040A,Y
+    LDA a:World1EntityType+$0A,Y
     BEQ Bank0_Label_9845
     JSR Bank0_Func_984A
     LDA $50
@@ -397,22 +397,22 @@ Bank0_Label_9849:
     RTS
 
 Bank0_Func_984A:
-    LDA a:$049A,Y
+    LDA a:World1EntityPositionHigh+$0A,Y
     STA $46
     LSR A
     LSR A
     STA $48
-    LDA a:$04CA,Y
+    LDA a:World1EntityX+$0A,Y
     STA $45
-    LDA a:$04FA,Y
+    LDA a:World1EntityY+$0A,Y
     STA $47
-    LDA a:$046A,Y
+    LDA a:World1EntityRenderFlags+$0A,Y
     STA $4A
-    LDA a:$043A,Y
+    LDA a:World1EntityMetasprite+$0A,Y
     STA $49
-    JMP Bank0_Func_992A
+    JMP World1_ComposeMetasprite
 
-Bank0_Func_986A:
+World1_RenderEntitySlots30_37:
     LDA #$00
     STA $46
     STA $48
@@ -424,7 +424,7 @@ Bank0_Func_986A:
 
 Bank0_Label_987A:
     LDY $0A
-    LDA a:$041E,Y
+    LDA a:World1EntityType+$1E,Y
     BEQ Bank0_Label_9888
     JSR Bank0_Func_98A8
     LDA $50
@@ -443,7 +443,7 @@ Bank0_Label_9891:
 
 Bank0_Label_9895:
     LDY $0A
-    LDA a:$041E,Y
+    LDA a:World1EntityType+$1E,Y
     BEQ Bank0_Label_98A3
     JSR Bank0_Func_98A8
     LDA $50
@@ -457,22 +457,22 @@ Bank0_Label_98A7:
     RTS
 
 Bank0_Func_98A8:
-    LDA a:$04AE,Y
+    LDA a:World1EntityPositionHigh+$1E,Y
     STA $46
     LSR A
     LSR A
     STA $48
-    LDA a:$04DE,Y
+    LDA a:World1EntityX+$1E,Y
     STA $45
-    LDA a:$050E,Y
+    LDA a:World1EntityY+$1E,Y
     STA $47
-    LDA a:$047E,Y
+    LDA a:World1EntityRenderFlags+$1E,Y
     STA $4A
-    LDA a:$044E,Y
+    LDA a:World1EntityMetasprite+$1E,Y
     STA $49
-    JMP Bank0_Func_992A
+    JMP World1_ComposeMetasprite
 
-Bank0_Func_98C8:
+World1_RenderEntitySlots38_47:
     LDA #$00
     STA $46
     STA $48
@@ -484,7 +484,7 @@ Bank0_Func_98C8:
 
 Bank0_Label_98D8:
     LDY $0A
-    LDA a:$0426,Y
+    LDA a:World1EntityType+$26,Y
     BMI Bank0_Label_98E8
     BEQ Bank0_Label_98E8
     JSR Bank0_Func_990A
@@ -504,7 +504,7 @@ Bank0_Label_98F1:
 
 Bank0_Label_98F5:
     LDY $0A
-    LDA a:$0426,Y
+    LDA a:World1EntityType+$26,Y
     BMI Bank0_Label_9905
     BEQ Bank0_Label_9905
     JSR Bank0_Func_990A

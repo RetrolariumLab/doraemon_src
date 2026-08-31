@@ -98,15 +98,15 @@ Bank1_Label_8940:
     ORA #$11
     STA PpuCtrlShadow
     JSR Bank1_Func_80FD
-    JSR Bank1_Func_98F8
+    JSR World2_ClearEntityPools
 
 Bank1_World2FrameLoop:
     JSR Bank1_Func_8A39
     JSR Bank1_Func_8B3B
     JSR Bank1_Func_8B4C
     JSR Bank1_Func_8BAC
-    JSR Bank1_Func_9036
-    JSR Bank1_Func_9913
+    JSR World2_UpdatePlayerProjectiles
+    JSR World2_UpdateEnemies
     JSR Bank1_Func_A1D1
     JSR Bank1_Func_97C5
     JSR Bank1_Func_8FA2
@@ -237,7 +237,7 @@ Bank1_Label_8A3B:
     RTS
 
 Bank1_Func_8A46:
-    JSR Bank1_Func_98F8
+    JSR World2_ClearEntityPools
     JSR Bank1_Func_8A84
     LDA #$01
     STA $41
@@ -427,12 +427,12 @@ Bank1_Func_8B65:
     LDX #$06
 
 Bank1_Label_8B7D:
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     BEQ Bank1_Label_8B8B
     CMP #$70
     BCS Bank1_Label_8B8B
     LDA #$78
-    STA a:$0558,X
+    STA a:World2EnemyState,X
 
 Bank1_Label_8B8B:
     DEX

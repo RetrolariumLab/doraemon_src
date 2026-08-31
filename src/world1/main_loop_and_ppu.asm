@@ -33,9 +33,9 @@ Bank0_Label_829F:
     JSR Bank0_Func_8362
     LDA #$01
     STA $51
-    JSR Bank0_Func_C93E
-    JSR Bank0_Func_C949
-    JSR Bank0_Func_C95F
+    JSR World1_ClearEntitySlots00_09
+    JSR World1_ClearEntitySlots10_29
+    JSR World1_ClearEntitySlots38_47
     JSR Bank0_Func_C96A
     JSR Bank0_Func_9535
     JSR Bank0_Func_A7DB
@@ -146,8 +146,8 @@ Bank0_Func_837C:
 
 Bank0_Label_837F:
     STA a:OamBuffer,X
-    STA a:$0400,X
-    STA a:$0500,X
+    STA a:World1EntityType,X
+    STA a:World1EntityY+$10,X
     STA a:$0600,X
     STA a:$0700,X
     CPX #$F8

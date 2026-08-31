@@ -16,42 +16,42 @@ Bank0_Label_C937:
 Bank0_Label_C93D:
     RTS
 
-Bank0_Func_C93E:
+World1_ClearEntitySlots00_09:
     LDX #$09
     LDA #$00
 
 Bank0_Label_C942:
-    STA a:$0400,X
+    STA a:World1EntityType,X
     DEX
     BPL Bank0_Label_C942
     RTS
 
-Bank0_Func_C949:
+World1_ClearEntitySlots10_29:
     LDX #$13
     LDA #$00
 
 Bank0_Label_C94D:
-    STA a:$040A,X
+    STA a:World1EntityType+$0A,X
     DEX
     BPL Bank0_Label_C94D
     RTS
 
-Bank0_Func_C954:
+World1_ClearEntitySlots30_37:
     LDX #$07
     LDA #$00
 
 Bank0_Label_C958:
-    STA a:$041E,X
+    STA a:World1EntityType+$1E,X
     DEX
     BPL Bank0_Label_C958
     RTS
 
-Bank0_Func_C95F:
+World1_ClearEntitySlots38_47:
     LDX #$09
     LDA #$00
 
 Bank0_Label_C963:
-    STA a:$0426,X
+    STA a:World1EntityType+$26,X
     DEX
     BPL Bank0_Label_C963
     RTS
@@ -78,14 +78,14 @@ Bank0_Label_C978:
 
 Bank0_Func_C982:
     LDA #$00
-    STA a:$0426,X
+    STA a:World1EntityType+$26,X
     RTS
 
-Bank0_Func_C988:
+World1_FindFreeEntitySlot38_47:
     LDX #$26
 
 Bank0_Label_C98A:
-    LDA a:$0400,X
+    LDA a:World1EntityType,X
     BNE Bank0_Label_C990
     RTS
 
@@ -97,12 +97,12 @@ Bank0_Label_C990:
     RTS
 
 Bank0_Func_C998:
-    LDA a:$0426,X
+    LDA a:World1EntityType+$26,X
     TAY
     DEY
     LDA $75
     SEC
-    SBC a:$04E6,X
+    SBC a:World1EntityX+$26,X
     BCS Bank0_Label_C9AA
     CMP #$F4
     BCS Bank0_Label_C9AF
@@ -115,7 +115,7 @@ Bank0_Label_C9AA:
 Bank0_Label_C9AF:
     LDA $76
     SEC
-    SBC a:$0516,X
+    SBC a:World1EntityY+$26,X
     BCS Bank0_Label_C9BD
     CMP a:$CC65,Y
     BCS Bank0_Label_C9C2
@@ -155,10 +155,10 @@ Bank0_Label_C9E0:
 Bank0_Func_C9E1:
     AND #$7F
     TAX
-    LDA a:$04B6,Y
+    LDA a:World1EntityPositionHigh+$26,Y
     AND #$0F
     BNE Bank0_Label_C9E0
-    LDA a:$0426,Y
+    LDA a:World1EntityType+$26,Y
     CMP #$8A
     BNE Bank0_Label_C9F6
     LDA $24
@@ -167,7 +167,7 @@ Bank0_Func_C9E1:
 Bank0_Label_C9F6:
     LDA $00
     SEC
-    SBC a:$04E6,Y
+    SBC a:World1EntityX+$26,Y
     BCS Bank0_Label_CA04
     CLC
     ADC $02
@@ -181,7 +181,7 @@ Bank0_Label_CA04:
 Bank0_Label_CA09:
     LDA $01
     SEC
-    SBC a:$0516,Y
+    SBC a:World1EntityY+$26,Y
     BCS Bank0_Label_CA17
     CLC
     ADC $02
@@ -194,29 +194,29 @@ Bank0_Label_CA17:
 
 Bank0_Label_CA1C:
     LDX $95
-    LDA a:$041E,X
+    LDA a:World1EntityType+$1E,X
     CMP #$03
     BEQ Bank0_Label_CA37
-    LDA a:$04DE,X
+    LDA a:World1EntityX+$1E,X
     SEC
     SBC #$04
-    STA a:$04DE,X
-    LDA a:$050E,X
+    STA a:World1EntityX+$1E,X
+    LDA a:World1EntityY+$1E,X
     SEC
     SBC #$04
-    STA a:$050E,X
+    STA a:World1EntityY+$1E,X
 
 Bank0_Label_CA37:
     LDA #$80
-    STA a:$041E,X
+    STA a:World1EntityType+$1E,X
     LDA a:$0576,Y
     SEC
     SBC #$01
     STA a:$0576,Y
     BNE Bank0_Label_CA63
-    LDA a:$0426,Y
+    LDA a:World1EntityType+$26,Y
     AND #$7F
-    STA a:$0426,Y
+    STA a:World1EntityType+$26,Y
     CMP #$0A
     BNE Bank0_Label_CA59
     JSR Bank0_Func_CB61

@@ -96,8 +96,8 @@ Bank0_Reset:
     TXA
 
 Bank0_Label_80AC:
-    STA a:$0400,X
-    STA a:$0500,X
+    STA a:World1EntityType,X
+    STA a:World1EntityY+$10,X
     STA a:$0600,X
     STA a:$0700,X
     INX

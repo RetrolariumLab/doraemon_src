@@ -6,7 +6,7 @@ Bank0_Func_D770:
     LDX #$00
 
 Bank0_Label_D772:
-    LDA a:$041E,X
+    LDA a:World1EntityType+$1E,X
     BEQ Bank0_Label_D77D
     INX
     CPX #$08
@@ -15,21 +15,21 @@ Bank0_Label_D772:
 
 Bank0_Label_D77D:
     LDA #$80
-    STA a:$041E,X
+    STA a:World1EntityType+$1E,X
     LDA #$00
-    STA a:$04AE,X
+    STA a:World1EntityPositionHigh+$1E,X
     LDA #$FF
     STA a:$053E,X
     JSR Bank0_Func_964A
     AND #$1F
     CLC
-    ADC a:$04C0
-    STA a:$04DE,X
+    ADC a:World1EntityX
+    STA a:World1EntityX+$1E,X
     JSR Bank0_Func_964A
     AND #$1F
     CLC
-    ADC a:$04F0
-    STA a:$050E,X
+    ADC a:World1EntityY
+    STA a:World1EntityY+$1E,X
     RTS
     .byte $0F, $01, $11, $1B, $0F, $09, $19, $29, $0F, $09, $19, $1B, $0F, $01, $11, $21
     .byte $0F, $15, $21, $30, $0F, $0F, $26, $30, $0F, $0F, $15, $30, $0F, $15, $25, $35

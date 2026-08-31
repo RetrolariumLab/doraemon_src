@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "pools": [
+    {
+      "id": "world1_entities",
+      "bank": 0,
+      "capacity": 48,
+      "key_field": "World1EntityType",
+      "fields": [
+        {
+          "symbol": "World1EntityType",
+          "role": "active type/state"
+        },
+        {
+          "symbol": "World1EntityMetasprite",
+          "role": "metasprite index"
+        },
+        {
+          "symbol": "World1EntityRenderFlags",
+          "role": "render flags"
+        },
+        {
+          "symbol": "World1EntityPositionHigh",
+          "role": "packed X/Y high bits"
+        },
+        {
+          "symbol": "World1EntityX",
+          "role": "X coordinate low byte"
+        },
+        {
+          "symbol": "World1EntityY",
+          "role": "Y coordinate low byte"
+        }
+      ],
+      "groups": [
+        {
+          "start": 0,
+          "count": 10,
+          "clear": "World1_ClearEntitySlots00_09",
+          "render": "World1_RenderEntitySlots00_09"
+        },
+        {
+          "start": 10,
+          "count": 20,
+          "clear": "World1_ClearEntitySlots10_29",
+          "render": "World1_RenderEntitySlots10_29"
+        },
+        {
+          "start": 30,
+          "count": 8,
+          "clear": "World1_ClearEntitySlots30_37",
+          "render": "World1_RenderEntitySlots30_37"
+        },
+        {
+          "start": 38,
+          "count": 10,
+          "clear": "World1_ClearEntitySlots38_47",
+          "render": "World1_RenderEntitySlots38_47"
+        }
+      ],
+      "lifecycle": [
+        "World1_MoveEntityXByA",
+        "World1_MoveEntityYByA",
+        "World1_ComposeMetasprite",
+        "World1_FindFreeEntitySlot38_47"
+      ]
+    },
+    {
+      "id": "world2_enemies",
+      "bank": 1,
+      "capacity": 7,
+      "key_field": "World2EnemyState",
+      "fields": [
+        {
+          "symbol": "World2EnemyState",
+          "role": "active state and handler index"
+        },
+        {
+          "symbol": "World2EnemyX",
+          "role": "X coordinate"
+        },
+        {
+          "symbol": "World2EnemyY",
+          "role": "Y coordinate"
+        }
+      ],
+      "lifecycle": [
+        "World2_ClearEntityPools",
+        "World2_SpawnEnemy",
+        "World2_UpdateEnemies"
+      ]
+    },
+    {
+      "id": "world2_enemy_projectiles",
+      "bank": 1,
+      "capacity": 6,
+      "key_field": "World2EnemyProjectileY",
+      "fields": [
+        {
+          "symbol": "World2EnemyProjectileFlags",
+          "role": "direction and state flags"
+        },
+        {
+          "symbol": "World2EnemyProjectileX",
+          "role": "X coordinate"
+        },
+        {
+          "symbol": "World2EnemyProjectileY",
+          "role": "Y coordinate and active sentinel"
+        }
+      ],
+      "lifecycle": [
+        "World2_ClearEntityPools"
+      ]
+    },
+    {
+      "id": "world2_player_projectiles",
+      "bank": 1,
+      "capacity": 7,
+      "key_field": "World2PlayerProjectileState",
+      "fields": [
+        {
+          "symbol": "World2PlayerProjectileState",
+          "role": "active state"
+        },
+        {
+          "symbol": "World2PlayerProjectileX",
+          "role": "X coordinate"
+        },
+        {
+          "symbol": "World2PlayerProjectileY",
+          "role": "Y coordinate"
+        },
+        {
+          "symbol": "World2PlayerProjectileDirection",
+          "role": "motion direction"
+        }
+      ],
+      "lifecycle": [
+        "World2_ClearEntityPools",
+        "World2_UpdatePlayerProjectiles"
+      ]
+    },
+    {
+      "id": "world3_active_entities",
+      "bank": 2,
+      "capacity": 8,
+      "key_field": "World3EntityState",
+      "fields": [
+        {
+          "symbol": "World3EntityState",
+          "role": "active state"
+        },
+        {
+          "symbol": "World3EntityX",
+          "role": "X coordinate"
+        },
+        {
+          "symbol": "World3EntityY",
+          "role": "Y coordinate"
+        },
+        {
+          "symbol": "World3EntityMetasprite",
+          "role": "animation and metasprite value"
+        },
+        {
+          "symbol": "World3EntityType",
+          "role": "object type and handler index"
+        }
+      ],
+      "lifecycle": [
+        "World3_ClearEntitySlot",
+        "World3_ClearEntityStorage",
+        "World3_FindFreeEntitySlot",
+        "World3_MaterializeRoomObjects",
+        "World3_UpdateEntities"
+      ]
+    },
+    {
+      "id": "world3_room_objects",
+      "bank": 2,
+      "capacity": 13,
+      "key_field": "World3RoomObjectRoom",
+      "fields": [
+        {
+          "symbol": "World3RoomObjectRoom",
+          "role": "owning room"
+        },
+        {
+          "symbol": "World3RoomObjectType",
+          "role": "object type"
+        },
+        {
+          "symbol": "World3RoomObjectX",
+          "role": "persistent X coordinate"
+        },
+        {
+          "symbol": "World3RoomObjectY",
+          "role": "persistent Y coordinate"
+        },
+        {
+          "symbol": "World3RoomObjectState",
+          "role": "persistent object state"
+        }
+      ],
+      "lifecycle": [
+        "World3_InitializeRoomObjectRegistry",
+        "World3_MaterializeRoomObjects",
+        "World3_SaveRoomObjectsState0",
+        "World3_SaveRoomObjectsState1"
+      ]
+    }
+  ]
+}

@@ -102,10 +102,10 @@ Bank2_Label_AEBF:
     LDY #$00
 
 Bank2_Label_AED1:
-    LDA a:$0600,Y
+    LDA a:World3EntityState,Y
     CMP #$01
     BNE Bank2_Label_AEEC
-    LDA a:$0638,Y
+    LDA a:World3EntityType,Y
     CMP #$1F
     BNE Bank2_Label_AEE7
     LDA #$00
@@ -114,7 +114,7 @@ Bank2_Label_AED1:
 
 Bank2_Label_AEE7:
     LDA #$00
-    STA a:$0600,Y
+    STA a:World3EntityState,Y
 
 Bank2_Label_AEEC:
     INY

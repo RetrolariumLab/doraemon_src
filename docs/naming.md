@@ -19,4 +19,6 @@ The same registry contains `memory_symbols`. These names may cover all banks or
 an explicit bank subset, allowing chapter-local overlays at the same RAM address
 without pretending they share a role. The generator substitutes only direct
 memory operands; immediate values remain numeric. Low absolute addresses retain
-the ca65 `a:` size override when symbolized.
+the ca65 `a:` size override when symbolized. An optional `size` expands a proven
+array into ca65 base-plus-offset expressions and overlapping ranges are rejected
+within each bank.

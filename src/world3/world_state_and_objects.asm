@@ -43,10 +43,10 @@ Bank2_Label_87A2:
     STA $3E
 
 Bank2_Label_87AC:
-    LDA a:$0600,Y
+    LDA a:World3EntityState,Y
     CMP #$01
     BNE Bank2_Label_87C0
-    LDA a:$0638,Y
+    LDA a:World3EntityType,Y
     CMP #$1C
     BCC Bank2_Label_87C0
     CMP #$1F
@@ -68,16 +68,16 @@ Bank2_Label_87C0:
     LDY #$00
 
 Bank2_Label_87DA:
-    LDA a:$0600,Y
+    LDA a:World3EntityState,Y
     CMP #$01
     BNE Bank2_Label_87F1
-    LDA a:$0638,Y
+    LDA a:World3EntityType,Y
     CMP #$1C
     BCC Bank2_Label_87F1
     CMP #$1F
     BCS Bank2_Label_87F1
     LDA #$00
-    STA a:$0600,Y
+    STA a:World3EntityState,Y
 
 Bank2_Label_87F1:
     INY
@@ -86,15 +86,15 @@ Bank2_Label_87F1:
     LDY #$00
 
 Bank2_Label_87F8:
-    LDA a:$06BD,Y
+    LDA a:World3RoomObjectType,Y
     CMP #$1C
     BCC Bank2_Label_880D
     CMP #$1F
     BCS Bank2_Label_880D
     LDA #$23
-    STA a:$06B0,Y
+    STA a:World3RoomObjectRoom,Y
     LDA #$00
-    STA a:$06E4,Y
+    STA a:World3RoomObjectState,Y
 
 Bank2_Label_880D:
     INY
@@ -163,22 +163,22 @@ Bank2_Label_886E:
     RTS
 
 Bank2_Func_886F:
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     CMP #$01
     BNE Bank2_Label_886E
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     SEC
     SBC $3C
     JSR Bank2_Func_B149
     CMP #$0D
     BCS Bank2_Label_886E
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     SEC
     SBC $3D
     JSR Bank2_Func_B149
     CMP #$0D
     BCS Bank2_Label_886E
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$10
     BCS Bank2_Label_886E
     CMP #$05
@@ -200,13 +200,13 @@ Bank2_Label_88AD:
     STA a:$0703,Y
     LDA #$A0
     STA a:$0701,Y
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$04
     BNE Bank2_Label_88C6
     JSR Bank2_Func_9114
 
 Bank2_Label_88C6:
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$0A
     BEQ Bank2_Label_88D1
     CMP #$0B
@@ -219,21 +219,21 @@ Bank2_Label_88D1:
 Bank2_Label_88D6:
     LDA a:$0698,X
     BEQ Bank2_Label_886E
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$0C
     BCC Bank2_Label_88E6
     CMP #$10
     BCC Bank2_Label_88EE
 
 Bank2_Label_88E6:
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     EOR #$04
-    STA a:$0608,X
+    STA a:World3EntityX,X
 
 Bank2_Label_88EE:
     DEC a:$0698,X
     BNE Bank2_Label_896C
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$08
     BNE Bank2_Label_8939
     LDA #$01
@@ -271,7 +271,7 @@ Bank2_Label_8932:
     JMP Bank2_Label_895C
 
 Bank2_Label_8939:
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$0C
     BCC Bank2_Label_895C
     CMP #$10
@@ -290,7 +290,7 @@ Bank2_Label_8939:
 Bank2_Label_895C:
     LDX $5C
     JSR Bank2_Func_897C
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     TAY
     LDA a:$8F35,Y
     JSR Bank2_Func_898C
@@ -313,9 +313,9 @@ Bank2_Func_8972:
 
 Bank2_Func_897C:
     LDA #$05
-    STA a:$0600,X
+    STA a:World3EntityState,X
     LDA #$6C
-    STA a:$0628,X
+    STA a:World3EntityMetasprite,X
     LDA #$05
     JSR Bank2_Func_A5DF
     RTS
@@ -338,16 +338,16 @@ Bank2_Label_89A0:
     RTS
 
 Bank2_Func_89A1:
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     CMP #$01
     BNE Bank2_Label_89A0
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     SEC
     SBC $8C
     JSR Bank2_Func_B149
     CMP #$0D
     BCS Bank2_Label_89A0
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     SEC
     SBC #$04
     SEC
@@ -355,14 +355,14 @@ Bank2_Func_89A1:
     JSR Bank2_Func_B149
     CMP #$11
     BCS Bank2_Label_89A0
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$06
     BNE Bank2_Label_89EA
-    LDA a:$0628,X
+    LDA a:World3EntityMetasprite,X
     CMP #$20
     BEQ Bank2_Label_89E7
     JSR Bank2_Func_897C
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     TAY
     LDA a:$8F35,Y
     JSR Bank2_Func_898C
@@ -383,7 +383,7 @@ Bank2_Label_89EA:
     JSR Bank2_Func_A5EB
     JSR Bank2_Func_86C4
     JSR Bank2_Func_897C
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     TAY
     LDA a:$8F35,Y
     JSR Bank2_Func_898C
@@ -463,7 +463,7 @@ Bank2_Label_8A60:
     CMP #$10
     BNE Bank2_Label_8A87
     JSR Bank2_Func_897C
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     TAY
     LDA a:$8F35,Y
     JSR Bank2_Func_898C
@@ -479,7 +479,7 @@ Bank2_Label_8A87:
     CMP #$11
     BNE Bank2_Label_8AB7
     JSR Bank2_Func_897C
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     TAY
     LDA a:$8F35,Y
     JSR Bank2_Func_898C
@@ -509,7 +509,7 @@ Bank2_Label_8AB7:
     CMP #$12
     BNE Bank2_Label_8AD7
     JSR Bank2_Func_897C
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     TAY
     LDA a:$8F35,Y
     JSR Bank2_Func_898C
@@ -523,7 +523,7 @@ Bank2_Label_8AB7:
 
 Bank2_Label_8AD7:
     JSR Bank2_Func_897C
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     TAY
     LDA a:$8F35,Y
     JSR Bank2_Func_898C
@@ -538,7 +538,7 @@ Bank2_Label_8AEC:
     BNE Bank2_Label_8B67
     LDA $CB
     BNE Bank2_Label_8B67
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     TAY
     CMP #$05
     BEQ Bank2_Label_8B67
@@ -568,13 +568,13 @@ Bank2_Label_8B08:
     STA $4B
     LDA $8D
     STA $4C
-    JSR Bank2_Func_8CF6
-    JSR Bank2_Func_8CFD
+    JSR World3_SaveRoomObjectsState0
+    JSR World3_SaveRoomObjectsState1
     LDY #$00
 
 Bank2_Label_8B36:
     LDA #$00
-    STA a:$06E4,Y
+    STA a:World3RoomObjectState,Y
     INY
     CPY #$0D
     BNE Bank2_Label_8B36

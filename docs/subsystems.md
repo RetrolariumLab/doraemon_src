@@ -99,3 +99,20 @@ service.
 `config/audio_dispatch.json` records the complete indirect edge set, while
 `make validate-audio-dispatch` proves the ROM tables and Ghidra seed registry
 remain synchronized.
+
+## Object storage and lifecycle
+
+World 1 uses one 48-slot structure-of-arrays split into four traversal classes:
+slots 0-9, 10-29, 30-37, and 38-47. Each class has a dedicated clear and render
+routine, while signed X/Y stepping and metasprite composition are shared. The
+field layout and exact capacities are recorded in `docs/ram_fields.md`.
+
+World 2 uses three smaller pools: seven enemies, six enemy projectiles, and
+seven player projectiles. Its main frame path independently updates the enemy
+and player-projectile pools, and initialization clears all three active fields.
+
+World 3 separates eight active entities from thirteen persistent room-object
+records. Room entry materializes matching records into free active slots; room
+exit saves coordinates and state back through two state-class passes. This is a
+different ownership model from both earlier chapters, not a shared object
+engine hidden behind different data.

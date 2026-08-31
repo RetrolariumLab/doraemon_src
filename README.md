@@ -91,6 +91,7 @@ make build              # assemble the complete iNES image
 make verify             # compare every image region byte-for-byte
 make bank-info          # print per-bank CRC32 values and vectors
 make bank-gateways      # report the validated cross-bank gateway graph
+make object-pools       # validate chapter pool capacities, fields, and lifecycle API
 make maps               # describe all CadEditor-backed regions as JSON
 make validate-maps      # validate map/table sizes and CRCs
 make quality-check      # formatting, lint, and unit tests
@@ -109,6 +110,7 @@ bin/                        local ca65/ld65 toolchain and license
 config/linker/gnrom.cfg     header, four PRG windows, and CHR layout
 config/prg_data_ranges.txt  bank-qualified evidence-backed data ranges
 config/prg_code_entries.txt bank-qualified evidence-backed code seeds
+config/object_pools.json machine-checked chapter entity storage contract
 config/symbols.json         bank-qualified semantic symbol registry
 config/debugger_*.json      initial Mesen watches and breakpoints
 docs/                       architecture, formats, evidence, and roadmap

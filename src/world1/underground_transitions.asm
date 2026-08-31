@@ -183,7 +183,7 @@ Bank0_Label_D4E3:
     RTS
 
 Bank0_Func_D4EE:
-    JSR Bank0_Func_C949
+    JSR World1_ClearEntitySlots10_29
     LDA #$06
     STA a:AudioMusicState
     LDA #$00
@@ -193,21 +193,21 @@ Bank0_Func_D4EE:
     STA $B2
     LDA #$01
     STA $9B
-    JSR Bank0_Func_C949
-    JSR Bank0_Func_C93E
+    JSR World1_ClearEntitySlots10_29
+    JSR World1_ClearEntitySlots00_09
     JSR Bank0_Func_C96A
     LDA #$00
-    STA a:$0400
+    STA a:World1EntityType
     LDA #$3A
-    STA a:$0430
+    STA a:World1EntityMetasprite
     LDA #$00
-    STA a:$0490
+    STA a:World1EntityPositionHigh
     LDA #$32
-    STA a:$04C0
+    STA a:World1EntityX
     LDA #$70
-    STA a:$04F0
+    STA a:World1EntityY
     LDA #$01
-    STA a:$0460
+    STA a:World1EntityRenderFlags
     LDA #$FF
     STA a:$0520
     LDA #$00
@@ -226,12 +226,12 @@ Bank0_Func_D4EE:
 Bank0_Label_D54D:
     JSR Bank0_Func_94F1
     LDA #$00
-    STA a:$0400
+    STA a:World1EntityType
     LDA $9E
     AND $9C
     BNE Bank0_Label_D560
     LDA #$0F
-    STA a:$0400
+    STA a:World1EntityType
 
 Bank0_Label_D560:
     JSR Bank0_Func_8490
@@ -261,12 +261,12 @@ Bank0_Label_D594:
 
 Bank0_Label_D598:
     LDA #$0E
-    STA a:$0400
+    STA a:World1EntityType
     LDA #$00
     STA $9D
     STA $98
     LDA #$38
-    STA a:$0430
+    STA a:World1EntityMetasprite
     JSR Bank0_Func_964A
     AND #$3F
     CLC
@@ -287,7 +287,7 @@ Bank0_Label_D5B2:
     JSR Bank0_Func_87F8
     JSR Bank0_Func_820E
     JSR Bank0_Func_D67A
-    LDA a:$0400
+    LDA a:World1EntityType
     BEQ Bank0_Label_D5E5
     LDA $79
     BMI Bank0_Label_D594
@@ -301,9 +301,9 @@ Bank0_Label_D5E5:
     LDA #$00
     STA $26
     LDA #$0F
-    STA a:$0400
+    STA a:World1EntityType
     LDA #$00
-    STA a:$0490
+    STA a:World1EntityPositionHigh
     LDA #$A0
     STA $9C
 
@@ -323,20 +323,20 @@ Bank0_Label_D619:
     JSR Bank0_Func_9B54
     DEC $9C
     BNE Bank0_Label_D601
-    JSR Bank0_Func_C954
-    JSR Bank0_Func_C949
+    JSR World1_ClearEntitySlots30_37
+    JSR World1_ClearEntitySlots10_29
     LDA #$0F
-    STA a:$0400
+    STA a:World1EntityType
     LDA #$00
-    STA a:$0490
+    STA a:World1EntityPositionHigh
     LDA #$36
-    STA a:$0430
+    STA a:World1EntityMetasprite
     LDA #$01
-    STA a:$0460
+    STA a:World1EntityRenderFlags
     LDA #$80
-    STA a:$04C0
+    STA a:World1EntityX
     LDA #$88
-    STA a:$04F0
+    STA a:World1EntityY
     LDA #$00
     STA $79
     LDA #$12
@@ -367,10 +367,10 @@ Bank0_Label_D65D:
     JMP Bank0_Func_8082
 
 Bank0_Func_D67A:
-    LDA a:$0460
+    LDA a:World1EntityRenderFlags
     AND #$8F
-    STA a:$0460
-    LDA a:$0400
+    STA a:World1EntityRenderFlags
+    LDA a:World1EntityType
     BPL Bank0_Label_D68C
     LDA #$11
     JSR World1_Audio_QueueEffectWithPriority
@@ -389,14 +389,14 @@ Bank0_Label_D68C:
     LSR A
     ORA $00
     CLC
-    ADC a:$04F0
-    STA a:$04F0
+    ADC a:World1EntityY
+    STA a:World1EntityY
     LDA #$3B
-    STA a:$0430
+    STA a:World1EntityMetasprite
     LDA $9D
     BMI Bank0_Label_D6B8
     LDA #$3A
-    STA a:$0430
+    STA a:World1EntityMetasprite
 
 Bank0_Label_D6B8:
     INC $9D
@@ -406,7 +406,7 @@ Bank0_Label_D6BD:
     LDA #$00
     STA a:$0550
     LDA #$38
-    STA a:$0430
+    STA a:World1EntityMetasprite
     JSR Bank0_Func_964A
     AND #$3F
     CLC
@@ -421,11 +421,11 @@ Bank0_Label_D6D4:
     LSR A
     AND #$01
     ORA #$38
-    STA a:$0430
+    STA a:World1EntityMetasprite
     LDA a:$0580
     BEQ Bank0_Label_D6F7
-    INC a:$04C0
-    LDA a:$04C0
+    INC a:World1EntityX
+    LDA a:World1EntityX
     CMP #$70
     BCC Bank0_Label_D706
     LDA #$00
@@ -433,8 +433,8 @@ Bank0_Label_D6D4:
     JMP Bank0_Label_D706
 
 Bank0_Label_D6F7:
-    DEC a:$04C0
-    LDA a:$04C0
+    DEC a:World1EntityX
+    LDA a:World1EntityX
     CMP #$08
     BCS Bank0_Label_D706
     LDA #$01
@@ -448,13 +448,13 @@ Bank0_Label_D706:
     LDA #$EC
     STA $9D
     LDA #$3A
-    STA a:$0430
+    STA a:World1EntityMetasprite
 
 Bank0_Label_D718:
     LDY #$00
 
 Bank0_Label_D71A:
-    LDA a:$040A,Y
+    LDA a:World1EntityType+$0A,Y
     BEQ Bank0_Label_D725
     INY
     CPY #$04
@@ -463,19 +463,19 @@ Bank0_Label_D71A:
 
 Bank0_Label_D725:
     LDA #$02
-    STA a:$040A,Y
+    STA a:World1EntityType+$0A,Y
     LDA #$32
-    STA a:$043A,Y
-    LDA a:$0490
-    STA a:$049A,Y
-    LDA a:$04C0
+    STA a:World1EntityMetasprite+$0A,Y
+    LDA a:World1EntityPositionHigh
+    STA a:World1EntityPositionHigh+$0A,Y
+    LDA a:World1EntityX
     CLC
     ADC #$14
-    STA a:$04CA,Y
-    LDA a:$04F0
-    STA a:$04FA,Y
+    STA a:World1EntityX+$0A,Y
+    LDA a:World1EntityY
+    STA a:World1EntityY+$0A,Y
     LDA #$01
-    STA a:$046A,Y
+    STA a:World1EntityRenderFlags+$0A,Y
     LDA #$FF
     STA a:$052A,Y
     JSR Bank0_Func_962F

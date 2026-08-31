@@ -58,7 +58,7 @@ Bank1_Func_96B1:
     STA $95
     LDA #$02
     STA $96
-    LDA a:$05BA,X
+    LDA a:World2PlayerProjectileX,X
 
 Bank1_Func_96BA:
     STA $97
@@ -125,16 +125,16 @@ Bank1_Label_97D5:
     LDA #$04
     STA a:AudioMusicState
     LDA a:$98BE,X
-    STA a:$0558
+    STA a:World2EnemyState
     LDA a:$98C1,X
-    STA a:$055F
+    STA a:World2EnemyX
     LDA a:$98C4,X
-    STA a:$0566
+    STA a:World2EnemyY
     LDX #$00
     BEQ Bank1_Func_9858
 
 Bank1_Label_97FC:
-    LDA a:$0558
+    LDA a:World2EnemyState
     BNE Bank1_Label_9809
     LDA #$04
     JSR World2_Audio_QueueEffect
@@ -151,7 +151,7 @@ Bank1_Label_9809:
     LDX #$06
 
 Bank1_Label_9818:
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     BEQ Bank1_Label_9823
     DEX
     CPX #$03
@@ -162,11 +162,11 @@ Bank1_Label_9822:
 
 Bank1_Label_9823:
     LDA #$04
-    STA a:$0558,X
+    STA a:World2EnemyState,X
     LDA #$30
-    STA a:$0566,X
+    STA a:World2EnemyY,X
     LDA #$C8
-    STA a:$055F,X
+    STA a:World2EnemyX,X
     BNE Bank1_Func_9858
 
 Bank1_Label_9834:
@@ -176,7 +176,7 @@ Bank1_Label_9834:
     LDX #$06
 
 Bank1_Label_983C:
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     BEQ Bank1_Label_9847
     DEX
     CPX #$03
@@ -185,11 +185,11 @@ Bank1_Label_983C:
 
 Bank1_Label_9847:
     LDA #$14
-    STA a:$0558,X
-    LDA a:$0566
-    STA a:$0566,X
-    LDA a:$055F
-    STA a:$055F,X
+    STA a:World2EnemyState,X
+    LDA a:World2EnemyY
+    STA a:World2EnemyY,X
+    LDA a:World2EnemyX
+    STA a:World2EnemyX,X
 
 Bank1_Func_9858:
     JSR Bank1_Func_9CD8
@@ -207,7 +207,7 @@ Bank1_Label_9864:
     LDX #$06
 
 Bank1_Label_986C:
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     BEQ Bank1_Label_9875
     DEX
     BPL Bank1_Label_986C
@@ -217,16 +217,16 @@ Bank1_Label_9875:
     LDA #$08
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$10
-    STA a:$0558,X
+    STA a:World2EnemyState,X
     LDA #$80
-    STA a:$0566,X
+    STA a:World2EnemyY,X
     LDA $73
     AND #$04
     ASL A
     ASL A
     CLC
     ADC #$CE
-    STA a:$055F,X
+    STA a:World2EnemyX,X
     JSR Bank1_Func_9858
     LDA $73
     LSR A
@@ -249,12 +249,12 @@ Bank1_Func_98A3:
     .byte $02, $03, $04, $05, $06, $07, $08, $09, $0A, $09, $08, $07, $06, $05, $04, $03
     .byte $11, $40, $67, $11, $12, $13, $DC, $78, $B4, $98, $50, $64
 
-Bank1_Func_98C7:
+World2_SpawnEnemy:
     STX $75
     LDX #$06
 
 Bank1_Label_98CB:
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     BEQ Bank1_Label_98D6
     DEX
     BPL Bank1_Label_98CB
@@ -273,42 +273,42 @@ Bank1_Label_98DE:
 Bank1_Label_98E0:
     STA a:$056D,X
     LDA $74
-    STA a:$0558,X
+    STA a:World2EnemyState,X
     LDA $75
-    STA a:$055F,X
+    STA a:World2EnemyX,X
     LDA $42
     STA a:$0574,X
     JSR Bank1_Func_985B
     LDX $75
     RTS
 
-Bank1_Func_98F8:
+World2_ClearEntityPools:
     LDX #$06
     LDA #$00
 
 Bank1_Label_98FC:
-    STA a:$0558,X
+    STA a:World2EnemyState,X
     DEX
     BPL Bank1_Label_98FC
     LDX #$05
 
 Bank1_Label_9904:
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
     DEX
     BPL Bank1_Label_9904
     LDX #$06
 
 Bank1_Label_990C:
-    STA a:$05B3,X
+    STA a:World2PlayerProjectileState,X
     DEX
     BPL Bank1_Label_990C
     RTS
 
-Bank1_Func_9913:
+World2_UpdateEnemies:
     LDX #$06
 
 Bank1_Label_9915:
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     BNE Bank1_Label_991D
 
 Bank1_Label_991A:
@@ -326,8 +326,8 @@ Bank1_Label_9922:
     LDA $73
     AND #$07
     BNE Bank1_Label_991A
-    INC a:$0558,X
-    LDA a:$0558,X
+    INC a:World2EnemyState,X
+    LDA a:World2EnemyState,X
     CMP #$7B
     BEQ Bank1_Label_993F
     CMP #$74
@@ -335,7 +335,7 @@ Bank1_Label_9922:
 
 Bank1_Label_993F:
     LDA #$00
-    STA a:$0558,X
+    STA a:World2EnemyState,X
     BEQ Bank1_Label_991A
 
 Bank1_Label_9946:
@@ -351,9 +351,9 @@ Bank1_Label_9946:
     LDA a:$A570,X
     PHA
     LDX $76
-    LDA a:$055F,X
+    LDA a:World2EnemyX,X
     STA $67
-    LDA a:$0566,X
+    LDA a:World2EnemyY,X
     STA $68
     RTS
     .byte $A6, $76, $A4, $9F, $BD, $58, $05, $F0, $AC, $BD, $5F, $05, $85, $98, $BD, $66
@@ -375,41 +375,41 @@ Bank1_Label_99F6:
     LDA a:$0574,X
     BEQ Bank1_Label_9A23
     PHA
-    LDA a:$055F,X
+    LDA a:World2EnemyX,X
     ASL A
     ASL A
     ASL A
     ASL A
-    STA a:$055F,X
+    STA a:World2EnemyX,X
     PLA
     CMP #$01
     BEQ Bank1_Label_9A1C
     LDA #$EC
-    STA a:$0566,X
+    STA a:World2EnemyY,X
     BNE Bank1_Label_9A32
 
 Bank1_Label_9A1C:
     LDA #$F4
-    STA a:$0566,X
+    STA a:World2EnemyY,X
     BNE Bank1_Label_9A32
 
 Bank1_Label_9A23:
-    LDA a:$055F,X
+    LDA a:World2EnemyX,X
     ASL A
     ASL A
     ASL A
     ASL A
-    STA a:$0566,X
+    STA a:World2EnemyY,X
     LDA #$F0
-    STA a:$055F,X
+    STA a:World2EnemyX,X
 
 Bank1_Label_9A32:
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     AND #$1F
     EOR #$10
     CLC
     ADC #$01
-    STA a:$0558,X
+    STA a:World2EnemyState,X
 
 Bank1_Label_9A3F:
     DEX
@@ -437,7 +437,7 @@ Bank1_Label_9A45:
 
 Bank1_Func_9B40:
     LDA #$00
-    STA a:$0558,X
+    STA a:World2EnemyState,X
     RTS
     .byte $A9, $00, $85, $98, $BD, $6D, $05, $29, $10, $F0, $02, $E6, $98, $A5, $98, $4C
     .byte $5B, $A3, $A9, $02, $85, $98, $A5, $73, $29, $20, $F0, $02, $E6, $98, $A5, $5C

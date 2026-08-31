@@ -247,7 +247,7 @@ Bank1_Func_8444:
     BEQ Bank1_Label_846E
     BCS Bank1_Label_845A
     STA $74
-    JSR Bank1_Func_98C7
+    JSR World2_SpawnEnemy
     LDA #$00
     BEQ Bank1_Label_8469
 

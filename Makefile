@@ -35,6 +35,7 @@ RUNTIME_TRACE_DIR := build/runtime/traces
 RUNTIME_SCREENSHOT_DIR := build/runtime/screens
 BANK_GATEWAYS := config/bank_gateways.json
 AUDIO_DISPATCH := config/audio_dispatch.json
+OBJECT_POOLS := config/object_pools.json
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -44,7 +45,7 @@ AUDIO_DISPATCH := config/audio_dispatch.json
 	disassembly-check maps validate-maps release-check check clean \
 	source-audit source-release-audit source-check trace-runtime \
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
-	audio-dispatch validate-audio-dispatch
+	audio-dispatch validate-audio-dispatch object-pools validate-object-pools
 
 all: verify
 
@@ -170,6 +171,10 @@ audio-dispatch validate-audio-dispatch: $(PRG_ASSET)
 		--manifest "$(AUDIO_DISPATCH)" \
 		--code-entries config/prg_code_entries.txt
 
+object-pools validate-object-pools:
+	$(PYTHON) scripts/object_pools.py --manifest "$(OBJECT_POOLS)" \
+		--symbols "$(SYMBOLS)"
+
 ghidra-bootstrap:
 	$(PYTHON) scripts/bootstrap_ghidra.py install
 
@@ -195,7 +200,7 @@ validate-maps: $(ROM)
 	$(PYTHON) scripts/map_data.py --image "$(ROM)" --validate
 
 release-check: quality-check disassembly-check verify validate-maps \
-	validate-audio-dispatch
+	validate-audio-dispatch validate-object-pools
 
 check: release-check
 

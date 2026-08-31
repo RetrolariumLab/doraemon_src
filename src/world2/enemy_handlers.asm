@@ -9,16 +9,16 @@ Bank1_Func_A0DC:
     BEQ Bank1_Label_A103
     DEY
     BEQ Bank1_Label_A0F4
-    DEC a:$0566,X
+    DEC a:World2EnemyY,X
     BEQ Bank1_Label_A111
-    LDA a:$0566,X
+    LDA a:World2EnemyY,X
     CMP #$F0
     BCS Bank1_Label_A111
     RTS
 
 Bank1_Label_A0F4:
-    INC a:$0566,X
-    LDA a:$0566,X
+    INC a:World2EnemyY,X
+    LDA a:World2EnemyY,X
     CMP #$E0
     BCC Bank1_Label_A102
     CMP #$F2
@@ -30,8 +30,8 @@ Bank1_Label_A102:
 Bank1_Label_A103:
     LDA $45
     BNE Bank1_Label_A114
-    DEC a:$055F,X
-    LDA a:$055F,X
+    DEC a:World2EnemyX,X
+    LDA a:World2EnemyX,X
     CMP #$FA
     BCC Bank1_Label_A114
 
@@ -48,13 +48,13 @@ Bank1_Func_A115:
     BEQ Bank1_Label_A131
     DEY
     BEQ Bank1_Label_A126
-    DEC a:$0595,X
+    DEC a:World2EnemyProjectileY,X
     BEQ Bank1_Label_A13A
     RTS
 
 Bank1_Label_A126:
-    INC a:$0595,X
-    LDA a:$0595,X
+    INC a:World2EnemyProjectileY,X
+    LDA a:World2EnemyProjectileY,X
     CMP #$D0
     BCS Bank1_Label_A13A
     RTS
@@ -62,12 +62,12 @@ Bank1_Label_A126:
 Bank1_Label_A131:
     LDA $45
     BNE Bank1_Label_A13F
-    DEC a:$058F,X
+    DEC a:World2EnemyProjectileX,X
     BNE Bank1_Label_A13F
 
 Bank1_Label_A13A:
     LDA #$00
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
 
 Bank1_Label_A13F:
     RTS
@@ -86,25 +86,25 @@ Bank1_Func_A1D1:
     LDX #$05
 
 Bank1_Label_A1D3:
-    LDA a:$0595,X
+    LDA a:World2EnemyProjectileY,X
     BEQ Bank1_Label_A233
-    LDA a:$0589,X
+    LDA a:World2EnemyProjectileFlags,X
     BPL Bank1_Label_A21B
     JSR Bank1_Func_A115
-    LDA a:$0595,X
+    LDA a:World2EnemyProjectileY,X
     BEQ Bank1_Label_A233
-    LDA a:$058F,X
+    LDA a:World2EnemyProjectileX,X
     CLC
     ADC a:$05A1,X
     CMP #$F0
     BCS Bank1_Label_A213
-    STA a:$058F,X
-    LDA a:$0595,X
+    STA a:World2EnemyProjectileX,X
+    LDA a:World2EnemyProjectileY,X
     CLC
     ADC a:$05A7,X
     CMP #$E0
     BCS Bank1_Label_A213
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
     LDA $73
     AND #$03
     BNE Bank1_Label_A269
@@ -116,33 +116,33 @@ Bank1_Label_A1D3:
 
 Bank1_Label_A213:
     LDA #$00
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
     JMP Bank1_Label_A2BE
 
 Bank1_Label_A21B:
     JSR Bank1_Func_A115
-    LDA a:$0595,X
+    LDA a:World2EnemyProjectileY,X
     BEQ Bank1_Label_A233
     INC a:$05AD,X
     LDA a:$05AD,X
     CMP #$8C
     BCC Bank1_Label_A236
     LDA #$00
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
     RTS
 
 Bank1_Label_A233:
     JMP Bank1_Label_A2BE
 
 Bank1_Label_A236:
-    LDY a:$0589,X
+    LDY a:World2EnemyProjectileFlags,X
     CPY #$04
     BCC Bank1_Label_A26C
-    LDA a:$058F,X
+    LDA a:World2EnemyProjectileX,X
     CLC
     ADC a:$A2BE,Y
     BEQ Bank1_Label_A29F
-    STA a:$058F,X
+    STA a:World2EnemyProjectileX,X
     LDA a:$059B,X
     CLC
     ADC a:$05A7,X
@@ -153,10 +153,10 @@ Bank1_Label_A236:
 Bank1_Label_A257:
     SBC a:$05A1,X
     PHA
-    LDA a:$0595,X
+    LDA a:World2EnemyProjectileY,X
     CLC
     ADC a:$A2C2,Y
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
     PLA
 
 Bank1_Label_A266:
@@ -166,10 +166,10 @@ Bank1_Label_A269:
     JMP Bank1_Label_A2A4
 
 Bank1_Label_A26C:
-    LDA a:$0595,X
+    LDA a:World2EnemyProjectileY,X
     CLC
     ADC a:$A2C6,Y
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
     LDA a:$059B,X
     CLC
     ADC a:$05A1,X
@@ -180,10 +180,10 @@ Bank1_Label_A26C:
 Bank1_Label_A284:
     SBC a:$05A7,X
     PHA
-    LDA a:$058F,X
+    LDA a:World2EnemyProjectileX,X
     CLC
     ADC a:$A2C2,Y
-    STA a:$058F,X
+    STA a:World2EnemyProjectileX,X
     BEQ Bank1_Label_A29E
     PLA
 
@@ -199,21 +199,21 @@ Bank1_Label_A29E:
 
 Bank1_Label_A29F:
     LDA #$00
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
 
 Bank1_Label_A2A4:
-    LDA a:$058F,X
+    LDA a:World2EnemyProjectileX,X
     CLC
     ADC #$04
     STA $67
-    LDA a:$0595,X
+    LDA a:World2EnemyProjectileY,X
     CLC
     ADC #$04
     STA $68
     JSR Bank1_Func_9377
     BEQ Bank1_Label_A2BE
     LDA #$00
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
 
 Bank1_Label_A2BE:
     DEX
@@ -231,10 +231,10 @@ Bank1_Label_A2CC:
     CLC
     ADC #$E8
     TAY
-    LDA a:$0595,X
+    LDA a:World2EnemyProjectileY,X
     BEQ Bank1_Label_A300
     STA $94
-    LDA a:$0558
+    LDA a:World2EnemyState
     CMP #$12
     BNE Bank1_Label_A2E5
     LDA #$9F
@@ -245,7 +245,7 @@ Bank1_Label_A2E5:
 
 Bank1_Label_A2E7:
     PHA
-    LDA a:$0589,X
+    LDA a:World2EnemyProjectileFlags,X
     BPL Bank1_Label_A2F1
     PLA
     LDA #$4A
@@ -256,7 +256,7 @@ Bank1_Label_A2F1:
     STA $95
     LDA #$01
     STA $96
-    LDA a:$058F,X
+    LDA a:World2EnemyProjectileX,X
     STA $97
     JSR Bank1_Func_96BC
 
@@ -270,7 +270,7 @@ Bank1_Func_A304:
     LDX #$06
 
 Bank1_Label_A308:
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     BEQ Bank1_Label_A357
     BMI Bank1_Label_A357
     CMP #$70
@@ -278,9 +278,9 @@ Bank1_Label_A308:
     PHA
     LDA #$00
     STA $63
-    LDA a:$055F,X
+    LDA a:World2EnemyX,X
     STA $60
-    LDA a:$0566,X
+    LDA a:World2EnemyY,X
     STA $61
     STX $76
     PLA
@@ -294,9 +294,9 @@ Bank1_Label_A330:
     PHA
     LDA #$00
     STA $63
-    LDA a:$055F,X
+    LDA a:World2EnemyX,X
     STA $60
-    LDA a:$0566,X
+    LDA a:World2EnemyY,X
     STA $61
     STX $76
     PLA

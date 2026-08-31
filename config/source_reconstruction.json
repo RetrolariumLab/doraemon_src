@@ -64,9 +64,11 @@
       "id": "ram_and_object_systems",
       "status": "in-progress",
       "evidence": [
+        "config/object_pools.json",
         "src/memory/ram.inc",
         "docs/ram_fields.md",
-        "docs/subsystems.md"
+        "docs/subsystems.md",
+        "scripts/object_pools.py"
       ]
     },
     {

@@ -3,22 +3,22 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank0_Func_990A:
-    LDA a:$04B6,Y
+    LDA a:World1EntityPositionHigh+$26,Y
     STA $46
     LSR A
     LSR A
     STA $48
-    LDA a:$04E6,Y
+    LDA a:World1EntityX+$26,Y
     STA $45
-    LDA a:$0516,Y
+    LDA a:World1EntityY+$26,Y
     STA $47
-    LDA a:$0486,Y
+    LDA a:World1EntityRenderFlags+$26,Y
     STA $4A
-    LDA a:$0456,Y
+    LDA a:World1EntityMetasprite+$26,Y
     STA $49
-    JMP Bank0_Func_992A
+    JMP World1_ComposeMetasprite
 
-Bank0_Func_992A:
+World1_ComposeMetasprite:
     LDA $4A
     AND #$40
     BEQ Bank0_Label_9937
@@ -394,7 +394,7 @@ Bank0_Func_9B54:
     LDX #$00
 
 Bank0_Label_9B56:
-    LDA a:$041E,X
+    LDA a:World1EntityType+$1E,X
     BEQ Bank0_Label_9BBD
     BPL Bank0_Label_9B7A
     AND #$7F
@@ -404,13 +404,13 @@ Bank0_Label_9B56:
     BCS Bank0_Label_9B72
     AND #$03
     ORA #$20
-    STA a:$044E,X
-    INC a:$041E,X
+    STA a:World1EntityMetasprite+$1E,X
+    INC a:World1EntityType+$1E,X
     JMP Bank0_Label_9BBD
 
 Bank0_Label_9B72:
     LDA #$00
-    STA a:$041E,X
+    STA a:World1EntityType+$1E,X
     JMP Bank0_Label_9BBD
 
 Bank0_Label_9B7A:
@@ -419,18 +419,18 @@ Bank0_Label_9B7A:
     TAY
     LDA a:$9BC3,Y
     CLC
-    ADC a:$04DE,X
+    ADC a:World1EntityX+$1E,X
     CMP #$F8
     BCS Bank0_Label_9BB8
-    STA a:$04DE,X
+    STA a:World1EntityX+$1E,X
     LDA a:$9BC4,Y
     CLC
-    ADC a:$050E,X
+    ADC a:World1EntityY+$1E,X
     CMP #$08
     BCC Bank0_Label_9BB8
     CMP #$E0
     BCS Bank0_Label_9BB8
-    STA a:$050E,X
+    STA a:World1EntityY+$1E,X
     LDA #$04
     STA $00
     CMP #$03
@@ -442,12 +442,12 @@ Bank0_Label_9BAB:
     JSR Bank0_Func_9BCB
     BEQ Bank0_Label_9BBD
     LDA #$80
-    STA a:$041E,X
+    STA a:World1EntityType+$1E,X
     JMP Bank0_Label_9BBD
 
 Bank0_Label_9BB8:
     LDA #$00
-    STA a:$041E,X
+    STA a:World1EntityType+$1E,X
 
 Bank0_Label_9BBD:
     INX
@@ -461,7 +461,7 @@ Bank0_Func_9BCB:
     AND #$07
     CLC
     ADC $00
-    ADC a:$04DE,X
+    ADC a:World1EntityX+$1E,X
     LSR A
     LSR A
     LSR A
@@ -471,7 +471,7 @@ Bank0_Func_9BCB:
     AND #$07
     CLC
     ADC $00
-    ADC a:$050E,X
+    ADC a:World1EntityY+$1E,X
     LSR A
     LSR A
     LSR A
@@ -510,7 +510,7 @@ Bank0_Label_9C11:
     LDX #$00
 
 Bank0_Label_9C17:
-    LDA a:$041E,X
+    LDA a:World1EntityType+$1E,X
     BEQ Bank0_Label_9C26
     CPX $84
     BEQ Bank0_Label_9C25
@@ -543,22 +543,22 @@ Bank0_Label_9C26:
     INY
     CLC
     ADC $75
-    STA a:$04DE,X
+    STA a:World1EntityX+$1E,X
     LDA a:$9C86,Y
     INY
     CLC
     ADC $76
-    STA a:$050E,X
+    STA a:World1EntityY+$1E,X
     LDA a:$9C86,Y
     INY
-    STA a:$044E,X
+    STA a:World1EntityMetasprite+$1E,X
     LDA a:$9C86,Y
     INY
-    STA a:$047E,X
+    STA a:World1EntityRenderFlags+$1E,X
     LDA #$00
-    STA a:$04AE,X
+    STA a:World1EntityPositionHigh+$1E,X
     LDA $7B
-    STA a:$041E,X
+    STA a:World1EntityType+$1E,X
     LDA $7F
     AND #$03
     STA a:$056E,X

@@ -38,7 +38,7 @@ Bank2_Label_9D3F:
 
 Bank2_Func_9D49:
     LDX $07
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     BEQ Bank2_Label_9DCC
     CMP #$05
     BEQ Bank2_Label_9D71
@@ -48,7 +48,7 @@ Bank2_Func_9D49:
     BNE Bank2_Label_9D67
     LDA $CB
     BEQ Bank2_Label_9D71
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$10
     BCS Bank2_Label_9D71
 
@@ -63,12 +63,12 @@ Bank2_Label_9D71:
     STA $7A
 
 Bank2_Label_9D76:
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     TAY
     LDA a:$8EF5,Y
     ORA $7A
     STA $7A
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_9D8E
     LDA $7A
@@ -76,16 +76,16 @@ Bank2_Label_9D76:
     STA $7A
 
 Bank2_Label_9D8E:
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     CMP #$05
     BNE Bank2_Label_9DAE
-    LDA a:$0628,X
+    LDA a:World3EntityMetasprite,X
     STA $79
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     SEC
     SBC #$08
     TAY
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     SEC
     SBC #$08
     TAX
@@ -94,15 +94,15 @@ Bank2_Label_9D8E:
 
 Bank2_Label_9DAE:
     JSR Bank2_Func_9DCD
-    LDA a:$0628,X
+    LDA a:World3EntityMetasprite,X
     CLC
     ADC a:$06A0,X
     CLC
     ADC a:$06A8,X
     STA $79
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     TAY
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     TAX
     JSR Bank2_Func_A71A
 
@@ -131,9 +131,9 @@ Bank2_Func_9DCD:
     .byte $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35, $A0
 
 Bank2_Func_9EB9:
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     STA $46
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     STA $47
 
 Bank2_Func_9EC3:
@@ -165,9 +165,9 @@ Bank2_Label_9ED4:
     JMP Bank2_Func_A035
 
 Bank2_Func_9EF1:
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     STA $46
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     STA $47
 
 Bank2_Func_9EFB:
@@ -204,9 +204,9 @@ Bank2_Label_9F29:
     RTS
 
 Bank2_Func_9F2D:
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     STA $46
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     STA $47
 
 Bank2_Func_9F37:
@@ -239,9 +239,9 @@ Bank2_Label_9F4A:
     JMP Bank2_Func_A035
 
 Bank2_Func_9F67:
-    LDA a:$0608,X
+    LDA a:World3EntityX,X
     STA $46
-    LDA a:$0610,X
+    LDA a:World3EntityY,X
     STA $47
 
 Bank2_Func_9F71:

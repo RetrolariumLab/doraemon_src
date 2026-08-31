@@ -162,8 +162,9 @@ def load_symbol_registry(
             raise DisassemblyError("invalid memory symbol entry")
         address = int(str(item["address"]), 0)
         name = str(item["name"])
+        size = int(str(item.get("size", 1)), 0)
         banks = item.get("banks", list(range(PRG_BANK_COUNT)))
-        if not 0 <= address < PRG_START:
+        if not 0 <= address < PRG_START or size <= 0 or address + size > PRG_START:
             raise DisassemblyError(f"memory symbol is outside CPU memory: {item!r}")
         if not CA65_NAME_RE.fullmatch(name):
             raise DisassemblyError(f"invalid ca65 memory symbol name: {name!r}")
@@ -181,12 +182,15 @@ def load_symbol_registry(
             raise DisassemblyError(f"duplicate symbol name: {name}")
         memory_names.add(lowered)
         for bank in banks:
-            key = (bank, address)
-            if key in memory:
-                raise DisassemblyError(
-                    f"duplicate memory symbol: bank {bank} ${address:04X} {name}"
-                )
-            memory[key] = name
+            for offset in range(size):
+                item_address = address + offset
+                key = (bank, item_address)
+                if key in memory:
+                    raise DisassemblyError(
+                        f"duplicate memory symbol: bank {bank} "
+                        f"${item_address:04X} {name}"
+                    )
+                memory[key] = name if offset == 0 else f"{name}+${offset:02X}"
     return result, memory
 
 

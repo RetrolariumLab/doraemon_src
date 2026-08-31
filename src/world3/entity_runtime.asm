@@ -2,13 +2,13 @@
 ; World 3 entity storage, movement, collision, and behavior dispatch
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_8B68:
+World3_ClearEntitySlot:
     TXA
     PHA
 
 Bank2_Label_8B6A:
     LDA #$00
-    STA a:$0600,X
+    STA a:World3EntityState,X
     TXA
     CLC
     ADC #$08
@@ -19,19 +19,19 @@ Bank2_Label_8B6A:
     TAX
     RTS
 
-Bank2_Func_8B7B:
+World3_InitializeRoomObjectRegistry:
     LDX #$00
 
 Bank2_Label_8B7D:
     LDA a:$D96B,X
-    STA a:$06B0,X
+    STA a:World3RoomObjectRoom,X
     INX
     CPX #$41
     BNE Bank2_Label_8B7D
     LDX #$00
 
 Bank2_Label_8B8A:
-    LDA a:$06BD,X
+    LDA a:World3RoomObjectType,X
     STA a:$04A0,X
     LDA #$00
     STA a:$04A4,X
@@ -49,14 +49,14 @@ Bank2_Label_8B9C:
     LDA #$01
     STA a:$04A4,Y
     LDA a:$04A0,Y
-    STA a:$06BD,X
+    STA a:World3RoomObjectType,X
     INX
     CPX #$04
     BNE Bank2_Label_8B9C
     LDX #$00
 
 Bank2_Label_8BB9:
-    LDA a:$06C1,X
+    LDA a:World3RoomObjectType+$04,X
     STA a:$04A0,X
     LDA #$00
     STA a:$04A8,X
@@ -74,7 +74,7 @@ Bank2_Label_8BCB:
     LDA #$01
     STA a:$04A8,Y
     LDA a:$04A0,Y
-    STA a:$06C1,X
+    STA a:World3RoomObjectType+$04,X
     INX
     CPX #$08
     BNE Bank2_Label_8BCB
@@ -96,7 +96,7 @@ Bank2_Func_8BF3:
     LDY #$00
 
 Bank2_Label_8BFD:
-    LDA a:$06BD,Y
+    LDA a:World3RoomObjectType,Y
     CMP #$19
     BEQ Bank2_Label_8C0E
     INY
@@ -107,14 +107,14 @@ Bank2_Label_8BFD:
 
 Bank2_Label_8C0E:
     LDA #$00
-    STA a:$06B0,Y
+    STA a:World3RoomObjectRoom,Y
     LDA #$01
-    STA a:$06E4,Y
+    STA a:World3RoomObjectState,Y
     STA $9A
     LDA $8C
-    STA a:$06CA,Y
+    STA a:World3RoomObjectX,Y
     LDA $8D
-    STA a:$06D7,Y
+    STA a:World3RoomObjectY,Y
 
 Bank2_Label_8C24:
     RTS
@@ -127,32 +127,32 @@ Bank2_Func_8C25:
     LDY #$00
 
 Bank2_Label_8C2F:
-    LDA a:$06B0,Y
+    LDA a:World3RoomObjectRoom,Y
     CMP $DF
     BNE Bank2_Label_8C67
-    LDA a:$06BD,Y
+    LDA a:World3RoomObjectType,Y
     CMP #$18
     BCC Bank2_Label_8C67
-    LDA a:$06D7,Y
+    LDA a:World3RoomObjectY,Y
     CMP #$50
     BCC Bank2_Label_8C67
     CMP #$A0
     BCS Bank2_Label_8C67
     CPX #$01
     BEQ Bank2_Label_8C5B
-    LDA a:$06CA,Y
+    LDA a:World3RoomObjectX,Y
     CMP #$14
     BCS Bank2_Label_8C67
     LDA #$18
-    STA a:$06CA,Y
+    STA a:World3RoomObjectX,Y
     JMP Bank2_Label_8C67
 
 Bank2_Label_8C5B:
-    LDA a:$06CA,Y
+    LDA a:World3RoomObjectX,Y
     CMP #$DC
     BCC Bank2_Label_8C67
     LDA #$D8
-    STA a:$06CA,Y
+    STA a:World3RoomObjectX,Y
 
 Bank2_Label_8C67:
     INY
@@ -166,35 +166,35 @@ Bank2_Label_8C6C:
     .byte $01, $02, $00, $00, $00, $01, $02, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
-Bank2_Func_8CAD:
+World3_MaterializeRoomObjects:
     LDX #$00
     LDY #$00
 
 Bank2_Label_8CB1:
-    LDA a:$06B0,Y
+    LDA a:World3RoomObjectRoom,Y
     CMP $DF
     BNE Bank2_Label_8CF0
-    JSR Bank2_Func_8B68
+    JSR World3_ClearEntitySlot
     LDA #$01
-    STA a:$0600,X
-    LDA a:$06CA,Y
-    STA a:$0608,X
-    LDA a:$06D7,Y
-    STA a:$0610,X
-    LDA a:$06BD,Y
-    STA a:$0638,X
+    STA a:World3EntityState,X
+    LDA a:World3RoomObjectX,Y
+    STA a:World3EntityX,X
+    LDA a:World3RoomObjectY,Y
+    STA a:World3EntityY,X
+    LDA a:World3RoomObjectType,Y
+    STA a:World3EntityType,X
     STY $42
     TAY
     LDA a:$8ED5,Y
-    STA a:$0628,X
+    STA a:World3EntityMetasprite,X
     LDY $42
-    LDA a:$06E4,Y
+    LDA a:World3RoomObjectState,Y
     STA a:$0678,X
     BEQ Bank2_Label_8CEF
     LDA $8C
-    STA a:$0608,X
+    STA a:World3EntityX,X
     LDA $8D
-    STA a:$0610,X
+    STA a:World3EntityY,X
 
 Bank2_Label_8CEF:
     INX
@@ -205,12 +205,12 @@ Bank2_Label_8CF0:
     BNE Bank2_Label_8CB1
     RTS
 
-Bank2_Func_8CF6:
+World3_SaveRoomObjectsState0:
     LDA #$00
     STA $3E
     JMP Bank2_Label_8D01
 
-Bank2_Func_8CFD:
+World3_SaveRoomObjectsState1:
     LDA #$01
     STA $3E
 
@@ -218,7 +218,7 @@ Bank2_Label_8D01:
     LDX #$00
 
 Bank2_Label_8D03:
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     CMP #$01
     BEQ Bank2_Label_8D11
     CMP #$04
@@ -226,13 +226,13 @@ Bank2_Label_8D03:
     JMP Bank2_Label_8D4C
 
 Bank2_Label_8D11:
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$18
     BCC Bank2_Label_8D4C
     LDY #$00
 
 Bank2_Label_8D1A:
-    CMP a:$06BD,Y
+    CMP a:World3RoomObjectType,Y
     BEQ Bank2_Label_8D29
     INY
     CPY #$0D
@@ -247,15 +247,15 @@ Bank2_Label_8D29:
     JSR Bank2_Func_8D52
     BCS Bank2_Label_8D46
     LDA $DF
-    STA a:$06B0,Y
-    LDA a:$0608,X
-    STA a:$06CA,Y
-    LDA a:$0610,X
-    STA a:$06D7,Y
+    STA a:World3RoomObjectRoom,Y
+    LDA a:World3EntityX,X
+    STA a:World3RoomObjectX,Y
+    LDA a:World3EntityY,X
+    STA a:World3RoomObjectY,Y
 
 Bank2_Label_8D46:
     LDA a:$0678,X
-    STA a:$06E4,Y
+    STA a:World3RoomObjectState,Y
 
 Bank2_Label_8D4C:
     INX
@@ -270,10 +270,10 @@ Bank2_Func_8D52:
     LDX #$00
 
 Bank2_Label_8D5A:
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     CMP #$01
     BNE Bank2_Label_8D9F
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$1B
     BNE Bank2_Label_8D9F
     LDA a:$0678,X
@@ -282,10 +282,10 @@ Bank2_Label_8D5A:
     STX $40
 
 Bank2_Label_8D71:
-    LDA a:$06B0,X
+    LDA a:World3RoomObjectRoom,X
     CMP $8B
     BNE Bank2_Label_8D81
-    LDA a:$06BD,X
+    LDA a:World3RoomObjectType,X
     CMP #$18
     BCC Bank2_Label_8D81
     INC $40
@@ -298,11 +298,11 @@ Bank2_Label_8D81:
     CMP #$02
     BCS Bank2_Label_8DA4
     LDA $8B
-    STA a:$06B0,Y
+    STA a:World3RoomObjectRoom,Y
     LDA $8C
-    STA a:$06CA,Y
+    STA a:World3RoomObjectX,Y
     LDA $8D
-    STA a:$06D7,Y
+    STA a:World3RoomObjectY,Y
     LDX $3F
     SEC
     RTS
@@ -328,14 +328,14 @@ Bank2_Label_8DAB:
     BNE Bank2_Label_8DAB
     RTS
 
-Bank2_Func_8DB4:
+World3_ClearEntityStorage:
     LDA #$00
     STA $AB
     LDX #$00
     TXA
 
 Bank2_Label_8DBB:
-    STA a:$0600,X
+    STA a:World3EntityState,X
     INX
     CPX #$B0
     BNE Bank2_Label_8DBB
@@ -443,23 +443,23 @@ Bank2_Func_8E67:
     STA $C6
 
 Bank2_Label_8E7D:
-    JSR Bank2_Func_9104
+    JSR World3_FindFreeEntitySlot
     BCC Bank2_Label_8EB4
-    JSR Bank2_Func_8B68
+    JSR World3_ClearEntitySlot
     LDA #$1E
     STA a:$0668,X
     LDA $C4
-    STA a:$0638,X
+    STA a:World3EntityType,X
     TAY
     LDA a:$8EB5,Y
     STA a:$0698,X
     LDA a:$8ED5,Y
-    STA a:$0628,X
+    STA a:World3EntityMetasprite,X
     LDA #$FF
-    STA a:$0608,X
-    STA a:$0610,X
+    STA a:World3EntityX,X
+    STA a:World3EntityY,X
     LDA #$02
-    STA a:$0600,X
+    STA a:World3EntityState,X
     JSR Bank2_Func_8F55
     DEC $C5
     BNE Bank2_Label_8EB4
@@ -518,11 +518,11 @@ Bank2_Func_8F55:
     .byte $98, $06, $C8, $C0, $04, $D0, $C5, $60, $03, $03, $03, $03, $28, $D8, $28, $D8
     .byte $30, $30, $C0, $C0, $0C, $0D, $0E, $0F
 
-Bank2_Func_9104:
+World3_FindFreeEntitySlot:
     LDX #$00
 
 Bank2_Label_9106:
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     BEQ Bank2_Label_9112
     INX
     CPX #$08
@@ -536,7 +536,7 @@ Bank2_Label_9112:
 
 Bank2_Func_9114:
     STX $3C
-    JSR Bank2_Func_9104
+    JSR World3_FindFreeEntitySlot
     BCS Bank2_Label_911F
 
 Bank2_Label_911B:
@@ -545,7 +545,7 @@ Bank2_Label_911B:
     RTS
 
 Bank2_Label_911F:
-    JSR Bank2_Func_8B68
+    JSR World3_ClearEntitySlot
     TXA
     TAY
     LDX $3C
@@ -554,27 +554,27 @@ Bank2_Label_911F:
     LSR A
     STA a:$0670,X
     LDA #$01
-    STA a:$0600,Y
+    STA a:World3EntityState,Y
     JSR Bank2_Func_B153
     AND #$08
     SEC
     SBC #$04
     CLC
-    ADC a:$0608,X
-    STA a:$0608,Y
+    ADC a:World3EntityX,X
+    STA a:World3EntityX,Y
     JSR Bank2_Func_B153
     AND #$08
     SEC
     SBC #$04
     CLC
-    ADC a:$0610,X
-    STA a:$0610,Y
-    LDA a:$0628,X
-    STA a:$0628,Y
+    ADC a:World3EntityY,X
+    STA a:World3EntityY,Y
+    LDA a:World3EntityMetasprite,X
+    STA a:World3EntityMetasprite,Y
     LDA a:$0630,X
     STA a:$0630,Y
-    LDA a:$0638,X
-    STA a:$0638,Y
+    LDA a:World3EntityType,X
+    STA a:World3EntityType,Y
     LDA a:$0640,X
     STA a:$0640,Y
     LDA a:$0648,X

@@ -8,7 +8,7 @@ Bank0_Func_CB61:
     TYA
     PHA
     PHA
-    JSR Bank0_Func_C954
+    JSR World1_ClearEntitySlots30_37
     PLA
     TAX
     JSR Bank0_Func_CB73
@@ -119,18 +119,18 @@ Bank0_EnterWorld1Door:
     STA $B2
     LDA #$13
     JSR World1_Audio_QueueEffect
-    JSR Bank0_Func_C93E
-    JSR Bank0_Func_C949
-    JSR Bank0_Func_C954
+    JSR World1_ClearEntitySlots00_09
+    JSR World1_ClearEntitySlots10_29
+    JSR World1_ClearEntitySlots30_37
     LDX $80
     LDA a:$0546,X
     STA $81
     TAY
-    LDA a:$04E6,X
+    LDA a:World1EntityX+$26,X
     CLC
     ADC #$08
     STA $75
-    LDA a:$0516,X
+    LDA a:World1EntityY+$26,X
     CLC
     ADC #$10
     STA $76
@@ -161,8 +161,8 @@ Bank0_Label_CCDD:
     SBC #$01
     BNE Bank0_Label_CCDD
     LDX $80
-    INC a:$0456,X
-    LDA a:$0456,X
+    INC a:World1EntityMetasprite+$26,X
+    LDA a:World1EntityMetasprite+$26,X
     CMP #$28
     BEQ Bank0_Label_CCF7
     PLA
@@ -171,7 +171,7 @@ Bank0_Label_CCDD:
 Bank0_Label_CCF7:
     LDA #$F0
     STA $76
-    DEC a:$0456,X
+    DEC a:World1EntityMetasprite+$26,X
     LDA #$13
     JSR World1_Audio_QueueEffect
     PLA
@@ -187,8 +187,8 @@ Bank0_Label_CD05:
     SBC #$01
     BNE Bank0_Label_CD05
     LDX $80
-    DEC a:$0456,X
-    LDA a:$0456,X
+    DEC a:World1EntityMetasprite+$26,X
+    LDA a:World1EntityMetasprite+$26,X
     CMP #$24
     BEQ Bank0_Label_CD1F
     PLA
@@ -196,7 +196,7 @@ Bank0_Label_CD05:
 
 Bank0_Label_CD1F:
     PLA
-    JSR Bank0_Func_C95F
+    JSR World1_ClearEntitySlots38_47
     JSR Bank0_Func_C96A
     LDA $81
     TAY

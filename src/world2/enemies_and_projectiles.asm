@@ -87,7 +87,7 @@ Bank1_Label_8FC3:
     LDX #$06
 
 Bank1_Label_8FCB:
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     BEQ Bank1_Label_9006
     CMP #$70
     BCC Bank1_Label_8FD8
@@ -95,7 +95,7 @@ Bank1_Label_8FCB:
     BCC Bank1_Label_9006
 
 Bank1_Label_8FD8:
-    LDA a:$0566,X
+    LDA a:World2EnemyY,X
     CLC
     ADC #$08
     SEC
@@ -103,7 +103,7 @@ Bank1_Label_8FD8:
     BCC Bank1_Label_9006
     CMP #$18
     BCS Bank1_Label_9006
-    LDA a:$055F,X
+    LDA a:World2EnemyX,X
     CLC
     ADC #$08
     SEC
@@ -112,11 +112,11 @@ Bank1_Label_8FD8:
     CMP #$10
     BCS Bank1_Label_9006
     INC $9C
-    LDA a:$0558,X
+    LDA a:World2EnemyState,X
     CMP #$10
     BCS Bank1_Label_9009
     LDA #$70
-    STA a:$0558,X
+    STA a:World2EnemyState,X
     BNE Bank1_Label_9009
 
 Bank1_Label_9006:
@@ -127,7 +127,7 @@ Bank1_Label_9009:
     LDX #$05
 
 Bank1_Label_900B:
-    LDA a:$0595,X
+    LDA a:World2EnemyProjectileY,X
     BEQ Bank1_Label_9032
     CLC
     ADC #$02
@@ -136,7 +136,7 @@ Bank1_Label_900B:
     BCC Bank1_Label_9032
     CMP #$16
     BCS Bank1_Label_9032
-    LDA a:$058F,X
+    LDA a:World2EnemyProjectileX,X
     CLC
     ADC #$02
     SEC
@@ -146,31 +146,31 @@ Bank1_Label_900B:
     BCS Bank1_Label_9032
     INC $9C
     LDA #$00
-    STA a:$0595,X
+    STA a:World2EnemyProjectileY,X
 
 Bank1_Label_9032:
     DEX
     BPL Bank1_Label_900B
     RTS
 
-Bank1_Func_9036:
+World2_UpdatePlayerProjectiles:
     JSR Bank1_Func_9177
     JSR Bank1_Func_912F
     LDX #$06
 
 Bank1_Label_903E:
-    LDA a:$05B3,X
+    LDA a:World2PlayerProjectileState,X
     BNE Bank1_Label_9046
     JMP Bank1_Label_90D2
 
 Bank1_Label_9046:
-    INC a:$05B3,X
+    INC a:World2PlayerProjectileState,X
     BMI Bank1_Label_9071
     LDY $42
     BEQ Bank1_Label_909F
     DEY
     BEQ Bank1_Label_9074
-    LDA a:$05C8,X
+    LDA a:World2PlayerProjectileDirection,X
     BEQ Bank1_Label_9067
     CMP #$01
     BEQ Bank1_Label_9061
@@ -182,7 +182,7 @@ Bank1_Label_9061:
     JMP Bank1_Label_9093
 
 Bank1_Label_9067:
-    LDA a:$05C1,X
+    LDA a:World2PlayerProjectileY,X
     CLC
     ADC #$03
     CMP #$04
@@ -192,7 +192,7 @@ Bank1_Label_9071:
     JMP Bank1_Label_90CD
 
 Bank1_Label_9074:
-    LDA a:$05C8,X
+    LDA a:World2PlayerProjectileDirection,X
     BEQ Bank1_Label_9089
     CMP #$01
     BEQ Bank1_Label_9083
@@ -204,21 +204,21 @@ Bank1_Label_9083:
     JMP Bank1_Label_9093
 
 Bank1_Label_9089:
-    LDA a:$05C1,X
+    LDA a:World2PlayerProjectileY,X
     SEC
     SBC #$03
     CMP #$E0
     BCS Bank1_Label_90CD
 
 Bank1_Label_9093:
-    STA a:$05C1,X
+    STA a:World2PlayerProjectileY,X
     STA $68
-    LDA a:$05BA,X
+    LDA a:World2PlayerProjectileX,X
     STA $67
     BNE Bank1_Label_90C8
 
 Bank1_Label_909F:
-    LDA a:$05C8,X
+    LDA a:World2PlayerProjectileDirection,X
     BEQ Bank1_Label_90B4
     CMP #$01
     BEQ Bank1_Label_90AE
@@ -230,14 +230,14 @@ Bank1_Label_90AE:
     JMP Bank1_Label_9093
 
 Bank1_Label_90B4:
-    LDA a:$05BA,X
+    LDA a:World2PlayerProjectileX,X
     CLC
     ADC #$04
     CMP #$FC
     BCS Bank1_Label_90CD
-    STA a:$05BA,X
+    STA a:World2PlayerProjectileX,X
     STA $67
-    LDA a:$05C1,X
+    LDA a:World2PlayerProjectileY,X
     STA $68
 
 Bank1_Label_90C8:
@@ -246,7 +246,7 @@ Bank1_Label_90C8:
 
 Bank1_Label_90CD:
     LDA #$00
-    STA a:$05B3,X
+    STA a:World2PlayerProjectileState,X
 
 Bank1_Label_90D2:
     DEX
@@ -273,44 +273,44 @@ Bank1_Func_90EB:
     JMP Bank1_Func_910D
 
 Bank1_Func_90F1:
-    LDA a:$05BA,X
+    LDA a:World2PlayerProjectileX,X
     SEC
     SBC #$02
-    STA a:$05BA,X
+    STA a:World2PlayerProjectileX,X
     CMP #$04
     BCC Bank1_Label_9129
     RTS
 
 Bank1_Func_90FF:
-    LDA a:$05BA,X
+    LDA a:World2PlayerProjectileX,X
     CLC
     ADC #$02
-    STA a:$05BA,X
+    STA a:World2PlayerProjectileX,X
     CMP #$FC
     BCS Bank1_Label_9129
     RTS
 
 Bank1_Func_910D:
-    LDA a:$05C1,X
+    LDA a:World2PlayerProjectileY,X
     SEC
     SBC #$02
-    STA a:$05C1,X
+    STA a:World2PlayerProjectileY,X
     CMP #$10
     BCC Bank1_Label_9129
     RTS
 
 Bank1_Func_911B:
-    LDA a:$05C1,X
+    LDA a:World2PlayerProjectileY,X
     CLC
     ADC #$02
-    STA a:$05C1,X
+    STA a:World2PlayerProjectileY,X
     CMP #$E0
     BCS Bank1_Label_9129
     RTS
 
 Bank1_Label_9129:
     LDA #$00
-    STA a:$05B3,X
+    STA a:World2PlayerProjectileState,X
     RTS
 
 Bank1_Func_912F:
@@ -427,9 +427,9 @@ Bank1_Func_91CD:
     LDX #$06
 
 Bank1_Label_91D7:
-    LDA a:$05B3,X
+    LDA a:World2PlayerProjectileState,X
     BEQ Bank1_Label_91E6
-    LDA a:$05C1,X
+    LDA a:World2PlayerProjectileY,X
     STA $94
     LDA #$3D
     JSR Bank1_Func_96B1
@@ -441,9 +441,9 @@ Bank1_Label_91E6:
     LDY #$C8
 
 Bank1_Label_91ED:
-    LDA a:$05B3,X
+    LDA a:World2PlayerProjectileState,X
     BEQ Bank1_Label_9204
-    LDA a:$05C1,X
+    LDA a:World2PlayerProjectileY,X
     STA $94
     LDA $42
     BEQ Bank1_Label_91FF

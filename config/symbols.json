@@ -39,6 +39,78 @@
     },
     {
       "bank": 0,
+      "address": "0x8A6C",
+      "name": "World1_MoveEntityXByA",
+      "evidence": "signed-a-add-to-entity-x-with-packed-high-bit-carry"
+    },
+    {
+      "bank": 0,
+      "address": "0x8AA6",
+      "name": "World1_MoveEntityYByA",
+      "evidence": "signed-a-add-to-entity-y-with-packed-high-bit-carry"
+    },
+    {
+      "bank": 0,
+      "address": "0x978F",
+      "name": "World1_RenderEntitySlots00_09",
+      "evidence": "ten-slot-00-09-traversal-into-common-metasprite-composer"
+    },
+    {
+      "bank": 0,
+      "address": "0x9801",
+      "name": "World1_RenderEntitySlots10_29",
+      "evidence": "twenty-slot-10-29-traversal-into-common-metasprite-composer"
+    },
+    {
+      "bank": 0,
+      "address": "0x986A",
+      "name": "World1_RenderEntitySlots30_37",
+      "evidence": "eight-slot-30-37-traversal-into-common-metasprite-composer"
+    },
+    {
+      "bank": 0,
+      "address": "0x98C8",
+      "name": "World1_RenderEntitySlots38_47",
+      "evidence": "ten-slot-38-47-traversal-into-common-metasprite-composer"
+    },
+    {
+      "bank": 0,
+      "address": "0x992A",
+      "name": "World1_ComposeMetasprite",
+      "evidence": "metasprite-table-lookup-and-four-byte-oam-record-writes"
+    },
+    {
+      "bank": 0,
+      "address": "0xC93E",
+      "name": "World1_ClearEntitySlots00_09",
+      "evidence": "zeroes-ten-type-slots-at-0400"
+    },
+    {
+      "bank": 0,
+      "address": "0xC949",
+      "name": "World1_ClearEntitySlots10_29",
+      "evidence": "zeroes-twenty-type-slots-at-040a"
+    },
+    {
+      "bank": 0,
+      "address": "0xC954",
+      "name": "World1_ClearEntitySlots30_37",
+      "evidence": "zeroes-eight-type-slots-at-041e"
+    },
+    {
+      "bank": 0,
+      "address": "0xC95F",
+      "name": "World1_ClearEntitySlots38_47",
+      "evidence": "zeroes-ten-type-slots-at-0426"
+    },
+    {
+      "bank": 0,
+      "address": "0xC988",
+      "name": "World1_FindFreeEntitySlot38_47",
+      "evidence": "scans-type-slots-38-through-47-for-zero"
+    },
+    {
+      "bank": 0,
       "address": "0xCC7F",
       "name": "Bank0_TryEnterWorld1Door",
       "evidence": "portal-type-2-and-button-a"
@@ -345,6 +417,30 @@
     },
     {
       "bank": 1,
+      "address": "0x9036",
+      "name": "World2_UpdatePlayerProjectiles",
+      "evidence": "seven-slot-player-projectile-motion-collision-and-despawn-loop"
+    },
+    {
+      "bank": 1,
+      "address": "0x98C7",
+      "name": "World2_SpawnEnemy",
+      "evidence": "finds-free-seven-slot-enemy-record-and-initializes-state-x-y"
+    },
+    {
+      "bank": 1,
+      "address": "0x98F8",
+      "name": "World2_ClearEntityPools",
+      "evidence": "clears-enemy-enemy-projectile-and-player-projectile-active-fields"
+    },
+    {
+      "bank": 1,
+      "address": "0x9913",
+      "name": "World2_UpdateEnemies",
+      "evidence": "seven-slot-enemy-state-dispatch-update-and-despawn-loop"
+    },
+    {
+      "bank": 1,
       "address": "0xA80B",
       "name": "World2_AudioEffect_RequestPriority",
       "evidence": "request-indexed-even-dispatch-values"
@@ -618,6 +714,54 @@
       "address": "0x838E",
       "name": "Bank2_World3FrameLoop",
       "evidence": "world3-underwater-runtime-frame-loop"
+    },
+    {
+      "bank": 2,
+      "address": "0x8B68",
+      "name": "World3_ClearEntitySlot",
+      "evidence": "clears-one-index-across-eight-slot-parallel-runtime-fields"
+    },
+    {
+      "bank": 2,
+      "address": "0x8B7B",
+      "name": "World3_InitializeRoomObjectRegistry",
+      "evidence": "copies-static-thirteen-record-registry-and-randomizes-type-subsets"
+    },
+    {
+      "bank": 2,
+      "address": "0x8CAD",
+      "name": "World3_MaterializeRoomObjects",
+      "evidence": "copies-current-room-persistent-records-into-eight-active-slots"
+    },
+    {
+      "bank": 2,
+      "address": "0x8CF6",
+      "name": "World3_SaveRoomObjectsState0",
+      "evidence": "saves-matching-active-objects-to-persistent-records-with-state-zero"
+    },
+    {
+      "bank": 2,
+      "address": "0x8CFD",
+      "name": "World3_SaveRoomObjectsState1",
+      "evidence": "saves-matching-active-objects-to-persistent-records-with-state-one"
+    },
+    {
+      "bank": 2,
+      "address": "0x8DB4",
+      "name": "World3_ClearEntityStorage",
+      "evidence": "zeroes-complete-0600-through-06af-active-object-storage"
+    },
+    {
+      "bank": 2,
+      "address": "0x9104",
+      "name": "World3_FindFreeEntitySlot",
+      "evidence": "scans-eight-active-state-slots-for-zero-and-returns-carry"
+    },
+    {
+      "bank": 2,
+      "address": "0x9202",
+      "name": "World3_UpdateEntities",
+      "evidence": "eight-slot-state-type-dispatch-collision-and-reward-loop"
     },
     {
       "bank": 2,
@@ -1276,6 +1420,240 @@
       "address": "0x0300",
       "name": "OamBuffer",
       "evidence": "oam-dma-page-03-and-four-byte-sprite-writes"
+    },
+    {
+      "address": "0x0400",
+      "name": "World1EntityType",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "48-slot-active-type-array-and-four-subsystem-clear-loops"
+    },
+    {
+      "address": "0x0430",
+      "name": "World1EntityMetasprite",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "48-slot-field-consumed-as-metasprite-table-index"
+    },
+    {
+      "address": "0x0460",
+      "name": "World1EntityRenderFlags",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "48-slot-field-controls-metasprite-flicker-and-visibility"
+    },
+    {
+      "address": "0x0490",
+      "name": "World1EntityPositionHigh",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "packed-x-y-high-bits-updated-on-coordinate-carry"
+    },
+    {
+      "address": "0x04C0",
+      "name": "World1EntityX",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "48-slot-x-low-byte-used-by-motion-collision-and-rendering"
+    },
+    {
+      "address": "0x04F0",
+      "name": "World1EntityY",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "48-slot-y-low-byte-used-by-motion-collision-and-rendering"
+    },
+    {
+      "address": "0x0558",
+      "name": "World2EnemyState",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-enemy-clear-spawn-update-and-dispatch-array"
+    },
+    {
+      "address": "0x055F",
+      "name": "World2EnemyX",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-enemy-x-coordinate-used-by-collision-and-rendering"
+    },
+    {
+      "address": "0x0566",
+      "name": "World2EnemyY",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-enemy-y-coordinate-used-by-collision-and-rendering"
+    },
+    {
+      "address": "0x0589",
+      "name": "World2EnemyProjectileFlags",
+      "size": 6,
+      "banks": [
+        1
+      ],
+      "evidence": "six-slot-enemy-projectile-direction-and-state-field"
+    },
+    {
+      "address": "0x058F",
+      "name": "World2EnemyProjectileX",
+      "size": 6,
+      "banks": [
+        1
+      ],
+      "evidence": "six-slot-enemy-projectile-x-coordinate"
+    },
+    {
+      "address": "0x0595",
+      "name": "World2EnemyProjectileY",
+      "size": 6,
+      "banks": [
+        1
+      ],
+      "evidence": "six-slot-enemy-projectile-y-coordinate-and-active-sentinel"
+    },
+    {
+      "address": "0x05B3",
+      "name": "World2PlayerProjectileState",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-player-projectile-clear-spawn-and-update-array"
+    },
+    {
+      "address": "0x05BA",
+      "name": "World2PlayerProjectileX",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-player-projectile-x-coordinate"
+    },
+    {
+      "address": "0x05C1",
+      "name": "World2PlayerProjectileY",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-player-projectile-y-coordinate"
+    },
+    {
+      "address": "0x05C8",
+      "name": "World2PlayerProjectileDirection",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-player-projectile-motion-direction-selector"
+    },
+    {
+      "address": "0x0600",
+      "name": "World3EntityState",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-active-entity-clear-allocation-and-update-array"
+    },
+    {
+      "address": "0x0608",
+      "name": "World3EntityX",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-active-entity-x-coordinate"
+    },
+    {
+      "address": "0x0610",
+      "name": "World3EntityY",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-active-entity-y-coordinate"
+    },
+    {
+      "address": "0x0628",
+      "name": "World3EntityMetasprite",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-type-derived-animation-and-metasprite-field"
+    },
+    {
+      "address": "0x0638",
+      "name": "World3EntityType",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-object-type-and-behavior-dispatch-index"
+    },
+    {
+      "address": "0x06B0",
+      "name": "World3RoomObjectRoom",
+      "size": 13,
+      "banks": [
+        2
+      ],
+      "evidence": "thirteen-record-current-room-filter-and-persistence-owner"
+    },
+    {
+      "address": "0x06BD",
+      "name": "World3RoomObjectType",
+      "size": 13,
+      "banks": [
+        2
+      ],
+      "evidence": "thirteen-record-object-type-materialized-into-active-entities"
+    },
+    {
+      "address": "0x06CA",
+      "name": "World3RoomObjectX",
+      "size": 13,
+      "banks": [
+        2
+      ],
+      "evidence": "thirteen-record-persistent-x-coordinate"
+    },
+    {
+      "address": "0x06D7",
+      "name": "World3RoomObjectY",
+      "size": 13,
+      "banks": [
+        2
+      ],
+      "evidence": "thirteen-record-persistent-y-coordinate"
+    },
+    {
+      "address": "0x06E4",
+      "name": "World3RoomObjectState",
+      "size": 13,
+      "banks": [
+        2
+      ],
+      "evidence": "thirteen-record-state-restored-to-and-saved-from-active-entities"
     },
     {
       "address": "0x2000",

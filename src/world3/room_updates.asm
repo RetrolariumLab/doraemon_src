@@ -352,7 +352,7 @@ Bank2_Label_ABFF:
 Bank2_Label_AC0C:
     LDA #$00
     STA $51
-    JSR Bank2_Func_9104
+    JSR World3_FindFreeEntitySlot
     BCC Bank2_Label_AC6B
     LDA #$00
     STA $51
@@ -369,23 +369,23 @@ Bank2_Label_AC0C:
     LDY #$00
 
 Bank2_Label_AC2F:
-    JSR Bank2_Func_8B68
+    JSR World3_ClearEntitySlot
     LDA a:$AC6C,Y
-    STA a:$0600,X
+    STA a:World3EntityState,X
     LDA a:$AC74,Y
     CLC
     ADC $C9
-    STA a:$0608,X
+    STA a:World3EntityX,X
     LDA a:$AC7C,Y
     CLC
     ADC $CA
-    STA a:$0610,X
+    STA a:World3EntityY,X
     LDA a:$AC84,Y
-    STA a:$0638,X
+    STA a:World3EntityType,X
     STY $42
     TAY
     LDA a:$8ED5,Y
-    STA a:$0628,X
+    STA a:World3EntityMetasprite,X
     LDY $42
     LDA #$1E
     STA a:$0668,X

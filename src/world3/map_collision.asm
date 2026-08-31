@@ -245,8 +245,8 @@ Bank2_Func_A285:
 Bank2_Func_A28D:
     LDA #$00
     STA $53
-    JSR Bank2_Func_8CF6
-    JSR Bank2_Func_8CFD
+    JSR World3_SaveRoomObjectsState0
+    JSR World3_SaveRoomObjectsState1
     LDA $54
     STA $DF
     LDA $DF

@@ -169,18 +169,18 @@ Bank0_EnterWorld1Manhole:
     STA $82
     STA $83
     STA $B2
-    JSR Bank0_Func_C93E
-    JSR Bank0_Func_C949
-    JSR Bank0_Func_C954
+    JSR World1_ClearEntitySlots00_09
+    JSR World1_ClearEntitySlots10_29
+    JSR World1_ClearEntitySlots30_37
     LDX $80
     LDA a:$0546,X
     STA $81
     TAY
-    LDA a:$04E6,X
+    LDA a:World1EntityX+$26,X
     CLC
     ADC #$04
     STA $75
-    LDA a:$0516,X
+    LDA a:World1EntityY+$26,X
     SEC
     SBC #$14
     STA $76
@@ -221,7 +221,7 @@ Bank0_Label_D2A4:
     INX
     CPX #$14
     BNE Bank0_Label_D2A4
-    JSR Bank0_Func_C95F
+    JSR World1_ClearEntitySlots38_47
     JSR Bank0_Func_C96A
     LDX $81
     JMP Bank0_InitWorld1SideView
@@ -234,11 +234,11 @@ Bank0_Func_D2C3:
     STA $82
     STA $83
     STA $B2
-    JSR Bank0_Func_C95F
+    JSR World1_ClearEntitySlots38_47
     JSR Bank0_Func_C96A
-    JSR Bank0_Func_C93E
-    JSR Bank0_Func_C949
-    JSR Bank0_Func_C954
+    JSR World1_ClearEntitySlots00_09
+    JSR World1_ClearEntitySlots10_29
+    JSR World1_ClearEntitySlots30_37
     PLA
     ASL A
     ASL A
@@ -248,12 +248,12 @@ Bank0_Func_D2C3:
     LDA a:$D37F,X
     STA $5C
     LDA a:$D380,X
-    STA a:$04E6
+    STA a:World1EntityX+$26
     CLC
     ADC #$04
     STA $75
     LDA a:$D381,X
-    STA a:$0516
+    STA a:World1EntityY+$26
     SEC
     SBC #$14
     STA $76
@@ -295,7 +295,7 @@ Bank0_Label_D33C:
     INX
     CPX #$10
     BNE Bank0_Label_D33C
-    JSR Bank0_Func_C95F
+    JSR World1_ClearEntitySlots38_47
     JSR Bank0_Func_C96A
     JSR Bank0_Func_83BD
     JSR Bank0_Func_9535

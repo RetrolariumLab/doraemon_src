@@ -103,16 +103,36 @@ class SymbolRegistryTests(unittest.TestCase):
             memory = disasm.load_memory_symbols(self.write_registry(directory, [item]))
         self.assertEqual(memory, {(1, 0x42): "ChapterState", (3, 0x42): "ChapterState"})
 
+    def test_memory_array_expands_to_symbolic_offsets(self) -> None:
+        item = {
+            "address": "0x0400",
+            "name": "EntityType",
+            "size": 3,
+            "banks": [0],
+            "evidence": "test fixture",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            memory = disasm.load_memory_symbols(self.write_registry(directory, [item]))
+        self.assertEqual(
+            memory,
+            {
+                (0, 0x0400): "EntityType",
+                (0, 0x0401): "EntityType+$01",
+                (0, 0x0402): "EntityType+$02",
+            },
+        )
+
     def test_rejects_overlapping_memory_symbols_in_one_bank(self) -> None:
         items = [
             {
                 "address": "0x0042",
                 "name": "World1State",
+                "size": 2,
                 "banks": [0],
                 "evidence": "test fixture",
             },
             {
-                "address": "0x0042",
+                "address": "0x0043",
                 "name": "World2State",
                 "banks": [0, 1],
                 "evidence": "test fixture",

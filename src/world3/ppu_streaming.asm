@@ -52,9 +52,9 @@ Bank2_Func_A619:
     JSR Bank2_Func_A6E6
     JSR Bank2_Func_A6B5
     JSR Bank2_Func_A6BF
-    JSR Bank2_Func_8CF6
+    JSR World3_SaveRoomObjectsState0
     DEC $DF
-    JSR Bank2_Func_8CFD
+    JSR World3_SaveRoomObjectsState1
     JSR Bank2_Func_A733
 
 Bank2_Label_A639:
@@ -71,9 +71,9 @@ Bank2_Func_A63A:
     JSR Bank2_Func_A6E6
     JSR Bank2_Func_A6B5
     JSR Bank2_Func_A6BF
-    JSR Bank2_Func_8CF6
+    JSR World3_SaveRoomObjectsState0
     INC $DF
-    JSR Bank2_Func_8CFD
+    JSR World3_SaveRoomObjectsState1
     JSR Bank2_Func_A733
 
 Bank2_Label_A65C:
@@ -92,12 +92,12 @@ Bank2_Func_A65D:
     JSR Bank2_Func_A6E6
     JSR Bank2_Func_A6B5
     JSR Bank2_Func_A6BF
-    JSR Bank2_Func_8CF6
+    JSR World3_SaveRoomObjectsState0
     LDA $DF
     SEC
     SBC #$08
     STA $DF
-    JSR Bank2_Func_8CFD
+    JSR World3_SaveRoomObjectsState1
     JSR Bank2_Func_A733
 
 Bank2_Label_A687:
@@ -117,12 +117,12 @@ Bank2_Func_A688:
     JSR Bank2_Func_A6E6
     JSR Bank2_Func_A6B5
     JSR Bank2_Func_A6BF
-    JSR Bank2_Func_8CF6
+    JSR World3_SaveRoomObjectsState0
     LDA $DF
     CLC
     ADC #$08
     STA $DF
-    JSR Bank2_Func_8CFD
+    JSR World3_SaveRoomObjectsState1
     JSR Bank2_Func_A733
 
 Bank2_Label_A6B4:
@@ -172,10 +172,10 @@ Bank2_Func_A6E6:
     STY $3E
 
 Bank2_Label_A6EA:
-    LDA a:$06B0,Y
+    LDA a:World3RoomObjectRoom,Y
     CMP $8B
     BNE Bank2_Label_A6FA
-    LDA a:$06BD,Y
+    LDA a:World3RoomObjectType,Y
     CMP #$18
     BCC Bank2_Label_A6FA
     INC $3E
@@ -232,9 +232,9 @@ Bank2_Func_A733:
     JSR Bank2_Func_A8EB
     JSR Bank2_Func_A835
     JSR Bank2_Func_8DA8
-    JSR Bank2_Func_8DB4
+    JSR World3_ClearEntityStorage
     JSR Bank2_Func_8C25
-    JSR Bank2_Func_8CAD
+    JSR World3_MaterializeRoomObjects
     JSR Bank2_Func_AB53
     JSR Bank2_Func_ABF9
     LDA $A1

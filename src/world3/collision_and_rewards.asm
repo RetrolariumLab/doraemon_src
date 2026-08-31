@@ -29,13 +29,13 @@ Bank2_Label_91B3:
     LDA a:$0618,X
     AND #$01
     BNE Bank2_Label_91FE
-    INC a:$0628,X
-    LDA a:$0628,X
+    INC a:World3EntityMetasprite,X
+    LDA a:World3EntityMetasprite,X
     CMP #$70
     BNE Bank2_Label_91FE
     LDA #$00
-    STA a:$0600,X
-    LDA a:$0638,X
+    STA a:World3EntityState,X
+    LDA a:World3EntityType,X
     CMP #$05
     BCS Bank2_Label_91FE
     LDA $A4
@@ -53,15 +53,15 @@ Bank2_Label_91DB:
 
 Bank2_Label_91E7:
     LDA #$01
-    STA a:$0600,X
+    STA a:World3EntityState,X
     JSR Bank2_Func_B153
     AND #$03
     CLC
     ADC #$10
-    STA a:$0638,X
+    STA a:World3EntityType,X
     TAY
     LDA a:$8ED5,Y
-    STA a:$0628,X
+    STA a:World3EntityMetasprite,X
 
 Bank2_Label_91FE:
     JMP Bank2_Label_9283
@@ -69,7 +69,7 @@ Bank2_Label_91FE:
 Bank2_Label_9201:
     RTS
 
-Bank2_Func_9202:
+World3_UpdateEntities:
     LDA $8E
     CMP #$04
     BEQ Bank2_Label_9201
@@ -80,7 +80,7 @@ Bank2_Func_9202:
 
 Bank2_Label_9210:
     LDX $07
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     BEQ Bank2_Label_9283
     CMP #$05
     BEQ Bank2_Label_91B3
@@ -91,40 +91,40 @@ Bank2_Label_9210:
     LDA a:$0668,X
     BNE Bank2_Label_9230
     LDA #$01
-    STA a:$0600,X
+    STA a:World3EntityState,X
     JMP Bank2_Label_924D
 
 Bank2_Label_9230:
     DEC a:$0668,X
     CMP #$1E
     BNE Bank2_Label_9283
-    LDA a:$0600,X
+    LDA a:World3EntityState,X
     CMP #$03
     BEQ Bank2_Label_9283
     JSR Bank2_Func_92A5
     LDX $07
     LDA $46
-    STA a:$0608,X
+    STA a:World3EntityX,X
     LDA $47
-    STA a:$0610,X
+    STA a:World3EntityY,X
 
 Bank2_Label_924D:
     LDA $CB
     BEQ Bank2_Label_925B
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$10
     BCS Bank2_Label_925B
     JMP Bank2_Label_9279
 
 Bank2_Label_925B:
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     CMP #$10
     BCS Bank2_Label_9265
     JSR Bank2_Func_9A3B
 
 Bank2_Label_9265:
     LDX $07
-    LDA a:$0638,X
+    LDA a:World3EntityType,X
     ASL A
     TAY
     LDA a:$92DF,Y
