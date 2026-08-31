@@ -321,6 +321,90 @@
     },
     {
       "bank": 3,
+      "address": "0x9784",
+      "name": "AudioEffect_RequestPriority",
+      "evidence": "request-indexed-even-dispatch-values"
+    },
+    {
+      "bank": 3,
+      "address": "0x979E",
+      "name": "AudioEffect_RtsDispatchTable",
+      "evidence": "pha-pha-rts-indirect-dispatch"
+    },
+    {
+      "bank": 3,
+      "address": "0x982A",
+      "name": "Audio_QueueEffect",
+      "evidence": "request-range-check-and-02a0-write"
+    },
+    {
+      "bank": 3,
+      "address": "0x983B",
+      "name": "Audio_UpdateEffects",
+      "evidence": "effect-timer-update-and-indirect-dispatch"
+    },
+    {
+      "bank": 3,
+      "address": "0x9899",
+      "name": "Audio_StopCurrentEffect",
+      "evidence": "clears-current-effect-state"
+    },
+    {
+      "bank": 3,
+      "address": "0x98A2",
+      "name": "Audio_ResetEffects",
+      "evidence": "clears-effect-state-and-apu-registers"
+    },
+    {
+      "bank": 3,
+      "address": "0x9E24",
+      "name": "Apu_WritePulse1ControlSweep",
+      "evidence": "writes-4000-and-4001"
+    },
+    {
+      "bank": 3,
+      "address": "0x9E2B",
+      "name": "Apu_WritePulse2ControlSweep",
+      "evidence": "writes-4004-and-4005"
+    },
+    {
+      "bank": 3,
+      "address": "0x9E32",
+      "name": "Apu_WritePulse1Timer",
+      "evidence": "writes-4002-and-4003"
+    },
+    {
+      "bank": 3,
+      "address": "0x9E39",
+      "name": "Apu_WritePulse2Timer",
+      "evidence": "writes-4006-and-4007"
+    },
+    {
+      "bank": 3,
+      "address": "0x9E40",
+      "name": "Apu_WriteTriangleControlTimer",
+      "evidence": "writes-4008-400a-and-400b"
+    },
+    {
+      "bank": 3,
+      "address": "0x9EAB",
+      "name": "Audio_ResetChannels",
+      "evidence": "apu-channel-register-initialization"
+    },
+    {
+      "bank": 3,
+      "address": "0x9ED8",
+      "name": "Audio_UpdateMusic",
+      "evidence": "02aa-music-state-and-four-channel-update"
+    },
+    {
+      "bank": 3,
+      "address": "0xA301",
+      "name": "Audio_ReadStreamByte",
+      "evidence": "indirect-stream-read-and-pointer-advance"
+    },
+    {
+      "bank": 3,
       "address": "0xBDBC",
       "name": "EndingCredits_Text",
       "evidence": "embedded-ascii"

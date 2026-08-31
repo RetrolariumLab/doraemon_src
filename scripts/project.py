@@ -312,6 +312,7 @@ def command_lint(_args: argparse.Namespace) -> None:
     required = (
         "README.md", "Makefile", "assets/manifest.json", "config/linker/gnrom.cfg",
         "config/symbols.json", "config/prg_data_ranges.txt", "config/prg_code_entries.txt",
+        "config/source_modules.json",
         "docs/verification.md",
         "tools/disassembly.lock.json", "src/main.asm", "scripts/asm_style.py",
         "scripts/verify_rom.py", "scripts/format_project.py",
@@ -330,13 +331,26 @@ def command_lint(_args: argparse.Namespace) -> None:
     symbols = json.loads(read_source_text(ROOT / "config/symbols.json", encoding="utf-8"))
     if symbols.get("schema_version") != 1 or not symbols.get("symbols"):
         raise ProjectError("invalid or empty symbol registry")
+    module_document = json.loads(
+        read_source_text(ROOT / "config/source_modules.json", encoding="utf-8")
+    )
+    if module_document.get("schema_version") != 1:
+        raise ProjectError("invalid source module registry")
+    modules_by_bank: dict[int, list[Path]] = {}
+    for module in module_document.get("modules", []):
+        path = ROOT / "src" / str(module["path"])
+        modules_by_bank.setdefault(int(module["bank"]), []).append(path)
     for bank in range(PRG_BANK_COUNT):
         relative = f"src/banks/bank_{bank}.asm"
         source = read_source_text(ROOT / relative, encoding="utf-8")
+        semantic_source = "\n".join(
+            read_source_text(path, encoding="utf-8") for path in modules_by_bank.get(bank, [])
+        )
+        complete_source = source + "\n" + semantic_source
         for marker in (f'.segment "PRG{bank}"', f"Bank{bank}_Reset:", f"Bank{bank}_Nmi:"):
-            if marker not in source:
+            if marker not in complete_source:
                 raise ProjectError(f"{relative} is missing required marker: {marker}")
-        if ".incbin" in source.lower():
+        if ".incbin" in complete_source.lower():
             raise ProjectError(f"{relative} must not contain .incbin")
     try:
         tracked = subprocess.run(

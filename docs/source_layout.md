@@ -6,14 +6,27 @@
 | `src/banks/bank_0.asm` | PRG bank 0 | world 1 preservation listing |
 | `src/banks/bank_1.asm` | PRG bank 1 | world 2 preservation listing |
 | `src/banks/bank_2.asm` | PRG bank 2 | world 3 preservation listing |
-| `src/banks/bank_3.asm` | PRG bank 3 | shell/title/ending preservation listing |
+| `src/banks/bank_3.asm` | PRG bank 3 | generated address-order include map |
+| `src/common/bank3_*.asm` | PRG bank 3 | reset/NMI/mapper/gateways and vectors |
+| `src/shell/*.asm` | PRG bank 3 | title, game over, ending, and transitions |
+| `src/rendering/*.asm` | PRG bank 3 | shell PPU/text/frame services |
+| `src/audio/*.asm` | PRG bank 3 | effect driver, music engine, and streams |
+| `src/data/*.asm` | PRG bank 3 | credits and unclassified trailing data |
 | `src/graphics/chr.asm` | four 8 KiB banks | private CHR payload |
 | `src/memory/*.inc` | no bytes | hardware and evidence-backed RAM aliases |
 
-Each PRG module maps to `$8000-$FFFF` in its own linker memory area. Generated
+Each PRG bank maps to `$8000-$FFFF` in its own linker memory area. Generated
 labels are bank-qualified because identical CPU addresses can identify different
-physical bytes. PRG files contain instructions and explicit `.byte` data only;
-they never include extracted binaries.
+physical bytes. PRG files contain instructions, explicit `.byte` data, or
+generated source includes only; they never include extracted binaries.
 
-Future splits must preserve order inside a bank. Prefer coherent modules of
-roughly 200-500 lines after boundaries and consumers are proven.
+`config/source_modules.json` is the canonical address-to-module map. It currently
+covers every byte of bank 3 without gaps or overlaps. The generator rejects a
+boundary through an instruction, and the reconstruction audit enforces the
+700-line limit on every declared semantic module. The two ending-credit files
+are contiguous storage shards rather than a claim that `$DBBC` is a format-level
+boundary.
+
+Banks 0-2 remain preservation listings while their subsystem boundaries are
+being proved. Their future splits must preserve address order and use the same
+manifest contract.

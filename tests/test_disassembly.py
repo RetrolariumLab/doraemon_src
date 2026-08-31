@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import sys
+import tempfile
 import unittest
 
 
@@ -51,6 +53,58 @@ class InstructionFormattingTests(unittest.TestCase):
         facts = [{0x8098: fact}, {}]
         disasm.propagate_identical_common_code(banks, facts)
         self.assertIn(0x8098, facts[1])
+
+
+class SourceModuleTests(unittest.TestCase):
+    def write_layout(self, directory: str, modules: list[dict[str, object]]) -> Path:
+        path = Path(directory) / "modules.json"
+        path.write_text(
+            json.dumps({"schema_version": 1, "modules": modules}),
+            encoding="utf-8",
+        )
+        return path
+
+    def test_accepts_complete_bank_layout(self) -> None:
+        modules = [
+            {
+                "bank": 3,
+                "start": "0x8000",
+                "end": "0x8FFF",
+                "path": "shell/first.asm",
+                "responsibility": "first",
+            },
+            {
+                "bank": 3,
+                "start": "0x9000",
+                "end": "0xFFFF",
+                "path": "data/second.asm",
+                "responsibility": "second",
+            },
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            layout = disasm.load_source_modules(self.write_layout(directory, modules))
+        self.assertEqual([module.start for module in layout[3]], [0x8000, 0x9000])
+
+    def test_rejects_gap_between_modules(self) -> None:
+        modules = [
+            {
+                "bank": 3,
+                "start": "0x8000",
+                "end": "0x8FFE",
+                "path": "shell/first.asm",
+                "responsibility": "first",
+            },
+            {
+                "bank": 3,
+                "start": "0x9000",
+                "end": "0xFFFF",
+                "path": "data/second.asm",
+                "responsibility": "second",
+            },
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            with self.assertRaisesRegex(disasm.DisassemblyError, "gap or overlap"):
+                disasm.load_source_modules(self.write_layout(directory, modules))
 
 
 if __name__ == "__main__":

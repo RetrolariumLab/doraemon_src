@@ -32,16 +32,18 @@ def source_calls(
     source_root: Path, gateway_addresses: set[int]
 ) -> Counter[tuple[int, int, str]]:
     calls: Counter[tuple[int, int, str]] = Counter()
-    for path in sorted(source_root.glob("bank_*.asm")):
-        file_bank = int(path.stem.rsplit("_", 1)[1])
+    for path in sorted(source_root.rglob("*.asm")):
+        file_match = re.fullmatch(r"bank_([0-3])", path.stem)
+        file_bank = int(file_match.group(1)) if file_match else None
         matches = CALL_RE.findall(path.read_text(encoding="utf-8"))
         for instruction, symbol_bank, address_text in matches:
             address = int(address_text, 16)
             if address not in gateway_addresses:
                 continue
-            if int(symbol_bank) != file_bank:
+            source_bank = int(symbol_bank)
+            if file_bank is not None and source_bank != file_bank:
                 raise ValueError(f"bank-qualified call differs from source file: {path}")
-            calls[(file_bank, address, instruction)] += 1
+            calls[(source_bank, address, instruction)] += 1
     return calls
 
 

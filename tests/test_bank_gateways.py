@@ -29,6 +29,18 @@ class GatewayTests(unittest.TestCase):
                 Counter({(2, 0x8053, "JSR"): 1}),
             )
 
+    def test_collects_calls_from_semantic_subdirectories(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "audio").mkdir()
+            (root / "audio" / "engine.asm").write_text(
+                "    JSR Bank3_Func_8053\n", encoding="utf-8"
+            )
+            self.assertEqual(
+                GATEWAYS.source_calls(root, {0x8053}),
+                Counter({(3, 0x8053, "JSR"): 1}),
+            )
+
     def test_rejects_mismatched_bank_qualified_call(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

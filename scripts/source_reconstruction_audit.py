@@ -109,6 +109,8 @@ def validate_paths(
 def validate_contract_shape(document: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     source = document.get("source_contract", {})
+    if source.get("module_manifest") != "config/source_modules.json":
+        errors.append("semantic module manifest path differs")
     if source.get("maximum_module_lines") != 700:
         errors.append("semantic module line limit must remain 700")
     if source.get("executable_incbin") is not False:
@@ -151,6 +153,46 @@ def validate_contract_shape(document: dict[str, Any]) -> list[str]:
         "audio",
     ]:
         errors.append("required authoring formats differ")
+    return errors
+
+
+def validate_semantic_modules(
+    project_root: Path, source_contract: dict[str, Any]
+) -> list[str]:
+    relative = source_contract.get("module_manifest", "")
+    manifest = safe_project_path(project_root, relative)
+    if manifest is None or not manifest.is_file():
+        return [f"missing semantic module manifest: {relative}"]
+    document = load_json(manifest)
+    if document.get("schema_version") != 1:
+        return ["semantic module manifest is not schema 1"]
+    modules = document.get("modules")
+    if not isinstance(modules, list) or not modules:
+        return ["semantic module manifest has no modules"]
+    errors: list[str] = []
+    paths: list[str] = []
+    seen: set[str] = set()
+    maximum = int(source_contract["maximum_module_lines"])
+    source_root = str(source_contract["source_root"])
+    for module in modules:
+        if not isinstance(module, dict):
+            errors.append("semantic module entry is not an object")
+            continue
+        relative_path = str(module.get("path", ""))
+        if relative_path in seen:
+            errors.append(f"duplicate semantic module path: {relative_path}")
+        seen.add(relative_path)
+        source_path = str(Path(source_root) / relative_path)
+        paths.append(source_path)
+        path = safe_project_path(project_root, source_path)
+        if path is not None and path.is_file():
+            line_count = len(path.read_text(encoding="utf-8").splitlines())
+            if line_count > maximum:
+                errors.append(
+                    f"semantic module exceeds {maximum} lines: "
+                    f"{source_path} ({line_count})"
+                )
+    errors.extend(validate_paths(project_root, paths, "semantic module"))
     return errors
 
 
@@ -204,6 +246,7 @@ def validate_reconstruction(
         return errors
     errors.extend(validate_milestones(milestones, status))
     errors.extend(validate_contract_shape(document))
+    errors.extend(validate_semantic_modules(project_root, document["source_contract"]))
     errors.extend(
         validate_runtime_manifest(project_root, document["runtime_contract"], status)
     )

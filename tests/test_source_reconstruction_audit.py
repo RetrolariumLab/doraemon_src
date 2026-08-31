@@ -55,6 +55,33 @@ class ContractHelpersTests(unittest.TestCase):
                 AUDIT.safe_project_path(root, "docs/status.md"), expected
             )
 
+    def test_rejects_semantic_module_over_line_limit(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "config").mkdir()
+            (root / "src" / "audio").mkdir(parents=True)
+            (root / "src" / "audio" / "large.asm").write_text(
+                "line\n" * 4, encoding="utf-8"
+            )
+            (root / "config" / "modules.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "modules": [{"path": "audio/large.asm"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            errors = AUDIT.validate_semantic_modules(
+                root,
+                {
+                    "source_root": "src",
+                    "module_manifest": "config/modules.json",
+                    "maximum_module_lines": 3,
+                },
+            )
+        self.assertTrue(any("exceeds 3 lines" in error for error in errors))
+
     def test_accepts_development_runtime_prefix(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "modules": [
+    {
+      "bank": 3,
+      "start": "0x8000",
+      "end": "0x827C",
+      "path": "common/bank3_boot_and_gateways.asm",
+      "responsibility": "Reset, NMI, input, mapper switching, and cross-bank gateways"
+    },
+    {
+      "bank": 3,
+      "start": "0x827D",
+      "end": "0x8A16",
+      "path": "shell/title_and_presentation.asm",
+      "responsibility": "Title flow, menus, and common presentation services"
+    },
+    {
+      "bank": 3,
+      "start": "0x8A17",
+      "end": "0x8A87",
+      "path": "shell/game_over.asm",
+      "responsibility": "Returning game-over presentation service"
+    },
+    {
+      "bank": 3,
+      "start": "0x8A88",
+      "end": "0x8C3A",
+      "path": "shell/ending.asm",
+      "responsibility": "Ending initialization and credits scroll loop"
+    },
+    {
+      "bank": 3,
+      "start": "0x8C3B",
+      "end": "0x8FF1",
+      "path": "shell/chapter_transitions.asm",
+      "responsibility": "World transitions and interstitial cutscenes"
+    },
+    {
+      "bank": 3,
+      "start": "0x8FF2",
+      "end": "0x9829",
+      "path": "rendering/shell_frame_services.asm",
+      "responsibility": "Shell PPU updates, text drawing, and presentation data"
+    },
+    {
+      "bank": 3,
+      "start": "0x982A",
+      "end": "0x9C1C",
+      "path": "audio/effect_dispatch.asm",
+      "responsibility": "Audio-effect request arbitration and primary handlers"
+    },
+    {
+      "bank": 3,
+      "start": "0x9C1D",
+      "end": "0x9ED7",
+      "path": "audio/effect_handlers.asm",
+      "responsibility": "Remaining audio-effect handlers and APU write helpers"
+    },
+    {
+      "bank": 3,
+      "start": "0x9ED8",
+      "end": "0xA30E",
+      "path": "audio/music_engine.asm",
+      "responsibility": "Four-channel music sequencer and stream interpreter"
+    },
+    {
+      "bank": 3,
+      "start": "0xA30F",
+      "end": "0xBDBB",
+      "path": "audio/music_data.asm",
+      "responsibility": "APU period tables, track headers, and music streams"
+    },
+    {
+      "bank": 3,
+      "start": "0xBDBC",
+      "end": "0xDBBB",
+      "path": "data/ending_credits_1.asm",
+      "responsibility": "First contiguous part of the ending credit stream"
+    },
+    {
+      "bank": 3,
+      "start": "0xDBBC",
+      "end": "0xF9BB",
+      "path": "data/ending_credits_2.asm",
+      "responsibility": "Second contiguous part of the ending credit stream"
+    },
+    {
+      "bank": 3,
+      "start": "0xF9BC",
+      "end": "0xFFF9",
+      "path": "data/bank3_tail.asm",
+      "responsibility": "Trailing bank 3 data pending format classification"
+    },
+    {
+      "bank": 3,
+      "start": "0xFFFA",
+      "end": "0xFFFF",
+      "path": "common/bank3_vectors.asm",
+      "responsibility": "Bank 3 NMI, RESET, and IRQ vectors"
+    }
+  ]
+}

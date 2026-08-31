@@ -56,3 +56,20 @@ common presentation material. RESET execution is expected to begin here on
 power-on, but every bank retains compatible vectors for interrupt safety.
 The recovered `$8A88` ending entry initializes the credits pointer to `$BDBC`;
 runtime reaches its `$8B18` scroll loop through the World 3 completion gateway.
+
+## Audio / bank 3
+
+The shared audio driver begins at `$982A`. Requests 0-25 are accepted through
+`$02A0`; the table at `$9784` maps each request to an even dispatch index and
+therefore also acts as its priority. The per-frame routine at `$983B` services
+four effect timers at `$02A3-$02A6`, then dispatches by pushing a little-endian
+address from `$979E` and returning through `RTS`. The table contains 52 slots
+and 44 unique destinations; its stored values are one less than their actual
+entry addresses because `RTS` increments the pulled address.
+
+The recovered handlers write the pulse 1, pulse 2, triangle, and noise APU
+registers. Music state is separate at `$02AA-$02FF`: `$9EAB` resets channel
+registers, `$9ED8` advances the music driver, and `$A301` reads stream bytes.
+`config/audio_dispatch.json` records the complete indirect edge set, while
+`make validate-audio-dispatch` proves the ROM table and Ghidra seed registry
+remain synchronized.

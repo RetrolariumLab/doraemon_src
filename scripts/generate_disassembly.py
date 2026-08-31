@@ -10,6 +10,8 @@ import csv
 from dataclasses import dataclass
 import json
 from pathlib import Path
+from pathlib import PurePosixPath
+import posixpath
 import re
 import struct
 import sys
@@ -40,6 +42,15 @@ class InstructionFact:
     flow_type: str
     symbol: str
     function: str
+
+
+@dataclass(frozen=True)
+class SourceModule:
+    bank: int
+    start: int
+    end: int
+    path: PurePosixPath
+    responsibility: str
 
 
 def parse_flow(value: str) -> int:
@@ -139,6 +150,58 @@ def load_known_symbols(path: Path) -> dict[tuple[int, int], str]:
     return result
 
 
+def load_source_modules(path: Path) -> dict[int, list[SourceModule]]:
+    try:
+        document = json.loads(read_source_text(path, encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise DisassemblyError(f"cannot read source modules {path}: {exc}") from exc
+    if document.get("schema_version") != 1 or not isinstance(document.get("modules"), list):
+        raise DisassemblyError("unsupported source module schema")
+    result: dict[int, list[SourceModule]] = {}
+    paths: set[PurePosixPath] = set()
+    for item in document["modules"]:
+        try:
+            module = SourceModule(
+                bank=int(item["bank"]),
+                start=int(str(item["start"]), 0),
+                end=int(str(item["end"]), 0),
+                path=PurePosixPath(str(item["path"])),
+                responsibility=str(item["responsibility"]),
+            )
+        except (KeyError, TypeError, ValueError) as exc:
+            raise DisassemblyError(f"invalid source module: {item!r}") from exc
+        if not 0 <= module.bank < PRG_BANK_COUNT:
+            raise DisassemblyError(f"invalid source module bank: {module.bank}")
+        if not PRG_START <= module.start <= module.end < PRG_END:
+            raise DisassemblyError(f"invalid source module range: {item!r}")
+        if (
+            module.path.is_absolute()
+            or ".." in module.path.parts
+            or module.path.suffix != ".asm"
+        ):
+            raise DisassemblyError(f"unsafe source module path: {module.path}")
+        if not module.responsibility:
+            raise DisassemblyError(f"empty source module responsibility: {module.path}")
+        if module.path in paths:
+            raise DisassemblyError(f"duplicate source module path: {module.path}")
+        paths.add(module.path)
+        result.setdefault(module.bank, []).append(module)
+    for bank, modules in result.items():
+        modules.sort(key=lambda item: item.start)
+        expected = PRG_START
+        for module in modules:
+            if module.start != expected:
+                raise DisassemblyError(
+                    f"bank {bank} source modules leave a gap or overlap at ${expected:04X}"
+                )
+            expected = module.end + 1
+        if expected != PRG_END:
+            raise DisassemblyError(
+                f"bank {bank} source modules end at ${expected - 1:04X}, not $FFFF"
+            )
+    return result
+
+
 def make_labels(
     bank: int, facts: dict[int, InstructionFact], known: dict[tuple[int, int], str]
 ) -> dict[int, str]:
@@ -204,21 +267,25 @@ def data_line(payload: bytes) -> str:
     return "    .byte " + ", ".join(f"${value:02X}" for value in payload)
 
 
-def generate_bank(
-    bank: int, prg: bytes, facts: dict[int, InstructionFact], labels: dict[int, str]
-) -> str:
-    lines = [
-        f"; Address-ordered Doraemon PRG bank {bank} preservation listing",
-        "; Generated deterministically from pinned Ghidra/GhidraNes facts",
-        "; Keep byte-identical through make verify",
-        "",
-        f'.segment "PRG{bank}"',
-        "",
-    ]
+def generate_range_lines(
+    bank: int,
+    prg: bytes,
+    facts: dict[int, InstructionFact],
+    labels: dict[int, str],
+    start_address: int,
+    end_address: int,
+) -> list[str]:
+    lines: list[str] = []
     byte_owner: dict[int, int] = {}
     for fact in facts.values():
         for owned in range(fact.address, fact.address + fact.length):
             byte_owner[owned] = fact.address
+    for boundary in (start_address, end_address + 1):
+        owner = byte_owner.get(boundary)
+        if owner is not None and owner != boundary:
+            raise DisassemblyError(
+                f"bank {bank} module boundary ${boundary:04X} splits instruction ${owner:04X}"
+            )
     interior_labels: dict[int, list[tuple[int, str]]] = {}
     for label_address, label_name in labels.items():
         owner = byte_owner.get(label_address)
@@ -226,20 +293,23 @@ def generate_bank(
             interior_labels.setdefault(owner, []).append((label_address, label_name))
 
     nmi, reset, irq = struct.unpack_from("<HHH", prg, PRG_BANK_SIZE - 6)
-    address = PRG_START
-    while address < PRG_END:
+    address = start_address
+    limit_address = end_address + 1
+    while address < limit_address:
         aliases = interior_labels.get(address, [])
         if aliases:
-            if lines[-1] != "":
+            if lines and lines[-1] != "":
                 lines.append("")
             for alias_address, alias_name in sorted(aliases):
                 lines.append(f"{alias_name} = * + {alias_address - address}  ; overlapping entry ${alias_address:04X}")
         label = labels.get(address)
         if label:
-            if lines[-1] != "":
+            if lines and lines[-1] != "":
                 lines.append("")
             lines.append(label + ":")
         if address == 0xFFFA:
+            if limit_address < PRG_END:
+                raise DisassemblyError(f"bank {bank} vector module does not include all vectors")
             vector_targets = (nmi, reset, irq)
             for index, target in enumerate(vector_targets):
                 if target not in labels:
@@ -252,11 +322,15 @@ def generate_bank(
             continue
         fact = facts.get(address)
         if fact is not None:
+            if address + fact.length > limit_address:
+                raise DisassemblyError(
+                    f"bank {bank} module boundary splits instruction ${address:04X}"
+                )
             lines.append(format_instruction(fact, labels))
             address += fact.length
             continue
         start = address
-        limit = min(address + 16, PRG_END)
+        limit = min(address + 16, limit_address)
         while address < limit:
             if address != start and (address in labels or address in facts or address == 0xFFFA):
                 break
@@ -264,6 +338,21 @@ def generate_bank(
         if address == start:
             raise DisassemblyError(f"generator made no progress at bank {bank} ${address:04X}")
         lines.append(data_line(prg[start - PRG_START:address - PRG_START]))
+    return lines
+
+
+def generate_bank(
+    bank: int, prg: bytes, facts: dict[int, InstructionFact], labels: dict[int, str]
+) -> str:
+    lines = [
+        f"; Address-ordered Doraemon PRG bank {bank} preservation listing",
+        "; Generated deterministically from pinned Ghidra/GhidraNes facts",
+        "; Keep byte-identical through make verify",
+        "",
+        f'.segment "PRG{bank}"',
+        "",
+        *generate_range_lines(bank, prg, facts, labels, PRG_START, PRG_END - 1),
+    ]
     text = "\n".join(lines).rstrip() + "\n"
     for label in labels.values():
         if f"{label}:" not in text and f"{label} = " not in text:
@@ -271,7 +360,48 @@ def generate_bank(
     return text
 
 
-def build_texts(args: argparse.Namespace) -> list[str]:
+def generate_semantic_bank(
+    bank: int,
+    prg: bytes,
+    facts: dict[int, InstructionFact],
+    labels: dict[int, str],
+    modules: list[SourceModule],
+) -> dict[PurePosixPath, str]:
+    aggregator = PurePosixPath("banks") / f"bank_{bank}.asm"
+    lines = [
+        f"; Address-ordered Doraemon PRG bank {bank} semantic include map",
+        "; Generated deterministically from config/source_modules.json",
+        "; Keep byte-identical through make verify",
+        "",
+        f'.segment "PRG{bank}"',
+        "",
+    ]
+    outputs: dict[PurePosixPath, str] = {}
+    emitted = ""
+    for module in modules:
+        include = posixpath.relpath(str(module.path), str(aggregator.parent))
+        lines.append(f'; ${module.start:04X}-${module.end:04X}: {module.responsibility}')
+        lines.append(f'.include "{include}"')
+        module_lines = [
+            f"; Doraemon PRG bank {bank} ${module.start:04X}-${module.end:04X}",
+            f"; {module.responsibility}",
+            "; Generated deterministically from pinned Ghidra/GhidraNes facts",
+            "",
+            *generate_range_lines(
+                bank, prg, facts, labels, module.start, module.end
+            ),
+        ]
+        source = "\n".join(module_lines).rstrip() + "\n"
+        outputs[module.path] = source
+        emitted += source
+    for label in labels.values():
+        if f"{label}:" not in emitted and f"{label} = " not in emitted:
+            raise DisassemblyError(f"label {label} was not emitted")
+    outputs[aggregator] = "\n".join(lines).rstrip() + "\n"
+    return outputs
+
+
+def build_texts(args: argparse.Namespace) -> dict[PurePosixPath, str]:
     prg = Path(args.prg).read_bytes()
     if len(prg) != PRG_BANK_SIZE * PRG_BANK_COUNT:
         raise DisassemblyError(f"PRG must be 131072 bytes, got {len(prg)}")
@@ -280,18 +410,30 @@ def build_texts(args: argparse.Namespace) -> list[str]:
     fact_sets = [load_facts(facts_dir / f"bank_{bank}.tsv", banks[bank]) for bank in range(4)]
     propagate_identical_common_code(banks, fact_sets)
     known = load_known_symbols(Path(args.symbols))
-    return [
-        generate_bank(bank, banks[bank], fact_sets[bank], make_labels(bank, fact_sets[bank], known))
-        for bank in range(4)
-    ]
+    module_layout = load_source_modules(Path(args.modules))
+    outputs: dict[PurePosixPath, str] = {}
+    for bank in range(PRG_BANK_COUNT):
+        labels = make_labels(bank, fact_sets[bank], known)
+        if bank in module_layout:
+            outputs.update(
+                generate_semantic_bank(
+                    bank, banks[bank], fact_sets[bank], labels, module_layout[bank]
+                )
+            )
+        else:
+            outputs[PurePosixPath("banks") / f"bank_{bank}.asm"] = generate_bank(
+                bank, banks[bank], fact_sets[bank], labels
+            )
+    return outputs
 
 
 def command_write(args: argparse.Namespace) -> None:
     output_dir = Path(args.output_dir)
     texts = build_texts(args)
     output_dir.mkdir(parents=True, exist_ok=True)
-    for bank, source in enumerate(texts):
-        output = output_dir / f"bank_{bank}.asm"
+    for relative, source in sorted(texts.items(), key=lambda item: str(item[0])):
+        output = output_dir / Path(relative)
+        output.parent.mkdir(parents=True, exist_ok=True)
         if output.is_file() and read_source_text(output, encoding="utf-8") == source:
             print(f"[OK] unchanged {output}")
             continue
@@ -301,17 +443,18 @@ def command_write(args: argparse.Namespace) -> None:
 
 def command_check(args: argparse.Namespace) -> None:
     output_dir = Path(args.output_dir)
-    for bank, expected in enumerate(build_texts(args)):
-        output = output_dir / f"bank_{bank}.asm"
+    for relative, expected in build_texts(args).items():
+        output = output_dir / Path(relative)
         if not output.is_file() or read_source_text(output, encoding="utf-8") != expected:
             raise DisassemblyError(f"generated disassembly is stale: {output}; run make disassemble")
-    print("[OK] canonical four-bank disassembly and symbolic PRG control flow")
+    print("[OK] canonical semantic disassembly and symbolic PRG control flow")
 
 
 def add_common(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--prg", required=True)
     parser.add_argument("--facts-dir", required=True)
     parser.add_argument("--symbols", required=True)
+    parser.add_argument("--modules", required=True)
     parser.add_argument("--output-dir", required=True)
 
 

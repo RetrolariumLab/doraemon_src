@@ -117,7 +117,12 @@ scripts/verify_rom.py       focused byte-difference diagnostics
 src/banks/bank_0.asm        world 1 / city and underground bank
 src/banks/bank_1.asm        world 2 / cave shooter bank
 src/banks/bank_2.asm        world 3 / underwater bank
-src/banks/bank_3.asm        title, common presentation, and credits bank
+src/banks/bank_3.asm        generated bank 3 semantic include map
+src/common/                 shared shell boot, gateways, and vectors
+src/shell/                  title, ending, game-over, and transition code
+src/rendering/              shell PPU and text services
+src/audio/                  effect driver, music engine, and stream data
+src/data/                   ending credits and pending bank 3 data formats
 src/graphics/chr.asm        private 32 KiB CHR include
 tests/                      tooling and data-contract tests
 ```

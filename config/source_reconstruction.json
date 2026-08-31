@@ -52,9 +52,12 @@
       "id": "semantic_source_layout",
       "status": "in-progress",
       "evidence": [
+        "config/source_modules.json",
         "config/prg_code_entries.txt",
         "config/symbols.json",
-        "docs/subsystems.md"
+        "docs/source_layout.md",
+        "docs/subsystems.md",
+        "scripts/generate_disassembly.py"
       ]
     },
     {
@@ -75,7 +78,11 @@
     {
       "id": "audio",
       "status": "planned",
-      "evidence": []
+      "evidence": [
+        "config/audio_dispatch.json",
+        "docs/subsystems.md",
+        "scripts/audio_dispatch.py"
+      ]
     },
     {
       "id": "authoring_roundtrips",
@@ -107,6 +114,7 @@
   },
   "source_contract": {
     "source_root": "src",
+    "module_manifest": "config/source_modules.json",
     "maximum_module_lines": 700,
     "executable_incbin": false,
     "physical_bank_names_are_boundaries_not_semantics": true,

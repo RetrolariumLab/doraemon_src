@@ -17,10 +17,13 @@ MAP := $(BUILD_DIR)/doraemon.map
 DEBUG := $(BUILD_DIR)/doraemon.dbg
 BANK_SOURCES := src/banks/bank_0.asm src/banks/bank_1.asm \
 	src/banks/bank_2.asm src/banks/bank_3.asm
-SOURCE_FILES := src/main.asm $(BANK_SOURCES) src/graphics/chr.asm \
+SEMANTIC_SOURCES := $(wildcard src/common/*.asm src/shell/*.asm \
+	src/rendering/*.asm src/audio/*.asm src/data/*.asm)
+SOURCE_FILES := src/main.asm $(BANK_SOURCES) $(SEMANTIC_SOURCES) src/graphics/chr.asm \
 	src/memory/hardware.inc src/memory/ram.inc
 GHIDRA_FACTS_DIR := build/ghidra/facts
 SYMBOLS := config/symbols.json
+SOURCE_MODULES := config/source_modules.json
 FCEUX_DIR ?= ../fceux_automation
 FCEUX_EXE ?= $(FCEUX_DIR)/vc/x64/Release/fceux64.exe
 RUNTIME_SCENARIOS := scenarios/runtime_scenarios.json
@@ -28,6 +31,7 @@ RUNTIME_LUA := scripts/runtime/capture_architecture.lua
 RUNTIME_TRACE_DIR := build/runtime/traces
 RUNTIME_SCREENSHOT_DIR := build/runtime/screens
 BANK_GATEWAYS := config/bank_gateways.json
+AUDIO_DISPATCH := config/audio_dispatch.json
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -36,7 +40,8 @@ BANK_GATEWAYS := config/bank_gateways.json
 	ghidra-bootstrap ghidra-status ghidra-inspect ghidra-analyze disassemble \
 	disassembly-check maps validate-maps release-check check clean \
 	source-audit source-release-audit source-check trace-runtime \
-	validate-runtime runtime-architecture bank-gateways validate-bank-gateways
+	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
+	audio-dispatch validate-audio-dispatch
 
 all: verify
 
@@ -151,11 +156,16 @@ runtime-architecture: validate-bank-gateways trace-runtime validate-runtime
 
 bank-gateways: $(PRG_ASSET)
 	$(PYTHON) scripts/bank_gateways.py --prg "$(PRG_ASSET)" \
-		--manifest "$(BANK_GATEWAYS)" --source-root src/banks --pretty
+		--manifest "$(BANK_GATEWAYS)" --source-root src --pretty
 
 validate-bank-gateways: $(PRG_ASSET)
 	$(PYTHON) scripts/bank_gateways.py --prg "$(PRG_ASSET)" \
-		--manifest "$(BANK_GATEWAYS)" --source-root src/banks
+		--manifest "$(BANK_GATEWAYS)" --source-root src
+
+audio-dispatch validate-audio-dispatch: $(PRG_ASSET)
+	$(PYTHON) scripts/audio_dispatch.py --prg "$(PRG_ASSET)" \
+		--manifest "$(AUDIO_DISPATCH)" \
+		--code-entries config/prg_code_entries.txt
 
 ghidra-bootstrap:
 	$(PYTHON) scripts/bootstrap_ghidra.py install
@@ -170,10 +180,10 @@ ghidra-analyze:
 	$(PYTHON) scripts/run_ghidra.py export-facts --image "$(REFERENCE_ROM)" --output-dir "$(GHIDRA_FACTS_DIR)"
 
 disassemble: ghidra-analyze $(PRG_ASSET)
-	$(PYTHON) scripts/generate_disassembly.py write --prg "$(PRG_ASSET)" --facts-dir "$(GHIDRA_FACTS_DIR)" --symbols "$(SYMBOLS)" --output-dir src/banks
+	$(PYTHON) scripts/generate_disassembly.py write --prg "$(PRG_ASSET)" --facts-dir "$(GHIDRA_FACTS_DIR)" --symbols "$(SYMBOLS)" --modules "$(SOURCE_MODULES)" --output-dir src
 
 disassembly-check: ghidra-analyze $(PRG_ASSET)
-	$(PYTHON) scripts/generate_disassembly.py check --prg "$(PRG_ASSET)" --facts-dir "$(GHIDRA_FACTS_DIR)" --symbols "$(SYMBOLS)" --output-dir src/banks
+	$(PYTHON) scripts/generate_disassembly.py check --prg "$(PRG_ASSET)" --facts-dir "$(GHIDRA_FACTS_DIR)" --symbols "$(SYMBOLS)" --modules "$(SOURCE_MODULES)" --output-dir src
 
 maps: $(ROM)
 	$(PYTHON) scripts/map_data.py --image "$(ROM)" --pretty
@@ -181,7 +191,8 @@ maps: $(ROM)
 validate-maps: $(ROM)
 	$(PYTHON) scripts/map_data.py --image "$(ROM)" --validate
 
-release-check: quality-check disassembly-check verify validate-maps
+release-check: quality-check disassembly-check verify validate-maps \
+	validate-audio-dispatch
 
 check: release-check
 

@@ -14,7 +14,8 @@ exact mapper-66 reference
   -> clear bank-qualified typed data ranges after analysis
   -> export instruction facts
   -> propagate byte-identical common prefix facts through $8270
-  -> emit src/banks/bank_0.asm ... bank_3.asm
+  -> apply config/source_modules.json address ranges
+  -> emit bank include maps and semantic source modules
   -> assemble and compare every byte
 ```
 

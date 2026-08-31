@@ -138,14 +138,6 @@
       }
     },
     {
-      "path": "audio/sfx/prg3-pulse-control.bin",
-      "size": 2,
-      "sha1": "7df32e720763ca992447dbb8cf9c15196d6c093c",
-      "sources": {
-        "original": 106012
-      }
-    },
-    {
       "path": "audio/sfx/prg3-pulse-steps.bin",
       "size": 22,
       "sha1": "c8758c07ae56406f13b247f7470151cb18fd4cc8",
