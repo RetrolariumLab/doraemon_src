@@ -1,6 +1,18 @@
 # Debugger workflow
 
-Load the exact Japanese reference in Mesen and import
+Automated evidence uses the same instrumented FCEUX checkout as `pacman_src`:
+
+```bash
+make runtime-architecture
+```
+
+The runner validates the reference SHA-1, applies deterministic frame inputs,
+captures CSV under `build/runtime/traces`, and checks reset, NMI, dispatch, and
+every observed GNROM write. The Lua hook fingerprints the currently mapped PRG
+bank independently from `$0017`, so a mapper transition records both its source
+bank and committed target bank.
+
+For interactive work, load the exact Japanese reference in Mesen and import
 `config/debugger_breakpoints.json` and `config/debugger_watches.json` manually.
 The configurations document intended entries even when debugger import formats
 differ between versions.

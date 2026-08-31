@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -52,6 +53,70 @@ class ContractHelpersTests(unittest.TestCase):
             expected = (root / "docs" / "status.md").resolve()
             self.assertEqual(
                 AUDIT.safe_project_path(root, "docs/status.md"), expected
+            )
+
+    def test_accepts_development_runtime_prefix(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = root / "runtime.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "status": "development",
+                        "scenarios": [{"id": "boot-title"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract = {
+                "scenario_manifest": "runtime.json",
+                "required_scenarios": ["boot-title", "world1-city"],
+            }
+            self.assertEqual(
+                AUDIT.validate_runtime_manifest(root, contract, "development"), []
+            )
+
+    def test_accepts_independently_completed_runtime_scenario(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "runtime.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "status": "development",
+                        "scenarios": [{"id": "world1-city"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract = {
+                "scenario_manifest": "runtime.json",
+                "required_scenarios": ["boot-title", "world1-city"],
+            }
+            self.assertEqual(
+                AUDIT.validate_runtime_manifest(root, contract, "development"), []
+            )
+
+    def test_rejects_runtime_scenario_outside_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "runtime.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "status": "development",
+                        "scenarios": [{"id": "unknown"}],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            contract = {
+                "scenario_manifest": "runtime.json",
+                "required_scenarios": ["boot-title", "world1-city"],
+            }
+            self.assertTrue(
+                AUDIT.validate_runtime_manifest(root, contract, "development")
             )
 
 

@@ -154,6 +154,30 @@ def validate_contract_shape(document: dict[str, Any]) -> list[str]:
     return errors
 
 
+def validate_runtime_manifest(
+    project_root: Path, contract: dict[str, Any], release_status: str
+) -> list[str]:
+    relative = contract.get("scenario_manifest", "")
+    path = safe_project_path(project_root, relative)
+    if path is None or not path.is_file():
+        return [f"missing runtime scenario manifest: {relative}"]
+    document = load_json(path)
+    if document.get("schema_version") != 1:
+        return ["runtime scenario manifest is not schema 1"]
+    identifiers = [scenario.get("id") for scenario in document.get("scenarios", [])]
+    required = contract.get("required_scenarios", [])
+    if len(identifiers) != len(set(identifiers)):
+        return ["runtime scenario identifiers are not unique"]
+    if any(identifier not in required for identifier in identifiers):
+        return ["runtime scenario is outside the reconstruction contract"]
+    if release_status == "tag-ready" and identifiers != required:
+        return ["tag-ready reconstruction lacks required runtime scenarios"]
+    expected_status = "complete" if identifiers == required else "development"
+    if document.get("status") != expected_status:
+        return [f"runtime scenario manifest status must be {expected_status}"]
+    return []
+
+
 def validate_reconstruction(
     project_root: Path,
     manifest_path: Path,
@@ -180,6 +204,9 @@ def validate_reconstruction(
         return errors
     errors.extend(validate_milestones(milestones, status))
     errors.extend(validate_contract_shape(document))
+    errors.extend(
+        validate_runtime_manifest(project_root, document["runtime_contract"], status)
+    )
 
     baseline = document.get("preservation_baseline", {})
     commit = baseline.get("commit", "")
@@ -198,16 +225,16 @@ def validate_reconstruction(
         )
     )
 
-    complete_evidence: list[str] = []
+    declared_evidence: list[str] = []
     for milestone in milestones:
         evidence = milestone.get("evidence", [])
         if not isinstance(evidence, list):
             errors.append(f"milestone evidence is not a list: {milestone.get('id')}")
-        elif milestone.get("status") == "complete":
-            if not evidence:
-                errors.append(f"complete milestone has no evidence: {milestone.get('id')}")
-            complete_evidence.extend(evidence)
-    errors.extend(validate_paths(project_root, complete_evidence, "milestone evidence"))
+            continue
+        if milestone.get("status") == "complete" and not evidence:
+            errors.append(f"complete milestone has no evidence: {milestone.get('id')}")
+        declared_evidence.extend(evidence)
+    errors.extend(validate_paths(project_root, declared_evidence, "milestone evidence"))
     errors.extend(
         validate_paths(
             project_root,

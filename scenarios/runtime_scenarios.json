@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "status": "development",
+  "rom_sha1": "d47ebb0be5697820691065faedff277607ac10fd",
+  "scenarios": [
+    {
+      "id": "boot-title",
+      "method": "natural power-on through the title-screen dispatcher",
+      "max_frames": 360,
+      "inputs": [],
+      "checks": [
+        "reset-observed",
+        "emulator-power-on-bank",
+        "initial-shell-switch",
+        "mapper-bus-conflict",
+        "post-switch-nmi",
+        "shell-dispatch"
+      ]
+    },
+    {
+      "id": "world1-city",
+      "method": "natural title-screen Start input into the city",
+      "max_frames": 1800,
+      "inputs": [
+        {
+          "first_frame": 180,
+          "last_frame": 184,
+          "buttons": [
+            "start"
+          ]
+        }
+      ],
+      "chapter_entry": {
+        "source_prg": 3,
+        "target_prg": 0,
+        "target_chr": 3,
+        "dispatch": "8277",
+        "steady_selector": "00"
+      },
+      "checks": [
+        "mapper-bus-conflict",
+        "observed-inputs",
+        "chapter-bank-entry",
+        "chapter-steady-state"
+      ]
+    },
+    {
+      "id": "world2-cave",
+      "method": "title A+B hold, one Select press, then Start",
+      "max_frames": 900,
+      "inputs": [
+        {
+          "first_frame": 150,
+          "last_frame": 210,
+          "buttons": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "first_frame": 160,
+          "last_frame": 164,
+          "buttons": [
+            "select"
+          ]
+        },
+        {
+          "first_frame": 180,
+          "last_frame": 184,
+          "buttons": [
+            "start"
+          ]
+        }
+      ],
+      "chapter_entry": {
+        "source_prg": 3,
+        "target_prg": 1,
+        "target_chr": 3,
+        "dispatch": "8271",
+        "steady_selector": "05"
+      },
+      "checks": [
+        "mapper-bus-conflict",
+        "observed-inputs",
+        "chapter-bank-entry",
+        "chapter-steady-state"
+      ]
+    },
+    {
+      "id": "world3-underwater",
+      "method": "title A+B hold, two Select presses, then Start",
+      "max_frames": 900,
+      "inputs": [
+        {
+          "first_frame": 150,
+          "last_frame": 220,
+          "buttons": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "first_frame": 160,
+          "last_frame": 164,
+          "buttons": [
+            "select"
+          ]
+        },
+        {
+          "first_frame": 170,
+          "last_frame": 174,
+          "buttons": [
+            "select"
+          ]
+        },
+        {
+          "first_frame": 190,
+          "last_frame": 194,
+          "buttons": [
+            "start"
+          ]
+        }
+      ],
+      "chapter_entry": {
+        "source_prg": 3,
+        "target_prg": 2,
+        "target_chr": 3,
+        "dispatch": "8271",
+        "steady_selector": "0A"
+      },
+      "checks": [
+        "mapper-bus-conflict",
+        "observed-inputs",
+        "chapter-bank-entry",
+        "chapter-steady-state"
+      ]
+    }
+  ]
+}

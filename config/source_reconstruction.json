@@ -30,7 +30,13 @@
     {
       "id": "runtime_architecture",
       "status": "in-progress",
-      "evidence": []
+      "evidence": [
+        "docs/runtime_evidence.md",
+        "scenarios/runtime_scenarios.json",
+        "scripts/runtime/capture_architecture.lua",
+        "scripts/runtime/run_runtime_scenarios.py",
+        "scripts/runtime/validate_runtime_scenarios.py"
+      ]
     },
     {
       "id": "chapter_execution_evidence",

@@ -21,6 +21,11 @@ SOURCE_FILES := src/main.asm $(BANK_SOURCES) src/graphics/chr.asm \
 	src/memory/hardware.inc src/memory/ram.inc
 GHIDRA_FACTS_DIR := build/ghidra/facts
 SYMBOLS := config/symbols.json
+FCEUX_DIR ?= ../fceux_automation
+FCEUX_EXE ?= $(FCEUX_DIR)/vc/x64/Release/fceux64.exe
+RUNTIME_SCENARIOS := scenarios/runtime_scenarios.json
+RUNTIME_LUA := scripts/runtime/capture_architecture.lua
+RUNTIME_TRACE_DIR := build/runtime/traces
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -28,7 +33,8 @@ SYMBOLS := config/symbols.json
 	lint lint-asm lint-source lint-project test quality-check scaffold-check \
 	ghidra-bootstrap ghidra-status ghidra-inspect ghidra-analyze disassemble \
 	disassembly-check maps validate-maps release-check check clean \
-	source-audit source-release-audit source-check
+	source-audit source-release-audit source-check trace-runtime \
+	validate-runtime runtime-architecture
 
 all: verify
 
@@ -124,6 +130,21 @@ source-release-audit:
 	$(PYTHON) scripts/source_reconstruction_audit.py --require-ready
 
 source-check: release-check source-audit
+
+trace-runtime: verify-reference
+	$(PYTHON) scripts/runtime/run_runtime_scenarios.py \
+		--fceux "$(FCEUX_EXE)" \
+		--rom "$(REFERENCE_ROM)" \
+		--lua "$(RUNTIME_LUA)" \
+		--scenarios "$(RUNTIME_SCENARIOS)" \
+		--output-dir "$(RUNTIME_TRACE_DIR)"
+
+validate-runtime:
+	$(PYTHON) scripts/runtime/validate_runtime_scenarios.py \
+		--scenarios "$(RUNTIME_SCENARIOS)" \
+		--trace-dir "$(RUNTIME_TRACE_DIR)"
+
+runtime-architecture: trace-runtime validate-runtime
 
 ghidra-bootstrap:
 	$(PYTHON) scripts/bootstrap_ghidra.py install

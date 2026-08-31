@@ -23,6 +23,9 @@ incrementally without weakening byte identity.
   label.
 - Reset, NMI, the bus-conflict-safe mapper write, interrupt vectors, embedded
   build text, and the known world data have initial semantic names.
+- Deterministic FCEUX traces prove the reset-to-title PRG 0 to PRG 3 switch,
+  post-write mapping, title NMI path, bus-conflict values, controller shortcut,
+  and entry into all three gameplay PRG banks.
 - The original mapper routine at `$81BB` indexes a ROM table at `$8261` and
   writes back to that same ROM address. The table bytes safely expose mapper 66
   values despite discrete-board bus conflicts.
@@ -86,6 +89,7 @@ make maps               # describe all CadEditor-backed regions as JSON
 make validate-maps      # validate map/table sizes and CRCs
 make quality-check      # formatting, lint, and unit tests
 make source-audit       # validate reconstruction milestones and evidence
+make runtime-architecture # capture and validate reset/NMI/mapper evidence
 make source-check       # complete project and reconstruction development gate
 make check              # complete release gate
 make clean              # remove build artifacts only

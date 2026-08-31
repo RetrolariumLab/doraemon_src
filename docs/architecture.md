@@ -40,6 +40,12 @@ the cartridge data bus, so the write survives the original discrete-board bus
 conflict. The compact index orders PRG first and CHR second; the table converts
 it to mapper bits `xxPPxxCC`.
 
+The deterministic `boot-title` runtime trace observes the initial switch from
+FCEUX's power-on PRG 0 to PRG 3, then a PRG 3 / CHR 3 selection before NMI is
+enabled. A hook on the instruction after `STA` fingerprints the newly mapped
+bank, independently confirming the selector interpretation. See
+`docs/runtime_evidence.md`.
+
 ## Bank roles
 
 | Bank | Confirmed landmarks | Working role |
@@ -52,6 +58,12 @@ it to mapper bits `xxPPxxCC`.
 These are evidence-backed roles, not exclusive ownership boundaries. The NMI,
 mapper routine, input polling, score helpers, and dispatch table prefix are
 duplicated across banks.
+
+Runtime chapter-entry traces establish shell edges to all three gameplay banks:
+PRG3 -> PRG0 for the natural World 1 path, PRG3 -> PRG1 for the one-Select
+shortcut, and PRG3 -> PRG2 for the two-Select shortcut. Worlds 2 and 3 both make
+short PRG3 calls and return to their own banks during initialization. The
+detailed selectors and frames are recorded in `docs/runtime_evidence.md`.
 
 ## Three gameplay systems
 
