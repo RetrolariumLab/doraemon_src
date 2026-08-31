@@ -82,7 +82,7 @@ Bank3_Label_9F73:
     JMP Bank3_Label_9F84
 
 Bank3_Label_9F81:
-    JSR Bank3_Func_9FE7
+    JSR Music_UpdateChannelStream
 
 Bank3_Label_9F84:
     INC a:$02FD
@@ -147,7 +147,7 @@ Bank3_Label_9FC5:
 Bank3_Label_9FE6:
     RTS
 
-Bank3_Func_9FE7:
+Music_UpdateChannelStream:
     LDX a:$02FD
     CPX #$03
     BNE Bank3_Label_9FF6
@@ -160,7 +160,7 @@ Bank3_Label_9FF6:
     STA a:$02FF
     TAY
     BMI Bank3_Label_A002
-    JMP Bank3_Label_A0E0
+    JMP Bank3_Func_A0E0
 
 Bank3_Label_A002:
     CMP #$EF
@@ -175,6 +175,8 @@ Bank3_Label_A002:
     LDA a:$A017,Y
     PHA
     RTS
+
+MusicCommand_RtsDispatchTable:
     .byte $78, $A1, $54, $A2, $8F, $A1, $C8, $A1, $AD, $A1, $F0, $A1, $06, $A2, $19, $A2
     .byte $3E, $A2, $86, $A2, $C8, $A2, $B8, $A2, $A6, $A2, $D5, $A2, $66, $A2, $3F, $A0
     .byte $DD, $A2
@@ -183,6 +185,8 @@ Bank3_Label_A039:
     LDA a:$02FF
     AND #$7F
     BPL Bank3_Label_A043
+
+MusicCommand_F0:
     JSR Audio_ReadStreamByte
 
 Bank3_Label_A043:
@@ -190,8 +194,12 @@ Bank3_Label_A043:
     STA a:$02AC,X
     LDA a:$02EF,X
     BNE Bank3_Label_A0CA
+
+Bank3_Label_A04E:
     LDX a:$02FD
     LDA a:$02AC,X
+
+Bank3_Label_A054:
     STA a:$02FF
     LDX a:$02FD
     CPX #$02
@@ -263,7 +271,7 @@ Bank3_Label_A0C7:
     STA a:$02F7,X
 
 Bank3_Label_A0CA:
-    JMP Bank3_Func_9FE7
+    JMP Music_UpdateChannelStream
 
 Bank3_Label_A0CD:
     LDA a:$02FF
@@ -279,7 +287,7 @@ Bank3_Label_A0DA:
     STA a:$02F5
     JMP Bank3_Label_A0CA
 
-Bank3_Label_A0E0:
+Bank3_Func_A0E0:
     CMP #$00
     BNE Bank3_Label_A0E7
     JMP Bank3_Label_A16F
@@ -363,31 +371,226 @@ Bank3_Label_A16F:
     LDA a:$02AC,X
     STA a:$02B0,X
     RTS
-    .byte $AE, $FD, $02, $A9, $01, $9D, $B0, $02, $8A, $0A, $AA, $B5, $2F, $D0, $02, $D6
-    .byte $30, $D6, $2F, $EE, $FE, $02, $60, $20, $01, $A3, $AE, $FD, $02, $9D, $D4, $02
-    .byte $A9, $01, $9D, $D8, $02, $8A, $0A, $AA, $B5, $2F, $9D, $C4, $02, $B5, $30, $9D
-    .byte $C5, $02, $4C, $E7, $9F, $20, $01, $A3, $AE, $FD, $02, $DD, $D8, $02, $B0, $0D
-    .byte $8A, $0A, $AA, $BD, $CC, $02, $95, $2F, $BD, $CD, $02, $95, $30, $4C, $E7, $9F
-    .byte $AE, $FD, $02, $BD, $D8, $02, $DD, $D4, $02, $B0, $1A, $FE, $D8, $02, $8A, $0A
-    .byte $AA, $B5, $2F, $9D, $CC, $02, $B5, $30, $9D, $CD, $02, $BD, $C4, $02, $95, $2F
-    .byte $BD, $C5, $02, $95, $30, $4C, $E7, $9F, $20, $01, $A3, $AE, $FD, $02, $9D, $C0
-    .byte $02, $BD, $B4, $02, $9D, $B8, $02, $A9, $FF, $9D, $EF, $02, $D0, $32, $AE, $FD
-    .byte $02, $A9, $00, $9D, $EF, $02, $BD, $F3, $02, $29, $CF, $9D, $F3, $02, $4C, $4E
-    .byte $A0, $20, $01, $A3, $AE, $FD, $02, $E0, $02, $F0, $A2, $29, $C0, $8D, $FF, $02
-    .byte $BD, $F3, $02, $29, $10, $0D, $FF, $02, $9D, $F3, $02, $BD, $EF, $02, $F0, $DE
-    .byte $BD, $C0, $02, $4C, $54, $A0, $20, $45, $A2, $4C, $E7, $9F, $AD, $FD, $02, $0A
-    .byte $AA, $B5, $2F, $9D, $DC, $02, $B5, $30, $9D, $DD, $02, $60, $AD, $FD, $02, $0A
-    .byte $AA, $BD, $DC, $02, $95, $2F, $BD, $DD, $02, $95, $30, $4C, $E7, $9F, $AD, $AA
-    .byte $02, $0A, $0A, $38, $E9, $04, $18, $6D, $FD, $02, $0A, $A8, $AD, $FD, $02, $0A
-    .byte $AA, $B9, $D6, $A4, $95, $2F, $B9, $D7, $A4, $95, $30, $4C, $E7, $9F, $20, $01
-    .byte $A3, $48, $20, $01, $A3, $48, $AD, $FD, $02, $0A, $AA, $B5, $2F, $9D, $E4, $02
-    .byte $B5, $30, $9D, $E5, $02, $68, $95, $30, $68, $95, $2F, $4C, $E7, $9F, $AD, $FD
-    .byte $02, $0A, $AA, $BD, $E4, $02, $95, $2F, $BD, $E5, $02, $95, $30, $4C, $E7, $9F
-    .byte $20, $01, $A3, $AE, $FD, $02, $E0, $03, $F0, $03, $9D, $EC, $02, $4C, $E7, $9F
-    .byte $20, $01, $A3, $A2, $02, $95, $46, $CA, $10, $FB, $4C, $E7, $9F, $AE, $FD, $02
-    .byte $A9, $08, $4C, $C7, $A0, $20, $01, $A3, $AE, $FD, $02, $9D, $B4, $02, $9D, $B8
-    .byte $02, $4A, $4A, $4A, $4A, $8D, $FF, $02, $BD, $F3, $02, $29, $C0, $09, $10, $0D
-    .byte $FF, $02, $9D, $F3, $02, $4C, $E7, $9F
+
+MusicCommand_FF:
+    LDX a:$02FD
+    LDA #$01
+    STA a:$02B0,X
+    TXA
+    ASL A
+    TAX
+    LDA $2F,X
+    BNE Bank3_Label_A18A
+    DEC $30,X
+
+Bank3_Label_A18A:
+    DEC $2F,X
+    INC a:$02FE
+    RTS
+
+MusicCommand_FD:
+    JSR Audio_ReadStreamByte
+    LDX a:$02FD
+    STA a:$02D4,X
+    LDA #$01
+    STA a:$02D8,X
+    TXA
+    ASL A
+    TAX
+    LDA $2F,X
+    STA a:$02C4,X
+    LDA $30,X
+    STA a:$02C5,X
+    JMP Music_UpdateChannelStream
+
+MusicCommand_FB:
+    JSR Audio_ReadStreamByte
+    LDX a:$02FD
+    CMP a:$02D8,X
+    BCS Bank3_Label_A1C6
+    TXA
+    ASL A
+    TAX
+    LDA a:$02CC,X
+    STA $2F,X
+    LDA a:$02CD,X
+    STA $30,X
+
+Bank3_Label_A1C6:
+    JMP Music_UpdateChannelStream
+
+MusicCommand_FC:
+    LDX a:$02FD
+    LDA a:$02D8,X
+    CMP a:$02D4,X
+    BCS Bank3_Label_A1EE
+    INC a:$02D8,X
+    TXA
+    ASL A
+    TAX
+    LDA $2F,X
+    STA a:$02CC,X
+    LDA $30,X
+    STA a:$02CD,X
+    LDA a:$02C4,X
+    STA $2F,X
+    LDA a:$02C5,X
+    STA $30,X
+
+Bank3_Label_A1EE:
+    JMP Music_UpdateChannelStream
+
+MusicCommand_FA:
+    JSR Audio_ReadStreamByte
+    LDX a:$02FD
+    STA a:$02C0,X
+    LDA a:$02B4,X
+    STA a:$02B8,X
+    LDA #$FF
+    STA a:$02EF,X
+    BNE Bank3_Label_A239
+
+MusicCommand_F9:
+    LDX a:$02FD
+    LDA #$00
+    STA a:$02EF,X
+    LDA a:$02F3,X
+    AND #$CF
+    STA a:$02F3,X
+
+Bank3_Label_A217:
+    JMP Bank3_Label_A04E
+
+MusicCommand_F8:
+    JSR Audio_ReadStreamByte
+    LDX a:$02FD
+    CPX #$02
+    BEQ Bank3_Label_A1C6
+    AND #$C0
+    STA a:$02FF
+    LDA a:$02F3,X
+    AND #$10
+    ORA a:$02FF
+    STA a:$02F3,X
+    LDA a:$02EF,X
+    BEQ Bank3_Label_A217
+
+Bank3_Label_A239:
+    LDA a:$02C0,X
+    JMP Bank3_Label_A054
+
+MusicCommand_F7:
+    JSR Bank3_Func_A245
+    JMP Music_UpdateChannelStream
+
+Bank3_Func_A245:
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA $2F,X
+    STA a:$02DC,X
+    LDA $30,X
+    STA a:$02DD,X
+    RTS
+
+MusicCommand_FE:
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA a:$02DC,X
+    STA $2F,X
+    LDA a:$02DD,X
+    STA $30,X
+    JMP Music_UpdateChannelStream
+
+MusicCommand_F1:
+    LDA a:$02AA
+    ASL A
+    ASL A
+    SEC
+    SBC #$04
+    CLC
+    ADC a:$02FD
+    ASL A
+    TAY
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA a:$A4D6,Y
+    STA $2F,X
+    LDA a:$A4D7,Y
+    STA $30,X
+    JMP Music_UpdateChannelStream
+
+MusicCommand_F6:
+    JSR Audio_ReadStreamByte
+    PHA
+    JSR Audio_ReadStreamByte
+    PHA
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA $2F,X
+    STA a:$02E4,X
+    LDA $30,X
+    STA a:$02E5,X
+    PLA
+    STA $30,X
+    PLA
+    STA $2F,X
+    JMP Music_UpdateChannelStream
+
+MusicCommand_F3:
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA a:$02E4,X
+    STA $2F,X
+    LDA a:$02E5,X
+    STA $30,X
+    JMP Music_UpdateChannelStream
+
+MusicCommand_F4:
+    JSR Audio_ReadStreamByte
+    LDX a:$02FD
+    CPX #$03
+    BEQ Bank3_Label_A2C6
+    STA a:$02EC,X
+
+Bank3_Label_A2C6:
+    JMP Music_UpdateChannelStream
+
+MusicCommand_F5:
+    JSR Audio_ReadStreamByte
+    LDX #$02
+
+Bank3_Label_A2CE:
+    STA $46,X
+    DEX
+    BPL Bank3_Label_A2CE
+    JMP Music_UpdateChannelStream
+
+MusicCommand_F2:
+    LDX a:$02FD
+    LDA #$08
+    JMP Bank3_Label_A0C7
+
+MusicCommand_EF:
+    JSR Audio_ReadStreamByte
+    LDX a:$02FD
+    STA a:$02B4,X
+    STA a:$02B8,X
+    LSR A
+    LSR A
+    LSR A
+    LSR A
+    STA a:$02FF
+    LDA a:$02F3,X
+    AND #$C0
+    ORA #$10
+    ORA a:$02FF
+    STA a:$02F3,X
+    JMP Music_UpdateChannelStream
 
 Audio_ReadStreamByte:
     LDA a:$02FD

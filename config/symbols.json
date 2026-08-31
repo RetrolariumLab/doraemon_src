@@ -98,6 +98,210 @@
       "evidence": "cadeditor"
     },
     {
+      "bank": 0,
+      "address": "0xE316",
+      "name": "World1_AudioEffect_RequestPriority",
+      "evidence": "request-indexed-even-dispatch-values"
+    },
+    {
+      "bank": 0,
+      "address": "0xE330",
+      "name": "World1_AudioEffect_RtsDispatchTable",
+      "evidence": "pha-pha-rts-indirect-dispatch"
+    },
+    {
+      "bank": 0,
+      "address": "0xE398",
+      "name": "World1_Audio_QueueEffectWithPriority",
+      "evidence": "compares-current-and-request-priority"
+    },
+    {
+      "bank": 0,
+      "address": "0xE3BC",
+      "name": "World1_Audio_QueueEffect",
+      "evidence": "request-range-check-and-02a0-write"
+    },
+    {
+      "bank": 0,
+      "address": "0xE3CD",
+      "name": "World1_Audio_UpdateEffects",
+      "evidence": "effect-timer-update-and-indirect-dispatch"
+    },
+    {
+      "bank": 0,
+      "address": "0xE42B",
+      "name": "World1_Audio_StopCurrentEffect",
+      "evidence": "clears-current-effect-state"
+    },
+    {
+      "bank": 0,
+      "address": "0xE434",
+      "name": "World1_Audio_ResetEffects",
+      "evidence": "clears-effect-state-and-apu-registers"
+    },
+    {
+      "bank": 0,
+      "address": "0xE949",
+      "name": "World1_Apu_WritePulse1ControlSweep",
+      "evidence": "writes-4000-and-4001"
+    },
+    {
+      "bank": 0,
+      "address": "0xE950",
+      "name": "World1_Apu_WritePulse2ControlSweep",
+      "evidence": "writes-4004-and-4005"
+    },
+    {
+      "bank": 0,
+      "address": "0xE957",
+      "name": "World1_Apu_WritePulse1Timer",
+      "evidence": "writes-4002-and-4003"
+    },
+    {
+      "bank": 0,
+      "address": "0xE95E",
+      "name": "World1_Apu_WritePulse2Timer",
+      "evidence": "writes-4006-and-4007"
+    },
+    {
+      "bank": 0,
+      "address": "0xE965",
+      "name": "World1_Apu_WriteTriangleControlTimer",
+      "evidence": "writes-4008-400a-and-400b"
+    },
+    {
+      "bank": 0,
+      "address": "0xE9D0",
+      "name": "World1_Audio_ResetChannels",
+      "evidence": "apu-channel-register-initialization"
+    },
+    {
+      "bank": 0,
+      "address": "0xE9FD",
+      "name": "World1_Audio_UpdateMusic",
+      "evidence": "02aa-music-state-and-four-channel-update"
+    },
+    {
+      "bank": 0,
+      "address": "0xEB0C",
+      "name": "World1_Music_UpdateChannelStream",
+      "evidence": "per-channel-stream-byte-dispatch"
+    },
+    {
+      "bank": 0,
+      "address": "0xEB3C",
+      "name": "World1_MusicCommand_RtsDispatchTable",
+      "evidence": "ff-minus-command-pha-pha-rts-dispatch"
+    },
+    {
+      "bank": 0,
+      "address": "0xEB65",
+      "name": "World1_MusicCommand_F0",
+      "evidence": "music-command-rts-slot-15"
+    },
+    {
+      "bank": 0,
+      "address": "0xEC9E",
+      "name": "World1_MusicCommand_FF",
+      "evidence": "music-command-rts-slot-0"
+    },
+    {
+      "bank": 0,
+      "address": "0xECB5",
+      "name": "World1_MusicCommand_FD",
+      "evidence": "music-command-rts-slot-2"
+    },
+    {
+      "bank": 0,
+      "address": "0xECD3",
+      "name": "World1_MusicCommand_FB",
+      "evidence": "music-command-rts-slot-4"
+    },
+    {
+      "bank": 0,
+      "address": "0xECEE",
+      "name": "World1_MusicCommand_FC",
+      "evidence": "music-command-rts-slot-3"
+    },
+    {
+      "bank": 0,
+      "address": "0xED16",
+      "name": "World1_MusicCommand_FA",
+      "evidence": "music-command-rts-slot-5"
+    },
+    {
+      "bank": 0,
+      "address": "0xED2C",
+      "name": "World1_MusicCommand_F9",
+      "evidence": "music-command-rts-slot-6"
+    },
+    {
+      "bank": 0,
+      "address": "0xED3F",
+      "name": "World1_MusicCommand_F8",
+      "evidence": "music-command-rts-slot-7"
+    },
+    {
+      "bank": 0,
+      "address": "0xED64",
+      "name": "World1_MusicCommand_F7",
+      "evidence": "music-command-rts-slot-8"
+    },
+    {
+      "bank": 0,
+      "address": "0xED7A",
+      "name": "World1_MusicCommand_FE",
+      "evidence": "music-command-rts-slot-1"
+    },
+    {
+      "bank": 0,
+      "address": "0xED8C",
+      "name": "World1_MusicCommand_F1",
+      "evidence": "music-command-rts-slot-14"
+    },
+    {
+      "bank": 0,
+      "address": "0xEDAC",
+      "name": "World1_MusicCommand_F6",
+      "evidence": "music-command-rts-slot-9"
+    },
+    {
+      "bank": 0,
+      "address": "0xEDCC",
+      "name": "World1_MusicCommand_F3",
+      "evidence": "music-command-rts-slot-12"
+    },
+    {
+      "bank": 0,
+      "address": "0xEDDE",
+      "name": "World1_MusicCommand_F4",
+      "evidence": "music-command-rts-slot-11"
+    },
+    {
+      "bank": 0,
+      "address": "0xEDEE",
+      "name": "World1_MusicCommand_F5",
+      "evidence": "music-command-rts-slot-10"
+    },
+    {
+      "bank": 0,
+      "address": "0xEDFB",
+      "name": "World1_MusicCommand_F2",
+      "evidence": "music-command-rts-slot-13"
+    },
+    {
+      "bank": 0,
+      "address": "0xEE03",
+      "name": "World1_MusicCommand_EF",
+      "evidence": "music-command-rts-slot-16"
+    },
+    {
+      "bank": 0,
+      "address": "0xEE26",
+      "name": "World1_Audio_ReadStreamByte",
+      "evidence": "indirect-stream-read-and-pointer-advance"
+    },
+    {
       "bank": 1,
       "address": "0x8098",
       "name": "Bank1_Reset",
@@ -138,6 +342,210 @@
       "address": "0x8959",
       "name": "Bank1_World2FrameLoop",
       "evidence": "world2-cave-runtime-frame-loop"
+    },
+    {
+      "bank": 1,
+      "address": "0xA80B",
+      "name": "World2_AudioEffect_RequestPriority",
+      "evidence": "request-indexed-even-dispatch-values"
+    },
+    {
+      "bank": 1,
+      "address": "0xA81A",
+      "name": "World2_AudioEffect_RtsDispatchTable",
+      "evidence": "pha-pha-rts-indirect-dispatch"
+    },
+    {
+      "bank": 1,
+      "address": "0xA856",
+      "name": "World2_Audio_QueueEffectWithPriority",
+      "evidence": "compares-current-and-request-priority"
+    },
+    {
+      "bank": 1,
+      "address": "0xA87A",
+      "name": "World2_Audio_QueueEffect",
+      "evidence": "request-range-check-and-02a0-write"
+    },
+    {
+      "bank": 1,
+      "address": "0xA88B",
+      "name": "World2_Audio_UpdateEffects",
+      "evidence": "effect-timer-update-and-indirect-dispatch"
+    },
+    {
+      "bank": 1,
+      "address": "0xA8E9",
+      "name": "World2_Audio_StopCurrentEffect",
+      "evidence": "clears-current-effect-state"
+    },
+    {
+      "bank": 1,
+      "address": "0xA8F2",
+      "name": "World2_Audio_ResetEffects",
+      "evidence": "clears-effect-state-and-apu-registers"
+    },
+    {
+      "bank": 1,
+      "address": "0xAC30",
+      "name": "World2_Apu_WritePulse1ControlSweep",
+      "evidence": "apu-register-pair-write"
+    },
+    {
+      "bank": 1,
+      "address": "0xAC37",
+      "name": "World2_Apu_WritePulse2ControlSweep",
+      "evidence": "apu-register-pair-write"
+    },
+    {
+      "bank": 1,
+      "address": "0xAC3E",
+      "name": "World2_Apu_WritePulse1Timer",
+      "evidence": "apu-timer-register-pair-write"
+    },
+    {
+      "bank": 1,
+      "address": "0xAC45",
+      "name": "World2_Apu_WritePulse2Timer",
+      "evidence": "apu-timer-register-pair-write"
+    },
+    {
+      "bank": 1,
+      "address": "0xAC4C",
+      "name": "World2_Apu_WriteTriangleControlTimer",
+      "evidence": "apu-triangle-register-write"
+    },
+    {
+      "bank": 1,
+      "address": "0xACB7",
+      "name": "World2_Audio_ResetChannels",
+      "evidence": "apu-channel-register-initialization"
+    },
+    {
+      "bank": 1,
+      "address": "0xACE4",
+      "name": "World2_Audio_UpdateMusic",
+      "evidence": "02aa-music-state-and-four-channel-update"
+    },
+    {
+      "bank": 1,
+      "address": "0xADF3",
+      "name": "World2_Music_UpdateChannelStream",
+      "evidence": "music-stream-command-interpreter"
+    },
+    {
+      "bank": 1,
+      "address": "0xAE23",
+      "name": "World2_MusicCommand_RtsDispatchTable",
+      "evidence": "ff-minus-command-pha-pha-rts-dispatch"
+    },
+    {
+      "bank": 1,
+      "address": "0xAE4C",
+      "name": "World2_MusicCommand_F0",
+      "evidence": "music-command-rts-slot-15"
+    },
+    {
+      "bank": 1,
+      "address": "0xAF85",
+      "name": "World2_MusicCommand_FF",
+      "evidence": "music-command-rts-slot-0"
+    },
+    {
+      "bank": 1,
+      "address": "0xAF9C",
+      "name": "World2_MusicCommand_FD",
+      "evidence": "music-command-rts-slot-2"
+    },
+    {
+      "bank": 1,
+      "address": "0xAFBA",
+      "name": "World2_MusicCommand_FB",
+      "evidence": "music-command-rts-slot-4"
+    },
+    {
+      "bank": 1,
+      "address": "0xAFD5",
+      "name": "World2_MusicCommand_FC",
+      "evidence": "music-command-rts-slot-3"
+    },
+    {
+      "bank": 1,
+      "address": "0xAFFD",
+      "name": "World2_MusicCommand_FA",
+      "evidence": "music-command-rts-slot-5"
+    },
+    {
+      "bank": 1,
+      "address": "0xB013",
+      "name": "World2_MusicCommand_F9",
+      "evidence": "music-command-rts-slot-6"
+    },
+    {
+      "bank": 1,
+      "address": "0xB026",
+      "name": "World2_MusicCommand_F8",
+      "evidence": "music-command-rts-slot-7"
+    },
+    {
+      "bank": 1,
+      "address": "0xB04B",
+      "name": "World2_MusicCommand_F7",
+      "evidence": "music-command-rts-slot-8"
+    },
+    {
+      "bank": 1,
+      "address": "0xB061",
+      "name": "World2_MusicCommand_FE",
+      "evidence": "music-command-rts-slot-1"
+    },
+    {
+      "bank": 1,
+      "address": "0xB073",
+      "name": "World2_MusicCommand_F1",
+      "evidence": "music-command-rts-slot-14"
+    },
+    {
+      "bank": 1,
+      "address": "0xB093",
+      "name": "World2_MusicCommand_F6",
+      "evidence": "music-command-rts-slot-9"
+    },
+    {
+      "bank": 1,
+      "address": "0xB0B3",
+      "name": "World2_MusicCommand_F3",
+      "evidence": "music-command-rts-slot-12"
+    },
+    {
+      "bank": 1,
+      "address": "0xB0C5",
+      "name": "World2_MusicCommand_F4",
+      "evidence": "music-command-rts-slot-11"
+    },
+    {
+      "bank": 1,
+      "address": "0xB0D5",
+      "name": "World2_MusicCommand_F5",
+      "evidence": "music-command-rts-slot-10"
+    },
+    {
+      "bank": 1,
+      "address": "0xB0E2",
+      "name": "World2_MusicCommand_F2",
+      "evidence": "music-command-rts-slot-13"
+    },
+    {
+      "bank": 1,
+      "address": "0xB0EA",
+      "name": "World2_MusicCommand_EF",
+      "evidence": "music-command-rts-slot-16"
+    },
+    {
+      "bank": 1,
+      "address": "0xB10D",
+      "name": "World2_Audio_ReadStreamByte",
+      "evidence": "indirect-stream-read-and-pointer-advance"
     },
     {
       "bank": 1,
@@ -210,6 +618,210 @@
       "address": "0x838E",
       "name": "Bank2_World3FrameLoop",
       "evidence": "world3-underwater-runtime-frame-loop"
+    },
+    {
+      "bank": 2,
+      "address": "0xBE0E",
+      "name": "World3_AudioEffect_RequestPriority",
+      "evidence": "request-indexed-even-dispatch-values"
+    },
+    {
+      "bank": 2,
+      "address": "0xBE28",
+      "name": "World3_AudioEffect_RtsDispatchTable",
+      "evidence": "pha-pha-rts-indirect-dispatch"
+    },
+    {
+      "bank": 2,
+      "address": "0xBE90",
+      "name": "World3_Audio_QueueEffectWithPriority",
+      "evidence": "compares-current-and-request-priority"
+    },
+    {
+      "bank": 2,
+      "address": "0xBEB4",
+      "name": "World3_Audio_QueueEffect",
+      "evidence": "request-range-check-and-02a0-write"
+    },
+    {
+      "bank": 2,
+      "address": "0xBEC5",
+      "name": "World3_Audio_UpdateEffects",
+      "evidence": "effect-timer-update-and-indirect-dispatch"
+    },
+    {
+      "bank": 2,
+      "address": "0xBF23",
+      "name": "World3_Audio_StopCurrentEffect",
+      "evidence": "clears-current-effect-state"
+    },
+    {
+      "bank": 2,
+      "address": "0xBF2C",
+      "name": "World3_Audio_ResetEffects",
+      "evidence": "clears-effect-state-and-apu-registers"
+    },
+    {
+      "bank": 2,
+      "address": "0xC441",
+      "name": "World3_Apu_WritePulse1ControlSweep",
+      "evidence": "writes-4000-and-4001"
+    },
+    {
+      "bank": 2,
+      "address": "0xC448",
+      "name": "World3_Apu_WritePulse2ControlSweep",
+      "evidence": "writes-4004-and-4005"
+    },
+    {
+      "bank": 2,
+      "address": "0xC44F",
+      "name": "World3_Apu_WritePulse1Timer",
+      "evidence": "writes-4002-and-4003"
+    },
+    {
+      "bank": 2,
+      "address": "0xC456",
+      "name": "World3_Apu_WritePulse2Timer",
+      "evidence": "writes-4006-and-4007"
+    },
+    {
+      "bank": 2,
+      "address": "0xC45D",
+      "name": "World3_Apu_WriteTriangleControlTimer",
+      "evidence": "writes-4008-400a-and-400b"
+    },
+    {
+      "bank": 2,
+      "address": "0xC4C8",
+      "name": "World3_Audio_ResetChannels",
+      "evidence": "apu-channel-register-initialization"
+    },
+    {
+      "bank": 2,
+      "address": "0xC4F5",
+      "name": "World3_Audio_UpdateMusic",
+      "evidence": "02aa-music-state-and-four-channel-update"
+    },
+    {
+      "bank": 2,
+      "address": "0xC604",
+      "name": "World3_Music_UpdateChannelStream",
+      "evidence": "per-channel-stream-byte-dispatch"
+    },
+    {
+      "bank": 2,
+      "address": "0xC634",
+      "name": "World3_MusicCommand_RtsDispatchTable",
+      "evidence": "ff-minus-command-pha-pha-rts-dispatch"
+    },
+    {
+      "bank": 2,
+      "address": "0xC65D",
+      "name": "World3_MusicCommand_F0",
+      "evidence": "music-command-rts-slot-15"
+    },
+    {
+      "bank": 2,
+      "address": "0xC796",
+      "name": "World3_MusicCommand_FF",
+      "evidence": "music-command-rts-slot-0"
+    },
+    {
+      "bank": 2,
+      "address": "0xC7AD",
+      "name": "World3_MusicCommand_FD",
+      "evidence": "music-command-rts-slot-2"
+    },
+    {
+      "bank": 2,
+      "address": "0xC7CB",
+      "name": "World3_MusicCommand_FB",
+      "evidence": "music-command-rts-slot-4"
+    },
+    {
+      "bank": 2,
+      "address": "0xC7E6",
+      "name": "World3_MusicCommand_FC",
+      "evidence": "music-command-rts-slot-3"
+    },
+    {
+      "bank": 2,
+      "address": "0xC80E",
+      "name": "World3_MusicCommand_FA",
+      "evidence": "music-command-rts-slot-5"
+    },
+    {
+      "bank": 2,
+      "address": "0xC824",
+      "name": "World3_MusicCommand_F9",
+      "evidence": "music-command-rts-slot-6"
+    },
+    {
+      "bank": 2,
+      "address": "0xC837",
+      "name": "World3_MusicCommand_F8",
+      "evidence": "music-command-rts-slot-7"
+    },
+    {
+      "bank": 2,
+      "address": "0xC85C",
+      "name": "World3_MusicCommand_F7",
+      "evidence": "music-command-rts-slot-8"
+    },
+    {
+      "bank": 2,
+      "address": "0xC872",
+      "name": "World3_MusicCommand_FE",
+      "evidence": "music-command-rts-slot-1"
+    },
+    {
+      "bank": 2,
+      "address": "0xC884",
+      "name": "World3_MusicCommand_F1",
+      "evidence": "music-command-rts-slot-14"
+    },
+    {
+      "bank": 2,
+      "address": "0xC8A4",
+      "name": "World3_MusicCommand_F6",
+      "evidence": "music-command-rts-slot-9"
+    },
+    {
+      "bank": 2,
+      "address": "0xC8C4",
+      "name": "World3_MusicCommand_F3",
+      "evidence": "music-command-rts-slot-12"
+    },
+    {
+      "bank": 2,
+      "address": "0xC8D6",
+      "name": "World3_MusicCommand_F4",
+      "evidence": "music-command-rts-slot-11"
+    },
+    {
+      "bank": 2,
+      "address": "0xC8E6",
+      "name": "World3_MusicCommand_F5",
+      "evidence": "music-command-rts-slot-10"
+    },
+    {
+      "bank": 2,
+      "address": "0xC8F3",
+      "name": "World3_MusicCommand_F2",
+      "evidence": "music-command-rts-slot-13"
+    },
+    {
+      "bank": 2,
+      "address": "0xC8FB",
+      "name": "World3_MusicCommand_EF",
+      "evidence": "music-command-rts-slot-16"
+    },
+    {
+      "bank": 2,
+      "address": "0xC91E",
+      "name": "World3_Audio_ReadStreamByte",
+      "evidence": "indirect-stream-read-and-pointer-advance"
     },
     {
       "bank": 2,
@@ -396,6 +1008,120 @@
       "address": "0x9ED8",
       "name": "Audio_UpdateMusic",
       "evidence": "02aa-music-state-and-four-channel-update"
+    },
+    {
+      "bank": 3,
+      "address": "0x9FE7",
+      "name": "Music_UpdateChannelStream",
+      "evidence": "per-channel-stream-byte-dispatch"
+    },
+    {
+      "bank": 3,
+      "address": "0xA017",
+      "name": "MusicCommand_RtsDispatchTable",
+      "evidence": "ff-minus-command-pha-pha-rts-dispatch"
+    },
+    {
+      "bank": 3,
+      "address": "0xA040",
+      "name": "MusicCommand_F0",
+      "evidence": "music-command-rts-slot-15"
+    },
+    {
+      "bank": 3,
+      "address": "0xA179",
+      "name": "MusicCommand_FF",
+      "evidence": "music-command-rts-slot-0"
+    },
+    {
+      "bank": 3,
+      "address": "0xA190",
+      "name": "MusicCommand_FD",
+      "evidence": "music-command-rts-slot-2"
+    },
+    {
+      "bank": 3,
+      "address": "0xA1AE",
+      "name": "MusicCommand_FB",
+      "evidence": "music-command-rts-slot-4"
+    },
+    {
+      "bank": 3,
+      "address": "0xA1C9",
+      "name": "MusicCommand_FC",
+      "evidence": "music-command-rts-slot-3"
+    },
+    {
+      "bank": 3,
+      "address": "0xA1F1",
+      "name": "MusicCommand_FA",
+      "evidence": "music-command-rts-slot-5"
+    },
+    {
+      "bank": 3,
+      "address": "0xA207",
+      "name": "MusicCommand_F9",
+      "evidence": "music-command-rts-slot-6"
+    },
+    {
+      "bank": 3,
+      "address": "0xA21A",
+      "name": "MusicCommand_F8",
+      "evidence": "music-command-rts-slot-7"
+    },
+    {
+      "bank": 3,
+      "address": "0xA23F",
+      "name": "MusicCommand_F7",
+      "evidence": "music-command-rts-slot-8"
+    },
+    {
+      "bank": 3,
+      "address": "0xA255",
+      "name": "MusicCommand_FE",
+      "evidence": "music-command-rts-slot-1"
+    },
+    {
+      "bank": 3,
+      "address": "0xA267",
+      "name": "MusicCommand_F1",
+      "evidence": "music-command-rts-slot-14"
+    },
+    {
+      "bank": 3,
+      "address": "0xA287",
+      "name": "MusicCommand_F6",
+      "evidence": "music-command-rts-slot-9"
+    },
+    {
+      "bank": 3,
+      "address": "0xA2A7",
+      "name": "MusicCommand_F3",
+      "evidence": "music-command-rts-slot-12"
+    },
+    {
+      "bank": 3,
+      "address": "0xA2B9",
+      "name": "MusicCommand_F4",
+      "evidence": "music-command-rts-slot-11"
+    },
+    {
+      "bank": 3,
+      "address": "0xA2C9",
+      "name": "MusicCommand_F5",
+      "evidence": "music-command-rts-slot-10"
+    },
+    {
+      "bank": 3,
+      "address": "0xA2D6",
+      "name": "MusicCommand_F2",
+      "evidence": "music-command-rts-slot-13"
+    },
+    {
+      "bank": 3,
+      "address": "0xA2DE",
+      "name": "MusicCommand_EF",
+      "evidence": "music-command-rts-slot-16"
     },
     {
       "bank": 3,

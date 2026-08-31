@@ -57,7 +57,7 @@ power-on, but every bank retains compatible vectors for interrupt safety.
 The recovered `$8A88` ending entry initializes the credits pointer to `$BDBC`;
 runtime reaches its `$8B18` scroll loop through the World 3 completion gateway.
 
-## Audio / bank 3
+## Audio / all four banks
 
 The shared audio driver begins at `$982A`. Requests 0-25 are accepted through
 `$02A0`; the table at `$9784` maps each request to an even dispatch index and
@@ -70,6 +70,32 @@ entry addresses because `RTS` increments the pulled address.
 The recovered handlers write the pulse 1, pulse 2, triangle, and noise APU
 registers. Music state is separate at `$02AA-$02FF`: `$9EAB` resets channel
 registers, `$9ED8` advances the music driver, and `$A301` reads stream bytes.
+The per-channel interpreter at `$9FE7` treats `$EF-$FF` as commands. It indexes
+the 17-entry table at `$A017` with `2 * ($FF - command)` and uses the same
+target-minus-one RTS dispatch as the effect driver. All command targets are now
+explicit code entries; their format-level names remain the command byte until
+each state field they manipulate is semantically proved.
+
+World 3 carries a relocated, non-identical copy at `$BE90-$CAxx` in bank 2.
+It preserves the same 26-value priority table, 52-slot effect dispatch, and 17
+commands, while its music initializer accepts nine tracks instead of bank 3's
+five. Its effect table is at `$BE28`, its command table at `$C634`, and its
+stream reader at `$C91E`.
+
+World 2 has a smaller local variant in bank 1. It accepts 15 requests through
+the priority table at `$A80B` and dispatches 30 effect slots from `$A81A` to 25
+unique handlers. Its 17 music commands use the table at `$AE23`, its stream
+reader is at `$B10D`, and its initializer accepts seven tracks.
+
+World 1 carries the fourth driver in bank 0. It restores the 26-request and
+52-slot shape, with its priority table at `$E316`, effect table at `$E330`, and
+38 unique effect handlers. The music command table is at `$EB3C`, the stream
+reader at `$EE26`, and the initializer accepts nine tracks. Across the four
+banks, the accepted track counts are nine for World 1, seven for World 2, nine
+for World 3, and five for the shell. All copies are validated independently;
+shared structure does not imply byte identity or a callable cross-bank sound
+service.
+
 `config/audio_dispatch.json` records the complete indirect edge set, while
-`make validate-audio-dispatch` proves the ROM table and Ghidra seed registry
+`make validate-audio-dispatch` proves the ROM tables and Ghidra seed registry
 remain synchronized.

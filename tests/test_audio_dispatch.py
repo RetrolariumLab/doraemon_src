@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import importlib.util
 from pathlib import Path
 import sys
@@ -31,16 +32,26 @@ class AudioDispatchTests(unittest.TestCase):
                 "slot_count": 2,
                 "targets": ["0x9000", "0x9010"],
             },
+            "music_command_table": {
+                "address": "0x8020",
+                "first_command": "0xFF",
+                "last_command": "0xFF",
+                "slot_count": 1,
+                "targets": ["0x9020"],
+            },
         }
         start = 3 * AUDIO.BANK_SIZE
         prg[start:start + 2] = b"\x00\x02"
         prg[start + 0x10:start + 0x14] = b"\xFF\x8F\x0F\x90"
+        prg[start + 0x20:start + 0x22] = b"\x1F\x90"
         return prg, document
 
     def test_accepts_encoded_targets_registered_as_code(self) -> None:
         prg, document = self.fixture()
         errors, report = AUDIO.validate(
-            bytes(prg), document, [(3, 0x9000, "one"), (3, 0x9010, "two")]
+            bytes(prg),
+            document,
+            [(3, 0x9000, "one"), (3, 0x9010, "two"), (3, 0x9020, "three")],
         )
         self.assertEqual(errors, [])
         self.assertEqual(report["unique_target_count"], 2)
@@ -51,6 +62,25 @@ class AudioDispatchTests(unittest.TestCase):
             bytes(prg), document, [(3, 0x9000, "one")]
         )
         self.assertTrue(any("$9010" in error for error in errors))
+
+    def test_validates_additional_bank_local_driver(self) -> None:
+        prg, document = self.fixture()
+        extra = copy.deepcopy(document)
+        extra["name"] = "second"
+        extra["bank"] = 2
+        document["additional_drivers"] = [extra]
+        bank2 = 2 * AUDIO.BANK_SIZE
+        prg[bank2:bank2 + 2] = b"\x00\x02"
+        prg[bank2 + 0x10:bank2 + 0x14] = b"\xFF\x8F\x0F\x90"
+        prg[bank2 + 0x20:bank2 + 0x22] = b"\x1F\x90"
+        entries = [
+            (bank, address, "entry")
+            for bank in (2, 3)
+            for address in (0x9000, 0x9010, 0x9020)
+        ]
+        errors, report = AUDIO.validate(bytes(prg), document, entries)
+        self.assertEqual(errors, [])
+        self.assertEqual(report["driver_count"], 2)
 
 
 if __name__ == "__main__":

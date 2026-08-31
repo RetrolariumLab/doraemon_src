@@ -3809,7 +3809,7 @@ Bank2_Label_A2D8:
 Bank2_Func_A5DF:
     STX $49
     STY $4A
-    JSR Bank2_Func_BE90
+    JSR World3_Audio_QueueEffectWithPriority
     LDX $49
     LDY $4A
     RTS
@@ -3817,7 +3817,7 @@ Bank2_Func_A5DF:
 Bank2_Func_A5EB:
     STX $49
     STY $4A
-    JSR Bank2_Func_BEB4
+    JSR World3_Audio_QueueEffect
     LDX $49
     LDY $4A
     RTS
@@ -4845,8 +4845,8 @@ Bank2_Func_AF6F:
     .byte $68, $2E, $00, $78, $68, $2F, $00, $80, $70, $E5, $00, $78, $70, $F5, $00, $80
 
 Bank2_Func_AFE6:
-    JSR Bank2_Func_BEC5
-    JSR Bank2_Func_C4F5
+    JSR World3_Audio_UpdateEffects
+    JSR World3_Audio_UpdateMusic
     RTS
 
 Bank2_Func_AFED:
@@ -5961,17 +5961,22 @@ Bank2_Func_B6BA:
     .byte $05, $15, $25, $0F, $01, $11, $21, $0F, $15, $21, $30, $0F, $05, $26, $30, $0F
     .byte $12, $26, $30, $0F, $05, $15, $30, $0F, $07, $17, $27, $0F, $00, $10, $20, $0F
     .byte $0F, $09, $19, $0F, $00, $10, $20, $0F, $15, $21, $30, $0F, $05, $26, $30, $0F
-    .byte $01, $21, $31, $0F, $21, $26, $30, $00, $54, $64, $4C, $40, $44, $04, $38, $34
-    .byte $3C, $1C, $50, $58, $60, $2C, $28, $08, $48, $30, $20, $24, $18, $14, $10, $0C
-    .byte $5C, $2B, $BF, $2A, $BF, $4C, $C0, $64, $C0, $A3, $C0, $BD, $C0, $E7, $C3, $F1
-    .byte $C3, $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $84, $C1, $91
-    .byte $C1, $A5, $C3, $BA, $C2, $AE, $C3, $CB, $C3, $A6, $C2, $BA, $C2, $63, $C2, $72
-    .byte $C2, $64, $C3, $7F, $C3, $3B, $C1, $1D, $BF, $0D, $C1, $1D, $BF, $54, $C1, $6B
-    .byte $C1, $15, $C0, $BA, $C2, $1D, $C0, $BA, $C2, $33, $C3, $47, $C3, $25, $C1, $1D
-    .byte $BF, $EA, $C1, $1D, $BF, $05, $C2, $1D, $BF, $58, $BF, $7A, $BF, $58, $BF, $C3
-    .byte $BF, $1B, $C2, $2F, $C2, $F3, $BF, $22, $BF
+    .byte $01, $21, $31, $0F, $21, $26, $30
 
-Bank2_Func_BE90:
+World3_AudioEffect_RequestPriority:
+    .byte $00, $54, $64, $4C, $40, $44, $04, $38, $34, $3C, $1C, $50, $58, $60, $2C, $28
+    .byte $08, $48, $30, $20, $24, $18, $14, $10, $0C, $5C
+
+World3_AudioEffect_RtsDispatchTable:
+    .byte $2B, $BF, $2A, $BF, $4C, $C0, $64, $C0, $A3, $C0, $BD, $C0, $E7, $C3, $F1, $C3
+    .byte $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $84, $C1, $91, $C1
+    .byte $A5, $C3, $BA, $C2, $AE, $C3, $CB, $C3, $A6, $C2, $BA, $C2, $63, $C2, $72, $C2
+    .byte $64, $C3, $7F, $C3, $3B, $C1, $1D, $BF, $0D, $C1, $1D, $BF, $54, $C1, $6B, $C1
+    .byte $15, $C0, $BA, $C2, $1D, $C0, $BA, $C2, $33, $C3, $47, $C3, $25, $C1, $1D, $BF
+    .byte $EA, $C1, $1D, $BF, $05, $C2, $1D, $BF, $58, $BF, $7A, $BF, $58, $BF, $C3, $BF
+    .byte $1B, $C2, $2F, $C2, $F3, $BF, $22, $BF
+
+World3_Audio_QueueEffectWithPriority:
     CMP #$1A
     BCS Bank2_Label_BEAE
     STX $D1
@@ -5998,7 +6003,7 @@ Bank2_Label_BEAF:
     LDY $D2
     JMP Bank2_Label_BEAC
 
-Bank2_Func_BEB4:
+World3_Audio_QueueEffect:
     CMP #$1A
     BCS Bank2_Label_BEAE
     STX $D1
@@ -6008,7 +6013,7 @@ Bank2_Func_BEB4:
     LDX $D1
     RTS
 
-Bank2_Func_BEC5:
+World3_Audio_UpdateEffects:
     LDX #$03
 
 Bank2_Label_BEC7:
@@ -6053,123 +6058,712 @@ Bank2_Label_BF0C:
 
 Bank2_Label_BF11:
     CPX #$68
-    BCS Bank2_Label_BF23
+    BCS World3_Audio_StopCurrentEffect
     LDA a:$BE29,X
     PHA
     LDA a:$BE28,X
     PHA
     RTS
-    .byte $CE, $A7, $02, $D0, $08
 
-Bank2_Label_BF23:
+Bank2_Func_BF1E:
+    DEC a:$02A7
+    BNE Bank2_Func_BF2B
+
+World3_Audio_StopCurrentEffect:
     LDA #$00
     STA a:$02A1
     STA a:$02A2
+
+Bank2_Func_BF2B:
     RTS
-    .byte $A9, $00, $8D, $A2, $02, $8D, $11, $40, $8D, $A3, $02, $8D, $A4, $02, $8D, $A5
-    .byte $02, $8D, $A6, $02, $8D, $08, $40, $8D, $0C, $40, $A9, $18, $8D, $0B, $40, $A9
-    .byte $10, $8D, $00, $40, $8D, $04, $40, $A9, $0F, $8D, $15, $40, $60, $A9, $18, $8D
-    .byte $A6, $02, $A9, $00, $8D, $0C, $40, $A9, $0C, $8D, $A7, $02, $8D, $0E, $40, $A9
-    .byte $08, $8D, $0F, $40, $A9, $00, $8D, $A8, $02, $A9, $04, $8D, $A9, $02, $60, $AE
-    .byte $A8, $02, $F0, $2B, $CA, $F0, $03, $4C, $1E, $BF, $CE, $A7, $02, $AD, $A7, $02
-    .byte $8D, $0E, $40, $C9, $08, $D0, $30, $EE, $A8, $02, $A9, $1A, $8D, $0C, $40, $A9
-    .byte $03, $8D, $0E, $40, $A9, $F8, $8D, $0F, $40, $A9, $10, $8D, $A7, $02, $60, $CE
-    .byte $A9, $02, $D0, $13, $EE, $A8, $02, $A9, $04, $8D, $0C, $40, $AD, $A7, $02, $8D
-    .byte $0E, $40, $A9, $08, $8D, $0F, $40, $60, $AE, $A8, $02, $F0, $E2, $CA, $F0, $03
-    .byte $4C, $1E, $BF, $CE, $A7, $02, $AD, $A7, $02, $8D, $0E, $40, $C9, $08, $D0, $E7
-    .byte $EE, $A8, $02, $A9, $1A, $8D, $0C, $40, $A9, $06, $8D, $0E, $40, $A9, $68, $8D
-    .byte $0F, $40, $A9, $06, $8D, $A7, $02, $60, $A9, $04, $8D, $A5, $02, $8D, $A6, $02
-    .byte $8D, $A7, $02, $A9, $1F, $8D, $0C, $40, $A9, $0F, $8D, $0E, $40, $A0, $08, $A2
-    .byte $F0, $A9, $38, $20, $5D, $C4, $8D, $0F, $40, $60, $A0, $60, $A9, $17, $A2, $00
-    .byte $F0, $06, $A0, $08, $A9, $01, $A2, $05, $8C, $A4, $02, $8D, $A7, $02, $8E, $A9
-    .byte $02, $A9, $01, $8D, $A8, $02, $20, $38, $C0, $4C, $BB, $C2, $A9, $08, $8D, $A6
-    .byte $02, $A9, $01, $8D, $0C, $40, $A9, $0A, $8D, $0E, $40, $A9, $08, $8D, $0F, $40
-    .byte $60, $A9, $48, $8D, $A3, $02, $8D, $A4, $02, $8D, $A5, $02, $8D, $A6, $02, $A9
-    .byte $01, $8D, $A7, $02, $A9, $04, $8D, $A8, $02, $AD, $A8, $02, $D0, $03, $4C, $1E
-    .byte $BF, $CE, $A7, $02, $D0, $DA, $CE, $A8, $02, $F0, $1A, $A9, $04, $8D, $A7, $02
-    .byte $AD, $A8, $02, $4A, $90, $0B, $A9, $82, $A2, $00, $20, $41, $C4, $A2, $69, $D0
-    .byte $12, $A9, $82, $D0, $07, $A9, $3C, $8D, $A7, $02, $A9, $8F, $A2, $00, $20, $41
-    .byte $C4, $A2, $8D, $A9, $08, $4C, $4F, $C4, $A9, $67, $85, $2D, $A9, $C4, $85, $2E
-    .byte $A9, $01, $8D, $A7, $02, $8D, $A2, $02, $A9, $09, $8D, $A8, $02, $A9, $83, $8D
-    .byte $A9, $02, $20, $F5, $C0, $A2, $00, $AD, $A8, $02, $9D, $A3, $02, $8A, $0A, $0A
-    .byte $AA, $AD, $A9, $02, $9D, $00, $40, $A9, $00, $9D, $01, $40, $A0, $00, $B1, $2D
-    .byte $F0, $10, $0A, $A8, $B9, $2C, $C9, $9D, $02, $40, $B9, $2D, $C9, $09, $08, $9D
-    .byte $03, $40, $E6, $2D, $D0, $02, $E6, $2E, $60, $CE, $A7, $02, $D0, $11, $AD, $A8
-    .byte $02, $8D, $A7, $02, $A0, $00, $B1, $2D, $C9, $FF, $D0, $05, $20, $23, $BF, $68
-    .byte $68, $60, $A9, $04, $8D, $A3, $02, $8D, $A7, $02, $8D, $A2, $02, $A9, $00, $AA
-    .byte $20, $41, $C4, $A2, $3E, $A9, $38, $4C, $4F, $C4, $A9, $0A, $8D, $A4, $02, $8D
-    .byte $A7, $02, $A9, $42, $A2, $00, $20, $48, $C4, $A2, $BB, $A9, $08, $4C, $56, $C4
-    .byte $A9, $04, $8D, $A5, $02, $8D, $A7, $02, $8D, $A2, $02, $A9, $84, $A2, $8A, $20
-    .byte $41, $C4, $A2, $7E, $A9, $38, $4C, $4F, $C4, $A9, $10, $8D, $A6, $02, $8D, $A8
-    .byte $02, $A9, $0C, $8D, $A7, $02, $A9, $04, $8D, $0C, $40, $A9, $08, $8D, $0F, $40
-    .byte $AD, $A7, $02, $8D, $0E, $40, $AD, $A7, $02, $C9, $0F, $F0, $03, $EE, $A7, $02
-    .byte $CE, $A8, $02, $D0, $03, $4C, $23, $BF, $60, $A9, $70, $85, $2D, $A9, $C4, $85
-    .byte $2E, $A9, $01, $8D, $A7, $02, $CE, $A7, $02, $D0, $ED, $A0, $00, $B1, $2D, $C9
-    .byte $FF, $F0, $E2, $8D, $A7, $02, $8D, $A3, $02, $8D, $A4, $02, $8D, $A5, $02, $8D
-    .byte $A6, $02, $20, $EE, $C0, $A2, $00, $20, $B9, $C1, $20, $B9, $C1, $A0, $00, $B1
-    .byte $2D, $F0, $25, $0A, $A8, $AD, $A7, $02, $E0, $08, $F0, $05, $4A, $09, $C0, $D0
-    .byte $01, $0A, $9D, $00, $40, $A9, $00, $9D, $01, $40, $B9, $2C, $C9, $9D, $02, $40
-    .byte $B9, $2D, $C9, $09, $08, $9D, $03, $40, $E8, $E8, $E8, $E8, $4C, $EE, $C0, $A9
-    .byte $18, $8D, $A4, $02, $A9, $10, $8D, $A7, $02, $8D, $A2, $02, $A9, $A0, $A2, $9B
-    .byte $20, $48, $C4, $A2, $FE, $A9, $19, $4C, $56, $C4, $A9, $08, $8D, $A4, $02, $8D
-    .byte $A7, $02, $A9, $C0, $A2, $83, $20, $48, $C4, $A2, $60, $A9, $08, $4C, $56, $C4
-    .byte $A9, $18, $8D, $A6, $02, $A9, $04, $8D, $0E, $40, $A9, $0F, $8D, $A7, $02, $A9
-    .byte $00, $8D, $A8, $02, $AD, $A7, $02, $C9, $10, $F0, $25, $09, $10, $8D, $0C, $40
-    .byte $A9, $28, $8D, $0F, $40, $AD, $A8, $02, $F0, $04, $EE, $A7, $02, $60, $AD, $A7
-    .byte $02, $C9, $02, $90, $07, $CE, $A7, $02, $CE, $A7, $02, $60, $EE, $A8, $02, $60
-    .byte $A9, $10, $8D, $0C, $40, $4C, $23, $BF, $A9, $03, $8D, $A8, $02, $A9, $FF, $8D
-    .byte $A4, $02, $A9, $00, $8D, $A7, $02, $AD, $A7, $02, $D0, $27, $AD, $A8, $02, $D0
-    .byte $08, $A9, $00, $8D, $A4, $02, $4C, $23, $BF, $CE, $A8, $02, $A9, $84, $A2, $8B
-    .byte $20, $48, $C4, $AC, $A8, $02, $BE, $A3, $C2, $A9, $10, $20, $56, $C4, $A9, $04
-    .byte $8D, $A7, $02, $CE, $A7, $02, $60
-    .incbin "assets/generated/audio/sfx/prg2-tone-low.bin", $0, $4  ; rom-asset .byte
-    .byte $A0, $14, $A9, $04, $A2
-    .byte $03, $8C, $A4, $02, $8D, $A7, $02, $8E, $A9, $02, $A9, $01, $8D, $A8, $02, $CE
-    .byte $A8, $02, $D0, $26, $AD, $A7, $02, $30, $22, $18, $6D, $A9, $02, $0A, $A8, $A9
-    .byte $DF, $A2, $8C, $20, $48, $C4, $B9, $EA, $C2, $AA, $B9, $EB, $C2, $09, $88, $20
-    .byte $56, $C4, $CE, $A7, $02, $A9, $04, $8D, $A8, $02, $60, $4C, $23, $BF
-    .incbin "assets/generated/audio/sfx/prg2-pitch-periods.bin", $0, $2  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg2-pitch-periods.bin", $2, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg2-pitch-periods.bin", $12, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg2-pitch-periods.bin", $22, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg2-pitch-periods.bin", $32, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg2-pitch-periods.bin", $42, $8  ; rom-asset .byte
-    .byte $A9, $10, $8D, $A5, $02, $A9, $40, $8D
-    .byte $A7, $02, $A9, $01, $8D, $A8, $02, $A9, $30, $8D, $A9, $02, $A0, $01, $AE, $A7
-    .byte $02, $A9, $08, $20, $5D, $C4, $AD, $A7, $02, $38, $ED, $A8, $02, $8D, $A7, $02
-    .byte $CD, $A9, $02, $D0, $03, $4C, $23, $BF, $60, $A9, $0E, $8D, $A4, $02, $A9, $06
-    .byte $8D, $A7, $02, $8D, $A8, $02, $A9, $9F, $A2, $8D, $20, $48, $C4, $A2, $00, $A9
-    .byte $89, $4C, $56, $C4, $CE, $A7, $02, $D0, $20, $AD, $A8, $02, $F0, $18, $A9, $08
-    .byte $8D, $A7, $02, $A9, $00, $8D, $A8, $02, $A9, $9F, $A2, $8C, $20, $48, $C4, $A2
-    .byte $80, $A9, $88, $4C, $56, $C4, $4C, $23, $BF, $60, $A0, $34, $A9, $0C, $A2, $18
-    .byte $4C, $AD, $C2, $A9, $20, $8D, $A4, $02, $A9, $1F, $A2, $85, $20, $48, $C4, $A2
-    .byte $69, $A9, $08, $20, $56, $C4, $A9, $02, $8D, $A7, $02, $A9, $01, $8D, $A8, $02
-    .byte $CE, $A8, $02, $D0, $76, $A9, $04, $8D, $A8, $02, $AC, $A7, $02, $B9, $E7, $C3
-    .byte $8D, $04, $40, $CE, $A7, $02, $10, $63, $4C, $23, $BF, $00, $A9, $00, $8D, $A7
-    .byte $02, $A9, $01, $8D, $A8, $02, $CE, $A8, $02, $D0, $20, $AD, $A7, $02, $49, $04
-    .byte $8D, $A7, $02, $A8, $B9, $2C, $C4, $8D, $A8, $02, $A9, $DF, $BE, $29, $C4, $20
-    .byte $41, $C4, $BE, $2A, $C4, $B9, $2B, $C4, $4C, $4F, $C4, $60, $A9, $08, $D0, $CE
-    .byte $A9, $10, $D0, $CA, $4C, $F2, $C3, $4C, $1C, $C4, $4C, $F2, $C3
+
+World3_Audio_ResetEffects:
+    LDA #$00
+    STA a:$02A2
+    STA a:$4011
+    STA a:$02A3
+    STA a:$02A4
+    STA a:$02A5
+    STA a:$02A6
+    STA a:$4008
+    STA a:$400C
+    LDA #$18
+    STA a:$400B
+    LDA #$10
+    STA a:$4000
+    STA a:$4004
+    LDA #$0F
+    STA a:$4015
+    RTS
+
+Bank2_Func_BF59:
+    LDA #$18
+    STA a:$02A6
+    LDA #$00
+    STA a:$400C
+    LDA #$0C
+    STA a:$02A7
+    STA a:$400E
+    LDA #$08
+    STA a:$400F
+    LDA #$00
+    STA a:$02A8
+    LDA #$04
+    STA a:$02A9
+    RTS
+
+Bank2_Func_BF7B:
+    LDX a:$02A8
+    BEQ Bank2_Label_BFAB
+    DEX
+    BEQ Bank2_Label_BF86
+    JMP Bank2_Func_BF1E
+
+Bank2_Label_BF86:
+    DEC a:$02A7
+    LDA a:$02A7
+    STA a:$400E
+    CMP #$08
+    BNE Bank2_Label_BFC3
+    INC a:$02A8
+    LDA #$1A
+    STA a:$400C
+    LDA #$03
+    STA a:$400E
+    LDA #$F8
+    STA a:$400F
+    LDA #$10
+    STA a:$02A7
+    RTS
+
+Bank2_Label_BFAB:
+    DEC a:$02A9
+    BNE Bank2_Label_BFC3
+    INC a:$02A8
+    LDA #$04
+    STA a:$400C
+    LDA a:$02A7
+    STA a:$400E
+    LDA #$08
+    STA a:$400F
+
+Bank2_Label_BFC3:
+    RTS
+
+Bank2_Func_BFC4:
+    LDX a:$02A8
+    BEQ Bank2_Label_BFAB
+    DEX
+    BEQ Bank2_Label_BFCF
+    JMP Bank2_Func_BF1E
+
+Bank2_Label_BFCF:
+    DEC a:$02A7
+    LDA a:$02A7
+    STA a:$400E
+    CMP #$08
+    BNE Bank2_Label_BFC3
+    INC a:$02A8
+    LDA #$1A
+    STA a:$400C
+    LDA #$06
+    STA a:$400E
+    LDA #$68
+    STA a:$400F
+    LDA #$06
+    STA a:$02A7
+    RTS
+
+Bank2_Func_BFF4:
+    LDA #$04
+    STA a:$02A5
+    STA a:$02A6
+    STA a:$02A7
+    LDA #$1F
+    STA a:$400C
+    LDA #$0F
+    STA a:$400E
+    LDY #$08
+    LDX #$F0
+    LDA #$38
+    JSR World3_Apu_WriteTriangleControlTimer
+    STA a:$400F
+    RTS
+
+Bank2_Func_C016:
+    LDY #$60
+    LDA #$17
+    LDX #$00
+    BEQ Bank2_Label_C024
+
+Bank2_Func_C01E:
+    LDY #$08
+    LDA #$01
+    LDX #$05
+
+Bank2_Label_C024:
+    STY a:$02A4
+    STA a:$02A7
+    STX a:$02A9
+    LDA #$01
+    STA a:$02A8
+    JSR Bank2_Func_C038
+    JMP Bank2_Func_C2BB
+
+Bank2_Func_C038:
+    LDA #$08
+    STA a:$02A6
+    LDA #$01
+    STA a:$400C
+    LDA #$0A
+    STA a:$400E
+    LDA #$08
+    STA a:$400F
+
+Bank2_Label_C04C:
+    RTS
+
+Bank2_Func_C04D:
+    LDA #$48
+    STA a:$02A3
+    STA a:$02A4
+    STA a:$02A5
+    STA a:$02A6
+    LDA #$01
+    STA a:$02A7
+    LDA #$04
+    STA a:$02A8
+
+Bank2_Func_C065:
+    LDA a:$02A8
+    BNE Bank2_Label_C06D
+    JMP Bank2_Func_BF1E
+
+Bank2_Label_C06D:
+    DEC a:$02A7
+    BNE Bank2_Label_C04C
+    DEC a:$02A8
+    BEQ Bank2_Label_C091
+    LDA #$04
+    STA a:$02A7
+    LDA a:$02A8
+    LSR A
+    BCC Bank2_Label_C08D
+    LDA #$82
+    LDX #$00
+    JSR World3_Apu_WritePulse1ControlSweep
+    LDX #$69
+    BNE Bank2_Label_C09F
+
+Bank2_Label_C08D:
+    LDA #$82
+    BNE Bank2_Label_C098
+
+Bank2_Label_C091:
+    LDA #$3C
+    STA a:$02A7
+    LDA #$8F
+
+Bank2_Label_C098:
+    LDX #$00
+    JSR World3_Apu_WritePulse1ControlSweep
+    LDX #$8D
+
+Bank2_Label_C09F:
+    LDA #$08
+    JMP World3_Apu_WritePulse1Timer
+
+Bank2_Func_C0A4:
+    LDA #$67
+    STA $2D
+    LDA #$C4
+    STA $2E
+    LDA #$01
+    STA a:$02A7
+    STA a:$02A2
+    LDA #$09
+    STA a:$02A8
+    LDA #$83
+    STA a:$02A9
+
+Bank2_Func_C0BE:
+    JSR Bank2_Func_C0F5
+    LDX #$00
+    LDA a:$02A8
+    STA a:$02A3,X
+    TXA
+    ASL A
+    ASL A
+    TAX
+    LDA a:$02A9
+    STA a:$4000,X
+    LDA #$00
+    STA a:$4001,X
+    LDY #$00
+    LDA ($2D),Y
+    BEQ Bank2_Func_C0EE
+    ASL A
+    TAY
+    LDA a:$C92C,Y
+    STA a:$4002,X
+    LDA a:$C92D,Y
+    ORA #$08
+    STA a:$4003,X
+
+Bank2_Func_C0EE:
+    INC $2D
+    BNE Bank2_Label_C0F4
+    INC $2E
+
+Bank2_Label_C0F4:
+    RTS
+
+Bank2_Func_C0F5:
+    DEC a:$02A7
+    BNE Bank2_Label_C10B
+    LDA a:$02A8
+    STA a:$02A7
+    LDY #$00
+    LDA ($2D),Y
+    CMP #$FF
+    BNE Bank2_Label_C10D
+    JSR World3_Audio_StopCurrentEffect
+
+Bank2_Label_C10B:
+    PLA
+    PLA
+
+Bank2_Label_C10D:
+    RTS
+
+Bank2_Func_C10E:
+    LDA #$04
+    STA a:$02A3
+    STA a:$02A7
+    STA a:$02A2
+    LDA #$00
+    TAX
+    JSR World3_Apu_WritePulse1ControlSweep
+    LDX #$3E
+    LDA #$38
+    JMP World3_Apu_WritePulse1Timer
+
+Bank2_Func_C126:
+    LDA #$0A
+    STA a:$02A4
+    STA a:$02A7
+    LDA #$42
+    LDX #$00
+    JSR World3_Apu_WritePulse2ControlSweep
+    LDX #$BB
+    LDA #$08
+    JMP World3_Apu_WritePulse2Timer
+
+Bank2_Func_C13C:
+    LDA #$04
+    STA a:$02A5
+    STA a:$02A7
+    STA a:$02A2
+    LDA #$84
+    LDX #$8A
+    JSR World3_Apu_WritePulse1ControlSweep
+    LDX #$7E
+    LDA #$38
+    JMP World3_Apu_WritePulse1Timer
+
+Bank2_Func_C155:
+    LDA #$10
+    STA a:$02A6
+    STA a:$02A8
+    LDA #$0C
+    STA a:$02A7
+    LDA #$04
+    STA a:$400C
+    LDA #$08
+    STA a:$400F
+
+Bank2_Func_C16C:
+    LDA a:$02A7
+    STA a:$400E
+    LDA a:$02A7
+    CMP #$0F
+    BEQ Bank2_Label_C17C
+    INC a:$02A7
+
+Bank2_Label_C17C:
+    DEC a:$02A8
+    BNE Bank2_Label_C184
+
+Bank2_Label_C181:
+    JMP World3_Audio_StopCurrentEffect
+
+Bank2_Label_C184:
+    RTS
+
+Bank2_Func_C185:
+    LDA #$70
+    STA $2D
+    LDA #$C4
+    STA $2E
+    LDA #$01
+    STA a:$02A7
+
+Bank2_Func_C192:
+    DEC a:$02A7
+    BNE Bank2_Label_C184
+    LDY #$00
+    LDA ($2D),Y
+    CMP #$FF
+    BEQ Bank2_Label_C181
+    STA a:$02A7
+    STA a:$02A3
+    STA a:$02A4
+    STA a:$02A5
+    STA a:$02A6
+    JSR Bank2_Func_C0EE
+    LDX #$00
+    JSR Bank2_Func_C1B9
+    JSR Bank2_Func_C1B9
+
+Bank2_Func_C1B9:
+    LDY #$00
+    LDA ($2D),Y
+    BEQ Bank2_Label_C1E4
+    ASL A
+    TAY
+    LDA a:$02A7
+    CPX #$08
+    BEQ Bank2_Label_C1CD
+    LSR A
+    ORA #$C0
+    BNE Bank2_Label_C1CE
+
+Bank2_Label_C1CD:
+    ASL A
+
+Bank2_Label_C1CE:
+    STA a:$4000,X
+    LDA #$00
+    STA a:$4001,X
+    LDA a:$C92C,Y
+    STA a:$4002,X
+    LDA a:$C92D,Y
+    ORA #$08
+    STA a:$4003,X
+
+Bank2_Label_C1E4:
+    INX
+    INX
+    INX
+    INX
+    JMP Bank2_Func_C0EE
+
+Bank2_Func_C1EB:
+    LDA #$18
+    STA a:$02A4
+    LDA #$10
+    STA a:$02A7
+    STA a:$02A2
+    LDA #$A0
+    LDX #$9B
+    JSR World3_Apu_WritePulse2ControlSweep
+    LDX #$FE
+    LDA #$19
+    JMP World3_Apu_WritePulse2Timer
+
+Bank2_Func_C206:
+    LDA #$08
+    STA a:$02A4
+    STA a:$02A7
+    LDA #$C0
+    LDX #$83
+    JSR World3_Apu_WritePulse2ControlSweep
+    LDX #$60
+    LDA #$08
+    JMP World3_Apu_WritePulse2Timer
+
+Bank2_Func_C21C:
+    LDA #$18
+    STA a:$02A6
+    LDA #$04
+    STA a:$400E
+    LDA #$0F
+    STA a:$02A7
+    LDA #$00
+    STA a:$02A8
+
+Bank2_Func_C230:
+    LDA a:$02A7
+    CMP #$10
+    BEQ Bank2_Label_C25C
+    ORA #$10
+    STA a:$400C
+    LDA #$28
+    STA a:$400F
+    LDA a:$02A8
+    BEQ Bank2_Label_C24A
+    INC a:$02A7
+    RTS
+
+Bank2_Label_C24A:
+    LDA a:$02A7
+    CMP #$02
+    BCC Bank2_Label_C258
+    DEC a:$02A7
+    DEC a:$02A7
+    RTS
+
+Bank2_Label_C258:
+    INC a:$02A8
+    RTS
+
+Bank2_Label_C25C:
+    LDA #$10
+    STA a:$400C
+    JMP World3_Audio_StopCurrentEffect
+
+Bank2_Func_C264:
+    LDA #$03
+    STA a:$02A8
+    LDA #$FF
+    STA a:$02A4
+    LDA #$00
+    STA a:$02A7
+
+Bank2_Func_C273:
+    LDA a:$02A7
+    BNE Bank2_Label_C29F
+    LDA a:$02A8
+    BNE Bank2_Label_C285
+    LDA #$00
+    STA a:$02A4
+    JMP World3_Audio_StopCurrentEffect
+
+Bank2_Label_C285:
+    DEC a:$02A8
+    LDA #$84
+    LDX #$8B
+    JSR World3_Apu_WritePulse2ControlSweep
+    LDY a:$02A8
+    LDX a:$C2A3,Y
+    LDA #$10
+    JSR World3_Apu_WritePulse2Timer
+    LDA #$04
+    STA a:$02A7
+
+Bank2_Label_C29F:
+    DEC a:$02A7
+    RTS
+    .incbin "assets/generated/audio/sfx/prg3-tone-low.bin", $0, $4  ; rom-asset .byte
+
+Bank2_Func_C2A7:
+    LDY #$14
+    LDA #$04
+    LDX #$03
+
+Bank2_Label_C2AD:
+    STY a:$02A4
+    STA a:$02A7
+    STX a:$02A9
+    LDA #$01
+    STA a:$02A8
+
+Bank2_Func_C2BB:
+    DEC a:$02A8
+    BNE Bank2_Label_C2E6
+    LDA a:$02A7
+    BMI Bank2_Label_C2E7
+    CLC
+    ADC a:$02A9
+    ASL A
+    TAY
+    LDA #$DF
+    LDX #$8C
+    JSR World3_Apu_WritePulse2ControlSweep
+    LDA a:$C2EA,Y
+    TAX
+    LDA a:$C2EB,Y
+    ORA #$88
+    JSR World3_Apu_WritePulse2Timer
+    DEC a:$02A7
+    LDA #$04
+    STA a:$02A8
+
+Bank2_Label_C2E6:
+    RTS
+
+Bank2_Label_C2E7:
+    JMP World3_Audio_StopCurrentEffect
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $10, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $20, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $30, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $40, $A  ; rom-asset .byte
+
+Bank2_Func_C334:
+    LDA #$10
+    STA a:$02A5
+    LDA #$40
+    STA a:$02A7
+    LDA #$01
+    STA a:$02A8
+    LDA #$30
+    STA a:$02A9
+
+Bank2_Func_C348:
+    LDY #$01
+    LDX a:$02A7
+    LDA #$08
+    JSR World3_Apu_WriteTriangleControlTimer
+    LDA a:$02A7
+    SEC
+    SBC a:$02A8
+    STA a:$02A7
+    CMP a:$02A9
+    BNE Bank2_Label_C364
+    JMP World3_Audio_StopCurrentEffect
+
+Bank2_Label_C364:
+    RTS
+
+Bank2_Func_C365:
+    LDA #$0E
+    STA a:$02A4
+    LDA #$06
+    STA a:$02A7
+    STA a:$02A8
+    LDA #$9F
+    LDX #$8D
+    JSR World3_Apu_WritePulse2ControlSweep
+    LDX #$00
+    LDA #$89
+    JMP World3_Apu_WritePulse2Timer
+
+Bank2_Func_C380:
+    DEC a:$02A7
+    BNE Bank2_Label_C3A5
+    LDA a:$02A8
+    BEQ Bank2_Label_C3A2
+    LDA #$08
+    STA a:$02A7
+    LDA #$00
+    STA a:$02A8
+    LDA #$9F
+    LDX #$8C
+    JSR World3_Apu_WritePulse2ControlSweep
+    LDX #$80
+    LDA #$88
+    JMP World3_Apu_WritePulse2Timer
+
+Bank2_Label_C3A2:
+    JMP World3_Audio_StopCurrentEffect
+
+Bank2_Label_C3A5:
+    RTS
+
+Bank2_Func_C3A6:
+    LDY #$34
+    LDA #$0C
+    LDX #$18
+    JMP Bank2_Label_C2AD
+
+Bank2_Func_C3AF:
+    LDA #$20
+    STA a:$02A4
+    LDA #$1F
+    LDX #$85
+    JSR World3_Apu_WritePulse2ControlSweep
+    LDX #$69
+    LDA #$08
+    JSR World3_Apu_WritePulse2Timer
+    LDA #$02
+    STA a:$02A7
+    LDA #$01
+    STA a:$02A8
+
+Bank2_Func_C3CC:
+    DEC a:$02A8
+    BNE Bank2_Label_C447
+    LDA #$04
+    STA a:$02A8
+    LDY a:$02A7
+    LDA a:$C3E7,Y
+    STA a:$4004
+    DEC a:$02A7
+    BPL Bank2_Label_C447
+    JMP World3_Audio_StopCurrentEffect
+    .byte $00
+
+Bank2_Func_C3E8:
+    LDA #$00
+    STA a:$02A7
+    LDA #$01
+    STA a:$02A8
+
+Bank2_Func_C3F2:
+    DEC a:$02A8
+    BNE Bank2_Label_C417
+    LDA a:$02A7
+    EOR #$04
+    STA a:$02A7
+    TAY
+    LDA a:$C42C,Y
+    STA a:$02A8
+    LDA #$DF
+    LDX a:$C429,Y
+    JSR World3_Apu_WritePulse1ControlSweep
+    LDX a:$C42A,Y
+    LDA a:$C42B,Y
+    JMP World3_Apu_WritePulse1Timer
+
+Bank2_Label_C417:
+    RTS
+    .byte $A9, $08, $D0, $CE, $A9, $10, $D0, $CA, $4C, $F2, $C3, $4C, $1C, $C4, $4C, $F2
+    .byte $C3
     .incbin "assets/generated/audio/sfx/prg2-pulse-control.bin", $0, $2  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin", $0, $1  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin", $1, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin", $11, $5  ; rom-asset .byte
-    .byte $8D, $00, $40, $8E, $01, $40, $60, $8D, $04, $40, $8E
-    .byte $05, $40, $60, $8E, $02, $40, $8D, $03, $40, $60, $8E, $06, $40, $8D, $07, $40
-    .byte $60, $8C, $08, $40, $8E, $0A, $40, $8D, $0B, $40, $60, $2C, $31, $2C, $31, $35
-    .byte $38, $3D, $41, $FF, $08, $2E, $2B, $27, $08, $30, $2C, $29, $08, $32, $2D, $2A
-    .byte $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E, $2B, $03, $35, $30, $2C
-    .byte $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E, $2B, $03, $35, $30, $2C
-    .byte $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E, $2B, $03, $35, $30, $2C
-    .byte $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E, $2B, $03, $35, $30, $2C
-    .byte $03, $33, $2E, $2B, $FF
+    .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin", $0, $D  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin", $D, $9  ; rom-asset .byte
+
+World3_Apu_WritePulse1ControlSweep:
+    STA a:$4000
+    STX a:$4001
+
+Bank2_Label_C447:
+    RTS
+
+World3_Apu_WritePulse2ControlSweep:
+    STA a:$4004
+    STX a:$4005
+    RTS
+
+World3_Apu_WritePulse1Timer:
+    STX a:$4002
+    STA a:$4003
+    RTS
+
+World3_Apu_WritePulse2Timer:
+    STX a:$4006
+    STA a:$4007
+    RTS
+
+World3_Apu_WriteTriangleControlTimer:
+    STY a:$4008
+    STX a:$400A
+    STA a:$400B
+    RTS
+    .byte $2C, $31, $2C, $31, $35, $38, $3D, $41, $FF, $08, $2E, $2B, $27, $08, $30, $2C
+    .byte $29, $08, $32, $2D, $2A, $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E
+    .byte $2B, $03, $35, $30, $2C, $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E
+    .byte $2B, $03, $35, $30, $2C, $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E
+    .byte $2B, $03, $35, $30, $2C, $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E
+    .byte $2B, $03, $35, $30, $2C, $03, $33, $2E, $2B, $FF
 
 Bank2_Label_C4C1:
     BMI Bank2_Label_C4E6
     ORA #$80
     STA a:$02AB
 
-Bank2_Func_C4C8:
+World3_Audio_ResetChannels:
     LDA #$10
     STA a:$4000
     STA a:$4004
@@ -6192,7 +6786,7 @@ Bank2_Label_C4E6:
     JMP Bank2_Func_C5B8
     .byte $60
 
-Bank2_Func_C4F5:
+World3_Audio_UpdateMusic:
     LDA a:$02AB
     BNE Bank2_Label_C4C1
     LDA a:$02AA
@@ -6257,7 +6851,7 @@ Bank2_Label_C519:
     STA a:$02F3
     STA a:$02F4
     STA a:$02F5
-    JSR Bank2_Func_C4C8
+    JSR World3_Audio_ResetChannels
 
 Bank2_Label_C588:
     LDA #$00
@@ -6272,7 +6866,7 @@ Bank2_Label_C590:
     JMP Bank2_Label_C5A1
 
 Bank2_Label_C59E:
-    JSR Bank2_Func_C604
+    JSR World3_Music_UpdateChannelStream
 
 Bank2_Label_C5A1:
     INC a:$02FD
@@ -6337,7 +6931,7 @@ Bank2_Label_C5E2:
 Bank2_Label_C603:
     RTS
 
-Bank2_Func_C604:
+World3_Music_UpdateChannelStream:
     LDX a:$02FD
     CPX #$03
     BNE Bank2_Label_C613
@@ -6346,11 +6940,11 @@ Bank2_Func_C604:
     JMP Bank2_Label_C719
 
 Bank2_Label_C613:
-    JSR Bank2_Func_C91E
+    JSR World3_Audio_ReadStreamByte
     STA a:$02FF
     TAY
     BMI Bank2_Label_C61F
-    JMP Bank2_Label_C6FD
+    JMP Bank2_Func_C6FD
 
 Bank2_Label_C61F:
     CMP #$EF
@@ -6365,6 +6959,8 @@ Bank2_Label_C61F:
     LDA a:$C634,Y
     PHA
     RTS
+
+World3_MusicCommand_RtsDispatchTable:
     .byte $95, $C7, $71, $C8, $AC, $C7, $E5, $C7, $CA, $C7, $0D, $C8, $23, $C8, $36, $C8
     .byte $5B, $C8, $A3, $C8, $E5, $C8, $D5, $C8, $C3, $C8, $F2, $C8, $83, $C8, $5C, $C6
     .byte $FA, $C8
@@ -6373,15 +6969,21 @@ Bank2_Label_C656:
     LDA a:$02FF
     AND #$7F
     BPL Bank2_Label_C660
-    JSR Bank2_Func_C91E
+
+World3_MusicCommand_F0:
+    JSR World3_Audio_ReadStreamByte
 
 Bank2_Label_C660:
     LDX a:$02FD
     STA a:$02AC,X
     LDA a:$02EF,X
     BNE Bank2_Label_C6E7
+
+Bank2_Label_C66B:
     LDX a:$02FD
     LDA a:$02AC,X
+
+Bank2_Label_C671:
     STA a:$02FF
     LDX a:$02FD
     CPX #$02
@@ -6453,7 +7055,7 @@ Bank2_Label_C6E4:
     STA a:$02F7,X
 
 Bank2_Label_C6E7:
-    JMP Bank2_Func_C604
+    JMP World3_Music_UpdateChannelStream
 
 Bank2_Label_C6EA:
     LDA a:$02FF
@@ -6469,7 +7071,7 @@ Bank2_Label_C6F7:
     STA a:$02F5
     JMP Bank2_Label_C6E7
 
-Bank2_Label_C6FD:
+Bank2_Func_C6FD:
     CMP #$00
     BNE Bank2_Label_C704
     JMP Bank2_Label_C78C
@@ -6553,33 +7155,228 @@ Bank2_Label_C78C:
     LDA a:$02AC,X
     STA a:$02B0,X
     RTS
-    .byte $AE, $FD, $02, $A9, $01, $9D, $B0, $02, $8A, $0A, $AA, $B5, $2F, $D0, $02, $D6
-    .byte $30, $D6, $2F, $EE, $FE, $02, $60, $20, $1E, $C9, $AE, $FD, $02, $9D, $D4, $02
-    .byte $A9, $01, $9D, $D8, $02, $8A, $0A, $AA, $B5, $2F, $9D, $C4, $02, $B5, $30, $9D
-    .byte $C5, $02, $4C, $04, $C6, $20, $1E, $C9, $AE, $FD, $02, $DD, $D8, $02, $B0, $0D
-    .byte $8A, $0A, $AA, $BD, $CC, $02, $95, $2F, $BD, $CD, $02, $95, $30, $4C, $04, $C6
-    .byte $AE, $FD, $02, $BD, $D8, $02, $DD, $D4, $02, $B0, $1A, $FE, $D8, $02, $8A, $0A
-    .byte $AA, $B5, $2F, $9D, $CC, $02, $B5, $30, $9D, $CD, $02, $BD, $C4, $02, $95, $2F
-    .byte $BD, $C5, $02, $95, $30, $4C, $04, $C6, $20, $1E, $C9, $AE, $FD, $02, $9D, $C0
-    .byte $02, $BD, $B4, $02, $9D, $B8, $02, $A9, $FF, $9D, $EF, $02, $D0, $32, $AE, $FD
-    .byte $02, $A9, $00, $9D, $EF, $02, $BD, $F3, $02, $29, $CF, $9D, $F3, $02, $4C, $6B
-    .byte $C6, $20, $1E, $C9, $AE, $FD, $02, $E0, $02, $F0, $A2, $29, $C0, $8D, $FF, $02
-    .byte $BD, $F3, $02, $29, $10, $0D, $FF, $02, $9D, $F3, $02, $BD, $EF, $02, $F0, $DE
-    .byte $BD, $C0, $02, $4C, $71, $C6, $20, $62, $C8, $4C, $04, $C6, $AD, $FD, $02, $0A
-    .byte $AA, $B5, $2F, $9D, $DC, $02, $B5, $30, $9D, $DD, $02, $60, $AD, $FD, $02, $0A
-    .byte $AA, $BD, $DC, $02, $95, $2F, $BD, $DD, $02, $95, $30, $4C, $04, $C6, $AD, $AA
-    .byte $02, $0A, $0A, $38, $E9, $04, $18, $6D, $FD, $02, $0A, $A8, $AD, $FD, $02, $0A
-    .byte $AA, $B9, $F3, $CA, $95, $2F, $B9, $F4, $CA, $95, $30, $4C, $04, $C6, $20, $1E
-    .byte $C9, $48, $20, $1E, $C9, $48, $AD, $FD, $02, $0A, $AA, $B5, $2F, $9D, $E4, $02
-    .byte $B5, $30, $9D, $E5, $02, $68, $95, $30, $68, $95, $2F, $4C, $04, $C6, $AD, $FD
-    .byte $02, $0A, $AA, $BD, $E4, $02, $95, $2F, $BD, $E5, $02, $95, $30, $4C, $04, $C6
-    .byte $20, $1E, $C9, $AE, $FD, $02, $E0, $03, $F0, $03, $9D, $EC, $02, $4C, $04, $C6
-    .byte $20, $1E, $C9, $A2, $02, $95, $D3, $CA, $10, $FB, $4C, $04, $C6, $AE, $FD, $02
-    .byte $A9, $08, $4C, $E4, $C6, $20, $1E, $C9, $AE, $FD, $02, $9D, $B4, $02, $9D, $B8
-    .byte $02, $4A, $4A, $4A, $4A, $8D, $FF, $02, $BD, $F3, $02, $29, $C0, $09, $10, $0D
-    .byte $FF, $02, $9D, $F3, $02, $4C, $04, $C6
 
-Bank2_Func_C91E:
+World3_MusicCommand_FF:
+    LDX a:$02FD
+    LDA #$01
+    STA a:$02B0,X
+    TXA
+    ASL A
+    TAX
+    LDA $2F,X
+    BNE Bank2_Label_C7A7
+    DEC $30,X
+
+Bank2_Label_C7A7:
+    DEC $2F,X
+    INC a:$02FE
+    RTS
+
+World3_MusicCommand_FD:
+    JSR World3_Audio_ReadStreamByte
+    LDX a:$02FD
+    STA a:$02D4,X
+    LDA #$01
+    STA a:$02D8,X
+    TXA
+    ASL A
+    TAX
+    LDA $2F,X
+    STA a:$02C4,X
+    LDA $30,X
+    STA a:$02C5,X
+    JMP World3_Music_UpdateChannelStream
+
+World3_MusicCommand_FB:
+    JSR World3_Audio_ReadStreamByte
+    LDX a:$02FD
+    CMP a:$02D8,X
+    BCS Bank2_Label_C7E3
+    TXA
+    ASL A
+    TAX
+    LDA a:$02CC,X
+    STA $2F,X
+    LDA a:$02CD,X
+    STA $30,X
+
+Bank2_Label_C7E3:
+    JMP World3_Music_UpdateChannelStream
+
+World3_MusicCommand_FC:
+    LDX a:$02FD
+    LDA a:$02D8,X
+    CMP a:$02D4,X
+    BCS Bank2_Label_C80B
+    INC a:$02D8,X
+    TXA
+    ASL A
+    TAX
+    LDA $2F,X
+    STA a:$02CC,X
+    LDA $30,X
+    STA a:$02CD,X
+    LDA a:$02C4,X
+    STA $2F,X
+    LDA a:$02C5,X
+    STA $30,X
+
+Bank2_Label_C80B:
+    JMP World3_Music_UpdateChannelStream
+
+World3_MusicCommand_FA:
+    JSR World3_Audio_ReadStreamByte
+    LDX a:$02FD
+    STA a:$02C0,X
+    LDA a:$02B4,X
+    STA a:$02B8,X
+    LDA #$FF
+    STA a:$02EF,X
+    BNE Bank2_Label_C856
+
+World3_MusicCommand_F9:
+    LDX a:$02FD
+    LDA #$00
+    STA a:$02EF,X
+    LDA a:$02F3,X
+    AND #$CF
+    STA a:$02F3,X
+
+Bank2_Label_C834:
+    JMP Bank2_Label_C66B
+
+World3_MusicCommand_F8:
+    JSR World3_Audio_ReadStreamByte
+    LDX a:$02FD
+    CPX #$02
+    BEQ Bank2_Label_C7E3
+    AND #$C0
+    STA a:$02FF
+    LDA a:$02F3,X
+    AND #$10
+    ORA a:$02FF
+    STA a:$02F3,X
+    LDA a:$02EF,X
+    BEQ Bank2_Label_C834
+
+Bank2_Label_C856:
+    LDA a:$02C0,X
+    JMP Bank2_Label_C671
+
+World3_MusicCommand_F7:
+    JSR Bank2_Func_C862
+    JMP World3_Music_UpdateChannelStream
+
+Bank2_Func_C862:
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA $2F,X
+    STA a:$02DC,X
+    LDA $30,X
+    STA a:$02DD,X
+    RTS
+
+World3_MusicCommand_FE:
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA a:$02DC,X
+    STA $2F,X
+    LDA a:$02DD,X
+    STA $30,X
+    JMP World3_Music_UpdateChannelStream
+
+World3_MusicCommand_F1:
+    LDA a:$02AA
+    ASL A
+    ASL A
+    SEC
+    SBC #$04
+    CLC
+    ADC a:$02FD
+    ASL A
+    TAY
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA a:$CAF3,Y
+    STA $2F,X
+    LDA a:$CAF4,Y
+    STA $30,X
+    JMP World3_Music_UpdateChannelStream
+
+World3_MusicCommand_F6:
+    JSR World3_Audio_ReadStreamByte
+    PHA
+    JSR World3_Audio_ReadStreamByte
+    PHA
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA $2F,X
+    STA a:$02E4,X
+    LDA $30,X
+    STA a:$02E5,X
+    PLA
+    STA $30,X
+    PLA
+    STA $2F,X
+    JMP World3_Music_UpdateChannelStream
+
+World3_MusicCommand_F3:
+    LDA a:$02FD
+    ASL A
+    TAX
+    LDA a:$02E4,X
+    STA $2F,X
+    LDA a:$02E5,X
+    STA $30,X
+    JMP World3_Music_UpdateChannelStream
+
+World3_MusicCommand_F4:
+    JSR World3_Audio_ReadStreamByte
+    LDX a:$02FD
+    CPX #$03
+    BEQ Bank2_Label_C8E3
+    STA a:$02EC,X
+
+Bank2_Label_C8E3:
+    JMP World3_Music_UpdateChannelStream
+
+World3_MusicCommand_F5:
+    JSR World3_Audio_ReadStreamByte
+    LDX #$02
+
+Bank2_Label_C8EB:
+    STA $D3,X
+    DEX
+    BPL Bank2_Label_C8EB
+    JMP World3_Music_UpdateChannelStream
+
+World3_MusicCommand_F2:
+    LDX a:$02FD
+    LDA #$08
+    JMP Bank2_Label_C6E4
+
+World3_MusicCommand_EF:
+    JSR World3_Audio_ReadStreamByte
+    LDX a:$02FD
+    STA a:$02B4,X
+    STA a:$02B8,X
+    LSR A
+    LSR A
+    LSR A
+    LSR A
+    STA a:$02FF
+    LDA a:$02F3,X
+    AND #$C0
+    ORA #$10
+    ORA a:$02FF
+    STA a:$02F3,X
+    JMP World3_Music_UpdateChannelStream
+
+World3_Audio_ReadStreamByte:
     LDA a:$02FD
     ASL A
     TAX

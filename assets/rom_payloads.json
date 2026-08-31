@@ -74,38 +74,6 @@
       }
     },
     {
-      "path": "audio/sfx/prg0-tone-low.bin",
-      "size": 4,
-      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf",
-      "sources": {
-        "original": 26555
-      }
-    },
-    {
-      "path": "audio/sfx/prg1-pitch-periods.bin",
-      "size": 74,
-      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8",
-      "sources": {
-        "original": 43973
-      }
-    },
-    {
-      "path": "audio/sfx/prg1-tone-low.bin",
-      "size": 4,
-      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf",
-      "sources": {
-        "original": 43902
-      }
-    },
-    {
-      "path": "audio/sfx/prg2-pitch-periods.bin",
-      "size": 74,
-      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8",
-      "sources": {
-        "original": 82682
-      }
-    },
-    {
       "path": "audio/sfx/prg2-pulse-control.bin",
       "size": 2,
       "sha1": "7df32e720763ca992447dbb8cf9c15196d6c093c",
@@ -119,14 +87,6 @@
       "sha1": "c8758c07ae56406f13b247f7470151cb18fd4cc8",
       "sources": {
         "original": 83003
-      }
-    },
-    {
-      "path": "audio/sfx/prg2-tone-low.bin",
-      "size": 4,
-      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf",
-      "sources": {
-        "original": 82611
       }
     },
     {
