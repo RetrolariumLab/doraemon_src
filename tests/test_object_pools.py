@@ -89,6 +89,41 @@ class ObjectPoolTests(unittest.TestCase):
         errors, _report = object_pools.validate(manifest, changed)
         self.assertTrue(any("another bank" in error for error in errors))
 
+    def test_accepts_layout_with_explicit_unclassified_base(self) -> None:
+        manifest, symbols = self.fixture()
+        manifest["pools"][0]["layout"] = {
+            "start": "0x0600",
+            "field_stride": 8,
+            "field_count": 3,
+            "unclassified_bases": ["0x0610"],
+        }
+        errors, report = object_pools.validate(manifest, symbols)
+        self.assertEqual(errors, [])
+        self.assertEqual(report["layout_count"], 1)
+        self.assertEqual(report["unclassified_field_count"], 1)
+
+    def test_rejects_unaccounted_layout_base(self) -> None:
+        manifest, symbols = self.fixture()
+        manifest["pools"][0]["layout"] = {
+            "start": "0x0600",
+            "field_stride": 8,
+            "field_count": 3,
+            "unclassified_bases": [],
+        }
+        errors, _report = object_pools.validate(manifest, symbols)
+        self.assertTrue(any("misses field bases: $0610" in error for error in errors))
+
+    def test_rejects_classified_base_marked_unclassified(self) -> None:
+        manifest, symbols = self.fixture()
+        manifest["pools"][0]["layout"] = {
+            "start": "0x0600",
+            "field_stride": 8,
+            "field_count": 2,
+            "unclassified_bases": ["0x0608"],
+        }
+        errors, _report = object_pools.validate(manifest, symbols)
+        self.assertTrue(any("also unclassified at $0608" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

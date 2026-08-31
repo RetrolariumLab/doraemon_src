@@ -531,6 +531,18 @@
     },
     {
       "bank": 1,
+      "address": "0xA140",
+      "name": "World2_SpawnEnemyProjectile",
+      "evidence": "finds-free-six-slot-projectile-and-derives-motion-from-enemy-to-player"
+    },
+    {
+      "bank": 1,
+      "address": "0xA1D1",
+      "name": "World2_UpdateEnemyProjectiles",
+      "evidence": "six-slot-projectile-motion-collision-lifetime-and-despawn-loop"
+    },
+    {
+      "bank": 1,
       "address": "0xA355",
       "name": "World2_EnemyRenderDispatchContinuation",
       "evidence": "return-address-plus-one-continuation-for-manual-rts-dispatch"
@@ -855,6 +867,12 @@
     },
     {
       "bank": 2,
+      "address": "0x8DA8",
+      "name": "World3_ClearPlayerProjectiles",
+      "evidence": "clears-all-twelve-bytes-of-two-slot-six-field-projectile-grid"
+    },
+    {
+      "bank": 2,
       "address": "0x8DB4",
       "name": "World3_ClearEntityStorage",
       "evidence": "zeroes-complete-0600-through-06af-active-object-storage"
@@ -897,6 +915,30 @@
     },
     {
       "bank": 2,
+      "address": "0x9A3B",
+      "name": "World3_RunEntityBehaviorScript",
+      "evidence": "type-selected-d9ac-stream-and-high-nibble-opcode-interpreter"
+    },
+    {
+      "bank": 2,
+      "address": "0x9D19",
+      "name": "World3_RenderEntities",
+      "evidence": "eight-slot-forward-or-reverse-render-traversal"
+    },
+    {
+      "bank": 2,
+      "address": "0xA160",
+      "name": "World3_UpdatePlayerProjectiles",
+      "evidence": "two-slot-projectile-motion-collision-impact-animation-and-despawn-loop"
+    },
+    {
+      "bank": 2,
+      "address": "0xA1C7",
+      "name": "World3_RenderPlayerProjectiles",
+      "evidence": "two-slot-projectile-metasprite-render-loop"
+    },
+    {
+      "bank": 2,
       "address": "0xA21D",
       "name": "World3_UpdatePlayerState",
       "evidence": "five-state-player-pointer-dispatch"
@@ -906,6 +948,18 @@
       "address": "0xA22F",
       "name": "World3_PlayerStateHandlerTable",
       "evidence": "five-slot-player-state-pointer-table"
+    },
+    {
+      "bank": 2,
+      "address": "0xA572",
+      "name": "World3_TryFirePlayerProjectile",
+      "evidence": "input-edge-check-free-slot-allocation-and-projectile-initialization"
+    },
+    {
+      "bank": 2,
+      "address": "0xAA0F",
+      "name": "World3_AdvancePackedRateCounter",
+      "evidence": "increments-high-nibble-and-signals-when-it-matches-low-nibble"
     },
     {
       "bank": 2,
@@ -1647,6 +1701,42 @@
       "evidence": "seven-slot-enemy-y-coordinate-used-by-collision-and-rendering"
     },
     {
+      "address": "0x056D",
+      "name": "World2EnemyPhaseCounter",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-spawn-delay-and-handler-local-animation-or-motion-phase"
+    },
+    {
+      "address": "0x0574",
+      "name": "World2EnemyBehaviorParameter",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-spawn-parameter-selecting-axis-side-or-type-specific-motion"
+    },
+    {
+      "address": "0x057B",
+      "name": "World2EnemyAttackTimer",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-counter-compared-with-type-specific-projectile-interval-table"
+    },
+    {
+      "address": "0x0582",
+      "name": "World2EnemyDamageCounter",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-hit-counter-compared-with-type-specific-defeat-threshold"
+    },
+    {
       "address": "0x0589",
       "name": "World2EnemyProjectileFlags",
       "size": 6,
@@ -1672,6 +1762,42 @@
         1
       ],
       "evidence": "six-slot-enemy-projectile-y-coordinate-and-active-sentinel"
+    },
+    {
+      "address": "0x059B",
+      "name": "World2EnemyProjectileStepAccumulator",
+      "size": 6,
+      "banks": [
+        1
+      ],
+      "evidence": "six-slot-major-minor-axis-step-accumulator-for-aimed-projectiles"
+    },
+    {
+      "address": "0x05A1",
+      "name": "World2EnemyProjectileMotionX",
+      "size": 6,
+      "banks": [
+        1
+      ],
+      "evidence": "six-slot-signed-x-step-or-aimed-line-x-delta"
+    },
+    {
+      "address": "0x05A7",
+      "name": "World2EnemyProjectileMotionY",
+      "size": 6,
+      "banks": [
+        1
+      ],
+      "evidence": "six-slot-signed-y-step-or-aimed-line-y-delta"
+    },
+    {
+      "address": "0x05AD",
+      "name": "World2EnemyProjectileLifetime",
+      "size": 6,
+      "banks": [
+        1
+      ],
+      "evidence": "six-slot-age-counter-cleared-at-spawn-and-despawned-at-0x8c"
     },
     {
       "address": "0x05B3",
@@ -1737,6 +1863,24 @@
       "evidence": "eight-slot-active-entity-y-coordinate"
     },
     {
+      "address": "0x0618",
+      "name": "World3EntityFrameCounter",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-per-frame-animation-and-behavior-counter"
+    },
+    {
+      "address": "0x0620",
+      "name": "World3EntityCollisionScanLimit",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-room-collision-scan-bound"
+    },
+    {
       "address": "0x0628",
       "name": "World3EntityMetasprite",
       "size": 8,
@@ -1746,6 +1890,15 @@
       "evidence": "eight-slot-type-derived-animation-and-metasprite-field"
     },
     {
+      "address": "0x0630",
+      "name": "World3EntityRenderFlags",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-render-attribute-flags-merged-before-oam-composition"
+    },
+    {
       "address": "0x0638",
       "name": "World3EntityType",
       "size": 8,
@@ -1753,6 +1906,132 @@
         2
       ],
       "evidence": "eight-slot-object-type-and-behavior-dispatch-index"
+    },
+    {
+      "address": "0x0640",
+      "name": "World3EntityScriptOffset",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-offset-into-type-selected-d9ac-behavior-stream"
+    },
+    {
+      "address": "0x0648",
+      "name": "World3EntityScriptWaitTimer",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-countdown-for-script-opcode-5"
+    },
+    {
+      "address": "0x0650",
+      "name": "World3EntityHorizontalDirection",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-horizontal-motion-direction-flag"
+    },
+    {
+      "address": "0x0658",
+      "name": "World3EntityVerticalDirection",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-vertical-motion-direction-flag"
+    },
+    {
+      "address": "0x0660",
+      "name": "World3EntityScriptRateCounter",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-packed-rate-counter-set-by-script-opcode-6"
+    },
+    {
+      "address": "0x0668",
+      "name": "World3EntityActivationTimer",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-spawn-countdown-before-active-state-transition"
+    },
+    {
+      "address": "0x0670",
+      "name": "World3EntityBehaviorSelector",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-type-specific-clone-budget-or-targeting-mode-selector"
+    },
+    {
+      "address": "0x0678",
+      "name": "World3EntityPersistentState",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-state-copied-to-and-from-persistent-room-records"
+    },
+    {
+      "address": "0x0680",
+      "name": "World3EntityBehaviorTimer",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-script-loop-and-type-specific-behavior-countdown"
+    },
+    {
+      "address": "0x0688",
+      "name": "World3EntityScriptLoopOffset",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-script-offset-restored-while-loop-count-remains"
+    },
+    {
+      "address": "0x0690",
+      "name": "World3EntityFollowAnchorFlag",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-script-controlled-type-0c-anchor-follow-enable"
+    },
+    {
+      "address": "0x0698",
+      "name": "World3EntityHitPoints",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-type-derived-damage-countdown-and-defeat-trigger"
+    },
+    {
+      "address": "0x06A0",
+      "name": "World3EntityMetaspriteVariantBit1",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-zero-or-two-offset-added-to-base-metasprite"
+    },
+    {
+      "address": "0x06A8",
+      "name": "World3EntityMetaspriteVariantBit0",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-slot-zero-or-one-offset-added-to-base-metasprite"
     },
     {
       "address": "0x06B0",
@@ -1798,6 +2077,69 @@
         2
       ],
       "evidence": "thirteen-record-state-restored-to-and-saved-from-active-entities"
+    },
+    {
+      "address": "0x06F1",
+      "name": "World3EncounterRoomList",
+      "size": 8,
+      "banks": [
+        2
+      ],
+      "evidence": "eight-room-encounter-registry-cleared-to-ff-randomly-expanded-and-removed-on-defeat"
+    },
+    {
+      "address": "0x06F9",
+      "name": "World3PlayerProjectileState",
+      "size": 2,
+      "banks": [
+        2
+      ],
+      "evidence": "two-slot-projectile-state-zero-free-one-moving-two-impact"
+    },
+    {
+      "address": "0x06FB",
+      "name": "World3PlayerProjectileX",
+      "size": 2,
+      "banks": [
+        2
+      ],
+      "evidence": "two-slot-projectile-x-coordinate"
+    },
+    {
+      "address": "0x06FD",
+      "name": "World3PlayerProjectileY",
+      "size": 2,
+      "banks": [
+        2
+      ],
+      "evidence": "two-slot-projectile-y-coordinate"
+    },
+    {
+      "address": "0x06FF",
+      "name": "World3PlayerProjectileDirection",
+      "size": 2,
+      "banks": [
+        2
+      ],
+      "evidence": "two-slot-horizontal-motion-direction-selector"
+    },
+    {
+      "address": "0x0701",
+      "name": "World3PlayerProjectileMetasprite",
+      "size": 2,
+      "banks": [
+        2
+      ],
+      "evidence": "two-slot-moving-or-impact-metasprite-index"
+    },
+    {
+      "address": "0x0703",
+      "name": "World3PlayerProjectileAnimationCounter",
+      "size": 2,
+      "banks": [
+        2
+      ],
+      "evidence": "two-slot-impact-animation-rate-counter"
     },
     {
       "address": "0x2000",

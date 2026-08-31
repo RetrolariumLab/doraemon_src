@@ -82,19 +82,19 @@ Bank2_Func_A0C4:
     RTS
 
 Bank2_Label_A144:
-    INC a:$0703,X
-    LDA a:$0703,X
+    INC a:World3PlayerProjectileAnimationCounter,X
+    LDA a:World3PlayerProjectileAnimationCounter,X
     AND #$03
     BNE Bank2_Label_A1C0
-    INC a:$0701,X
-    LDA a:$0701,X
+    INC a:World3PlayerProjectileMetasprite,X
+    LDA a:World3PlayerProjectileMetasprite,X
     CMP #$A3
     BNE Bank2_Label_A1C0
     LDA #$00
-    STA a:$06F9,X
+    STA a:World3PlayerProjectileState,X
     JMP Bank2_Label_A1C0
 
-Bank2_Func_A160:
+World3_UpdatePlayerProjectiles:
     LDA #$00
     STA $07
     LDA #$02
@@ -102,48 +102,48 @@ Bank2_Func_A160:
 
 Bank2_Label_A168:
     LDX $07
-    LDA a:$06F9,X
+    LDA a:World3PlayerProjectileState,X
     BEQ Bank2_Label_A1C0
     CMP #$02
     BEQ Bank2_Label_A144
-    LDA a:$06FB,X
+    LDA a:World3PlayerProjectileX,X
     STA $46
-    LDA a:$06FD,X
+    LDA a:World3PlayerProjectileY,X
     STA $47
     JSR Bank2_Func_9FDB
     BCS Bank2_Label_A19B
     LDX $07
     LDA #$02
-    STA a:$06F9,X
+    STA a:World3PlayerProjectileState,X
     LDA #$00
-    STA a:$0703,X
+    STA a:World3PlayerProjectileAnimationCounter,X
     LDA #$A0
-    STA a:$0701,X
+    STA a:World3PlayerProjectileMetasprite,X
     LDA #$02
     JSR Bank2_Func_A5DF
     JMP Bank2_Label_A1C0
 
 Bank2_Label_A19B:
-    LDA a:$06FF,X
+    LDA a:World3PlayerProjectileDirection,X
     BNE Bank2_Label_A1AE
-    LDA a:$06FB,X
+    LDA a:World3PlayerProjectileX,X
     SEC
     SBC #$03
-    STA a:$06FB,X
+    STA a:World3PlayerProjectileX,X
     BCS Bank2_Label_A1C0
     JMP Bank2_Label_A1BB
 
 Bank2_Label_A1AE:
-    LDA a:$06FB,X
+    LDA a:World3PlayerProjectileX,X
     CLC
     ADC #$03
-    STA a:$06FB,X
+    STA a:World3PlayerProjectileX,X
     CMP #$F0
     BCC Bank2_Label_A1C0
 
 Bank2_Label_A1BB:
     LDA #$00
-    STA a:$06F9,X
+    STA a:World3PlayerProjectileState,X
 
 Bank2_Label_A1C0:
     INC $07
@@ -151,7 +151,7 @@ Bank2_Label_A1C0:
     BNE Bank2_Label_A168
     RTS
 
-Bank2_Func_A1C7:
+World3_RenderPlayerProjectiles:
     LDA #$00
     STA $00
     LDA #$02
@@ -159,13 +159,13 @@ Bank2_Func_A1C7:
 
 Bank2_Label_A1CF:
     LDX $00
-    LDA a:$06F9,X
+    LDA a:World3PlayerProjectileState,X
     BEQ Bank2_Label_A1ED
-    LDA a:$0701,X
+    LDA a:World3PlayerProjectileMetasprite,X
     STA $79
-    LDA a:$06FD,X
+    LDA a:World3PlayerProjectileY,X
     TAY
-    LDA a:$06FB,X
+    LDA a:World3PlayerProjectileX,X
     TAX
     JSR Bank2_Func_A71A
     LDA #$00

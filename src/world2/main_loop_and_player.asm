@@ -107,7 +107,7 @@ Bank1_World2FrameLoop:
     JSR Bank1_Func_8BAC
     JSR World2_UpdatePlayerProjectiles
     JSR World2_UpdateEnemies
-    JSR Bank1_Func_A1D1
+    JSR World2_UpdateEnemyProjectiles
     JSR Bank1_Func_97C5
     JSR Bank1_Func_8FA2
     JSR Bank1_Func_A6BC

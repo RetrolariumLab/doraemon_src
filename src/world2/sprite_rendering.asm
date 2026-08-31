@@ -196,8 +196,8 @@ Bank1_Func_9858:
 
 Bank1_Func_985B:
     LDA #$00
-    STA a:$0582,X
-    STA a:$057B,X
+    STA a:World2EnemyDamageCounter,X
+    STA a:World2EnemyAttackTimer,X
     RTS
 
 Bank1_Label_9864:
@@ -236,7 +236,7 @@ Bank1_Label_9875:
     AND #$0F
     TAY
     LDA a:$98AB,Y
-    STA a:$0574,X
+    STA a:World2EnemyBehaviorParameter,X
 
 Bank1_Label_98A2:
     RTS
@@ -271,13 +271,13 @@ Bank1_Label_98DE:
     LDA #$1E
 
 Bank1_Label_98E0:
-    STA a:$056D,X
+    STA a:World2EnemyPhaseCounter,X
     LDA $74
     STA a:World2EnemyState,X
     LDA $75
     STA a:World2EnemyX,X
     LDA $42
-    STA a:$0574,X
+    STA a:World2EnemyBehaviorParameter,X
     JSR Bank1_Func_985B
     LDX $75
     RTS

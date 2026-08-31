@@ -217,7 +217,7 @@ Bank2_Label_AA04:
     LDX $3E
     RTS
 
-Bank2_Func_AA0F:
+World3_AdvancePackedRateCounter:
     PHA
     AND #$0F
     STA $AA
@@ -248,7 +248,7 @@ Bank2_Func_AA2A:
     LDA #$00
     STA $04
     STX $02
-    LDA a:$0620,X
+    LDA a:World3EntityCollisionScanLimit,X
     SEC
     SBC $02
     STA $03
@@ -329,9 +329,9 @@ Bank2_Func_AAB6:
     STA $3C
     LDA a:World3EntityY,X
     STA $3D
-    LDA a:$0618,X
-    JSR Bank2_Func_AA0F
-    STA a:$0618,X
+    LDA a:World3EntityFrameCounter,X
+    JSR World3_AdvancePackedRateCounter
+    STA a:World3EntityFrameCounter,X
     BCC Bank2_Label_AAF0
     JSR Bank2_Func_AAF1
     LDX $02

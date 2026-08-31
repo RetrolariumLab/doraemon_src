@@ -3,23 +3,23 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank1_Func_9D4E:
-    LDA a:$0574,X
+    LDA a:World2EnemyBehaviorParameter,X
     BNE Bank1_Label_9D5E
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$07
     BEQ Bank1_Label_9D71
-    INC a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
     RTS
 
 Bank1_Label_9D5E:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     BNE Bank1_Label_9D71
     LDA a:World2EnemyX,X
     CLC
     ADC #$08
     STA a:World2EnemyX,X
     LDA #$07
-    STA a:$056D,X
+    STA a:World2EnemyPhaseCounter,X
 
 Bank1_Label_9D71:
     JSR Bank1_Func_A0DC
@@ -63,18 +63,18 @@ Bank1_Label_9D9B:
     ROR A
     ROR A
     ORA #$F8
-    STA a:$05A7,Y
+    STA a:World2EnemyProjectileMotionY,Y
     AND #$01
     ASL A
     SEC
     SBC #$01
-    STA a:$05A1,Y
+    STA a:World2EnemyProjectileMotionX,Y
 
 Bank1_Label_9DC8:
     RTS
 
 Bank1_Func_9DC9:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$07
     BNE Bank1_Label_9DC8
     LDA #$0E
@@ -111,9 +111,9 @@ Bank1_Func_9DEA:
     .byte $11, $11, $12, $12, $00, $01, $01, $00
 
 Bank1_Func_9E06:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     BNE Bank1_Label_9E17
-    INC a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyX,X
     SEC
     SBC #$0C
@@ -126,14 +126,14 @@ Bank1_Func_9E1A:
     RTS
 
 Bank1_Func_9E1B:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$50
     BCS Bank1_Label_9E34
-    LDA a:$056D,X
-    LDA a:$0574,X
+    LDA a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyBehaviorParameter,X
     BEQ Bank1_Label_9E75
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$28
     BCS Bank1_Label_9E37
 
@@ -141,7 +141,7 @@ Bank1_Label_9E34:
     JMP Bank1_Func_A0DC
 
 Bank1_Label_9E37:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$3C
     BCS Bank1_Label_9E65
     LDA $5C
@@ -180,14 +180,14 @@ Bank1_Label_9E6E:
     JMP Bank1_Label_9E54
 
 Bank1_Label_9E75:
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$28
     BCS Bank1_Label_9E82
     JMP Bank1_Func_A0DC
 
 Bank1_Label_9E82:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$3C
     BCS Bank1_Label_9EA2
     LDA $5D
@@ -226,9 +226,9 @@ Bank1_Func_9EB2:
     JMP Bank1_Func_A35B
 
 Bank1_Func_9EBE:
-    LDA a:$0574,X
+    LDA a:World2EnemyBehaviorParameter,X
     BEQ Bank1_Label_9ED1
-    LDY a:$056D,X
+    LDY a:World2EnemyPhaseCounter,X
     LDA $67
     CLC
     ADC a:$A5DE,Y
@@ -236,7 +236,7 @@ Bank1_Func_9EBE:
     JMP Bank1_Label_9EDC
 
 Bank1_Label_9ED1:
-    LDY a:$056D,X
+    LDY a:World2EnemyPhaseCounter,X
     LDA $68
     CLC
     ADC a:$A5DE,Y
@@ -252,16 +252,16 @@ Bank1_Label_9EDC:
     BNE Bank1_Label_9EF8
 
 Bank1_Label_9EED:
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$0F
-    STA a:$056D,X
+    STA a:World2EnemyPhaseCounter,X
 
 Bank1_Label_9EF8:
     JMP Bank1_Func_A0DC
 
 Bank1_Func_9EFB:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$08
     STA $67
     LDA $73
@@ -286,9 +286,9 @@ Bank1_Func_9F2E:
     JMP Bank1_Func_A35B
 
 Bank1_Func_9F3A:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     BNE Bank1_Label_9F4E
-    INC a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyY,X
     CLC
     ADC #$10
@@ -298,11 +298,11 @@ Bank1_Func_9F3A:
 Bank1_Label_9F4E:
     CMP #$28
     BCS Bank1_Label_9F58
-    INC a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
     JMP Bank1_Func_A0DC
 
 Bank1_Label_9F58:
-    LDY a:$056D,X
+    LDY a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyY,X
     CLC
     ADC a:$A5DA,Y
@@ -312,12 +312,12 @@ Bank1_Label_9F58:
     LDA $73
     AND #$03
     BNE Bank1_Label_9F7E
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$38
     BNE Bank1_Label_9F7E
     LDA #$28
-    STA a:$056D,X
+    STA a:World2EnemyPhaseCounter,X
 
 Bank1_Label_9F7E:
     JMP Bank1_Func_A0DC

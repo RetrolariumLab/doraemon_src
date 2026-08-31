@@ -25,8 +25,8 @@ Bank2_Label_91B2:
     RTS
 
 Bank2_Label_91B3:
-    INC a:$0618,X
-    LDA a:$0618,X
+    INC a:World3EntityFrameCounter,X
+    LDA a:World3EntityFrameCounter,X
     AND #$01
     BNE Bank2_Label_91FE
     INC a:World3EntityMetasprite,X
@@ -88,14 +88,14 @@ Bank2_Label_9210:
     BEQ Bank2_Label_924D
     CMP #$01
     BEQ Bank2_Label_924D
-    LDA a:$0668,X
+    LDA a:World3EntityActivationTimer,X
     BNE Bank2_Label_9230
     LDA #$01
     STA a:World3EntityState,X
     JMP Bank2_Label_924D
 
 Bank2_Label_9230:
-    DEC a:$0668,X
+    DEC a:World3EntityActivationTimer,X
     CMP #$1E
     BNE Bank2_Label_9283
     LDA a:World3EntityState,X
@@ -120,7 +120,7 @@ Bank2_Label_925B:
     LDA a:World3EntityType,X
     CMP #$10
     BCS Bank2_Label_9265
-    JSR Bank2_Func_9A3B
+    JSR World3_RunEntityBehaviorScript
 
 Bank2_Label_9265:
     LDX $07

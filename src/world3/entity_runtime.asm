@@ -82,7 +82,7 @@ Bank2_Label_8BCB:
     LDA #$FF
 
 Bank2_Label_8BEA:
-    STA a:$06F1,X
+    STA a:World3EncounterRoomList,X
     INX
     CPX #$08
     BNE Bank2_Label_8BEA
@@ -189,7 +189,7 @@ Bank2_Label_8CB1:
     STA a:World3EntityMetasprite,X
     LDY $42
     LDA a:World3RoomObjectState,Y
-    STA a:$0678,X
+    STA a:World3EntityPersistentState,X
     BEQ Bank2_Label_8CEF
     LDA $8C
     STA a:World3EntityX,X
@@ -241,7 +241,7 @@ Bank2_Label_8D1A:
     JMP Bank2_Func_AF51
 
 Bank2_Label_8D29:
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     CMP $3E
     BNE Bank2_Label_8D4C
     JSR Bank2_Func_8D52
@@ -254,7 +254,7 @@ Bank2_Label_8D29:
     STA a:World3RoomObjectY,Y
 
 Bank2_Label_8D46:
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     STA a:World3RoomObjectState,Y
 
 Bank2_Label_8D4C:
@@ -276,7 +276,7 @@ Bank2_Label_8D5A:
     LDA a:World3EntityType,X
     CMP #$1B
     BNE Bank2_Label_8D9F
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_8D9F
     LDX #$00
     STX $40
@@ -317,12 +317,12 @@ Bank2_Label_8DA4:
     CLC
     RTS
 
-Bank2_Func_8DA8:
+World3_ClearPlayerProjectiles:
     LDX #$00
     TXA
 
 Bank2_Label_8DAB:
-    STA a:$06F9,X
+    STA a:World3PlayerProjectileState,X
     INX
     CPX #$0C
     BNE Bank2_Label_8DAB
@@ -447,12 +447,12 @@ Bank2_Label_8E7D:
     BCC Bank2_Label_8EB4
     JSR World3_ClearEntitySlot
     LDA #$1E
-    STA a:$0668,X
+    STA a:World3EntityActivationTimer,X
     LDA $C4
     STA a:World3EntityType,X
     TAY
     LDA a:$8EB5,Y
-    STA a:$0698,X
+    STA a:World3EntityHitPoints,X
     LDA a:$8ED5,Y
     STA a:World3EntityMetasprite,X
     LDA #$FF

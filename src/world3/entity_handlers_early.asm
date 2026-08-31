@@ -25,8 +25,8 @@ Bank2_Label_9338:
     LDY $DF
     LDA a:$936C,Y
     BEQ Bank2_Label_936B
-    INC a:$0618,X
-    LDA a:$0618,X
+    INC a:World3EntityFrameCounter,X
+    LDA a:World3EntityFrameCounter,X
     AND #$03
     BNE Bank2_Label_936B
     STX $3E
@@ -102,7 +102,7 @@ Bank2_Label_9403:
     LDA #$00
     STA a:World3EntityState,Y
     LDA #$00
-    STA a:$0678,Y
+    STA a:World3EntityPersistentState,Y
     LDA a:World3EntityType,Y
     CMP #$18
     BCS Bank2_Label_9415
@@ -273,16 +273,16 @@ Bank2_Label_9512:
     JSR Bank2_Func_B149
     CMP #$0D
     BCS Bank2_Label_954A
-    LDA a:$0690,X
+    LDA a:World3EntityFollowAnchorFlag,X
     STA $A3
     LDA #$12
     JSR Bank2_Func_A5EB
     LDA #$04
     STA a:World3EntityState,Y
-    LDA a:$0678,Y
+    LDA a:World3EntityPersistentState,Y
     BEQ Bank2_Label_954F
     LDA #$00
-    STA a:$0678,Y
+    STA a:World3EntityPersistentState,Y
     STA $9A
     RTS
 
@@ -328,16 +328,16 @@ Bank2_Func_95A5:
     JSR Bank2_Func_A5EB
 
 Bank2_Label_95B1:
-    LDA a:$0690,X
+    LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_95B9
     JSR Bank2_Func_95F3
 
 Bank2_Label_95B9:
     STX $3E
-    LDA a:$0690,X
+    LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_95F2
-    INC a:$0618,X
-    LDA a:$0618,X
+    INC a:World3EntityFrameCounter,X
+    LDA a:World3EntityFrameCounter,X
     AND #$01
     BNE Bank2_Label_95F2
     LDA a:World3EntityX,X
@@ -383,12 +383,12 @@ Bank2_Label_95FF:
     BCC Bank2_Label_9640
     JSR World3_ClearEntitySlot
     LDA #$1E
-    STA a:$0668,X
+    STA a:World3EntityActivationTimer,X
     LDA #$02
     STA a:World3EntityType,X
     TAY
     LDA a:$8EB5,Y
-    STA a:$0698,X
+    STA a:World3EntityHitPoints,X
     LDA a:$8ED5,Y
     STA a:World3EntityMetasprite,X
     LDY $3E
@@ -408,7 +408,7 @@ Bank2_Label_9640:
     RTS
 
 Bank2_Func_9643:
-    LDA a:$0690,X
+    LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_965A
     JSR Bank2_Func_96C0
     LDA a:World3EntityX,Y
@@ -422,7 +422,7 @@ Bank2_Label_965A:
     RTS
 
 Bank2_Func_965B:
-    LDA a:$0690,X
+    LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_968B
     JSR Bank2_Func_96C0
     LDA a:World3EntityX,Y
@@ -431,19 +431,19 @@ Bank2_Func_965B:
     CLC
     ADC #$18
     STA a:World3EntityY,X
-    INC a:$0618,X
-    LDA a:$0618,X
+    INC a:World3EntityFrameCounter,X
+    LDA a:World3EntityFrameCounter,X
     LSR A
     LSR A
     LSR A
     AND #$01
-    STA a:$06A8,X
-    LDA a:$0618,X
+    STA a:World3EntityMetaspriteVariantBit0,X
+    LDA a:World3EntityFrameCounter,X
     LSR A
     LSR A
     LSR A
     AND #$02
-    STA a:$06A0,X
+    STA a:World3EntityMetaspriteVariantBit1,X
 
 Bank2_Label_968B:
     RTS

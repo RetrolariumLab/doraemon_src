@@ -40,6 +40,8 @@ def validate(
     lifecycle_names: set[str] = set()
     field_count = 0
     slot_count = 0
+    layout_count = 0
+    unclassified_field_count = 0
 
     for pool in pools:
         pool_id = str(pool.get("id", ""))
@@ -62,6 +64,7 @@ def validate(
         if key_field not in declared_fields:
             errors.append(f"{pool_id}: key field {key_field!r} is not declared")
 
+        field_bases: set[int] = set()
         for field in fields:
             name = str(field.get("symbol", ""))
             role = str(field.get("role", ""))
@@ -72,6 +75,7 @@ def validate(
                 errors.append(f"{pool_id}: memory symbol {name!r} is missing")
                 continue
             address = number(item["address"])
+            field_bases.add(address)
             size = number(item.get("size", 1))
             banks = item.get("banks", list(range(PRG_BANK_COUNT)))
             if bank not in banks:
@@ -92,6 +96,58 @@ def validate(
                 else:
                     occupied[key] = (pool_id, name)
             field_count += 1
+
+        layout = pool.get("layout")
+        if layout is not None:
+            if not isinstance(layout, dict):
+                errors.append(f"{pool_id}: layout must be an object")
+            else:
+                layout_start = number(layout["start"])
+                field_stride = int(layout["field_stride"])
+                layout_fields = int(layout["field_count"])
+                unclassified_values = [
+                    number(value)
+                    for value in layout.get("unclassified_bases", [])
+                ]
+                unclassified_bases = set(unclassified_values)
+                if field_stride < capacity or layout_fields <= 0:
+                    errors.append(
+                        f"{pool_id}: layout stride/count cannot hold the pool fields"
+                    )
+                else:
+                    expected_bases = {
+                        layout_start + field_stride * index
+                        for index in range(layout_fields)
+                    }
+                    duplicated = len(unclassified_values) != len(unclassified_bases)
+                    if duplicated:
+                        errors.append(
+                            f"{pool_id}: layout repeats an unclassified field base"
+                        )
+                    overlap = sorted(field_bases & unclassified_bases)
+                    if overlap:
+                        errors.append(
+                            f"{pool_id}: classified fields are also unclassified at "
+                            + ", ".join(f"${address:04X}" for address in overlap)
+                        )
+                    extra = sorted(
+                        (field_bases | unclassified_bases) - expected_bases
+                    )
+                    if extra:
+                        errors.append(
+                            f"{pool_id}: layout has bases outside its grid: "
+                            + ", ".join(f"${address:04X}" for address in extra)
+                        )
+                    missing = sorted(
+                        expected_bases - field_bases - unclassified_bases
+                    )
+                    if missing:
+                        errors.append(
+                            f"{pool_id}: layout misses field bases: "
+                            + ", ".join(f"${address:04X}" for address in missing)
+                        )
+                layout_count += 1
+                unclassified_field_count += len(unclassified_bases)
 
         groups = pool.get("groups", [])
         pool_lifecycle_names: set[str] = set()
@@ -130,6 +186,8 @@ def validate(
         "field_count": field_count,
         "slot_count": slot_count,
         "lifecycle_count": len(lifecycle_names),
+        "layout_count": layout_count,
+        "unclassified_field_count": unclassified_field_count,
     }
 
 
@@ -150,9 +208,15 @@ def main() -> int:
         for error in errors:
             print(f"[ERROR] {error}")
         return 1
+    layout_label = "layout" if report["layout_count"] == 1 else "layouts"
+    base_label = (
+        "base" if report["unclassified_field_count"] == 1 else "bases"
+    )
     print(
         f"[OK] {report['pool_count']} object pools: {report['slot_count']} slots, "
-        f"{report['field_count']} fields, {report['lifecycle_count']} lifecycle routines"
+        f"{report['field_count']} fields, {report['lifecycle_count']} lifecycle routines; "
+        f"{report['layout_count']} complete {layout_label}, "
+        f"{report['unclassified_field_count']} unclassified field {base_label}"
     )
     return 0
 

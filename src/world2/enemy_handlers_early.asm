@@ -5,7 +5,7 @@
 Bank1_Func_9B46:
     LDA #$00
     STA $98
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$10
     BEQ Bank1_Label_9B53
     INC $98
@@ -32,10 +32,10 @@ Bank1_Label_9B64:
     JMP Bank1_Func_A35B
 
 Bank1_Func_9B73:
-    LDA a:$0574,X
+    LDA a:World2EnemyBehaviorParameter,X
     BEQ Bank1_Label_9BC7
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$28
     BCS Bank1_Label_9B94
     LDA a:World2EnemyY,X
@@ -83,8 +83,8 @@ Bank1_Label_9BC4:
     JMP Bank1_Func_A0DC
 
 Bank1_Label_9BC7:
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$32
     BCS Bank1_Label_9BDD
     LDA a:World2EnemyX,X
@@ -150,10 +150,10 @@ Bank1_Func_9C2C:
     LDA $73
     AND #$01
     BNE Bank1_Label_9C38
-    INC a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
 
 Bank1_Label_9C38:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$1F
     TAY
     LDA a:World2EnemyY,X
@@ -162,7 +162,7 @@ Bank1_Label_9C38:
     CMP #$F0
     BCS Bank1_Label_9C82
     STA $68
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$20
     BCC Bank1_Label_9C5D
     LDA a:World2EnemyX,X
@@ -185,11 +185,11 @@ Bank1_Label_9C65:
     JMP Bank1_Label_9C78
 
 Bank1_Label_9C72:
-    INC a:$056D,X
-    INC a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    INC a:World2EnemyPhaseCounter,X
 
 Bank1_Label_9C78:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$40
     BCC Bank1_Label_9CA4
     JMP Bank1_Func_9CD8
@@ -211,8 +211,8 @@ Bank1_Label_9C91:
 
 Bank1_Func_9C96:
     JSR Bank1_Func_A0DC
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     SEC
     SBC #$32
     BCS Bank1_Label_9CA5
@@ -227,7 +227,7 @@ Bank1_Label_9CA5:
     SEC
     SBC a:$A5AE,Y
     STA $68
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$52
     BCC Bank1_Label_9CC1
     LDA a:World2EnemyX,X
@@ -247,19 +247,19 @@ Bank1_Label_9CC7:
     JSR Bank1_Func_9D2B
 
 Bank1_Label_9CD1:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$72
     BNE Bank1_Label_9CDD
 
 Bank1_Func_9CD8:
     LDA #$00
-    STA a:$056D,X
+    STA a:World2EnemyPhaseCounter,X
 
 Bank1_Label_9CDD:
     RTS
 
 Bank1_Func_9CDE:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$32
     BCS Bank1_Label_9CEB
     LDA #$0B
@@ -275,7 +275,7 @@ Bank1_Label_9CEB:
     INC $98
 
 Bank1_Label_9CF7:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$54
     BCS Bank1_Label_9D00
     INC $63
@@ -288,11 +288,11 @@ Bank1_Func_9D05:
     JSR Bank1_Func_9DE4
     LDA a:World2EnemyState,X
     BEQ Bank1_Label_9D35
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$20
     BNE Bank1_Label_9D35
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$0F
     TAY
     LDA a:World2EnemyY,X
@@ -314,7 +314,7 @@ Bank1_Label_9D35:
 Bank1_Func_9D36:
     LDA #$0C
     STA $98
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$20
     BEQ Bank1_Label_9D49
     LDA $73

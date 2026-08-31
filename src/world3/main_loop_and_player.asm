@@ -138,17 +138,17 @@ Bank2_Label_83A5:
     LDA $4F
     BNE Bank2_Label_83B5
     JSR World3_UpdatePlayerState
-    JSR Bank2_Func_A160
+    JSR World3_UpdatePlayerProjectiles
 
 Bank2_Label_83B5:
     JSR World3_UpdateEntities
     JSR Bank2_Func_A601
     LDA $4F
     BNE Bank2_Label_83C2
-    JSR Bank2_Func_A1C7
+    JSR World3_RenderPlayerProjectiles
 
 Bank2_Label_83C2:
-    JSR Bank2_Func_9D19
+    JSR World3_RenderEntities
     JSR Bank2_Func_820E
     LDA $DF
     CMP #$3F
@@ -543,7 +543,7 @@ Bank2_Func_866C:
 
 Bank2_Label_866E:
     LDA #$00
-    STA a:$0678,Y
+    STA a:World3EntityPersistentState,Y
     INY
     CPY #$08
     BNE Bank2_Label_866E

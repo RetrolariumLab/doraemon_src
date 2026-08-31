@@ -23,7 +23,7 @@ Bank2_Label_AE2B:
     LDA #$00
     STA $74
     JSR Bank2_Func_A601
-    JSR Bank2_Func_9D19
+    JSR World3_RenderEntities
     JSR Bank2_Func_AE5D
     LDA #$01
     STA NmiOamDmaRequest
@@ -109,7 +109,7 @@ Bank2_Label_AED1:
     CMP #$1F
     BNE Bank2_Label_AEE7
     LDA #$00
-    STA a:$06A0,Y
+    STA a:World3EntityMetaspriteVariantBit1,Y
     JMP Bank2_Label_AEEC
 
 Bank2_Label_AEE7:

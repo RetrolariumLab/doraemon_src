@@ -72,7 +72,7 @@ Bank1_Label_A13A:
 Bank1_Label_A13F:
     RTS
 
-Bank1_Func_A140:
+World2_SpawnEnemyProjectile:
     LDA $A0
     BNE Bank1_Label_A13F
     STX $79
@@ -141,7 +141,7 @@ Bank1_Label_A193:
     EOR #$FF
 
 Bank1_Label_A1A5:
-    STA a:$05A1,Y
+    STA a:World2EnemyProjectileMotionX,Y
     LDA $78
     CLC
     ADC #$04
@@ -154,8 +154,8 @@ Bank1_Label_A1A5:
     EOR #$FF
 
 Bank1_Label_A1B9:
-    STA a:$05A7,Y
-    CMP a:$05A1,Y
+    STA a:World2EnemyProjectileMotionY,Y
+    CMP a:World2EnemyProjectileMotionX,Y
     BCS Bank1_Label_A1C5
     TXA
     ADC #$04
@@ -165,11 +165,11 @@ Bank1_Label_A1C5:
     TXA
     STA a:World2EnemyProjectileFlags,Y
     LDA #$00
-    STA a:$05AD,Y
+    STA a:World2EnemyProjectileLifetime,Y
     LDX $79
     RTS
 
-Bank1_Func_A1D1:
+World2_UpdateEnemyProjectiles:
     LDX #$05
 
 Bank1_Label_A1D3:
@@ -182,21 +182,21 @@ Bank1_Label_A1D3:
     BEQ Bank1_Label_A233
     LDA a:World2EnemyProjectileX,X
     CLC
-    ADC a:$05A1,X
+    ADC a:World2EnemyProjectileMotionX,X
     CMP #$F0
     BCS Bank1_Label_A213
     STA a:World2EnemyProjectileX,X
     LDA a:World2EnemyProjectileY,X
     CLC
-    ADC a:$05A7,X
+    ADC a:World2EnemyProjectileMotionY,X
     CMP #$E0
     BCS Bank1_Label_A213
     STA a:World2EnemyProjectileY,X
     LDA $73
     AND #$03
     BNE Bank1_Label_A269
-    INC a:$05A7,X
-    LDA a:$05A7,X
+    INC a:World2EnemyProjectileMotionY,X
+    LDA a:World2EnemyProjectileMotionY,X
     BMI Bank1_Label_A269
     CMP #$08
     BCC Bank1_Label_A269
@@ -210,8 +210,8 @@ Bank1_Label_A21B:
     JSR Bank1_Func_A115
     LDA a:World2EnemyProjectileY,X
     BEQ Bank1_Label_A233
-    INC a:$05AD,X
-    LDA a:$05AD,X
+    INC a:World2EnemyProjectileLifetime,X
+    LDA a:World2EnemyProjectileLifetime,X
     CMP #$8C
     BCC Bank1_Label_A236
     LDA #$00
@@ -230,15 +230,15 @@ Bank1_Label_A236:
     ADC a:$A2BE,Y
     BEQ Bank1_Label_A29F
     STA a:World2EnemyProjectileX,X
-    LDA a:$059B,X
+    LDA a:World2EnemyProjectileStepAccumulator,X
     CLC
-    ADC a:$05A7,X
+    ADC a:World2EnemyProjectileMotionY,X
     BCS Bank1_Label_A257
-    CMP a:$05A1,X
+    CMP a:World2EnemyProjectileMotionX,X
     BCC Bank1_Label_A266
 
 Bank1_Label_A257:
-    SBC a:$05A1,X
+    SBC a:World2EnemyProjectileMotionX,X
     PHA
     LDA a:World2EnemyProjectileY,X
     CLC
@@ -247,7 +247,7 @@ Bank1_Label_A257:
     PLA
 
 Bank1_Label_A266:
-    STA a:$059B,X
+    STA a:World2EnemyProjectileStepAccumulator,X
 
 Bank1_Label_A269:
     JMP Bank1_Label_A2A4
@@ -257,15 +257,15 @@ Bank1_Label_A26C:
     CLC
     ADC a:$A2C6,Y
     STA a:World2EnemyProjectileY,X
-    LDA a:$059B,X
+    LDA a:World2EnemyProjectileStepAccumulator,X
     CLC
-    ADC a:$05A1,X
+    ADC a:World2EnemyProjectileMotionX,X
     BCS Bank1_Label_A284
-    CMP a:$05A7,X
+    CMP a:World2EnemyProjectileMotionY,X
     BCC Bank1_Label_A295
 
 Bank1_Label_A284:
-    SBC a:$05A7,X
+    SBC a:World2EnemyProjectileMotionY,X
     PHA
     LDA a:World2EnemyProjectileX,X
     CLC
@@ -275,7 +275,7 @@ Bank1_Label_A284:
     PLA
 
 Bank1_Label_A295:
-    STA a:$059B,X
+    STA a:World2EnemyProjectileStepAccumulator,X
     JMP Bank1_Label_A2A4
 
 Bank1_Label_A29B:

@@ -2,7 +2,7 @@
 ; World 3 object script decoding and early behavior handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_9A3B:
+World3_RunEntityBehaviorScript:
     LDX $07
     LDA a:World3EntityType,X
     ASL A
@@ -11,14 +11,14 @@ Bank2_Func_9A3B:
     STA $40
     LDA a:$D9AD,Y
     STA $41
-    LDA a:$0660,X
+    LDA a:World3EntityScriptRateCounter,X
     BEQ Bank2_Label_9A59
-    JSR Bank2_Func_AA0F
-    STA a:$0660,X
+    JSR World3_AdvancePackedRateCounter
+    STA a:World3EntityScriptRateCounter,X
     BCC Bank2_Label_9A3A
 
 Bank2_Label_9A59:
-    LDA a:$0640,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     LDA ($40),Y
     AND #$0F
@@ -28,7 +28,7 @@ Bank2_Label_9A59:
     STA $3F
     CMP #$00
     BNE Bank2_Label_9A98
-    LDA a:$0650,X
+    LDA a:World3EntityHorizontalDirection,X
     BNE Bank2_Label_9AA1
 
 Bank2_Label_9A72:
@@ -42,21 +42,21 @@ Bank2_Label_9A72:
     BCC Bank2_Label_9A94
 
 Bank2_Label_9A84:
-    LDA a:$0650,X
+    LDA a:World3EntityHorizontalDirection,X
     EOR #$01
-    STA a:$0650,X
-    LDA a:$06A0,X
+    STA a:World3EntityHorizontalDirection,X
+    LDA a:World3EntityMetaspriteVariantBit1,X
     EOR #$02
-    STA a:$06A0,X
+    STA a:World3EntityMetaspriteVariantBit1,X
 
 Bank2_Label_9A94:
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     RTS
 
 Bank2_Label_9A98:
     CMP #$10
     BNE Bank2_Label_9AC7
-    LDA a:$0650,X
+    LDA a:World3EntityHorizontalDirection,X
     BNE Bank2_Label_9A72
 
 Bank2_Label_9AA1:
@@ -70,21 +70,21 @@ Bank2_Label_9AA1:
     BCS Bank2_Label_9AC3
 
 Bank2_Label_9AB3:
-    LDA a:$0650,X
+    LDA a:World3EntityHorizontalDirection,X
     EOR #$01
-    STA a:$0650,X
-    LDA a:$06A0,X
+    STA a:World3EntityHorizontalDirection,X
+    LDA a:World3EntityMetaspriteVariantBit1,X
     EOR #$02
-    STA a:$06A0,X
+    STA a:World3EntityMetaspriteVariantBit1,X
 
 Bank2_Label_9AC3:
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     RTS
 
 Bank2_Label_9AC7:
     CMP #$20
     BNE Bank2_Label_9AEE
-    LDA a:$0658,X
+    LDA a:World3EntityVerticalDirection,X
     BNE Bank2_Label_9AF7
 
 Bank2_Label_9AD0:
@@ -98,18 +98,18 @@ Bank2_Label_9AD0:
     BCS Bank2_Label_9AEA
 
 Bank2_Label_9AE2:
-    LDA a:$0658,X
+    LDA a:World3EntityVerticalDirection,X
     EOR #$01
-    STA a:$0658,X
+    STA a:World3EntityVerticalDirection,X
 
 Bank2_Label_9AEA:
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     RTS
 
 Bank2_Label_9AEE:
     CMP #$30
     BNE Bank2_Label_9B15
-    LDA a:$0658,X
+    LDA a:World3EntityVerticalDirection,X
     BNE Bank2_Label_9AD0
 
 Bank2_Label_9AF7:
@@ -123,41 +123,41 @@ Bank2_Label_9AF7:
     BCC Bank2_Label_9B11
 
 Bank2_Label_9B09:
-    LDA a:$0658,X
+    LDA a:World3EntityVerticalDirection,X
     EOR #$01
-    STA a:$0658,X
+    STA a:World3EntityVerticalDirection,X
 
 Bank2_Label_9B11:
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     RTS
 
 Bank2_Label_9B15:
     CMP #$40
     BNE Bank2_Label_9B28
-    INC a:$0640,X
-    LDA a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     LDA ($40),Y
-    STA a:$0640,X
+    STA a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9B28:
     CMP #$50
     BNE Bank2_Label_9B48
-    LDA a:$0648,X
+    LDA a:World3EntityScriptWaitTimer,X
     BNE Bank2_Label_9B3C
-    LDA a:$0640,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     INY
     LDA ($40),Y
-    STA a:$0648,X
+    STA a:World3EntityScriptWaitTimer,X
     RTS
 
 Bank2_Label_9B3C:
-    DEC a:$0648,X
+    DEC a:World3EntityScriptWaitTimer,X
     BNE Bank2_Label_9B47
-    INC a:$0640,X
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    INC a:World3EntityScriptOffset,X
 
 Bank2_Label_9B47:
     RTS
@@ -166,8 +166,8 @@ Bank2_Label_9B48:
     CMP #$60
     BNE Bank2_Label_9B57
     LDA $3E
-    STA a:$0660,X
-    INC a:$0640,X
+    STA a:World3EntityScriptRateCounter,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9B57:
@@ -185,42 +185,42 @@ Bank2_Label_9B57:
     CMP #$0A
     BEQ Bank2_Label_9B98
     LDA #$01
-    STA a:$0650,X
-    STA a:$0658,X
-    INC a:$0640,X
+    STA a:World3EntityHorizontalDirection,X
+    STA a:World3EntityVerticalDirection,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9B7F:
     LDA #$00
-    STA a:$0650,X
-    STA a:$0658,X
-    INC a:$0640,X
+    STA a:World3EntityHorizontalDirection,X
+    STA a:World3EntityVerticalDirection,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9B8D:
     LDA #$01
-    STA a:$0650,X
-    INC a:$0640,X
+    STA a:World3EntityHorizontalDirection,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9B98:
     LDA #$01
-    STA a:$0658,X
-    INC a:$0640,X
+    STA a:World3EntityVerticalDirection,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9BA3:
     JSR Bank2_Func_B153
     AND #$01
-    STA a:$0650,X
-    INC a:$0640,X
+    STA a:World3EntityHorizontalDirection,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9BB1:
     JSR Bank2_Func_B153
     AND #$01
-    STA a:$0658,X
-    INC a:$0640,X
+    STA a:World3EntityVerticalDirection,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9BBF:
@@ -228,23 +228,23 @@ Bank2_Label_9BBF:
     BNE Bank2_Label_9BF3
     LDA $3E
     BNE Bank2_Label_9BDF
-    INC a:$0640,X
-    LDA a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     LDA ($40),Y
-    STA a:$0680,X
-    INC a:$0640,X
-    LDA a:$0640,X
-    STA a:$0688,X
+    STA a:World3EntityBehaviorTimer,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
+    STA a:World3EntityScriptLoopOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9BDF:
-    INC a:$0640,X
-    LDA a:$0680,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityBehaviorTimer,X
     BEQ Bank2_Label_9BF0
-    DEC a:$0680,X
-    LDA a:$0688,X
-    STA a:$0640,X
+    DEC a:World3EntityBehaviorTimer,X
+    LDA a:World3EntityScriptLoopOffset,X
+    STA a:World3EntityScriptOffset,X
 
 Bank2_Label_9BF0:
     JMP Bank2_Label_9A59
@@ -252,10 +252,10 @@ Bank2_Label_9BF0:
 Bank2_Label_9BF3:
     CMP #$90
     BNE Bank2_Label_9C39
-    INC a:$0640,X
-    LDA a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
     TAY
-    LDA a:$0650,X
+    LDA a:World3EntityHorizontalDirection,X
     BEQ Bank2_Label_9C0D
     LDA ($40),Y
     EOR #$FF
@@ -270,10 +270,10 @@ Bank2_Label_9C0F:
     CLC
     ADC a:World3EntityX,X
     STA a:World3EntityX,X
-    INC a:$0640,X
-    LDA a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
     TAY
-    LDA a:$0658,X
+    LDA a:World3EntityVerticalDirection,X
     BEQ Bank2_Label_9C2C
     LDA ($40),Y
     EOR #$FF
@@ -288,33 +288,33 @@ Bank2_Label_9C2E:
     CLC
     ADC a:World3EntityY,X
     STA a:World3EntityY,X
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     RTS
 
 Bank2_Label_9C39:
     CMP #$A0
     BNE Bank2_Label_9C60
-    INC a:$0640,X
-    LDA a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     LDA ($40),Y
     STA a:World3EntityX,X
-    INC a:$0640,X
-    LDA a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     LDA ($40),Y
     STA a:World3EntityY,X
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     LDA #$00
-    STA a:$0668,X
+    STA a:World3EntityActivationTimer,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9C60:
     CMP #$B0
     BNE Bank2_Label_9C6F
     LDA $3E
-    STA a:$06A0,X
-    INC a:$0640,X
+    STA a:World3EntityMetaspriteVariantBit1,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9C6F:
@@ -325,72 +325,72 @@ Bank2_Label_9C6F:
     BEQ Bank2_Label_9CA3
     CMP #$02
     BEQ Bank2_Label_9CBF
-    INC a:$0640,X
-    LDA a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     JSR Bank2_Func_B153
     CMP ($40),Y
     BCS Bank2_Label_9C94
-    INC a:$0640,X
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9C94:
-    INC a:$0640,X
-    LDA a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     LDA ($40),Y
-    STA a:$0640,X
+    STA a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9CA3:
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     LDA a:World3EntityX,X
     CMP $8C
     BCS Bank2_Label_9CB3
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9CB3:
-    LDA a:$0640,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     LDA ($40),Y
-    STA a:$0640,X
+    STA a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9CBF:
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     LDA a:World3EntityY,X
     CMP $8D
     BCS Bank2_Label_9CCF
-    INC a:$0640,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9CCF:
-    LDA a:$0640,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     LDA ($40),Y
-    STA a:$0640,X
+    STA a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9CDB:
     CMP #$D0
     BNE Bank2_Label_9CF1
-    INC a:$0640,X
-    LDA a:$0640,X
+    INC a:World3EntityScriptOffset,X
+    LDA a:World3EntityScriptOffset,X
     TAY
     LDA ($40),Y
-    STA a:$0690,X
-    INC a:$0640,X
+    STA a:World3EntityFollowAnchorFlag,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9CF1:
     CMP #$E0
     BNE Bank2_Label_9D03
-    LDA a:$06A8,X
+    LDA a:World3EntityMetaspriteVariantBit0,X
     EOR #$01
-    STA a:$06A8,X
-    INC a:$0640,X
+    STA a:World3EntityMetaspriteVariantBit0,X
+    INC a:World3EntityScriptOffset,X
     JMP Bank2_Label_9A59
 
 Bank2_Label_9D03:

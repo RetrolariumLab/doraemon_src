@@ -82,8 +82,30 @@
         {
           "symbol": "World2EnemyY",
           "role": "Y coordinate"
+        },
+        {
+          "symbol": "World2EnemyPhaseCounter",
+          "role": "spawn delay and handler-local phase counter"
+        },
+        {
+          "symbol": "World2EnemyBehaviorParameter",
+          "role": "axis, side, or type-specific motion parameter"
+        },
+        {
+          "symbol": "World2EnemyAttackTimer",
+          "role": "projectile interval counter"
+        },
+        {
+          "symbol": "World2EnemyDamageCounter",
+          "role": "accumulated damage count"
         }
       ],
+      "layout": {
+        "start": "0x0558",
+        "field_stride": 7,
+        "field_count": 7,
+        "unclassified_bases": []
+      },
       "lifecycle": [
         "World2_ClearEntityPools",
         "World2_SpawnEnemy",
@@ -107,10 +129,34 @@
         {
           "symbol": "World2EnemyProjectileY",
           "role": "Y coordinate and active sentinel"
+        },
+        {
+          "symbol": "World2EnemyProjectileStepAccumulator",
+          "role": "major/minor-axis stepping accumulator"
+        },
+        {
+          "symbol": "World2EnemyProjectileMotionX",
+          "role": "signed X step or aimed-line X delta"
+        },
+        {
+          "symbol": "World2EnemyProjectileMotionY",
+          "role": "signed Y step or aimed-line Y delta"
+        },
+        {
+          "symbol": "World2EnemyProjectileLifetime",
+          "role": "age and timed despawn counter"
         }
       ],
+      "layout": {
+        "start": "0x0589",
+        "field_stride": 6,
+        "field_count": 7,
+        "unclassified_bases": []
+      },
       "lifecycle": [
-        "World2_ClearEntityPools"
+        "World2_ClearEntityPools",
+        "World2_SpawnEnemyProjectile",
+        "World2_UpdateEnemyProjectiles"
       ]
     },
     {
@@ -136,6 +182,12 @@
           "role": "motion direction"
         }
       ],
+      "layout": {
+        "start": "0x05B3",
+        "field_stride": 7,
+        "field_count": 4,
+        "unclassified_bases": []
+      },
       "lifecycle": [
         "World2_ClearEntityPools",
         "World2_UpdatePlayerProjectiles"
@@ -160,20 +212,96 @@
           "role": "Y coordinate"
         },
         {
+          "symbol": "World3EntityFrameCounter",
+          "role": "animation and behavior frame counter"
+        },
+        {
+          "symbol": "World3EntityCollisionScanLimit",
+          "role": "room collision scan limit"
+        },
+        {
           "symbol": "World3EntityMetasprite",
           "role": "animation and metasprite value"
         },
         {
+          "symbol": "World3EntityRenderFlags",
+          "role": "render attribute flags"
+        },
+        {
           "symbol": "World3EntityType",
           "role": "object type and handler index"
+        },
+        {
+          "symbol": "World3EntityScriptOffset",
+          "role": "behavior stream offset"
+        },
+        {
+          "symbol": "World3EntityScriptWaitTimer",
+          "role": "script wait countdown"
+        },
+        {
+          "symbol": "World3EntityHorizontalDirection",
+          "role": "horizontal motion direction"
+        },
+        {
+          "symbol": "World3EntityVerticalDirection",
+          "role": "vertical motion direction"
+        },
+        {
+          "symbol": "World3EntityScriptRateCounter",
+          "role": "packed script execution rate counter"
+        },
+        {
+          "symbol": "World3EntityActivationTimer",
+          "role": "spawn activation countdown"
+        },
+        {
+          "symbol": "World3EntityBehaviorSelector",
+          "role": "type-specific clone budget or targeting mode"
+        },
+        {
+          "symbol": "World3EntityPersistentState",
+          "role": "state synchronized with persistent room records"
+        },
+        {
+          "symbol": "World3EntityBehaviorTimer",
+          "role": "script loop and type-specific countdown"
+        },
+        {
+          "symbol": "World3EntityScriptLoopOffset",
+          "role": "script loop restart offset"
+        },
+        {
+          "symbol": "World3EntityFollowAnchorFlag",
+          "role": "type 0x0C anchor-follow enable"
+        },
+        {
+          "symbol": "World3EntityHitPoints",
+          "role": "damage countdown"
+        },
+        {
+          "symbol": "World3EntityMetaspriteVariantBit1",
+          "role": "metasprite offset bit 1"
+        },
+        {
+          "symbol": "World3EntityMetaspriteVariantBit0",
+          "role": "metasprite offset bit 0"
         }
       ],
+      "layout": {
+        "start": "0x0600",
+        "field_stride": 8,
+        "field_count": 22,
+        "unclassified_bases": []
+      },
       "lifecycle": [
         "World3_ClearEntitySlot",
         "World3_ClearEntityStorage",
         "World3_FindFreeEntitySlot",
         "World3_MaterializeRoomObjects",
-        "World3_UpdateEntities"
+        "World3_UpdateEntities",
+        "World3_RunEntityBehaviorScript",
+        "World3_RenderEntities"
       ]
     },
     {
@@ -203,11 +331,61 @@
           "role": "persistent object state"
         }
       ],
+      "layout": {
+        "start": "0x06B0",
+        "field_stride": 13,
+        "field_count": 5,
+        "unclassified_bases": []
+      },
       "lifecycle": [
         "World3_InitializeRoomObjectRegistry",
         "World3_MaterializeRoomObjects",
         "World3_SaveRoomObjectsState0",
         "World3_SaveRoomObjectsState1"
+      ]
+    },
+    {
+      "id": "world3_player_projectiles",
+      "bank": 2,
+      "capacity": 2,
+      "key_field": "World3PlayerProjectileState",
+      "fields": [
+        {
+          "symbol": "World3PlayerProjectileState",
+          "role": "free, moving, or impact-animation state"
+        },
+        {
+          "symbol": "World3PlayerProjectileX",
+          "role": "X coordinate"
+        },
+        {
+          "symbol": "World3PlayerProjectileY",
+          "role": "Y coordinate"
+        },
+        {
+          "symbol": "World3PlayerProjectileDirection",
+          "role": "horizontal motion direction"
+        },
+        {
+          "symbol": "World3PlayerProjectileMetasprite",
+          "role": "moving or impact metasprite index"
+        },
+        {
+          "symbol": "World3PlayerProjectileAnimationCounter",
+          "role": "impact animation rate counter"
+        }
+      ],
+      "layout": {
+        "start": "0x06F9",
+        "field_stride": 2,
+        "field_count": 6,
+        "unclassified_bases": []
+      },
+      "lifecycle": [
+        "World3_ClearPlayerProjectiles",
+        "World3_TryFirePlayerProjectile",
+        "World3_UpdatePlayerProjectiles",
+        "World3_RenderPlayerProjectiles"
       ]
     }
   ]

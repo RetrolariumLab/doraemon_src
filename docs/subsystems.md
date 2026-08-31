@@ -128,3 +128,11 @@ handlers at `$A22F`. All three ordinary pointer tables call through the shared
 manifest. Room exit saves coordinates and state back through two state-class
 passes. This is a different ownership model from both earlier chapters, not a
 shared object engine hidden behind different data.
+
+Types below `$10` additionally select a behavior stream through the pointer
+table at `$D9AC`. `World3_RunEntityBehaviorScript` decodes the command high
+nibble, while the low nibble and following bytes control motion, delays,
+direction, loops, branches, position, animation variants, and termination.
+The per-entity script offset, wait/rate counters, directions, loop state, HP,
+render flags, and persistence field are named in the complete active-pool RAM
+grid.

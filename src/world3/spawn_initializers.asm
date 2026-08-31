@@ -4,7 +4,7 @@
 
 World3_InitializeSpawnedEntity:
     LDA #$00
-    STA a:$0670,X
+    STA a:World3EntityBehaviorSelector,X
     LDA $C4
     ASL A
     TAY
@@ -50,7 +50,7 @@ Bank2_Label_8FB4:
     LDA #$A8
     STA a:World3EntityMetasprite,X
     LDA #$01
-    STA a:$0630,X
+    STA a:World3EntityRenderFlags,X
 
 Bank2_Label_8FBE:
     RTS
@@ -87,7 +87,7 @@ Bank2_Label_8FE7:
 
 Bank2_Func_9028:
     LDA #$01
-    STA a:$0670,X
+    STA a:World3EntityBehaviorSelector,X
     RTS
 
 Bank2_Func_902E:
@@ -101,7 +101,7 @@ Bank2_Func_902F:
     STA a:World3EntityMetasprite,X
     JSR Bank2_Func_B153
     AND #$02
-    STA a:$06A0,X
+    STA a:World3EntityMetaspriteVariantBit1,X
 
 Bank2_Label_9043:
     RTS
@@ -214,9 +214,9 @@ Bank2_Label_90BD:
     STA a:World3EntityMetasprite,X
     LDY $42
     LDA #$1E
-    STA a:$0668,X
+    STA a:World3EntityActivationTimer,X
     LDA a:$8EC1
-    STA a:$0698,X
+    STA a:World3EntityHitPoints,X
     INY
     CPY #$04
     BNE Bank2_Label_90B8
@@ -256,10 +256,10 @@ Bank2_Label_911F:
     TXA
     TAY
     LDX $3C
-    LDA a:$0670,X
+    LDA a:World3EntityBehaviorSelector,X
     BEQ Bank2_Label_911B
     LSR A
-    STA a:$0670,X
+    STA a:World3EntityBehaviorSelector,X
     LDA #$01
     STA a:World3EntityState,Y
     JSR Bank2_Func_B153
@@ -278,24 +278,24 @@ Bank2_Label_911F:
     STA a:World3EntityY,Y
     LDA a:World3EntityMetasprite,X
     STA a:World3EntityMetasprite,Y
-    LDA a:$0630,X
-    STA a:$0630,Y
+    LDA a:World3EntityRenderFlags,X
+    STA a:World3EntityRenderFlags,Y
     LDA a:World3EntityType,X
     STA a:World3EntityType,Y
-    LDA a:$0640,X
-    STA a:$0640,Y
-    LDA a:$0648,X
-    STA a:$0648,Y
-    LDA a:$0650,X
-    STA a:$0650,Y
-    LDA a:$0658,X
-    STA a:$0658,Y
-    LDA a:$0660,X
-    STA a:$0660,Y
-    LDA a:$0670,X
-    STA a:$0670,Y
+    LDA a:World3EntityScriptOffset,X
+    STA a:World3EntityScriptOffset,Y
+    LDA a:World3EntityScriptWaitTimer,X
+    STA a:World3EntityScriptWaitTimer,Y
+    LDA a:World3EntityHorizontalDirection,X
+    STA a:World3EntityHorizontalDirection,Y
+    LDA a:World3EntityVerticalDirection,X
+    STA a:World3EntityVerticalDirection,Y
+    LDA a:World3EntityScriptRateCounter,X
+    STA a:World3EntityScriptRateCounter,Y
+    LDA a:World3EntityBehaviorSelector,X
+    STA a:World3EntityBehaviorSelector,Y
     LDA a:$8EB9
-    STA a:$0698,Y
+    STA a:World3EntityHitPoints,Y
     LDX $3C
     SEC
     RTS

@@ -32,7 +32,7 @@ Bank2_Func_AB53:
     JSR Bank2_Func_B153
     AND #$07
     TAX
-    LDA a:$06F1,X
+    LDA a:World3EncounterRoomList,X
     CMP #$FF
     BEQ Bank2_Label_AB9D
     STA $3E
@@ -89,13 +89,13 @@ Bank2_Func_AB9E:
 
 Bank2_Label_ABA7:
     LDA $3E
-    CMP a:$06F1,Y
+    CMP a:World3EncounterRoomList,Y
     BEQ Bank2_Label_ABB8
     INY
     CPY #$08
     BNE Bank2_Label_ABA7
     LDA $3E
-    STA a:$06F1,X
+    STA a:World3EncounterRoomList,X
 
 Bank2_Label_ABB8:
     RTS
@@ -110,7 +110,7 @@ Bank2_Func_ABF9:
     LDX #$00
 
 Bank2_Label_ABFF:
-    LDA a:$06F1,X
+    LDA a:World3EncounterRoomList,X
     CMP $DF
     BEQ Bank2_Label_AC0C
     INX
@@ -161,7 +161,7 @@ Bank2_Label_AC2F:
     STA a:World3EntityMetasprite,X
     LDY $42
     LDA #$1E
-    STA a:$0668,X
+    STA a:World3EntityActivationTimer,X
     INY
     INX
     CPX #$08
@@ -182,13 +182,13 @@ Bank2_Func_AC8C:
     JSR Bank2_Func_ACAE
     LDY $40
     TXA
-    STA a:$0620,Y
+    STA a:World3EntityCollisionScanLimit,Y
     CPX #$06
     BCS Bank2_Label_ACAA
     JSR Bank2_Func_ACAE
     LDY $40
     TXA
-    STA a:$0620,Y
+    STA a:World3EntityCollisionScanLimit,Y
 
 Bank2_Label_ACAA:
     SEC
@@ -220,11 +220,11 @@ Bank2_Label_ACB4:
     STA a:World3EntityMetasprite,X
     LDY $42
     LDA a:$8EBD
-    STA a:$0698,X
+    STA a:World3EntityHitPoints,X
     LDA a:$AD19,Y
-    STA a:$0618,X
+    STA a:World3EntityFrameCounter,X
     LDA #$1E
-    STA a:$0668,X
+    STA a:World3EntityActivationTimer,X
     INC $3F
     INX
     CPX #$08
@@ -240,43 +240,43 @@ Bank2_Label_ACF8:
 
 Bank2_Func_AD21:
     LDX $C8
-    LDA a:$0680,X
+    LDA a:World3EntityBehaviorTimer,X
     BNE Bank2_Label_AD58
     JSR Bank2_Func_B153
     AND #$20
     ORA #$10
-    STA a:$0680,X
+    STA a:World3EntityBehaviorTimer,X
     JSR Bank2_Func_B153
     AND #$01
-    STA a:$0670,X
+    STA a:World3EntityBehaviorSelector,X
 
 Bank2_Label_AD3A:
     JSR Bank2_Func_B153
     AND #$C0
     ORA #$10
-    CMP a:$0650,X
+    CMP a:World3EntityHorizontalDirection,X
     BEQ Bank2_Label_AD3A
-    STA a:$0650,X
+    STA a:World3EntityHorizontalDirection,X
 
 Bank2_Label_AD49:
     JSR Bank2_Func_B153
     AND #$C0
     ORA #$10
-    CMP a:$0658,X
+    CMP a:World3EntityVerticalDirection,X
     BEQ Bank2_Label_AD49
-    STA a:$0658,X
+    STA a:World3EntityVerticalDirection,X
 
 Bank2_Label_AD58:
-    DEC a:$0680,X
+    DEC a:World3EntityBehaviorTimer,X
     LDA a:World3EntityX,X
     STA $3C
     LDA a:World3EntityY,X
     STA $3D
-    LDA a:$0670,X
+    LDA a:World3EntityBehaviorSelector,X
     BEQ Bank2_Label_AD75
-    LDA a:$0658,X
+    LDA a:World3EntityVerticalDirection,X
     TAY
-    LDA a:$0650,X
+    LDA a:World3EntityHorizontalDirection,X
     TAX
     JMP Bank2_Label_AD79
 

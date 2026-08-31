@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank1_Func_9F84:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     CMP #$28
     BCC Bank1_Label_9F99
     CMP #$30
@@ -19,7 +19,7 @@ Bank1_Label_9F99:
     RTS
 
 Bank1_Func_9F9A:
-    LDY a:$056D,X
+    LDY a:World2EnemyPhaseCounter,X
     LDA $73
     AND #$03
     BNE Bank1_Label_9FC2
@@ -31,10 +31,10 @@ Bank1_Func_9F9A:
     CLC
     ADC a:$A5F2,Y
     STA a:World2EnemyX,X
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$0F
-    STA a:$056D,X
+    STA a:World2EnemyPhaseCounter,X
 
 Bank1_Label_9FC2:
     JMP Bank1_Func_A0DC
@@ -44,7 +44,7 @@ Bank1_Func_9FC5:
     INC a:World2EnemyY,X
     INC a:World2EnemyY,X
     INC a:World2EnemyY,X
-    LDY a:$056D,X
+    LDY a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyY,X
     CLC
     ADC a:$A5EE,Y
@@ -53,10 +53,10 @@ Bank1_Func_9FC5:
     CLC
     ADC a:$A5F2,Y
     STA a:World2EnemyX,X
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$0F
-    STA a:$056D,X
+    STA a:World2EnemyPhaseCounter,X
     RTS
 
 Bank1_Func_9FF4:
@@ -68,9 +68,9 @@ Bank1_Func_9FF4:
     BCS Bank1_Label_A00F
     LDA a:World2EnemyY,X
     SEC
-    SBC a:$0574,X
+    SBC a:World2EnemyBehaviorParameter,X
     STA a:World2EnemyY,X
-    DEC a:$0574,X
+    DEC a:World2EnemyBehaviorParameter,X
 
 Bank1_Label_A00F:
     JSR Bank1_Func_9377
@@ -81,13 +81,13 @@ Bank1_Label_A017:
     LDA $73
     AND #$0F
     BNE Bank1_Label_A020
-    INC a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
 
 Bank1_Label_A020:
     RTS
 
 Bank1_Func_A021:
-    LDA a:$056D,X
+    LDA a:World2EnemyPhaseCounter,X
     PHA
     AND #$01
     TAX
@@ -124,10 +124,10 @@ Bank1_Func_A048:
     BNE Bank1_Label_A062
 
 Bank1_Label_A057:
-    INC a:$056D,X
-    LDA a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
+    LDA a:World2EnemyPhaseCounter,X
     AND #$0F
-    STA a:$056D,X
+    STA a:World2EnemyPhaseCounter,X
 
 Bank1_Label_A062:
     RTS
@@ -195,7 +195,7 @@ Bank1_Func_A0B9:
     JMP Bank1_Func_A35B
 
 Bank1_Func_A0C4:
-    LDY a:$056D,X
+    LDY a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyY,X
     CLC
     ADC a:$A5EE,Y

@@ -60,15 +60,37 @@ Bank 1 uses compact parallel arrays whose stride is the pool capacity, rather
 than World 1's single 48-slot layout. Independent clear, spawn, update,
 collision, and render loops establish three pools.
 
-| Pool | Capacity | State/flags | X | Y | Additional proved field |
-| --- | ---: | --- | --- | --- | --- |
-| Enemies | 7 | `World2EnemyState` `$0558` | `World2EnemyX` `$055F` | `World2EnemyY` `$0566` | - |
-| Enemy projectiles | 6 | `World2EnemyProjectileFlags` `$0589` | `World2EnemyProjectileX` `$058F` | `World2EnemyProjectileY` `$0595` | Y zero is the inactive sentinel |
-| Player projectiles | 7 | `World2PlayerProjectileState` `$05B3` | `World2PlayerProjectileX` `$05BA` | `World2PlayerProjectileY` `$05C1` | `World2PlayerProjectileDirection` `$05C8` |
+| Enemy field | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World2EnemyState` | `$0558` | 7 | Active state and update/render handler index |
+| `World2EnemyX` | `$055F` | 7 | X coordinate |
+| `World2EnemyY` | `$0566` | 7 | Y coordinate |
+| `World2EnemyPhaseCounter` | `$056D` | 7 | Initial spawn delay, then handler-local animation or motion phase |
+| `World2EnemyBehaviorParameter` | `$0574` | 7 | Spawn axis/side or type-specific motion parameter |
+| `World2EnemyAttackTimer` | `$057B` | 7 | Counter compared with the state-specific firing interval |
+| `World2EnemyDamageCounter` | `$0582` | 7 | Incremented on a hit and compared with the state-specific defeat threshold |
 
-The unlisted fields between these bases are timers, animation state, velocity,
-or handler-specific work. They stay numeric until each meaning is established
-across every handler that shares the pool.
+| Enemy-projectile field | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World2EnemyProjectileFlags` | `$0589` | 6 | Direction, major axis, and motion-mode flags |
+| `World2EnemyProjectileX` | `$058F` | 6 | X coordinate |
+| `World2EnemyProjectileY` | `$0595` | 6 | Y coordinate; zero is the inactive sentinel |
+| `World2EnemyProjectileStepAccumulator` | `$059B` | 6 | Accumulator used by major/minor-axis line stepping |
+| `World2EnemyProjectileMotionX` | `$05A1` | 6 | Signed X step or aimed-line X delta, depending on flags |
+| `World2EnemyProjectileMotionY` | `$05A7` | 6 | Signed Y step or aimed-line Y delta, depending on flags |
+| `World2EnemyProjectileLifetime` | `$05AD` | 6 | Age counter; timed projectiles despawn at `$8C` |
+
+| Player-projectile field | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World2PlayerProjectileState` | `$05B3` | 7 | Active state |
+| `World2PlayerProjectileX` | `$05BA` | 7 | X coordinate |
+| `World2PlayerProjectileY` | `$05C1` | 7 | Y coordinate |
+| `World2PlayerProjectileDirection` | `$05C8` | 7 | Motion direction selector |
+
+These are three complete structure-of-arrays grids: seven enemy fields from
+`$0558-$0588` with stride 7, seven enemy-projectile fields from `$0589-$05B2`
+with stride 6, and four player-projectile fields from `$05B3-$05CE` with
+stride 7. The manifest accounts for every field base in all three layouts.
 
 ## World 3 active and persistent objects
 
@@ -82,8 +104,25 @@ into it. Room exit performs the reverse copy for matching objects.
 | `World3EntityState` | `$0600` | 8 | Zero means free; nonzero states select update phases |
 | `World3EntityX` | `$0608` | 8 | Active X coordinate |
 | `World3EntityY` | `$0610` | 8 | Active Y coordinate |
+| `World3EntityFrameCounter` | `$0618` | 8 | Per-frame animation and behavior counter |
+| `World3EntityCollisionScanLimit` | `$0620` | 8 | Bound used by room collision scans |
 | `World3EntityMetasprite` | `$0628` | 8 | Type-derived animation/metasprite value |
+| `World3EntityRenderFlags` | `$0630` | 8 | Per-object flags merged into renderer attributes |
 | `World3EntityType` | `$0638` | 8 | Object type and behavior-dispatch index |
+| `World3EntityScriptOffset` | `$0640` | 8 | Offset into the type-selected behavior stream |
+| `World3EntityScriptWaitTimer` | `$0648` | 8 | Countdown owned by script opcode `$5n` |
+| `World3EntityHorizontalDirection` | `$0650` | 8 | Horizontal motion direction flag |
+| `World3EntityVerticalDirection` | `$0658` | 8 | Vertical motion direction flag |
+| `World3EntityScriptRateCounter` | `$0660` | 8 | Packed execution-rate counter set by opcode `$6n` |
+| `World3EntityActivationTimer` | `$0668` | 8 | Spawn countdown before the active-state transition |
+| `World3EntityBehaviorSelector` | `$0670` | 8 | Type-specific clone budget or targeting-mode selector |
+| `World3EntityPersistentState` | `$0678` | 8 | State synchronized with the persistent room record |
+| `World3EntityBehaviorTimer` | `$0680` | 8 | Script-loop and type-specific behavior countdown |
+| `World3EntityScriptLoopOffset` | `$0688` | 8 | Behavior-stream offset restored while a loop remains |
+| `World3EntityFollowAnchorFlag` | `$0690` | 8 | Enables following the active type-`$0C` anchor |
+| `World3EntityHitPoints` | `$0698` | 8 | Type-derived damage countdown and defeat trigger |
+| `World3EntityMetaspriteVariantBit1` | `$06A0` | 8 | Zero-or-two offset added to the base metasprite |
+| `World3EntityMetaspriteVariantBit0` | `$06A8` | 8 | Zero-or-one offset added to the base metasprite |
 
 | Persistent record field | Address | Size | Role |
 | --- | ---: | ---: | --- |
@@ -93,9 +132,29 @@ into it. Room exit performs the reverse copy for matching objects.
 | `World3RoomObjectY` | `$06D7` | 13 | Saved Y coordinate |
 | `World3RoomObjectState` | `$06E4` | 13 | State restored on materialization and saved on room exit |
 
-Other eight-slot fields between `$0618` and `$06AF`, and the two-slot structure
-at `$06F9`, remain numeric pending complete animation, collision, and transient
-effect semantics.
+The active storage is a fully classified 22-field structure-of-arrays grid from
+`$0600` through `$06AF`, with an eight-byte stride. The manifest checks every
+field base so accidental gaps cannot be mistaken for completed analysis. The
+persistent registry is likewise a complete five-field grid from `$06B0`
+through `$06F0`, with a 13-byte stride.
+
+`World3EncounterRoomList` at `$06F1-$06F8` stores eight room numbers. Empty
+entries contain `$FF`; encounter placement expands the list to adjacent valid
+rooms, room entry uses it to materialize a type-`$0A/$0B` group, and defeating
+that group removes the current room.
+
+| Player-projectile field | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World3PlayerProjectileState` | `$06F9` | 2 | Zero is free, one is moving, and two is the impact animation |
+| `World3PlayerProjectileX` | `$06FB` | 2 | X coordinate |
+| `World3PlayerProjectileY` | `$06FD` | 2 | Y coordinate |
+| `World3PlayerProjectileDirection` | `$06FF` | 2 | Horizontal motion direction |
+| `World3PlayerProjectileMetasprite` | `$0701` | 2 | Moving or impact metasprite index |
+| `World3PlayerProjectileAnimationCounter` | `$0703` | 2 | Four-frame divider for the impact animation |
+
+The projectile pool is a complete six-field grid from `$06F9-$0704`, with a
+two-byte stride. Its lifecycle covers whole-pool clearing, free-slot allocation,
+motion/collision and impact updates, and rendering.
 
 ## Bank-local audio driver state
 

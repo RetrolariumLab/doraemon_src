@@ -88,7 +88,7 @@ World2_EnemyUpdateDispatchContinuation:
     STA $99
     JSR Bank1_Func_9A46
     BCC Bank1_Label_99E0
-    INC a:$0582,X
+    INC a:World2EnemyDamageCounter,X
     LDA a:World2EnemyState,X
     CMP #$11
     BCS Bank1_Label_9991
@@ -99,7 +99,7 @@ World2_EnemyUpdateDispatchContinuation:
     BEQ Bank1_Label_9999
 
 Bank1_Label_9991:
-    LDA a:$0582,X
+    LDA a:World2EnemyDamageCounter,X
     CMP a:$A511,Y
     BCC Bank1_Label_99D8
 
@@ -153,21 +153,21 @@ Bank1_Label_99D8:
     JMP Bank1_Label_9A3F
 
 Bank1_Label_99E0:
-    INC a:$057B,X
-    LDA a:$057B,X
+    INC a:World2EnemyAttackTimer,X
+    LDA a:World2EnemyAttackTimer,X
     CMP a:$A4FD,Y
     BCC Bank1_Label_9A3F
     LDA #$00
-    STA a:$057B,X
-    JSR Bank1_Func_A140
+    STA a:World2EnemyAttackTimer,X
+    JSR World2_SpawnEnemyProjectile
     JMP Bank1_Label_9A3F
 
 Bank1_Func_99F6:
-    DEC a:$056D,X
+    DEC a:World2EnemyPhaseCounter,X
     BNE Bank1_Label_9A3F
     LDA #$00
-    STA a:$057B,X
-    LDA a:$0574,X
+    STA a:World2EnemyAttackTimer,X
+    LDA a:World2EnemyBehaviorParameter,X
     BEQ Bank1_Label_9A23
     PHA
     LDA a:World2EnemyX,X
@@ -400,7 +400,7 @@ Bank1_Label_9B2A:
     RTS
 
 Bank1_Func_9B2F:
-    INC a:$056D,X
+    INC a:World2EnemyPhaseCounter,X
     JSR Bank1_Func_A0DC
     LDA a:World2EnemyState,X
     BEQ Bank1_Label_9B3F

@@ -137,7 +137,7 @@ Bank2_Label_A2D8:
 
 Bank2_Func_A2E9:
     JSR Bank2_Func_A3B4
-    JSR Bank2_Func_A572
+    JSR World3_TryFirePlayerProjectile
     LDY $9B
     LDA a:$A32E,Y
     STA $43
@@ -179,12 +179,12 @@ Bank2_Label_A31E:
 
 Bank2_Func_A335:
     JSR Bank2_Func_A3B4
-    JSR Bank2_Func_A572
+    JSR World3_TryFirePlayerProjectile
     RTS
 
 Bank2_Func_A33C:
     JSR Bank2_Func_A343
-    JSR Bank2_Func_A572
+    JSR World3_TryFirePlayerProjectile
     RTS
 
 Bank2_Func_A343:
@@ -538,7 +538,7 @@ Bank2_Label_A562:
     RTS
     .byte $FE, $FE, $FE, $FE, $FF, $FF, $FF, $FF, $00, $00, $00, $00, $00, $00, $02
 
-Bank2_Func_A572:
+World3_TryFirePlayerProjectile:
     JSR Bank2_Func_A5F7
     AND #$80
     BNE Bank2_Label_A57C
@@ -564,7 +564,7 @@ Bank2_Label_A57C:
     LDX #$00
 
 Bank2_Label_A597:
-    LDA a:$06F9,X
+    LDA a:World3PlayerProjectileState,X
     BEQ Bank2_Label_A5A2
     INX
     CPX #$02
@@ -590,19 +590,19 @@ Bank2_Label_A5B9:
     TYA
     CLC
     ADC $8C
-    STA a:$06FB,X
+    STA a:World3PlayerProjectileX,X
     LDA $8D
     CLC
     ADC #$08
-    STA a:$06FD,X
+    STA a:World3PlayerProjectileY,X
     LDA $95
-    STA a:$06FF,X
+    STA a:World3PlayerProjectileDirection,X
     ASL A
     CLC
     ADC #$68
-    STA a:$0701,X
+    STA a:World3PlayerProjectileMetasprite,X
     LDA #$01
-    STA a:$06F9,X
+    STA a:World3PlayerProjectileState,X
     LDA #$19
     JSR Bank2_Func_A5DF
 

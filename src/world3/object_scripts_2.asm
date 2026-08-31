@@ -2,7 +2,7 @@
 ; World 3 object traversal, animation, and later behavior handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_9D19:
+World3_RenderEntities:
     LDA $51
     BNE Bank2_Label_9D25
     INC $52
@@ -53,13 +53,13 @@ Bank2_Func_9D49:
     BCS Bank2_Label_9D71
 
 Bank2_Label_9D67:
-    LDA a:$0630,X
+    LDA a:World3EntityRenderFlags,X
     ORA #$40
     STA $7A
     JMP Bank2_Label_9D76
 
 Bank2_Label_9D71:
-    LDA a:$0630,X
+    LDA a:World3EntityRenderFlags,X
     STA $7A
 
 Bank2_Label_9D76:
@@ -96,9 +96,9 @@ Bank2_Label_9DAE:
     JSR Bank2_Func_9DCD
     LDA a:World3EntityMetasprite,X
     CLC
-    ADC a:$06A0,X
+    ADC a:World3EntityMetaspriteVariantBit1,X
     CLC
-    ADC a:$06A8,X
+    ADC a:World3EntityMetaspriteVariantBit0,X
     STA $79
     LDA a:World3EntityY,X
     TAY

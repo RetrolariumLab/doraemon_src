@@ -195,7 +195,7 @@ Bank2_Label_A6FA:
 
 Bank2_Label_A70F:
     LDA #$00
-    STA a:$0678,Y
+    STA a:World3EntityPersistentState,Y
     INY
     CPY #$08
     BNE Bank2_Label_A70F
@@ -231,7 +231,7 @@ Bank2_Func_A733:
     STA PpuCtrlShadow
     JSR Bank2_Func_A8EB
     JSR Bank2_Func_A835
-    JSR Bank2_Func_8DA8
+    JSR World3_ClearPlayerProjectiles
     JSR World3_ClearEntityStorage
     JSR Bank2_Func_8C25
     JSR World3_MaterializeRoomObjects

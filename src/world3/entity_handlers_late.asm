@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank2_Func_968C:
-    LDA a:$0690,X
+    LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_96BF
     JSR Bank2_Func_96C0
     LDA a:World3EntityX,Y
@@ -14,19 +14,19 @@ Bank2_Func_968C:
     CLC
     ADC #$18
     STA a:World3EntityY,X
-    INC a:$0618,X
-    LDA a:$0618,X
+    INC a:World3EntityFrameCounter,X
+    LDA a:World3EntityFrameCounter,X
     LSR A
     LSR A
     LSR A
     AND #$01
-    STA a:$06A8,X
-    LDA a:$0618,X
+    STA a:World3EntityMetaspriteVariantBit0,X
+    LDA a:World3EntityFrameCounter,X
     LSR A
     LSR A
     LSR A
     AND #$02
-    STA a:$06A0,X
+    STA a:World3EntityMetaspriteVariantBit1,X
 
 Bank2_Label_96BF:
     RTS
@@ -65,7 +65,7 @@ Bank2_Func_96D8:
 
 Bank2_Label_96E3:
     JSR Bank2_Func_9963
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_9700
     LDY #$00
 
@@ -112,11 +112,11 @@ Bank2_Label_972C:
     LDY #$00
 
 Bank2_Label_972E:
-    LDA a:$06F1,Y
+    LDA a:World3EncounterRoomList,Y
     CMP $DF
     BNE Bank2_Label_973A
     LDA #$FF
-    STA a:$06F1,Y
+    STA a:World3EncounterRoomList,Y
 
 Bank2_Label_973A:
     INY
@@ -143,7 +143,7 @@ Bank2_Func_9759:
 
 Bank2_Label_9764:
     JSR Bank2_Func_9963
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_97AE
     LDA $9F
     BNE Bank2_Label_97AE
@@ -253,7 +253,7 @@ Bank2_Func_9813:
 
 Bank2_Label_981E:
     JSR Bank2_Func_9963
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_985B
     LDY #$00
 
@@ -344,7 +344,7 @@ Bank2_Label_98B3:
     LDY #$00
 
 Bank2_Label_98BA:
-    LDA a:$06F1,Y
+    LDA a:World3EncounterRoomList,Y
     CMP #$FF
     BEQ Bank2_Label_98C5
     INY
@@ -352,7 +352,7 @@ Bank2_Label_98BA:
 
 Bank2_Label_98C5:
     LDA $DF
-    STA a:$06F1,Y
+    STA a:World3EncounterRoomList,Y
     JSR World3_FindFreeEntitySlot
     BCC Bank2_Label_98E2
     LDA a:World3EntityX,X
@@ -377,7 +377,7 @@ Bank2_Func_98E3:
 
 Bank2_Label_98EE:
     JSR Bank2_Func_9963
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_9962
     LDA a:World3EntityY,X
     CMP #$F8
@@ -441,11 +441,11 @@ Bank2_Label_9962:
     RTS
 
 Bank2_Func_9963:
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_9998
     LDA $95
     ASL A
-    STA a:$06A0,X
+    STA a:World3EntityMetaspriteVariantBit1,X
     LDY #$F4
     LDA $95
     BEQ Bank2_Label_9976
@@ -462,8 +462,8 @@ Bank2_Label_9976:
     STA a:World3EntityX,X
 
 Bank2_Label_9986:
-    INC a:$0658,X
-    LDA a:$0658,X
+    INC a:World3EntityVerticalDirection,X
+    LDA a:World3EntityVerticalDirection,X
     LSR A
     AND #$02
     CLC
@@ -491,18 +491,18 @@ Bank2_Label_99A4:
 
 Bank2_Label_99AF:
     TYA
-    STA a:$06A0,X
-    INC a:$0618,X
-    LDA a:$0618,X
+    STA a:World3EntityMetaspriteVariantBit1,X
+    INC a:World3EntityFrameCounter,X
+    LDA a:World3EntityFrameCounter,X
     AND #$07
     BNE Bank2_Label_99C5
-    LDA a:$06A8,X
+    LDA a:World3EntityMetaspriteVariantBit0,X
     EOR #$01
-    STA a:$06A8,X
+    STA a:World3EntityMetaspriteVariantBit0,X
 
 Bank2_Label_99C5:
     STX $3E
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_9A02
     LDA a:World3EntityX,X
     STA $3C
@@ -556,8 +556,8 @@ Bank2_Label_9A15:
     RTS
 
 Bank2_Label_9A1B:
-    INC a:$0618,X
-    LDA a:$0618,X
+    INC a:World3EntityFrameCounter,X
+    LDA a:World3EntityFrameCounter,X
     LSR A
     AND #$02
     CLC

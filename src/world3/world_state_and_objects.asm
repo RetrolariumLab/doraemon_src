@@ -145,12 +145,12 @@ Bank2_Func_8848:
 
 Bank2_Label_8852:
     LDY $05
-    LDA a:$06F9,Y
+    LDA a:World3PlayerProjectileState,Y
     CMP #$01
     BNE Bank2_Label_8868
-    LDA a:$06FB,Y
+    LDA a:World3PlayerProjectileX,Y
     STA $3C
-    LDA a:$06FD,Y
+    LDA a:World3PlayerProjectileY,Y
     STA $3D
     JSR Bank2_Func_886F
 
@@ -195,11 +195,11 @@ Bank2_Func_886F:
 
 Bank2_Label_88AD:
     LDA #$02
-    STA a:$06F9,Y
+    STA a:World3PlayerProjectileState,Y
     LDA #$00
-    STA a:$0703,Y
+    STA a:World3PlayerProjectileAnimationCounter,Y
     LDA #$A0
-    STA a:$0701,Y
+    STA a:World3PlayerProjectileMetasprite,Y
     LDA a:World3EntityType,X
     CMP #$04
     BNE Bank2_Label_88C6
@@ -217,7 +217,7 @@ Bank2_Label_88D1:
     JSR Bank2_Func_A5EB
 
 Bank2_Label_88D6:
-    LDA a:$0698,X
+    LDA a:World3EntityHitPoints,X
     BEQ Bank2_Label_886E
     LDA a:World3EntityType,X
     CMP #$0C
@@ -231,7 +231,7 @@ Bank2_Label_88E6:
     STA a:World3EntityX,X
 
 Bank2_Label_88EE:
-    DEC a:$0698,X
+    DEC a:World3EntityHitPoints,X
     BNE Bank2_Label_896C
     LDA a:World3EntityType,X
     CMP #$08
@@ -431,15 +431,15 @@ Bank2_Label_8A36:
     BNE Bank2_Label_8A48
     LDA #$01
     STA $9A
-    STA a:$0678,X
+    STA a:World3EntityPersistentState,X
     JMP Bank2_Label_8A54
 
 Bank2_Label_8A48:
-    LDA a:$0678,X
+    LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_8A5B
     LDA #$00
     STA $9A
-    STA a:$0678,X
+    STA a:World3EntityPersistentState,X
 
 Bank2_Label_8A54:
     INC $62
@@ -579,8 +579,8 @@ Bank2_Label_8B36:
     CPY #$0D
     BNE Bank2_Label_8B36
     LDA #$00
-    STA a:$06F9
-    STA a:$06FA
+    STA a:World3PlayerProjectileState
+    STA a:World3PlayerProjectileState+$01
     LDA #$08
     STA a:AudioMusicState
     RTS
