@@ -29,10 +29,12 @@
     },
     {
       "id": "runtime_architecture",
-      "status": "in-progress",
+      "status": "complete",
       "evidence": [
+        "config/bank_gateways.json",
         "docs/runtime_evidence.md",
         "scenarios/runtime_scenarios.json",
+        "scripts/bank_gateways.py",
         "scripts/runtime/capture_architecture.lua",
         "scripts/runtime/run_runtime_scenarios.py",
         "scripts/runtime/validate_runtime_scenarios.py"
@@ -40,8 +42,11 @@
     },
     {
       "id": "chapter_execution_evidence",
-      "status": "planned",
-      "evidence": []
+      "status": "in-progress",
+      "evidence": [
+        "docs/runtime_evidence.md",
+        "scenarios/runtime_scenarios.json"
+      ]
     },
     {
       "id": "semantic_source_layout",

@@ -39,6 +39,7 @@ def main() -> int:
     parser.add_argument("--lua", required=True, type=Path)
     parser.add_argument("--scenarios", required=True, type=Path)
     parser.add_argument("--output-dir", required=True, type=Path)
+    parser.add_argument("--screenshot-dir", type=Path)
     parser.add_argument("--scenario", action="append", dest="selected")
     args = parser.parse_args()
 
@@ -60,6 +61,8 @@ def main() -> int:
     if unknown:
         raise SystemExit(f"[FAIL] Unknown runtime scenario: {', '.join(sorted(unknown))}")
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    if args.screenshot_dir is not None:
+        args.screenshot_dir.mkdir(parents=True, exist_ok=True)
 
     for scenario in document["scenarios"]:
         scenario_id = scenario["id"]
@@ -74,6 +77,12 @@ def main() -> int:
             DORAEMON_RUNTIME_MAX_FRAMES=str(scenario["max_frames"]),
             DORAEMON_RUNTIME_INPUTS=encode_inputs(scenario.get("inputs", [])),
         )
+        if args.screenshot_dir is not None:
+            screenshot = args.screenshot_dir / f"{scenario_id}.png"
+            screenshot.unlink(missing_ok=True)
+            environment["DORAEMON_RUNTIME_SCREENSHOT"] = str(
+                screenshot.resolve()
+            ).replace("\\", "/")
         command = [
             str(args.fceux.resolve()),
             "-lua",

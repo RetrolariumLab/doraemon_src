@@ -45,15 +45,32 @@ input appeared in the game's own controller byte before accepting a bank entry.
 
 | Scenario | Entry frame | Observed edge | Entry dispatch | Steady selection |
 | --- | ---: | --- | --- | --- |
-| World 1 city | 1306 | PRG3/CHR3 -> PRG0/CHR3 | bank 0 `$8277` | PRG0/CHR0 (`$00`) |
+| World 1 city | 744 | PRG3/CHR3 -> PRG0/CHR3 | bank 0 `$8271` | PRG0/CHR0 (`$00`) |
 | World 2 cave | 186 | PRG3/CHR3 -> PRG1/CHR3 | bank 1 `$8271` | PRG1/CHR1 (`$05`) |
 | World 3 underwater | 194 | PRG3/CHR3 -> PRG2/CHR3 | bank 2 `$8271` | PRG2/CHR2 (`$0A`) |
 
-The natural World 1 path spends about 1,120 additional frames in the shell's
-intro sequence before entering bank 0. The A+B shortcut bypasses that sequence
-and enters the selected chapter's `$8271` dispatcher directly.
+The World 1 scenario uses two separate Start presses: the first skips the title
+animation and the second begins the game. A single press instead lets the title
+enter an attract demonstration at frame 1306 through bank-0 `$8277`; that demo
+eventually returns to the title. This distinction is enforced by the tracked
+input sequence and bank-0 `$8271` entry expectation.
 
 World 2 temporarily follows PRG1 -> PRG3 -> PRG1 at frames 192-195 through the
 bank-3 `$8277` entry. World 3 likewise follows PRG2 -> PRG3 -> PRG2 at frames
 206-209. These round trips are runtime evidence that bank 3 supplies a callable
 common presentation service, not merely the title's top-level loop.
+
+## World 1 city to underground
+
+The `world1-underground` scenario repeats the real two-Start game entry, moves
+down across the visible spawn-area manhole, and holds A during the overlap. At
+frame 977 execution takes the accepted manhole branch at bank-0 `$D244`; at
+frame 1010 it reaches the side-view initializer at bank-0 `$CDB5`. Both probes
+are required in order.
+
+The complete transition remains in selector `$00` (PRG0/CHR0). Thus city and
+underground are not only stored in the same physical bank: runtime shows that
+the renderer/mode transition occurs without a mapper change. The generated
+final screenshot is written to `build/runtime/screens/world1-underground.png`
+and shows the side-view brick tunnel; screenshots and CSV traces remain ignored
+build evidence.

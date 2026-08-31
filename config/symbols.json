@@ -33,6 +33,42 @@
     },
     {
       "bank": 0,
+      "address": "0x828E",
+      "name": "Bank0_World1Main",
+      "evidence": "world1-city-runtime-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC7F",
+      "name": "Bank0_TryEnterWorld1Door",
+      "evidence": "portal-type-2-and-button-a"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC8C",
+      "name": "Bank0_EnterWorld1Door",
+      "evidence": "portal-type-2-accepted-branch"
+    },
+    {
+      "bank": 0,
+      "address": "0xCDB5",
+      "name": "Bank0_InitWorld1SideView",
+      "evidence": "world1-underground-runtime-probe"
+    },
+    {
+      "bank": 0,
+      "address": "0xD237",
+      "name": "Bank0_TryEnterWorld1Manhole",
+      "evidence": "manhole-type-1-and-button-a"
+    },
+    {
+      "bank": 0,
+      "address": "0xD244",
+      "name": "Bank0_EnterWorld1Manhole",
+      "evidence": "world1-underground-runtime-probe"
+    },
+    {
+      "bank": 0,
       "address": "0xA9EF",
       "name": "World1_BlockAttributes",
       "evidence": "cadeditor"

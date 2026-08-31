@@ -376,7 +376,7 @@ Bank0_MapperValueTable:
     .byte $00, $10, $20, $30, $01, $11, $21, $31, $02, $12, $22, $32, $03, $13, $23, $33
 
 Bank0_Func_8271:
-    JMP Bank0_Func_828E
+    JMP Bank0_World1Main
 
 Bank0_Func_8274:
     JMP Bank0_Func_84D9
@@ -402,7 +402,7 @@ Bank0_Label_8288:
     JSR Bank0_Func_E3CD
     JMP Bank0_Func_E9FD
 
-Bank0_Func_828E:
+Bank0_World1Main:
     LDX #$7F
     TXS
     LDA #$00
@@ -438,8 +438,8 @@ Bank0_Label_82C1:
     JSR Bank0_Func_888F
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
-    JSR Bank0_Func_CC7F
-    JSR Bank0_Func_D237
+    JSR Bank0_TryEnterWorld1Door
+    JSR Bank0_TryEnterWorld1Manhole
     JSR Bank0_Func_820E
     LDA $79
     BMI Bank0_Label_82F5
@@ -5802,18 +5802,18 @@ Bank0_Label_CBE7:
     .byte $0C, $E8, $FF, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $00, $18
     .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
 
-Bank0_Func_CC7F:
+Bank0_TryEnterWorld1Door:
     LDA $21
     AND #$80
     BEQ Bank0_Label_CC8B
     LDA $81
     CMP #$02
-    BEQ Bank0_Label_CC8C
+    BEQ Bank0_EnterWorld1Door
 
 Bank0_Label_CC8B:
     RTS
 
-Bank0_Label_CC8C:
+Bank0_EnterWorld1Door:
     LDA #$00
     STA a:$02AA
     STA a:$02AB
@@ -5959,7 +5959,7 @@ Bank0_Label_CD7D:
     .byte $B8, $5C, $70, $40, $8C, $8C, $70, $60, $1D, $5C, $70, $40, $0C, $D8, $70, $60
     .byte $80, $05, $06, $FF, $80, $01, $02, $80, $00, $05, $04, $07
 
-Bank0_Func_CDB5:
+Bank0_InitWorld1SideView:
     LDX #$00
 
 Bank0_Label_CDB7:
@@ -6614,18 +6614,18 @@ Bank0_Func_D1C3:
     .byte $38, $10, $03, $FF, $18, $10, $04, $FF, $18, $10, $05, $06, $B8, $10, $05, $06
     .byte $D8, $10, $08, $07, $18, $10, $08, $07
 
-Bank0_Func_D237:
+Bank0_TryEnterWorld1Manhole:
     LDA $21
     AND #$80
     BEQ Bank0_Label_D243
     LDA $81
     CMP #$01
-    BEQ Bank0_Label_D244
+    BEQ Bank0_EnterWorld1Manhole
 
 Bank0_Label_D243:
     RTS
 
-Bank0_Label_D244:
+Bank0_EnterWorld1Manhole:
     LDA a:$06A0
     AND #$FE
     STA a:$06A0
@@ -6690,7 +6690,7 @@ Bank0_Label_D2A4:
     JSR Bank0_Func_C95F
     JSR Bank0_Func_C96A
     LDX $81
-    JMP Bank0_Func_CDB5
+    JMP Bank0_InitWorld1SideView
 
 Bank0_Func_D2C3:
     PHA

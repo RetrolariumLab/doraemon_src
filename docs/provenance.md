@@ -31,6 +31,17 @@ The repository was inspected at its `master` branch on 2026-08-31. Its configs
 use complete-file offsets; this project converts them to bank-qualified CPU
 addresses and records the declared world-2 overlap rather than hiding it.
 
+## Gameplay-control evidence
+
+- Japanese control description:
+  <https://dege.blog/2020/09/10/%E3%80%8C%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93%E3%80%8D%E3%83%95%E3%82%A1%E3%83%9F%E3%82%B3%E3%83%B3%E3%82%B2%E3%83%BC%E3%83%A0%E7%B4%B9%E4%BB%8B%E7%AC%AC9%E5%9B%9E%E7%9B%AE/>
+- Role: identifies A as the city door/manhole action and A as jump in the
+  side-view mode.
+
+The published control description is used only to choose deterministic input.
+The semantic claims come from the exact ROM: the trace observes the game's
+controller byte, accepted manhole branch, and side-view initializer.
+
 ## Toolchain evidence
 
 `tools/disassembly.lock.json` pins Ghidra and GhidraNes archives by version,

@@ -105,6 +105,15 @@ class RuntimeValidationTests(unittest.TestCase):
         rows = [row("nmi", frame="13", controller1="C0")]
         self.assertTrue(RUNTIME.observed_inputs(scenario, rows))
 
+    def test_requires_declared_probe_order(self) -> None:
+        scenario = {"expected_probes": ["manhole_entered", "sideview_init"]}
+        ordered = [
+            row("probe", detail="manhole_entered"),
+            row("probe", detail="sideview_init"),
+        ]
+        self.assertTrue(RUNTIME.probe_sequence(scenario, ordered))
+        self.assertFalse(RUNTIME.probe_sequence(scenario, list(reversed(ordered))))
+
 
 if __name__ == "__main__":
     unittest.main()

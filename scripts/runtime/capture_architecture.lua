@@ -4,6 +4,7 @@ local output_path = assert(os.getenv("DORAEMON_RUNTIME_TRACE"))
 local scenario = assert(os.getenv("DORAEMON_RUNTIME_SCENARIO"))
 local max_frames = assert(tonumber(os.getenv("DORAEMON_RUNTIME_MAX_FRAMES")))
 local encoded_inputs = os.getenv("DORAEMON_RUNTIME_INPUTS") or ""
+local screenshot_path = os.getenv("DORAEMON_RUNTIME_SCREENSHOT")
 local output = assert(io.open(output_path, "w"))
 
 local MAPPER_SELECTION = 0x0017
@@ -97,6 +98,20 @@ for _, address in ipairs({0x8271, 0x8274, 0x8277, 0x827A, 0x827D, 0x8280, 0x8283
     end)
 end
 
+local probes = {
+    [0xCC7F] = "world1_portal_check",
+    [0xCC8C] = "world1_portal_entered",
+    [0xCD42] = "world1_portal_destination",
+    [0xD237] = "world1_manhole_check",
+    [0xD244] = "world1_manhole_entered",
+    [0xCDB5] = "world1_sideview_init",
+}
+for address, name in pairs(probes) do
+    memory.registerexecute(address, function()
+        emit("probe", name)
+    end)
+end
+
 while emu.framecount() < max_frames do
     joypad.set(1, input_for_frame(emu.framecount()))
     emu.frameadvance()
@@ -106,5 +121,8 @@ while emu.framecount() < max_frames do
 end
 
 emit("trace_end", scenario)
+if screenshot_path ~= nil and screenshot_path ~= "" then
+    gui.savescreenshotas(screenshot_path)
+end
 output:close()
 emu.exit()

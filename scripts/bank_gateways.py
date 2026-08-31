@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+"""Validate and report Doraemon's duplicated cross-bank gateway block."""
+
+from __future__ import annotations
+
+import argparse
+from collections import Counter
+import hashlib
+import json
+from pathlib import Path
+import re
+from typing import Any
+
+
+BANK_SIZE = 0x8000
+CPU_BASE = 0x8000
+CALL_RE = re.compile(
+    r"^\s+(JSR|JMP) Bank([0-3])_(?:Func|Label)_([0-9A-F]{4})",
+    re.MULTILINE,
+)
+
+
+def number(value: str | int) -> int:
+    return value if isinstance(value, int) else int(value, 0)
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def source_calls(
+    source_root: Path, gateway_addresses: set[int]
+) -> Counter[tuple[int, int, str]]:
+    calls: Counter[tuple[int, int, str]] = Counter()
+    for path in sorted(source_root.glob("bank_*.asm")):
+        file_bank = int(path.stem.rsplit("_", 1)[1])
+        matches = CALL_RE.findall(path.read_text(encoding="utf-8"))
+        for instruction, symbol_bank, address_text in matches:
+            address = int(address_text, 16)
+            if address not in gateway_addresses:
+                continue
+            if int(symbol_bank) != file_bank:
+                raise ValueError(f"bank-qualified call differs from source file: {path}")
+            calls[(file_bank, address, instruction)] += 1
+    return calls
+
+
+def expected_calls(document: dict[str, Any]) -> Counter[tuple[int, int, str]]:
+    return Counter(
+        {
+            (
+                int(item["source_bank"]),
+                number(item["gateway"]),
+                str(item["instruction"]),
+            ): int(item["count"])
+            for item in document["source_calls"]
+        }
+    )
+
+
+def possible_edges(
+    calls: Counter[tuple[int, int, str]], gateways: dict[int, dict[str, Any]]
+) -> list[str]:
+    edges: set[tuple[int, int]] = set()
+    for source, address, _instruction in calls:
+        gateway = gateways[address]
+        target = gateway["target_prg"]
+        if target == "current":
+            continue
+        target_bank = int(target)
+        edges.add((source, target_bank))
+        if gateway["kind"] == "switch-call-restore":
+            edges.add((target_bank, source))
+    return [f"{source}->{target}" for source, target in sorted(edges)]
+
+
+def validate(
+    prg: bytes, document: dict[str, Any], source_root: Path
+) -> tuple[list[str], dict[str, Any]]:
+    errors: list[str] = []
+    if len(prg) != 4 * BANK_SIZE:
+        return [f"PRG size differs: {len(prg)}"], {}
+    common = document["common_range"]
+    start = number(common["start"])
+    end = number(common["end"])
+    size = end - start + 1
+    if size != int(common["size"]):
+        errors.append("common gateway range size differs")
+    slices = [
+        prg[
+            bank * BANK_SIZE + start - CPU_BASE :
+            bank * BANK_SIZE + end - CPU_BASE + 1
+        ]
+        for bank in range(4)
+    ]
+    if any(chunk != slices[0] for chunk in slices[1:]):
+        errors.append("gateway block is not identical in all PRG banks")
+    actual_sha1 = hashlib.sha1(slices[0]).hexdigest()
+    if actual_sha1 != common["sha1"]:
+        errors.append("gateway block SHA-1 differs")
+
+    gateways = {number(item["address"]): item for item in document["gateways"]}
+    if len(gateways) != len(document["gateways"]):
+        errors.append("gateway addresses are not unique")
+    for address, gateway in gateways.items():
+        expected = bytes.fromhex(gateway["bytes"])
+        offset = address - start
+        if slices[0][offset : offset + len(expected)] != expected:
+            errors.append(f"gateway bytes differ at ${address:04X}")
+
+    actual_calls = source_calls(source_root, set(gateways))
+    declared_calls = expected_calls(document)
+    if actual_calls != declared_calls:
+        errors.append(
+            "gateway source calls differ: "
+            f"expected={sorted(declared_calls.items())}, "
+            f"actual={sorted(actual_calls.items())}"
+        )
+    edges = possible_edges(actual_calls, gateways)
+    if edges != document["possible_prg_edges"]:
+        errors.append(f"possible PRG edges differ: {edges}")
+    report = {
+        "common_sha1": actual_sha1,
+        "common_size": size,
+        "gateway_count": len(gateways),
+        "source_call_count": sum(actual_calls.values()),
+        "possible_prg_edges": edges,
+    }
+    return errors, report
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--prg", required=True, type=Path)
+    parser.add_argument("--manifest", required=True, type=Path)
+    parser.add_argument("--source-root", default=Path("src/banks"), type=Path)
+    parser.add_argument("--pretty", action="store_true")
+    args = parser.parse_args()
+    try:
+        errors, report = validate(
+            args.prg.read_bytes(), load_json(args.manifest), args.source_root
+        )
+    except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+        print(f"[ERROR] bank gateway audit failed: {exc}")
+        return 1
+    if errors:
+        for error in errors:
+            print(f"[ERROR] {error}")
+        return 1
+    if args.pretty:
+        print(json.dumps(report, indent=2))
+    print(
+        f"[OK] {report['gateway_count']} gateways, "
+        f"{report['source_call_count']} direct calls, "
+        f"{len(report['possible_prg_edges'])} PRG edges"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

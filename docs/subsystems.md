@@ -7,15 +7,30 @@ and the value table at `$8261`. NMI saves registers, gates re-entry through
 `$15`, optionally performs OAM DMA, dispatches bank-specific frame work, polls
 both controllers, and restores PPU shadows.
 
-The four jump entries at `$8271`, `$8274`, `$8277`, and `$827A` diverge by bank
-and are strong candidates for the common-to-chapter interface. Their exact
-roles still require runtime traces.
+Runtime traces establish `$8271` as the top-level chapter entry and show `$8274`
+and `$827A` called from NMI in every active bank. `$8277` is used both by the
+World 1 attract path and by short calls into bank-3 presentation code. The
+lower-level responsibilities behind the two NMI entries remain to be split.
 
 ## World 1 / bank 0
 
 The bank owns the city and underground maps plus shared two-layer metatile
 tables. It must support both top-down city movement and the underground
 side-view mode, including door/manhole transitions.
+
+The runtime-backed source path is now named:
+
+```text
+Bank0_World1Main
+  -> Bank0_TryEnterWorld1Door
+  -> Bank0_TryEnterWorld1Manhole
+       -> Bank0_EnterWorld1Manhole
+            -> Bank0_InitWorld1SideView
+```
+
+The A-button dispatcher distinguishes object type 2 (door) from type 1
+(manhole). The tracked start-area scenario executes the manhole branch and
+side-view initializer in that order while PRG0/CHR0 stays selected.
 
 ## World 2 / bank 1
 

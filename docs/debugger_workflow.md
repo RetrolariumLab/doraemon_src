@@ -10,7 +10,9 @@ The runner validates the reference SHA-1, applies deterministic frame inputs,
 captures CSV under `build/runtime/traces`, and checks reset, NMI, dispatch, and
 every observed GNROM write. The Lua hook fingerprints the currently mapped PRG
 bank independently from `$0017`, so a mapper transition records both its source
-bank and committed target bank.
+bank and committed target bank. It also writes final-frame screenshots under
+`build/runtime/screens` for visual review; validators rely on execution events,
+not image comparison.
 
 For interactive work, load the exact Japanese reference in Mesen and import
 `config/debugger_breakpoints.json` and `config/debugger_watches.json` manually.

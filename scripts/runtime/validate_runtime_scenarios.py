@@ -170,6 +170,19 @@ def chapter_steady_state(
     )
 
 
+def probe_sequence(scenario: dict[str, object], rows: list[dict[str, str]]) -> bool:
+    expected = scenario.get("expected_probes")
+    if not isinstance(expected, list) or not expected:
+        return False
+    position = 0
+    for row in rows:
+        if row["event"] == "probe" and row["detail"] == expected[position]:
+            position += 1
+            if position == len(expected):
+                return True
+    return False
+
+
 def validate_check(
     check_id: str, scenario: dict[str, object], rows: list[dict[str, str]]
 ) -> bool:
@@ -185,6 +198,7 @@ def validate_check(
         "observed-inputs": lambda: observed_inputs(scenario, rows),
         "chapter-bank-entry": lambda: chapter_bank_entry(scenario, rows),
         "chapter-steady-state": lambda: chapter_steady_state(scenario, rows),
+        "probe-sequence": lambda: probe_sequence(scenario, rows),
     }
     if check_id not in checks:
         raise ValueError(f"unknown runtime check: {check_id}")

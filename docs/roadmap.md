@@ -15,12 +15,12 @@ baseline commit.
 The target quality, ordered milestones, evidence rules, release gates, and
 immutable predecessor are machine-audited.
 
-### 2. Runtime architecture - In Progress
+### 2. Runtime architecture - Complete
 
 Build deterministic trace tooling and prove reset/NMI, mapper writes, main
 dispatch, input, and the complete bank-transition graph.
 
-### 3. Chapter execution evidence - Planned
+### 3. Chapter execution evidence - In Progress
 
 Capture boot/title, city, underground, cave, underwater, transition, and ending
 scenarios. Identify each chapter's initialization, frame, update, collision,

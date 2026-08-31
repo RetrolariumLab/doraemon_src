@@ -25,7 +25,8 @@ incrementally without weakening byte identity.
   build text, and the known world data have initial semantic names.
 - Deterministic FCEUX traces prove the reset-to-title PRG 0 to PRG 3 switch,
   post-write mapping, title NMI path, bus-conflict values, controller shortcut,
-  and entry into all three gameplay PRG banks.
+  entry into all three gameplay PRG banks, and the World 1 city-to-underground
+  mode transition without a mapper change.
 - The original mapper routine at `$81BB` indexes a ROM table at `$8261` and
   writes back to that same ROM address. The table bytes safely expose mapper 66
   values despite discrete-board bus conflicts.
@@ -85,6 +86,7 @@ make split              # validate and extract private PRG/CHR regions
 make build              # assemble the complete iNES image
 make verify             # compare every image region byte-for-byte
 make bank-info          # print per-bank CRC32 values and vectors
+make bank-gateways      # report the validated cross-bank gateway graph
 make maps               # describe all CadEditor-backed regions as JSON
 make validate-maps      # validate map/table sizes and CRCs
 make quality-check      # formatting, lint, and unit tests

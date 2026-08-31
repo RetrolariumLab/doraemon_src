@@ -26,6 +26,8 @@ FCEUX_EXE ?= $(FCEUX_DIR)/vc/x64/Release/fceux64.exe
 RUNTIME_SCENARIOS := scenarios/runtime_scenarios.json
 RUNTIME_LUA := scripts/runtime/capture_architecture.lua
 RUNTIME_TRACE_DIR := build/runtime/traces
+RUNTIME_SCREENSHOT_DIR := build/runtime/screens
+BANK_GATEWAYS := config/bank_gateways.json
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -34,7 +36,7 @@ RUNTIME_TRACE_DIR := build/runtime/traces
 	ghidra-bootstrap ghidra-status ghidra-inspect ghidra-analyze disassemble \
 	disassembly-check maps validate-maps release-check check clean \
 	source-audit source-release-audit source-check trace-runtime \
-	validate-runtime runtime-architecture
+	validate-runtime runtime-architecture bank-gateways validate-bank-gateways
 
 all: verify
 
@@ -137,14 +139,23 @@ trace-runtime: verify-reference
 		--rom "$(REFERENCE_ROM)" \
 		--lua "$(RUNTIME_LUA)" \
 		--scenarios "$(RUNTIME_SCENARIOS)" \
-		--output-dir "$(RUNTIME_TRACE_DIR)"
+		--output-dir "$(RUNTIME_TRACE_DIR)" \
+		--screenshot-dir "$(RUNTIME_SCREENSHOT_DIR)"
 
 validate-runtime:
 	$(PYTHON) scripts/runtime/validate_runtime_scenarios.py \
 		--scenarios "$(RUNTIME_SCENARIOS)" \
 		--trace-dir "$(RUNTIME_TRACE_DIR)"
 
-runtime-architecture: trace-runtime validate-runtime
+runtime-architecture: validate-bank-gateways trace-runtime validate-runtime
+
+bank-gateways: $(PRG_ASSET)
+	$(PYTHON) scripts/bank_gateways.py --prg "$(PRG_ASSET)" \
+		--manifest "$(BANK_GATEWAYS)" --source-root src/banks --pretty
+
+validate-bank-gateways: $(PRG_ASSET)
+	$(PYTHON) scripts/bank_gateways.py --prg "$(PRG_ASSET)" \
+		--manifest "$(BANK_GATEWAYS)" --source-root src/banks
 
 ghidra-bootstrap:
 	$(PYTHON) scripts/bootstrap_ghidra.py install

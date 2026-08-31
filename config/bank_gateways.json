@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "common_range": {
+    "start": "0x8000",
+    "end": "0x8097",
+    "size": 152,
+    "sha1": "96d7be7487db1a145abc7e128c2ab58235345310"
+  },
+  "gateways": [
+    {
+      "address": "0x8000",
+      "kind": "switch-jump",
+      "target_prg": 0,
+      "dispatch": "0x8271",
+      "bytes": "20f080a90020b2814c7182"
+    },
+    {
+      "address": "0x800b",
+      "kind": "switch-jump",
+      "target_prg": 1,
+      "dispatch": "0x8271",
+      "bytes": "20f080a90120b2814c7182"
+    },
+    {
+      "address": "0x8016",
+      "kind": "switch-jump",
+      "target_prg": 2,
+      "dispatch": "0x8271",
+      "bytes": "20f080a90220b2814c7182"
+    },
+    {
+      "address": "0x8021",
+      "kind": "local-jump",
+      "target_prg": "current",
+      "dispatch": "0x8274",
+      "bytes": "4c7482"
+    },
+    {
+      "address": "0x8024",
+      "kind": "switch-jump",
+      "target_prg": 0,
+      "dispatch": "0x8277",
+      "bytes": "20f080a90020b2814c7782"
+    },
+    {
+      "address": "0x802f",
+      "kind": "switch-jump",
+      "target_prg": 1,
+      "dispatch": "0x8277",
+      "bytes": "20f080a90120b2814c7782"
+    },
+    {
+      "address": "0x803a",
+      "kind": "switch-jump",
+      "target_prg": 2,
+      "dispatch": "0x8277",
+      "bytes": "20f080a90220b2814c7782"
+    },
+    {
+      "address": "0x8045",
+      "kind": "local-jump",
+      "target_prg": "current",
+      "dispatch": "0x827a",
+      "bytes": "4c7a82"
+    },
+    {
+      "address": "0x8048",
+      "kind": "switch-jump",
+      "target_prg": 3,
+      "dispatch": "0x8271",
+      "bytes": "20f080a90320b2814c7182"
+    },
+    {
+      "address": "0x8053",
+      "kind": "switch-call-restore",
+      "target_prg": 3,
+      "dispatch": "0x8277",
+      "bytes": "20f080a51748a90320b281207782684cb281"
+    },
+    {
+      "address": "0x8065",
+      "kind": "switch-call-restore",
+      "target_prg": 3,
+      "dispatch": "0x827d",
+      "bytes": "20f080a51748a90320b281207d82684cb281"
+    },
+    {
+      "address": "0x8077",
+      "kind": "switch-jump",
+      "target_prg": 3,
+      "dispatch": "0x8280",
+      "bytes": "20f080a90320b2814c8082"
+    },
+    {
+      "address": "0x8082",
+      "kind": "switch-jump",
+      "target_prg": 3,
+      "dispatch": "0x8283",
+      "bytes": "20f080a90320b2814c8382"
+    },
+    {
+      "address": "0x808d",
+      "kind": "switch-jump",
+      "target_prg": 3,
+      "dispatch": "0x8286",
+      "bytes": "20f080a90320b2814c8682"
+    }
+  ],
+  "source_calls": [
+    {
+      "source_bank": 0,
+      "gateway": "0x8048",
+      "instruction": "JMP",
+      "count": 3
+    },
+    {
+      "source_bank": 0,
+      "gateway": "0x8053",
+      "instruction": "JSR",
+      "count": 1
+    },
+    {
+      "source_bank": 0,
+      "gateway": "0x8065",
+      "instruction": "JSR",
+      "count": 3
+    },
+    {
+      "source_bank": 0,
+      "gateway": "0x8082",
+      "instruction": "JMP",
+      "count": 1
+    },
+    {
+      "source_bank": 1,
+      "gateway": "0x8048",
+      "instruction": "JMP",
+      "count": 2
+    },
+    {
+      "source_bank": 1,
+      "gateway": "0x8053",
+      "instruction": "JSR",
+      "count": 1
+    },
+    {
+      "source_bank": 1,
+      "gateway": "0x8065",
+      "instruction": "JSR",
+      "count": 1
+    },
+    {
+      "source_bank": 1,
+      "gateway": "0x808d",
+      "instruction": "JMP",
+      "count": 1
+    },
+    {
+      "source_bank": 2,
+      "gateway": "0x8048",
+      "instruction": "JMP",
+      "count": 1
+    },
+    {
+      "source_bank": 3,
+      "gateway": "0x8000",
+      "instruction": "JMP",
+      "count": 2
+    },
+    {
+      "source_bank": 3,
+      "gateway": "0x800b",
+      "instruction": "JMP",
+      "count": 2
+    },
+    {
+      "source_bank": 3,
+      "gateway": "0x8016",
+      "instruction": "JMP",
+      "count": 2
+    },
+    {
+      "source_bank": 3,
+      "gateway": "0x8024",
+      "instruction": "JMP",
+      "count": 1
+    },
+    {
+      "source_bank": 3,
+      "gateway": "0x802f",
+      "instruction": "JMP",
+      "count": 1
+    },
+    {
+      "source_bank": 3,
+      "gateway": "0x803a",
+      "instruction": "JMP",
+      "count": 1
+    },
+    {
+      "source_bank": 3,
+      "gateway": "0x8048",
+      "instruction": "JMP",
+      "count": 1
+    }
+  ],
+  "possible_prg_edges": [
+    "0->3",
+    "1->3",
+    "2->3",
+    "3->0",
+    "3->1",
+    "3->2",
+    "3->3"
+  ]
+}
