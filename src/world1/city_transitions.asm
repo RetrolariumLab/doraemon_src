@@ -11,14 +11,14 @@ Bank0_Func_CB61:
     JSR World1_ClearEntitySlots30_37
     PLA
     TAX
-    JSR Bank0_Func_CB73
+    JSR World1_CityItemHandler_Type0A
     PLA
     TAY
     PLA
     TAX
     RTS
 
-Bank0_Func_CB73:
+World1_CityItemHandler_Type0A:
     LDA a:$0546,X
     BMI Bank0_Label_CB7D
     STA $00
@@ -55,6 +55,8 @@ Bank0_Label_CBA6:
     PLA
     TAX
     JMP Bank0_Func_C982
+
+World1_CityItemHandler_Type0B:
     LDA a:$0546,X
     BMI Bank0_Label_CBB9
     STA $00
@@ -66,6 +68,8 @@ Bank0_Label_CBB9:
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$31
     JMP Bank0_Func_81C9
+
+World1_CityItemHandler_Type0C:
     LDA a:$0546,X
     BMI Bank0_Label_CBD0
     STA $00
@@ -77,6 +81,8 @@ Bank0_Label_CBD0:
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$32
     JMP Bank0_Func_81C9
+
+World1_CityItemHandler_Type0D:
     LDA a:$0546,X
     BMI Bank0_Label_CBE7
     STA $00
@@ -89,6 +95,8 @@ Bank0_Label_CBE7:
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     RTS
+
+World1_CityItemHandlerTable:
     .byte $0E, $CB, $A7, $CA, $C3, $CA, $F5, $CA, $DB, $CA, $32, $CB, $4B, $CB, $73, $CB
     .byte $AF, $CB, $C6, $CB, $DD, $CB, $01, $29, $01, $03, $02, $25, $01, $03, $03, $2E
     .byte $01, $03, $04, $2D, $00, $03, $05, $2F, $01, $10, $06, $00, $01, $02, $07, $30

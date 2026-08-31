@@ -39,8 +39,8 @@ incrementally without weakening byte identity.
 - `make verify` proves the assembled 163,856-byte image is byte-identical to the
   reference.
 
-The current static listing contains 6,340 Ghidra instructions in bank 0, 4,162
-in bank 1, 5,391 in bank 2, and 2,332 in bank 3. Identical common code through
+The current static listing contains 6,340 Ghidra instructions in bank 0, 5,055
+in bank 1, 7,001 in bank 2, and 2,332 in bank 3. Identical common code through
 `$8270` is conservatively propagated between banks when the bytes match.
 Unclassified bytes remain explicit `.byte` data rather than speculative code.
 
@@ -92,6 +92,7 @@ make verify             # compare every image region byte-for-byte
 make bank-info          # print per-bank CRC32 values and vectors
 make bank-gateways      # report the validated cross-bank gateway graph
 make object-pools       # validate chapter pool capacities, fields, and lifecycle API
+make object-dispatch    # validate indirect object-handler tables and code seeds
 make maps               # describe all CadEditor-backed regions as JSON
 make validate-maps      # validate map/table sizes and CRCs
 make quality-check      # formatting, lint, and unit tests
@@ -111,6 +112,7 @@ config/linker/gnrom.cfg     header, four PRG windows, and CHR layout
 config/prg_data_ranges.txt  bank-qualified evidence-backed data ranges
 config/prg_code_entries.txt bank-qualified evidence-backed code seeds
 config/object_pools.json machine-checked chapter entity storage contract
+config/object_dispatch.json indirect chapter object-handler tables
 config/symbols.json         bank-qualified semantic symbol registry
 config/debugger_*.json      initial Mesen watches and breakpoints
 docs/                       architecture, formats, evidence, and roadmap

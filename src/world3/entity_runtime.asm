@@ -1,5 +1,5 @@
-; Doraemon PRG bank 2 $8B68-$9191
-; World 3 entity storage, movement, collision, and behavior dispatch
+; Doraemon PRG bank 2 $8B68-$8F54
+; World 3 entity storage, persistent records, and random-spawn scheduling
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World3_ClearEntitySlot:
@@ -460,7 +460,7 @@ Bank2_Label_8E7D:
     STA a:World3EntityY,X
     LDA #$02
     STA a:World3EntityState,X
-    JSR Bank2_Func_8F55
+    JSR World3_InitializeSpawnedEntity
     DEC $C5
     BNE Bank2_Label_8EB4
     LDA #$01
@@ -478,117 +478,3 @@ Bank2_Label_8EB4:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $55, $41, $51, $42, $41, $51, $45, $33, $35, $51, $35, $51, $25, $25, $25, $25
     .byte $45, $41, $32, $31, $31, $31, $31, $31, $51, $51, $51, $51, $51, $51, $51, $51
-
-Bank2_Func_8F55:
-    LDA #$00
-    STA a:$0670,X
-    LDA $C4
-    ASL A
-    TAY
-    LDA a:$8F6C,Y
-    STA $40
-    LDA a:$8F6D,Y
-    STA $41
-    JSR Bank2_Func_931F
-    RTS
-    .byte $8C, $8F, $A3, $8F, $BF, $8F, $DB, $8F, $28, $90, $2E, $90, $2F, $90, $44, $90
-    .byte $71, $90, $AA, $90, $AB, $90, $AE, $90, $AF, $90, $B2, $90, $B2, $90, $B2, $90
-    .byte $A5, $DF, $C9, $10, $90, $10, $C9, $28, $B0, $07, $20, $53, $B1, $29, $01, $D0
-    .byte $05, $A9, $A4, $9D, $28, $06, $60, $A5, $DF, $C9, $18, $90, $15, $C9, $30, $B0
-    .byte $07, $20, $53, $B1, $29, $01, $D0, $0A, $A9, $A8, $9D, $28, $06, $A9, $01, $9D
-    .byte $30, $06, $60, $A9, $80, $9D, $08, $06, $A9, $98, $9D, $10, $06, $A9, $01, $9D
-    .byte $00, $06, $20, $53, $B1, $29, $40, $F0, $05, $A9, $09, $20, $EB, $A5, $60, $A4
-    .byte $DF, $B9, $E8, $8F, $F0, $05, $A9, $B4, $9D, $28, $06, $60, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $01, $00, $00, $00, $00
-    .byte $00, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $01, $A9, $01, $9D, $70
-    .byte $06, $60, $60, $20, $53, $B1, $C9, $64, $B0, $0D, $A9, $20, $9D, $28, $06, $20
-    .byte $53, $B1, $29, $02, $9D, $A0, $06, $60, $A5, $DF, $C9, $26, $D0, $07, $A5, $56
-    .byte $D0, $1D, $4C, $5B, $90, $A5, $DF, $C9, $3B, $D0, $19, $A5, $57, $D0, $10, $A9
-    .byte $B0, $9D, $08, $06, $A9, $A8, $9D, $10, $06, $A9, $01, $9D, $00, $06, $60, $A9
-    .byte $00, $9D, $00, $06, $60, $A5, $DF, $C9, $27, $F0, $0D, $C9, $28, $F0, $10, $C9
-    .byte $34, $F0, $13, $A9, $03, $4C, $51, $AF, $A5, $58, $F0, $11, $4C, $A4, $90, $A5
-    .byte $59, $F0, $0A, $4C, $A4, $90, $A5, $5A, $F0, $03, $4C, $A4, $90, $20, $8C, $AC
-    .byte $90, $06, $A9, $03, $8D, $AA, $02, $60, $A9, $00, $9D, $00, $06, $60, $60, $20
-    .byte $15, $AC, $60, $20, $B3, $90, $60, $A0, $00, $4C, $BD, $90, $20, $04, $91, $90
-    .byte $36, $20, $68, $8B, $B9, $F4, $90, $9D, $00, $06, $B9, $F8, $90, $9D, $08, $06
-    .byte $B9, $FC, $90, $9D, $10, $06, $B9, $00, $91, $9D, $38, $06, $84, $42, $A8, $B9
-    .byte $D5, $8E, $9D, $28, $06, $A4, $42, $A9, $1E, $9D, $68, $06, $AD, $C1, $8E, $9D
-    .byte $98, $06, $C8, $C0, $04, $D0, $C5, $60, $03, $03, $03, $03, $28, $D8, $28, $D8
-    .byte $30, $30, $C0, $C0, $0C, $0D, $0E, $0F
-
-World3_FindFreeEntitySlot:
-    LDX #$00
-
-Bank2_Label_9106:
-    LDA a:World3EntityState,X
-    BEQ Bank2_Label_9112
-    INX
-    CPX #$08
-    BNE Bank2_Label_9106
-    CLC
-    RTS
-
-Bank2_Label_9112:
-    SEC
-    RTS
-
-Bank2_Func_9114:
-    STX $3C
-    JSR World3_FindFreeEntitySlot
-    BCS Bank2_Label_911F
-
-Bank2_Label_911B:
-    LDX $3C
-    CLC
-    RTS
-
-Bank2_Label_911F:
-    JSR World3_ClearEntitySlot
-    TXA
-    TAY
-    LDX $3C
-    LDA a:$0670,X
-    BEQ Bank2_Label_911B
-    LSR A
-    STA a:$0670,X
-    LDA #$01
-    STA a:World3EntityState,Y
-    JSR Bank2_Func_B153
-    AND #$08
-    SEC
-    SBC #$04
-    CLC
-    ADC a:World3EntityX,X
-    STA a:World3EntityX,Y
-    JSR Bank2_Func_B153
-    AND #$08
-    SEC
-    SBC #$04
-    CLC
-    ADC a:World3EntityY,X
-    STA a:World3EntityY,Y
-    LDA a:World3EntityMetasprite,X
-    STA a:World3EntityMetasprite,Y
-    LDA a:$0630,X
-    STA a:$0630,Y
-    LDA a:World3EntityType,X
-    STA a:World3EntityType,Y
-    LDA a:$0640,X
-    STA a:$0640,Y
-    LDA a:$0648,X
-    STA a:$0648,Y
-    LDA a:$0650,X
-    STA a:$0650,Y
-    LDA a:$0658,X
-    STA a:$0658,Y
-    LDA a:$0660,X
-    STA a:$0660,Y
-    LDA a:$0670,X
-    STA a:$0670,Y
-    LDA a:$8EB9
-    STA a:$0698,Y
-    LDX $3C
-    SEC
-    RTS

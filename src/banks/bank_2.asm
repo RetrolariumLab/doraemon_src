@@ -12,20 +12,30 @@
 .include "../world3/main_loop_and_player.asm"
 ; $875C-$8B67: World 3 world-state progression, object spawning, and player interactions
 .include "../world3/world_state_and_objects.asm"
-; $8B68-$9191: World 3 entity storage, movement, collision, and behavior dispatch
+; $8B68-$8F54: World 3 entity storage, persistent records, and random-spawn scheduling
 .include "../world3/entity_runtime.asm"
-; $9192-$9A3A: World 3 collision responses, object rewards, and interaction handlers
-.include "../world3/collision_and_rewards.asm"
+; $8F55-$9191: World 3 random-spawn initializer dispatch and handlers
+.include "../world3/spawn_initializers.asm"
+; $9192-$931E: World 3 entity traversal, per-type dispatch, and spawn-position selection
+.include "../world3/entity_update_dispatch.asm"
+; $931F-$968B: World 3 shared indirect trampoline and early entity-type handlers
+.include "../world3/entity_handlers_early.asm"
+; $968C-$9A3A: World 3 later entity-type collision, reward, and interaction handlers
+.include "../world3/entity_handlers_late.asm"
 ; $9A3B-$9D18: World 3 object script decoding and early behavior handlers
 .include "../world3/object_scripts_1.asm"
 ; $9D19-$A0C3: World 3 object traversal, animation, and later behavior handlers
 .include "../world3/object_scripts_2.asm"
-; $A0C4-$A5DE: World 3 hierarchical map lookup, tile collision, and interaction state
+; $A0C4-$A21C: World 3 hierarchical map lookup and tile collision
 .include "../world3/map_collision.asm"
+; $A21D-$A5DE: World 3 player-state dispatch, handlers, and interaction state
+.include "../world3/player_state_handlers.asm"
 ; $A5DF-$A8AF: World 3 audio wrappers, nametable streaming, and PPU update preparation
 .include "../world3/ppu_streaming.asm"
-; $A8B0-$AE11: World 3 room updates, entity collision adjustment, and state tables
+; $A8B0-$AB3A: World 3 room updates and early entity collision adjustment
 .include "../world3/room_updates.asm"
+; $AB3B-$AE11: World 3 room collision helpers and movement state tables
+.include "../world3/room_collision_helpers.asm"
 ; $AE12-$B1BA: World 3 completion sequence, transition loop, and support routines
 .include "../world3/chapter_transition.asm"
 ; $B1BB-$B405: World 3 frame synchronization, PPU buffers, and metatile update helpers

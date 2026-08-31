@@ -71,16 +71,103 @@ Bank1_Label_A13A:
 
 Bank1_Label_A13F:
     RTS
-    .byte $A5, $A0, $D0, $FB, $86, $79, $A5, $5C, $18, $69, $04, $85, $A6, $A5, $5D, $69
-    .byte $08, $85, $A7, $A5, $41, $F0, $27, $A5, $42, $F0, $18, $C9, $01, $F0, $0A, $A5
-    .byte $5D, $18, $69, $1F, $85, $A7, $4C, $70, $A1, $A5, $5D, $38, $E9, $1F, $85, $A7
-    .byte $4C, $7E, $A1, $A5, $5C, $18, $69, $40, $90, $02, $A9, $FF, $85, $A6, $BD, $5F
-    .byte $05, $85, $77, $BD, $66, $05, $85, $78, $A0, $05, $B9, $95, $05, $F0, $04, $88
-    .byte $10, $F8, $60, $A5, $77, $18, $69, $04, $99, $8F, $05, $38, $E5, $A6, $A2, $03
-    .byte $B0, $03, $CA, $49, $FF, $99, $A1, $05, $A5, $78, $18, $69, $04, $99, $95, $05
-    .byte $38, $E5, $A7, $B0, $04, $CA, $CA, $49, $FF, $99, $A7, $05, $D9, $A1, $05, $B0
-    .byte $04, $8A, $69, $04, $AA, $8A, $99, $89, $05, $A9, $00, $99, $AD, $05, $A6, $79
-    .byte $60
+
+Bank1_Func_A140:
+    LDA $A0
+    BNE Bank1_Label_A13F
+    STX $79
+    LDA $5C
+    CLC
+    ADC #$04
+    STA $A6
+    LDA $5D
+    ADC #$08
+    STA $A7
+    LDA $41
+    BEQ Bank1_Label_A17E
+    LDA $42
+    BEQ Bank1_Label_A173
+    CMP #$01
+    BEQ Bank1_Label_A169
+    LDA $5D
+    CLC
+    ADC #$1F
+    STA $A7
+    JMP Bank1_Label_A170
+
+Bank1_Label_A169:
+    LDA $5D
+    SEC
+    SBC #$1F
+    STA $A7
+
+Bank1_Label_A170:
+    JMP Bank1_Label_A17E
+
+Bank1_Label_A173:
+    LDA $5C
+    CLC
+    ADC #$40
+    BCC Bank1_Label_A17C
+    LDA #$FF
+
+Bank1_Label_A17C:
+    STA $A6
+
+Bank1_Label_A17E:
+    LDA a:World2EnemyX,X
+    STA $77
+    LDA a:World2EnemyY,X
+    STA $78
+    LDY #$05
+
+Bank1_Label_A18A:
+    LDA a:World2EnemyProjectileY,Y
+    BEQ Bank1_Label_A193
+    DEY
+    BPL Bank1_Label_A18A
+    RTS
+
+Bank1_Label_A193:
+    LDA $77
+    CLC
+    ADC #$04
+    STA a:World2EnemyProjectileX,Y
+    SEC
+    SBC $A6
+    LDX #$03
+    BCS Bank1_Label_A1A5
+    DEX
+    EOR #$FF
+
+Bank1_Label_A1A5:
+    STA a:$05A1,Y
+    LDA $78
+    CLC
+    ADC #$04
+    STA a:World2EnemyProjectileY,Y
+    SEC
+    SBC $A7
+    BCS Bank1_Label_A1B9
+    DEX
+    DEX
+    EOR #$FF
+
+Bank1_Label_A1B9:
+    STA a:$05A7,Y
+    CMP a:$05A1,Y
+    BCS Bank1_Label_A1C5
+    TXA
+    ADC #$04
+    TAX
+
+Bank1_Label_A1C5:
+    TXA
+    STA a:World2EnemyProjectileFlags,Y
+    LDA #$00
+    STA a:$05AD,Y
+    LDX $79
+    RTS
 
 Bank1_Func_A1D1:
     LDX #$05
@@ -288,7 +375,7 @@ Bank1_Label_A308:
     CLC
     ADC #$13
     JSR Bank1_Func_A35B
-    JMP Bank1_Label_A355
+    JMP World2_EnemyRenderDispatchContinuation
 
 Bank1_Label_A330:
     PHA
@@ -313,7 +400,7 @@ Bank1_Label_A330:
     LDX $76
     RTS
 
-Bank1_Label_A355:
+World2_EnemyRenderDispatchContinuation:
     LDX $76
 
 Bank1_Label_A357:
@@ -427,17 +514,22 @@ Bank1_Label_A3D3:
     .byte $FF, $FF, $FF, $FF, $FF, $04, $01, $01, $01, $01, $01, $01, $08, $02, $20, $03
     .byte $08, $04, $02, $20, $08, $01, $20, $20, $20, $01, $00, $00, $00, $00, $00, $40
     .byte $00, $40, $80, $80, $80, $80, $00, $00, $80, $80, $00, $40, $80, $C0, $20, $60
-    .byte $20, $60, $A0, $E0, $A0, $E0, $40, $40, $C0, $C0, $40, $40, $40, $40, $45, $9B
-    .byte $57, $9B, $17, $9C, $84, $9C, $DD, $9C, $35, $9D, $C8, $9D, $E9, $9D, $19, $9E
-    .byte $B1, $9E, $FA, $9E, $2D, $9F, $83, $9F, $20, $A0, $E9, $9D, $20, $A0, $3C, $A0
-    .byte $6C, $A0, $62, $A0, $B8, $A0, $2E, $9B, $E6, $9D, $72, $9B, $2B, $9C, $95, $9C
-    .byte $04, $9D, $4D, $9D, $E0, $9D, $05, $9E, $1A, $9E, $BD, $9E, $72, $9B, $39, $9F
-    .byte $99, $9F, $C4, $9F, $F3, $9F, $3C, $A0, $3D, $A0, $47, $A0, $A1, $A0, $51, $52
-    .byte $53, $41, $31, $55, $43, $45, $32, $45, $45, $31, $41, $41, $31, $00, $21, $21
-    .byte $21, $45, $01, $02, $03, $04, $05, $06, $07, $06, $05, $04, $03, $02, $01, $00
-    .byte $00, $00, $FF, $FE, $FD, $FC, $FB, $FA, $F9, $FA, $FB, $FC, $FD, $FE, $FF, $00
-    .byte $00, $00, $02, $04, $06, $08, $06, $04, $02, $00, $FE, $FC, $FA, $F8, $FA, $FC
-    .byte $FE, $00, $01, $01, $02, $02, $03, $03, $04, $04, $FF, $FF, $FE, $FE, $FD, $FD
-    .byte $FC, $FC, $FD, $FE, $FF, $00, $01, $02, $03, $04, $03, $02, $01, $00, $FF, $FE
-    .byte $FD, $FC, $FD, $FE, $FF, $00, $F8, $FA, $FB, $FC, $FD, $FE, $FF, $00, $00, $01
-    .byte $02, $03, $04, $05, $06, $08
+    .byte $20, $60, $A0, $E0, $A0, $E0, $40, $40, $C0, $C0, $40, $40
+
+World2_EnemyRenderHandlerRtsTable:
+    .byte $40, $40, $45, $9B, $57, $9B, $17, $9C, $84, $9C, $DD, $9C, $35, $9D, $C8, $9D
+    .byte $E9, $9D, $19, $9E, $B1, $9E, $FA, $9E, $2D, $9F, $83, $9F, $20, $A0, $E9, $9D
+    .byte $20, $A0, $3C, $A0, $6C, $A0, $62, $A0
+
+World2_EnemyUpdateHandlerRtsTable:
+    .byte $B8, $A0, $2E, $9B, $E6, $9D, $72, $9B, $2B, $9C, $95, $9C, $04, $9D, $4D, $9D
+    .byte $E0, $9D, $05, $9E, $1A, $9E, $BD, $9E, $72, $9B, $39, $9F, $99, $9F, $C4, $9F
+    .byte $F3, $9F, $3C, $A0, $3D, $A0, $47, $A0, $A1, $A0, $51, $52, $53, $41, $31, $55
+    .byte $43, $45, $32, $45, $45, $31, $41, $41, $31, $00, $21, $21, $21, $45, $01, $02
+    .byte $03, $04, $05, $06, $07, $06, $05, $04, $03, $02, $01, $00, $00, $00, $FF, $FE
+    .byte $FD, $FC, $FB, $FA, $F9, $FA, $FB, $FC, $FD, $FE, $FF, $00, $00, $00, $02, $04
+    .byte $06, $08, $06, $04, $02, $00, $FE, $FC, $FA, $F8, $FA, $FC, $FE, $00, $01, $01
+    .byte $02, $02, $03, $03, $04, $04, $FF, $FF, $FE, $FE, $FD, $FD, $FC, $FC, $FD, $FE
+    .byte $FF, $00, $01, $02, $03, $04, $03, $02, $01, $00, $FF, $FE, $FD, $FC, $FD, $FE
+    .byte $FF, $00, $F8, $FA, $FB, $FC, $FD, $FE, $FF, $00, $00, $01, $02, $03, $04, $05
+    .byte $06, $08

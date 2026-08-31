@@ -96,7 +96,7 @@ Bank0_Label_C990:
     LDA #$01
     RTS
 
-Bank0_Func_C998:
+World1_CheckCityObjectInteraction:
     LDA a:World1EntityType+$26,X
     TAY
     DEY
@@ -147,6 +147,8 @@ Bank0_Label_C9CE:
     STA $00
     LDA a:$CBF5,Y
     STA $01
+
+World1_JumpToCityItemHandler:
     JMP ($0000)
 
 Bank0_Label_C9E0:
@@ -273,6 +275,8 @@ Bank0_Label_CA8A:
 
 Bank0_Label_CAA6:
     RTS
+
+World1_CityItemHandler_Type04:
     DEC $2C
     JSR Bank0_Func_8362
     LDA a:$0546,X
@@ -286,6 +290,8 @@ Bank0_Label_CAB6:
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$35
     JMP Bank0_Func_81C9
+
+World1_CityItemHandler_Type05:
     INC $2A
     LDA a:$0546,X
     BMI Bank0_Label_CACF
@@ -298,6 +304,8 @@ Bank0_Label_CACF:
     STA $26
     LDA #$31
     JMP Bank0_Func_81C9
+
+World1_CityItemHandler_Type07:
     JSR Bank0_Func_8362
     LDA a:$0546,X
     BMI Bank0_Label_CAE8
@@ -310,6 +318,8 @@ Bank0_Label_CAE8:
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$32
     JMP Bank0_Func_81C9
+
+World1_CityItemHandler_Type06:
     INC $7B
     LDA a:$0546,X
     BMI Bank0_Label_CB01
@@ -323,7 +333,7 @@ Bank0_Label_CB01:
     LDA #$31
     JMP Bank0_Func_81C9
 
-Bank0_Func_CB0E:
+World1_CityItemHandler_Type03:
     LDA #$01
     STA $82
     LDA #$F0
@@ -341,6 +351,8 @@ Bank0_Label_CB20:
     JSR World1_Audio_QueueEffect
     LDA #$32
     JMP Bank0_Func_81C9
+
+World1_CityItemHandler_Type08:
     INC $84
     LDA a:$0546,X
     BMI Bank0_Label_CB3E
@@ -353,6 +365,8 @@ Bank0_Label_CB3E:
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$32
     JMP Bank0_Func_81C9
+
+World1_CityItemHandler_Type09:
     LDA #$01
     STA $37
     LDA a:$0546,X

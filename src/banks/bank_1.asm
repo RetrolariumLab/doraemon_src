@@ -16,8 +16,16 @@
 .include "../world2/enemies_and_projectiles.asm"
 ; $92EC-$9660: World 2 collision tests, object spawning, and frame services
 .include "../world2/collision_and_spawning.asm"
-; $9661-$A0DB: World 2 metasprite composition, OAM placement, and animation data
+; $9661-$98F7: World 2 metasprite composition, OAM placement, and entity spawning
 .include "../world2/sprite_rendering.asm"
+; $98F8-$9B45: World 2 entity-pool clearing, enemy traversal, and collision dispatch
+.include "../world2/enemy_dispatch.asm"
+; $9B46-$9D4D: World 2 early indirect enemy-state handlers
+.include "../world2/enemy_handlers_early.asm"
+; $9D4E-$9F83: World 2 middle indirect enemy-state handlers
+.include "../world2/enemy_handlers_middle.asm"
+; $9F84-$A0DB: World 2 late indirect enemy-state handlers
+.include "../world2/enemy_handlers_late.asm"
 ; $A0DC-$A611: World 2 later enemy handlers and movement tables
 .include "../world2/enemy_handlers.asm"
 ; $A612-$A80A: World 2 scrolling, stage progress, and boss-state services

@@ -327,7 +327,7 @@ Bank0_Label_9367:
     LDA a:World1EntityPositionHigh+$26,X
     AND #$0F
     BNE Bank0_Label_937A
-    JSR Bank0_Func_C998
+    JSR World1_CheckCityObjectInteraction
 
 Bank0_Label_937A:
     INC $95

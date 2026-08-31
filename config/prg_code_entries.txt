@@ -1,5 +1,18 @@
 # Doraemon evidence-backed PRG code entry points v1
 # kind bank address name
+# Bank 0 dispatches city entity types $03-$0D through the ordinary pointer
+# table at $CBF4 and a shared JMP ($0000) at $C9DD.
+entry 0 CAA7 Bank0_World1CityItemHandler_CAA7
+entry 0 CAC3 Bank0_World1CityItemHandler_CAC3
+entry 0 CADB Bank0_World1CityItemHandler_CADB
+entry 0 CAF5 Bank0_World1CityItemHandler_CAF5
+entry 0 CB0E Bank0_World1CityItemHandler_CB0E
+entry 0 CB32 Bank0_World1CityItemHandler_CB32
+entry 0 CB4B Bank0_World1CityItemHandler_CB4B
+entry 0 CB73 Bank0_World1CityItemHandler_CB73
+entry 0 CBAF Bank0_World1CityItemHandler_CBAF
+entry 0 CBC6 Bank0_World1CityItemHandler_CBC6
+entry 0 CBDD Bank0_World1CityItemHandler_CBDD
 # Bank 0's $E330 audio-effect table has 52 slots and 38 unique targets.
 entry 0 E426 Bank0_AudioEffectEntry_E426
 entry 0 E42B Bank0_AudioEffectEntry_E42B
@@ -57,6 +70,46 @@ entry 0 EDDE Bank0_MusicCommandEntry_EDDE
 entry 0 EDEE Bank0_MusicCommandEntry_EDEE
 entry 0 EDFB Bank0_MusicCommandEntry_EDFB
 entry 0 EE03 Bank0_MusicCommandEntry_EE03
+# Bank 1's overlapping $A548 render and $A570 update RTS tables have 41
+# reachable slots and 36 unique targets. Each manually pushes a continuation.
+entry 1 9965 Bank1_EnemyUpdateDispatchContinuation_9965
+entry 1 9B2F Bank1_EnemyHandlerEntry_9B2F
+entry 1 9B46 Bank1_EnemyHandlerEntry_9B46
+entry 1 9B58 Bank1_EnemyHandlerEntry_9B58
+entry 1 9B73 Bank1_EnemyHandlerEntry_9B73
+entry 1 9C18 Bank1_EnemyHandlerEntry_9C18
+entry 1 9C2C Bank1_EnemyHandlerEntry_9C2C
+entry 1 9C85 Bank1_EnemyHandlerEntry_9C85
+entry 1 9C96 Bank1_EnemyHandlerEntry_9C96
+entry 1 9CDE Bank1_EnemyHandlerEntry_9CDE
+entry 1 9D05 Bank1_EnemyHandlerEntry_9D05
+entry 1 9D36 Bank1_EnemyHandlerEntry_9D36
+entry 1 9D4E Bank1_EnemyHandlerEntry_9D4E
+entry 1 9DC9 Bank1_EnemyHandlerEntry_9DC9
+entry 1 9DE1 Bank1_EnemyHandlerEntry_9DE1
+entry 1 9DE7 Bank1_EnemyHandlerEntry_9DE7
+entry 1 9DEA Bank1_EnemyHandlerEntry_9DEA
+entry 1 9E06 Bank1_EnemyHandlerEntry_9E06
+entry 1 9E1A Bank1_EnemyHandlerEntry_9E1A
+entry 1 9E1B Bank1_EnemyHandlerEntry_9E1B
+entry 1 9EB2 Bank1_EnemyHandlerEntry_9EB2
+entry 1 9EBE Bank1_EnemyHandlerEntry_9EBE
+entry 1 9EFB Bank1_EnemyHandlerEntry_9EFB
+entry 1 9F2E Bank1_EnemyHandlerEntry_9F2E
+entry 1 9F3A Bank1_EnemyHandlerEntry_9F3A
+entry 1 9F84 Bank1_EnemyHandlerEntry_9F84
+entry 1 9F9A Bank1_EnemyHandlerEntry_9F9A
+entry 1 9FC5 Bank1_EnemyHandlerEntry_9FC5
+entry 1 9FF4 Bank1_EnemyHandlerEntry_9FF4
+entry 1 A021 Bank1_EnemyHandlerEntry_A021
+entry 1 A03D Bank1_EnemyHandlerEntry_A03D
+entry 1 A03E Bank1_EnemyHandlerEntry_A03E
+entry 1 A048 Bank1_EnemyHandlerEntry_A048
+entry 1 A063 Bank1_EnemyHandlerEntry_A063
+entry 1 A06D Bank1_EnemyHandlerEntry_A06D
+entry 1 A0A2 Bank1_EnemyHandlerEntry_A0A2
+entry 1 A0B9 Bank1_EnemyHandlerEntry_A0B9
+entry 1 A355 Bank1_EnemyRenderDispatchContinuation_A355
 # Bank 1's $A81A audio-effect table has 30 slots and 25 unique targets.
 entry 1 A8E4 Bank1_AudioEffectEntry_A8E4
 entry 1 A8E9 Bank1_AudioEffectEntry_A8E9
@@ -103,6 +156,46 @@ entry 1 B0E2 Bank1_MusicCommandEntry_B0E2
 entry 1 B0EA Bank1_MusicCommandEntry_B0EA
 entry 2 82AD Bank2_World3AlternateEntry
 entry 2 82F6 Bank2_World3Main
+# Bank 2 uses ordinary pointer tables and a shared JMP ($0040) trampoline for
+# spawn initialization, per-type entity updates, and the player state machine.
+entry 2 8F8C Bank2_World3SpawnInitializer_8F8C
+entry 2 8FA3 Bank2_World3SpawnInitializer_8FA3
+entry 2 8FBF Bank2_World3SpawnInitializer_8FBF
+entry 2 8FDB Bank2_World3SpawnInitializer_8FDB
+entry 2 9028 Bank2_World3SpawnInitializer_9028
+entry 2 902E Bank2_World3SpawnInitializer_902E
+entry 2 902F Bank2_World3SpawnInitializer_902F
+entry 2 9044 Bank2_World3SpawnInitializer_9044
+entry 2 9071 Bank2_World3SpawnInitializer_9071
+entry 2 90AA Bank2_World3SpawnInitializer_90AA
+entry 2 90AB Bank2_World3SpawnInitializer_90AB
+entry 2 90AE Bank2_World3SpawnInitializer_90AE
+entry 2 90AF Bank2_World3SpawnInitializer_90AF
+entry 2 90B2 Bank2_World3SpawnInitializer_90B2
+entry 2 9322 Bank2_World3EntityUpdateHandler_9322
+entry 2 932D Bank2_World3EntityUpdateHandler_932D
+entry 2 93AC Bank2_World3EntityUpdateHandler_93AC
+entry 2 9590 Bank2_World3EntityUpdateHandler_9590
+entry 2 9591 Bank2_World3EntityUpdateHandler_9591
+entry 2 9594 Bank2_World3EntityUpdateHandler_9594
+entry 2 9595 Bank2_World3EntityUpdateHandler_9595
+entry 2 95A4 Bank2_World3EntityUpdateHandler_95A4
+entry 2 95A5 Bank2_World3EntityUpdateHandler_95A5
+entry 2 9643 Bank2_World3EntityUpdateHandler_9643
+entry 2 965B Bank2_World3EntityUpdateHandler_965B
+entry 2 968C Bank2_World3EntityUpdateHandler_968C
+entry 2 96D6 Bank2_World3EntityUpdateHandler_96D6
+entry 2 96D7 Bank2_World3EntityUpdateHandler_96D7
+entry 2 96D8 Bank2_World3EntityUpdateHandler_96D8
+entry 2 9759 Bank2_World3EntityUpdateHandler_9759
+entry 2 9813 Bank2_World3EntityUpdateHandler_9813
+entry 2 98E3 Bank2_World3EntityUpdateHandler_98E3
+entry 2 9999 Bank2_World3EntityUpdateHandler_9999
+entry 2 A239 Bank2_World3PlayerStateHandler_A239
+entry 2 A23A Bank2_World3PlayerStateHandler_A23A
+entry 2 A2E9 Bank2_World3PlayerStateHandler_A2E9
+entry 2 A335 Bank2_World3PlayerStateHandler_A335
+entry 2 A33C Bank2_World3PlayerStateHandler_A33C
 # Bank 2's $BE28 audio-effect RTS dispatch table has 52 slots and the
 # following unique target addresses.
 entry 2 BF1E Bank2_AudioEffectEntry_BF1E

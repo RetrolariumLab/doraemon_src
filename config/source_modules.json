@@ -242,9 +242,37 @@
     {
       "bank": 1,
       "start": "0x9661",
-      "end": "0xA0DB",
+      "end": "0x98F7",
       "path": "world2/sprite_rendering.asm",
-      "responsibility": "World 2 metasprite composition, OAM placement, and animation data"
+      "responsibility": "World 2 metasprite composition, OAM placement, and entity spawning"
+    },
+    {
+      "bank": 1,
+      "start": "0x98F8",
+      "end": "0x9B45",
+      "path": "world2/enemy_dispatch.asm",
+      "responsibility": "World 2 entity-pool clearing, enemy traversal, and collision dispatch"
+    },
+    {
+      "bank": 1,
+      "start": "0x9B46",
+      "end": "0x9D4D",
+      "path": "world2/enemy_handlers_early.asm",
+      "responsibility": "World 2 early indirect enemy-state handlers"
+    },
+    {
+      "bank": 1,
+      "start": "0x9D4E",
+      "end": "0x9F83",
+      "path": "world2/enemy_handlers_middle.asm",
+      "responsibility": "World 2 middle indirect enemy-state handlers"
+    },
+    {
+      "bank": 1,
+      "start": "0x9F84",
+      "end": "0xA0DB",
+      "path": "world2/enemy_handlers_late.asm",
+      "responsibility": "World 2 late indirect enemy-state handlers"
     },
     {
       "bank": 1,
@@ -368,16 +396,37 @@
     {
       "bank": 2,
       "start": "0x8B68",
-      "end": "0x9191",
+      "end": "0x8F54",
       "path": "world3/entity_runtime.asm",
-      "responsibility": "World 3 entity storage, movement, collision, and behavior dispatch"
+      "responsibility": "World 3 entity storage, persistent records, and random-spawn scheduling"
+    },
+    {
+      "bank": 2,
+      "start": "0x8F55",
+      "end": "0x9191",
+      "path": "world3/spawn_initializers.asm",
+      "responsibility": "World 3 random-spawn initializer dispatch and handlers"
     },
     {
       "bank": 2,
       "start": "0x9192",
+      "end": "0x931E",
+      "path": "world3/entity_update_dispatch.asm",
+      "responsibility": "World 3 entity traversal, per-type dispatch, and spawn-position selection"
+    },
+    {
+      "bank": 2,
+      "start": "0x931F",
+      "end": "0x968B",
+      "path": "world3/entity_handlers_early.asm",
+      "responsibility": "World 3 shared indirect trampoline and early entity-type handlers"
+    },
+    {
+      "bank": 2,
+      "start": "0x968C",
       "end": "0x9A3A",
-      "path": "world3/collision_and_rewards.asm",
-      "responsibility": "World 3 collision responses, object rewards, and interaction handlers"
+      "path": "world3/entity_handlers_late.asm",
+      "responsibility": "World 3 later entity-type collision, reward, and interaction handlers"
     },
     {
       "bank": 2,
@@ -396,9 +445,16 @@
     {
       "bank": 2,
       "start": "0xA0C4",
-      "end": "0xA5DE",
+      "end": "0xA21C",
       "path": "world3/map_collision.asm",
-      "responsibility": "World 3 hierarchical map lookup, tile collision, and interaction state"
+      "responsibility": "World 3 hierarchical map lookup and tile collision"
+    },
+    {
+      "bank": 2,
+      "start": "0xA21D",
+      "end": "0xA5DE",
+      "path": "world3/player_state_handlers.asm",
+      "responsibility": "World 3 player-state dispatch, handlers, and interaction state"
     },
     {
       "bank": 2,
@@ -410,9 +466,16 @@
     {
       "bank": 2,
       "start": "0xA8B0",
-      "end": "0xAE11",
+      "end": "0xAB3A",
       "path": "world3/room_updates.asm",
-      "responsibility": "World 3 room updates, entity collision adjustment, and state tables"
+      "responsibility": "World 3 room updates and early entity collision adjustment"
+    },
+    {
+      "bank": 2,
+      "start": "0xAB3B",
+      "end": "0xAE11",
+      "path": "world3/room_collision_helpers.asm",
+      "responsibility": "World 3 room collision helpers and movement state tables"
     },
     {
       "bank": 2,

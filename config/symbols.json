@@ -111,6 +111,90 @@
     },
     {
       "bank": 0,
+      "address": "0xC998",
+      "name": "World1_CheckCityObjectInteraction",
+      "evidence": "city-entity-type-collision-and-handler-table-selection"
+    },
+    {
+      "bank": 0,
+      "address": "0xC9DD",
+      "name": "World1_JumpToCityItemHandler",
+      "evidence": "jmp-through-0000-loaded-from-cbf4-pointer-table"
+    },
+    {
+      "bank": 0,
+      "address": "0xCAA7",
+      "name": "World1_CityItemHandler_Type04",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-04"
+    },
+    {
+      "bank": 0,
+      "address": "0xCAC3",
+      "name": "World1_CityItemHandler_Type05",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-05"
+    },
+    {
+      "bank": 0,
+      "address": "0xCADB",
+      "name": "World1_CityItemHandler_Type07",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-07"
+    },
+    {
+      "bank": 0,
+      "address": "0xCAF5",
+      "name": "World1_CityItemHandler_Type06",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-06"
+    },
+    {
+      "bank": 0,
+      "address": "0xCB0E",
+      "name": "World1_CityItemHandler_Type03",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-03"
+    },
+    {
+      "bank": 0,
+      "address": "0xCB32",
+      "name": "World1_CityItemHandler_Type08",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-08"
+    },
+    {
+      "bank": 0,
+      "address": "0xCB4B",
+      "name": "World1_CityItemHandler_Type09",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-09"
+    },
+    {
+      "bank": 0,
+      "address": "0xCB73",
+      "name": "World1_CityItemHandler_Type0A",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-0a"
+    },
+    {
+      "bank": 0,
+      "address": "0xCBAF",
+      "name": "World1_CityItemHandler_Type0B",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-0b"
+    },
+    {
+      "bank": 0,
+      "address": "0xCBC6",
+      "name": "World1_CityItemHandler_Type0C",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-0c"
+    },
+    {
+      "bank": 0,
+      "address": "0xCBDD",
+      "name": "World1_CityItemHandler_Type0D",
+      "evidence": "cbf4-pointer-table-slot-for-city-entity-type-0d"
+    },
+    {
+      "bank": 0,
+      "address": "0xCBF4",
+      "name": "World1_CityItemHandlerTable",
+      "evidence": "11-slot-city-entity-type-pointer-table"
+    },
+    {
+      "bank": 0,
       "address": "0xCC7F",
       "name": "Bank0_TryEnterWorld1Door",
       "evidence": "portal-type-2-and-button-a"
@@ -441,6 +525,30 @@
     },
     {
       "bank": 1,
+      "address": "0x9965",
+      "name": "World2_EnemyUpdateDispatchContinuation",
+      "evidence": "return-address-plus-one-continuation-for-manual-rts-dispatch"
+    },
+    {
+      "bank": 1,
+      "address": "0xA355",
+      "name": "World2_EnemyRenderDispatchContinuation",
+      "evidence": "return-address-plus-one-continuation-for-manual-rts-dispatch"
+    },
+    {
+      "bank": 1,
+      "address": "0xA548",
+      "name": "World2_EnemyRenderHandlerRtsTable",
+      "evidence": "enemy-state-target-minus-one-render-rts-dispatch-base"
+    },
+    {
+      "bank": 1,
+      "address": "0xA570",
+      "name": "World2_EnemyUpdateHandlerRtsTable",
+      "evidence": "21-slot-enemy-state-target-minus-one-update-rts-dispatch"
+    },
+    {
+      "bank": 1,
       "address": "0xA80B",
       "name": "World2_AudioEffect_RequestPriority",
       "evidence": "request-indexed-even-dispatch-values"
@@ -753,6 +861,18 @@
     },
     {
       "bank": 2,
+      "address": "0x8F55",
+      "name": "World3_InitializeSpawnedEntity",
+      "evidence": "loads-random-spawn-type-handler-and-calls-shared-indirect-trampoline"
+    },
+    {
+      "bank": 2,
+      "address": "0x8F6C",
+      "name": "World3_SpawnInitializerTable",
+      "evidence": "16-slot-random-spawn-type-pointer-table"
+    },
+    {
+      "bank": 2,
       "address": "0x9104",
       "name": "World3_FindFreeEntitySlot",
       "evidence": "scans-eight-active-state-slots-for-zero-and-returns-carry"
@@ -762,6 +882,30 @@
       "address": "0x9202",
       "name": "World3_UpdateEntities",
       "evidence": "eight-slot-state-type-dispatch-collision-and-reward-loop"
+    },
+    {
+      "bank": 2,
+      "address": "0x92DF",
+      "name": "World3_EntityUpdateHandlerTable",
+      "evidence": "32-slot-entity-type-pointer-table"
+    },
+    {
+      "bank": 2,
+      "address": "0x931F",
+      "name": "World3_CallIndirect",
+      "evidence": "shared-jmp-through-0040-pointer-trampoline"
+    },
+    {
+      "bank": 2,
+      "address": "0xA21D",
+      "name": "World3_UpdatePlayerState",
+      "evidence": "five-state-player-pointer-dispatch"
+    },
+    {
+      "bank": 2,
+      "address": "0xA22F",
+      "name": "World3_PlayerStateHandlerTable",
+      "evidence": "five-slot-player-state-pointer-table"
     },
     {
       "bank": 2,

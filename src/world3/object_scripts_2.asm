@@ -115,20 +115,141 @@ Bank2_Label_9DCC:
 Bank2_Func_9DCD:
     RTS
     .byte $BD, $38, $06, $C9, $03, $D0, $0F, $A0, $00, $BD, $08, $06, $C5, $8C, $B0, $02
-    .byte $A0, $02, $98, $9D, $A0, $06, $60, $A5, $8D, $85, $00, $A9, $03, $85, $01, $A5
-    .byte $00, $18, $69, $04, $85, $00, $A5, $8C, $18, $69, $02, $AA, $A4, $00, $20, $19
-    .byte $A0, $90, $38, $A5, $00, $18, $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35
-    .byte $A0, $A5, $8D, $85, $00, $A9, $03, $85, $01, $A5, $00, $18, $69, $04, $85, $00
-    .byte $A5, $8C, $18, $69, $0E, $AA, $A4, $00, $20, $19, $A0, $90, $0E, $A5, $00, $18
-    .byte $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35, $A0, $18, $60, $A5, $8C, $85
-    .byte $00, $A9, $02, $85, $01, $A5, $00, $18, $69, $04, $85, $00, $A6, $00, $A5, $8D
-    .byte $18, $69, $02, $A8, $20, $19, $A0, $90, $E2, $A5, $00, $18, $69, $08, $85, $00
-    .byte $C6, $01, $D0, $E8, $4C, $35, $A0, $A5, $8C, $85, $00, $A9, $02, $85, $01, $A5
-    .byte $00, $18, $69, $04, $85, $00, $A6, $00, $A5, $8D, $18, $69, $16, $A8, $20, $19
-    .byte $A0, $90, $B8, $A5, $00, $18, $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35
-    .byte $A0, $A5, $8C, $85, $00, $A9, $02, $85, $01, $A5, $00, $18, $69, $04, $85, $00
-    .byte $A6, $00, $A5, $8D, $18, $69, $0C, $A8, $20, $19, $A0, $90, $8E, $A5, $00, $18
-    .byte $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35, $A0
+    .byte $A0, $02, $98, $9D, $A0, $06, $60
+
+Bank2_Func_9DE5:
+    LDA $8D
+    STA $00
+    LDA #$03
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9DF4:
+    LDA $8C
+    CLC
+    ADC #$02
+    TAX
+    LDY $00
+    JSR Bank2_Func_A019
+    BCC Bank2_Label_9E39
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9DF4
+    JMP Bank2_Func_A035
+
+Bank2_Func_9E0F:
+    LDA $8D
+    STA $00
+    LDA #$03
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9E1E:
+    LDA $8C
+    CLC
+    ADC #$0E
+    TAX
+    LDY $00
+    JSR Bank2_Func_A019
+    BCC Bank2_Label_9E39
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9E1E
+    JMP Bank2_Func_A035
+
+Bank2_Label_9E39:
+    CLC
+    RTS
+
+Bank2_Func_9E3B:
+    LDA $8C
+    STA $00
+    LDA #$02
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9E4A:
+    LDX $00
+    LDA $8D
+    CLC
+    ADC #$02
+    TAY
+    JSR Bank2_Func_A019
+    BCC Bank2_Label_9E39
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9E4A
+    JMP Bank2_Func_A035
+
+Bank2_Func_9E65:
+    LDA $8C
+    STA $00
+    LDA #$02
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9E74:
+    LDX $00
+    LDA $8D
+    CLC
+    ADC #$16
+    TAY
+    JSR Bank2_Func_A019
+    BCC Bank2_Label_9E39
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9E74
+    JMP Bank2_Func_A035
+
+Bank2_Func_9E8F:
+    LDA $8C
+    STA $00
+    LDA #$02
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9E9E:
+    LDX $00
+    LDA $8D
+    CLC
+    ADC #$0C
+    TAY
+    JSR Bank2_Func_A019
+    BCC Bank2_Label_9E39
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9E9E
+    JMP Bank2_Func_A035
 
 Bank2_Func_9EB9:
     LDA a:World3EntityX,X

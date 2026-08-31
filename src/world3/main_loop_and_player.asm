@@ -137,7 +137,7 @@ Bank2_Label_83A5:
     JSR Bank2_Func_879B
     LDA $4F
     BNE Bank2_Label_83B5
-    JSR Bank2_Func_A21D
+    JSR World3_UpdatePlayerState
     JSR Bank2_Func_A160
 
 Bank2_Label_83B5:
@@ -191,7 +191,7 @@ Bank2_Label_840D:
     JMP Bank2_Func_8048
 
 Bank2_Label_8416:
-    JMP Bank2_Func_A26D
+    JMP Bank2_Label_A26D
 
 Bank2_Label_8419:
     LDA $4F

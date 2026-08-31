@@ -106,13 +106,25 @@ World 1 uses one 48-slot structure-of-arrays split into four traversal classes:
 slots 0-9, 10-29, 30-37, and 38-47. Each class has a dedicated clear and render
 routine, while signed X/Y stepping and metasprite composition are shared. The
 field layout and exact capacities are recorded in `docs/ram_fields.md`.
+City entity types `$03-$0D` select eleven interaction handlers through the
+ordinary pointer table at `$CBF4` and `JMP ($0000)` at `$C9DD`; this table is
+also covered by the object-dispatch manifest.
 
 World 2 uses three smaller pools: seven enemies, six enemy projectiles, and
 seven player projectiles. Its main frame path independently updates the enemy
 and player-projectile pools, and initialization clears all three active fields.
+Enemy states use overlapping target-minus-one tables: rendering indexes a base
+at `$A548` (reachable states `$01-$14` begin at `$A54A`), while updating indexes
+21 slots at `$A570`. The shared bytes at `$A570-$A571`, 36 unique destinations,
+and manually pushed continuations `$A355` and `$9965` are validated and supplied
+as static-analysis entry points by `config/object_dispatch.json`.
 
 World 3 separates eight active entities from thirteen persistent room-object
 records. Room entry materializes matching records into free active slots; room
-exit saves coordinates and state back through two state-class passes. This is a
-different ownership model from both earlier chapters, not a shared object
-engine hidden behind different data.
+updates dispatch through a 32-slot type table at `$92DF`. Random spawns have a
+separate 16-slot initializer table at `$8F6C`, and the player uses five state
+handlers at `$A22F`. All three ordinary pointer tables call through the shared
+`JMP ($0040)` trampoline at `$931F` and are covered by the object-dispatch
+manifest. Room exit saves coordinates and state back through two state-class
+passes. This is a different ownership model from both earlier chapters, not a
+shared object engine hidden behind different data.
