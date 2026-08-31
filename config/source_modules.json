@@ -338,6 +338,195 @@
       "responsibility": "Bank 1 NMI, RESET, and IRQ vectors"
     },
     {
+      "bank": 2,
+      "start": "0x8000",
+      "end": "0x827C",
+      "path": "common/bank2_boot_and_gateways.asm",
+      "responsibility": "Bank 2 reset, NMI, input, mapper switching, and cross-bank gateways"
+    },
+    {
+      "bank": 2,
+      "start": "0x827D",
+      "end": "0x82AC",
+      "path": "world3/data/build_string.asm",
+      "responsibility": "Embedded World 3 build identification string"
+    },
+    {
+      "bank": 2,
+      "start": "0x82AD",
+      "end": "0x875B",
+      "path": "world3/main_loop_and_player.asm",
+      "responsibility": "World 3 initialization, frame loop, player state, and map position"
+    },
+    {
+      "bank": 2,
+      "start": "0x875C",
+      "end": "0x8B67",
+      "path": "world3/world_state_and_objects.asm",
+      "responsibility": "World 3 world-state progression, object spawning, and player interactions"
+    },
+    {
+      "bank": 2,
+      "start": "0x8B68",
+      "end": "0x9191",
+      "path": "world3/entity_runtime.asm",
+      "responsibility": "World 3 entity storage, movement, collision, and behavior dispatch"
+    },
+    {
+      "bank": 2,
+      "start": "0x9192",
+      "end": "0x9A3A",
+      "path": "world3/collision_and_rewards.asm",
+      "responsibility": "World 3 collision responses, object rewards, and interaction handlers"
+    },
+    {
+      "bank": 2,
+      "start": "0x9A3B",
+      "end": "0x9D18",
+      "path": "world3/object_scripts_1.asm",
+      "responsibility": "World 3 object script decoding and early behavior handlers"
+    },
+    {
+      "bank": 2,
+      "start": "0x9D19",
+      "end": "0xA0C3",
+      "path": "world3/object_scripts_2.asm",
+      "responsibility": "World 3 object traversal, animation, and later behavior handlers"
+    },
+    {
+      "bank": 2,
+      "start": "0xA0C4",
+      "end": "0xA5DE",
+      "path": "world3/map_collision.asm",
+      "responsibility": "World 3 hierarchical map lookup, tile collision, and interaction state"
+    },
+    {
+      "bank": 2,
+      "start": "0xA5DF",
+      "end": "0xA8AF",
+      "path": "world3/ppu_streaming.asm",
+      "responsibility": "World 3 audio wrappers, nametable streaming, and PPU update preparation"
+    },
+    {
+      "bank": 2,
+      "start": "0xA8B0",
+      "end": "0xAE11",
+      "path": "world3/room_updates.asm",
+      "responsibility": "World 3 room updates, entity collision adjustment, and state tables"
+    },
+    {
+      "bank": 2,
+      "start": "0xAE12",
+      "end": "0xB1BA",
+      "path": "world3/chapter_transition.asm",
+      "responsibility": "World 3 completion sequence, transition loop, and support routines"
+    },
+    {
+      "bank": 2,
+      "start": "0xB1BB",
+      "end": "0xB405",
+      "path": "world3/frame_and_ppu_helpers.asm",
+      "responsibility": "World 3 frame synchronization, PPU buffers, and metatile update helpers"
+    },
+    {
+      "bank": 2,
+      "start": "0xB406",
+      "end": "0xB6B9",
+      "path": "world3/hud_rendering.asm",
+      "responsibility": "World 3 HUD composition, number rendering, and presentation tables"
+    },
+    {
+      "bank": 2,
+      "start": "0xB6BA",
+      "end": "0xBE0D",
+      "path": "world3/sprite_data.asm",
+      "responsibility": "World 3 OAM writer, metasprite tables, and palettes"
+    },
+    {
+      "bank": 2,
+      "start": "0xBE0E",
+      "end": "0xC015",
+      "path": "world3/audio_effect_dispatch.asm",
+      "responsibility": "World 3 audio-effect arbitration, RTS dispatch, and early handlers"
+    },
+    {
+      "bank": 2,
+      "start": "0xC016",
+      "end": "0xC440",
+      "path": "world3/audio_effect_handlers.asm",
+      "responsibility": "World 3 remaining audio-effect handlers"
+    },
+    {
+      "bank": 2,
+      "start": "0xC441",
+      "end": "0xC4F4",
+      "path": "world3/audio_apu_helpers.asm",
+      "responsibility": "World 3 APU write helpers, presentation data, and channel reset"
+    },
+    {
+      "bank": 2,
+      "start": "0xC4F5",
+      "end": "0xC633",
+      "path": "world3/music_engine.asm",
+      "responsibility": "World 3 four-channel music sequencer and stream interpreter"
+    },
+    {
+      "bank": 2,
+      "start": "0xC634",
+      "end": "0xC92B",
+      "path": "world3/music_commands.asm",
+      "responsibility": "World 3 music RTS table, command handlers, and stream reader"
+    },
+    {
+      "bank": 2,
+      "start": "0xC92C",
+      "end": "0xDDF1",
+      "path": "world3/music_data.asm",
+      "responsibility": "World 3 APU period tables, track headers, and music streams"
+    },
+    {
+      "bank": 2,
+      "start": "0xDDF2",
+      "end": "0xDEF1",
+      "path": "world3/data/block_attributes.asm",
+      "responsibility": "World 3 CadEditor block attribute table"
+    },
+    {
+      "bank": 2,
+      "start": "0xDEF2",
+      "end": "0xE2F1",
+      "path": "world3/data/small_blocks.asm",
+      "responsibility": "World 3 CadEditor small metatile table"
+    },
+    {
+      "bank": 2,
+      "start": "0xE2F2",
+      "end": "0xE6F1",
+      "path": "world3/data/big_blocks.asm",
+      "responsibility": "World 3 CadEditor large metatile table"
+    },
+    {
+      "bank": 2,
+      "start": "0xE6F2",
+      "end": "0xF6F1",
+      "path": "world3/data/map.asm",
+      "responsibility": "World 3 64 by 64 underwater map"
+    },
+    {
+      "bank": 2,
+      "start": "0xF6F2",
+      "end": "0xFFF9",
+      "path": "world3/data/bank_tail.asm",
+      "responsibility": "World 3 trailing chapter data and unused fill"
+    },
+    {
+      "bank": 2,
+      "start": "0xFFFA",
+      "end": "0xFFFF",
+      "path": "common/bank2_vectors.asm",
+      "responsibility": "Bank 2 NMI, RESET, and IRQ vectors"
+    },
+    {
       "bank": 3,
       "start": "0x8000",
       "end": "0x827C",

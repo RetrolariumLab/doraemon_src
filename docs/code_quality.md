@@ -11,8 +11,7 @@ assembler and optional static-analysis toolchain.
   ROM diagnostics, and CadEditor-backed data validation.
 - the release gate regenerates analysis, assembles, and compares all bytes.
 
-Banks 0, 1, and 3 are generated address-order include maps over semantic
-modules; bank 2 remains a monolithic preservation listing. Every extracted
-boundary is recorded in `config/source_modules.json`, must fall between
-instructions, and must retain byte-identical output. The source audit limits
-each declared module to 700 lines.
+All four banks are generated address-order include maps over semantic modules.
+Every extracted boundary is recorded in `config/source_modules.json`, must fall
+between instructions, and must retain byte-identical output. The source audit
+limits each declared module to 700 lines.

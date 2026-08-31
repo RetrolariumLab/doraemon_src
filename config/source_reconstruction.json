@@ -50,7 +50,7 @@
     },
     {
       "id": "semantic_source_layout",
-      "status": "in-progress",
+      "status": "complete",
       "evidence": [
         "config/source_modules.json",
         "config/prg_code_entries.txt",
@@ -62,8 +62,11 @@
     },
     {
       "id": "ram_and_object_systems",
-      "status": "planned",
-      "evidence": []
+      "status": "in-progress",
+      "evidence": [
+        "src/memory/ram.inc",
+        "docs/subsystems.md"
+      ]
     },
     {
       "id": "world_data_formats",

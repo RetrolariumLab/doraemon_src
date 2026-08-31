@@ -26,13 +26,13 @@ Capture boot/title, city, underground, cave, underwater, transition, and ending
 scenarios. Identify each chapter's initialization, frame, update, collision,
 render, and exit paths.
 
-### 4. Semantic source layout - In Progress
+### 4. Semantic source layout - Complete
 
 Replace the four monolithic physical-bank listings with address-ordered common,
-world, audio, and data modules. Keep every module at or below 700 lines. Banks
-0, 1, and 3 are complete; bank 2 remains a preservation listing.
+world, audio, and data modules. Every byte of all four banks is covered without
+gaps or overlaps, and every module remains at or below 700 lines.
 
-### 5. RAM and object systems - Planned
+### 5. RAM and object systems - In Progress
 
 Recover shared and chapter-specific RAM, enemies, items, NPCs, projectiles,
 doors, manholes, bosses, triggers, and persistent progression state.

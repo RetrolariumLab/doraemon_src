@@ -18,7 +18,10 @@ DEBUG := $(BUILD_DIR)/doraemon.dbg
 BANK_SOURCES := src/banks/bank_0.asm src/banks/bank_1.asm \
 	src/banks/bank_2.asm src/banks/bank_3.asm
 SEMANTIC_SOURCES := $(wildcard src/common/*.asm src/shell/*.asm \
-	src/rendering/*.asm src/audio/*.asm src/data/*.asm)
+	src/rendering/*.asm src/audio/*.asm src/data/*.asm \
+	src/world1/*.asm src/world1/data/*.asm \
+	src/world2/*.asm src/world2/data/*.asm \
+	src/world3/*.asm src/world3/data/*.asm)
 SOURCE_FILES := src/main.asm $(BANK_SOURCES) $(SEMANTIC_SOURCES) src/graphics/chr.asm \
 	src/memory/hardware.inc src/memory/ram.inc
 GHIDRA_FACTS_DIR := build/ghidra/facts

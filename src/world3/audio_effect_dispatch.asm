@@ -1,0 +1,230 @@
+; Doraemon PRG bank 2 $BE0E-$C015
+; World 3 audio-effect arbitration, RTS dispatch, and early handlers
+; Generated deterministically from pinned Ghidra/GhidraNes facts
+
+World3_AudioEffect_RequestPriority:
+    .byte $00, $54, $64, $4C, $40, $44, $04, $38, $34, $3C, $1C, $50, $58, $60, $2C, $28
+    .byte $08, $48, $30, $20, $24, $18, $14, $10, $0C, $5C
+
+World3_AudioEffect_RtsDispatchTable:
+    .byte $2B, $BF, $2A, $BF, $4C, $C0, $64, $C0, $A3, $C0, $BD, $C0, $E7, $C3, $F1, $C3
+    .byte $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $84, $C1, $91, $C1
+    .byte $A5, $C3, $BA, $C2, $AE, $C3, $CB, $C3, $A6, $C2, $BA, $C2, $63, $C2, $72, $C2
+    .byte $64, $C3, $7F, $C3, $3B, $C1, $1D, $BF, $0D, $C1, $1D, $BF, $54, $C1, $6B, $C1
+    .byte $15, $C0, $BA, $C2, $1D, $C0, $BA, $C2, $33, $C3, $47, $C3, $25, $C1, $1D, $BF
+    .byte $EA, $C1, $1D, $BF, $05, $C2, $1D, $BF, $58, $BF, $7A, $BF, $58, $BF, $C3, $BF
+    .byte $1B, $C2, $2F, $C2, $F3, $BF, $22, $BF
+
+World3_Audio_QueueEffectWithPriority:
+    CMP #$1A
+    BCS Bank2_Label_BEAE
+    STX $D1
+    LDX a:$02A0
+    BMI Bank2_Label_BEA9
+    STY $D2
+    TAY
+    LDA a:$BE0E,X
+    CMP a:$BE0E,Y
+    BCC Bank2_Label_BEAF
+    TYA
+    LDY $D2
+
+Bank2_Label_BEA9:
+    STA a:$02A0
+
+Bank2_Label_BEAC:
+    LDX $D1
+
+Bank2_Label_BEAE:
+    RTS
+
+Bank2_Label_BEAF:
+    LDY $D2
+    JMP Bank2_Label_BEAC
+
+World3_Audio_QueueEffect:
+    CMP #$1A
+    BCS Bank2_Label_BEAE
+    STX $D1
+    LDX #$00
+    STX a:$02A1
+    STA a:$02A0
+    LDX $D1
+    RTS
+
+World3_Audio_UpdateEffects:
+    LDX #$03
+
+Bank2_Label_BEC7:
+    LDA a:$02A3,X
+    BEQ Bank2_Label_BECF
+    DEC a:$02A3,X
+
+Bank2_Label_BECF:
+    DEX
+    BPL Bank2_Label_BEC7
+    LDA a:$02A0
+    BMI Bank2_Label_BF0C
+    TAX
+    ORA #$80
+    STA a:$02A0
+    CPX #$1A
+    BCS Bank2_Label_BF0C
+    LDA a:$02A1
+    BEQ Bank2_Label_BEF5
+    LDA a:$BE0E,X
+    CMP a:$02A1
+    BCC Bank2_Label_BEF5
+    BNE Bank2_Label_BF0C
+    LDA a:$02A2
+    BNE Bank2_Label_BF0C
+
+Bank2_Label_BEF5:
+    LDA a:$BE0E,X
+    STA a:$02A1
+    TAX
+    LDA #$00
+    STA a:$02A3
+    STA a:$02A4
+    STA a:$02A5
+    STA a:$02A6
+    BEQ Bank2_Label_BF11
+
+Bank2_Label_BF0C:
+    LDX a:$02A1
+    INX
+    INX
+
+Bank2_Label_BF11:
+    CPX #$68
+    BCS World3_Audio_StopCurrentEffect
+    LDA a:$BE29,X
+    PHA
+    LDA a:$BE28,X
+    PHA
+    RTS
+
+Bank2_Func_BF1E:
+    DEC a:$02A7
+    BNE Bank2_Func_BF2B
+
+World3_Audio_StopCurrentEffect:
+    LDA #$00
+    STA a:$02A1
+    STA a:$02A2
+
+Bank2_Func_BF2B:
+    RTS
+
+World3_Audio_ResetEffects:
+    LDA #$00
+    STA a:$02A2
+    STA a:$4011
+    STA a:$02A3
+    STA a:$02A4
+    STA a:$02A5
+    STA a:$02A6
+    STA a:$4008
+    STA a:$400C
+    LDA #$18
+    STA a:$400B
+    LDA #$10
+    STA a:$4000
+    STA a:$4004
+    LDA #$0F
+    STA a:$4015
+    RTS
+
+Bank2_Func_BF59:
+    LDA #$18
+    STA a:$02A6
+    LDA #$00
+    STA a:$400C
+    LDA #$0C
+    STA a:$02A7
+    STA a:$400E
+    LDA #$08
+    STA a:$400F
+    LDA #$00
+    STA a:$02A8
+    LDA #$04
+    STA a:$02A9
+    RTS
+
+Bank2_Func_BF7B:
+    LDX a:$02A8
+    BEQ Bank2_Label_BFAB
+    DEX
+    BEQ Bank2_Label_BF86
+    JMP Bank2_Func_BF1E
+
+Bank2_Label_BF86:
+    DEC a:$02A7
+    LDA a:$02A7
+    STA a:$400E
+    CMP #$08
+    BNE Bank2_Label_BFC3
+    INC a:$02A8
+    LDA #$1A
+    STA a:$400C
+    LDA #$03
+    STA a:$400E
+    LDA #$F8
+    STA a:$400F
+    LDA #$10
+    STA a:$02A7
+    RTS
+
+Bank2_Label_BFAB:
+    DEC a:$02A9
+    BNE Bank2_Label_BFC3
+    INC a:$02A8
+    LDA #$04
+    STA a:$400C
+    LDA a:$02A7
+    STA a:$400E
+    LDA #$08
+    STA a:$400F
+
+Bank2_Label_BFC3:
+    RTS
+
+Bank2_Func_BFC4:
+    LDX a:$02A8
+    BEQ Bank2_Label_BFAB
+    DEX
+    BEQ Bank2_Label_BFCF
+    JMP Bank2_Func_BF1E
+
+Bank2_Label_BFCF:
+    DEC a:$02A7
+    LDA a:$02A7
+    STA a:$400E
+    CMP #$08
+    BNE Bank2_Label_BFC3
+    INC a:$02A8
+    LDA #$1A
+    STA a:$400C
+    LDA #$06
+    STA a:$400E
+    LDA #$68
+    STA a:$400F
+    LDA #$06
+    STA a:$02A7
+    RTS
+
+Bank2_Func_BFF4:
+    LDA #$04
+    STA a:$02A5
+    STA a:$02A6
+    STA a:$02A7
+    LDA #$1F
+    STA a:$400C
+    LDA #$0F
+    STA a:$400E
+    LDY #$08
+    LDX #$F0
+    LDA #$38
+    JSR World3_Apu_WriteTriangleControlTimer
+    STA a:$400F
+    RTS
