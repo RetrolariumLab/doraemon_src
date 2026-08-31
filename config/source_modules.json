@@ -198,6 +198,146 @@
       "responsibility": "Bank 0 NMI, RESET, and IRQ vectors"
     },
     {
+      "bank": 1,
+      "start": "0x8000",
+      "end": "0x827C",
+      "path": "common/bank1_boot_and_gateways.asm",
+      "responsibility": "Bank 1 reset, NMI, input, mapper switching, and cross-bank gateways"
+    },
+    {
+      "bank": 1,
+      "start": "0x827D",
+      "end": "0x88A3",
+      "path": "world2/presentation_and_dispatch.asm",
+      "responsibility": "World 2 pre-game presentation, PPU services, and local RTS dispatch tables"
+    },
+    {
+      "bank": 1,
+      "start": "0x88A4",
+      "end": "0x8C5C",
+      "path": "world2/main_loop_and_player.asm",
+      "responsibility": "World 2 initialization, frame loop, and player flight state"
+    },
+    {
+      "bank": 1,
+      "start": "0x8C5D",
+      "end": "0x8F4A",
+      "path": "world2/player_weapons.asm",
+      "responsibility": "World 2 player animation, weapon state, and projectile creation"
+    },
+    {
+      "bank": 1,
+      "start": "0x8F4B",
+      "end": "0x92EB",
+      "path": "world2/enemies_and_projectiles.asm",
+      "responsibility": "World 2 enemy and projectile behavior handlers"
+    },
+    {
+      "bank": 1,
+      "start": "0x92EC",
+      "end": "0x9660",
+      "path": "world2/collision_and_spawning.asm",
+      "responsibility": "World 2 collision tests, object spawning, and frame services"
+    },
+    {
+      "bank": 1,
+      "start": "0x9661",
+      "end": "0xA0DB",
+      "path": "world2/sprite_rendering.asm",
+      "responsibility": "World 2 metasprite composition, OAM placement, and animation data"
+    },
+    {
+      "bank": 1,
+      "start": "0xA0DC",
+      "end": "0xA611",
+      "path": "world2/enemy_handlers.asm",
+      "responsibility": "World 2 later enemy handlers and movement tables"
+    },
+    {
+      "bank": 1,
+      "start": "0xA612",
+      "end": "0xA80A",
+      "path": "world2/stage_progress.asm",
+      "responsibility": "World 2 scrolling, stage progress, and boss-state services"
+    },
+    {
+      "bank": 1,
+      "start": "0xA80B",
+      "end": "0xAC2F",
+      "path": "world2/audio_effects.asm",
+      "responsibility": "World 2 audio-effect arbitration, RTS dispatch, and handlers"
+    },
+    {
+      "bank": 1,
+      "start": "0xAC30",
+      "end": "0xACE3",
+      "path": "world2/audio_apu_helpers.asm",
+      "responsibility": "World 2 APU write helpers, presentation data, and channel reset"
+    },
+    {
+      "bank": 1,
+      "start": "0xACE4",
+      "end": "0xAE22",
+      "path": "world2/music_engine.asm",
+      "responsibility": "World 2 four-channel music sequencer and stream interpreter"
+    },
+    {
+      "bank": 1,
+      "start": "0xAE23",
+      "end": "0xB11A",
+      "path": "world2/music_commands.asm",
+      "responsibility": "World 2 music RTS table, command handlers, and stream reader"
+    },
+    {
+      "bank": 1,
+      "start": "0xB11B",
+      "end": "0xB9CD",
+      "path": "world2/music_data.asm",
+      "responsibility": "World 2 APU period tables, track headers, and music streams"
+    },
+    {
+      "bank": 1,
+      "start": "0xB9CE",
+      "end": "0xBA9E",
+      "path": "world2/data/block_attributes.asm",
+      "responsibility": "World 2 CadEditor block attribute table"
+    },
+    {
+      "bank": 1,
+      "start": "0xBA9F",
+      "end": "0xBDEB",
+      "path": "world2/data/small_blocks.asm",
+      "responsibility": "World 2 CadEditor small-block table proven prefix"
+    },
+    {
+      "bank": 1,
+      "start": "0xBDEC",
+      "end": "0xDA0B",
+      "path": "world2/data/screens_00_29.asm",
+      "responsibility": "World 2 CadEditor screens 0 through 29"
+    },
+    {
+      "bank": 1,
+      "start": "0xDA0C",
+      "end": "0xF62B",
+      "path": "world2/data/screens_30_59.asm",
+      "responsibility": "World 2 CadEditor screens 30 through 59"
+    },
+    {
+      "bank": 1,
+      "start": "0xF62C",
+      "end": "0xFFF9",
+      "path": "world2/data/bank_tail.asm",
+      "responsibility": "World 2 trailing stage data pending format classification"
+    },
+    {
+      "bank": 1,
+      "start": "0xFFFA",
+      "end": "0xFFFF",
+      "path": "common/bank1_vectors.asm",
+      "responsibility": "Bank 1 NMI, RESET, and IRQ vectors"
+    },
+    {
       "bank": 3,
       "start": "0x8000",
       "end": "0x827C",

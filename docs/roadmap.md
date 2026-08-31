@@ -29,8 +29,8 @@ render, and exit paths.
 ### 4. Semantic source layout - In Progress
 
 Replace the four monolithic physical-bank listings with address-ordered common,
-world, audio, and data modules. Keep every module at or below 700 lines. Banks 0
-and 3 are complete; banks 1 and 2 remain preservation listings.
+world, audio, and data modules. Keep every module at or below 700 lines. Banks
+0, 1, and 3 are complete; bank 2 remains a preservation listing.
 
 ### 5. RAM and object systems - Planned
 
