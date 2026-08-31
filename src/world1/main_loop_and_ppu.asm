@@ -145,7 +145,7 @@ Bank0_Func_837C:
     TXA
 
 Bank0_Label_837F:
-    STA a:$0300,X
+    STA a:OamBuffer,X
     STA a:$0400,X
     STA a:$0500,X
     STA a:$0600,X
@@ -168,11 +168,11 @@ Bank0_Label_839F:
 
 Bank0_Func_83A3:
     LDA #$00
-    STA a:$02A0
-    STA a:$02AA
-    STA a:$02AB
+    STA a:AudioEffectRequestState
+    STA a:AudioMusicState
+    STA a:AudioMusicControl
     STA a:$4011
-    STA a:$4015
+    STA a:APU_STATUS
     STA a:$4010
     LDA #$40
     STA a:$4017
@@ -209,20 +209,20 @@ Bank0_Label_83DD:
 Bank0_Func_83E8:
     JSR Bank0_Func_9614
     JSR Bank0_Func_83A3
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FE
     ORA #$10
-    STA $19
+    STA PpuCtrlShadow
     LDA #$00
-    STA $1B
-    STA $1C
+    STA PpuScrollXShadow
+    STA PpuScrollYShadow
     STA $58
     STA $59
     STA $5A
     STA $51
     JSR Bank0_Func_8131
     LDA #$5B
-    STA $16
+    STA FrameCounter
     LDA $27
     BNE Bank0_Label_841D
     JSR Bank0_Func_8053
@@ -239,9 +239,9 @@ Bank0_Label_841D:
     JSR Bank0_Func_834E
     JSR Bank0_Func_94F8
     JSR Bank0_Func_951B
-    LDA $19
+    LDA PpuCtrlShadow
     ORA #$10
-    STA $19
+    STA PpuCtrlShadow
     LDA #$00
     JSR Bank0_Func_81AA
     JSR Bank0_Func_C96A
@@ -252,7 +252,7 @@ Bank0_Func_843B:
     LDA $29
     TAX
     LDA a:$8445,X
-    STA a:$02AA
+    STA a:AudioMusicState
     RTS
     .byte $01, $04, $05, $02, $02, $02, $02, $02, $03, $03, $02, $02
 
@@ -269,7 +269,7 @@ Bank0_Func_8451:
     LDA #$00
     STA a:$0180
     LDA #$00
-    STA $16
+    STA FrameCounter
     STA $52
     STA $53
     STA $54
@@ -292,17 +292,17 @@ Bank0_Func_8490:
     BNE Bank0_Label_84A3
 
 Bank0_Label_8494:
-    LDA $21
+    LDA CombinedControllerButtons
     EOR $64
     STA $65
-    LDA $21
+    LDA CombinedControllerButtons
     STA $64
     AND $65
     STA $65
     RTS
 
 Bank0_Label_84A3:
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$30
     BNE Bank0_Label_84D6
     LDA $A8
@@ -330,14 +330,14 @@ Bank0_Label_84CB:
     DEC $A8
     LDA $A9
     AND #$CF
-    STA $21
+    STA CombinedControllerButtons
     JMP Bank0_Label_8494
 
 Bank0_Label_84D6:
     JMP Bank0_Func_8048
 
 Bank0_Func_84D9:
-    LDA $14
+    LDA NmiOamDmaRequest
     BNE Bank0_Label_84E0
     JMP Bank0_Label_856B
 
@@ -360,17 +360,17 @@ Bank0_Label_84F0:
     PLA
     CMP #$02
     BEQ Bank0_Label_8527
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FB
-    STA a:$2000
+    STA a:PPU_CTRL
 
 Bank0_Label_8507:
     INY
     LDA a:$0180,Y
-    STA a:$2006
+    STA a:PPU_ADDR
     INY
     LDA a:$0180,Y
-    STA a:$2006
+    STA a:PPU_ADDR
     INY
     LDA a:$0180,Y
     TAX
@@ -379,38 +379,38 @@ Bank0_Label_8507:
 Bank0_Label_851B:
     LDA a:$0180,Y
     INY
-    STA a:$2007
+    STA a:PPU_DATA
     DEX
     BNE Bank0_Label_851B
     BEQ Bank0_Label_84F0
 
 Bank0_Label_8527:
-    LDA $19
+    LDA PpuCtrlShadow
     ORA #$04
-    STA a:$2000
+    STA a:PPU_CTRL
     JMP Bank0_Label_8507
 
 Bank0_Label_8531:
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FB
-    STA a:$2000
-    LDA $1A
-    STA a:$2001
+    STA a:PPU_CTRL
+    LDA PpuMaskShadow
+    STA a:PPU_MASK
     LDA $59
-    STA a:$2005
+    STA a:PPU_SCROLL
     LDA $5A
-    STA a:$2005
-    LDA $1B
+    STA a:PPU_SCROLL
+    LDA PpuScrollXShadow
     STA $59
-    LDA $1C
+    LDA PpuScrollYShadow
     STA $5A
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FE
     STA $0A
     LDA $58
     AND #$01
     ORA $0A
-    STA $19
+    STA PpuCtrlShadow
     JSR Bank0_Func_8131
     LDA #$00
     STA $50

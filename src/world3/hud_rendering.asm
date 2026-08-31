@@ -12,7 +12,7 @@ Bank2_Func_B406:
     STA $82
 
 Bank2_Label_B414:
-    LDA a:$0298,Y
+    LDA a:ScoreDigitsWorking,Y
     BNE Bank2_Label_B425
     LDA $83
     CLC
@@ -23,7 +23,7 @@ Bank2_Label_B414:
     BNE Bank2_Label_B414
 
 Bank2_Label_B425:
-    LDA a:$0298,Y
+    LDA a:ScoreDigitsWorking,Y
     AND #$0F
     ORA #$30
     STA $81
@@ -115,7 +115,7 @@ Bank2_Func_B4B6:
     LDA $7A
     AND #$40
     BEQ Bank2_Label_B4C4
-    LDA $16
+    LDA FrameCounter
     LSR A
     AND #$01
     BEQ Bank2_Label_B4C4
@@ -124,7 +124,7 @@ Bank2_Func_B4B6:
 Bank2_Label_B4C4:
     LDA $7A
     BPL Bank2_Label_B4DA
-    LDA $16
+    LDA FrameCounter
     AND #$08
     BEQ Bank2_Label_B4DA
     LDA $7A

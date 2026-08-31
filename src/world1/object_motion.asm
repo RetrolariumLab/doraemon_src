@@ -94,7 +94,7 @@ Bank0_Label_8BE7:
     CLC
     ADC #$01
     STA $8D
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$07
     CMP $8D
     BCS Bank0_Label_8C02
@@ -109,7 +109,7 @@ Bank0_Label_8C02:
     RTS
 
 Bank0_Label_8C03:
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$07
     CLC
     ADC $61
@@ -133,7 +133,7 @@ Bank0_Label_8C21:
     CLC
     ADC #$01
     STA $8D
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     CMP $8D
     BCC Bank0_Label_8C31
@@ -151,7 +151,7 @@ Bank0_Label_8C39:
     JMP Bank0_Label_8C54
 
 Bank0_Label_8C3E:
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     CLC
     ADC $62
@@ -504,7 +504,7 @@ Bank0_Label_8EA0:
     ASL A
     ROL a:$0490,X
     STA $07
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     EOR #$FF
     CLC
@@ -523,7 +523,7 @@ Bank0_Label_8EC6:
     ASL A
     ROL a:$0490,X
     STA $06
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$07
     EOR #$FF
     SEC

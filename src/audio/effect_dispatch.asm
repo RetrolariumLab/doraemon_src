@@ -7,8 +7,8 @@ Audio_QueueEffect:
     BCS Bank3_Label_9824
     STX $49
     LDX #$00
-    STX a:$02A1
-    STA a:$02A0
+    STX a:AudioCurrentEffectPriority
+    STA a:AudioEffectRequestState
     LDX $49
     RTS
 
@@ -16,24 +16,24 @@ Audio_UpdateEffects:
     LDX #$03
 
 Bank3_Label_983D:
-    LDA a:$02A3,X
+    LDA a:AudioEffectTimers,X
     BEQ Bank3_Label_9845
-    DEC a:$02A3,X
+    DEC a:AudioEffectTimers,X
 
 Bank3_Label_9845:
     DEX
     BPL Bank3_Label_983D
-    LDA a:$02A0
+    LDA a:AudioEffectRequestState
     BMI Bank3_Label_9882
     TAX
     ORA #$80
-    STA a:$02A0
+    STA a:AudioEffectRequestState
     CPX #$1A
     BCS Bank3_Label_9882
-    LDA a:$02A1
+    LDA a:AudioCurrentEffectPriority
     BEQ Bank3_Label_986B
     LDA a:$9784,X
-    CMP a:$02A1
+    CMP a:AudioCurrentEffectPriority
     BCC Bank3_Label_986B
     BNE Bank3_Label_9882
     LDA a:$02A2
@@ -41,17 +41,17 @@ Bank3_Label_9845:
 
 Bank3_Label_986B:
     LDA a:$9784,X
-    STA a:$02A1
+    STA a:AudioCurrentEffectPriority
     TAX
     LDA #$00
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A4
     STA a:$02A5
     STA a:$02A6
     BEQ Bank3_Label_9887
 
 Bank3_Label_9882:
-    LDX a:$02A1
+    LDX a:AudioCurrentEffectPriority
     INX
     INX
 
@@ -70,7 +70,7 @@ Bank3_Func_9894:
 
 Audio_StopCurrentEffect:
     LDA #$00
-    STA a:$02A1
+    STA a:AudioCurrentEffectPriority
     STA a:$02A2
 
 Bank3_Func_98A1:
@@ -80,31 +80,31 @@ Audio_ResetEffects:
     LDA #$00
     STA a:$02A2
     STA a:$4011
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A4
     STA a:$02A5
     STA a:$02A6
-    STA a:$4008
-    STA a:$400C
+    STA a:APU_TRI_LINEAR
+    STA a:APU_NOISE_VOL
     LDA #$18
-    STA a:$400B
+    STA a:APU_TRI_HI
     LDA #$10
-    STA a:$4000
-    STA a:$4004
+    STA a:APU_PL1_VOL
+    STA a:APU_PL2_VOL
     LDA #$0F
-    STA a:$4015
+    STA a:APU_STATUS
     RTS
 
 Bank3_Func_98CF:
     LDA #$18
     STA a:$02A6
     LDA #$00
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$0C
     STA a:$02A7
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$08
-    STA a:$400F
+    STA a:APU_NOISE_HI
     LDA #$00
     STA a:$02A8
     LDA #$04
@@ -121,16 +121,16 @@ Bank3_Func_98F1:
 Bank3_Label_98FC:
     DEC a:$02A7
     LDA a:$02A7
-    STA a:$400E
+    STA a:APU_NOISE_LO
     CMP #$08
     BNE Bank3_Label_9939
     INC a:$02A8
     LDA #$1A
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$03
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$F8
-    STA a:$400F
+    STA a:APU_NOISE_HI
     LDA #$10
     STA a:$02A7
     RTS
@@ -140,11 +140,11 @@ Bank3_Label_9921:
     BNE Bank3_Label_9939
     INC a:$02A8
     LDA #$04
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA a:$02A7
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$08
-    STA a:$400F
+    STA a:APU_NOISE_HI
 
 Bank3_Label_9939:
     RTS
@@ -159,16 +159,16 @@ Bank3_Func_993A:
 Bank3_Label_9945:
     DEC a:$02A7
     LDA a:$02A7
-    STA a:$400E
+    STA a:APU_NOISE_LO
     CMP #$08
     BNE Bank3_Label_9939
     INC a:$02A8
     LDA #$1A
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$06
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$68
-    STA a:$400F
+    STA a:APU_NOISE_HI
     LDA #$06
     STA a:$02A7
     RTS
@@ -179,14 +179,14 @@ Bank3_Func_996A:
     STA a:$02A6
     STA a:$02A7
     LDA #$1F
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$0F
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDY #$08
     LDX #$F0
     LDA #$38
     JSR Apu_WriteTriangleControlTimer
-    STA a:$400F
+    STA a:APU_NOISE_HI
     RTS
 
 Bank3_Func_998C:
@@ -213,18 +213,18 @@ Bank3_Func_99AE:
     LDA #$08
     STA a:$02A6
     LDA #$01
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$0A
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$08
-    STA a:$400F
+    STA a:APU_NOISE_HI
 
 Bank3_Label_99C2:
     RTS
 
 Bank3_Func_99C3:
     LDA #$48
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A4
     STA a:$02A5
     STA a:$02A6
@@ -289,25 +289,25 @@ Bank3_Func_9A34:
     JSR Bank3_Func_9A6B
     LDX #$00
     LDA a:$02A8
-    STA a:$02A3,X
+    STA a:AudioEffectTimers,X
     TXA
     ASL A
     ASL A
     TAX
     LDA a:$02A9
-    STA a:$4000,X
+    STA a:APU_PL1_VOL,X
     LDA #$00
-    STA a:$4001,X
+    STA a:APU_PL1_SWEEP,X
     LDY #$00
     LDA ($2D),Y
     BEQ Bank3_Func_9A64
     ASL A
     TAY
     LDA a:$A30F,Y
-    STA a:$4002,X
+    STA a:APU_PL1_LO,X
     LDA a:$A310,Y
     ORA #$08
-    STA a:$4003,X
+    STA a:APU_PL1_HI,X
 
 Bank3_Func_9A64:
     INC $2D
@@ -337,7 +337,7 @@ Bank3_Label_9A83:
 
 Bank3_Func_9A84:
     LDA #$04
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A7
     STA a:$02A2
     LDA #$00
@@ -377,13 +377,13 @@ Bank3_Func_9ACB:
     LDA #$0C
     STA a:$02A7
     LDA #$04
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$08
-    STA a:$400F
+    STA a:APU_NOISE_HI
 
 Bank3_Func_9AE2:
     LDA a:$02A7
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA a:$02A7
     CMP #$0F
     BEQ Bank3_Label_9AF2
@@ -415,7 +415,7 @@ Bank3_Func_9B08:
     CMP #$FF
     BEQ Bank3_Label_9AF7
     STA a:$02A7
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A4
     STA a:$02A5
     STA a:$02A6
@@ -441,14 +441,14 @@ Bank3_Label_9B43:
     ASL A
 
 Bank3_Label_9B44:
-    STA a:$4000,X
+    STA a:APU_PL1_VOL,X
     LDA #$00
-    STA a:$4001,X
+    STA a:APU_PL1_SWEEP,X
     LDA a:$A30F,Y
-    STA a:$4002,X
+    STA a:APU_PL1_LO,X
     LDA a:$A310,Y
     ORA #$08
-    STA a:$4003,X
+    STA a:APU_PL1_HI,X
 
 Bank3_Label_9B5A:
     INX
@@ -485,7 +485,7 @@ Bank3_Func_9B92:
     LDA #$18
     STA a:$02A6
     LDA #$04
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$0F
     STA a:$02A7
     LDA #$00
@@ -496,9 +496,9 @@ Bank3_Func_9BA6:
     CMP #$10
     BEQ Bank3_Label_9BD2
     ORA #$10
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$28
-    STA a:$400F
+    STA a:APU_NOISE_HI
     LDA a:$02A8
     BEQ Bank3_Label_9BC0
     INC a:$02A7
@@ -518,7 +518,7 @@ Bank3_Label_9BCE:
 
 Bank3_Label_9BD2:
     LDA #$10
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     JMP Audio_StopCurrentEffect
 
 Bank3_Func_9BDA:

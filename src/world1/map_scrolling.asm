@@ -6,21 +6,21 @@ Bank0_Func_A381:
     LDA $5B
     CMP #$E0
     BNE Bank0_Label_A38E
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$07
     BNE Bank0_Label_A38E
     RTS
 
 Bank0_Label_A38E:
     DEC $61
-    INC $1B
+    INC PpuScrollXShadow
     BNE Bank0_Label_A39A
     LDA $58
     EOR #$01
     STA $58
 
 Bank0_Label_A39A:
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$07
     BEQ Bank0_Label_A3A1
     RTS
@@ -32,7 +32,7 @@ Bank0_Label_A3A1:
     ADC #$20
     TAX
     LDY $5C
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     CMP #$04
     BCC Bank0_Label_A3B4
@@ -43,7 +43,7 @@ Bank0_Label_A3B4:
     EOR #$01
     AND #$01
     JSR Bank0_Func_A4C6
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$0F
     BNE Bank0_Label_A3D4
     LDY $5C
@@ -69,22 +69,22 @@ Bank0_Label_A3D4:
 Bank0_Func_A3E1:
     LDA $5B
     BNE Bank0_Label_A3EC
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$07
     BNE Bank0_Label_A3EC
     RTS
 
 Bank0_Label_A3EC:
     INC $61
-    LDA $1B
+    LDA PpuScrollXShadow
     BNE Bank0_Label_A3F8
     LDA $58
     EOR #$01
     STA $58
 
 Bank0_Label_A3F8:
-    DEC $1B
-    LDA $1B
+    DEC PpuScrollXShadow
+    LDA PpuScrollXShadow
     AND #$07
     CMP #$07
     BEQ Bank0_Label_A403
@@ -94,7 +94,7 @@ Bank0_Label_A403:
     DEC $5B
     LDX $5B
     LDY $5C
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     CMP #$04
     BCC Bank0_Label_A412
@@ -104,7 +104,7 @@ Bank0_Label_A412:
     LDA $58
     AND #$01
     JSR Bank0_Func_A4C6
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$0F
     CMP #$0F
     BNE Bank0_Label_A3D4
@@ -119,7 +119,7 @@ Bank0_Func_A42F:
     LDA $5C
     CMP #$E2
     BNE Bank0_Label_A43C
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     BNE Bank0_Label_A43C
 
@@ -128,13 +128,13 @@ Bank0_Label_A43B:
 
 Bank0_Label_A43C:
     DEC $62
-    INC $1C
-    LDA $1C
+    INC PpuScrollYShadow
+    LDA PpuScrollYShadow
     CMP #$F0
     BCC Bank0_Label_A44B
     CLC
     ADC #$10
-    STA $1C
+    STA PpuScrollYShadow
 
 Bank0_Label_A44B:
     AND #$07
@@ -153,7 +153,7 @@ Bank0_Label_A451:
     JMP Bank0_Label_A476
 
 Bank0_Label_A463:
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$0F
     CMP #$08
     BNE Bank0_Label_A43B
@@ -178,7 +178,7 @@ Bank0_Label_A476:
 Bank0_Func_A484:
     LDA $5C
     BNE Bank0_Label_A48F
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     BNE Bank0_Label_A48F
 
@@ -187,13 +187,13 @@ Bank0_Label_A48E:
 
 Bank0_Label_A48F:
     INC $62
-    DEC $1C
-    LDA $1C
+    DEC PpuScrollYShadow
+    LDA PpuScrollYShadow
     CMP #$F0
     BCC Bank0_Label_A49E
     SEC
     SBC #$10
-    STA $1C
+    STA PpuScrollYShadow
 
 Bank0_Label_A49E:
     AND #$07
@@ -210,7 +210,7 @@ Bank0_Label_A4A6:
     JMP Bank0_Label_A476
 
 Bank0_Label_A4B4:
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$0F
     CMP #$07
     BNE Bank0_Label_A48E
@@ -230,7 +230,7 @@ Bank0_Label_A4CC:
     INX
     CPX #$1E
     BNE Bank0_Label_A4CC
-    LDA $1C
+    LDA PpuScrollYShadow
     CLC
     ADC #$04
     CMP #$F0
@@ -248,7 +248,7 @@ Bank0_Label_A4E3:
     ROL A
     ORA #$20
     STA a:$0232
-    LDA $1B
+    LDA PpuScrollXShadow
     LSR A
     LSR A
     LSR A

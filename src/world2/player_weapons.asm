@@ -371,7 +371,7 @@ Bank1_Func_8E3C:
     BNE Bank1_Label_8E50
 
 Bank1_Label_8E4E:
-    LDA $21
+    LDA CombinedControllerButtons
 
 Bank1_Label_8E50:
     TAX

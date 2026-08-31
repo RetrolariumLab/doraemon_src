@@ -14,14 +14,14 @@ Bank3_RunEnding:
     LDA #$93
     STA $01
     LDA #$20
-    STA a:$2006
+    STA a:PPU_ADDR
     LDY #$00
-    STY a:$2006
+    STY a:PPU_ADDR
     LDX #$04
 
 Bank3_Label_8AAA:
     LDA ($00),Y
-    STA a:$2007
+    STA a:PPU_DATA
     INY
     BNE Bank3_Label_8AAA
     INC $01
@@ -36,27 +36,27 @@ Bank3_Label_8AB9:
     BNE Bank3_Label_8AB9
     JSR Bank3_Func_90D1
     LDA #$00
-    STA $1B
-    STA $1C
+    STA PpuScrollXShadow
+    STA PpuScrollYShadow
     LDA #$01
     STA $09
     LDA #$02
-    STA a:$02AA
-    LDA $19
+    STA a:AudioMusicState
+    LDA PpuCtrlShadow
     AND #$E0
-    STA $19
+    STA PpuCtrlShadow
     JSR Bank3_Func_80FD
 
 Bank3_Label_8ADD:
     JSR Bank3_Func_8F5A
-    LDA a:$02AA
+    LDA a:AudioMusicState
     BNE Bank3_Label_8ADD
     LDA #$C4
-    STA $16
+    STA FrameCounter
 
 Bank3_Label_8AE9:
     JSR Bank3_Func_8F5A
-    LDA $16
+    LDA FrameCounter
     BNE Bank3_Label_8AE9
     JSR Bank3_Func_80DA
     LDA $3B
@@ -70,11 +70,11 @@ Bank3_Label_8AFA:
     LDA #$BD
     STA $4C
     LDA #$03
-    STA a:$02AA
-    LDA $19
+    STA a:AudioMusicState
+    LDA PpuCtrlShadow
     AND #$E0
     ORA #$10
-    STA $19
+    STA PpuCtrlShadow
     JSR Bank3_Func_91A1
     JSR Bank3_Func_80FD
 
@@ -96,12 +96,12 @@ Bank3_Label_8B18:
     LDA #$01
     STA a:$0408
     LDA #$00
-    STA $1C
-    STA $1B
-    LDA $19
+    STA PpuScrollYShadow
+    STA PpuScrollXShadow
+    LDA PpuCtrlShadow
     AND #$E0
     ORA #$10
-    STA $19
+    STA PpuCtrlShadow
     JSR Bank3_Func_91A1
     LDA #$0C
     STA $3E
@@ -144,7 +144,7 @@ Bank3_Func_8B8A:
 
 Bank3_Label_8B8E:
     LDA a:$8B9B,Y
-    STA a:$0300,X
+    STA a:OamBuffer,X
     INX
     INY
     CPY #$80

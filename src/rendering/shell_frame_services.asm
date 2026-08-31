@@ -47,21 +47,21 @@ Bank3_Func_90D1:
 
 Bank3_Label_90DC:
     LDA #$3F
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA #$00
-    STA a:$2006
+    STA a:PPU_ADDR
     LDY #$E0
 
 Bank3_Label_90E8:
     LDA a:$0130,Y
-    STA a:$2007
+    STA a:PPU_DATA
     INY
     BNE Bank3_Label_90E8
     LDA #$3F
-    STA a:$2006
-    STY a:$2006
-    STY a:$2006
-    STY a:$2006
+    STA a:PPU_ADDR
+    STY a:PPU_ADDR
+    STY a:PPU_ADDR
+    STY a:PPU_ADDR
     STA a:$0408
     RTS
     .byte $A5, $1C, $29, $07, $C9, $03, $D0, $F7, $AD, $80, $01, $F0, $F2, $8D, $06, $20
@@ -71,44 +71,44 @@ Bank3_Label_90E8:
     .byte $8E, $C0, $01, $BD, $C1, $01, $8D, $07, $20, $E8, $E0, $08, $90, $F5, $60
 
 Bank3_Func_9152:
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FB
-    STA $19
+    STA PpuCtrlShadow
     AND #$7F
-    STA a:$2000
+    STA a:PPU_CTRL
     LDA #$20
-    STA a:$2006
+    STA a:PPU_ADDR
     LDX #$00
-    STX a:$2006
+    STX a:PPU_ADDR
     LDY #$08
     LDA #$7F
 
 Bank3_Label_916B:
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     BNE Bank3_Label_916B
     DEY
     BNE Bank3_Label_916B
     LDA #$23
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA #$C0
-    STA a:$2006
+    STA a:PPU_ADDR
     LDX #$40
     LDA #$00
 
 Bank3_Label_9182:
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     BNE Bank3_Label_9182
     LDA #$27
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA #$C0
-    STA a:$2006
+    STA a:PPU_ADDR
     LDX #$40
     LDA #$00
 
 Bank3_Label_9196:
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     BNE Bank3_Label_9196
     RTS
@@ -119,7 +119,7 @@ Bank3_Func_91A1:
     LDA #$F0
 
 Bank3_Label_91A5:
-    STA a:$0300,X
+    STA a:OamBuffer,X
     INX
     INX
     INX
@@ -135,24 +135,24 @@ Bank3_Label_91ED:
     RTS
 
 Bank3_Func_91EE:
-    LDA $16
+    LDA FrameCounter
     AND #$03
     BNE Bank3_Label_91ED
-    LDX $1C
+    LDX PpuScrollYShadow
     INX
     CPX #$F0
     BCC Bank3_Label_91FD
     LDX #$00
 
 Bank3_Label_91FD:
-    STX $1C
+    STX PpuScrollYShadow
     TXA
     AND #$07
     CMP #$03
     BNE Bank3_Label_91ED
     LDA #$08
     STA $01
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$F8
     ASL A
     ROL $01

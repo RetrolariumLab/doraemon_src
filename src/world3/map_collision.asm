@@ -267,7 +267,7 @@ Bank2_Label_A2AA:
     BNE Bank2_Label_A2AA
     JSR Bank2_Func_A213
     LDA $A5
-    STA a:$02AA
+    STA a:AudioMusicState
     RTS
 
 Bank2_Label_A2BE:
@@ -279,7 +279,7 @@ Bank2_Label_A2C5:
     JSR Bank2_Func_8065
 
 Bank2_Label_A2C8:
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$10
     BEQ Bank2_Label_A2C8
     JSR Bank2_Func_A2D4
@@ -290,7 +290,7 @@ Bank2_Func_A2D4:
     LDA #$00
 
 Bank2_Label_A2D8:
-    STA a:$0298,X
+    STA a:ScoreDigitsWorking,X
     INX
     CPX #$08
     BNE Bank2_Label_A2D8

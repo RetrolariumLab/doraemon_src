@@ -72,10 +72,10 @@ Bank2_Label_8328:
     STA $D0
     LDA #$00
     STA $E0
-    LDA $1F
+    LDA Controller1Buttons
     CMP #$FA
     BNE Bank2_Label_834C
-    LDA $1D
+    LDA Controller2Buttons
     CMP #$C5
     BNE Bank2_Label_834C
     LDA #$01
@@ -91,7 +91,7 @@ Bank2_Label_834C:
     STA $28
     JSR Bank2_Func_8053
     LDA #$00
-    STA $19
+    STA PpuCtrlShadow
     JSR Bank2_Func_80FD
     LDA #$5A
     STA $68
@@ -173,7 +173,7 @@ Bank2_Label_83D1:
 Bank2_Label_83F3:
     JSR Bank2_Func_8427
     LDA #$01
-    STA $14
+    STA NmiOamDmaRequest
     LDA #$01
     STA $68
     JSR Bank2_Func_B1BB
@@ -185,7 +185,7 @@ Bank2_Label_83F3:
     BEQ Bank2_Label_8416
 
 Bank2_Label_840D:
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$30
     BEQ Bank2_Label_8419
     JMP Bank2_Func_8048
@@ -227,41 +227,41 @@ Bank2_Label_8443:
     JMP Bank2_Label_FC00
 
 Bank2_Label_844E:
-    LDA $1D
+    LDA Controller2Buttons
     AND #$02
     BEQ Bank2_Label_8457
     JSR Bank2_Func_A619
 
 Bank2_Label_8457:
-    LDA $1D
+    LDA Controller2Buttons
     AND #$01
     BEQ Bank2_Label_8460
     JSR Bank2_Func_A63A
 
 Bank2_Label_8460:
-    LDA $1D
+    LDA Controller2Buttons
     AND #$08
     BEQ Bank2_Label_8469
     JSR Bank2_Func_A65D
 
 Bank2_Label_8469:
-    LDA $1D
+    LDA Controller2Buttons
     AND #$04
     BEQ Bank2_Label_8472
     JSR Bank2_Func_A688
 
 Bank2_Label_8472:
-    LDA $1D
+    LDA Controller2Buttons
     CMP #$C0
     BNE Bank2_Label_8486
     JSR Bank2_Func_AF6F
 
 Bank2_Label_847B:
-    LDA $1D
+    LDA Controller2Buttons
     BNE Bank2_Label_847B
 
 Bank2_Label_847F:
-    LDA $1D
+    LDA Controller2Buttons
     BEQ Bank2_Label_847F
     JMP Bank2_Func_8048
 
@@ -423,9 +423,9 @@ Bank2_Func_8581:
     CMP #$3F
     BEQ Bank2_Label_8599
     LDA $A5
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA #$00
-    STA a:$02AB
+    STA a:AudioMusicControl
 
 Bank2_Label_8599:
     RTS
@@ -444,7 +444,7 @@ Bank2_Label_85A4:
     BNE Bank2_Label_85A3
     INC $64
     LDA #$01
-    STA a:$02AB
+    STA a:AudioMusicControl
     LDA #$06
     JSR Bank2_Func_A5EB
 
@@ -458,7 +458,7 @@ Bank2_Label_85BB:
     AND #$10
     BEQ Bank2_Label_85BB
     LDA #$00
-    STA a:$02AB
+    STA a:AudioMusicControl
     RTS
 
 Bank2_Func_85C8:
@@ -487,7 +487,7 @@ Bank2_Label_85EC:
     LDA #$0A
     JSR Bank2_Func_A5EB
     LDA #$01
-    STA a:$02AB
+    STA a:AudioMusicControl
     JSR Bank2_Func_86C4
     JSR Bank2_Func_A28D
 
@@ -531,7 +531,7 @@ Bank2_Label_8630:
     LDA #$14
     STA $A8
     LDA #$03
-    STA a:$02AA
+    STA a:AudioMusicState
 
 Bank2_Label_864C:
     RTS
@@ -562,7 +562,7 @@ Bank2_Label_867A:
 Bank2_Func_8689:
     JSR Bank2_Func_80DA
     LDA #$90
-    STA $19
+    STA PpuCtrlShadow
     LDA #$02
     JSR Bank2_Func_81AA
     JSR Bank2_Func_B276

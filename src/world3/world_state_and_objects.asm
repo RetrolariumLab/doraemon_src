@@ -237,7 +237,7 @@ Bank2_Label_88EE:
     CMP #$08
     BNE Bank2_Label_8939
     LDA #$01
-    STA a:$02AB
+    STA a:AudioMusicControl
     LDA #$04
     JSR Bank2_Func_A5EB
     LDA #$28
@@ -277,7 +277,7 @@ Bank2_Label_8939:
     CMP #$10
     BCS Bank2_Label_895C
     LDA #$01
-    STA a:$02AB
+    STA a:AudioMusicControl
     LDA #$04
     JSR Bank2_Func_A5EB
     LDA #$28
@@ -472,7 +472,7 @@ Bank2_Label_8A60:
     LDA #$00
     STA $CC
     LDA #$01
-    STA a:$02AB
+    STA a:AudioMusicControl
     RTS
 
 Bank2_Label_8A87:
@@ -582,7 +582,7 @@ Bank2_Label_8B36:
     STA a:$06F9
     STA a:$06FA
     LDA #$08
-    STA a:$02AA
+    STA a:AudioMusicState
     RTS
 
 Bank2_Label_8B4E:

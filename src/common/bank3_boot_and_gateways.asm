@@ -48,7 +48,7 @@ Bank3_Func_8048:
 
 Bank3_Func_8053:
     JSR Bank3_Func_80F0
-    LDA $17
+    LDA MapperSelection
     PHA
     LDA #$03
     JSR Bank3_Func_81B2
@@ -58,7 +58,7 @@ Bank3_Func_8053:
 
 Bank3_Func_8065:
     JSR Bank3_Func_80F0
-    LDA $17
+    LDA MapperSelection
     PHA
     LDA #$03
     JSR Bank3_Func_81B2
@@ -88,8 +88,8 @@ Bank3_Reset:
     LDX #$7F
     TXS
     LDA #$00
-    STA a:$2001
-    STA a:$2000
+    STA a:PPU_MASK
+    STA a:PPU_CTRL
     JSR Bank3_WaitForVblank
     JSR Bank3_WaitForVblank
     LDX #$00
@@ -103,65 +103,65 @@ Bank3_Label_80AC:
     INX
     BNE Bank3_Label_80AC
     LDA #$10
-    STA $19
-    STA a:$2000
+    STA PpuCtrlShadow
+    STA a:PPU_CTRL
     LDA #$06
-    STA $1A
-    STA a:$2001
+    STA PpuMaskShadow
+    STA a:PPU_MASK
     JSR Bank3_Func_80DA
     JMP Bank3_Func_8048
 
 Bank3_WaitForVblank:
-    LDA a:$2002
+    LDA a:PPU_STATUS
     BPL Bank3_WaitForVblank
 
 Bank3_Label_80D4:
-    LDA a:$2002
+    LDA a:PPU_STATUS
     BMI Bank3_Label_80D4
     RTS
 
 Bank3_Func_80DA:
     JSR Bank3_WaitForVblank
     LDA #$00
-    STA $14
-    LDA $19
-    STA a:$2000
-    LDA $1A
+    STA NmiOamDmaRequest
+    LDA PpuCtrlShadow
+    STA a:PPU_CTRL
+    LDA PpuMaskShadow
     AND #$E7
-    STA $1A
-    STA a:$2001
+    STA PpuMaskShadow
+    STA a:PPU_MASK
     RTS
 
 Bank3_Func_80F0:
     JSR Bank3_Func_80DA
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$7F
-    STA $19
-    STA a:$2000
+    STA PpuCtrlShadow
+    STA a:PPU_CTRL
     RTS
 
 Bank3_Func_80FD:
     JSR Bank3_Func_8131
     JSR Bank3_WaitForVblank
     LDA #$01
-    STA $14
-    LDA $1B
-    STA a:$2005
-    LDA $1C
-    STA a:$2005
-    LDA $19
+    STA NmiOamDmaRequest
+    LDA PpuScrollXShadow
+    STA a:PPU_SCROLL
+    LDA PpuScrollYShadow
+    STA a:PPU_SCROLL
+    LDA PpuCtrlShadow
     ORA #$80
-    STA $19
-    STA a:$2000
+    STA PpuCtrlShadow
+    STA a:PPU_CTRL
     LDA #$00
-    STA a:$2003
+    STA a:OAM_ADDR
     LDA #$03
-    STA a:$4014
+    STA a:OAM_DMA
     JSR Bank3_WriteMapper
-    LDA $1A
+    LDA PpuMaskShadow
     ORA #$18
-    STA $1A
-    STA a:$2001
+    STA PpuMaskShadow
+    STA a:PPU_MASK
     RTS
 
 Bank3_Func_8131:
@@ -169,7 +169,7 @@ Bank3_Func_8131:
     LDX #$00
 
 Bank3_Label_8135:
-    STA a:$0300,X
+    STA a:OamBuffer,X
     INX
     BNE Bank3_Label_8135
     RTS
@@ -180,45 +180,45 @@ Bank3_Nmi:
     PHA
     TYA
     PHA
-    LDA $15
+    LDA NmiBusy
     BNE Bank3_Label_81A2
-    INC $15
-    LDA $14
+    INC NmiBusy
+    LDA NmiOamDmaRequest
     BEQ Bank3_Label_8158
     LDA #$00
-    STA a:$2003
+    STA a:OAM_ADDR
     LDA #$03
-    STA a:$4014
+    STA a:OAM_DMA
     JSR Bank3_WriteMapper
 
 Bank3_Label_8158:
     JSR Bank3_Func_8274
     LDA #$01
-    STA a:$4016
+    STA a:JOYPAD1
     LDA #$00
-    STA a:$4016
+    STA a:JOYPAD1
     LDX #$08
 
 Bank3_Label_8167:
-    LDA a:$4016
+    LDA a:JOYPAD1
     LSR A
-    ROL $1F
+    ROL Controller1Buttons
     LSR A
-    ROL $20
+    ROL Controller1ButtonsAlt
     LDA a:$4017
     LSR A
-    ROL $1D
+    ROL Controller2Buttons
     LSR A
-    ROL $1E
+    ROL Controller2ButtonsAlt
     DEX
     BNE Bank3_Label_8167
-    LDA $1D
+    LDA Controller2Buttons
     AND #$CF
-    ORA $1F
-    ORA $20
-    ORA $1E
-    STA $21
-    LDA a:$4016
+    ORA Controller1Buttons
+    ORA Controller1ButtonsAlt
+    ORA Controller2ButtonsAlt
+    STA CombinedControllerButtons
+    LDA a:JOYPAD1
     AND #$04
     CMP $23
     BEQ Bank3_Label_8197
@@ -233,10 +233,10 @@ Bank3_Label_8197:
 
 Bank3_Label_819D:
     JSR Bank3_Func_827A
-    DEC $15
+    DEC NmiBusy
 
 Bank3_Label_81A2:
-    INC $16
+    INC FrameCounter
     PLA
     TAY
     PLA
@@ -248,17 +248,17 @@ Bank3_Func_81AA:
     ASL A
     ASL A
     AND #$0C
-    STA $18
-    LDA $17
+    STA ChrSelectionBits
+    LDA MapperSelection
 
 Bank3_Func_81B2:
     AND #$03
-    ORA $18
-    STA $17
+    ORA ChrSelectionBits
+    STA MapperSelection
     JSR Bank3_WaitForVblank
 
 Bank3_WriteMapper:
-    LDA $17
+    LDA MapperSelection
     TAX
     LDA a:$8261,X
     STA a:$8261,X
@@ -295,7 +295,7 @@ Bank3_Label_81E5:
 
 Bank3_Func_81E6:
     CLC
-    ADC a:$0298,X
+    ADC a:ScoreDigitsWorking,X
     LDY #$00
 
 Bank3_Label_81EC:
@@ -307,7 +307,7 @@ Bank3_Label_81EC:
     BNE Bank3_Label_81EC
 
 Bank3_Label_81F6:
-    STA a:$0298,X
+    STA a:ScoreDigitsWorking,X
     TYA
     BNE Bank3_Label_81FD
     RTS
@@ -319,8 +319,8 @@ Bank3_Label_81FD:
     LDX #$05
 
 Bank3_Label_8204:
-    STA a:$0298,X
-    STA a:$0290,X
+    STA a:ScoreDigitsWorking,X
+    STA a:ScoreDigitsCurrent,X
     DEX
     BPL Bank3_Label_8204
     RTS
@@ -337,7 +337,7 @@ Bank3_Func_820E:
     LDX #$00
 
 Bank3_Label_821D:
-    LDA a:$0298,X
+    LDA a:ScoreDigitsWorking,X
     CMP a:$8251,Y
     BCC Bank3_Label_8233
     BNE Bank3_Label_822D
@@ -355,8 +355,8 @@ Bank3_Label_8233:
     LDX #$00
 
 Bank3_Label_8235:
-    LDA a:$0290,X
-    CMP a:$0298,X
+    LDA a:ScoreDigitsCurrent,X
+    CMP a:ScoreDigitsWorking,X
     BCC Bank3_Label_8245
     BNE Bank3_Label_8244
     INX
@@ -367,8 +367,8 @@ Bank3_Label_8244:
     RTS
 
 Bank3_Label_8245:
-    LDA a:$0298,X
-    STA a:$0290,X
+    LDA a:ScoreDigitsWorking,X
+    STA a:ScoreDigitsCurrent,X
     INX
     CPX #$06
     BNE Bank3_Label_8245

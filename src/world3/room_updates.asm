@@ -394,7 +394,7 @@ Bank2_Label_AC2F:
     CPX #$08
     BNE Bank2_Label_AC2F
     LDA #$03
-    STA a:$02AA
+    STA a:AudioMusicState
 
 Bank2_Label_AC6B:
     RTS

@@ -6,10 +6,10 @@ Bank1_Func_827D:
     JSR Bank1_Func_8747
 
 Bank1_Label_8280:
-    LDA $1A
+    LDA PpuMaskShadow
 
 Bank1_Label_8283 = * + 1  ; overlapping entry $8283
-    STA a:$2001
+    STA a:PPU_MASK
     .byte $A9
 
 Bank1_Func_8286:
@@ -89,13 +89,13 @@ Bank1_Label_8302:
     BEQ Bank1_Label_8335
     DEX
     STX $45
-    LDA $19
+    LDA PpuCtrlShadow
     PHA
     LDA $3F
     PHA
-    LDA $19
+    LDA PpuCtrlShadow
     EOR #$01
-    STA $19
+    STA PpuCtrlShadow
     TXA
     EOR #$0F
     ORA #$F0
@@ -107,7 +107,7 @@ Bank1_Label_8302:
     PLA
     STA $3F
     PLA
-    STA $19
+    STA PpuCtrlShadow
     JMP Bank1_Label_8280
     .byte $68, $85, $3F, $68, $85, $19, $4C, $80, $82
 
@@ -116,9 +116,9 @@ Bank1_Label_8335:
     LDA $3F
     BNE Bank1_Label_8343
     PHA
-    LDA $19
+    LDA PpuCtrlShadow
     EOR #$01
-    STA $19
+    STA PpuCtrlShadow
     PLA
 
 Bank1_Label_8343:
@@ -298,7 +298,7 @@ Bank1_Func_8471:
     LDA #$01
 
 Bank1_Label_8494:
-    EOR $19
+    EOR PpuCtrlShadow
     AND #$01
     ASL A
     ASL A
@@ -321,10 +321,10 @@ Bank1_Func_84C1:
 
 Bank1_Label_84C5:
     LDA $4B
-    STA a:$2006
-    STX a:$2006
-    LDA a:$2007
-    LDA a:$2007
+    STA a:PPU_ADDR
+    STX a:PPU_ADDR
+    LDA a:PPU_DATA
+    LDA a:PPU_DATA
     STA a:$0550,Y
     TXA
     CLC
@@ -415,27 +415,27 @@ Bank1_Label_855D:
     RTS
 
 Bank1_Func_8578:
-    LDA $19
+    LDA PpuCtrlShadow
     ORA #$04
-    STA a:$2000
+    STA a:PPU_CTRL
     LDA $49
-    STA a:$2006
+    STA a:PPU_ADDR
     LDX $48
-    STX a:$2006
+    STX a:PPU_ADDR
     LDY #$00
     LDX #$0F
 
 Bank1_Label_858D:
     LDA a:$0510,Y
-    STA a:$2007
+    STA a:PPU_DATA
     LDA a:$0530,Y
-    STA a:$2007
+    STA a:PPU_DATA
     INY
     DEX
     BNE Bank1_Label_858D
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FB
-    STA a:$2000
+    STA a:PPU_CTRL
     RTS
 
 Bank1_Func_85A5:
@@ -495,22 +495,22 @@ Bank1_Label_85EF:
     .byte $FC, $F3
 
 Bank1_Func_85F7:
-    LDA $19
+    LDA PpuCtrlShadow
     ORA #$04
-    STA a:$2000
+    STA a:PPU_CTRL
     LDX $48
     INX
     LDA $49
-    STA a:$2006
-    STX a:$2006
+    STA a:PPU_ADDR
+    STX a:PPU_ADDR
     LDY #$00
     LDX #$0F
 
 Bank1_Label_860D:
     LDA a:$0520,Y
-    STA a:$2007
+    STA a:PPU_DATA
     LDA a:$0540,Y
-    STA a:$2007
+    STA a:PPU_DATA
     INY
     DEX
     BNE Bank1_Label_860D
@@ -519,10 +519,10 @@ Bank1_Label_860D:
 
 Bank1_Label_8621:
     LDA $4B
-    STA a:$2006
-    STX a:$2006
+    STA a:PPU_ADDR
+    STX a:PPU_ADDR
     LDA a:$0550,Y
-    STA a:$2007
+    STA a:PPU_DATA
     TXA
     CLC
     ADC #$08
@@ -530,9 +530,9 @@ Bank1_Label_8621:
     INY
     CPY #$08
     BNE Bank1_Label_8621
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FB
-    STA a:$2000
+    STA a:PPU_CTRL
     RTS
     .byte $A6, $48, $A5, $49, $8D, $06, $20, $8E, $06, $20, $A0, $00, $A2, $10, $B9, $30
     .byte $05, $8D, $07, $20, $B9, $40, $05, $8D, $07, $20, $C8, $CA, $D0, $F0, $60, $A6
@@ -553,8 +553,8 @@ Bank1_Func_8704:
     JMP World2_Audio_UpdateMusic
 
 Bank1_Func_870A:
-    STA a:$2006
-    STX a:$2006
+    STA a:PPU_ADDR
+    STX a:PPU_ADDR
     RTS
 
 Bank1_Func_8711:
@@ -563,8 +563,8 @@ Bank1_Func_8711:
     JSR Bank1_Func_80F0
     JSR Bank1_Func_8771
     LDA #$10
-    STA $19
-    STA a:$2000
+    STA PpuCtrlShadow
+    STA a:PPU_CTRL
     LDA #$00
     STA $40
     STA $3F
@@ -578,7 +578,7 @@ Bank1_Func_8711:
     TXA
 
 Bank1_Label_873D:
-    STA a:$2007
+    STA a:PPU_DATA
     DEX
     BNE Bank1_Label_873D
     DEY
@@ -611,7 +611,7 @@ Bank1_Func_8751:
 
 Bank1_Label_8765:
     LDA a:$8791,X
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     DEY
     BNE Bank1_Label_8765
@@ -625,7 +625,7 @@ Bank1_Func_8771:
 
 Bank1_Label_877A:
     LDA a:$87A1,X
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     DEY
     BNE Bank1_Label_877A
@@ -635,18 +635,18 @@ Bank1_Func_8784:
 
 Bank1_Label_8786:
     LDA a:$87F1,X
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     DEY
     BNE Bank1_Label_8786
 
 Bank1_Label_8790:
     LDA #$3F
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA #$00
-    STA a:$2006
-    STA a:$2006
-    STA a:$2006
+    STA a:PPU_ADDR
+    STA a:PPU_ADDR
+    STA a:PPU_ADDR
     RTS
     .byte $0F, $17, $26, $07, $0F, $19, $29, $07, $0F, $17, $26, $07, $0F, $1C, $11, $07
     .byte $0F, $17, $26, $07, $0F, $19, $29, $07, $0F, $17, $26, $07, $0F, $06, $15, $07

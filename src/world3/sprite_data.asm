@@ -7,7 +7,7 @@ Bank2_Func_B6BA:
     ASL A
     TAX
     LDA $80
-    STA a:$0300,X
+    STA a:OamBuffer,X
     LDA $81
     STA a:$0301,X
     LDA $82

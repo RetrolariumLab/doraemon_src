@@ -18,14 +18,14 @@ Bank0_Func_E69A:
     CMP #$FF
     BEQ Bank0_Label_E689
     STA a:$02A7
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A4
     STA a:$02A5
     STA a:$02A6
     JSR Bank0_Func_E5F6
     LDX #$00
     .byte $20, $C1
-    INC $20
+    INC Controller1ButtonsAlt
     CMP ($E6,X)
     LDY #$00
     LDA ($2D),Y
@@ -43,14 +43,14 @@ Bank0_Label_E6D5:
     ASL A
 
 Bank0_Label_E6D6:
-    STA a:$4000,X
+    STA a:APU_PL1_VOL,X
     LDA #$00
-    STA a:$4001,X
+    STA a:APU_PL1_SWEEP,X
     LDA a:$EE34,Y
-    STA a:$4002,X
+    STA a:APU_PL1_LO,X
     LDA a:$EE35,Y
     ORA #$08
-    STA a:$4003,X
+    STA a:APU_PL1_HI,X
 
 Bank0_Label_E6EC:
     INX
@@ -87,7 +87,7 @@ Bank0_Func_E724:
     LDA #$18
     STA a:$02A6
     LDA #$04
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$0F
     STA a:$02A7
     LDA #$00
@@ -98,9 +98,9 @@ Bank0_Func_E738:
     CMP #$10
     BEQ Bank0_Label_E764
     ORA #$10
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$28
-    STA a:$400F
+    STA a:APU_NOISE_HI
     LDA a:$02A8
     BEQ Bank0_Label_E752
     INC a:$02A7
@@ -120,7 +120,7 @@ Bank0_Label_E760:
 
 Bank0_Label_E764:
     LDA #$10
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     JMP World1_Audio_StopCurrentEffect
 
 Bank0_Func_E76C:
@@ -292,7 +292,7 @@ Bank0_Func_E8D4:
     STA a:$02A8
     LDY a:$02A7
     LDA a:$E8EF,Y
-    STA a:$4004
+    STA a:APU_PL2_VOL
     DEC a:$02A7
     BPL Bank0_Label_E94F
     JMP World1_Audio_StopCurrentEffect

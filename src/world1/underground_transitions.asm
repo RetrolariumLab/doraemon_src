@@ -45,7 +45,7 @@ Bank0_Label_D3CB:
     STA $7D
     STA $7E
     STA $9B
-    STA a:$02AB
+    STA a:AudioMusicControl
     STA $82
     STA $83
     STA $B2
@@ -83,7 +83,7 @@ Bank0_Label_D429:
     JSR Bank0_Func_931B
     JSR Bank0_Func_87F8
     JSR Bank0_Func_820E
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     ORA $5C
     BEQ Bank0_Label_D462
@@ -185,9 +185,9 @@ Bank0_Label_D4E3:
 Bank0_Func_D4EE:
     JSR Bank0_Func_C949
     LDA #$06
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA #$00
-    STA a:$02AB
+    STA a:AudioMusicControl
     STA $82
     STA $83
     STA $B2
@@ -295,7 +295,7 @@ Bank0_Label_D5B2:
 
 Bank0_Label_D5E5:
     LDA #$00
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA #$04
     JSR World1_Audio_QueueEffect
     LDA #$00
@@ -311,7 +311,7 @@ Bank0_Label_D601:
     JSR Bank0_Func_94F1
     JSR Bank0_Func_8490
     JSR Bank0_Func_CF7A
-    LDA $16
+    LDA FrameCounter
     AND #$03
     BNE Bank0_Label_D619
     LDA $9C
@@ -348,13 +348,13 @@ Bank0_Label_D619:
     LDA #$86
     STA $76
     LDA #$08
-    STA a:$02AA
+    STA a:AudioMusicState
 
 Bank0_Label_D65D:
     JSR Bank0_Func_94F1
     JSR Bank0_Func_8490
     JSR Bank0_Func_9B54
-    LDA $16
+    LDA FrameCounter
     LSR A
     LSR A
     LSR A
@@ -362,7 +362,7 @@ Bank0_Label_D65D:
     AND #$01
     ORA #$12
     STA $77
-    LDA a:$02AA
+    LDA a:AudioMusicState
     BNE Bank0_Label_D65D
     JMP Bank0_Func_8082
 
@@ -415,7 +415,7 @@ Bank0_Label_D6BD:
     JMP Bank0_Label_D718
 
 Bank0_Label_D6D4:
-    LDA $16
+    LDA FrameCounter
     LSR A
     LSR A
     LSR A

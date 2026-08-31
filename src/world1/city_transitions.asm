@@ -43,7 +43,7 @@ Bank0_Label_CB93:
     JSR Bank0_Func_94F1
     LDA #$31
     JSR Bank0_Func_81C9
-    LDA $16
+    LDA FrameCounter
     AND #$07
     BNE Bank0_Label_CBA6
     LDA #$08
@@ -100,7 +100,7 @@ Bank0_Label_CBE7:
     .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
 
 Bank0_TryEnterWorld1Door:
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$80
     BEQ Bank0_Label_CC8B
     LDA $81
@@ -112,8 +112,8 @@ Bank0_Label_CC8B:
 
 Bank0_EnterWorld1Door:
     LDA #$00
-    STA a:$02AA
-    STA a:$02AB
+    STA a:AudioMusicState
+    STA a:AudioMusicControl
     STA $82
     STA $83
     STA $B2

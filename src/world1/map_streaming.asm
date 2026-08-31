@@ -12,11 +12,11 @@ Bank0_Func_A50A:
     ROR A
     LSR A
     STA $73
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$08
     BEQ Bank0_Label_A52D
     INY
-    LDA $1C
+    LDA PpuScrollYShadow
     CLC
     ADC #$08
     CMP #$F0
@@ -26,7 +26,7 @@ Bank0_Func_A50A:
     JMP Bank0_Label_A52F
 
 Bank0_Label_A52D:
-    LDA $1C
+    LDA PpuScrollYShadow
 
 Bank0_Label_A52F:
     AND #$F8
@@ -41,7 +41,7 @@ Bank0_Label_A52F:
     AND #$38
     ORA $73
     STA $73
-    LDA $1B
+    LDA PpuScrollXShadow
     LSR A
     LSR A
     LSR A
@@ -134,7 +134,7 @@ Bank0_Label_A5D4:
     INX
     CPX #$21
     BNE Bank0_Label_A5D4
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$F8
     STA a:$0261
     LDA $58
@@ -145,7 +145,7 @@ Bank0_Label_A5D4:
     ROL A
     ORA #$20
     STA a:$0262
-    LDA $1B
+    LDA PpuScrollXShadow
     LSR A
     LSR A
     LSR A
@@ -167,7 +167,7 @@ Bank0_Func_A60B:
     ROR A
     LSR A
     STA $73
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$F8
     LSR A
     LSR A
@@ -180,7 +180,7 @@ Bank0_Func_A60B:
     AND #$38
     ORA $73
     STA $73
-    LDA $1B
+    LDA PpuScrollXShadow
     LSR A
     LSR A
     LSR A
@@ -451,13 +451,13 @@ Bank0_Func_A7DB:
     ASL A
     ASL A
     ASL A
-    STA $1B
+    STA PpuScrollXShadow
     LDA $5C
     AND #$01
     ASL A
     ASL A
     ASL A
-    STA $1C
+    STA PpuScrollYShadow
     LDA #$98
     STA $60
     LDA $5C
@@ -486,17 +486,17 @@ Bank0_Label_A807:
     BNE Bank0_Label_A807
 
 Bank0_Label_A82F:
-    LDA $1B
+    LDA PpuScrollXShadow
     STA $59
-    LDA $1C
+    LDA PpuScrollYShadow
     STA $5A
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FE
     STA $5D
     LDA $58
     AND #$01
     ORA $5D
-    STA $19
+    STA PpuCtrlShadow
     LDA #$00
     STA $61
     STA $62

@@ -3,31 +3,31 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World3_Apu_WritePulse1ControlSweep:
-    STA a:$4000
-    STX a:$4001
+    STA a:APU_PL1_VOL
+    STX a:APU_PL1_SWEEP
 
 Bank2_Label_C447:
     RTS
 
 World3_Apu_WritePulse2ControlSweep:
-    STA a:$4004
-    STX a:$4005
+    STA a:APU_PL2_VOL
+    STX a:APU_PL2_SWEEP
     RTS
 
 World3_Apu_WritePulse1Timer:
-    STX a:$4002
-    STA a:$4003
+    STX a:APU_PL1_LO
+    STA a:APU_PL1_HI
     RTS
 
 World3_Apu_WritePulse2Timer:
-    STX a:$4006
-    STA a:$4007
+    STX a:APU_PL2_LO
+    STA a:APU_PL2_HI
     RTS
 
 World3_Apu_WriteTriangleControlTimer:
-    STY a:$4008
-    STX a:$400A
-    STA a:$400B
+    STY a:APU_TRI_LINEAR
+    STX a:APU_TRI_LO
+    STA a:APU_TRI_HI
     RTS
     .byte $2C, $31, $2C, $31, $35, $38, $3D, $41, $FF, $08, $2E, $2B, $27, $08, $30, $2C
     .byte $29, $08, $32, $2D, $2A, $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E
@@ -39,20 +39,20 @@ World3_Apu_WriteTriangleControlTimer:
 Bank2_Label_C4C1:
     BMI Bank2_Label_C4E6
     ORA #$80
-    STA a:$02AB
+    STA a:AudioMusicControl
 
 World3_Audio_ResetChannels:
     LDA #$10
-    STA a:$4000
-    STA a:$4004
-    STA a:$400C
+    STA a:APU_PL1_VOL
+    STA a:APU_PL2_VOL
+    STA a:APU_NOISE_VOL
     LDA #$00
-    STA a:$4008
+    STA a:APU_TRI_LINEAR
     LDA #$18
-    STA a:$4003
-    STA a:$4007
-    STA a:$400B
-    STA a:$400F
+    STA a:APU_PL1_HI
+    STA a:APU_PL2_HI
+    STA a:APU_TRI_HI
+    STA a:APU_NOISE_HI
 
 Bank2_Label_C4E6:
     LDX #$00

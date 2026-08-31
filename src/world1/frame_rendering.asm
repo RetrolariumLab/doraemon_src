@@ -7,7 +7,7 @@ Bank0_Func_95CB:
     AND #$10
     BEQ Bank0_Label_95EC
     LDA #$01
-    STA a:$02AB
+    STA a:AudioMusicControl
     LDA #$06
     JSR World1_Audio_QueueEffect
 
@@ -18,7 +18,7 @@ Bank0_Label_95DB:
     AND #$10
     BEQ Bank0_Label_95DB
     LDA #$00
-    STA a:$02AB
+    STA a:AudioMusicControl
 
 Bank0_Label_95EC:
     RTS
@@ -27,44 +27,44 @@ Bank0_Func_95ED:
     JSR Bank0_Func_8131
     JSR Bank0_WaitForVblank
     LDA #$01
-    STA $14
-    LDA $1B
-    STA a:$2005
-    LDA $1C
-    STA a:$2005
-    LDA $19
+    STA NmiOamDmaRequest
+    LDA PpuScrollXShadow
+    STA a:PPU_SCROLL
+    LDA PpuScrollYShadow
+    STA a:PPU_SCROLL
+    LDA PpuCtrlShadow
     ORA #$80
-    STA $19
-    STA a:$2000
+    STA PpuCtrlShadow
+    STA a:PPU_CTRL
     JSR Bank0_Func_94F1
-    LDA $1A
+    LDA PpuMaskShadow
     ORA #$18
-    STA $1A
+    STA PpuMaskShadow
     RTS
 
 Bank0_Func_9614:
-    LDA $19
+    LDA PpuCtrlShadow
     ORA #$80
-    STA $19
-    STA a:$2000
-    LDA $1A
+    STA PpuCtrlShadow
+    STA a:PPU_CTRL
+    LDA PpuMaskShadow
     AND #$E7
-    STA $1A
+    STA PpuMaskShadow
     LDA #$01
-    STA $14
+    STA NmiOamDmaRequest
     JSR Bank0_Func_94F1
     LDA #$00
-    STA $14
+    STA NmiOamDmaRequest
     RTS
 
 Bank0_Func_962F:
     INC $53
     DEC $52
-    LDA $16
+    LDA FrameCounter
     EOR #$F0
     EOR $52
     STA $52
-    LDA $16
+    LDA FrameCounter
     EOR #$AA
     ROR A
     ROR A
@@ -107,7 +107,7 @@ Bank0_Label_9671:
     RTS
 
 Bank0_Func_9674:
-    LDA $16
+    LDA FrameCounter
     AND #$01
     BNE Bank0_Label_968D
     JSR Bank0_Func_96BC
@@ -153,7 +153,7 @@ Bank0_Func_96BC:
     STA $43
 
 Bank0_Label_96CA:
-    LDA a:$0298,Y
+    LDA a:ScoreDigitsWorking,Y
     BNE Bank0_Label_96DB
     LDA $44
     CLC
@@ -164,7 +164,7 @@ Bank0_Label_96CA:
     BNE Bank0_Label_96CA
 
 Bank0_Label_96DB:
-    LDA a:$0298,Y
+    LDA a:ScoreDigitsWorking,Y
     AND #$0F
     ORA #$30
     STA $42
@@ -247,7 +247,7 @@ Bank0_Label_9756:
     INY
     CPY #$08
     BNE Bank0_Label_9756
-    LDA $16
+    LDA FrameCounter
     AND #$10
     BEQ Bank0_Label_978E
     LDA #$E8
@@ -272,13 +272,13 @@ Bank0_Label_978E:
 Bank0_Func_978F:
     LDA $82
     BEQ Bank0_Label_979A
-    LDA $16
+    LDA FrameCounter
     AND #$04
     BEQ Bank0_Label_979A
     RTS
 
 Bank0_Label_979A:
-    LDA $16
+    LDA FrameCounter
     AND #$01
     BNE Bank0_Label_97BB
     LDA #$00
@@ -322,7 +322,7 @@ Bank0_Func_97D2:
     LDA a:$0400,Y
     CMP #$D0
     BCC Bank0_Label_97E0
-    LDA $16
+    LDA FrameCounter
     AND #$04
     BEQ Bank0_Label_97E0
     RTS
@@ -347,7 +347,7 @@ Bank0_Label_97E0:
 Bank0_Func_9801:
     LDA $82
     BEQ Bank0_Label_980C
-    LDA $16
+    LDA FrameCounter
     AND #$04
     BNE Bank0_Label_980C
     RTS
@@ -356,7 +356,7 @@ Bank0_Label_980C:
     LDA #$00
     STA $46
     STA $48
-    LDA $16
+    LDA FrameCounter
     AND #$01
     BNE Bank0_Label_9833
     LDA #$00
@@ -416,7 +416,7 @@ Bank0_Func_986A:
     LDA #$00
     STA $46
     STA $48
-    LDA $16
+    LDA FrameCounter
     AND #$01
     BNE Bank0_Label_9891
     LDA #$00
@@ -476,7 +476,7 @@ Bank0_Func_98C8:
     LDA #$00
     STA $46
     STA $48
-    LDA $16
+    LDA FrameCounter
     AND #$01
     BNE Bank0_Label_98F1
     LDA #$00

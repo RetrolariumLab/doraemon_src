@@ -22,7 +22,7 @@ Bank0_Func_992A:
     LDA $4A
     AND #$40
     BEQ Bank0_Label_9937
-    LDA $16
+    LDA FrameCounter
     AND #$01
     BEQ Bank0_Label_9937
     RTS
@@ -30,7 +30,7 @@ Bank0_Func_992A:
 Bank0_Label_9937:
     LDA $4A
     BPL Bank0_Label_9945
-    LDA $16
+    LDA FrameCounter
     AND #$08
     BEQ Bank0_Label_9945
     LSR $4A
@@ -377,7 +377,7 @@ Bank0_Func_9B35:
     ASL A
     TAX
     LDA $41
-    STA a:$0300,X
+    STA a:OamBuffer,X
     LDA $42
     STA a:$0301,X
     LDA $43
@@ -457,7 +457,7 @@ Bank0_Label_9BBD:
     .byte $00, $04, $00, $FC, $FC, $00, $04, $00
 
 Bank0_Func_9BCB:
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$07
     CLC
     ADC $00
@@ -467,7 +467,7 @@ Bank0_Func_9BCB:
     LSR A
     ADC $5B
     STA $A0
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     CLC
     ADC $00

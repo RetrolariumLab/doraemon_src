@@ -259,7 +259,7 @@ Bank1_Label_A791:
     LDX #$00
 
 Bank1_Label_A7D0:
-    LDA a:$0298,X
+    LDA a:ScoreDigitsWorking,X
     BNE Bank1_Label_A7E1
     LDA $97
     CLC
@@ -270,7 +270,7 @@ Bank1_Label_A7D0:
     BNE Bank1_Label_A7D0
 
 Bank1_Label_A7E1:
-    LDA a:$0298,X
+    LDA a:ScoreDigitsWorking,X
     ORA #$F0
     STA $95
     JSR Bank1_Func_A7FA
@@ -287,7 +287,7 @@ Bank1_Label_A7F9:
     RTS
 
 Bank1_Func_A7FA:
-    LDA a:$0300,Y
+    LDA a:OamBuffer,Y
     CMP #$F8
     BNE Bank1_Label_A804
     JMP Bank1_Func_96C8

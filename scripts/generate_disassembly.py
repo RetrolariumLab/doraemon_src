@@ -25,6 +25,9 @@ COMMON_CODE_END = 0x8270
 CONTROL_MNEMONICS = {"BCC", "BCS", "BEQ", "BMI", "BNE", "BPL", "BVC", "BVS", "JMP", "JSR"}
 BRANCH_MNEMONICS = {"BCC", "BCS", "BEQ", "BMI", "BNE", "BPL", "BVC", "BVS"}
 HEX_RE = re.compile(r"0x([0-9a-fA-F]+)")
+CA65_NAME_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
+DIRECT_MEMORY_RE = re.compile(r"^(a:)?\$([0-9A-F]{2,4})(,[XY])?$")
+INDIRECT_MEMORY_RE = re.compile(r"^\(\$([0-9A-F]{2,4})(,[XY])?\)(,Y)?$")
 
 
 class DisassemblyError(ValueError):
@@ -123,7 +126,9 @@ def propagate_identical_common_code(
                 break
 
 
-def load_known_symbols(path: Path) -> dict[tuple[int, int], str]:
+def load_symbol_registry(
+    path: Path,
+) -> tuple[dict[tuple[int, int], str], dict[tuple[int, int], str]]:
     try:
         document = json.loads(read_source_text(path, encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -140,14 +145,57 @@ def load_known_symbols(path: Path) -> dict[tuple[int, int], str]:
         name = str(item["name"])
         if not 0 <= bank < PRG_BANK_COUNT or not PRG_START <= address < PRG_END:
             raise DisassemblyError(f"symbol is outside PRG banks: {item!r}")
-        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name):
+        if not CA65_NAME_RE.fullmatch(name):
             raise DisassemblyError(f"invalid ca65 symbol name: {name!r}")
         key = (bank, address)
         if key in result or name.lower() in names:
             raise DisassemblyError(f"duplicate symbol: bank {bank} ${address:04X} {name}")
         result[key] = name
         names.add(name.lower())
-    return result
+    memory: dict[tuple[int, int], str] = {}
+    memory_names: set[str] = set()
+    items = document.get("memory_symbols", [])
+    if not isinstance(items, list):
+        raise DisassemblyError("memory_symbols must be a list")
+    for item in items:
+        if not isinstance(item, dict):
+            raise DisassemblyError("invalid memory symbol entry")
+        address = int(str(item["address"]), 0)
+        name = str(item["name"])
+        banks = item.get("banks", list(range(PRG_BANK_COUNT)))
+        if not 0 <= address < PRG_START:
+            raise DisassemblyError(f"memory symbol is outside CPU memory: {item!r}")
+        if not CA65_NAME_RE.fullmatch(name):
+            raise DisassemblyError(f"invalid ca65 memory symbol name: {name!r}")
+        if not isinstance(banks, list) or not banks or any(
+            not isinstance(bank, int) or not 0 <= bank < PRG_BANK_COUNT
+            for bank in banks
+        ):
+            raise DisassemblyError(f"invalid memory symbol banks: {item!r}")
+        if len(set(banks)) != len(banks):
+            raise DisassemblyError(f"duplicate memory symbol bank: {item!r}")
+        if not str(item.get("evidence", "")):
+            raise DisassemblyError(f"memory symbol has no evidence: {item!r}")
+        lowered = name.lower()
+        if lowered in names or lowered in memory_names:
+            raise DisassemblyError(f"duplicate symbol name: {name}")
+        memory_names.add(lowered)
+        for bank in banks:
+            key = (bank, address)
+            if key in memory:
+                raise DisassemblyError(
+                    f"duplicate memory symbol: bank {bank} ${address:04X} {name}"
+                )
+            memory[key] = name
+    return result, memory
+
+
+def load_known_symbols(path: Path) -> dict[tuple[int, int], str]:
+    return load_symbol_registry(path)[0]
+
+
+def load_memory_symbols(path: Path) -> dict[tuple[int, int], str]:
+    return load_symbol_registry(path)[1]
 
 
 def load_source_modules(path: Path) -> dict[int, list[SourceModule]]:
@@ -227,7 +275,25 @@ def make_labels(
     return labels
 
 
-def numeric_operand(fact: InstructionFact) -> str:
+def symbolic_memory_operand(operand: str, memory: dict[int, str]) -> str:
+    direct = DIRECT_MEMORY_RE.fullmatch(operand)
+    if direct:
+        address = int(direct.group(2), 16)
+        name = memory.get(address)
+        if name is not None:
+            return (direct.group(1) or "") + name + (direct.group(3) or "")
+    indirect = INDIRECT_MEMORY_RE.fullmatch(operand)
+    if indirect:
+        address = int(indirect.group(1), 16)
+        name = memory.get(address)
+        if name is not None:
+            return f"({name}{indirect.group(2) or ''}){indirect.group(3) or ''}"
+    return operand
+
+
+def numeric_operand(
+    fact: InstructionFact, memory: dict[int, str] | None = None
+) -> str:
     operand = re.sub(r"PRG\d+::", "", fact.operands)
 
     def replace(match: re.Match[str]) -> str:
@@ -239,11 +305,15 @@ def numeric_operand(fact: InstructionFact) -> str:
     if fact.length == 3 and fact.mnemonic not in ("JMP", "JSR"):
         if re.fullmatch(r"\$[0-9A-F]{4}(?:,[XY])?", operand):
             operand = "a:" + operand
-    return operand
+    return symbolic_memory_operand(operand, memory or {})
 
 
-def format_instruction(fact: InstructionFact, labels: dict[int, str]) -> str:
-    operand = numeric_operand(fact)
+def format_instruction(
+    fact: InstructionFact,
+    labels: dict[int, str],
+    memory: dict[int, str] | None = None,
+) -> str:
+    operand = numeric_operand(fact, memory)
     internal_flows = [target for target in fact.flows if PRG_START <= target < PRG_END]
     direct_control = fact.mnemonic in CONTROL_MNEMONICS and (
         fact.mnemonic != "JMP" or not operand.startswith("(")
@@ -272,6 +342,7 @@ def generate_range_lines(
     prg: bytes,
     facts: dict[int, InstructionFact],
     labels: dict[int, str],
+    memory: dict[int, str],
     start_address: int,
     end_address: int,
 ) -> list[str]:
@@ -326,7 +397,7 @@ def generate_range_lines(
                 raise DisassemblyError(
                     f"bank {bank} module boundary splits instruction ${address:04X}"
                 )
-            lines.append(format_instruction(fact, labels))
+            lines.append(format_instruction(fact, labels, memory))
             address += fact.length
             continue
         start = address
@@ -342,7 +413,11 @@ def generate_range_lines(
 
 
 def generate_bank(
-    bank: int, prg: bytes, facts: dict[int, InstructionFact], labels: dict[int, str]
+    bank: int,
+    prg: bytes,
+    facts: dict[int, InstructionFact],
+    labels: dict[int, str],
+    memory: dict[int, str],
 ) -> str:
     lines = [
         f"; Address-ordered Doraemon PRG bank {bank} preservation listing",
@@ -351,7 +426,9 @@ def generate_bank(
         "",
         f'.segment "PRG{bank}"',
         "",
-        *generate_range_lines(bank, prg, facts, labels, PRG_START, PRG_END - 1),
+        *generate_range_lines(
+            bank, prg, facts, labels, memory, PRG_START, PRG_END - 1
+        ),
     ]
     text = "\n".join(lines).rstrip() + "\n"
     for label in labels.values():
@@ -365,6 +442,7 @@ def generate_semantic_bank(
     prg: bytes,
     facts: dict[int, InstructionFact],
     labels: dict[int, str],
+    memory: dict[int, str],
     modules: list[SourceModule],
 ) -> dict[PurePosixPath, str]:
     aggregator = PurePosixPath("banks") / f"bank_{bank}.asm"
@@ -388,7 +466,7 @@ def generate_semantic_bank(
             "; Generated deterministically from pinned Ghidra/GhidraNes facts",
             "",
             *generate_range_lines(
-                bank, prg, facts, labels, module.start, module.end
+                bank, prg, facts, labels, memory, module.start, module.end
             ),
         ]
         source = "\n".join(module_lines).rstrip() + "\n"
@@ -409,20 +487,30 @@ def build_texts(args: argparse.Namespace) -> dict[PurePosixPath, str]:
     facts_dir = Path(args.facts_dir)
     fact_sets = [load_facts(facts_dir / f"bank_{bank}.tsv", banks[bank]) for bank in range(4)]
     propagate_identical_common_code(banks, fact_sets)
-    known = load_known_symbols(Path(args.symbols))
+    known, memory = load_symbol_registry(Path(args.symbols))
     module_layout = load_source_modules(Path(args.modules))
     outputs: dict[PurePosixPath, str] = {}
     for bank in range(PRG_BANK_COUNT):
         labels = make_labels(bank, fact_sets[bank], known)
+        memory_labels = {
+            address: name
+            for (item_bank, address), name in memory.items()
+            if item_bank == bank
+        }
         if bank in module_layout:
             outputs.update(
                 generate_semantic_bank(
-                    bank, banks[bank], fact_sets[bank], labels, module_layout[bank]
+                    bank,
+                    banks[bank],
+                    fact_sets[bank],
+                    labels,
+                    memory_labels,
+                    module_layout[bank],
                 )
             )
         else:
             outputs[PurePosixPath("banks") / f"bank_{bank}.asm"] = generate_bank(
-                bank, banks[bank], fact_sets[bank], labels
+                bank, banks[bank], fact_sets[bank], labels, memory_labels
             )
     return outputs
 

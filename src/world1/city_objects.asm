@@ -9,7 +9,7 @@ Bank0_Func_C92F:
     LDA #$00
 
 Bank0_Label_C937:
-    STA a:$0298,X
+    STA a:ScoreDigitsWorking,X
     DEX
     BPL Bank0_Label_C937
 
@@ -245,7 +245,7 @@ Bank0_Func_CA6D:
     BNE Bank0_Label_CA7F
     LDA #$00
     STA $82
-    STA a:$02AB
+    STA a:AudioMusicControl
     JMP Bank0_Label_CA8A
 
 Bank0_Label_CA7F:
@@ -256,14 +256,14 @@ Bank0_Label_CA7F:
     JSR World1_Audio_QueueEffect
 
 Bank0_Label_CA8A:
-    LDA $16
+    LDA FrameCounter
     AND #$01
     BEQ Bank0_Label_CAA6
     LDA $B2
     BEQ Bank0_Label_CAA6
     LDA #$00
     STA $79
-    LDA $16
+    LDA FrameCounter
     AND #$02
     STA $78
     DEC $B2
@@ -336,7 +336,7 @@ Bank0_Func_CB0E:
 Bank0_Label_CB20:
     JSR Bank0_Func_C982
     LDA #$01
-    STA a:$02AB
+    STA a:AudioMusicControl
     LDA #$07
     JSR World1_Audio_QueueEffect
     LDA #$32

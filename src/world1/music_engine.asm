@@ -3,22 +3,22 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World1_Audio_UpdateMusic:
-    LDA a:$02AB
+    LDA a:AudioMusicControl
     BNE Bank0_Label_E9C9
-    LDA a:$02AA
+    LDA a:AudioMusicState
     BEQ Bank0_Label_E9EE
     BPL Bank0_Label_EA0C
     JMP Bank0_Label_EA90
 
 Bank0_Label_EA0C:
-    LDA a:$02AA
+    LDA a:AudioMusicState
     CMP #$09
     BCC Bank0_Label_EA16
     JMP Bank0_Label_EABA
 
 Bank0_Label_EA16:
     ORA #$80
-    STA a:$02AA
+    STA a:AudioMusicState
     ASL A
     ASL A
     ASL A
@@ -28,7 +28,7 @@ Bank0_Label_EA16:
 Bank0_Label_EA21:
     LDA a:$EFFA,Y
     STA $2F,X
-    STA a:$02DC,X
+    STA a:AudioStreamHeaderPointers,X
     DEY
     DEX
     BPL Bank0_Label_EA21
@@ -50,11 +50,11 @@ Bank0_Label_EA21:
     STX a:$02FC
     STX a:$02F6
     INX
-    STX a:$02B0
+    STX a:AudioChannelDurations
     STX a:$02B1
     STX a:$02B2
     STX a:$02B3
-    STX a:$02AC
+    STX a:AudioChannelNotes
     STX a:$02AD
     STX a:$02AE
     STX a:$02AF
@@ -71,12 +71,12 @@ Bank0_Label_EA21:
 
 Bank0_Label_EA90:
     LDA #$00
-    STA a:$02FE
-    STA a:$02FD
+    STA a:AudioEndedChannelCount
+    STA a:AudioChannelIndex
 
 Bank0_Label_EA98:
-    LDX a:$02FD
-    DEC a:$02B0,X
+    LDX a:AudioChannelIndex
+    DEC a:AudioChannelDurations,X
     BEQ Bank0_Label_EAA6
     JSR Bank0_Func_EAC0
     JMP Bank0_Label_EAA9
@@ -85,17 +85,17 @@ Bank0_Label_EAA6:
     JSR World1_Music_UpdateChannelStream
 
 Bank0_Label_EAA9:
-    INC a:$02FD
-    LDA a:$02FD
+    INC a:AudioChannelIndex
+    LDA a:AudioChannelIndex
     CMP #$04
     BCC Bank0_Label_EA98
-    LDA a:$02FE
+    LDA a:AudioEndedChannelCount
     CMP #$04
     BNE Bank0_Label_EABF
 
 Bank0_Label_EABA:
     LDA #$00
-    STA a:$02AA
+    STA a:AudioMusicState
 
 Bank0_Label_EABF:
     RTS
@@ -108,18 +108,18 @@ Bank0_Func_EAC0:
     BEQ Bank0_Label_EB0B
     LDA a:$02BC,X
     ASL A
-    STA a:$02FF
+    STA a:AudioWorkByte
     BCC Bank0_Label_EADF
     LDA a:$02B8,X
     SEC
-    SBC a:$02FF
+    SBC a:AudioWorkByte
     BCS Bank0_Label_EAEA
     BCC Bank0_Label_EAE8
 
 Bank0_Label_EADF:
     LDA a:$02B8,X
     CLC
-    ADC a:$02FF
+    ADC a:AudioWorkByte
     BCC Bank0_Label_EAEA
 
 Bank0_Label_EAE8:
@@ -127,28 +127,28 @@ Bank0_Label_EAE8:
 
 Bank0_Label_EAEA:
     STA a:$02B8,X
-    LDY a:$02A3,X
+    LDY a:AudioEffectTimers,X
     BNE Bank0_Label_EB0B
     LSR A
     LSR A
     LSR A
     LSR A
-    STA a:$02FF
+    STA a:AudioWorkByte
     TXA
     ASL A
     ASL A
     TAY
     LDA a:$02F3,X
     AND #$D0
-    ORA a:$02FF
+    ORA a:AudioWorkByte
     STA a:$02F3,X
-    STA a:$4000,Y
+    STA a:APU_PL1_VOL,Y
 
 Bank0_Label_EB0B:
     RTS
 
 World1_Music_UpdateChannelStream:
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     CPX #$03
     BNE Bank0_Label_EB1B
     LDA a:$02FC
@@ -157,7 +157,7 @@ World1_Music_UpdateChannelStream:
 
 Bank0_Label_EB1B:
     JSR World1_Audio_ReadStreamByte
-    STA a:$02FF
+    STA a:AudioWorkByte
     TAY
     BMI Bank0_Label_EB27
     JMP Bank0_Func_EC05
@@ -167,7 +167,7 @@ Bank0_Label_EB27:
     BCC Bank0_Label_EB5E
     SEC
     LDA #$FF
-    SBC a:$02FF
+    SBC a:AudioWorkByte
     ASL A
     TAY
     LDA a:$EB3D,Y
@@ -182,6 +182,6 @@ World1_MusicCommand_RtsDispatchTable:
     .byte $02, $EE
 
 Bank0_Label_EB5E:
-    LDA a:$02FF
+    LDA a:AudioWorkByte
     AND #$7F
     BPL Bank0_Label_EB68

@@ -6,18 +6,18 @@ World1_MusicCommand_F0:
     JSR World1_Audio_ReadStreamByte
 
 Bank0_Label_EB68:
-    LDX a:$02FD
-    STA a:$02AC,X
+    LDX a:AudioChannelIndex
+    STA a:AudioChannelNotes,X
     LDA a:$02EF,X
     BNE Bank0_Label_EBEF
 
 Bank0_Label_EB73:
-    LDX a:$02FD
-    LDA a:$02AC,X
+    LDX a:AudioChannelIndex
+    LDA a:AudioChannelNotes,X
 
 Bank0_Label_EB79:
-    STA a:$02FF
-    LDX a:$02FD
+    STA a:AudioWorkByte
+    LDX a:AudioChannelIndex
     CPX #$02
     BEQ Bank0_Label_EBF2
     LDA a:$02F3,X
@@ -26,7 +26,7 @@ Bank0_Label_EB79:
     LDA a:$02F3,X
     AND #$D0
     STA a:$02F3,X
-    LDA a:$02FF
+    LDA a:AudioWorkByte
     LSR A
     CMP #$10
     BCC Bank0_Label_EB9C
@@ -38,21 +38,21 @@ Bank0_Label_EB9C:
     JMP Bank0_Label_EBB0
 
 Bank0_Label_EBA5:
-    LDY a:$02FF
+    LDY a:AudioWorkByte
     LDA a:$EEFB,Y
     ORA #$80
     STA a:$02BC,X
 
 Bank0_Label_EBB0:
-    LDA a:$02FF
+    LDA a:AudioWorkByte
     PHA
     LSR A
     LSR A
     LSR A
-    STA a:$02FF
+    STA a:AudioWorkByte
     PLA
     SEC
-    SBC a:$02FF
+    SBC a:AudioWorkByte
     CMP #$10
     BCS Bank0_Label_EBDE
     ASL A
@@ -90,10 +90,10 @@ Bank0_Label_EBEF:
     JMP World1_Music_UpdateChannelStream
 
 Bank0_Label_EBF2:
-    LDA a:$02FF
+    LDA a:AudioWorkByte
     ASL A
     BMI Bank0_Label_EBFD
-    ADC a:$02FF
+    ADC a:AudioWorkByte
     BPL Bank0_Label_EBFF
 
 Bank0_Label_EBFD:
@@ -109,7 +109,7 @@ Bank0_Func_EC05:
     JMP Bank0_Label_EC94
 
 Bank0_Label_EC0C:
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     CPX #$03
     BNE Bank0_Label_EC50
     PHA
@@ -135,7 +135,7 @@ Bank0_Label_EC21:
 
 Bank0_Label_EC33:
     LDA a:$EEDB,X
-    STA a:$400C,Y
+    STA a:APU_NOISE_VOL,Y
     INX
     INY
     CPY #$04
@@ -145,21 +145,21 @@ Bank0_Label_EC33:
     BEQ Bank0_Label_EC86
     LDA a:$02F6
     AND #$1F
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     BPL Bank0_Label_EC86
 
 Bank0_Label_EC50:
-    LDY a:$02A3,X
+    LDY a:AudioEffectTimers,X
     BNE Bank0_Label_EC94
     TXA
     ASL A
     ASL A
     TAY
     LDA a:$02F3,X
-    STA a:$4000,Y
+    STA a:APU_PL1_VOL,Y
     LDA #$00
-    STA a:$4001,Y
-    LDA a:$02FF
+    STA a:APU_PL1_SWEEP,Y
+    LDA a:AudioWorkByte
     CLC
     ADC a:$EEC8,X
     CLC
@@ -169,29 +169,29 @@ Bank0_Label_EC50:
     ASL A
     TAX
     LDA a:$EE34,X
-    STA a:$4002,Y
+    STA a:APU_PL1_LO,Y
     LDA a:$EE35,X
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     ORA a:$02F7,X
-    STA a:$4003,Y
+    STA a:APU_PL1_HI,Y
 
 Bank0_Label_EC86:
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     LDA a:$02EF,X
     BNE Bank0_Label_EC94
     LDA a:$02B4,X
     STA a:$02B8,X
 
 Bank0_Label_EC94:
-    LDX a:$02FD
-    LDA a:$02AC,X
-    STA a:$02B0,X
+    LDX a:AudioChannelIndex
+    LDA a:AudioChannelNotes,X
+    STA a:AudioChannelDurations,X
     RTS
 
 World1_MusicCommand_FF:
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     LDA #$01
-    STA a:$02B0,X
+    STA a:AudioChannelDurations,X
     TXA
     ASL A
     TAX
@@ -201,12 +201,12 @@ World1_MusicCommand_FF:
 
 Bank0_Label_ECAF:
     DEC $2F,X
-    INC a:$02FE
+    INC a:AudioEndedChannelCount
     RTS
 
 World1_MusicCommand_FD:
     JSR World1_Audio_ReadStreamByte
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     STA a:$02D4,X
     LDA #$01
     STA a:$02D8,X
@@ -221,7 +221,7 @@ World1_MusicCommand_FD:
 
 World1_MusicCommand_FB:
     JSR World1_Audio_ReadStreamByte
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     CMP a:$02D8,X
     BCS Bank0_Label_ECEB
     TXA
@@ -236,7 +236,7 @@ Bank0_Label_ECEB:
     JMP World1_Music_UpdateChannelStream
 
 World1_MusicCommand_FC:
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     LDA a:$02D8,X
     CMP a:$02D4,X
     BCS Bank0_Label_ED13
@@ -258,7 +258,7 @@ Bank0_Label_ED13:
 
 World1_MusicCommand_FA:
     JSR World1_Audio_ReadStreamByte
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     STA a:$02C0,X
     LDA a:$02B4,X
     STA a:$02B8,X
@@ -267,7 +267,7 @@ World1_MusicCommand_FA:
     BNE Bank0_Label_ED5E
 
 World1_MusicCommand_F9:
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     LDA #$00
     STA a:$02EF,X
     LDA a:$02F3,X
@@ -279,14 +279,14 @@ Bank0_Label_ED3C:
 
 World1_MusicCommand_F8:
     JSR World1_Audio_ReadStreamByte
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     CPX #$02
     BEQ Bank0_Label_ECEB
     AND #$C0
-    STA a:$02FF
+    STA a:AudioWorkByte
     LDA a:$02F3,X
     AND #$10
-    ORA a:$02FF
+    ORA a:AudioWorkByte
     STA a:$02F3,X
     LDA a:$02EF,X
     BEQ Bank0_Label_ED3C
@@ -300,36 +300,36 @@ World1_MusicCommand_F7:
     JMP World1_Music_UpdateChannelStream
 
 Bank0_Func_ED6A:
-    LDA a:$02FD
+    LDA a:AudioChannelIndex
     ASL A
     TAX
     LDA $2F,X
-    STA a:$02DC,X
+    STA a:AudioStreamHeaderPointers,X
     LDA $30,X
     STA a:$02DD,X
     RTS
 
 World1_MusicCommand_FE:
-    LDA a:$02FD
+    LDA a:AudioChannelIndex
     ASL A
     TAX
-    LDA a:$02DC,X
+    LDA a:AudioStreamHeaderPointers,X
     STA $2F,X
     LDA a:$02DD,X
     STA $30,X
     JMP World1_Music_UpdateChannelStream
 
 World1_MusicCommand_F1:
-    LDA a:$02AA
+    LDA a:AudioMusicState
     ASL A
     ASL A
     SEC
     SBC #$04
     CLC
-    ADC a:$02FD
+    ADC a:AudioChannelIndex
     ASL A
     TAY
-    LDA a:$02FD
+    LDA a:AudioChannelIndex
     ASL A
     TAX
     LDA a:$EFFB,Y
@@ -343,7 +343,7 @@ World1_MusicCommand_F6:
     PHA
     JSR World1_Audio_ReadStreamByte
     PHA
-    LDA a:$02FD
+    LDA a:AudioChannelIndex
     ASL A
     TAX
     LDA $2F,X
@@ -357,7 +357,7 @@ World1_MusicCommand_F6:
     JMP World1_Music_UpdateChannelStream
 
 World1_MusicCommand_F3:
-    LDA a:$02FD
+    LDA a:AudioChannelIndex
     ASL A
     TAX
     LDA a:$02E4,X
@@ -368,7 +368,7 @@ World1_MusicCommand_F3:
 
 World1_MusicCommand_F4:
     JSR World1_Audio_ReadStreamByte
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     CPX #$03
     BEQ Bank0_Label_EDEB
     STA a:$02EC,X
@@ -387,29 +387,29 @@ Bank0_Label_EDF3:
     JMP World1_Music_UpdateChannelStream
 
 World1_MusicCommand_F2:
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     LDA #$08
     JMP Bank0_Label_EBEC
 
 World1_MusicCommand_EF:
     JSR World1_Audio_ReadStreamByte
-    LDX a:$02FD
+    LDX a:AudioChannelIndex
     STA a:$02B4,X
     STA a:$02B8,X
     LSR A
     LSR A
     LSR A
     LSR A
-    STA a:$02FF
+    STA a:AudioWorkByte
     LDA a:$02F3,X
     AND #$C0
     ORA #$10
-    ORA a:$02FF
+    ORA a:AudioWorkByte
     STA a:$02F3,X
     JMP World1_Music_UpdateChannelStream
 
 World1_Audio_ReadStreamByte:
-    LDA a:$02FD
+    LDA a:AudioChannelIndex
     ASL A
     TAX
     LDA ($2F,X)

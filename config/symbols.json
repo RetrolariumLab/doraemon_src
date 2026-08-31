@@ -1135,5 +1135,272 @@
       "name": "EndingCredits_Text",
       "evidence": "embedded-ascii"
     }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x0014",
+      "name": "NmiOamDmaRequest",
+      "evidence": "common-nmi-oam-dma-gate"
+    },
+    {
+      "address": "0x0015",
+      "name": "NmiBusy",
+      "evidence": "common-nmi-reentry-guard"
+    },
+    {
+      "address": "0x0016",
+      "name": "FrameCounter",
+      "evidence": "incremented-on-every-bank-local-nmi"
+    },
+    {
+      "address": "0x0017",
+      "name": "MapperSelection",
+      "evidence": "mapper-value-table-index"
+    },
+    {
+      "address": "0x0018",
+      "name": "ChrSelectionBits",
+      "evidence": "mapper-chr-bit-construction"
+    },
+    {
+      "address": "0x0019",
+      "name": "PpuCtrlShadow",
+      "evidence": "written-to-ppu-ctrl"
+    },
+    {
+      "address": "0x001A",
+      "name": "PpuMaskShadow",
+      "evidence": "written-to-ppu-mask"
+    },
+    {
+      "address": "0x001B",
+      "name": "PpuScrollXShadow",
+      "evidence": "first-ppu-scroll-write"
+    },
+    {
+      "address": "0x001C",
+      "name": "PpuScrollYShadow",
+      "evidence": "second-ppu-scroll-write"
+    },
+    {
+      "address": "0x001D",
+      "name": "Controller2Buttons",
+      "evidence": "controller-2-primary-shift-register"
+    },
+    {
+      "address": "0x001E",
+      "name": "Controller2ButtonsAlt",
+      "evidence": "controller-2-secondary-shift-register"
+    },
+    {
+      "address": "0x001F",
+      "name": "Controller1Buttons",
+      "evidence": "controller-1-primary-shift-register"
+    },
+    {
+      "address": "0x0020",
+      "name": "Controller1ButtonsAlt",
+      "evidence": "controller-1-secondary-shift-register"
+    },
+    {
+      "address": "0x0021",
+      "name": "CombinedControllerButtons",
+      "evidence": "or-of-four-controller-shift-registers"
+    },
+    {
+      "address": "0x0290",
+      "name": "ScoreDigitsCurrent",
+      "evidence": "score-digit-arithmetic-and-display"
+    },
+    {
+      "address": "0x0298",
+      "name": "ScoreDigitsWorking",
+      "evidence": "score-digit-carry-work-array"
+    },
+    {
+      "address": "0x02A0",
+      "name": "AudioEffectRequestState",
+      "evidence": "all-four-effect-request-dispatchers"
+    },
+    {
+      "address": "0x02A1",
+      "name": "AudioCurrentEffectPriority",
+      "evidence": "all-four-priority-arbitration-routines"
+    },
+    {
+      "address": "0x02A3",
+      "name": "AudioEffectTimers",
+      "evidence": "four-byte-effect-timer-array"
+    },
+    {
+      "address": "0x02AA",
+      "name": "AudioMusicState",
+      "evidence": "all-four-music-initializers-and-updaters"
+    },
+    {
+      "address": "0x02AB",
+      "name": "AudioMusicControl",
+      "evidence": "music-reset-and-control-state"
+    },
+    {
+      "address": "0x02AC",
+      "name": "AudioChannelNotes",
+      "evidence": "four-channel-current-note-array"
+    },
+    {
+      "address": "0x02B0",
+      "name": "AudioChannelDurations",
+      "evidence": "four-channel-note-duration-array"
+    },
+    {
+      "address": "0x02DC",
+      "name": "AudioStreamHeaderPointers",
+      "evidence": "eight-byte-track-header-copy"
+    },
+    {
+      "address": "0x02FD",
+      "name": "AudioChannelIndex",
+      "evidence": "four-channel-update-loop-index"
+    },
+    {
+      "address": "0x02FE",
+      "name": "AudioEndedChannelCount",
+      "evidence": "music-stop-when-four-channels-ended"
+    },
+    {
+      "address": "0x02FF",
+      "name": "AudioWorkByte",
+      "evidence": "music-interpreter-temporary-byte"
+    },
+    {
+      "address": "0x0300",
+      "name": "OamBuffer",
+      "evidence": "oam-dma-page-03-and-four-byte-sprite-writes"
+    },
+    {
+      "address": "0x2000",
+      "name": "PPU_CTRL",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x2001",
+      "name": "PPU_MASK",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x2002",
+      "name": "PPU_STATUS",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x2003",
+      "name": "OAM_ADDR",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x2004",
+      "name": "OAM_DATA",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x2005",
+      "name": "PPU_SCROLL",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x2006",
+      "name": "PPU_ADDR",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x2007",
+      "name": "PPU_DATA",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4000",
+      "name": "APU_PL1_VOL",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4001",
+      "name": "APU_PL1_SWEEP",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4002",
+      "name": "APU_PL1_LO",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4003",
+      "name": "APU_PL1_HI",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4004",
+      "name": "APU_PL2_VOL",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4005",
+      "name": "APU_PL2_SWEEP",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4006",
+      "name": "APU_PL2_LO",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4007",
+      "name": "APU_PL2_HI",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4008",
+      "name": "APU_TRI_LINEAR",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x400A",
+      "name": "APU_TRI_LO",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x400B",
+      "name": "APU_TRI_HI",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x400C",
+      "name": "APU_NOISE_VOL",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x400E",
+      "name": "APU_NOISE_LO",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x400F",
+      "name": "APU_NOISE_HI",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4014",
+      "name": "OAM_DMA",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4015",
+      "name": "APU_STATUS",
+      "evidence": "nes-cpu-register"
+    },
+    {
+      "address": "0x4016",
+      "name": "JOYPAD1",
+      "evidence": "nes-cpu-register"
+    }
   ]
 }

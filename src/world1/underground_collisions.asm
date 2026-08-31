@@ -97,7 +97,7 @@ Bank0_Label_D199:
     RTS
 
 Bank0_Label_D1AB:
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     CLC
     ADC #$02
@@ -114,7 +114,7 @@ Bank0_Label_D1AB:
 
 Bank0_Func_D1C3:
     STX $04
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$07
     CLC
     ADC $75
@@ -127,7 +127,7 @@ Bank0_Func_D1C3:
     ADC $5B
     TAX
     STY $04
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     CLC
     ADC $76
@@ -149,7 +149,7 @@ Bank0_Func_D1C3:
     .byte $D8, $10, $08, $07, $18, $10, $08, $07
 
 Bank0_TryEnterWorld1Manhole:
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$80
     BEQ Bank0_Label_D243
     LDA $81
@@ -164,8 +164,8 @@ Bank0_EnterWorld1Manhole:
     AND #$FE
     STA a:$06A0
     LDA #$00
-    STA a:$02AA
-    STA a:$02AB
+    STA a:AudioMusicState
+    STA a:AudioMusicControl
     STA $82
     STA $83
     STA $B2
@@ -229,8 +229,8 @@ Bank0_Label_D2A4:
 Bank0_Func_D2C3:
     PHA
     LDA #$00
-    STA a:$02AA
-    STA a:$02AB
+    STA a:AudioMusicState
+    STA a:AudioMusicControl
     STA $82
     STA $83
     STA $B2

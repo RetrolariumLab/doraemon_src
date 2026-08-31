@@ -75,16 +75,16 @@ Bank1_Func_96BC:
 
 Bank1_Func_96C8:
     LDA $94
-    STA a:$0300,Y
+    STA a:OamBuffer,Y
     INY
     LDA $95
-    STA a:$0300,Y
+    STA a:OamBuffer,Y
     INY
     LDA $96
-    STA a:$0300,Y
+    STA a:OamBuffer,Y
     INY
     LDA $97
-    STA a:$0300,Y
+    STA a:OamBuffer,Y
     INY
     RTS
     .byte $00, $01, $10, $11, $20, $21, $04, $05, $10, $11, $20, $21, $00, $01, $10, $11
@@ -123,7 +123,7 @@ Bank1_Label_97D5:
     BNE Bank1_Label_97D4
     INC $A4
     LDA #$04
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA a:$98BE,X
     STA a:$0558
     LDA a:$98C1,X
@@ -243,7 +243,7 @@ Bank1_Label_98A2:
 
 Bank1_Func_98A3:
     LDA #$05
-    STA a:$02AA
+    STA a:AudioMusicState
     INC $B3
     RTS
     .byte $02, $03, $04, $05, $06, $07, $08, $09, $0A, $09, $08, $07, $06, $05, $04, $03

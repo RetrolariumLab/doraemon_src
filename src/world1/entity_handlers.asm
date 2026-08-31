@@ -26,7 +26,7 @@ Bank0_Func_8FC5:
     AND #$07
     ASL A
     STA $01
-    LDA $16
+    LDA FrameCounter
     AND #$01
     ORA $01
     PHA
@@ -44,7 +44,7 @@ Bank0_Func_8FC5:
 Bank0_Func_9004:
     LDA a:$0490,X
     STA $A4
-    LDA $1B
+    LDA PpuScrollXShadow
     AND #$07
     CLC
     ADC #$04
@@ -67,7 +67,7 @@ Bank0_Func_9004:
     LSR A
     LSR A
     STA $A4
-    LDA $1C
+    LDA PpuScrollYShadow
     AND #$07
     CLC
     ADC #$04
@@ -537,29 +537,29 @@ Bank0_Func_94EB:
     RTS
 
 Bank0_Func_94F1:
-    LDA $16
+    LDA FrameCounter
 
 Bank0_Label_94F3:
-    CMP $16
+    CMP FrameCounter
     BEQ Bank0_Label_94F3
     RTS
 
 Bank0_Func_94F8:
     LDA #$00
     PHA
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FB
-    STA a:$2000
+    STA a:PPU_CTRL
     LDA #$20
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA #$00
-    STA a:$2006
+    STA a:PPU_ADDR
     LDY #$00
     LDX #$10
     PLA
 
 Bank0_Label_9511:
-    STA a:$2007
+    STA a:PPU_DATA
     DEY
     BNE Bank0_Label_9511
     DEX
@@ -579,22 +579,22 @@ Bank0_Label_951F:
     .byte $A0, $00, $B1, $00, $99, $10, $02, $C8, $C0, $20, $D0, $F6, $60
 
 Bank0_Func_9535:
-    LDA $14
+    LDA NmiOamDmaRequest
     BNE Bank0_Label_955C
     JSR Bank0_WaitForVblank
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FB
-    STA a:$2000
+    STA a:PPU_CTRL
     LDA #$3F
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA #$00
-    STA a:$2006
+    STA a:PPU_ADDR
     LDX #$00
     LDY #$20
 
 Bank0_Label_9551:
     LDA a:$0210,X
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     DEY
     BNE Bank0_Label_9551

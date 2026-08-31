@@ -12,7 +12,7 @@ Bank0_Func_856C:
 Bank0_Label_8576:
     LDA #$40
     STA $78
-    LDA $16
+    LDA FrameCounter
     AND #$03
     BNE Bank0_Label_8582
     INC $79
@@ -21,7 +21,7 @@ Bank0_Label_8582:
     LDA $79
     CMP #$06
     BCS Bank0_Label_8599
-    LDA $16
+    LDA FrameCounter
     LSR A
     LSR A
     AND #$01
@@ -74,7 +74,7 @@ Bank0_Label_85CD:
     STA $06
     LDA $76
     STA $07
-    LDY $21
+    LDY CombinedControllerButtons
     TYA
     AND #$08
     BNE Bank0_Label_860D
@@ -458,7 +458,7 @@ Bank0_Func_884C:
     JSR Bank0_Func_C949
     JSR Bank0_Func_C954
     LDA #$00
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA #$00
     STA $78
     LDA #$78
@@ -477,7 +477,7 @@ Bank0_Label_885F:
     CMP #$3C
     BNE Bank0_Label_8878
     LDA #$07
-    STA a:$02AA
+    STA a:AudioMusicState
 
 Bank0_Label_8878:
     DEC $97

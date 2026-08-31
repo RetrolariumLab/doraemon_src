@@ -21,7 +21,7 @@ Bank2_Func_A5EB:
 Bank2_Func_A5F7:
     LDA $DC
     BNE Bank2_Label_A5FE
-    LDA $21
+    LDA CombinedControllerButtons
     RTS
 
 Bank2_Label_A5FE:
@@ -228,7 +228,7 @@ Bank2_Func_A733:
     LDA #$02
     JSR Bank2_Func_81AA
     LDA #$90
-    STA $19
+    STA PpuCtrlShadow
     JSR Bank2_Func_A8EB
     JSR Bank2_Func_A835
     JSR Bank2_Func_8DA8
@@ -303,7 +303,7 @@ Bank2_Label_A7AB:
     STA $CE
     STA $CF
     JSR Bank2_Func_A7E5
-    LDA a:$02AA
+    LDA a:AudioMusicState
     AND #$7F
     CMP $A5
     BEQ Bank2_Label_A7DF
@@ -314,11 +314,11 @@ Bank2_Label_A7AB:
 
 Bank2_Label_A7DA:
     LDA $A5
-    STA a:$02AA
+    STA a:AudioMusicState
 
 Bank2_Label_A7DF:
     LDA #$00
-    STA a:$02AB
+    STA a:AudioMusicControl
     RTS
 
 Bank2_Func_A7E5:

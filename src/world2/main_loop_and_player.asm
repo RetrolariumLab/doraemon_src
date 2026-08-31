@@ -93,10 +93,10 @@ Bank1_Label_8940:
     LDA #$01
     JSR Bank1_Func_81AA
     JSR Bank1_Func_8ADF
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$E7
     ORA #$11
-    STA $19
+    STA PpuCtrlShadow
     JSR Bank1_Func_80FD
     JSR Bank1_Func_98F8
 
@@ -125,14 +125,14 @@ Bank1_World2FrameLoop:
 
 Bank1_Label_8991:
     ORA #$10
-    AND $21
+    AND CombinedControllerButtons
     BNE Bank1_Label_89D7
     LDA $A2
     BEQ Bank1_World2FrameLoop
     LDA $27
     BNE Bank1_Label_89DB
     LDA #$06
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA #$00
     STA $41
     LDA #$DC
@@ -152,7 +152,7 @@ Bank1_Label_89BA:
     LDX #$06
 
 Bank1_Label_89C1:
-    STA a:$0298,X
+    STA a:ScoreDigitsWorking,X
     DEX
     BPL Bank1_Label_89C1
     LDA #$02
@@ -181,27 +181,27 @@ Bank1_Label_89DE:
     LDA #$06
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$01
-    STA a:$02AB
+    STA a:AudioMusicControl
 
 Bank1_Label_89EF:
     JSR Bank1_Func_8A1A
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$10
     BNE Bank1_Label_89EF
 
 Bank1_Label_89F8:
     JSR Bank1_Func_8A1A
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$10
     BEQ Bank1_Label_89F8
     LDA #$06
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$00
-    STA a:$02AB
+    STA a:AudioMusicControl
 
 Bank1_Label_8A0B:
     JSR Bank1_Func_8A1A
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$10
     BNE Bank1_Label_8A0B
     PLA
@@ -226,10 +226,10 @@ Bank1_Func_8A32:
     JMP Bank1_Func_808D
 
 Bank1_Func_8A39:
-    LDA $16
+    LDA FrameCounter
 
 Bank1_Label_8A3B:
-    CMP $16
+    CMP FrameCounter
     BEQ Bank1_Label_8A3B
     LDA $93
     EOR #$80
@@ -294,7 +294,7 @@ Bank1_Func_8A94:
     LDA #$F8
 
 Bank1_Label_8A98:
-    STA a:$0300,X
+    STA a:OamBuffer,X
     STA a:$0340,X
     STA a:$0380,X
     STA a:$03C0,X
@@ -318,11 +318,11 @@ Bank1_Label_8AAF:
 Bank1_Func_8AB6:
     LDA #$00
     STA a:$4011
-    STA a:$4015
+    STA a:APU_STATUS
     STA a:$4010
-    STA a:$02A0
-    STA a:$02AA
-    STA a:$02AB
+    STA a:AudioEffectRequestState
+    STA a:AudioMusicState
+    STA a:AudioMusicControl
     LDA #$40
     STA a:$4017
     RTS
@@ -405,7 +405,7 @@ Bank1_Func_8B4C:
 Bank1_Label_8B58:
     LDX $A9
     LDA a:$8BA2,X
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA #$00
     STA $AD
 

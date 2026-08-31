@@ -15,7 +15,7 @@ World2_Audio_QueueEffectWithPriority:
     CMP #$0F
     BCS Bank1_Label_A874
     STX $AB
-    LDX a:$02A0
+    LDX a:AudioEffectRequestState
     BMI Bank1_Label_A86F
     STY $AC
     TAY
@@ -26,7 +26,7 @@ World2_Audio_QueueEffectWithPriority:
     LDY $AC
 
 Bank1_Label_A86F:
-    STA a:$02A0
+    STA a:AudioEffectRequestState
 
 Bank1_Label_A872:
     LDX $AB
@@ -43,8 +43,8 @@ World2_Audio_QueueEffect:
     BCS Bank1_Label_A874
     STX $AB
     LDX #$00
-    STX a:$02A1
-    STA a:$02A0
+    STX a:AudioCurrentEffectPriority
+    STA a:AudioEffectRequestState
     LDX $AB
     RTS
 
@@ -52,24 +52,24 @@ World2_Audio_UpdateEffects:
     LDX #$03
 
 Bank1_Label_A88D:
-    LDA a:$02A3,X
+    LDA a:AudioEffectTimers,X
     BEQ Bank1_Label_A895
-    DEC a:$02A3,X
+    DEC a:AudioEffectTimers,X
 
 Bank1_Label_A895:
     DEX
     BPL Bank1_Label_A88D
-    LDA a:$02A0
+    LDA a:AudioEffectRequestState
     BMI Bank1_Label_A8D2
     TAX
     ORA #$80
-    STA a:$02A0
+    STA a:AudioEffectRequestState
     CPX #$0F
     BCS Bank1_Label_A8D2
-    LDA a:$02A1
+    LDA a:AudioCurrentEffectPriority
     BEQ Bank1_Label_A8BB
     LDA a:$A80B,X
-    CMP a:$02A1
+    CMP a:AudioCurrentEffectPriority
     BCC Bank1_Label_A8BB
     BNE Bank1_Label_A8D2
     LDA a:$02A2
@@ -77,17 +77,17 @@ Bank1_Label_A895:
 
 Bank1_Label_A8BB:
     LDA a:$A80B,X
-    STA a:$02A1
+    STA a:AudioCurrentEffectPriority
     TAX
     LDA #$00
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A4
     STA a:$02A5
     STA a:$02A6
     BEQ Bank1_Label_A8D7
 
 Bank1_Label_A8D2:
-    LDX a:$02A1
+    LDX a:AudioCurrentEffectPriority
     INX
     INX
 
@@ -106,7 +106,7 @@ Bank1_Func_A8E4:
 
 World2_Audio_StopCurrentEffect:
     LDA #$00
-    STA a:$02A1
+    STA a:AudioCurrentEffectPriority
     STA a:$02A2
 
 Bank1_Func_A8F1:
@@ -116,19 +116,19 @@ World2_Audio_ResetEffects:
     LDA #$00
     STA a:$02A2
     STA a:$4011
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A4
     STA a:$02A5
     STA a:$02A6
-    STA a:$4008
-    STA a:$400C
+    STA a:APU_TRI_LINEAR
+    STA a:APU_NOISE_VOL
     LDA #$18
-    STA a:$400B
+    STA a:APU_TRI_HI
     LDA #$10
-    STA a:$4000
-    STA a:$4004
+    STA a:APU_PL1_VOL
+    STA a:APU_PL2_VOL
     LDA #$0F
-    STA a:$4015
+    STA a:APU_STATUS
     RTS
 
 Bank1_Func_A91F:
@@ -137,14 +137,14 @@ Bank1_Func_A91F:
     STA a:$02A6
     STA a:$02A7
     LDA #$1F
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$0F
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDY #$08
     LDX #$F0
     LDA #$38
     JSR World2_Apu_WriteTriangleControlTimer
-    STA a:$400F
+    STA a:APU_NOISE_HI
     RTS
 
 Bank1_Func_A941:
@@ -171,18 +171,18 @@ Bank1_Func_A963:
     LDA #$08
     STA a:$02A6
     LDA #$01
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$0A
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$08
-    STA a:$400F
+    STA a:APU_NOISE_HI
 
 Bank1_Label_A977:
     RTS
 
 Bank1_Func_A978:
     LDA #$48
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A4
     STA a:$02A5
     STA a:$02A6
@@ -247,25 +247,25 @@ Bank1_Func_A9E9:
     JSR Bank1_Func_AA20
     LDX #$00
     LDA a:$02A8
-    STA a:$02A3,X
+    STA a:AudioEffectTimers,X
     TXA
     ASL A
     ASL A
     TAX
     LDA a:$02A9
-    STA a:$4000,X
+    STA a:APU_PL1_VOL,X
     LDA #$00
-    STA a:$4001,X
+    STA a:APU_PL1_SWEEP,X
     LDY #$00
     LDA ($2D),Y
     BEQ Bank1_Func_AA19
     ASL A
     TAY
     LDA a:$B11B,Y
-    STA a:$4002,X
+    STA a:APU_PL1_LO,X
     LDA a:$B11C,Y
     ORA #$08
-    STA a:$4003,X
+    STA a:APU_PL1_HI,X
 
 Bank1_Func_AA19:
     INC $2D
@@ -323,13 +323,13 @@ Bank1_Func_AA68:
     LDA #$0C
     STA a:$02A7
     LDA #$04
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA #$08
-    STA a:$400F
+    STA a:APU_NOISE_HI
 
 Bank1_Func_AA7F:
     LDA a:$02A7
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA a:$02A7
     CMP #$0F
     BEQ Bank1_Label_AA8F
@@ -361,7 +361,7 @@ Bank1_Func_AAA5:
     CMP #$FF
     BEQ Bank1_Label_AA94
     STA a:$02A7
-    STA a:$02A3
+    STA a:AudioEffectTimers
     STA a:$02A4
     STA a:$02A5
     STA a:$02A6
@@ -387,14 +387,14 @@ Bank1_Label_AAE0:
     ASL A
 
 Bank1_Label_AAE1:
-    STA a:$4000,X
+    STA a:APU_PL1_VOL,X
     LDA #$00
-    STA a:$4001,X
+    STA a:APU_PL1_SWEEP,X
     LDA a:$B11B,Y
-    STA a:$4002,X
+    STA a:APU_PL1_LO,X
     LDA a:$B11C,Y
     ORA #$08
-    STA a:$4003,X
+    STA a:APU_PL1_HI,X
 
 Bank1_Label_AAF7:
     INX

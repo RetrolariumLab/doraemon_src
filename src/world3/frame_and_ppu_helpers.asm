@@ -25,10 +25,10 @@ Bank2_Label_B1F5:
 
 Bank2_Func_B1FE:
     LDA #$10
-    STA a:$2000
-    STA $19
+    STA a:PPU_CTRL
+    STA PpuCtrlShadow
     LDA #$00
-    STA a:$2001
+    STA a:PPU_MASK
     JSR Bank2_Func_B0AF
     LDX #$00
     TXA
@@ -53,23 +53,23 @@ Bank2_Label_B227:
     CPX #$D6
     BNE Bank2_Label_B227
     LDA #$00
-    STA $1B
-    STA $1C
+    STA PpuScrollXShadow
+    STA PpuScrollYShadow
     LDA #$04
     STA $5E
     LDA #$90
-    STA a:$2000
-    STA $19
+    STA a:PPU_CTRL
+    STA PpuCtrlShadow
     LDA #$00
     STA a:$4011
-    STA a:$4015
+    STA a:APU_STATUS
     STA a:$4010
     LDA #$40
     STA a:$4017
     LDA #$00
-    STA a:$02A0
-    STA a:$02AA
-    STA a:$02AB
+    STA a:AudioEffectRequestState
+    STA a:AudioMusicState
+    STA a:AudioMusicControl
     RTS
 
 Bank2_Func_B25B:
@@ -78,7 +78,7 @@ Bank2_Func_B25B:
 
 Bank2_Label_B25F:
     LDA #$F4
-    STA a:$0300,X
+    STA a:OamBuffer,X
     STA a:$0304,X
     STA a:$0308,X
     STA a:$030C,X
@@ -96,7 +96,7 @@ Bank2_Func_B276:
     LDA #$01
     STA $67
     LDA #$00
-    STA a:$2001
+    STA a:PPU_MASK
     RTS
 
 Bank2_Func_B286:
@@ -108,7 +108,7 @@ Bank2_Func_B286:
     LDA #$00
     STA $67
     LDA #$1E
-    STA a:$2001
+    STA a:PPU_MASK
     RTS
 
 Bank2_Func_B29F:

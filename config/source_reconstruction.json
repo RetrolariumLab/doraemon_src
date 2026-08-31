@@ -65,6 +65,7 @@
       "status": "in-progress",
       "evidence": [
         "src/memory/ram.inc",
+        "docs/ram_fields.md",
         "docs/subsystems.md"
       ]
     },

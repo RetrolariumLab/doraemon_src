@@ -23,6 +23,9 @@ incrementally without weakening byte identity.
   label.
 - Reset, NMI, the bus-conflict-safe mapper write, interrupt vectors, embedded
   build text, and the known world data have initial semantic names.
+- Shared frame, input, rendering, score, and audio RAM operands use an
+  evidence-backed, bank-aware symbol registry; unresolved chapter overlays
+  remain numeric.
 - Deterministic FCEUX traces prove the reset-to-title PRG 0 to PRG 3 switch,
   post-write mapping, title NMI path, bus-conflict values, controller shortcut,
   entry into all three gameplay PRG banks, and the World 1 city-to-underground
@@ -109,6 +112,7 @@ config/prg_code_entries.txt bank-qualified evidence-backed code seeds
 config/symbols.json         bank-qualified semantic symbol registry
 config/debugger_*.json      initial Mesen watches and breakpoints
 docs/                       architecture, formats, evidence, and roadmap
+docs/ram_fields.md          proved shared RAM layout and ownership notes
 scripts/project.py          identity, split, bank report, and source policy
 scripts/run_ghidra.py       deterministic per-bank headless analysis
 scripts/generate_disassembly.py  Ghidra facts to canonical ca65 source

@@ -11,9 +11,9 @@ Bank2_Func_AE12:
     LDA #$08
     STA $02
     LDA #$07
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA #$00
-    STA a:$02AB
+    STA a:AudioMusicControl
 
 Bank2_Label_AE2B:
     LDX #$7F
@@ -26,7 +26,7 @@ Bank2_Label_AE2B:
     JSR Bank2_Func_9D19
     JSR Bank2_Func_AE5D
     LDA #$01
-    STA $14
+    STA NmiOamDmaRequest
     LDA #$01
     STA $68
     JSR Bank2_Func_B1BB
@@ -34,7 +34,7 @@ Bank2_Label_AE2B:
     BNE Bank2_Label_AE2B
 
 Bank2_Label_AE4E:
-    LDA a:$02AA
+    LDA a:AudioMusicState
     BMI Bank2_Label_AE4E
     LDA #$5A
     STA $68
@@ -153,12 +153,12 @@ Bank2_Func_AF51:
     ORA #$30
     STA a:$0301
     LDA #$80
-    STA a:$0300
+    STA a:OamBuffer
     STA a:$0303
     LDA #$00
     STA a:$0302
     LDA #$01
-    STA $14
+    STA NmiOamDmaRequest
 
 Bank2_Label_AF6C:
     JMP Bank2_Label_AF6C
@@ -166,7 +166,7 @@ Bank2_Label_AF6C:
 Bank2_Func_AF6F:
     JSR Bank2_Func_80DA
     LDA #$90
-    STA $19
+    STA PpuCtrlShadow
     LDA #$02
     JSR Bank2_Func_81AA
     JSR Bank2_Func_B276
@@ -196,11 +196,11 @@ Bank2_Func_AF6F:
     STA $04
     JSR Bank2_Func_B1F1
     LDA #$01
-    STA $14
+    STA NmiOamDmaRequest
     LDA #$07
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA #$00
-    STA a:$02AB
+    STA a:AudioMusicControl
     RTS
     .byte $58, $EE, $00, $78, $58, $EF, $00, $80, $60, $FE, $00, $78, $60, $FF, $00, $80
     .byte $68, $2E, $00, $78, $68, $2F, $00, $80, $70, $E5, $00, $78, $70, $F5, $00, $80
@@ -216,10 +216,10 @@ Bank2_Func_AFED:
     JSR Bank2_Func_B00D
     JSR Bank2_Func_B07D
     JSR Bank2_Func_B08E
-    LDA $14
+    LDA NmiOamDmaRequest
     BEQ Bank2_Label_B008
     LDA #$00
-    STA $14
+    STA NmiOamDmaRequest
     JSR Bank2_Func_B25B
     JSR Bank2_Func_86BB
 
@@ -245,15 +245,15 @@ Bank2_Label_B017:
 
 Bank2_Label_B024:
     AND #$7F
-    STA a:$2006
+    STA a:PPU_ADDR
     INX
     LDA a:$0500,X
-    STA a:$2006
+    STA a:PPU_ADDR
     INX
     TYA
-    ORA $19
+    ORA PpuCtrlShadow
     ORA $71
-    STA a:$2000
+    STA a:PPU_CTRL
     LDA a:$0500,X
     TAY
     INX
@@ -263,7 +263,7 @@ Bank2_Label_B024:
 
 Bank2_Label_B043:
     LDA a:$0500,X
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     DEY
     BNE Bank2_Label_B043
@@ -314,38 +314,38 @@ Bank2_Label_B07B:
 
 Bank2_Func_B07D:
     LDA #$3F
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA #$00
-    STA a:$2006
-    STA a:$2006
-    STA a:$2006
+    STA a:PPU_ADDR
+    STA a:PPU_ADDR
+    STA a:PPU_ADDR
     RTS
 
 Bank2_Func_B08E:
     LDA $6F
-    STA a:$2005
+    STA a:PPU_SCROLL
     LDA $70
-    STA a:$2005
-    LDA $19
+    STA a:PPU_SCROLL
+    LDA PpuCtrlShadow
     AND #$FC
     ORA $71
-    STA $19
-    STA a:$2000
+    STA PpuCtrlShadow
+    STA a:PPU_CTRL
     RTS
 
 Bank2_Func_B0A4:
     LDA #$00
-    STA a:$2003
+    STA a:OAM_ADDR
     LDA #$03
-    STA a:$4014
+    STA a:OAM_DMA
     RTS
 
 Bank2_Func_B0AF:
-    LDA a:$2002
+    LDA a:PPU_STATUS
     BMI Bank2_Func_B0AF
 
 Bank2_Label_B0B4:
-    LDA a:$2002
+    LDA a:PPU_STATUS
     BPL Bank2_Label_B0B4
     RTS
 

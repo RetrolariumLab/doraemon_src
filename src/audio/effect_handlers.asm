@@ -134,7 +134,7 @@ Bank3_Func_9D42:
     STA a:$02A8
     LDY a:$02A7
     LDA a:$9D5E,Y
-    STA a:$4004
+    STA a:APU_PL2_VOL
     DEC a:$02A7
     BPL Bank3_Label_9D5D
     JMP Audio_StopCurrentEffect
@@ -181,7 +181,7 @@ Bank3_Func_9D99:
 
 Bank3_Func_9D9C:
     LDA #$00
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA a:$02A9
     AND #$03
     BEQ Bank3_Label_9DB6
@@ -189,9 +189,9 @@ Bank3_Func_9D9C:
     LSR A
     LSR A
     LSR A
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$08
-    STA a:$400F
+    STA a:APU_NOISE_HI
 
 Bank3_Label_9DB6:
     INC a:$02A9
@@ -215,15 +215,15 @@ Bank3_Func_9DCE:
     LSR A
     BCS Bank3_Label_9DEB
     LDA #$00
-    STA a:$400C
+    STA a:APU_NOISE_VOL
     LDA a:$02A9
     LSR A
     LSR A
     LSR A
     LSR A
-    STA a:$400E
+    STA a:APU_NOISE_LO
     LDA #$18
-    STA a:$400F
+    STA a:APU_NOISE_HI
 
 Bank3_Label_9DEB:
     DEC a:$02A9
@@ -247,29 +247,29 @@ Bank3_Func_9DEF:
     .incbin "assets/generated/audio/sfx/prg0-pulse-steps.bin", $E, $8  ; rom-asset .byte
 
 Apu_WritePulse1ControlSweep:
-    STA a:$4000
-    STX a:$4001
+    STA a:APU_PL1_VOL
+    STX a:APU_PL1_SWEEP
     RTS
 
 Apu_WritePulse2ControlSweep:
-    STA a:$4004
-    STX a:$4005
+    STA a:APU_PL2_VOL
+    STX a:APU_PL2_SWEEP
     RTS
 
 Apu_WritePulse1Timer:
-    STX a:$4002
-    STA a:$4003
+    STX a:APU_PL1_LO
+    STA a:APU_PL1_HI
     RTS
 
 Apu_WritePulse2Timer:
-    STX a:$4006
-    STA a:$4007
+    STX a:APU_PL2_LO
+    STA a:APU_PL2_HI
     RTS
 
 Apu_WriteTriangleControlTimer:
-    STY a:$4008
-    STX a:$400A
-    STA a:$400B
+    STY a:APU_TRI_LINEAR
+    STX a:APU_TRI_LO
+    STA a:APU_TRI_HI
     RTS
     .byte $2C, $31, $2C, $31, $35, $38, $3D, $41, $FF, $08, $2E, $2B, $27, $08, $30, $2C
     .byte $29, $08, $32, $2D, $2A, $03, $33, $2E, $2B, $03, $35, $30, $2C, $03, $33, $2E
@@ -281,20 +281,20 @@ Apu_WriteTriangleControlTimer:
 Bank3_Label_9EA4:
     BMI Bank3_Label_9EC9
     ORA #$80
-    STA a:$02AB
+    STA a:AudioMusicControl
 
 Audio_ResetChannels:
     LDA #$10
-    STA a:$4000
-    STA a:$4004
-    STA a:$400C
+    STA a:APU_PL1_VOL
+    STA a:APU_PL2_VOL
+    STA a:APU_NOISE_VOL
     LDA #$00
-    STA a:$4008
+    STA a:APU_TRI_LINEAR
     LDA #$18
-    STA a:$4003
-    STA a:$4007
-    STA a:$400B
-    STA a:$400F
+    STA a:APU_PL1_HI
+    STA a:APU_PL2_HI
+    STA a:APU_TRI_HI
+    STA a:APU_NOISE_HI
 
 Bank3_Label_9EC9:
     LDX #$00

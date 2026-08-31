@@ -257,7 +257,7 @@ Bank0_Func_CF7A:
 Bank0_Label_CF84:
     LDA #$40
     STA $78
-    LDA $16
+    LDA FrameCounter
     AND #$03
     BNE Bank0_Label_CF90
     INC $79
@@ -266,7 +266,7 @@ Bank0_Label_CF90:
     LDA $79
     CMP #$06
     BCS Bank0_Label_CFA7
-    LDA $16
+    LDA FrameCounter
     LSR A
     LSR A
     AND #$01
@@ -337,10 +337,10 @@ Bank0_Label_D001:
     JSR Bank0_Func_D113
 
 Bank0_Label_D004:
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$02
     BNE Bank0_Label_D036
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$01
     BNE Bank0_Label_D084
     LDA $79

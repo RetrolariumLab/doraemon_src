@@ -107,7 +107,7 @@ Bank1_Func_93D2:
     LDY #$00
 
 Bank1_Label_93D4:
-    LDA a:$0300,Y
+    LDA a:OamBuffer,Y
     CMP #$F8
     BEQ Bank1_Func_93E3
     INY

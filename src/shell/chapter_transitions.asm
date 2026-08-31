@@ -18,7 +18,7 @@ Bank3_Label_8C45:
     LDX #$7F
     TXS
     LDA #$00
-    STA a:$02AA
+    STA a:AudioMusicState
     JSR Bank3_Func_80DA
     LDA #$03
     JSR Bank3_Func_81AA
@@ -28,14 +28,14 @@ Bank3_Label_8C45:
     LDA #$AD
     STA $01
     LDA #$20
-    STA a:$2006
+    STA a:PPU_ADDR
     LDY #$00
-    STY a:$2006
+    STY a:PPU_ADDR
     LDX #$04
 
 Bank3_Label_8C6E:
     LDA ($00),Y
-    STA a:$2007
+    STA a:PPU_DATA
     INY
     BNE Bank3_Label_8C6E
     INC $01
@@ -47,13 +47,13 @@ Bank3_Label_8C6E:
     STA $01
     JSR Bank3_Func_90C4
     JSR Bank3_Func_90D1
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$E7
     ORA #$08
-    STA $19
+    STA PpuCtrlShadow
     LDX #$00
-    STX $1B
-    STX $1C
+    STX PpuScrollXShadow
+    STX PpuScrollYShadow
     STX $07
     STX $06
     STX $05
@@ -70,7 +70,7 @@ Bank3_Label_8C6E:
     LDA #$15
     JSR Audio_QueueEffect
     LDA #$00
-    STA $16
+    STA FrameCounter
     JSR Bank3_Func_80FD
 
 Bank3_Label_8CC1:
@@ -96,7 +96,7 @@ Bank3_Label_8CE3:
 Bank3_Func_8CE6:
     LDA #$01
     STA a:$0408
-    LDA $16
+    LDA FrameCounter
     AND #$7F
     BNE Bank3_Label_8CFB
     INC $05
@@ -143,7 +143,7 @@ Bank3_Func_8D3A:
     LDA $05
     CMP #$03
     BCS Bank3_Label_8D7A
-    LDA $16
+    LDA FrameCounter
     LSR A
     BCS Bank3_Label_8D5A
     LDX a:$0409
@@ -161,7 +161,7 @@ Bank3_Label_8D5A:
     LDA $05
     BEQ Bank3_Label_8D79
     TAX
-    LDA $16
+    LDA FrameCounter
     AND #$01
     ASL A
     CPX #$01
@@ -184,7 +184,7 @@ Bank3_Label_8D79:
     RTS
 
 Bank3_Label_8D7A:
-    LDA $16
+    LDA FrameCounter
     AND #$07
     BNE Bank3_Label_8D8B
     LDX a:$040C
@@ -262,7 +262,7 @@ Bank3_Label_8E07:
     CLC
     INY
     ADC ($00),Y
-    STA a:$0300,X
+    STA a:OamBuffer,X
     INY
     JMP Bank3_Label_8E07
     .byte $CD, $0E, $10, $00, $D1, $0F, $18, $00, $D5, $1D, $08, $08, $D9, $1E, $10, $08
@@ -286,29 +286,29 @@ Bank3_Label_8E07:
     .byte $20, $AD, $80, $01, $D0, $FB, $60
 
 Bank3_Func_8F5A:
-    LDA $16
+    LDA FrameCounter
 
 Bank3_Label_8F5C:
-    CMP $16
+    CMP FrameCounter
     BEQ Bank3_Label_8F5C
     RTS
     .byte $A9, $00
 
 Bank3_Func_8F63:
     PHA
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FB
-    STA a:$2000
+    STA a:PPU_CTRL
     LDA #$20
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA #$00
-    STA a:$2006
+    STA a:PPU_ADDR
     LDY #$00
     LDX #$08
     PLA
 
 Bank3_Label_8F7A:
-    STA a:$2007
+    STA a:PPU_DATA
     DEY
     BNE Bank3_Label_8F7A
     DEX
@@ -316,19 +316,19 @@ Bank3_Label_8F7A:
     RTS
 
 Bank3_Func_8F84:
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FB
-    STA $19
-    STA a:$2000
+    STA PpuCtrlShadow
+    STA a:PPU_CTRL
 
 Bank3_Label_8F8D:
     LDY #$00
     LDA ($00),Y
     BEQ Bank3_Label_8FC7
-    STA a:$2006
+    STA a:PPU_ADDR
     INY
     LDA ($00),Y
-    STA a:$2006
+    STA a:PPU_ADDR
     INY
     LDA ($00),Y
     TAX
@@ -344,7 +344,7 @@ Bank3_Label_8F8D:
 
 Bank3_Label_8FAE:
     LDA ($00),Y
-    STA a:$2007
+    STA a:PPU_DATA
     INY
     DEX
     BNE Bank3_Label_8FAE

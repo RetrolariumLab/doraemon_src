@@ -19,7 +19,7 @@ Bank2_Label_91A3:
     LDA #$00
     STA $CB
     LDA #$00
-    STA a:$02AB
+    STA a:AudioMusicControl
 
 Bank2_Label_91B2:
     RTS

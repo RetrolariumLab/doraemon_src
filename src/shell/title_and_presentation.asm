@@ -20,8 +20,8 @@ Bank3_Func_8289:
 
 Bank3_Func_828F:
     LDA #$00
-    STA a:$2000
-    STA a:$2001
+    STA a:PPU_CTRL
+    STA a:PPU_MASK
     STA $09
     STA $3C
     STA $3D
@@ -50,9 +50,9 @@ Bank3_Func_828F:
     JSR Bank3_WaitForVblank
     JSR Bank3_Func_8F84
     LDA #$FF
-    STA $1B
+    STA PpuScrollXShadow
     LDA #$D0
-    STA $1C
+    STA PpuScrollYShadow
     LDA #$96
     STA $0E
     LDA #$22
@@ -64,7 +64,7 @@ Bank3_Func_828F:
     LDX #$00
 
 Bank3_Label_82EF:
-    LDA a:$0298,X
+    LDA a:ScoreDigitsWorking,X
     BNE Bank3_Label_82F9
     INX
     CPX #$05
@@ -76,21 +76,21 @@ Bank3_Label_82F9:
     ADC #$91
     PHA
     LDA #$22
-    STA a:$2006
+    STA a:PPU_ADDR
     PLA
-    STA a:$2006
+    STA a:PPU_ADDR
 
 Bank3_Label_8307:
-    LDA a:$0298,X
+    LDA a:ScoreDigitsWorking,X
     ORA #$30
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     CPX #$07
     BNE Bank3_Label_8307
     LDX #$00
 
 Bank3_Label_8316:
-    LDA a:$0290,X
+    LDA a:ScoreDigitsCurrent,X
     BNE Bank3_Label_8320
     INX
     CPX #$05
@@ -102,44 +102,44 @@ Bank3_Label_8320:
     ADC #$51
     PHA
     LDA #$22
-    STA a:$2006
+    STA a:PPU_ADDR
     PLA
-    STA a:$2006
+    STA a:PPU_ADDR
 
 Bank3_Label_832E:
-    LDA a:$0290,X
+    LDA a:ScoreDigitsCurrent,X
     ORA #$30
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     CPX #$07
     BNE Bank3_Label_832E
-    LDA $19
+    LDA PpuCtrlShadow
     ORA #$10
     AND #$F4
-    STA $19
+    STA PpuCtrlShadow
     JSR Bank3_Func_91A1
     LDA #$01
     STA $0D
-    STA $14
+    STA NmiOamDmaRequest
     LDA #$00
-    STA $15
+    STA NmiBusy
     STA $27
     LDA #$00
     STA a:$4011
-    STA a:$4015
+    STA a:APU_STATUS
     STA a:$4010
-    STA a:$02A0
-    STA a:$02AA
-    STA a:$02AB
+    STA a:AudioEffectRequestState
+    STA a:AudioMusicState
+    STA a:AudioMusicControl
     LDA #$40
     STA a:$4017
     LDA #$01
-    STA a:$02AA
+    STA a:AudioMusicState
     JSR Bank3_Func_80FD
 
 Bank3_Label_8373:
     JSR Bank3_Func_83C5
-    DEC $1B
+    DEC PpuScrollXShadow
     BNE Bank3_Label_8373
     LDX #$64
 
@@ -150,14 +150,14 @@ Bank3_Label_837C:
 
 Bank3_Label_8382:
     JSR Bank3_Func_83C5
-    INC $1C
+    INC PpuScrollYShadow
     DEC $0E
     INC $10
-    LDA $1C
+    LDA PpuScrollYShadow
     CMP #$F0
     BNE Bank3_Label_8382
     LDA #$00
-    STA $1C
+    STA PpuScrollYShadow
 
 Bank3_Label_8395:
     JSR Bank3_Func_83C5
@@ -170,8 +170,8 @@ Bank3_Label_839E:
     TXS
     LDA #$00
     STA $0D
-    STA $1B
-    STA $1C
+    STA PpuScrollXShadow
+    STA PpuScrollYShadow
     STA a:$0180
     STA a:$01C0
     STA a:$0405
@@ -180,8 +180,8 @@ Bank3_Label_839E:
     INC $09
 
 Bank3_Label_83BA:
-    LDA $1F
-    ORA $20
+    LDA Controller1Buttons
+    ORA Controller1ButtonsAlt
     AND #$10
     BNE Bank3_Label_83BA
     JMP Bank3_Func_8415
@@ -202,7 +202,7 @@ Bank3_Label_83CD:
     LDX #$07
 
 Bank3_Label_83DC:
-    STA a:$0298,X
+    STA a:ScoreDigitsWorking,X
     DEX
     BPL Bank3_Label_83DC
     LDA #$02
@@ -211,7 +211,7 @@ Bank3_Label_83DC:
     STA $2B
     LDA #$06
     STA $2C
-    LDA $21
+    LDA CombinedControllerButtons
     AND #$C0
     CMP #$C0
     BEQ Bank3_Label_83F9
@@ -306,7 +306,7 @@ Bank3_Label_8493:
     JSR Bank3_Func_84FC
     JSR Bank3_Func_85F7
     JSR Bank3_Func_85E2
-    LDA a:$02AA
+    LDA a:AudioMusicState
     BNE Bank3_Label_8493
     LDA #$01
     STA $27
@@ -335,8 +335,8 @@ Bank3_Label_84BD:
 
 Bank3_Func_84D2:
     JSR Bank3_Func_8F5A
-    LDA $1F
-    ORA $20
+    LDA Controller1Buttons
+    ORA Controller1ButtonsAlt
     AND #$20
     BEQ Bank3_Label_84F3
     LDA $3D
@@ -358,8 +358,8 @@ Bank3_Label_84F3:
     STA $3D
 
 Bank3_Label_84F7:
-    LDA $1F
-    ORA $20
+    LDA Controller1Buttons
+    ORA Controller1ButtonsAlt
 
 Bank3_Label_84FB:
     RTS
@@ -369,7 +369,7 @@ Bank3_Func_84FC:
     AND #$30
     BEQ Bank3_Label_84FB
     LDA #$00
-    STA a:$02AA
+    STA a:AudioMusicState
     LDA #$01
     STA $09
     JSR Bank3_Func_80DA
@@ -383,7 +383,7 @@ Bank3_Func_84FC:
     LDX #$00
 
 Bank3_Label_8522:
-    LDA a:$0298,X
+    LDA a:ScoreDigitsWorking,X
     BNE Bank3_Label_852C
     INX
     CPX #$05
@@ -395,21 +395,21 @@ Bank3_Label_852C:
     ADC #$91
     PHA
     LDA #$22
-    STA a:$2006
+    STA a:PPU_ADDR
     PLA
-    STA a:$2006
+    STA a:PPU_ADDR
 
 Bank3_Label_853A:
-    LDA a:$0298,X
+    LDA a:ScoreDigitsWorking,X
     ORA #$30
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     CPX #$07
     BNE Bank3_Label_853A
     LDX #$00
 
 Bank3_Label_8549:
-    LDA a:$0290,X
+    LDA a:ScoreDigitsCurrent,X
     BNE Bank3_Label_8553
     INX
     CPX #$05
@@ -421,14 +421,14 @@ Bank3_Label_8553:
     ADC #$51
     PHA
     LDA #$22
-    STA a:$2006
+    STA a:PPU_ADDR
     PLA
-    STA a:$2006
+    STA a:PPU_ADDR
 
 Bank3_Label_8561:
-    LDA a:$0290,X
+    LDA a:ScoreDigitsCurrent,X
     ORA #$30
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     CPX #$07
     BNE Bank3_Label_8561
@@ -439,10 +439,10 @@ Bank3_Label_8561:
     JSR Bank3_Func_90C4
     JSR Bank3_Func_90D1
     LDA #$00
-    STA $1C
-    STA $1B
+    STA PpuScrollYShadow
+    STA PpuScrollXShadow
     LDA #$01
-    STA a:$02AA
+    STA a:AudioMusicState
     JSR Bank3_Func_80FD
     JMP Bank3_Label_83BA
 
@@ -464,13 +464,13 @@ Bank3_Label_859A:
     LDX #$07
 
 Bank3_Label_85A6:
-    STA a:$0298,X
+    STA a:ScoreDigitsWorking,X
     DEX
     BPL Bank3_Label_85A6
     LDX #$07
 
 Bank3_Label_85AE:
-    STA a:$0290,X
+    STA a:ScoreDigitsCurrent,X
     DEX
     BPL Bank3_Label_85AE
     LDA #$00
@@ -481,7 +481,7 @@ Bank3_Func_85B9:
     LDA #$01
     STA a:$0408
     CLC
-    LDA $16
+    LDA FrameCounter
     AND #$03
     BNE Bank3_Label_85E1
     LDA a:$0400
@@ -507,7 +507,7 @@ Bank3_Label_85E1:
 
 Bank3_Func_85E2:
     LDA #$37
-    STA a:$0300
+    STA a:OamBuffer
     LDA #$EF
     STA a:$0301
     LDA #$23
@@ -524,7 +524,7 @@ Bank3_Label_85FB:
     LDA ($44),Y
     BEQ Bank3_Label_861B
     INY
-    STA a:$0300,X
+    STA a:OamBuffer,X
     LDA ($44),Y
     INY
     STA a:$0301,X
@@ -573,9 +573,9 @@ Bank3_Label_861B:
 Bank3_Func_87CB:
     LDA #$FF
     JSR Bank3_Func_8F63
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$FE
-    STA $19
+    STA PpuCtrlShadow
     LDA #$3F
     STA $00
     LDA #$88
@@ -592,20 +592,20 @@ Bank3_Func_87CB:
     JSR Bank3_Func_8F84
     LDA #$03
     JSR Bank3_Func_81AA
-    LDA $19
+    LDA PpuCtrlShadow
     AND #$E7
-    STA $19
+    STA PpuCtrlShadow
     LDA #$23
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA #$14
-    STA a:$2006
+    STA a:PPU_ADDR
     LDA $2A
     ORA #$30
-    STA a:$2007
+    STA a:PPU_DATA
     LDX #$00
 
 Bank3_Label_8813:
-    LDA a:$0298,X
+    LDA a:ScoreDigitsWorking,X
     BNE Bank3_Label_881D
     INX
     CPX #$05
@@ -617,14 +617,14 @@ Bank3_Label_881D:
     ADC #$CF
     PHA
     LDA #$22
-    STA a:$2006
+    STA a:PPU_ADDR
     PLA
-    STA a:$2006
+    STA a:PPU_ADDR
 
 Bank3_Label_882B:
-    LDA a:$0298,X
+    LDA a:ScoreDigitsWorking,X
     ORA #$30
-    STA a:$2007
+    STA a:PPU_DATA
     INX
     CPX #$07
     BNE Bank3_Label_882B
