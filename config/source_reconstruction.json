@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "release": "Source Reconstruction 1.0",
+  "tag": "source-reconstruction-1.0",
+  "status": "development",
+  "preservation_baseline": {
+    "branch": "main",
+    "commit": "499d4f8cdfa505456127d629fee58f185e79ce93",
+    "manifest": "assets/manifest.json",
+    "verification_target": "verify"
+  },
+  "milestones": [
+    {
+      "id": "preservation_baseline",
+      "status": "complete",
+      "evidence": [
+        "assets/manifest.json",
+        "docs/verification.md"
+      ]
+    },
+    {
+      "id": "reconstruction_contract",
+      "status": "complete",
+      "evidence": [
+        "config/source_reconstruction.json",
+        "docs/source_reconstruction.md",
+        "scripts/source_reconstruction_audit.py"
+      ]
+    },
+    {
+      "id": "runtime_architecture",
+      "status": "in-progress",
+      "evidence": []
+    },
+    {
+      "id": "chapter_execution_evidence",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "semantic_source_layout",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "ram_and_object_systems",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "world_data_formats",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "rendering_graphics_text",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "audio",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "authoring_roundtrips",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "relocation_proof",
+      "status": "planned",
+      "evidence": []
+    },
+    {
+      "id": "source_reconstruction_1_0",
+      "status": "planned",
+      "evidence": []
+    }
+  ],
+  "runtime_contract": {
+    "scenario_manifest": "scenarios/runtime_scenarios.json",
+    "required_scenarios": [
+      "boot-title",
+      "world1-city",
+      "world1-underground",
+      "world2-cave",
+      "world3-underwater",
+      "chapter-transition",
+      "ending-credits"
+    ]
+  },
+  "source_contract": {
+    "source_root": "src",
+    "maximum_module_lines": 700,
+    "executable_incbin": false,
+    "physical_bank_names_are_boundaries_not_semantics": true,
+    "required_semantic_areas": [
+      "common",
+      "world1",
+      "world2",
+      "world3",
+      "audio",
+      "data"
+    ]
+  },
+  "authoring_contract": {
+    "lossless_roundtrip_required": true,
+    "required_formats": [
+      "maps",
+      "metatiles",
+      "objects",
+      "collisions",
+      "graphics",
+      "palettes",
+      "text",
+      "audio"
+    ]
+  },
+  "required_documents": [
+    "README.md",
+    "docs/architecture.md",
+    "docs/ram_map.md",
+    "docs/roadmap.md",
+    "docs/source_reconstruction.md",
+    "docs/unknowns.md",
+    "docs/verification.md"
+  ],
+  "required_targets": [
+    "verify",
+    "source-audit",
+    "source-release-audit",
+    "source-check"
+  ]
+}

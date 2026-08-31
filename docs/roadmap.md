@@ -1,26 +1,67 @@
 # Roadmap
 
-## Completed initial preservation pass
+The status sequence below mirrors `config/source_reconstruction.json`. Detailed
+acceptance criteria and the evidence policy are in
+`docs/source_reconstruction.md`.
 
-- exact original-revision identity and ignored private assets;
-- four-bank GNROM linker and byte-identical ca65 build;
-- deterministic per-bank static-analysis pipeline;
-- bank-qualified symbols and typed CadEditor map ranges;
-- map-region validation and initial hardware/RAM documentation.
+### 0. Preservation baseline - Complete
 
-## Next reverse-engineering pass
+The PRG0 identity, four-bank ca65 build, deterministic disassembly pipeline,
+known map ranges, and byte-for-byte verification are fixed at the `main`
+baseline commit.
 
-- capture mapper writes and establish the complete bank transition graph;
-- identify `chapter_init`, frame dispatch, object update, collision, rendering,
-  and exit paths independently for all three worlds;
-- trace the title-screen A+B/Select shortcut into worlds 2 and 3;
-- recover enemies, items, NPCs, doors, manholes, bosses, and trigger formats;
-- isolate common sound code and music/data ownership by bank;
-- split generated listings into evidence-backed modules.
+### 1. Reconstruction contract - Complete
 
-## Authoring pass
+The target quality, ordered milestones, evidence rules, release gates, and
+immutable predecessor are machine-audited.
 
-- lossless map/block decode and encode tools;
-- collision and object schemas with round-trip tests;
-- CHR/palette/metasprite/text authoring formats;
-- Revision A alignment and a separate byte-identical build profile.
+### 2. Runtime architecture - In Progress
+
+Build deterministic trace tooling and prove reset/NMI, mapper writes, main
+dispatch, input, and the complete bank-transition graph.
+
+### 3. Chapter execution evidence - Planned
+
+Capture boot/title, city, underground, cave, underwater, transition, and ending
+scenarios. Identify each chapter's initialization, frame, update, collision,
+render, and exit paths.
+
+### 4. Semantic source layout - Planned
+
+Replace the four monolithic physical-bank listings with address-ordered common,
+world, audio, and data modules. Keep every module at or below 700 lines.
+
+### 5. RAM and object systems - Planned
+
+Recover shared and chapter-specific RAM, enemies, items, NPCs, projectiles,
+doors, manholes, bosses, triggers, and persistent progression state.
+
+### 6. World data formats - Planned
+
+Complete maps, metatiles, screen sequences, collision properties, object
+placements, transitions, and their cross-references for all three worlds.
+
+### 7. Rendering, graphics, and text - Planned
+
+Recover PPU update paths, palettes, sprites/metasprites, CHR ownership, title,
+HUD, dialogue, item names, and ending presentation.
+
+### 8. Audio - Planned
+
+Recover the sound driver, channel state, command streams, music, and sound
+effects with documented formats and bank ownership.
+
+### 9. Authoring round trips - Planned
+
+Provide lossless decode/encode tools and tests for maps, metatiles, objects,
+collisions, graphics, palettes, text, and audio.
+
+### 10. Relocation proof - Planned
+
+Build and validate a deliberately relocated development image to prove source
+relationships and expose hidden absolute-address assumptions.
+
+### 11. Source Reconstruction 1.0 - Planned
+
+Resolve or explicitly classify remaining unknowns, run the clean aggregate
+gate, finalize the documentation, and prepare the audited release commit.

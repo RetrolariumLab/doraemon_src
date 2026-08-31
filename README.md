@@ -7,6 +7,12 @@ tracked PRG assembly plus one private CHR input.
 
 ## Current status
 
+Active development on `source-reconstruction` targets the audited
+[Source Reconstruction 1.0](docs/source_reconstruction.md) contract. The
+matching preservation state remains fixed on `main`; semantic reconstruction,
+runtime evidence, editable formats, and relocation proof are added
+incrementally without weakening byte identity.
+
 - The exact local reference is identified by complete file, header, PRG, CHR,
   and payload hashes.
 - All four switchable 32 KiB PRG banks are represented by address-ordered ca65
@@ -79,6 +85,8 @@ make bank-info          # print per-bank CRC32 values and vectors
 make maps               # describe all CadEditor-backed regions as JSON
 make validate-maps      # validate map/table sizes and CRCs
 make quality-check      # formatting, lint, and unit tests
+make source-audit       # validate reconstruction milestones and evidence
+make source-check       # complete project and reconstruction development gate
 make check              # complete release gate
 make clean              # remove build artifacts only
 ```

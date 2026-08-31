@@ -27,7 +27,8 @@ SYMBOLS := config/symbols.json
 	rom-info rom-info-reference rom-info-built bank-info format format-check \
 	lint lint-asm lint-source lint-project test quality-check scaffold-check \
 	ghidra-bootstrap ghidra-status ghidra-inspect ghidra-analyze disassemble \
-	disassembly-check maps validate-maps release-check check clean
+	disassembly-check maps validate-maps release-check check clean \
+	source-audit source-release-audit source-check
 
 all: verify
 
@@ -115,6 +116,14 @@ test:
 quality-check: lint test
 
 scaffold-check: quality-check
+
+source-audit:
+	$(PYTHON) scripts/source_reconstruction_audit.py
+
+source-release-audit:
+	$(PYTHON) scripts/source_reconstruction_audit.py --require-ready
+
+source-check: release-check source-audit
 
 ghidra-bootstrap:
 	$(PYTHON) scripts/bootstrap_ghidra.py install
