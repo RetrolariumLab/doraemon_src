@@ -159,6 +159,24 @@
       "source_bank": 2,
       "gateway": "0x8048",
       "instruction": "JMP",
+      "count": 4
+    },
+    {
+      "source_bank": 2,
+      "gateway": "0x8053",
+      "instruction": "JSR",
+      "count": 1
+    },
+    {
+      "source_bank": 2,
+      "gateway": "0x8065",
+      "instruction": "JSR",
+      "count": 1
+    },
+    {
+      "source_bank": 2,
+      "gateway": "0x8077",
+      "instruction": "JMP",
       "count": 1
     },
     {
@@ -201,7 +219,7 @@
       "source_bank": 3,
       "gateway": "0x8048",
       "instruction": "JMP",
-      "count": 1
+      "count": 2
     }
   ],
   "possible_prg_edges": [

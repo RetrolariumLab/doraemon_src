@@ -32,6 +32,21 @@ def encode_inputs(inputs: list[dict[str, Any]]) -> str:
     return ";".join(encoded)
 
 
+def encode_memory_patches(patches: list[dict[str, Any]]) -> str:
+    encoded: list[str] = []
+    for patch in patches:
+        frame = int(patch["frame"])
+        address = int(str(patch["address"]), 0)
+        value = int(str(patch["value"]), 0)
+        name = str(patch["name"])
+        if frame < 0 or not 0 <= address <= 0x07FF or not 0 <= value <= 0xFF:
+            raise ValueError(f"invalid runtime memory patch: {patch}")
+        if not name or ";" in name or ":" in name:
+            raise ValueError(f"invalid runtime memory patch name: {patch}")
+        encoded.append(f"{frame}:{address:04X}:{value:02X}:{name}")
+    return ";".join(encoded)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--fceux", required=True, type=Path)
@@ -76,6 +91,9 @@ def main() -> int:
             DORAEMON_RUNTIME_SCENARIO=scenario_id,
             DORAEMON_RUNTIME_MAX_FRAMES=str(scenario["max_frames"]),
             DORAEMON_RUNTIME_INPUTS=encode_inputs(scenario.get("inputs", [])),
+            DORAEMON_RUNTIME_MEMORY_PATCHES=encode_memory_patches(
+                scenario.get("memory_patches", [])
+            ),
         )
         if args.screenshot_dir is not None:
             screenshot = args.screenshot_dir / f"{scenario_id}.png"

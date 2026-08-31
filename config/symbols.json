@@ -129,6 +129,18 @@
     },
     {
       "bank": 1,
+      "address": "0x88A4",
+      "name": "Bank1_World2Main",
+      "evidence": "world2-cave-runtime-entry"
+    },
+    {
+      "bank": 1,
+      "address": "0x8959",
+      "name": "Bank1_World2FrameLoop",
+      "evidence": "world2-cave-runtime-frame-loop"
+    },
+    {
+      "bank": 1,
       "address": "0xB9CE",
       "name": "World2_BlockAttributes",
       "evidence": "cadeditor"
@@ -183,6 +195,24 @@
     },
     {
       "bank": 2,
+      "address": "0x82AD",
+      "name": "Bank2_World3AlternateEntry",
+      "evidence": "bank2-dispatch-8277-target"
+    },
+    {
+      "bank": 2,
+      "address": "0x82F6",
+      "name": "Bank2_World3Main",
+      "evidence": "world3-underwater-runtime-entry"
+    },
+    {
+      "bank": 2,
+      "address": "0x838E",
+      "name": "Bank2_World3FrameLoop",
+      "evidence": "world3-underwater-runtime-frame-loop"
+    },
+    {
+      "bank": 2,
       "address": "0xDDF2",
       "name": "World3_BlockAttributes",
       "evidence": "cadeditor"
@@ -234,6 +264,54 @@
       "address": "0x8261",
       "name": "Bank3_MapperValueTable",
       "evidence": "mapper-write-index"
+    },
+    {
+      "bank": 3,
+      "address": "0x827D",
+      "name": "Bank3_GameOverDispatch",
+      "evidence": "call-restore-gateway-target"
+    },
+    {
+      "bank": 3,
+      "address": "0x8280",
+      "name": "Bank3_EndingDispatch",
+      "evidence": "world3-completion-gateway-target"
+    },
+    {
+      "bank": 3,
+      "address": "0x8283",
+      "name": "Bank3_World1TransitionDispatch",
+      "evidence": "world1-completion-gateway-target"
+    },
+    {
+      "bank": 3,
+      "address": "0x8286",
+      "name": "Bank3_World2TransitionDispatch",
+      "evidence": "world2-completion-gateway-target"
+    },
+    {
+      "bank": 3,
+      "address": "0x8A17",
+      "name": "Bank3_ShowGameOver",
+      "evidence": "game-over-text-and-returning-presentation-service"
+    },
+    {
+      "bank": 3,
+      "address": "0x8A88",
+      "name": "Bank3_RunEnding",
+      "evidence": "world3-completion-gateway-and-ending-text-pointer"
+    },
+    {
+      "bank": 3,
+      "address": "0x8C3F",
+      "name": "Bank3_World1ToWorld2Transition",
+      "evidence": "world1-gateway-target-and-bank1-exit"
+    },
+    {
+      "bank": 3,
+      "address": "0x8C43",
+      "name": "Bank3_World2ToWorld3Transition",
+      "evidence": "world2-gateway-target-and-bank2-exit"
     },
     {
       "bank": 3,

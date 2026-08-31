@@ -37,15 +37,22 @@ side-view initializer in that order while PRG0/CHR0 stays selected.
 The bank owns 60 direct 16x15 screens and shooter-specific code/data. Automatic
 scrolling, player flight, projectiles, and screen sequencing should be treated
 as a separate object/update system until code sharing is demonstrated.
+Runtime reaches the bank-local main entry at `$88A4` and then repeats the frame
+loop at `$8959` once per frame with PRG1/CHR1 selected.
 
 ## World 3 / bank 2
 
 The embedded build string identifies this bank explicitly as world 3. It owns a
 separate 64x64 map and metatile hierarchy. Bank-local NMI dispatch jumps to the
 high `$AFxx` region, confirming a different frame implementation.
+The `$8271` dispatch jumps across the build string to the runtime-proven main
+entry at `$82F6`; after initialization, execution repeats the frame loop at
+`$838E` once per frame with PRG2/CHR2 selected.
 
 ## Shell and presentation / bank 3
 
 This bank contains title text, item names, the long ending credit stream, and
 common presentation material. RESET execution is expected to begin here on
 power-on, but every bank retains compatible vectors for interrupt safety.
+The recovered `$8A88` ending entry initializes the credits pointer to `$BDBC`;
+runtime reaches its `$8B18` scroll loop through the World 3 completion gateway.

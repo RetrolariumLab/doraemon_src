@@ -176,11 +176,45 @@ def probe_sequence(scenario: dict[str, object], rows: list[dict[str, str]]) -> b
         return False
     position = 0
     for row in rows:
-        if row["event"] == "probe" and row["detail"] == expected[position]:
+        item = expected[position]
+        if isinstance(item, str):
+            matched = row["detail"] == item
+        elif isinstance(item, dict):
+            matched = row["detail"] == str(item.get("name"))
+            if "bank" in item:
+                matched = matched and int(row["bank"]) == int(item["bank"])
+        else:
+            raise ValueError("expected_probes entries must be strings or objects")
+        if row["event"] == "probe" and matched:
             position += 1
             if position == len(expected):
                 return True
     return False
+
+
+def observed_memory_patches(
+    scenario: dict[str, object], rows: list[dict[str, str]]
+) -> bool:
+    expected = scenario.get("memory_patches")
+    if not isinstance(expected, list) or not expected:
+        return False
+    for patch in expected:
+        if not isinstance(patch, dict):
+            raise ValueError("memory_patches entries must be objects")
+        frame = int(patch["frame"])
+        address = int(str(patch["address"]), 0)
+        value = int(str(patch["value"]), 0)
+        name = str(patch["name"])
+        if not any(
+            row["event"] == "memory_patch"
+            and row["detail"] == name
+            and int(row["frame"]) == frame
+            and int(row["address"], 16) == address
+            and int(row["rom_value"], 16) == value
+            for row in rows
+        ):
+            return False
+    return True
 
 
 def validate_check(
@@ -199,6 +233,7 @@ def validate_check(
         "chapter-bank-entry": lambda: chapter_bank_entry(scenario, rows),
         "chapter-steady-state": lambda: chapter_steady_state(scenario, rows),
         "probe-sequence": lambda: probe_sequence(scenario, rows),
+        "observed-memory-patches": lambda: observed_memory_patches(scenario, rows),
     }
     if check_id not in checks:
         raise ValueError(f"unknown runtime check: {check_id}")

@@ -8,19 +8,19 @@ Bank2_Func_8000:
     JSR Bank2_Func_80F0
     LDA #$00
     JSR Bank2_Func_81B2
-    JMP Bank2_Label_8271
+    JMP Bank2_Func_8271
 
 Bank2_Func_800B:
     JSR Bank2_Func_80F0
     LDA #$01
     JSR Bank2_Func_81B2
-    JMP Bank2_Label_8271
+    JMP Bank2_Func_8271
 
 Bank2_Func_8016:
     JSR Bank2_Func_80F0
     LDA #$02
     JSR Bank2_Func_81B2
-    JMP Bank2_Label_8271
+    JMP Bank2_Func_8271
     .byte $4C, $74, $82
 
 Bank2_Func_8024:
@@ -46,7 +46,7 @@ Bank2_Func_8048:
     JSR Bank2_Func_80F0
     LDA #$03
     JSR Bank2_Func_81B2
-    JMP Bank2_Label_8271
+    JMP Bank2_Func_8271
 
 Bank2_Func_8053:
     JSR Bank2_Func_80F0
@@ -67,7 +67,12 @@ Bank2_Func_8065:
     JSR World3_BuildString
     PLA
     JMP Bank2_Func_81B2
-    .byte $20, $F0, $80, $A9, $03, $20, $B2, $81, $4C, $80, $82
+
+Bank2_Func_8077:
+    JSR Bank2_Func_80F0
+    LDA #$03
+    JSR Bank2_Func_81B2
+    JMP Bank2_Label_8280
 
 Bank2_Func_8082:
     JSR Bank2_Func_80F0
@@ -375,20 +380,23 @@ Bank2_Label_8245:
 Bank2_MapperValueTable:
     .byte $00, $10, $20, $30, $01, $11, $21, $31, $02, $12, $22, $32, $03, $13, $23, $33
 
-Bank2_Label_8271:
-    .byte $4C, $F6, $82
+Bank2_Func_8271:
+    JMP Bank2_World3Main
 
 Bank2_Func_8274:
     JMP Bank2_Func_AFED
 
 Bank2_Func_8277:
-    .byte $4C, $AD, $82
+    JMP Bank2_World3AlternateEntry
 
 Bank2_Func_827A:
     JMP Bank2_Func_AFE6
 
 World3_BuildString:
-    .byte $44, $4F, $52, $41, $45, $4D
+    .byte $44, $4F, $52
+
+Bank2_Label_8280:
+    .byte $41, $45, $4D
 
 Bank2_Label_8283:
     .byte $4F, $4E, $20
@@ -396,72 +404,587 @@ Bank2_Label_8283:
 Bank2_Label_8286:
     .byte $57, $4F, $52, $4C, $44, $33, $20, $57, $52, $49, $54, $54, $45, $4E, $20, $42
     .byte $59, $20, $4B, $49, $4B, $55, $20, $56, $45, $52, $31, $2E, $39, $20, $38, $36
-    .byte $2F, $31, $30, $2F, $33, $31, $20, $A2, $7F, $9A, $20, $FE, $B1, $20, $89, $86
-    .byte $20, $7B, $8B, $A9, $00, $85, $37, $85, $38, $A9, $03, $85, $2A, $A9, $01, $85
-    .byte $DC, $A2, $00, $A0, $02, $86, $DD, $84, $DE, $A5, $2A, $29, $03, $AA, $BD, $EA
-    .byte $82, $85, $DF, $BD, $EE, $82, $85, $8C, $BD, $F2, $82, $85, $8D, $A9, $02, $85
-    .byte $2C, $4C, $28, $83, $28, $1F, $0B, $09, $40, $08, $80, $C0, $40, $70, $A0, $A0
-    .byte $A5, $3B, $10, $1A, $A2, $7F, $9A, $20, $FE, $B1, $20, $89, $86, $20, $7B, $8B
-    .byte $A9, $00, $85, $DC, $A9, $00, $85, $DF, $20, $D4, $A2, $4C, $28, $83, $A2, $7F
-    .byte $9A, $20, $FE, $B1, $20, $89, $86, $20, $7B, $8B, $A9, $00, $85, $DC, $A9, $00
-    .byte $85, $DF, $A9, $80, $85, $4B, $A9, $80, $85, $4C, $A9, $00, $85, $4F, $A9, $00
-    .byte $85, $D0, $A9, $00, $85, $E0, $A5, $1F, $C9, $FA, $D0, $0A, $A5, $1D, $C9, $C5
-    .byte $D0, $04, $A9, $01, $85, $E0, $A2, $7F, $9A, $A5, $DC, $D0, $18, $20, $DA, $80
-    .byte $A9, $02, $85, $28, $20, $53, $80, $A9, $00, $85, $19, $20, $FD, $80, $A9, $5A
-    .byte $85, $68, $20, $BB, $B1, $20, $DA, $80, $20, $F4, $A1, $20, $13, $A2, $A5, $DC
-    .byte $D0, $03, $20, $0B, $85, $A5, $DF, $29, $07, $85, $89, $A5, $DF, $4A, $4A, $4A
-    .byte $85, $8A, $20, $F3, $8B, $20, $33, $A7, $A2, $7F, $9A, $A9, $00, $85, $68, $A5
-    .byte $DF, $C9, $3F, $D0, $03, $20, $06, $B4, $A5, $4F, $D0, $03, $20, $30, $AF, $20
-    .byte $C4, $8D, $20, $9B, $87, $A5, $4F, $D0, $06, $20, $1D, $A2, $20, $60, $A1, $20
-    .byte $02, $92, $20, $01, $A6, $A5, $4F, $D0, $03, $20, $C7, $A1, $20, $19, $9D, $20
-    .byte $0E, $82, $A5, $DF, $C9, $3F, $F0, $03, $20, $06, $B4, $20, $60, $B4, $20, $92
-    .byte $91, $20, $FD, $85, $20, $C8, $85, $20, $87, $84, $20, $9A, $85, $20, $81, $85
-    .byte $A5, $26, $F0, $09, $A9, $00, $85, $26, $A9, $10, $20, $EB, $A5, $20, $27, $84
-    .byte $A9, $01, $85, $14, $A9, $01, $85, $68, $20, $BB, $B1, $A5, $DC, $F0, $14, $C6
-    .byte $DD, $D0, $04, $C6, $DE, $F0, $09, $A5, $21, $29, $30, $F0, $06, $4C, $48, $80
-    .byte $4C, $6D, $A2, $A5, $4F, $F0, $07, $C6, $4F, $D0, $03, $4C, $12, $AE, $4C, $8E
-    .byte $83, $A5, $E0, $D0, $23, $A5, $DF, $D0, $57, $A5, $8C, $C9, $25, $D0, $51, $A5
-    .byte $8D, $C9, $BB, $D0, $4B, $A5, $24, $D0, $04, $A9, $00, $85, $CF, $E6, $CF, $A5
-    .byte $CF, $C9, $3C, $D0, $3B, $4C, $00, $FC, $A5, $1D, $29, $02, $F0, $03, $20, $19
-    .byte $A6, $A5, $1D, $29, $01, $F0, $03, $20, $3A, $A6, $A5, $1D, $29, $08, $F0, $03
-    .byte $20, $5D, $A6, $A5, $1D, $29, $04, $F0, $03, $20, $88, $A6, $A5, $1D, $C9, $C0
-    .byte $D0, $0E, $20, $6F, $AF, $A5, $1D, $D0, $FC, $A5, $1D, $F0, $FC, $4C, $48, $80
-    .byte $60, $A5, $CE, $F0, $13, $A2, $78, $A0, $80, $20, $1A, $A7, $A9, $00, $85, $7A
-    .byte $A9, $B8, $85, $79, $20, $B6, $B4, $60, $A5, $D0, $D0, $60, $A5, $DF, $C9, $16
-    .byte $D0, $5A, $A5, $24, $D0, $04, $A9, $00, $85, $CF, $E6, $CF, $A5, $CF, $C9, $3C
-    .byte $D0, $4A, $A9, $0A, $20, $EB, $A5, $20, $C4, $86, $A9, $01, $85, $CE, $85, $D0
-    .byte $A9, $00, $85, $9A, $A2, $00, $A0, $00, $BD, $BD, $06, $C9, $18, $90, $1B, $C9
-    .byte $1C, $B0, $17, $A9, $16, $9D, $B0, $06, $A9, $00, $9D, $E4, $06, $B9, $03, $85
-    .byte $9D, $CA, $06, $B9, $07, $85, $9D, $D7, $06, $C8, $E8, $E0, $0D, $D0, $D9, $A2
-    .byte $00, $20, $68, $8B, $E8, $E0, $08, $D0, $F8, $20, $AD, $8C, $60, $58, $58, $98
-    .byte $98, $60, $A0, $60, $A0, $A5, $DF, $F0, $17, $20, $41, $85, $C9, $27, $F0, $19
-    .byte $C9, $28, $F0, $15, $C9, $34, $F0, $11, $C9, $3C, $F0, $16, $20, $5A, $85, $60
-    .byte $A9, $80, $85, $8C, $A9, $80, $85, $8D, $60, $A9, $30, $85, $8C, $A9, $40, $85
-    .byte $8D, $60, $A9, $30, $85, $8C, $A9, $B0, $85, $8D, $60, $A0, $00, $B9, $BD, $06
-    .byte $C9, $19, $F0, $0A, $C8, $C0, $0D, $D0, $F4, $A9, $07, $4C, $51, $AF, $B9, $B0
-    .byte $06, $85, $DF, $60, $20, $8D, $92, $85, $46, $20, $99, $92, $85, $47, $20, $C3
-    .byte $9E, $90, $F1, $20, $FB, $9E, $90, $EC, $20, $37, $9F, $90, $E7, $20, $71, $9F
-    .byte $90, $E2, $A5, $46, $85, $8C, $A5, $47, $85, $8D, $60, $A5, $A6, $F0, $14, $C6
-    .byte $A6, $D0, $10, $A5, $DF, $C9, $3F, $F0, $0A, $A5, $A5, $8D, $AA, $02, $A9, $00
-    .byte $8D, $AB, $02, $60, $20, $F7, $A5, $29, $10, $D0, $03, $85, $64, $60, $A5, $64
-    .byte $D0, $FB, $E6, $64, $A9, $01, $8D, $AB, $02, $A9, $06, $20, $EB, $A5, $20, $F7
-    .byte $A5, $29, $10, $D0, $F9, $20, $F7, $A5, $29, $10, $F0, $F9, $A9, $00, $8D, $AB
-    .byte $02, $60, $A5, $53, $F0, $30, $A5, $DF, $C9, $12, $D0, $2A, $A5, $A8, $F0, $16
-    .byte $A5, $AC, $C9, $06, $D0, $20, $A5, $B0, $D0, $1C, $A0, $00, $B9, $00, $06, $D0
-    .byte $15, $C8, $C0, $08, $D0, $F6, $A9, $0A, $20, $EB, $A5, $A9, $01, $8D, $AB, $02
-    .byte $20, $C4, $86, $20, $8D, $A2, $60, $A5, $53, $D0, $4B, $A5, $4D, $C9, $14, $90
-    .byte $45, $A9, $00, $85, $4D, $A9, $01, $85, $53, $A9, $0A, $20, $EB, $A5, $20, $C4
-    .byte $86, $20, $6C, $86, $20, $F6, $8C, $20, $FD, $8C, $A5, $DF, $85, $54, $A9, $12
-    .byte $85, $DF, $20, $13, $A2, $20, $33, $A7, $A0, $00, $B9, $8C, $00, $99, $25, $07
-    .byte $C8, $C0, $12, $D0, $F5, $A9, $80, $85, $8C, $A9, $A8, $85, $8D, $A9, $14, $85
-    .byte $A8, $A9, $03, $8D, $AA, $02, $60, $A5, $DF, $C9, $2D, $90, $14, $C9, $30, $90
-    .byte $14, $C9, $35, $90, $0C, $C9, $38, $90, $0C, $C9, $3D, $90, $04, $C9, $40, $90
-    .byte $04, $A9, $14, $85, $55, $60, $A0, $00, $A9, $00, $99, $78, $06, $C8, $C0, $08
-    .byte $D0, $F6, $A0, $00, $A9, $00, $99, $E4, $06, $C8, $C0, $0D, $D0, $F6, $A9, $00
-    .byte $85, $9A, $60, $20, $DA, $80, $A9, $90, $85, $19, $A9, $02, $20, $AA, $81, $20
-    .byte $76, $B2, $A2, $AE, $A0, $BC, $86, $00, $84, $01, $20, $9F, $B2, $A9, $00, $85
-    .byte $00, $20, $D4, $B2, $A9, $00, $85, $00, $20, $FD, $B2, $20, $5B, $B2, $20, $FD
-    .byte $80, $20, $86, $B2, $60
+    .byte $2F, $31, $30, $2F, $33, $31, $20
+
+Bank2_World3AlternateEntry:
+    LDX #$7F
+    TXS
+    JSR Bank2_Func_B1FE
+    JSR Bank2_Func_8689
+    JSR Bank2_Func_8B7B
+    LDA #$00
+    STA $37
+    STA $38
+    LDA #$03
+    STA $2A
+
+Bank2_Label_82C3:
+    LDA #$01
+    STA $DC
+    LDX #$00
+    LDY #$02
+    STX $DD
+    STY $DE
+    LDA $2A
+    AND #$03
+    TAX
+    LDA a:$82EA,X
+    STA $DF
+    LDA a:$82EE,X
+    STA $8C
+    LDA a:$82F2,X
+    STA $8D
+    LDA #$02
+    STA $2C
+    JMP Bank2_Label_8328
+    .byte $28, $1F, $0B, $09, $40, $08, $80, $C0, $40, $70, $A0, $A0
+
+Bank2_World3Main:
+    LDA $3B
+    BPL Bank2_Label_8314
+    LDX #$7F
+    TXS
+    JSR Bank2_Func_B1FE
+    JSR Bank2_Func_8689
+    JSR Bank2_Func_8B7B
+    LDA #$00
+    STA $DC
+    LDA #$00
+    STA $DF
+    JSR Bank2_Func_A2D4
+    JMP Bank2_Label_8328
+
+Bank2_Label_8314:
+    LDX #$7F
+    TXS
+    JSR Bank2_Func_B1FE
+    JSR Bank2_Func_8689
+    JSR Bank2_Func_8B7B
+    LDA #$00
+    STA $DC
+    LDA #$00
+    STA $DF
+
+Bank2_Label_8328:
+    LDA #$80
+    STA $4B
+    LDA #$80
+    STA $4C
+    LDA #$00
+    STA $4F
+    LDA #$00
+    STA $D0
+    LDA #$00
+    STA $E0
+    LDA $1F
+    CMP #$FA
+    BNE Bank2_Label_834C
+    LDA $1D
+    CMP #$C5
+    BNE Bank2_Label_834C
+    LDA #$01
+    STA $E0
+
+Bank2_Label_834C:
+    LDX #$7F
+    TXS
+    LDA $DC
+    BNE Bank2_Label_836B
+    JSR Bank2_Func_80DA
+    LDA #$02
+    STA $28
+    JSR Bank2_Func_8053
+    LDA #$00
+    STA $19
+    JSR Bank2_Func_80FD
+    LDA #$5A
+    STA $68
+    JSR Bank2_Func_B1BB
+
+Bank2_Label_836B:
+    JSR Bank2_Func_80DA
+    JSR Bank2_Func_A1F4
+    JSR Bank2_Func_A213
+    LDA $DC
+    BNE Bank2_Label_837B
+    JSR Bank2_Func_850B
+
+Bank2_Label_837B:
+    LDA $DF
+    AND #$07
+    STA $89
+    LDA $DF
+    LSR A
+    LSR A
+    LSR A
+    STA $8A
+    JSR Bank2_Func_8BF3
+    JSR Bank2_Func_A733
+
+Bank2_World3FrameLoop:
+    LDX #$7F
+    TXS
+    LDA #$00
+    STA $68
+    LDA $DF
+    CMP #$3F
+    BNE Bank2_Label_839E
+    JSR Bank2_Func_B406
+
+Bank2_Label_839E:
+    LDA $4F
+    BNE Bank2_Label_83A5
+    JSR Bank2_Func_AF30
+
+Bank2_Label_83A5:
+    JSR Bank2_Func_8DC4
+    JSR Bank2_Func_879B
+    LDA $4F
+    BNE Bank2_Label_83B5
+    JSR Bank2_Func_A21D
+    JSR Bank2_Func_A160
+
+Bank2_Label_83B5:
+    JSR Bank2_Func_9202
+    JSR Bank2_Func_A601
+    LDA $4F
+    BNE Bank2_Label_83C2
+    JSR Bank2_Func_A1C7
+
+Bank2_Label_83C2:
+    JSR Bank2_Func_9D19
+    JSR Bank2_Func_820E
+    LDA $DF
+    CMP #$3F
+    BEQ Bank2_Label_83D1
+    JSR Bank2_Func_B406
+
+Bank2_Label_83D1:
+    JSR Bank2_Func_B460
+    JSR Bank2_Func_9192
+    JSR Bank2_Func_85FD
+    JSR Bank2_Func_85C8
+    JSR Bank2_Func_8487
+    JSR Bank2_Func_859A
+    JSR Bank2_Func_8581
+    LDA $26
+    BEQ Bank2_Label_83F3
+    LDA #$00
+    STA $26
+    LDA #$10
+    JSR Bank2_Func_A5EB
+
+Bank2_Label_83F3:
+    JSR Bank2_Func_8427
+    LDA #$01
+    STA $14
+    LDA #$01
+    STA $68
+    JSR Bank2_Func_B1BB
+    LDA $DC
+    BEQ Bank2_Label_8419
+    DEC $DD
+    BNE Bank2_Label_840D
+    DEC $DE
+    BEQ Bank2_Label_8416
+
+Bank2_Label_840D:
+    LDA $21
+    AND #$30
+    BEQ Bank2_Label_8419
+    JMP Bank2_Func_8048
+
+Bank2_Label_8416:
+    JMP Bank2_Func_A26D
+
+Bank2_Label_8419:
+    LDA $4F
+    BEQ Bank2_Label_8424
+    DEC $4F
+    BNE Bank2_Label_8424
+    JMP Bank2_Func_AE12
+
+Bank2_Label_8424:
+    JMP Bank2_World3FrameLoop
+
+Bank2_Func_8427:
+    LDA $E0
+    BNE Bank2_Label_844E
+    LDA $DF
+    BNE Bank2_Label_8486
+    LDA $8C
+    CMP #$25
+    BNE Bank2_Label_8486
+    LDA $8D
+    CMP #$BB
+    BNE Bank2_Label_8486
+    LDA $24
+    BNE Bank2_Label_8443
+    LDA #$00
+    STA $CF
+
+Bank2_Label_8443:
+    INC $CF
+    LDA $CF
+    CMP #$3C
+    BNE Bank2_Label_8486
+    JMP Bank2_Label_FC00
+
+Bank2_Label_844E:
+    LDA $1D
+    AND #$02
+    BEQ Bank2_Label_8457
+    JSR Bank2_Func_A619
+
+Bank2_Label_8457:
+    LDA $1D
+    AND #$01
+    BEQ Bank2_Label_8460
+    JSR Bank2_Func_A63A
+
+Bank2_Label_8460:
+    LDA $1D
+    AND #$08
+    BEQ Bank2_Label_8469
+    JSR Bank2_Func_A65D
+
+Bank2_Label_8469:
+    LDA $1D
+    AND #$04
+    BEQ Bank2_Label_8472
+    JSR Bank2_Func_A688
+
+Bank2_Label_8472:
+    LDA $1D
+    CMP #$C0
+    BNE Bank2_Label_8486
+    JSR Bank2_Func_AF6F
+
+Bank2_Label_847B:
+    LDA $1D
+    BNE Bank2_Label_847B
+
+Bank2_Label_847F:
+    LDA $1D
+    BEQ Bank2_Label_847F
+    JMP Bank2_Func_8048
+
+Bank2_Label_8486:
+    RTS
+
+Bank2_Func_8487:
+    LDA $CE
+    BEQ Bank2_Label_849E
+    LDX #$78
+    LDY #$80
+    JSR Bank2_Func_A71A
+    LDA #$00
+    STA $7A
+    LDA #$B8
+    STA $79
+    JSR Bank2_Func_B4B6
+    RTS
+
+Bank2_Label_849E:
+    LDA $D0
+    BNE Bank2_Label_8502
+    LDA $DF
+    CMP #$16
+    BNE Bank2_Label_8502
+    LDA $24
+    BNE Bank2_Label_84B0
+    LDA #$00
+    STA $CF
+
+Bank2_Label_84B0:
+    INC $CF
+    LDA $CF
+    CMP #$3C
+    BNE Bank2_Label_8502
+    LDA #$0A
+    JSR Bank2_Func_A5EB
+    JSR Bank2_Func_86C4
+    LDA #$01
+    STA $CE
+    STA $D0
+    LDA #$00
+    STA $9A
+    LDX #$00
+    LDY #$00
+
+Bank2_Label_84CE:
+    LDA a:$06BD,X
+    CMP #$18
+    BCC Bank2_Label_84F0
+    CMP #$1C
+    BCS Bank2_Label_84F0
+    LDA #$16
+    STA a:$06B0,X
+    LDA #$00
+    STA a:$06E4,X
+    LDA a:$8503,Y
+    STA a:$06CA,X
+    LDA a:$8507,Y
+    STA a:$06D7,X
+    INY
+
+Bank2_Label_84F0:
+    INX
+    CPX #$0D
+    BNE Bank2_Label_84CE
+    LDX #$00
+
+Bank2_Label_84F7:
+    JSR Bank2_Func_8B68
+    INX
+    CPX #$08
+    BNE Bank2_Label_84F7
+    JSR Bank2_Func_8CAD
+
+Bank2_Label_8502:
+    RTS
+    .byte $58, $58, $98, $98, $60, $A0, $60, $A0
+
+Bank2_Func_850B:
+    LDA $DF
+    BEQ Bank2_Label_8526
+    JSR Bank2_Func_8541
+    CMP #$27
+    BEQ Bank2_Label_852F
+    CMP #$28
+    BEQ Bank2_Label_852F
+    CMP #$34
+    BEQ Bank2_Label_852F
+    CMP #$3C
+    BEQ Bank2_Label_8538
+    JSR Bank2_Func_855A
+    RTS
+
+Bank2_Label_8526:
+    LDA #$80
+    STA $8C
+    LDA #$80
+    STA $8D
+    RTS
+
+Bank2_Label_852F:
+    LDA #$30
+    STA $8C
+    LDA #$40
+    STA $8D
+    RTS
+
+Bank2_Label_8538:
+    LDA #$30
+    STA $8C
+    LDA #$B0
+    STA $8D
+    RTS
+
+Bank2_Func_8541:
+    LDY #$00
+
+Bank2_Label_8543:
+    LDA a:$06BD,Y
+    CMP #$19
+    BEQ Bank2_Label_8554
+    INY
+    CPY #$0D
+    BNE Bank2_Label_8543
+    LDA #$07
+    JMP Bank2_Func_AF51
+
+Bank2_Label_8554:
+    LDA a:$06B0,Y
+    STA $DF
+    RTS
+
+Bank2_Func_855A:
+    JSR Bank2_Func_928D
+    STA $46
+    JSR Bank2_Func_9299
+    STA $47
+    JSR Bank2_Func_9EC3
+    BCC Bank2_Func_855A
+    JSR Bank2_Func_9EFB
+    BCC Bank2_Func_855A
+    JSR Bank2_Func_9F37
+    BCC Bank2_Func_855A
+    JSR Bank2_Func_9F71
+    BCC Bank2_Func_855A
+    LDA $46
+    STA $8C
+    LDA $47
+    STA $8D
+    RTS
+
+Bank2_Func_8581:
+    LDA $A6
+    BEQ Bank2_Label_8599
+    DEC $A6
+    BNE Bank2_Label_8599
+    LDA $DF
+    CMP #$3F
+    BEQ Bank2_Label_8599
+    LDA $A5
+    STA a:$02AA
+    LDA #$00
+    STA a:$02AB
+
+Bank2_Label_8599:
+    RTS
+
+Bank2_Func_859A:
+    JSR Bank2_Func_A5F7
+    AND #$10
+    BNE Bank2_Label_85A4
+    STA $64
+
+Bank2_Label_85A3:
+    RTS
+
+Bank2_Label_85A4:
+    LDA $64
+    BNE Bank2_Label_85A3
+    INC $64
+    LDA #$01
+    STA a:$02AB
+    LDA #$06
+    JSR Bank2_Func_A5EB
+
+Bank2_Label_85B4:
+    JSR Bank2_Func_A5F7
+    AND #$10
+    BNE Bank2_Label_85B4
+
+Bank2_Label_85BB:
+    JSR Bank2_Func_A5F7
+    AND #$10
+    BEQ Bank2_Label_85BB
+    LDA #$00
+    STA a:$02AB
+    RTS
+
+Bank2_Func_85C8:
+    LDA $53
+    BEQ Bank2_Label_85FC
+    LDA $DF
+    CMP #$12
+    BNE Bank2_Label_85FC
+    LDA $A8
+    BEQ Bank2_Label_85EC
+    LDA $AC
+    CMP #$06
+    BNE Bank2_Label_85FC
+    LDA $B0
+    BNE Bank2_Label_85FC
+    LDY #$00
+
+Bank2_Label_85E2:
+    LDA a:$0600,Y
+    BNE Bank2_Label_85FC
+    INY
+    CPY #$08
+    BNE Bank2_Label_85E2
+
+Bank2_Label_85EC:
+    LDA #$0A
+    JSR Bank2_Func_A5EB
+    LDA #$01
+    STA a:$02AB
+    JSR Bank2_Func_86C4
+    JSR Bank2_Func_A28D
+
+Bank2_Label_85FC:
+    RTS
+
+Bank2_Func_85FD:
+    LDA $53
+    BNE Bank2_Label_864C
+    LDA $4D
+    CMP #$14
+    BCC Bank2_Label_864C
+    LDA #$00
+    STA $4D
+    LDA #$01
+    STA $53
+    LDA #$0A
+    JSR Bank2_Func_A5EB
+    JSR Bank2_Func_86C4
+    JSR Bank2_Func_866C
+    JSR Bank2_Func_8CF6
+    JSR Bank2_Func_8CFD
+    LDA $DF
+    STA $54
+    LDA #$12
+    STA $DF
+    JSR Bank2_Func_A213
+    JSR Bank2_Func_A733
+    LDY #$00
+
+Bank2_Label_8630:
+    LDA a:$008C,Y
+    STA a:$0725,Y
+    INY
+    CPY #$12
+    BNE Bank2_Label_8630
+    LDA #$80
+    STA $8C
+    LDA #$A8
+    STA $8D
+    LDA #$14
+    STA $A8
+    LDA #$03
+    STA a:$02AA
+
+Bank2_Label_864C:
+    RTS
+    .byte $A5, $DF, $C9, $2D, $90, $14, $C9, $30, $90, $14, $C9, $35, $90, $0C, $C9, $38
+    .byte $90, $0C, $C9, $3D, $90, $04, $C9, $40, $90, $04, $A9, $14, $85, $55, $60
+
+Bank2_Func_866C:
+    LDY #$00
+
+Bank2_Label_866E:
+    LDA #$00
+    STA a:$0678,Y
+    INY
+    CPY #$08
+    BNE Bank2_Label_866E
+    LDY #$00
+
+Bank2_Label_867A:
+    LDA #$00
+    STA a:$06E4,Y
+    INY
+    CPY #$0D
+    BNE Bank2_Label_867A
+    LDA #$00
+    STA $9A
+    RTS
+
+Bank2_Func_8689:
+    JSR Bank2_Func_80DA
+    LDA #$90
+    STA $19
+    LDA #$02
+    JSR Bank2_Func_81AA
+    JSR Bank2_Func_B276
+    LDX #$AE
+    LDY #$BC
+    STX $00
+    STY $01
+    JSR Bank2_Func_B29F
+    LDA #$00
+    STA $00
+    JSR Bank2_Func_B2D4
+    LDA #$00
+    STA $00
+    JSR Bank2_Func_B2FD
+    JSR Bank2_Func_B25B
+    JSR Bank2_Func_80FD
+    JSR Bank2_Func_B286
+    RTS
 
 Bank2_Func_86BB:
     LDA $73
@@ -469,665 +992,3857 @@ Bank2_Func_86BB:
     STA $73
     STA $74
     RTS
-    .byte $86, $44, $84, $45, $A9, $0C, $85, $46, $AD, $80, $04, $85, $47, $AD, $87, $04
-    .byte $85, $48, $A5, $47, $29, $0F, $AA, $BD, $23, $87, $AA, $20, $00, $87, $A9, $04
-    .byte $85, $68, $20, $BB, $B1, $A5, $47, $A6, $48, $20, $00, $87, $A9, $04, $85, $68
-    .byte $20, $BB, $B1, $C6, $46, $D0, $DB, $A6, $44, $A4, $45, $60, $8D, $80, $04, $8D
-    .byte $84, $04, $8D, $88, $04, $8D, $8C, $04, $8D, $90, $04, $8D, $94, $04, $8D, $98
-    .byte $04, $8D, $9C, $04, $8E, $87, $04, $A2, $80, $A0, $04, $20, $A3, $B2, $60, $30
-    .byte $25, $30, $30, $30, $30, $30, $30, $30, $30, $30, $30, $26, $30, $30, $27, $A0
-    .byte $00, $B9, $00, $06, $C9, $01, $F0, $07, $C9, $04, $F0, $03, $4C, $56, $87, $A9
-    .byte $01, $99, $00, $06, $B9, $38, $06, $C9, $10, $B0, $07, $C9, $07, $F0, $03, $20
-    .byte $72, $89, $C8, $C0, $08, $D0, $DA, $60, $86, $44, $84, $45, $A9, $07, $85, $47
-    .byte $A9, $0D, $85, $48, $A2, $0C, $A4, $47, $20, $BA, $B0, $A9, $00, $85, $72, $A2
-    .byte $87, $A0, $87, $A9, $12, $20, $3A, $B3, $E6, $47, $C6, $48, $D0, $E6, $A6, $44
-    .byte $A4, $45, $60, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $A5, $DF, $C9, $3C, $F0, $01, $60, $A5, $A1
-    .byte $D0, $70, $A0, $00, $A9, $03, $85, $3E, $B9, $00, $06, $C9, $01, $D0, $0D, $B9
-    .byte $38, $06, $C9, $1C, $90, $06, $C9, $1F, $B0, $02, $C6, $3E, $C8, $C0, $08, $D0
-    .byte $E7, $A5, $3E, $D0, $4D, $A9, $04, $20, $EB, $A5, $20, $C4, $86, $20, $17, $88
-    .byte $A9, $01, $85, $A1, $A0, $00, $B9, $00, $06, $C9, $01, $D0, $10, $B9, $38, $06
-    .byte $C9, $1C, $90, $09, $C9, $1F, $B0, $05, $A9, $00, $99, $00, $06, $C8, $C0, $08
-    .byte $D0, $E4, $A0, $00, $B9, $BD, $06, $C9, $1C, $90, $0E, $C9, $1F, $B0, $0A, $A9
-    .byte $23, $99, $B0, $06, $A9, $00, $99, $E4, $06, $C8, $C0, $0D, $D0, $E6, $A9, $00
-    .byte $85, $9A, $60, $A5, $DF, $C9, $3C, $D0, $2A, $86, $44, $84, $45, $A9, $14, $85
-    .byte $47, $A9, $08, $85, $48, $A2, $14, $A4, $47, $20, $BA, $B0, $A9, $00, $85, $72
-    .byte $A2, $0F, $A0, $98, $A9, $04, $20, $3A, $B3, $E6, $47, $C6, $48, $D0, $E6, $A6
-    .byte $44, $A4, $45, $60, $86, $5C, $A9, $00, $85, $05, $A9, $02, $85, $04, $A4, $05
-    .byte $B9, $F9, $06, $C9, $01, $D0, $0D, $B9, $FB, $06, $85, $3C, $B9, $FD, $06, $85
-    .byte $3D, $20, $6F, $88, $E6, $05, $C6, $04, $D0, $E4, $60, $BD, $00, $06, $C9, $01
-    .byte $D0, $F8, $BD, $08, $06, $38, $E5, $3C, $20, $49, $B1, $C9, $0D, $B0, $EB, $BD
-    .byte $10, $06, $38, $E5, $3D, $20, $49, $B1, $C9, $0D, $B0, $DE, $BD, $38, $06, $C9
-    .byte $10, $B0, $D7, $C9, $05, $F0, $D3, $C9, $06, $F0, $CF, $C9, $07, $F0, $CB, $C9
-    .byte $02, $D0, $06, $A5, $DF, $C9, $3F, $F0, $C1, $A9, $02, $99, $F9, $06, $A9, $00
-    .byte $99, $03, $07, $A9, $A0, $99, $01, $07, $BD, $38, $06, $C9, $04, $D0, $03, $20
-    .byte $14, $91, $BD, $38, $06, $C9, $0A, $F0, $04, $C9, $0B, $D0, $05, $A9, $03, $20
-    .byte $EB, $A5, $BD, $98, $06, $F0, $93, $BD, $38, $06, $C9, $0C, $90, $04, $C9, $10
-    .byte $90, $08, $BD, $08, $06, $49, $04, $9D, $08, $06, $DE, $98, $06, $D0, $79, $BD
-    .byte $38, $06, $C9, $08, $D0, $3F, $A9, $01, $8D, $AB, $02, $A9, $04, $20, $EB, $A5
-    .byte $A9, $28, $85, $A6, $20, $C4, $86, $20, $33, $87, $20, $5C, $87, $A5, $DF, $C9
-    .byte $27, $F0, $0D, $C9, $28, $F0, $10, $C9, $34, $F0, $13, $A9, $00, $4C, $51, $AF
-    .byte $A9, $01, $85, $58, $4C, $5C, $89, $A9, $01, $85, $59, $4C, $5C, $89, $A9, $01
-    .byte $85, $5A, $4C, $5C, $89, $BD, $38, $06, $C9, $0C, $90, $1C, $C9, $10, $B0, $18
-    .byte $A9, $01, $8D, $AB, $02, $A9, $04, $20, $EB, $A5, $A9, $28, $85, $A6, $20, $C4
-    .byte $86, $20, $33, $87, $A9, $46, $85, $4F, $A6, $5C, $20, $7C, $89, $BD, $38, $06
-    .byte $A8, $B9, $35, $8F, $20, $8C, $89, $60, $A9, $03, $20, $DF, $A5, $60, $8A, $48
-    .byte $98, $AA, $20, $7C, $89, $68, $AA, $60, $A9, $05, $9D, $00, $06, $A9, $6C, $9D
-    .byte $28, $06, $A9, $05, $20, $DF, $A5, $60, $86, $5B, $A6, $07, $86, $5D, $A6, $DC
-    .byte $D0, $03, $20, $C9, $81, $A6, $5D, $86, $07, $A6, $5B, $60, $60, $BD, $00, $06
-    .byte $C9, $01, $D0, $F8, $BD, $08, $06, $38, $E5, $8C, $20, $49, $B1, $C9, $0D, $B0
-    .byte $EB, $BD, $10, $06, $38, $E9, $04, $38, $E5, $8D, $20, $49, $B1, $C9, $11, $B0
-    .byte $DB, $BD, $38, $06, $C9, $06, $D0, $1E, $BD, $28, $06, $C9, $20, $F0, $14, $20
-    .byte $7C, $89, $BD, $38, $06, $A8, $B9, $35, $8F, $20, $8C, $89, $A5, $A8, $F0, $02
-    .byte $C6, $A8, $60, $4C, $EC, $8A, $C9, $07, $D0, $3A, $A9, $0A, $20, $EB, $A5, $20
-    .byte $C4, $86, $20, $7C, $89, $BD, $38, $06, $A8, $B9, $35, $8F, $20, $8C, $89, $A9
-    .byte $0E, $20, $EB, $A5, $A5, $DF, $C9, $26, $F0, $09, $C9, $3B, $F0, $0A, $A9, $01
-    .byte $4C, $51, $AF, $E6, $56, $4C, $1E, $8A, $E6, $57, $A5, $2C, $F0, $05, $C6, $2C
-    .byte $20, $13, $A2, $60, $C9, $18, $90, $34, $20, $F7, $A5, $29, $40, $D0, $03, $85
-    .byte $62, $60, $A5, $62, $D0, $FB, $A5, $9A, $D0, $0A, $A9, $01, $85, $9A, $9D, $78
-    .byte $06, $4C, $54, $8A, $BD, $78, $06, $F0, $0E, $A9, $00, $85, $9A, $9D, $78, $06
-    .byte $E6, $62, $A9, $08, $20, $EB, $A5, $60, $60, $4C, $EC, $8A, $C9, $10, $90, $F9
-    .byte $C9, $14, $B0, $F4, $C9, $10, $D0, $1B, $20, $7C, $89, $BD, $38, $06, $A8, $B9
-    .byte $35, $8F, $20, $8C, $89, $A9, $01, $85, $CB, $A9, $00, $85, $CC, $A9, $01, $8D
-    .byte $AB, $02, $60, $C9, $11, $D0, $2C, $20, $7C, $89, $BD, $38, $06, $A8, $B9, $35
-    .byte $8F, $20, $8C, $89, $A9, $0E, $20, $EB, $A5, $A9, $08, $38, $E5, $2C, $0A, $0A
-    .byte $85, $3E, $A9, $10, $85, $3F, $A5, $2B, $C5, $3E, $F0, $06, $E6, $2B, $C6, $3F
-    .byte $D0, $F4, $60, $C9, $12, $D0, $1C, $20, $7C, $89, $BD, $38, $06, $A8, $B9, $35
-    .byte $8F, $20, $8C, $89, $A9, $13, $20, $EB, $A5, $E6, $4D, $20, $33, $87, $A9, $04
-    .byte $85, $A4, $60, $20, $7C, $89, $BD, $38, $06, $A8, $B9, $35, $8F, $20, $8C, $89
-    .byte $A9, $0E, $20, $EB, $A5, $E6, $4D, $60, $A5, $8E, $C9, $01, $D0, $75, $A5, $CB
-    .byte $D0, $71, $BD, $38, $06, $A8, $C9, $05, $F0, $69, $A5, $2B, $38, $F9, $15, $8F
-    .byte $B0, $02, $A9, $00, $85, $2B, $A5, $2B, $D0, $40, $A9, $04, $85, $8E, $A9, $0B
-    .byte $85, $90, $A9, $00, $85, $91, $A9, $00, $85, $93, $A9, $00, $85, $97, $A9, $00
-    .byte $85, $9A, $A5, $8C, $85, $4B, $A5, $8D, $85, $4C, $20, $F6, $8C, $20, $FD, $8C
-    .byte $A0, $00, $A9, $00, $99, $E4, $06, $C8, $C0, $0D, $D0, $F6, $A9, $00, $8D, $F9
-    .byte $06, $8D, $FA, $06, $A9, $08, $8D, $AA, $02, $60, $A9, $03, $85, $8E, $A9, $00
-    .byte $85, $9B, $A9, $0B, $85, $90, $A9, $00, $85, $91, $A9, $00, $85, $93, $A9, $0F
-    .byte $20, $EB, $A5, $60, $8A, $48, $A9, $00, $9D, $00, $06, $8A, $18, $69, $08, $AA
-    .byte $E0, $B0, $90, $F2, $68, $AA, $60, $A2, $00, $BD, $6B, $D9, $9D, $B0, $06, $E8
-    .byte $E0, $41, $D0, $F5, $A2, $00, $BD, $BD, $06, $9D, $A0, $04, $A9, $00, $9D, $A4
-    .byte $04, $E8, $E0, $04, $D0, $F0, $A2, $00, $20, $53, $B1, $29, $03, $A8, $B9, $A4
-    .byte $04, $D0, $F5, $A9, $01, $99, $A4, $04, $B9, $A0, $04, $9D, $BD, $06, $E8, $E0
-    .byte $04, $D0, $E5, $A2, $00, $BD, $C1, $06, $9D, $A0, $04, $A9, $00, $9D, $A8, $04
-    .byte $E8, $E0, $08, $D0, $F0, $A2, $00, $20, $53, $B1, $29, $07, $A8, $B9, $A8, $04
-    .byte $D0, $F5, $A9, $01, $99, $A8, $04, $B9, $A0, $04, $9D, $C1, $06, $E8, $E0, $08
-    .byte $D0, $E5, $A2, $00, $A9, $FF, $9D, $F1, $06, $E8, $E0, $08, $D0, $F8, $60, $A5
-    .byte $38, $F0, $2D, $A9, $00, $85, $38, $A0, $00, $B9, $BD, $06, $C9, $19, $F0, $0A
-    .byte $C8, $C0, $0D, $D0, $F4, $A9, $06, $4C, $51, $AF, $A9, $00, $99, $B0, $06, $A9
-    .byte $01, $99, $E4, $06, $85, $9A, $A5, $8C, $99, $CA, $06, $A5, $8D, $99, $D7, $06
-    .byte $60, $A6, $DF, $BD, $6D, $8C, $F0, $40, $AA, $A0, $00, $B9, $B0, $06, $C5, $DF
-    .byte $D0, $31, $B9, $BD, $06, $C9, $18, $90, $2A, $B9, $D7, $06, $C9, $50, $90, $23
-    .byte $C9, $A0, $B0, $1F, $E0, $01, $F0, $0F, $B9, $CA, $06, $C9, $14, $B0, $14, $A9
-    .byte $18, $99, $CA, $06, $4C, $67, $8C, $B9, $CA, $06, $C9, $DC, $90, $05, $A9, $D8
-    .byte $99, $CA, $06, $C8, $C0, $0D, $D0, $C3, $60, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $02, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $01, $02, $00, $01, $02, $00, $00, $00, $01, $02
+
+Bank2_Func_86C4:
+    STX $44
+    STY $45
+    LDA #$0C
+    STA $46
+    LDA a:$0480
+    STA $47
+    LDA a:$0487
+    STA $48
+
+Bank2_Label_86D6:
+    LDA $47
+    AND #$0F
+    TAX
+    LDA a:$8723,X
+    TAX
+    JSR Bank2_Func_8700
+    LDA #$04
+    STA $68
+    JSR Bank2_Func_B1BB
+    LDA $47
+    LDX $48
+    JSR Bank2_Func_8700
+    LDA #$04
+    STA $68
+    JSR Bank2_Func_B1BB
+    DEC $46
+    BNE Bank2_Label_86D6
+    LDX $44
+    LDY $45
+    RTS
+
+Bank2_Func_8700:
+    STA a:$0480
+    STA a:$0484
+    STA a:$0488
+    STA a:$048C
+    STA a:$0490
+    STA a:$0494
+    STA a:$0498
+    STA a:$049C
+    STX a:$0487
+    LDX #$80
+    LDY #$04
+    JSR Bank2_Func_B2A3
+    RTS
+    .byte $30, $25, $30, $30, $30, $30, $30, $30, $30, $30, $30, $30, $26, $30, $30, $27
+
+Bank2_Func_8733:
+    LDY #$00
+
+Bank2_Label_8735:
+    LDA a:$0600,Y
+    CMP #$01
+    BEQ Bank2_Label_8743
+    CMP #$04
+    BEQ Bank2_Label_8743
+    JMP Bank2_Label_8756
+
+Bank2_Label_8743:
+    LDA #$01
+    STA a:$0600,Y
+    LDA a:$0638,Y
+    CMP #$10
+    BCS Bank2_Label_8756
+    CMP #$07
+    BEQ Bank2_Label_8756
+    JSR Bank2_Func_8972
+
+Bank2_Label_8756:
+    INY
+    CPY #$08
+    BNE Bank2_Label_8735
+    RTS
+
+Bank2_Func_875C:
+    STX $44
+    STY $45
+    LDA #$07
+    STA $47
+    LDA #$0D
+    STA $48
+
+Bank2_Label_8768:
+    LDX #$0C
+    LDY $47
+    JSR Bank2_Func_B0BA
+    LDA #$00
+    STA $72
+    LDX #$87
+    LDY #$87
+    LDA #$12
+    JSR Bank2_Func_B33A
+    INC $47
+    DEC $48
+    BNE Bank2_Label_8768
+    LDX $44
+    LDY $45
+    RTS
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $A2, $00, $A0, $00, $B9, $B0, $06
-    .byte $C5, $DF, $D0, $38, $20, $68, $8B, $A9, $01, $9D, $00, $06, $B9, $CA, $06, $9D
-    .byte $08, $06, $B9, $D7, $06, $9D, $10, $06, $B9, $BD, $06, $9D, $38, $06, $84, $42
-    .byte $A8, $B9, $D5, $8E, $9D, $28, $06, $A4, $42, $B9, $E4, $06, $9D, $78, $06, $F0
-    .byte $0A, $A5, $8C, $9D, $08, $06, $A5, $8D, $9D, $10, $06, $E8, $C8, $C0, $0D, $D0
-    .byte $BC, $60, $A9, $00, $85, $3E, $4C, $01, $8D, $A9, $01, $85, $3E, $A2, $00, $BD
-    .byte $00, $06, $C9, $01, $F0, $07, $C9, $04, $F0, $03, $4C, $4C, $8D, $BD, $38, $06
-    .byte $C9, $18, $90, $34, $A0, $00, $D9, $BD, $06, $F0, $0A, $C8, $C0, $0D, $D0, $F6
-    .byte $A9, $02, $4C, $51, $AF, $BD, $78, $06, $C5, $3E, $D0, $1C, $20, $52, $8D, $B0
-    .byte $11, $A5, $DF, $99, $B0, $06, $BD, $08, $06, $99, $CA, $06, $BD, $10, $06, $99
-    .byte $D7, $06, $BD, $78, $06, $99, $E4, $06, $E8, $E0, $08, $D0, $B2, $60, $86, $3F
-    .byte $A5, $9A, $F0, $4C, $A2, $00, $BD, $00, $06, $C9, $01, $D0, $3E, $BD, $38, $06
-    .byte $C9, $1B, $D0, $37, $BD, $78, $06, $F0, $32, $A2, $00, $86, $40, $BD, $B0, $06
-    .byte $C5, $8B, $D0, $09, $BD, $BD, $06, $C9, $18, $90, $02, $E6, $40, $E8, $E0, $0D
-    .byte $D0, $EB, $A5, $40, $C9, $02, $B0, $18, $A5, $8B, $99, $B0, $06, $A5, $8C, $99
-    .byte $CA, $06, $A5, $8D, $99, $D7, $06, $A6, $3F, $38, $60, $E8, $E0, $08, $D0, $B6
-    .byte $A6, $3F, $18, $60, $A2, $00, $8A, $9D, $F9, $06, $E8, $E0, $0C, $D0, $F8, $60
-    .byte $A9, $00, $85, $AB, $A2, $00, $8A, $9D, $00, $06, $E8, $E0, $B0, $D0, $F8, $60
-    .byte $A5, $8E, $C9, $04, $F0, $F9, $A5, $CB, $D0, $F5, $A5, $AB, $D0, $54, $A9, $01
-    .byte $85, $AB, $A6, $DF, $BD, $6B, $D6, $85, $AC, $BD, $AB, $D6, $85, $AD, $BD, $EB
-    .byte $D6, $85, $AE, $BD, $2B, $D7, $85, $AF, $BD, $6B, $D7, $85, $B0, $BD, $AB, $D7
-    .byte $85, $B1, $BD, $EB, $D7, $85, $B2, $BD, $2B, $D8, $85, $B3, $BD, $6B, $D8, $85
-    .byte $B4, $85, $C0, $BD, $AB, $D8, $85, $B5, $85, $C1, $BD, $EB, $D8, $85, $B6, $85
-    .byte $C2, $BD, $2B, $D9, $85, $B7, $85, $C3, $A9, $00, $85, $B8, $85, $B9, $85, $BA
-    .byte $85, $BB, $A9, $00, $85, $00, $A9, $04, $85, $01, $A6, $00, $B5, $B4, $F0, $0B
-    .byte $B5, $BC, $18, $69, $01, $29, $03, $95, $BC, $D0, $21, $B5, $AC, $85, $C4, $B5
-    .byte $B0, $85, $C5, $B5, $B4, $85, $C6, $B5, $B8, $85, $C7, $20, $67, $8E, $A6, $00
-    .byte $A5, $C5, $95, $B0, $A5, $C6, $95, $B4, $A5, $C7, $95, $B8, $E6, $00, $C6, $01
-    .byte $D0, $C8, $60, $A5, $C7, $D0, $49, $A5, $C5, $F0, $45, $A5, $C6, $F0, $0A, $C6
-    .byte $C6, $D0, $3D, $A6, $00, $B5, $C0, $85, $C6, $20, $04, $91, $90, $32, $20, $68
-    .byte $8B, $A9, $1E, $9D, $68, $06, $A5, $C4, $9D, $38, $06, $A8, $B9, $B5, $8E, $9D
-    .byte $98, $06, $B9, $D5, $8E, $9D, $28, $06, $A9, $FF, $9D, $08, $06, $9D, $10, $06
-    .byte $A9, $02, $9D, $00, $06, $20, $55, $8F, $C6, $C5, $D0, $04, $A9, $01, $85, $C7
-    .byte $60, $01, $02, $01, $02, $02, $00, $00, $00, $08, $00, $00, $00, $10, $10, $10
-    .byte $10, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $10, $14, $18, $1C, $20, $24, $40, $B0, $30, $34, $28, $2C, $80, $84, $88
-    .byte $8C, $64, $40, $70, $74, $50, $54, $58, $5C, $44, $60, $4C, $48, $90, $94, $98
-    .byte $9C, $02, $03, $01, $03, $20, $00, $01, $00, $03, $03, $00, $00, $02, $02, $02
-    .byte $02, $00, $01, $00, $01, $01, $01, $01, $01, $00, $00, $01, $00, $01, $01, $01
-    .byte $01, $02, $02, $04, $02, $02, $00, $04, $00, $02, $02, $04, $04, $04, $04, $04
-    .byte $04, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $55, $41, $51, $42, $41, $51, $45, $33, $35, $51, $35, $51, $25, $25, $25
-    .byte $25, $45, $41, $32, $31, $31, $31, $31, $31, $51, $51, $51, $51, $51, $51, $51
-    .byte $51, $A9, $00, $9D, $70, $06, $A5, $C4, $0A, $A8, $B9, $6C, $8F, $85, $40, $B9
-    .byte $6D, $8F, $85, $41, $20, $1F, $93, $60, $8C, $8F, $A3, $8F, $BF, $8F, $DB, $8F
-    .byte $28, $90, $2E, $90, $2F, $90, $44, $90, $71, $90, $AA, $90, $AB, $90, $AE, $90
-    .byte $AF, $90, $B2, $90, $B2, $90, $B2, $90, $A5, $DF, $C9, $10, $90, $10, $C9, $28
-    .byte $B0, $07, $20, $53, $B1, $29, $01, $D0, $05, $A9, $A4, $9D, $28, $06, $60, $A5
-    .byte $DF, $C9, $18, $90, $15, $C9, $30, $B0, $07, $20, $53, $B1, $29, $01, $D0, $0A
-    .byte $A9, $A8, $9D, $28, $06, $A9, $01, $9D, $30, $06, $60, $A9, $80, $9D, $08, $06
-    .byte $A9, $98, $9D, $10, $06, $A9, $01, $9D, $00, $06, $20, $53, $B1, $29, $40, $F0
-    .byte $05, $A9, $09, $20, $EB, $A5, $60, $A4, $DF, $B9, $E8, $8F, $F0, $05, $A9, $B4
-    .byte $9D, $28, $06, $60, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00
+
+Bank2_Func_879B:
+    LDA $DF
+    CMP #$3C
+    BEQ Bank2_Label_87A2
+    RTS
+
+Bank2_Label_87A2:
+    LDA $A1
+    BNE Bank2_Label_8816
+    LDY #$00
+    LDA #$03
+    STA $3E
+
+Bank2_Label_87AC:
+    LDA a:$0600,Y
+    CMP #$01
+    BNE Bank2_Label_87C0
+    LDA a:$0638,Y
+    CMP #$1C
+    BCC Bank2_Label_87C0
+    CMP #$1F
+    BCS Bank2_Label_87C0
+    DEC $3E
+
+Bank2_Label_87C0:
+    INY
+    CPY #$08
+    BNE Bank2_Label_87AC
+    LDA $3E
+    BNE Bank2_Label_8816
+    LDA #$04
+    JSR Bank2_Func_A5EB
+    JSR Bank2_Func_86C4
+    JSR Bank2_Func_8817
+    LDA #$01
+    STA $A1
+    LDY #$00
+
+Bank2_Label_87DA:
+    LDA a:$0600,Y
+    CMP #$01
+    BNE Bank2_Label_87F1
+    LDA a:$0638,Y
+    CMP #$1C
+    BCC Bank2_Label_87F1
+    CMP #$1F
+    BCS Bank2_Label_87F1
+    LDA #$00
+    STA a:$0600,Y
+
+Bank2_Label_87F1:
+    INY
+    CPY #$08
+    BNE Bank2_Label_87DA
+    LDY #$00
+
+Bank2_Label_87F8:
+    LDA a:$06BD,Y
+    CMP #$1C
+    BCC Bank2_Label_880D
+    CMP #$1F
+    BCS Bank2_Label_880D
+    LDA #$23
+    STA a:$06B0,Y
+    LDA #$00
+    STA a:$06E4,Y
+
+Bank2_Label_880D:
+    INY
+    CPY #$0D
+    BNE Bank2_Label_87F8
+    LDA #$00
+    STA $9A
+
+Bank2_Label_8816:
+    RTS
+
+Bank2_Func_8817:
+    LDA $DF
+    CMP #$3C
+    BNE Bank2_Label_8847
+    STX $44
+    STY $45
+    LDA #$14
+    STA $47
+    LDA #$08
+    STA $48
+
+Bank2_Label_8829:
+    LDX #$14
+    LDY $47
+    JSR Bank2_Func_B0BA
+    LDA #$00
+    STA $72
+    LDX #$0F
+    LDY #$98
+    LDA #$04
+    JSR Bank2_Func_B33A
+    INC $47
+    DEC $48
+    BNE Bank2_Label_8829
+    LDX $44
+    LDY $45
+
+Bank2_Label_8847:
+    RTS
+
+Bank2_Func_8848:
+    STX $5C
+    LDA #$00
+    STA $05
+    LDA #$02
+    STA $04
+
+Bank2_Label_8852:
+    LDY $05
+    LDA a:$06F9,Y
+    CMP #$01
+    BNE Bank2_Label_8868
+    LDA a:$06FB,Y
+    STA $3C
+    LDA a:$06FD,Y
+    STA $3D
+    JSR Bank2_Func_886F
+
+Bank2_Label_8868:
+    INC $05
+    DEC $04
+    BNE Bank2_Label_8852
+
+Bank2_Label_886E:
+    RTS
+
+Bank2_Func_886F:
+    LDA a:$0600,X
+    CMP #$01
+    BNE Bank2_Label_886E
+    LDA a:$0608,X
+    SEC
+    SBC $3C
+    JSR Bank2_Func_B149
+    CMP #$0D
+    BCS Bank2_Label_886E
+    LDA a:$0610,X
+    SEC
+    SBC $3D
+    JSR Bank2_Func_B149
+    CMP #$0D
+    BCS Bank2_Label_886E
+    LDA a:$0638,X
+    CMP #$10
+    BCS Bank2_Label_886E
+    CMP #$05
+    BEQ Bank2_Label_886E
+    CMP #$06
+    BEQ Bank2_Label_886E
+    CMP #$07
+    BEQ Bank2_Label_886E
+    CMP #$02
+    BNE Bank2_Label_88AD
+    LDA $DF
+    CMP #$3F
+    BEQ Bank2_Label_886E
+
+Bank2_Label_88AD:
+    LDA #$02
+    STA a:$06F9,Y
+    LDA #$00
+    STA a:$0703,Y
+    LDA #$A0
+    STA a:$0701,Y
+    LDA a:$0638,X
+    CMP #$04
+    BNE Bank2_Label_88C6
+    JSR Bank2_Func_9114
+
+Bank2_Label_88C6:
+    LDA a:$0638,X
+    CMP #$0A
+    BEQ Bank2_Label_88D1
+    CMP #$0B
+    BNE Bank2_Label_88D6
+
+Bank2_Label_88D1:
+    LDA #$03
+    JSR Bank2_Func_A5EB
+
+Bank2_Label_88D6:
+    LDA a:$0698,X
+    BEQ Bank2_Label_886E
+    LDA a:$0638,X
+    CMP #$0C
+    BCC Bank2_Label_88E6
+    CMP #$10
+    BCC Bank2_Label_88EE
+
+Bank2_Label_88E6:
+    LDA a:$0608,X
+    EOR #$04
+    STA a:$0608,X
+
+Bank2_Label_88EE:
+    DEC a:$0698,X
+    BNE Bank2_Label_896C
+    LDA a:$0638,X
+    CMP #$08
+    BNE Bank2_Label_8939
+    LDA #$01
+    STA a:$02AB
+    LDA #$04
+    JSR Bank2_Func_A5EB
+    LDA #$28
+    STA $A6
+    JSR Bank2_Func_86C4
+    JSR Bank2_Func_8733
+    JSR Bank2_Func_875C
+    LDA $DF
+    CMP #$27
+    BEQ Bank2_Label_8924
+    CMP #$28
+    BEQ Bank2_Label_892B
+    CMP #$34
+    BEQ Bank2_Label_8932
+    LDA #$00
+    JMP Bank2_Func_AF51
+
+Bank2_Label_8924:
+    LDA #$01
+    STA $58
+    JMP Bank2_Label_895C
+
+Bank2_Label_892B:
+    LDA #$01
+    STA $59
+    JMP Bank2_Label_895C
+
+Bank2_Label_8932:
+    LDA #$01
+    STA $5A
+    JMP Bank2_Label_895C
+
+Bank2_Label_8939:
+    LDA a:$0638,X
+    CMP #$0C
+    BCC Bank2_Label_895C
+    CMP #$10
+    BCS Bank2_Label_895C
+    LDA #$01
+    STA a:$02AB
+    LDA #$04
+    JSR Bank2_Func_A5EB
+    LDA #$28
+    STA $A6
+    JSR Bank2_Func_86C4
+    JSR Bank2_Func_8733
+    LDA #$46
+    STA $4F
+
+Bank2_Label_895C:
+    LDX $5C
+    JSR Bank2_Func_897C
+    LDA a:$0638,X
+    TAY
+    LDA a:$8F35,Y
+    JSR Bank2_Func_898C
+    RTS
+
+Bank2_Label_896C:
+    LDA #$03
+    JSR Bank2_Func_A5DF
+    RTS
+
+Bank2_Func_8972:
+    TXA
+    PHA
+    TYA
+    TAX
+    JSR Bank2_Func_897C
+    PLA
+    TAX
+    RTS
+
+Bank2_Func_897C:
+    LDA #$05
+    STA a:$0600,X
+    LDA #$6C
+    STA a:$0628,X
+    LDA #$05
+    JSR Bank2_Func_A5DF
+    RTS
+
+Bank2_Func_898C:
+    STX $5B
+    LDX $07
+    STX $5D
+    LDX $DC
+    BNE Bank2_Label_8999
+    JSR Bank2_Func_81C9
+
+Bank2_Label_8999:
+    LDX $5D
+    STX $07
+    LDX $5B
+    RTS
+
+Bank2_Label_89A0:
+    RTS
+
+Bank2_Func_89A1:
+    LDA a:$0600,X
+    CMP #$01
+    BNE Bank2_Label_89A0
+    LDA a:$0608,X
+    SEC
+    SBC $8C
+    JSR Bank2_Func_B149
+    CMP #$0D
+    BCS Bank2_Label_89A0
+    LDA a:$0610,X
+    SEC
+    SBC #$04
+    SEC
+    SBC $8D
+    JSR Bank2_Func_B149
+    CMP #$11
+    BCS Bank2_Label_89A0
+    LDA a:$0638,X
+    CMP #$06
+    BNE Bank2_Label_89EA
+    LDA a:$0628,X
+    CMP #$20
+    BEQ Bank2_Label_89E7
+    JSR Bank2_Func_897C
+    LDA a:$0638,X
+    TAY
+    LDA a:$8F35,Y
+    JSR Bank2_Func_898C
+    LDA $A8
+    BEQ Bank2_Label_89E6
+    DEC $A8
+
+Bank2_Label_89E6:
+    RTS
+
+Bank2_Label_89E7:
+    JMP Bank2_Label_8AEC
+
+Bank2_Label_89EA:
+    CMP #$07
+    BNE Bank2_Label_8A28
+    LDA #$0A
+    JSR Bank2_Func_A5EB
+    JSR Bank2_Func_86C4
+    JSR Bank2_Func_897C
+    LDA a:$0638,X
+    TAY
+    LDA a:$8F35,Y
+    JSR Bank2_Func_898C
+    LDA #$0E
+    JSR Bank2_Func_A5EB
+    LDA $DF
+    CMP #$26
+    BEQ Bank2_Label_8A17
+    CMP #$3B
+    BEQ Bank2_Label_8A1C
+    LDA #$01
+    JMP Bank2_Func_AF51
+
+Bank2_Label_8A17:
+    INC $56
+    JMP Bank2_Label_8A1E
+
+Bank2_Label_8A1C:
+    INC $57
+
+Bank2_Label_8A1E:
+    LDA $2C
+    BEQ Bank2_Label_8A27
+    DEC $2C
+    JSR Bank2_Func_A213
+
+Bank2_Label_8A27:
+    RTS
+
+Bank2_Label_8A28:
+    CMP #$18
+    BCC Bank2_Label_8A60
+    JSR Bank2_Func_A5F7
+    AND #$40
+    BNE Bank2_Label_8A36
+    STA $62
+
+Bank2_Label_8A35:
+    RTS
+
+Bank2_Label_8A36:
+    LDA $62
+    BNE Bank2_Label_8A35
+    LDA $9A
+    BNE Bank2_Label_8A48
+    LDA #$01
+    STA $9A
+    STA a:$0678,X
+    JMP Bank2_Label_8A54
+
+Bank2_Label_8A48:
+    LDA a:$0678,X
+    BEQ Bank2_Label_8A5B
+    LDA #$00
+    STA $9A
+    STA a:$0678,X
+
+Bank2_Label_8A54:
+    INC $62
+    LDA #$08
+    JSR Bank2_Func_A5EB
+
+Bank2_Label_8A5B:
+    RTS
+
+Bank2_Label_8A5C:
+    RTS
+
+Bank2_Label_8A5D:
+    JMP Bank2_Label_8AEC
+
+Bank2_Label_8A60:
+    CMP #$10
+    BCC Bank2_Label_8A5D
+    CMP #$14
+    BCS Bank2_Label_8A5C
+    CMP #$10
+    BNE Bank2_Label_8A87
+    JSR Bank2_Func_897C
+    LDA a:$0638,X
+    TAY
+    LDA a:$8F35,Y
+    JSR Bank2_Func_898C
+    LDA #$01
+    STA $CB
+    LDA #$00
+    STA $CC
+    LDA #$01
+    STA a:$02AB
+    RTS
+
+Bank2_Label_8A87:
+    CMP #$11
+    BNE Bank2_Label_8AB7
+    JSR Bank2_Func_897C
+    LDA a:$0638,X
+    TAY
+    LDA a:$8F35,Y
+    JSR Bank2_Func_898C
+    LDA #$0E
+    JSR Bank2_Func_A5EB
+    LDA #$08
+    SEC
+    SBC $2C
+    ASL A
+    ASL A
+    STA $3E
+    LDA #$10
+    STA $3F
+
+Bank2_Label_8AAA:
+    LDA $2B
+    CMP $3E
+    BEQ Bank2_Label_8AB6
+    INC $2B
+    DEC $3F
+    BNE Bank2_Label_8AAA
+
+Bank2_Label_8AB6:
+    RTS
+
+Bank2_Label_8AB7:
+    CMP #$12
+    BNE Bank2_Label_8AD7
+    JSR Bank2_Func_897C
+    LDA a:$0638,X
+    TAY
+    LDA a:$8F35,Y
+    JSR Bank2_Func_898C
+    LDA #$13
+    JSR Bank2_Func_A5EB
+    INC $4D
+    JSR Bank2_Func_8733
+    LDA #$04
+    STA $A4
+    RTS
+
+Bank2_Label_8AD7:
+    JSR Bank2_Func_897C
+    LDA a:$0638,X
+    TAY
+    LDA a:$8F35,Y
+    JSR Bank2_Func_898C
+    LDA #$0E
+    JSR Bank2_Func_A5EB
+    INC $4D
+    RTS
+
+Bank2_Label_8AEC:
+    LDA $8E
+    CMP #$01
+    BNE Bank2_Label_8B67
+    LDA $CB
+    BNE Bank2_Label_8B67
+    LDA a:$0638,X
+    TAY
+    CMP #$05
+    BEQ Bank2_Label_8B67
+    LDA $2B
+    SEC
+    SBC a:$8F15,Y
+    BCS Bank2_Label_8B08
+    LDA #$00
+
+Bank2_Label_8B08:
+    STA $2B
+    LDA $2B
+    BNE Bank2_Label_8B4E
+    LDA #$04
+    STA $8E
+    LDA #$0B
+    STA $90
+    LDA #$00
+    STA $91
+    LDA #$00
+    STA $93
+    LDA #$00
+    STA $97
+    LDA #$00
+    STA $9A
+    LDA $8C
+    STA $4B
+    LDA $8D
+    STA $4C
+    JSR Bank2_Func_8CF6
+    JSR Bank2_Func_8CFD
+    LDY #$00
+
+Bank2_Label_8B36:
+    LDA #$00
+    STA a:$06E4,Y
+    INY
+    CPY #$0D
+    BNE Bank2_Label_8B36
+    LDA #$00
+    STA a:$06F9
+    STA a:$06FA
+    LDA #$08
+    STA a:$02AA
+    RTS
+
+Bank2_Label_8B4E:
+    LDA #$03
+    STA $8E
+    LDA #$00
+    STA $9B
+    LDA #$0B
+    STA $90
+    LDA #$00
+    STA $91
+    LDA #$00
+    STA $93
+    LDA #$0F
+    JSR Bank2_Func_A5EB
+
+Bank2_Label_8B67:
+    RTS
+
+Bank2_Func_8B68:
+    TXA
+    PHA
+
+Bank2_Label_8B6A:
+    LDA #$00
+    STA a:$0600,X
+    TXA
+    CLC
+    ADC #$08
+    TAX
+    CPX #$B0
+    BCC Bank2_Label_8B6A
+    PLA
+    TAX
+    RTS
+
+Bank2_Func_8B7B:
+    LDX #$00
+
+Bank2_Label_8B7D:
+    LDA a:$D96B,X
+    STA a:$06B0,X
+    INX
+    CPX #$41
+    BNE Bank2_Label_8B7D
+    LDX #$00
+
+Bank2_Label_8B8A:
+    LDA a:$06BD,X
+    STA a:$04A0,X
+    LDA #$00
+    STA a:$04A4,X
+    INX
+    CPX #$04
+    BNE Bank2_Label_8B8A
+    LDX #$00
+
+Bank2_Label_8B9C:
+    JSR Bank2_Func_B153
+    AND #$03
+    TAY
+    LDA a:$04A4,Y
+    BNE Bank2_Label_8B9C
+    LDA #$01
+    STA a:$04A4,Y
+    LDA a:$04A0,Y
+    STA a:$06BD,X
+    INX
+    CPX #$04
+    BNE Bank2_Label_8B9C
+    LDX #$00
+
+Bank2_Label_8BB9:
+    LDA a:$06C1,X
+    STA a:$04A0,X
+    LDA #$00
+    STA a:$04A8,X
+    INX
+    CPX #$08
+    BNE Bank2_Label_8BB9
+    LDX #$00
+
+Bank2_Label_8BCB:
+    JSR Bank2_Func_B153
+    AND #$07
+    TAY
+    LDA a:$04A8,Y
+    BNE Bank2_Label_8BCB
+    LDA #$01
+    STA a:$04A8,Y
+    LDA a:$04A0,Y
+    STA a:$06C1,X
+    INX
+    CPX #$08
+    BNE Bank2_Label_8BCB
+    LDX #$00
+    LDA #$FF
+
+Bank2_Label_8BEA:
+    STA a:$06F1,X
+    INX
+    CPX #$08
+    BNE Bank2_Label_8BEA
+    RTS
+
+Bank2_Func_8BF3:
+    LDA $38
+    BEQ Bank2_Label_8C24
+    LDA #$00
+    STA $38
+    LDY #$00
+
+Bank2_Label_8BFD:
+    LDA a:$06BD,Y
+    CMP #$19
+    BEQ Bank2_Label_8C0E
+    INY
+    CPY #$0D
+    BNE Bank2_Label_8BFD
+    LDA #$06
+    JMP Bank2_Func_AF51
+
+Bank2_Label_8C0E:
+    LDA #$00
+    STA a:$06B0,Y
+    LDA #$01
+    STA a:$06E4,Y
+    STA $9A
+    LDA $8C
+    STA a:$06CA,Y
+    LDA $8D
+    STA a:$06D7,Y
+
+Bank2_Label_8C24:
+    RTS
+
+Bank2_Func_8C25:
+    LDX $DF
+    LDA a:$8C6D,X
+    BEQ Bank2_Label_8C6C
+    TAX
+    LDY #$00
+
+Bank2_Label_8C2F:
+    LDA a:$06B0,Y
+    CMP $DF
+    BNE Bank2_Label_8C67
+    LDA a:$06BD,Y
+    CMP #$18
+    BCC Bank2_Label_8C67
+    LDA a:$06D7,Y
+    CMP #$50
+    BCC Bank2_Label_8C67
+    CMP #$A0
+    BCS Bank2_Label_8C67
+    CPX #$01
+    BEQ Bank2_Label_8C5B
+    LDA a:$06CA,Y
+    CMP #$14
+    BCS Bank2_Label_8C67
+    LDA #$18
+    STA a:$06CA,Y
+    JMP Bank2_Label_8C67
+
+Bank2_Label_8C5B:
+    LDA a:$06CA,Y
+    CMP #$DC
+    BCC Bank2_Label_8C67
+    LDA #$D8
+    STA a:$06CA,Y
+
+Bank2_Label_8C67:
+    INY
+    CPY #$0D
+    BNE Bank2_Label_8C2F
+
+Bank2_Label_8C6C:
+    RTS
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $01, $02, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $02, $00
+    .byte $01, $02, $00, $00, $00, $01, $02, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+Bank2_Func_8CAD:
+    LDX #$00
+    LDY #$00
+
+Bank2_Label_8CB1:
+    LDA a:$06B0,Y
+    CMP $DF
+    BNE Bank2_Label_8CF0
+    JSR Bank2_Func_8B68
+    LDA #$01
+    STA a:$0600,X
+    LDA a:$06CA,Y
+    STA a:$0608,X
+    LDA a:$06D7,Y
+    STA a:$0610,X
+    LDA a:$06BD,Y
+    STA a:$0638,X
+    STY $42
+    TAY
+    LDA a:$8ED5,Y
+    STA a:$0628,X
+    LDY $42
+    LDA a:$06E4,Y
+    STA a:$0678,X
+    BEQ Bank2_Label_8CEF
+    LDA $8C
+    STA a:$0608,X
+    LDA $8D
+    STA a:$0610,X
+
+Bank2_Label_8CEF:
+    INX
+
+Bank2_Label_8CF0:
+    INY
+    CPY #$0D
+    BNE Bank2_Label_8CB1
+    RTS
+
+Bank2_Func_8CF6:
+    LDA #$00
+    STA $3E
+    JMP Bank2_Label_8D01
+
+Bank2_Func_8CFD:
+    LDA #$01
+    STA $3E
+
+Bank2_Label_8D01:
+    LDX #$00
+
+Bank2_Label_8D03:
+    LDA a:$0600,X
+    CMP #$01
+    BEQ Bank2_Label_8D11
+    CMP #$04
+    BEQ Bank2_Label_8D11
+    JMP Bank2_Label_8D4C
+
+Bank2_Label_8D11:
+    LDA a:$0638,X
+    CMP #$18
+    BCC Bank2_Label_8D4C
+    LDY #$00
+
+Bank2_Label_8D1A:
+    CMP a:$06BD,Y
+    BEQ Bank2_Label_8D29
+    INY
+    CPY #$0D
+    BNE Bank2_Label_8D1A
+    LDA #$02
+    JMP Bank2_Func_AF51
+
+Bank2_Label_8D29:
+    LDA a:$0678,X
+    CMP $3E
+    BNE Bank2_Label_8D4C
+    JSR Bank2_Func_8D52
+    BCS Bank2_Label_8D46
+    LDA $DF
+    STA a:$06B0,Y
+    LDA a:$0608,X
+    STA a:$06CA,Y
+    LDA a:$0610,X
+    STA a:$06D7,Y
+
+Bank2_Label_8D46:
+    LDA a:$0678,X
+    STA a:$06E4,Y
+
+Bank2_Label_8D4C:
+    INX
+    CPX #$08
+    BNE Bank2_Label_8D03
+    RTS
+
+Bank2_Func_8D52:
+    STX $3F
+    LDA $9A
+    BEQ Bank2_Label_8DA4
+    LDX #$00
+
+Bank2_Label_8D5A:
+    LDA a:$0600,X
+    CMP #$01
+    BNE Bank2_Label_8D9F
+    LDA a:$0638,X
+    CMP #$1B
+    BNE Bank2_Label_8D9F
+    LDA a:$0678,X
+    BEQ Bank2_Label_8D9F
+    LDX #$00
+    STX $40
+
+Bank2_Label_8D71:
+    LDA a:$06B0,X
+    CMP $8B
+    BNE Bank2_Label_8D81
+    LDA a:$06BD,X
+    CMP #$18
+    BCC Bank2_Label_8D81
+    INC $40
+
+Bank2_Label_8D81:
+    INX
+    CPX #$0D
+    BNE Bank2_Label_8D71
+    LDA $40
+    CMP #$02
+    BCS Bank2_Label_8DA4
+    LDA $8B
+    STA a:$06B0,Y
+    LDA $8C
+    STA a:$06CA,Y
+    LDA $8D
+    STA a:$06D7,Y
+    LDX $3F
+    SEC
+    RTS
+
+Bank2_Label_8D9F:
+    INX
+    CPX #$08
+    BNE Bank2_Label_8D5A
+
+Bank2_Label_8DA4:
+    LDX $3F
+    CLC
+    RTS
+
+Bank2_Func_8DA8:
+    LDX #$00
+    TXA
+
+Bank2_Label_8DAB:
+    STA a:$06F9,X
+    INX
+    CPX #$0C
+    BNE Bank2_Label_8DAB
+    RTS
+
+Bank2_Func_8DB4:
+    LDA #$00
+    STA $AB
+    LDX #$00
+    TXA
+
+Bank2_Label_8DBB:
+    STA a:$0600,X
+    INX
+    CPX #$B0
+    BNE Bank2_Label_8DBB
+
+Bank2_Label_8DC3:
+    RTS
+
+Bank2_Func_8DC4:
+    LDA $8E
+    CMP #$04
+    BEQ Bank2_Label_8DC3
+    LDA $CB
+    BNE Bank2_Label_8DC3
+    LDA $AB
+    BNE Bank2_Label_8E26
+    LDA #$01
+    STA $AB
+    LDX $DF
+    LDA a:$D66B,X
+    STA $AC
+    LDA a:$D6AB,X
+    STA $AD
+    LDA a:$D6EB,X
+    STA $AE
+    LDA a:$D72B,X
+    STA $AF
+    LDA a:$D76B,X
+    STA $B0
+    LDA a:$D7AB,X
+    STA $B1
+    LDA a:$D7EB,X
+    STA $B2
+    LDA a:$D82B,X
+    STA $B3
+    LDA a:$D86B,X
+    STA $B4
+    STA $C0
+    LDA a:$D8AB,X
+    STA $B5
+    STA $C1
+    LDA a:$D8EB,X
+    STA $B6
+    STA $C2
+    LDA a:$D92B,X
+    STA $B7
+    STA $C3
+    LDA #$00
+    STA $B8
+    STA $B9
+    STA $BA
+    STA $BB
+
+Bank2_Label_8E26:
+    LDA #$00
+    STA $00
+    LDA #$04
+    STA $01
+
+Bank2_Label_8E2E:
+    LDX $00
+    LDA $B4,X
+    BEQ Bank2_Label_8E3F
+    LDA $BC,X
+    CLC
+    ADC #$01
+    AND #$03
+    STA $BC,X
+    BNE Bank2_Label_8E60
+
+Bank2_Label_8E3F:
+    LDA $AC,X
+    STA $C4
+    LDA $B0,X
+    STA $C5
+    LDA $B4,X
+    STA $C6
+    LDA $B8,X
+    STA $C7
+    JSR Bank2_Func_8E67
+    LDX $00
+    LDA $C5
+    STA $B0,X
+    LDA $C6
+    STA $B4,X
+    LDA $C7
+    STA $B8,X
+
+Bank2_Label_8E60:
+    INC $00
+    DEC $01
+    BNE Bank2_Label_8E2E
+    RTS
+
+Bank2_Func_8E67:
+    LDA $C7
+    BNE Bank2_Label_8EB4
+    LDA $C5
+    BEQ Bank2_Label_8EB4
+    LDA $C6
+    BEQ Bank2_Label_8E7D
+    DEC $C6
+    BNE Bank2_Label_8EB4
+    LDX $00
+    LDA $C0,X
+    STA $C6
+
+Bank2_Label_8E7D:
+    JSR Bank2_Func_9104
+    BCC Bank2_Label_8EB4
+    JSR Bank2_Func_8B68
+    LDA #$1E
+    STA a:$0668,X
+    LDA $C4
+    STA a:$0638,X
+    TAY
+    LDA a:$8EB5,Y
+    STA a:$0698,X
+    LDA a:$8ED5,Y
+    STA a:$0628,X
+    LDA #$FF
+    STA a:$0608,X
+    STA a:$0610,X
+    LDA #$02
+    STA a:$0600,X
+    JSR Bank2_Func_8F55
+    DEC $C5
+    BNE Bank2_Label_8EB4
+    LDA #$01
+    STA $C7
+
+Bank2_Label_8EB4:
+    RTS
+    .byte $01, $02, $01, $02, $02, $00, $00, $00, $08, $00, $00, $00, $10, $10, $10, $10
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $10, $14, $18, $1C, $20, $24, $40, $B0, $30, $34, $28, $2C, $80, $84, $88, $8C
+    .byte $64, $40, $70, $74, $50, $54, $58, $5C, $44, $60, $4C, $48, $90, $94, $98, $9C
+    .byte $02, $03, $01, $03, $20, $00, $01, $00, $03, $03, $00, $00, $02, $02, $02, $02
+    .byte $00, $01, $00, $01, $01, $01, $01, $01, $00, $00, $01, $00, $01, $01, $01, $01
+    .byte $02, $02, $04, $02, $02, $00, $04, $00, $02, $02, $04, $04, $04, $04, $04, $04
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $55, $41, $51, $42, $41, $51, $45, $33, $35, $51, $35, $51, $25, $25, $25, $25
+    .byte $45, $41, $32, $31, $31, $31, $31, $31, $51, $51, $51, $51, $51, $51, $51, $51
+
+Bank2_Func_8F55:
+    LDA #$00
+    STA a:$0670,X
+    LDA $C4
+    ASL A
+    TAY
+    LDA a:$8F6C,Y
+    STA $40
+    LDA a:$8F6D,Y
+    STA $41
+    JSR Bank2_Func_931F
+    RTS
+    .byte $8C, $8F, $A3, $8F, $BF, $8F, $DB, $8F, $28, $90, $2E, $90, $2F, $90, $44, $90
+    .byte $71, $90, $AA, $90, $AB, $90, $AE, $90, $AF, $90, $B2, $90, $B2, $90, $B2, $90
+    .byte $A5, $DF, $C9, $10, $90, $10, $C9, $28, $B0, $07, $20, $53, $B1, $29, $01, $D0
+    .byte $05, $A9, $A4, $9D, $28, $06, $60, $A5, $DF, $C9, $18, $90, $15, $C9, $30, $B0
+    .byte $07, $20, $53, $B1, $29, $01, $D0, $0A, $A9, $A8, $9D, $28, $06, $A9, $01, $9D
+    .byte $30, $06, $60, $A9, $80, $9D, $08, $06, $A9, $98, $9D, $10, $06, $A9, $01, $9D
+    .byte $00, $06, $20, $53, $B1, $29, $40, $F0, $05, $A9, $09, $20, $EB, $A5, $60, $A4
+    .byte $DF, $B9, $E8, $8F, $F0, $05, $A9, $B4, $9D, $28, $06, $60, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $01, $00, $00, $00, $00
-    .byte $00, $01, $01, $01, $A9, $01, $9D, $70, $06, $60, $60, $20, $53, $B1, $C9, $64
-    .byte $B0, $0D, $A9, $20, $9D, $28, $06, $20, $53, $B1, $29, $02, $9D, $A0, $06, $60
-    .byte $A5, $DF, $C9, $26, $D0, $07, $A5, $56, $D0, $1D, $4C, $5B, $90, $A5, $DF, $C9
-    .byte $3B, $D0, $19, $A5, $57, $D0, $10, $A9, $B0, $9D, $08, $06, $A9, $A8, $9D, $10
-    .byte $06, $A9, $01, $9D, $00, $06, $60, $A9, $00, $9D, $00, $06, $60, $A5, $DF, $C9
-    .byte $27, $F0, $0D, $C9, $28, $F0, $10, $C9, $34, $F0, $13, $A9, $03, $4C, $51, $AF
-    .byte $A5, $58, $F0, $11, $4C, $A4, $90, $A5, $59, $F0, $0A, $4C, $A4, $90, $A5, $5A
-    .byte $F0, $03, $4C, $A4, $90, $20, $8C, $AC, $90, $06, $A9, $03, $8D, $AA, $02, $60
-    .byte $A9, $00, $9D, $00, $06, $60, $60, $20, $15, $AC, $60, $20, $B3, $90, $60, $A0
-    .byte $00, $4C, $BD, $90, $20, $04, $91, $90, $36, $20, $68, $8B, $B9, $F4, $90, $9D
-    .byte $00, $06, $B9, $F8, $90, $9D, $08, $06, $B9, $FC, $90, $9D, $10, $06, $B9, $00
-    .byte $91, $9D, $38, $06, $84, $42, $A8, $B9, $D5, $8E, $9D, $28, $06, $A4, $42, $A9
-    .byte $1E, $9D, $68, $06, $AD, $C1, $8E, $9D, $98, $06, $C8, $C0, $04, $D0, $C5, $60
-    .byte $03, $03, $03, $03, $28, $D8, $28, $D8, $30, $30, $C0, $C0, $0C, $0D, $0E, $0F
-    .byte $A2, $00, $BD, $00, $06, $F0, $07, $E8, $E0, $08, $D0, $F6, $18, $60, $38, $60
-    .byte $86, $3C, $20, $04, $91, $B0, $04, $A6, $3C, $18, $60, $20, $68, $8B, $8A, $A8
-    .byte $A6, $3C, $BD, $70, $06, $F0, $F0, $4A, $9D, $70, $06, $A9, $01, $99, $00, $06
-    .byte $20, $53, $B1, $29, $08, $38, $E9, $04, $18, $7D, $08, $06, $99, $08, $06, $20
-    .byte $53, $B1, $29, $08, $38, $E9, $04, $18, $7D, $10, $06, $99, $10, $06, $BD, $28
-    .byte $06, $99, $28, $06, $BD, $30, $06, $99, $30, $06, $BD, $38, $06, $99, $38, $06
-    .byte $BD, $40, $06, $99, $40, $06, $BD, $48, $06, $99, $48, $06, $BD, $50, $06, $99
-    .byte $50, $06, $BD, $58, $06, $99, $58, $06, $BD, $60, $06, $99, $60, $06, $BD, $70
-    .byte $06, $99, $70, $06, $AD, $B9, $8E, $99, $98, $06, $A6, $3C, $38, $60, $A5, $CB
-    .byte $F0, $1C, $E6, $CC, $A5, $CC, $29, $07, $D0, $05, $A9, $07, $20, $DF, $A5, $A5
-    .byte $CC, $C9, $F0, $D0, $09, $A9, $00, $85, $CB, $A9, $00, $8D, $AB, $02, $60, $FE
-    .byte $18, $06, $BD, $18, $06, $29, $01, $D0, $41, $FE, $28, $06, $BD, $28, $06, $C9
-    .byte $70, $D0, $37, $A9, $00, $9D, $00, $06, $BD, $38, $06, $C9, $05, $B0, $2B, $A5
-    .byte $A4, $F0, $04, $C6, $A4, $D0, $0C, $E6, $4E, $A5, $4E, $C9, $04, $90, $1B, $A9
-    .byte $00, $85, $4E, $A9, $01, $9D, $00, $06, $20, $53, $B1, $29, $03, $18, $69, $10
-    .byte $9D, $38, $06, $A8, $B9, $D5, $8E, $9D, $28, $06, $4C, $83, $92, $60, $A5, $8E
-    .byte $C9, $04, $F0, $F9, $A9, $00, $85, $07, $A9, $08, $85, $06, $A6, $07, $BD, $00
-    .byte $06, $F0, $6C, $C9, $05, $F0, $98, $C9, $04, $F0, $2E, $C9, $01, $F0, $2A, $BD
-    .byte $68, $06, $D0, $08, $A9, $01, $9D, $00, $06, $4C, $4D, $92, $DE, $68, $06, $C9
-    .byte $1E, $D0, $4C, $BD, $00, $06, $C9, $03, $F0, $45, $20, $A5, $92, $A6, $07, $A5
-    .byte $46, $9D, $08, $06, $A5, $47, $9D, $10, $06, $A5, $CB, $F0, $0A, $BD, $38, $06
-    .byte $C9, $10, $B0, $03, $4C, $79, $92, $BD, $38, $06, $C9, $10, $B0, $03, $20, $3B
-    .byte $9A, $A6, $07, $BD, $38, $06, $0A, $A8, $B9, $DF, $92, $85, $40, $B9, $E0, $92
-    .byte $85, $41, $20, $1F, $93, $A6, $07, $20, $A1, $89, $A6, $07, $20, $48, $88, $E6
-    .byte $07, $C6, $06, $F0, $03, $4C, $10, $92, $60, $20, $53, $B1, $C9, $20, $90, $F9
-    .byte $C9, $D0, $B0, $F5, $60, $20, $53, $B1, $C9, $30, $90, $F9, $C9, $B0, $B0, $F5
-    .byte $60, $20, $8D, $92, $85, $46, $20, $99, $92, $85, $47, $20, $C3, $9E, $90, $F1
-    .byte $20, $FB, $9E, $90, $EC, $20, $37, $9F, $90, $E7, $20, $71, $9F, $90, $E2, $A5
-    .byte $46, $38, $E5, $8C, $20, $49, $B1, $C9, $18, $B0, $0F, $A5, $47, $38, $E5, $8D
-    .byte $20, $49, $B1, $C9, $18, $B0, $03, $4C, $A5, $92, $60, $22, $93, $22, $93, $22
-    .byte $93, $22, $93, $2D, $93, $AC, $93, $90, $95, $90, $95, $91, $95, $94, $95, $95
-    .byte $95, $A4, $95, $A5, $95, $43, $96, $5B, $96, $8C, $96, $D6, $96, $D6, $96, $D6
-    .byte $96, $D6, $96, $D6, $96, $D6, $96, $D6, $96, $D7, $96, $D8, $96, $59, $97, $13
-    .byte $98, $E3, $98, $99, $99, $99, $99, $99, $99, $99, $99, $6C, $40, $00, $BD, $00
-    .byte $06, $C9, $04, $D0, $03, $20, $05, $9A, $60, $BD, $00, $06, $C9, $04, $D0, $04
-    .byte $20, $05, $9A, $60, $A4, $DF, $B9, $6C, $93, $F0, $2C, $FE, $18, $06, $BD, $18
-    .byte $06, $29, $03, $D0, $22, $86, $3E, $BD, $08, $06, $85, $3C, $BD, $10, $06, $85
-    .byte $3D, $A6, $8C, $A4, $8D, $20, $3B, $AB, $20, $47, $AB, $A6, $3E, $A5, $3C, $9D
-    .byte $08, $06, $A5, $3D, $9D, $10, $06, $60, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $01, $00, $00, $00, $00
+    .byte $00, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $01, $A9, $01, $9D, $70
+    .byte $06, $60, $60, $20, $53, $B1, $C9, $64, $B0, $0D, $A9, $20, $9D, $28, $06, $20
+    .byte $53, $B1, $29, $02, $9D, $A0, $06, $60, $A5, $DF, $C9, $26, $D0, $07, $A5, $56
+    .byte $D0, $1D, $4C, $5B, $90, $A5, $DF, $C9, $3B, $D0, $19, $A5, $57, $D0, $10, $A9
+    .byte $B0, $9D, $08, $06, $A9, $A8, $9D, $10, $06, $A9, $01, $9D, $00, $06, $60, $A9
+    .byte $00, $9D, $00, $06, $60, $A5, $DF, $C9, $27, $F0, $0D, $C9, $28, $F0, $10, $C9
+    .byte $34, $F0, $13, $A9, $03, $4C, $51, $AF, $A5, $58, $F0, $11, $4C, $A4, $90, $A5
+    .byte $59, $F0, $0A, $4C, $A4, $90, $A5, $5A, $F0, $03, $4C, $A4, $90, $20, $8C, $AC
+    .byte $90, $06, $A9, $03, $8D, $AA, $02, $60, $A9, $00, $9D, $00, $06, $60, $60, $20
+    .byte $15, $AC, $60, $20, $B3, $90, $60, $A0, $00, $4C, $BD, $90, $20, $04, $91, $90
+    .byte $36, $20, $68, $8B, $B9, $F4, $90, $9D, $00, $06, $B9, $F8, $90, $9D, $08, $06
+    .byte $B9, $FC, $90, $9D, $10, $06, $B9, $00, $91, $9D, $38, $06, $84, $42, $A8, $B9
+    .byte $D5, $8E, $9D, $28, $06, $A4, $42, $A9, $1E, $9D, $68, $06, $AD, $C1, $8E, $9D
+    .byte $98, $06, $C8, $C0, $04, $D0, $C5, $60, $03, $03, $03, $03, $28, $D8, $28, $D8
+    .byte $30, $30, $C0, $C0, $0C, $0D, $0E, $0F
+
+Bank2_Func_9104:
+    LDX #$00
+
+Bank2_Label_9106:
+    LDA a:$0600,X
+    BEQ Bank2_Label_9112
+    INX
+    CPX #$08
+    BNE Bank2_Label_9106
+    CLC
+    RTS
+
+Bank2_Label_9112:
+    SEC
+    RTS
+
+Bank2_Func_9114:
+    STX $3C
+    JSR Bank2_Func_9104
+    BCS Bank2_Label_911F
+
+Bank2_Label_911B:
+    LDX $3C
+    CLC
+    RTS
+
+Bank2_Label_911F:
+    JSR Bank2_Func_8B68
+    TXA
+    TAY
+    LDX $3C
+    LDA a:$0670,X
+    BEQ Bank2_Label_911B
+    LSR A
+    STA a:$0670,X
+    LDA #$01
+    STA a:$0600,Y
+    JSR Bank2_Func_B153
+    AND #$08
+    SEC
+    SBC #$04
+    CLC
+    ADC a:$0608,X
+    STA a:$0608,Y
+    JSR Bank2_Func_B153
+    AND #$08
+    SEC
+    SBC #$04
+    CLC
+    ADC a:$0610,X
+    STA a:$0610,Y
+    LDA a:$0628,X
+    STA a:$0628,Y
+    LDA a:$0630,X
+    STA a:$0630,Y
+    LDA a:$0638,X
+    STA a:$0638,Y
+    LDA a:$0640,X
+    STA a:$0640,Y
+    LDA a:$0648,X
+    STA a:$0648,Y
+    LDA a:$0650,X
+    STA a:$0650,Y
+    LDA a:$0658,X
+    STA a:$0658,Y
+    LDA a:$0660,X
+    STA a:$0660,Y
+    LDA a:$0670,X
+    STA a:$0670,Y
+    LDA a:$8EB9
+    STA a:$0698,Y
+    LDX $3C
+    SEC
+    RTS
+
+Bank2_Func_9192:
+    LDA $CB
+    BEQ Bank2_Label_91B2
+    INC $CC
+    LDA $CC
+    AND #$07
+    BNE Bank2_Label_91A3
+    LDA #$07
+    JSR Bank2_Func_A5DF
+
+Bank2_Label_91A3:
+    LDA $CC
+    CMP #$F0
+    BNE Bank2_Label_91B2
+    LDA #$00
+    STA $CB
+    LDA #$00
+    STA a:$02AB
+
+Bank2_Label_91B2:
+    RTS
+
+Bank2_Label_91B3:
+    INC a:$0618,X
+    LDA a:$0618,X
+    AND #$01
+    BNE Bank2_Label_91FE
+    INC a:$0628,X
+    LDA a:$0628,X
+    CMP #$70
+    BNE Bank2_Label_91FE
+    LDA #$00
+    STA a:$0600,X
+    LDA a:$0638,X
+    CMP #$05
+    BCS Bank2_Label_91FE
+    LDA $A4
+    BEQ Bank2_Label_91DB
+    DEC $A4
+    BNE Bank2_Label_91E7
+
+Bank2_Label_91DB:
+    INC $4E
+    LDA $4E
+    CMP #$04
+    BCC Bank2_Label_91FE
+    LDA #$00
+    STA $4E
+
+Bank2_Label_91E7:
+    LDA #$01
+    STA a:$0600,X
+    JSR Bank2_Func_B153
+    AND #$03
+    CLC
+    ADC #$10
+    STA a:$0638,X
+    TAY
+    LDA a:$8ED5,Y
+    STA a:$0628,X
+
+Bank2_Label_91FE:
+    JMP Bank2_Label_9283
+
+Bank2_Label_9201:
+    RTS
+
+Bank2_Func_9202:
+    LDA $8E
+    CMP #$04
+    BEQ Bank2_Label_9201
+    LDA #$00
+    STA $07
+    LDA #$08
+    STA $06
+
+Bank2_Label_9210:
+    LDX $07
+    LDA a:$0600,X
+    BEQ Bank2_Label_9283
+    CMP #$05
+    BEQ Bank2_Label_91B3
+    CMP #$04
+    BEQ Bank2_Label_924D
+    CMP #$01
+    BEQ Bank2_Label_924D
+    LDA a:$0668,X
+    BNE Bank2_Label_9230
+    LDA #$01
+    STA a:$0600,X
+    JMP Bank2_Label_924D
+
+Bank2_Label_9230:
+    DEC a:$0668,X
+    CMP #$1E
+    BNE Bank2_Label_9283
+    LDA a:$0600,X
+    CMP #$03
+    BEQ Bank2_Label_9283
+    JSR Bank2_Func_92A5
+    LDX $07
+    LDA $46
+    STA a:$0608,X
+    LDA $47
+    STA a:$0610,X
+
+Bank2_Label_924D:
+    LDA $CB
+    BEQ Bank2_Label_925B
+    LDA a:$0638,X
+    CMP #$10
+    BCS Bank2_Label_925B
+    JMP Bank2_Label_9279
+
+Bank2_Label_925B:
+    LDA a:$0638,X
+    CMP #$10
+    BCS Bank2_Label_9265
+    JSR Bank2_Func_9A3B
+
+Bank2_Label_9265:
+    LDX $07
+    LDA a:$0638,X
+    ASL A
+    TAY
+    LDA a:$92DF,Y
+    STA $40
+    LDA a:$92E0,Y
+    STA $41
+    JSR Bank2_Func_931F
+
+Bank2_Label_9279:
+    LDX $07
+    JSR Bank2_Func_89A1
+    LDX $07
+    JSR Bank2_Func_8848
+
+Bank2_Label_9283:
+    INC $07
+    DEC $06
+    BEQ Bank2_Label_928C
+    JMP Bank2_Label_9210
+
+Bank2_Label_928C:
+    RTS
+
+Bank2_Func_928D:
+    JSR Bank2_Func_B153
+    CMP #$20
+    BCC Bank2_Func_928D
+    CMP #$D0
+    BCS Bank2_Func_928D
+    RTS
+
+Bank2_Func_9299:
+    JSR Bank2_Func_B153
+    CMP #$30
+    BCC Bank2_Func_9299
+    CMP #$B0
+    BCS Bank2_Func_9299
+    RTS
+
+Bank2_Func_92A5:
+    JSR Bank2_Func_928D
+    STA $46
+    JSR Bank2_Func_9299
+    STA $47
+    JSR Bank2_Func_9EC3
+    BCC Bank2_Func_92A5
+    JSR Bank2_Func_9EFB
+    BCC Bank2_Func_92A5
+    JSR Bank2_Func_9F37
+    BCC Bank2_Func_92A5
+    JSR Bank2_Func_9F71
+    BCC Bank2_Func_92A5
+    LDA $46
+    SEC
+    SBC $8C
+    JSR Bank2_Func_B149
+    CMP #$18
+    BCS Bank2_Label_92DE
+    LDA $47
+    SEC
+    SBC $8D
+    JSR Bank2_Func_B149
+    CMP #$18
+    BCS Bank2_Label_92DE
+    JMP Bank2_Func_92A5
+
+Bank2_Label_92DE:
+    RTS
+    .byte $22, $93, $22, $93, $22, $93, $22, $93, $2D, $93, $AC, $93, $90, $95, $90, $95
+    .byte $91, $95, $94, $95, $95, $95, $A4, $95, $A5, $95, $43, $96, $5B, $96, $8C, $96
+    .byte $D6, $96, $D6, $96, $D6, $96, $D6, $96, $D6, $96, $D6, $96, $D6, $96, $D7, $96
+    .byte $D8, $96, $59, $97, $13, $98, $E3, $98, $99, $99, $99, $99, $99, $99, $99, $99
+
+Bank2_Func_931F:
+    JMP ($0040)
+    .byte $BD, $00, $06, $C9, $04, $D0, $03, $20, $05, $9A, $60, $BD, $00, $06, $C9, $04
+    .byte $D0, $04, $20, $05, $9A, $60, $A4, $DF, $B9, $6C, $93, $F0, $2C, $FE, $18, $06
+    .byte $BD, $18, $06, $29, $03, $D0, $22, $86, $3E, $BD, $08, $06, $85, $3C, $BD, $10
+    .byte $06, $85, $3D, $A6, $8C, $A4, $8D, $20, $3B, $AB, $20, $47, $AB, $A6, $3E, $A5
+    .byte $3C, $9D, $08, $06, $A5, $3D, $9D, $10, $06, $60, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $01
-    .byte $00, $00, $00, $00, $00, $01, $01, $00, $BD, $08, $06, $C9, $F0, $B0, $3C, $BD
-    .byte $10, $06, $C9, $D8, $B0, $35, $A0, $00, $B9, $00, $06, $C9, $04, $F0, $08, $C8
-    .byte $C0, $08, $D0, $F4, $4C, $EC, $94, $A5, $A3, $29, $03, $A8, $BD, $08, $06, $18
-    .byte $79, $E7, $93, $9D, $08, $06, $BD, $10, $06, $18, $79, $EB, $93, $9D, $10, $06
-    .byte $4C, $EC, $94, $02, $FE, $02, $FE, $02, $02, $FE, $FE, $A9, $00, $9D, $00, $06
-    .byte $A0, $00, $B9, $00, $06, $C9, $04, $F0, $06, $C8, $C0, $08, $D0, $F4, $60, $A9
-    .byte $00, $99, $00, $06, $A9, $00, $99, $78, $06, $B9, $38, $06, $C9, $18, $B0, $01
-    .byte $60, $A5, $DF, $85, $40, $A5, $8C, $38, $E9, $78, $20, $49, $B1, $85, $41, $A5
-    .byte $8D, $38, $E9, $78, $20, $49, $B1, $C5, $41, $B0, $1A, $A5, $8C, $C9, $78, $B0
-    .byte $09, $A5, $89, $F0, $3C, $C6, $40, $4C, $6A, $94, $A5, $89, $C9, $07, $F0, $31
-    .byte $E6, $40, $4C, $6A, $94, $A5, $8D, $C9, $78, $B0, $0E, $A5, $8A, $F0, $22, $A5
-    .byte $40, $38, $E9, $08, $85, $40, $4C, $6A, $94, $A5, $8A, $C9, $07, $F0, $12, $A5
-    .byte $40, $18, $69, $08, $85, $40, $86, $3E, $A6, $40, $BD, $50, $95, $F0, $45, $A6
-    .byte $3E, $86, $3E, $A5, $DF, $38, $E9, $01, $29, $3F, $AA, $BD, $50, $95, $F0, $32
-    .byte $A5, $DF, $18, $69, $01, $29, $3F, $AA, $BD, $50, $95, $F0, $25, $A5, $DF, $38
-    .byte $E9, $08, $29, $3F, $AA, $BD, $50, $95, $F0, $18, $A5, $DF, $18, $69, $08, $29
-    .byte $3F, $AA, $BD, $50, $95, $F0, $0B, $20, $53, $B1, $29, $3F, $AA, $BD, $50, $95
-    .byte $D0, $F5, $86, $40, $A2, $00, $BD, $B0, $06, $C5, $DF, $D0, $08, $BD, $BD, $06
-    .byte $D9, $38, $06, $F0, $0A, $E8, $E0, $0D, $D0, $EC, $A9, $04, $4C, $51, $AF, $A5
-    .byte $40, $9D, $B0, $06, $20, $8D, $92, $9D, $CA, $06, $20, $99, $92, $9D, $D7, $06
-    .byte $A9, $00, $9D, $E4, $06, $A6, $3E, $60, $A0, $00, $B9, $00, $06, $C9, $04, $F0
-    .byte $5A, $C8, $C0, $08, $D0, $F4, $A0, $00, $B9, $00, $06, $C9, $01, $D0, $47, $B9
-    .byte $38, $06, $C9, $05, $90, $08, $C9, $18, $90, $3C, $C9, $1B, $F0, $38, $BD, $08
-    .byte $06, $38, $F9, $08, $06, $20, $49, $B1, $C9, $0D, $B0, $2A, $BD, $10, $06, $38
-    .byte $F9, $10, $06, $20, $49, $B1, $C9, $0D, $B0, $1C, $BD, $90, $06, $85, $A3, $A9
-    .byte $12, $20, $EB, $A5, $A9, $04, $99, $00, $06, $B9, $78, $06, $F0, $0D, $A9, $00
-    .byte $99, $78, $06, $85, $9A, $60, $C8, $C0, $08, $D0, $AD, $60, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $00
-    .byte $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $01, $01, $00, $01, $01, $01
-    .byte $00, $00, $01, $01, $01, $01, $01, $00, $00, $01, $01, $01, $00, $00, $00, $00
-    .byte $01, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $01, $60, $20, $2A, $AA
-    .byte $60, $20, $53, $B1, $29, $1F, $D0, $05, $A9, $11, $20, $EB, $A5, $20, $21, $AD
-    .byte $60, $20, $53, $B1, $29, $1F, $D0, $05, $A9, $11, $20, $EB, $A5, $BD, $90, $06
-    .byte $F0, $03, $20, $F3, $95, $86, $3E, $BD, $90, $06, $F0, $32, $FE, $18, $06, $BD
-    .byte $18, $06, $29, $01, $D0, $28, $BD, $08, $06, $85, $3C, $BD, $10, $06, $85, $3D
-    .byte $A5, $8C, $18, $69, $08, $AA, $A5, $8D, $38, $E9, $0C, $A8, $20, $3B, $AB, $20
-    .byte $47, $AB, $A6, $3E, $A5, $3C, $9D, $08, $06, $A5, $3D, $9D, $10, $06, $60, $86
-    .byte $3E, $A2, $00, $A0, $00, $BD, $00, $06, $D0, $01, $C8, $E8, $E0, $08, $D0, $F5
-    .byte $C0, $02, $90, $38, $20, $04, $91, $90, $33, $20, $68, $8B, $A9, $1E, $9D, $68
-    .byte $06, $A9, $02, $9D, $38, $06, $A8, $B9, $B5, $8E, $9D, $98, $06, $B9, $D5, $8E
-    .byte $9D, $28, $06, $A4, $3E, $B9, $08, $06, $18, $69, $08, $9D, $08, $06, $B9, $10
-    .byte $06, $18, $69, $18, $9D, $10, $06, $A9, $01, $9D, $00, $06, $A6, $3E, $60, $BD
-    .byte $90, $06, $F0, $12, $20, $C0, $96, $B9, $08, $06, $18, $69, $10, $9D, $08, $06
-    .byte $B9, $10, $06, $9D, $10, $06, $60, $BD, $90, $06, $F0, $2B, $20, $C0, $96, $B9
-    .byte $08, $06, $9D, $08, $06, $B9, $10, $06, $18, $69, $18, $9D, $10, $06, $FE, $18
-    .byte $06, $BD, $18, $06, $4A, $4A, $4A, $29, $01, $9D, $A8, $06, $BD, $18, $06, $4A
-    .byte $4A, $4A, $29, $02, $9D, $A0, $06, $60, $BD, $90, $06, $F0, $2E, $20, $C0, $96
-    .byte $B9, $08, $06, $18, $69, $10, $9D, $08, $06, $B9, $10, $06, $18, $69, $18, $9D
-    .byte $10, $06, $FE, $18, $06, $BD, $18, $06, $4A, $4A, $4A, $29, $01, $9D, $A8, $06
-    .byte $BD, $18, $06, $4A, $4A, $4A, $29, $02, $9D, $A0, $06, $60, $A0, $00, $B9, $00
-    .byte $06, $C9, $01, $D0, $07, $B9, $38, $06, $C9, $0C, $F0, $05, $C8, $C0, $08, $D0
-    .byte $ED, $60, $60, $60, $BD, $00, $06, $C9, $04, $D0, $04, $20, $05, $9A, $60, $20
-    .byte $63, $99, $BD, $78, $06, $F0, $15, $A0, $00, $B9, $00, $06, $C9, $01, $D0, $07
-    .byte $B9, $38, $06, $C9, $0A, $F0, $06, $C8, $C0, $08, $D0, $ED, $60, $BD, $08, $06
-    .byte $38, $F9, $08, $06, $20, $49, $B1, $C9, $0D, $B0, $F1, $BD, $10, $06, $38, $F9
-    .byte $10, $06, $20, $49, $B1, $C9, $0D, $B0, $E3, $20, $72, $89, $C8, $C0, $08, $F0
-    .byte $07, $B9, $38, $06, $C9, $0B, $F0, $F1, $A0, $00, $B9, $F1, $06, $C5, $DF, $D0
-    .byte $05, $A9, $FF, $99, $F1, $06, $C8, $C0, $08, $D0, $EF, $A9, $01, $8D, $AB, $02
-    .byte $A9, $04, $20, $EB, $A5, $A9, $28, $85, $A6, $20, $C4, $86, $A0, $0A, $B9, $35
-    .byte $8F, $20, $8C, $89, $60, $BD, $00, $06, $C9, $04, $D0, $04, $20, $05, $9A, $60
-    .byte $20, $63, $99, $BD, $78, $06, $F0, $42, $A5, $9F, $D0, $3E, $86, $44, $BD, $10
-    .byte $06, $18, $69, $07, $A8, $BD, $08, $06, $18, $69, $07, $AA, $20, $C4, $A0, $C9
-    .byte $26, $90, $25, $C9, $2A, $B0, $21, $A5, $DF, $C9, $3C, $F0, $1B, $C9, $27, $F0
-    .byte $17, $C9, $28, $F0, $13, $C9, $34, $F0, $0F, $A9, $13, $20, $EB, $A5, $20, $C4
-    .byte $86, $20, $AF, $97, $A9, $01, $85, $9F, $A6, $44, $60, $A9, $00, $85, $A0, $A2
-    .byte $00, $A0, $60, $86, $46, $84, $47, $20, $C4, $A0, $C9, $26, $D0, $08, $20, $E2
-    .byte $97, $A9, $01, $85, $A0, $60, $A2, $E0, $A0, $60, $86, $46, $84, $47, $20, $C4
-    .byte $A0, $C9, $26, $D0, $08, $20, $E2, $97, $A9, $01, $85, $A0, $60, $60, $A5, $46
-    .byte $4A, $4A, $4A, $85, $46, $A5, $47, $4A, $4A, $4A, $85, $47, $A9, $08, $85, $48
-    .byte $A6, $46, $A4, $47, $20, $BA, $B0, $A9, $00, $85, $72, $A2, $0F, $A0, $98, $A9
-    .byte $04, $20, $3A, $B3, $E6, $47, $C6, $48, $D0, $E6, $60, $00, $00, $00, $00, $BD
-    .byte $00, $06, $C9, $04, $D0, $04, $20, $05, $9A, $60, $20, $63, $99, $BD, $78, $06
-    .byte $F0, $35, $A0, $00, $B9, $00, $06, $C9, $01, $D0, $27, $B9, $38, $06, $C9, $14
-    .byte $90, $20, $C9, $18, $B0, $1C, $BD, $08, $06, $38, $F9, $08, $06, $20, $49, $B1
-    .byte $C9, $0D, $B0, $0E, $BD, $10, $06, $38, $F9, $10, $06, $20, $49, $B1, $C9, $0D
-    .byte $90, $06, $C8, $C0, $08, $D0, $CD, $60, $A9, $0A, $20, $EB, $A5, $20, $C4, $86
-    .byte $B9, $38, $06, $C9, $17, $F0, $2A, $86, $3E, $A2, $00, $DD, $BD, $06, $F0, $0A
-    .byte $E8, $E0, $0D, $D0, $F6, $A9, $05, $4C, $51, $AF, $18, $69, $08, $9D, $BD, $06
-    .byte $99, $38, $06, $AA, $BD, $D5, $8E, $99, $28, $06, $A9, $00, $85, $4D, $A6, $3E
-    .byte $60, $A9, $00, $99, $00, $06, $B9, $38, $06, $85, $3E, $A0, $00, $B9, $B0, $06
-    .byte $C5, $DF, $D0, $07, $B9, $BD, $06, $C5, $3E, $F0, $04, $C8, $4C, $A1, $98, $A9
-    .byte $FF, $99, $B0, $06, $A0, $00, $B9, $F1, $06, $C9, $FF, $F0, $04, $C8, $4C, $BA
-    .byte $98, $A5, $DF, $99, $F1, $06, $20, $04, $91, $90, $13, $BD, $08, $06, $38, $E9
-    .byte $78, $85, $C9, $BD, $10, $06, $38, $E9, $78, $85, $CA, $20, $1F, $AC, $60, $BD
-    .byte $00, $06, $C9, $04, $D0, $04, $20, $05, $9A, $60, $20, $63, $99, $BD, $78, $06
-    .byte $F0, $6C, $BD, $10, $06, $C9, $F8, $F0, $65, $A0, $00, $B9, $00, $06, $C9, $01
-    .byte $D0, $57, $B9, $38, $06, $C9, $18, $90, $50, $C9, $1B, $F0, $4C, $C9, $1F, $F0
-    .byte $48, $BD, $08, $06, $85, $40, $BD, $10, $06, $85, $41, $B9, $08, $06, $85, $3C
-    .byte $B9, $10, $06, $85, $3D, $86, $3E, $84, $3F, $A6, $40, $A4, $41, $A5, $3C, $38
-    .byte $E5, $40, $20, $49, $B1, $C9, $0F, $90, $03, $20, $3B, $AB, $A5, $3D, $38, $E5
-    .byte $41, $20, $49, $B1, $C9, $0F, $90, $03, $20, $47, $AB, $A6, $3E, $A4, $3F, $A5
-    .byte $3C, $99, $08, $06, $A5, $3D, $99, $10, $06, $C8, $C0, $08, $D0, $9D, $60, $BD
-    .byte $78, $06, $F0, $30, $A5, $95, $0A, $9D, $A0, $06, $A0, $F4, $A5, $95, $F0, $02
-    .byte $A0, $0C, $98, $18, $65, $8C, $9D, $08, $06, $C9, $F4, $90, $05, $A5, $8C, $9D
-    .byte $08, $06, $FE, $58, $06, $BD, $58, $06, $4A, $29, $02, $18, $69, $04, $18, $65
-    .byte $8D, $9D, $10, $06, $60, $BD, $00, $06, $C9, $04, $D0, $04, $20, $05, $9A, $60
-    .byte $A0, $00, $BD, $08, $06, $C5, $8C, $B0, $02, $A0, $02, $98, $9D, $A0, $06, $FE
-    .byte $18, $06, $BD, $18, $06, $29, $07, $D0, $08, $BD, $A8, $06, $49, $01, $9D, $A8
-    .byte $06, $86, $3E, $BD, $78, $06, $F0, $36, $BD, $08, $06, $85, $3C, $BD, $10, $06
-    .byte $85, $3D, $A6, $8C, $A4, $8D, $8A, $38, $E5, $3C, $20, $49, $B1, $C9, $0D, $90
-    .byte $03, $20, $3B, $AB, $98, $38, $E5, $3D, $20, $49, $B1, $C9, $0D, $90, $03, $20
-    .byte $47, $AB, $A6, $3E, $A5, $3C, $9D, $08, $06, $A5, $3D, $9D, $10, $06, $A6, $3E
-    .byte $60, $A0, $00, $B9, $00, $06, $C9, $01, $D0, $07, $B9, $38, $06, $C9, $05, $F0
-    .byte $06, $C8, $C0, $08, $D0, $ED, $60, $FE, $18, $06, $BD, $18, $06, $4A, $29, $02
-    .byte $18, $79, $08, $06, $9D, $08, $06, $A9, $10, $18, $79, $10, $06, $9D, $10, $06
-    .byte $60, $A9, $00, $9D, $00, $06, $60, $A6, $07, $BD, $38, $06, $0A, $A8, $B9, $AC
-    .byte $D9, $85, $40, $B9, $AD, $D9, $85, $41, $BD, $60, $06, $F0, $08, $20, $0F, $AA
-    .byte $9D, $60, $06, $90, $E1, $BD, $40, $06, $A8, $B1, $40, $29, $0F, $85, $3E, $B1
-    .byte $40, $29, $F0, $85, $3F, $C9, $00, $D0, $2B, $BD, $50, $06, $D0, $2F, $20, $F1
-    .byte $9E, $90, $0D, $BD, $08, $06, $18, $65, $3E, $9D, $08, $06, $C9, $E0, $90, $10
-    .byte $BD, $50, $06, $49, $01, $9D, $50, $06, $BD, $A0, $06, $49, $02, $9D, $A0, $06
-    .byte $FE, $40, $06, $60, $C9, $10, $D0, $2B, $BD, $50, $06, $D0, $D1, $20, $B9, $9E
-    .byte $90, $0D, $BD, $08, $06, $38, $E5, $3E, $9D, $08, $06, $C9, $10, $B0, $10, $BD
-    .byte $50, $06, $49, $01, $9D, $50, $06, $BD, $A0, $06, $49, $02, $9D, $A0, $06, $FE
-    .byte $40, $06, $60, $C9, $20, $D0, $23, $BD, $58, $06, $D0, $27, $20, $2D, $9F, $90
-    .byte $0D, $BD, $10, $06, $38, $E5, $3E, $9D, $10, $06, $C9, $20, $B0, $08, $BD, $58
-    .byte $06, $49, $01, $9D, $58, $06, $FE, $40, $06, $60, $C9, $30, $D0, $23, $BD, $58
-    .byte $06, $D0, $D9, $20, $67, $9F, $90, $0D, $BD, $10, $06, $18, $65, $3E, $9D, $10
-    .byte $06, $C9, $C0, $90, $08, $BD, $58, $06, $49, $01, $9D, $58, $06, $FE, $40, $06
-    .byte $60, $C9, $40, $D0, $0F, $FE, $40, $06, $BD, $40, $06, $A8, $B1, $40, $9D, $40
-    .byte $06, $4C, $59, $9A, $C9, $50, $D0, $1C, $BD, $48, $06, $D0, $0B, $BD, $40, $06
-    .byte $A8, $C8, $B1, $40, $9D, $48, $06, $60, $DE, $48, $06, $D0, $06, $FE, $40, $06
-    .byte $FE, $40, $06, $60, $C9, $60, $D0, $0B, $A5, $3E, $9D, $60, $06, $FE, $40, $06
-    .byte $4C, $59, $9A, $C9, $70, $D0, $64, $A5, $3E, $C9, $00, $F0, $42, $C9, $01, $F0
-    .byte $4C, $C9, $08, $F0, $16, $C9, $09, $F0, $20, $C9, $0A, $F0, $27, $A9, $01, $9D
-    .byte $50, $06, $9D, $58, $06, $FE, $40, $06, $4C, $59, $9A, $A9, $00, $9D, $50, $06
-    .byte $9D, $58, $06, $FE, $40, $06, $4C, $59, $9A, $A9, $01, $9D, $50, $06, $FE, $40
-    .byte $06, $4C, $59, $9A, $A9, $01, $9D, $58, $06, $FE, $40, $06, $4C, $59, $9A, $20
-    .byte $53, $B1, $29, $01, $9D, $50, $06, $FE, $40, $06, $4C, $59, $9A, $20, $53, $B1
-    .byte $29, $01, $9D, $58, $06, $FE, $40, $06, $4C, $59, $9A, $C9, $80, $D0, $30, $A5
-    .byte $3E, $D0, $18, $FE, $40, $06, $BD, $40, $06, $A8, $B1, $40, $9D, $80, $06, $FE
-    .byte $40, $06, $BD, $40, $06, $9D, $88, $06, $4C, $59, $9A, $FE, $40, $06, $BD, $80
-    .byte $06, $F0, $09, $DE, $80, $06, $BD, $88, $06, $9D, $40, $06, $4C, $59, $9A, $C9
-    .byte $90, $D0, $42, $FE, $40, $06, $BD, $40, $06, $A8, $BD, $50, $06, $F0, $0A, $B1
-    .byte $40, $49, $FF, $18, $69, $01, $4C, $0F, $9C, $B1, $40, $18, $7D, $08, $06, $9D
-    .byte $08, $06, $FE, $40, $06, $BD, $40, $06, $A8, $BD, $58, $06, $F0, $0A, $B1, $40
-    .byte $49, $FF, $18, $69, $01, $4C, $2E, $9C, $B1, $40, $18, $7D, $10, $06, $9D, $10
-    .byte $06, $FE, $40, $06, $60, $C9, $A0, $D0, $23, $FE, $40, $06, $BD, $40, $06, $A8
-    .byte $B1, $40, $9D, $08, $06, $FE, $40, $06, $BD, $40, $06, $A8, $B1, $40, $9D, $10
-    .byte $06, $FE, $40, $06, $A9, $00, $9D, $68, $06, $4C, $59, $9A, $C9, $B0, $D0, $0B
-    .byte $A5, $3E, $9D, $A0, $06, $FE, $40, $06, $4C, $59, $9A, $C9, $C0, $D0, $68, $A5
-    .byte $3E, $C9, $01, $F0, $2A, $C9, $02, $F0, $42, $FE, $40, $06, $BD, $40, $06, $A8
-    .byte $20, $53, $B1, $D1, $40, $B0, $09, $FE, $40, $06, $FE, $40, $06, $4C, $59, $9A
-    .byte $FE, $40, $06, $BD, $40, $06, $A8, $B1, $40, $9D, $40, $06, $4C, $59, $9A, $FE
-    .byte $40, $06, $BD, $08, $06, $C5, $8C, $B0, $06, $FE, $40, $06, $4C, $59, $9A, $BD
-    .byte $40, $06, $A8, $B1, $40, $9D, $40, $06, $4C, $59, $9A, $FE, $40, $06, $BD, $10
-    .byte $06, $C5, $8D, $B0, $06, $FE, $40, $06, $4C, $59, $9A, $BD, $40, $06, $A8, $B1
-    .byte $40, $9D, $40, $06, $4C, $59, $9A, $C9, $D0, $D0, $12, $FE, $40, $06, $BD, $40
-    .byte $06, $A8, $B1, $40, $9D, $90, $06, $FE, $40, $06, $4C, $59, $9A, $C9, $E0, $D0
-    .byte $0E, $BD, $A8, $06, $49, $01, $9D, $A8, $06, $FE, $40, $06, $4C, $59, $9A, $C9
-    .byte $F0, $D0, $11, $A5, $3E, $F0, $0C, $BD, $00, $06, $C9, $04, $F0, $05, $A9, $00
-    .byte $9D, $00, $06, $60, $60, $A5, $51, $D0, $08, $E6, $52, $A5, $52, $29, $01, $D0
-    .byte $12, $A9, $00, $85, $07, $A9, $08, $85, $06, $20, $49, $9D, $E6, $07, $C6, $06
-    .byte $D0, $F7, $60, $A9, $07, $85, $07, $A9, $08, $85, $06, $20, $49, $9D, $C6, $07
-    .byte $C6, $06, $D0, $F7, $60, $A6, $07, $BD, $00, $06, $F0, $7C, $C9, $05, $F0, $1D
-    .byte $C9, $04, $F0, $19, $C9, $01, $D0, $0B, $A5, $CB, $F0, $11, $BD, $38, $06, $C9
-    .byte $10, $B0, $0A, $BD, $30, $06, $09, $40, $85, $7A, $4C, $76, $9D, $BD, $30, $06
-    .byte $85, $7A, $BD, $38, $06, $A8, $B9, $F5, $8E, $05, $7A, $85, $7A, $BD, $00, $06
-    .byte $C9, $04, $D0, $06, $A5, $7A, $29, $DF, $85, $7A, $BD, $00, $06, $C9, $05, $D0
-    .byte $19, $BD, $28, $06, $85, $79, $BD, $10, $06, $38, $E9, $08, $A8, $BD, $08, $06
-    .byte $38, $E9, $08, $AA, $20, $1A, $A7, $4C, $C9, $9D, $20, $CD, $9D, $BD, $28, $06
-    .byte $18, $7D, $A0, $06, $18, $7D, $A8, $06, $85, $79, $BD, $10, $06, $A8, $BD, $08
-    .byte $06, $AA, $20, $1A, $A7, $20, $B6, $B4, $60, $60, $BD, $38, $06, $C9, $03, $D0
-    .byte $0F, $A0, $00, $BD, $08, $06, $C5, $8C, $B0, $02, $A0, $02, $98, $9D, $A0, $06
-    .byte $60, $A5, $8D, $85, $00, $A9, $03, $85, $01, $A5, $00, $18, $69, $04, $85, $00
-    .byte $A5, $8C, $18, $69, $02, $AA, $A4, $00, $20, $19, $A0, $90, $38, $A5, $00, $18
-    .byte $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35, $A0, $A5, $8D, $85, $00, $A9
-    .byte $03, $85, $01, $A5, $00, $18, $69, $04, $85, $00, $A5, $8C, $18, $69, $0E, $AA
-    .byte $A4, $00, $20, $19, $A0, $90, $0E, $A5, $00, $18, $69, $08, $85, $00, $C6, $01
-    .byte $D0, $E8, $4C, $35, $A0, $18, $60, $A5, $8C, $85, $00, $A9, $02, $85, $01, $A5
-    .byte $00, $18, $69, $04, $85, $00, $A6, $00, $A5, $8D, $18, $69, $02, $A8, $20, $19
-    .byte $A0, $90, $E2, $A5, $00, $18, $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35
+    .byte $00, $00, $00, $00, $00, $00, $00, $01, $01, $01, $00, $00, $00, $00, $00, $01
+    .byte $01, $01, $00, $00, $00, $00, $00, $01, $01, $00, $BD, $08, $06, $C9, $F0, $B0
+    .byte $3C, $BD, $10, $06, $C9, $D8, $B0, $35, $A0, $00, $B9, $00, $06, $C9, $04, $F0
+    .byte $08, $C8, $C0, $08, $D0, $F4, $4C, $EC, $94, $A5, $A3, $29, $03, $A8, $BD, $08
+    .byte $06, $18, $79, $E7, $93, $9D, $08, $06, $BD, $10, $06, $18, $79, $EB, $93, $9D
+    .byte $10, $06, $4C, $EC, $94, $02, $FE, $02, $FE, $02, $02, $FE, $FE, $A9, $00, $9D
+    .byte $00, $06, $A0, $00, $B9, $00, $06, $C9, $04, $F0, $06, $C8, $C0, $08, $D0, $F4
+    .byte $60, $A9, $00, $99, $00, $06, $A9, $00, $99, $78, $06, $B9, $38, $06, $C9, $18
+    .byte $B0, $01, $60, $A5, $DF, $85, $40, $A5, $8C, $38, $E9, $78, $20, $49, $B1, $85
+    .byte $41, $A5, $8D, $38, $E9, $78, $20, $49, $B1, $C5, $41, $B0, $1A, $A5, $8C, $C9
+    .byte $78, $B0, $09, $A5, $89, $F0, $3C, $C6, $40, $4C, $6A, $94, $A5, $89, $C9, $07
+    .byte $F0, $31, $E6, $40, $4C, $6A, $94, $A5, $8D, $C9, $78, $B0, $0E, $A5, $8A, $F0
+    .byte $22, $A5, $40, $38, $E9, $08, $85, $40, $4C, $6A, $94, $A5, $8A, $C9, $07, $F0
+    .byte $12, $A5, $40, $18, $69, $08, $85, $40, $86, $3E, $A6, $40, $BD, $50, $95, $F0
+    .byte $45, $A6, $3E, $86, $3E, $A5, $DF, $38, $E9, $01, $29, $3F, $AA, $BD, $50, $95
+    .byte $F0, $32, $A5, $DF, $18, $69, $01, $29, $3F, $AA, $BD, $50, $95, $F0, $25, $A5
+    .byte $DF, $38, $E9, $08, $29, $3F, $AA, $BD, $50, $95, $F0, $18, $A5, $DF, $18, $69
+    .byte $08, $29, $3F, $AA, $BD, $50, $95, $F0, $0B, $20, $53, $B1, $29, $3F, $AA, $BD
+    .byte $50, $95, $D0, $F5, $86, $40, $A2, $00, $BD, $B0, $06, $C5, $DF, $D0, $08, $BD
+    .byte $BD, $06, $D9, $38, $06, $F0, $0A, $E8, $E0, $0D, $D0, $EC, $A9, $04, $4C, $51
+    .byte $AF, $A5, $40, $9D, $B0, $06, $20, $8D, $92, $9D, $CA, $06, $20, $99, $92, $9D
+    .byte $D7, $06, $A9, $00, $9D, $E4, $06, $A6, $3E, $60, $A0, $00, $B9, $00, $06, $C9
+    .byte $04, $F0, $5A, $C8, $C0, $08, $D0, $F4, $A0, $00, $B9, $00, $06, $C9, $01, $D0
+    .byte $47, $B9, $38, $06, $C9, $05, $90, $08, $C9, $18, $90, $3C, $C9, $1B, $F0, $38
+    .byte $BD, $08, $06, $38, $F9, $08, $06, $20, $49, $B1, $C9, $0D, $B0, $2A, $BD, $10
+    .byte $06, $38, $F9, $10, $06, $20, $49, $B1, $C9, $0D, $B0, $1C, $BD, $90, $06, $85
+    .byte $A3, $A9, $12, $20, $EB, $A5, $A9, $04, $99, $00, $06, $B9, $78, $06, $F0, $0D
+    .byte $A9, $00, $99, $78, $06, $85, $9A, $60, $C8, $C0, $08, $D0, $AD, $60, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01
+    .byte $01, $00, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $01, $01, $00, $01
+    .byte $01, $01, $00, $00, $01, $01, $01, $01, $01, $00, $00, $01, $01, $01, $00, $00
+    .byte $00, $00, $01, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $01, $60, $20
+    .byte $2A, $AA, $60, $20, $53, $B1, $29, $1F, $D0, $05, $A9, $11, $20, $EB, $A5, $20
+    .byte $21, $AD, $60, $20, $53, $B1, $29, $1F, $D0, $05, $A9, $11, $20, $EB, $A5, $BD
+    .byte $90, $06, $F0, $03, $20, $F3, $95, $86, $3E, $BD, $90, $06, $F0, $32, $FE, $18
+    .byte $06, $BD, $18, $06, $29, $01, $D0, $28, $BD, $08, $06, $85, $3C, $BD, $10, $06
+    .byte $85, $3D, $A5, $8C, $18, $69, $08, $AA, $A5, $8D, $38, $E9, $0C, $A8, $20, $3B
+    .byte $AB, $20, $47, $AB, $A6, $3E, $A5, $3C, $9D, $08, $06, $A5, $3D, $9D, $10, $06
+    .byte $60, $86, $3E, $A2, $00, $A0, $00, $BD, $00, $06, $D0, $01, $C8, $E8, $E0, $08
+    .byte $D0, $F5, $C0, $02, $90, $38, $20, $04, $91, $90, $33, $20, $68, $8B, $A9, $1E
+    .byte $9D, $68, $06, $A9, $02, $9D, $38, $06, $A8, $B9, $B5, $8E, $9D, $98, $06, $B9
+    .byte $D5, $8E, $9D, $28, $06, $A4, $3E, $B9, $08, $06, $18, $69, $08, $9D, $08, $06
+    .byte $B9, $10, $06, $18, $69, $18, $9D, $10, $06, $A9, $01, $9D, $00, $06, $A6, $3E
+    .byte $60, $BD, $90, $06, $F0, $12, $20, $C0, $96, $B9, $08, $06, $18, $69, $10, $9D
+    .byte $08, $06, $B9, $10, $06, $9D, $10, $06, $60, $BD, $90, $06, $F0, $2B, $20, $C0
+    .byte $96, $B9, $08, $06, $9D, $08, $06, $B9, $10, $06, $18, $69, $18, $9D, $10, $06
+    .byte $FE, $18, $06, $BD, $18, $06, $4A, $4A, $4A, $29, $01, $9D, $A8, $06, $BD, $18
+    .byte $06, $4A, $4A, $4A, $29, $02, $9D, $A0, $06, $60, $BD, $90, $06, $F0, $2E, $20
+    .byte $C0, $96, $B9, $08, $06, $18, $69, $10, $9D, $08, $06, $B9, $10, $06, $18, $69
+    .byte $18, $9D, $10, $06, $FE, $18, $06, $BD, $18, $06, $4A, $4A, $4A, $29, $01, $9D
+    .byte $A8, $06, $BD, $18, $06, $4A, $4A, $4A, $29, $02, $9D, $A0, $06, $60, $A0, $00
+    .byte $B9, $00, $06, $C9, $01, $D0, $07, $B9, $38, $06, $C9, $0C, $F0, $05, $C8, $C0
+    .byte $08, $D0, $ED, $60, $60, $60, $BD, $00, $06, $C9, $04, $D0, $04, $20, $05, $9A
+    .byte $60, $20, $63, $99, $BD, $78, $06, $F0, $15, $A0, $00, $B9, $00, $06, $C9, $01
+    .byte $D0, $07, $B9, $38, $06, $C9, $0A, $F0, $06, $C8, $C0, $08, $D0, $ED, $60, $BD
+    .byte $08, $06, $38, $F9, $08, $06, $20, $49, $B1, $C9, $0D, $B0, $F1, $BD, $10, $06
+    .byte $38, $F9, $10, $06, $20, $49, $B1, $C9, $0D, $B0, $E3, $20, $72, $89, $C8, $C0
+    .byte $08, $F0, $07, $B9, $38, $06, $C9, $0B, $F0, $F1, $A0, $00, $B9, $F1, $06, $C5
+    .byte $DF, $D0, $05, $A9, $FF, $99, $F1, $06, $C8, $C0, $08, $D0, $EF, $A9, $01, $8D
+    .byte $AB, $02, $A9, $04, $20, $EB, $A5, $A9, $28, $85, $A6, $20, $C4, $86, $A0, $0A
+    .byte $B9, $35, $8F, $20, $8C, $89, $60, $BD, $00, $06, $C9, $04, $D0, $04, $20, $05
+    .byte $9A, $60, $20, $63, $99, $BD, $78, $06, $F0, $42, $A5, $9F, $D0, $3E, $86, $44
+    .byte $BD, $10, $06, $18, $69, $07, $A8, $BD, $08, $06, $18, $69, $07, $AA, $20, $C4
+    .byte $A0, $C9, $26, $90, $25, $C9, $2A, $B0, $21, $A5, $DF, $C9, $3C, $F0, $1B, $C9
+    .byte $27, $F0, $17, $C9, $28, $F0, $13, $C9, $34, $F0, $0F, $A9, $13, $20, $EB, $A5
+    .byte $20, $C4, $86, $20, $AF, $97, $A9, $01, $85, $9F, $A6, $44, $60
+
+Bank2_Func_97AF:
+    LDA #$00
+    STA $A0
+    LDX #$00
+    LDY #$60
+    STX $46
+    STY $47
+    JSR Bank2_Func_A0C4
+    CMP #$26
+    BNE Bank2_Label_97CA
+    JSR Bank2_Func_97E2
+    LDA #$01
+    STA $A0
+    RTS
+
+Bank2_Label_97CA:
+    LDX #$E0
+    LDY #$60
+    STX $46
+    STY $47
+    JSR Bank2_Func_A0C4
+    CMP #$26
+    BNE Bank2_Label_97E1
+    JSR Bank2_Func_97E2
+    LDA #$01
+    STA $A0
+    RTS
+
+Bank2_Label_97E1:
+    RTS
+
+Bank2_Func_97E2:
+    LDA $46
+    LSR A
+    LSR A
+    LSR A
+    STA $46
+    LDA $47
+    LSR A
+    LSR A
+    LSR A
+    STA $47
+    LDA #$08
+    STA $48
+
+Bank2_Label_97F4:
+    LDX $46
+    LDY $47
+    JSR Bank2_Func_B0BA
+    LDA #$00
+    STA $72
+    LDX #$0F
+    LDY #$98
+    LDA #$04
+    JSR Bank2_Func_B33A
+    INC $47
+    DEC $48
+    BNE Bank2_Label_97F4
+    RTS
+    .byte $00, $00, $00, $00, $BD, $00, $06, $C9, $04, $D0, $04, $20, $05, $9A, $60, $20
+    .byte $63, $99, $BD, $78, $06, $F0, $35, $A0, $00, $B9, $00, $06, $C9, $01, $D0, $27
+    .byte $B9, $38, $06, $C9, $14, $90, $20, $C9, $18, $B0, $1C, $BD, $08, $06, $38, $F9
+    .byte $08, $06, $20, $49, $B1, $C9, $0D, $B0, $0E, $BD, $10, $06, $38, $F9, $10, $06
+    .byte $20, $49, $B1, $C9, $0D, $90, $06, $C8, $C0, $08, $D0, $CD, $60, $A9, $0A, $20
+    .byte $EB, $A5, $20, $C4, $86, $B9, $38, $06, $C9, $17, $F0, $2A, $86, $3E, $A2, $00
+    .byte $DD, $BD, $06, $F0, $0A, $E8, $E0, $0D, $D0, $F6, $A9, $05, $4C, $51, $AF, $18
+    .byte $69, $08, $9D, $BD, $06, $99, $38, $06, $AA, $BD, $D5, $8E, $99, $28, $06, $A9
+    .byte $00, $85, $4D, $A6, $3E, $60, $A9, $00, $99, $00, $06, $B9, $38, $06, $85, $3E
+    .byte $A0, $00, $B9, $B0, $06, $C5, $DF, $D0, $07, $B9, $BD, $06, $C5, $3E, $F0, $04
+    .byte $C8, $4C, $A1, $98, $A9, $FF, $99, $B0, $06, $A0, $00, $B9, $F1, $06, $C9, $FF
+    .byte $F0, $04, $C8, $4C, $BA, $98, $A5, $DF, $99, $F1, $06, $20, $04, $91, $90, $13
+    .byte $BD, $08, $06, $38, $E9, $78, $85, $C9, $BD, $10, $06, $38, $E9, $78, $85, $CA
+    .byte $20, $1F, $AC, $60, $BD, $00, $06, $C9, $04, $D0, $04, $20, $05, $9A, $60, $20
+    .byte $63, $99, $BD, $78, $06, $F0, $6C, $BD, $10, $06, $C9, $F8, $F0, $65, $A0, $00
+    .byte $B9, $00, $06, $C9, $01, $D0, $57, $B9, $38, $06, $C9, $18, $90, $50, $C9, $1B
+    .byte $F0, $4C, $C9, $1F, $F0, $48, $BD, $08, $06, $85, $40, $BD, $10, $06, $85, $41
+    .byte $B9, $08, $06, $85, $3C, $B9, $10, $06, $85, $3D, $86, $3E, $84, $3F, $A6, $40
+    .byte $A4, $41, $A5, $3C, $38, $E5, $40, $20, $49, $B1, $C9, $0F, $90, $03, $20, $3B
+    .byte $AB, $A5, $3D, $38, $E5, $41, $20, $49, $B1, $C9, $0F, $90, $03, $20, $47, $AB
+    .byte $A6, $3E, $A4, $3F, $A5, $3C, $99, $08, $06, $A5, $3D, $99, $10, $06, $C8, $C0
+    .byte $08, $D0, $9D, $60, $BD, $78, $06, $F0, $30, $A5, $95, $0A, $9D, $A0, $06, $A0
+    .byte $F4, $A5, $95, $F0, $02, $A0, $0C, $98, $18, $65, $8C, $9D, $08, $06, $C9, $F4
+    .byte $90, $05, $A5, $8C, $9D, $08, $06, $FE, $58, $06, $BD, $58, $06, $4A, $29, $02
+    .byte $18, $69, $04, $18, $65, $8D, $9D, $10, $06, $60, $BD, $00, $06, $C9, $04, $D0
+    .byte $04, $20, $05, $9A, $60, $A0, $00, $BD, $08, $06, $C5, $8C, $B0, $02, $A0, $02
+    .byte $98, $9D, $A0, $06, $FE, $18, $06, $BD, $18, $06, $29, $07, $D0, $08, $BD, $A8
+    .byte $06, $49, $01, $9D, $A8, $06, $86, $3E, $BD, $78, $06, $F0, $36, $BD, $08, $06
+    .byte $85, $3C, $BD, $10, $06, $85, $3D, $A6, $8C, $A4, $8D, $8A, $38, $E5, $3C, $20
+    .byte $49, $B1, $C9, $0D, $90, $03, $20, $3B, $AB, $98, $38, $E5, $3D, $20, $49, $B1
+    .byte $C9, $0D, $90, $03, $20, $47, $AB, $A6, $3E, $A5, $3C, $9D, $08, $06, $A5, $3D
+    .byte $9D, $10, $06, $A6, $3E, $60, $A0, $00, $B9, $00, $06, $C9, $01, $D0, $07, $B9
+    .byte $38, $06, $C9, $05, $F0, $06, $C8, $C0, $08, $D0, $ED, $60, $FE, $18, $06, $BD
+    .byte $18, $06, $4A, $29, $02, $18, $79, $08, $06, $9D, $08, $06, $A9, $10, $18, $79
+    .byte $10, $06, $9D, $10, $06, $60, $A9, $00, $9D, $00, $06
+
+Bank2_Label_9A3A:
+    RTS
+
+Bank2_Func_9A3B:
+    LDX $07
+    LDA a:$0638,X
+    ASL A
+    TAY
+    LDA a:$D9AC,Y
+    STA $40
+    LDA a:$D9AD,Y
+    STA $41
+    LDA a:$0660,X
+    BEQ Bank2_Label_9A59
+    JSR Bank2_Func_AA0F
+    STA a:$0660,X
+    BCC Bank2_Label_9A3A
+
+Bank2_Label_9A59:
+    LDA a:$0640,X
+    TAY
+    LDA ($40),Y
+    AND #$0F
+    STA $3E
+    LDA ($40),Y
+    AND #$F0
+    STA $3F
+    CMP #$00
+    BNE Bank2_Label_9A98
+    LDA a:$0650,X
+    BNE Bank2_Label_9AA1
+
+Bank2_Label_9A72:
+    JSR Bank2_Func_9EF1
+    BCC Bank2_Label_9A84
+    LDA a:$0608,X
+    CLC
+    ADC $3E
+    STA a:$0608,X
+    CMP #$E0
+    BCC Bank2_Label_9A94
+
+Bank2_Label_9A84:
+    LDA a:$0650,X
+    EOR #$01
+    STA a:$0650,X
+    LDA a:$06A0,X
+    EOR #$02
+    STA a:$06A0,X
+
+Bank2_Label_9A94:
+    INC a:$0640,X
+    RTS
+
+Bank2_Label_9A98:
+    CMP #$10
+    BNE Bank2_Label_9AC7
+    LDA a:$0650,X
+    BNE Bank2_Label_9A72
+
+Bank2_Label_9AA1:
+    JSR Bank2_Func_9EB9
+    BCC Bank2_Label_9AB3
+    LDA a:$0608,X
+    SEC
+    SBC $3E
+    STA a:$0608,X
+    CMP #$10
+    BCS Bank2_Label_9AC3
+
+Bank2_Label_9AB3:
+    LDA a:$0650,X
+    EOR #$01
+    STA a:$0650,X
+    LDA a:$06A0,X
+    EOR #$02
+    STA a:$06A0,X
+
+Bank2_Label_9AC3:
+    INC a:$0640,X
+    RTS
+
+Bank2_Label_9AC7:
+    CMP #$20
+    BNE Bank2_Label_9AEE
+    LDA a:$0658,X
+    BNE Bank2_Label_9AF7
+
+Bank2_Label_9AD0:
+    JSR Bank2_Func_9F2D
+    BCC Bank2_Label_9AE2
+    LDA a:$0610,X
+    SEC
+    SBC $3E
+    STA a:$0610,X
+    CMP #$20
+    BCS Bank2_Label_9AEA
+
+Bank2_Label_9AE2:
+    LDA a:$0658,X
+    EOR #$01
+    STA a:$0658,X
+
+Bank2_Label_9AEA:
+    INC a:$0640,X
+    RTS
+
+Bank2_Label_9AEE:
+    CMP #$30
+    BNE Bank2_Label_9B15
+    LDA a:$0658,X
+    BNE Bank2_Label_9AD0
+
+Bank2_Label_9AF7:
+    JSR Bank2_Func_9F67
+    BCC Bank2_Label_9B09
+    LDA a:$0610,X
+    CLC
+    ADC $3E
+    STA a:$0610,X
+    CMP #$C0
+    BCC Bank2_Label_9B11
+
+Bank2_Label_9B09:
+    LDA a:$0658,X
+    EOR #$01
+    STA a:$0658,X
+
+Bank2_Label_9B11:
+    INC a:$0640,X
+    RTS
+
+Bank2_Label_9B15:
+    CMP #$40
+    BNE Bank2_Label_9B28
+    INC a:$0640,X
+    LDA a:$0640,X
+    TAY
+    LDA ($40),Y
+    STA a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9B28:
+    CMP #$50
+    BNE Bank2_Label_9B48
+    LDA a:$0648,X
+    BNE Bank2_Label_9B3C
+    LDA a:$0640,X
+    TAY
+    INY
+    LDA ($40),Y
+    STA a:$0648,X
+    RTS
+
+Bank2_Label_9B3C:
+    DEC a:$0648,X
+    BNE Bank2_Label_9B47
+    INC a:$0640,X
+    INC a:$0640,X
+
+Bank2_Label_9B47:
+    RTS
+
+Bank2_Label_9B48:
+    CMP #$60
+    BNE Bank2_Label_9B57
+    LDA $3E
+    STA a:$0660,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9B57:
+    CMP #$70
+    BNE Bank2_Label_9BBF
+    LDA $3E
+    CMP #$00
+    BEQ Bank2_Label_9BA3
+    CMP #$01
+    BEQ Bank2_Label_9BB1
+    CMP #$08
+    BEQ Bank2_Label_9B7F
+    CMP #$09
+    BEQ Bank2_Label_9B8D
+    CMP #$0A
+    BEQ Bank2_Label_9B98
+    LDA #$01
+    STA a:$0650,X
+    STA a:$0658,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9B7F:
+    LDA #$00
+    STA a:$0650,X
+    STA a:$0658,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9B8D:
+    LDA #$01
+    STA a:$0650,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9B98:
+    LDA #$01
+    STA a:$0658,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9BA3:
+    JSR Bank2_Func_B153
+    AND #$01
+    STA a:$0650,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9BB1:
+    JSR Bank2_Func_B153
+    AND #$01
+    STA a:$0658,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9BBF:
+    CMP #$80
+    BNE Bank2_Label_9BF3
+    LDA $3E
+    BNE Bank2_Label_9BDF
+    INC a:$0640,X
+    LDA a:$0640,X
+    TAY
+    LDA ($40),Y
+    STA a:$0680,X
+    INC a:$0640,X
+    LDA a:$0640,X
+    STA a:$0688,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9BDF:
+    INC a:$0640,X
+    LDA a:$0680,X
+    BEQ Bank2_Label_9BF0
+    DEC a:$0680,X
+    LDA a:$0688,X
+    STA a:$0640,X
+
+Bank2_Label_9BF0:
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9BF3:
+    CMP #$90
+    BNE Bank2_Label_9C39
+    INC a:$0640,X
+    LDA a:$0640,X
+    TAY
+    LDA a:$0650,X
+    BEQ Bank2_Label_9C0D
+    LDA ($40),Y
+    EOR #$FF
+    CLC
+    ADC #$01
+    JMP Bank2_Label_9C0F
+
+Bank2_Label_9C0D:
+    LDA ($40),Y
+
+Bank2_Label_9C0F:
+    CLC
+    ADC a:$0608,X
+    STA a:$0608,X
+    INC a:$0640,X
+    LDA a:$0640,X
+    TAY
+    LDA a:$0658,X
+    BEQ Bank2_Label_9C2C
+    LDA ($40),Y
+    EOR #$FF
+    CLC
+    ADC #$01
+    JMP Bank2_Label_9C2E
+
+Bank2_Label_9C2C:
+    LDA ($40),Y
+
+Bank2_Label_9C2E:
+    CLC
+    ADC a:$0610,X
+    STA a:$0610,X
+    INC a:$0640,X
+    RTS
+
+Bank2_Label_9C39:
+    CMP #$A0
+    BNE Bank2_Label_9C60
+    INC a:$0640,X
+    LDA a:$0640,X
+    TAY
+    LDA ($40),Y
+    STA a:$0608,X
+    INC a:$0640,X
+    LDA a:$0640,X
+    TAY
+    LDA ($40),Y
+    STA a:$0610,X
+    INC a:$0640,X
+    LDA #$00
+    STA a:$0668,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9C60:
+    CMP #$B0
+    BNE Bank2_Label_9C6F
+    LDA $3E
+    STA a:$06A0,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9C6F:
+    CMP #$C0
+    BNE Bank2_Label_9CDB
+    LDA $3E
+    CMP #$01
+    BEQ Bank2_Label_9CA3
+    CMP #$02
+    BEQ Bank2_Label_9CBF
+    INC a:$0640,X
+    LDA a:$0640,X
+    TAY
+    JSR Bank2_Func_B153
+    CMP ($40),Y
+    BCS Bank2_Label_9C94
+    INC a:$0640,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9C94:
+    INC a:$0640,X
+    LDA a:$0640,X
+    TAY
+    LDA ($40),Y
+    STA a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9CA3:
+    INC a:$0640,X
+    LDA a:$0608,X
+    CMP $8C
+    BCS Bank2_Label_9CB3
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9CB3:
+    LDA a:$0640,X
+    TAY
+    LDA ($40),Y
+    STA a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9CBF:
+    INC a:$0640,X
+    LDA a:$0610,X
+    CMP $8D
+    BCS Bank2_Label_9CCF
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9CCF:
+    LDA a:$0640,X
+    TAY
+    LDA ($40),Y
+    STA a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9CDB:
+    CMP #$D0
+    BNE Bank2_Label_9CF1
+    INC a:$0640,X
+    LDA a:$0640,X
+    TAY
+    LDA ($40),Y
+    STA a:$0690,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9CF1:
+    CMP #$E0
+    BNE Bank2_Label_9D03
+    LDA a:$06A8,X
+    EOR #$01
+    STA a:$06A8,X
+    INC a:$0640,X
+    JMP Bank2_Label_9A59
+
+Bank2_Label_9D03:
+    CMP #$F0
+    BNE Bank2_Label_9D18
+    LDA $3E
+    BEQ Bank2_Label_9D17
+    LDA a:$0600,X
+    CMP #$04
+    BEQ Bank2_Label_9D17
+    LDA #$00
+    STA a:$0600,X
+
+Bank2_Label_9D17:
+    RTS
+
+Bank2_Label_9D18:
+    RTS
+
+Bank2_Func_9D19:
+    LDA $51
+    BNE Bank2_Label_9D25
+    INC $52
+    LDA $52
+    AND #$01
+    BNE Bank2_Label_9D37
+
+Bank2_Label_9D25:
+    LDA #$00
+    STA $07
+    LDA #$08
+    STA $06
+
+Bank2_Label_9D2D:
+    JSR Bank2_Func_9D49
+    INC $07
+    DEC $06
+    BNE Bank2_Label_9D2D
+    RTS
+
+Bank2_Label_9D37:
+    LDA #$07
+    STA $07
+    LDA #$08
+    STA $06
+
+Bank2_Label_9D3F:
+    JSR Bank2_Func_9D49
+    DEC $07
+    DEC $06
+    BNE Bank2_Label_9D3F
+    RTS
+
+Bank2_Func_9D49:
+    LDX $07
+    LDA a:$0600,X
+    BEQ Bank2_Label_9DCC
+    CMP #$05
+    BEQ Bank2_Label_9D71
+    CMP #$04
+    BEQ Bank2_Label_9D71
+    CMP #$01
+    BNE Bank2_Label_9D67
+    LDA $CB
+    BEQ Bank2_Label_9D71
+    LDA a:$0638,X
+    CMP #$10
+    BCS Bank2_Label_9D71
+
+Bank2_Label_9D67:
+    LDA a:$0630,X
+    ORA #$40
+    STA $7A
+    JMP Bank2_Label_9D76
+
+Bank2_Label_9D71:
+    LDA a:$0630,X
+    STA $7A
+
+Bank2_Label_9D76:
+    LDA a:$0638,X
+    TAY
+    LDA a:$8EF5,Y
+    ORA $7A
+    STA $7A
+    LDA a:$0600,X
+    CMP #$04
+    BNE Bank2_Label_9D8E
+    LDA $7A
+    AND #$DF
+    STA $7A
+
+Bank2_Label_9D8E:
+    LDA a:$0600,X
+    CMP #$05
+    BNE Bank2_Label_9DAE
+    LDA a:$0628,X
+    STA $79
+    LDA a:$0610,X
+    SEC
+    SBC #$08
+    TAY
+    LDA a:$0608,X
+    SEC
+    SBC #$08
+    TAX
+    JSR Bank2_Func_A71A
+    JMP Bank2_Label_9DC9
+
+Bank2_Label_9DAE:
+    JSR Bank2_Func_9DCD
+    LDA a:$0628,X
+    CLC
+    ADC a:$06A0,X
+    CLC
+    ADC a:$06A8,X
+    STA $79
+    LDA a:$0610,X
+    TAY
+    LDA a:$0608,X
+    TAX
+    JSR Bank2_Func_A71A
+
+Bank2_Label_9DC9:
+    JSR Bank2_Func_B4B6
+
+Bank2_Label_9DCC:
+    RTS
+
+Bank2_Func_9DCD:
+    RTS
+    .byte $BD, $38, $06, $C9, $03, $D0, $0F, $A0, $00, $BD, $08, $06, $C5, $8C, $B0, $02
+    .byte $A0, $02, $98, $9D, $A0, $06, $60, $A5, $8D, $85, $00, $A9, $03, $85, $01, $A5
+    .byte $00, $18, $69, $04, $85, $00, $A5, $8C, $18, $69, $02, $AA, $A4, $00, $20, $19
+    .byte $A0, $90, $38, $A5, $00, $18, $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35
+    .byte $A0, $A5, $8D, $85, $00, $A9, $03, $85, $01, $A5, $00, $18, $69, $04, $85, $00
+    .byte $A5, $8C, $18, $69, $0E, $AA, $A4, $00, $20, $19, $A0, $90, $0E, $A5, $00, $18
+    .byte $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35, $A0, $18, $60, $A5, $8C, $85
+    .byte $00, $A9, $02, $85, $01, $A5, $00, $18, $69, $04, $85, $00, $A6, $00, $A5, $8D
+    .byte $18, $69, $02, $A8, $20, $19, $A0, $90, $E2, $A5, $00, $18, $69, $08, $85, $00
+    .byte $C6, $01, $D0, $E8, $4C, $35, $A0, $A5, $8C, $85, $00, $A9, $02, $85, $01, $A5
+    .byte $00, $18, $69, $04, $85, $00, $A6, $00, $A5, $8D, $18, $69, $16, $A8, $20, $19
+    .byte $A0, $90, $B8, $A5, $00, $18, $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35
     .byte $A0, $A5, $8C, $85, $00, $A9, $02, $85, $01, $A5, $00, $18, $69, $04, $85, $00
-    .byte $A6, $00, $A5, $8D, $18, $69, $16, $A8, $20, $19, $A0, $90, $B8, $A5, $00, $18
-    .byte $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35, $A0, $A5, $8C, $85, $00, $A9
-    .byte $02, $85, $01, $A5, $00, $18, $69, $04, $85, $00, $A6, $00, $A5, $8D, $18, $69
-    .byte $0C, $A8, $20, $19, $A0, $90, $8E, $A5, $00, $18, $69, $08, $85, $00, $C6, $01
-    .byte $D0, $E8, $4C, $35, $A0, $BD, $08, $06, $85, $46, $BD, $10, $06, $85, $47, $86
-    .byte $44, $A5, $47, $85, $00, $A9, $02, $85, $01, $A5, $00, $18, $69, $04, $85, $00
-    .byte $A5, $46, $18, $69, $02, $AA, $A4, $00, $20, $09, $A0, $90, $48, $A5, $00, $18
-    .byte $69, $08, $85, $00, $C6, $01, $D0, $E8, $A6, $44, $4C, $35, $A0, $BD, $08, $06
-    .byte $85, $46, $BD, $10, $06, $85, $47, $86, $44, $A5, $47, $85, $00, $A9, $02, $85
-    .byte $01, $A5, $00, $18, $69, $04, $85, $00, $A5, $46, $18, $69, $0E, $AA, $A4, $00
-    .byte $20, $09, $A0, $90, $10, $A5, $00, $18, $69, $08, $85, $00, $C6, $01, $D0, $E8
-    .byte $A6, $44, $4C, $35, $A0, $A6, $44, $18, $60, $BD, $08, $06, $85, $46, $BD, $10
-    .byte $06, $85, $47, $86, $44, $A5, $46, $85, $00, $85, $00, $A9, $02, $85, $01, $A5
-    .byte $00, $18, $69, $04, $85, $00, $A5, $47, $18, $69, $02, $A8, $A6, $00, $20, $09
-    .byte $A0, $90, $D2, $A5, $00, $18, $69, $08, $85, $00, $C6, $01, $D0, $E8, $A6, $44
-    .byte $4C, $35, $A0, $BD, $08, $06, $85, $46, $BD, $10, $06, $85, $47, $86, $44, $A5
-    .byte $46, $85, $00, $A9, $02, $85, $01, $A5, $00, $18, $69, $04, $85, $00, $A5, $47
-    .byte $18, $69, $16, $A8, $A6, $00, $20, $09, $A0, $90, $9A, $A5, $00, $18, $69, $08
-    .byte $85, $00, $C6, $01, $D0, $E8, $A6, $44, $4C, $35, $A0, $BD, $08, $06, $85, $46
-    .byte $BD, $10, $06, $85, $47, $86, $44, $A5, $46, $85, $00, $A9, $02, $85, $01, $A5
-    .byte $00, $18, $69, $04, $85, $00, $A5, $47, $18, $69, $08, $A8, $A6, $00, $20, $09
-    .byte $A0, $90, $10, $A5, $00, $18, $69, $08, $85, $00, $C6, $01, $D0, $E8, $A6, $44
-    .byte $4C, $35, $A0, $A6, $44, $18, $60, $86, $44, $A5, $46, $85, $00, $A9, $02, $85
-    .byte $01, $A5, $00, $18, $69, $04, $85, $00, $A5, $47, $18, $69, $08, $A8, $A6, $00
-    .byte $20, $19, $A0, $90, $DE, $A5, $00, $18, $69, $08, $85, $00, $C6, $01, $D0, $E8
-    .byte $A6, $44, $4C, $35, $A0, $20, $C4, $A0, $85, $9E, $C9, $26, $B0, $1F, $C9, $01
-    .byte $F0, $1B, $4C, $35, $A0, $20, $C4, $A0, $85, $9E, $C9, $26, $90, $13, $20, $61
-    .byte $A0, $B0, $0E, $20, $50, $A0, $B0, $09, $20, $39, $A0, $B0, $04, $A5, $9E, $18
-    .byte $60, $A5, $9E, $38, $60, $A5, $A1, $F0, $F4, $A5, $DF, $C9, $3C, $D0, $EE, $A5
-    .byte $9E, $C9, $26, $90, $E8, $C9, $2A, $90, $E8, $4C, $31, $A0, $A5, $9F, $F0, $DD
-    .byte $A5, $9E, $C9, $26, $90, $D7, $C9, $2A, $90, $D7, $4C, $31, $A0, $A5, $DF, $C9
-    .byte $27, $F0, $0B, $C9, $28, $F0, $0E, $C9, $34, $F0, $11, $4C, $31, $A0, $A5, $58
-    .byte $F0, $F9, $4C, $87, $A0, $A5, $59, $F0, $F2, $4C, $87, $A0, $A5, $5A, $F0, $EB
-    .byte $4C, $87, $A0, $A5, $9E, $C9, $26, $90, $A4, $C9, $2A, $90, $2F, $C9, $30, $90
-    .byte $9C, $C9, $4A, $90, $27, $C9, $50, $90, $94, $C9, $5A, $90, $1F, $C9, $64, $90
-    .byte $8C, $C9, $6A, $90, $17, $C9, $6D, $F0, $13, $C9, $74, $F0, $0F, $C9, $75, $F0
-    .byte $0B, $C9, $78, $F0, $07, $C9, $79, $F0, $03, $4C, $31, $A0, $A5, $9E, $38, $60
-    .byte $8A, $4A, $4A, $4A, $85, $40, $98, $4A, $4A, $4A, $85, $41, $20, $04, $A9, $A2
-    .byte $00, $86, $09, $A5, $41, $29, $FC, $0A, $26, $09, $0A, $26, $09, $0A, $26, $09
-    .byte $0A, $26, $09, $18, $65, $84, $85, $08, $A5, $09, $65, $85, $85, $09, $A5, $40
-    .byte $4A, $4A, $A8, $B1, $08, $A2, $00, $86, $3D, $0A, $26, $3D, $0A, $26, $3D, $18
-    .byte $69, $F2, $85, $3C, $A5, $3D, $69, $E2, $85, $3D, $A5, $41, $29, $02, $85, $08
-    .byte $A5, $40, $29, $02, $4A, $05, $08, $A8, $B1, $3C, $A2, $00, $86, $3D, $0A, $26
-    .byte $3D, $0A, $26, $3D, $18, $69, $F2, $85, $3C, $A5, $3D, $69, $DE, $85, $3D, $A5
-    .byte $41, $29, $01, $0A, $85, $08, $A5, $40, $29, $01, $05, $08, $A8, $B1, $3C, $60
-    .byte $FE, $03, $07, $BD, $03, $07, $29, $03, $D0, $72, $FE, $01, $07, $BD, $01, $07
-    .byte $C9, $A3, $D0, $68, $A9, $00, $9D, $F9, $06, $4C, $C0, $A1, $A9, $00, $85, $07
-    .byte $A9, $02, $85, $06, $A6, $07, $BD, $F9, $06, $F0, $51, $C9, $02, $F0, $D1, $BD
-    .byte $FB, $06, $85, $46, $BD, $FD, $06, $85, $47, $20, $DB, $9F, $B0, $19, $A6, $07
-    .byte $A9, $02, $9D, $F9, $06, $A9, $00, $9D, $03, $07, $A9, $A0, $9D, $01, $07, $A9
-    .byte $02, $20, $DF, $A5, $4C, $C0, $A1, $BD, $FF, $06, $D0, $0E, $BD, $FB, $06, $38
-    .byte $E9, $03, $9D, $FB, $06, $B0, $15, $4C, $BB, $A1, $BD, $FB, $06, $18, $69, $03
-    .byte $9D, $FB, $06, $C9, $F0, $90, $05, $A9, $00, $9D, $F9, $06, $E6, $07, $C6, $06
-    .byte $D0, $A2, $60, $A9, $00, $85, $00, $A9, $02, $85, $01, $A6, $00, $BD, $F9, $06
-    .byte $F0, $17, $BD, $01, $07, $85, $79, $BD, $FD, $06, $A8, $BD, $FB, $06, $AA, $20
-    .byte $1A, $A7, $A9, $00, $85, $7A, $20, $B6, $B4, $E6, $00, $C6, $01, $D0, $DC, $60
-    .byte $A2, $00, $8A, $95, $8E, $E8, $E0, $10, $D0, $F9, $A9, $01, $85, $8E, $A9, $0E
-    .byte $85, $97, $A9, $07, $85, $94, $A9, $01, $85, $95, $A9, $03, $85, $90, $60, $A9
-    .byte $08, $38, $E5, $2C, $0A, $0A, $85, $2B, $60, $A5, $8E, $0A, $AA, $BD, $2F, $A2
-    .byte $85, $40, $BD, $30, $A2, $85, $41, $20, $1F, $93, $60, $39, $A2, $35, $A3, $3C
-    .byte $A3, $E9, $A2, $3A, $A2, $60, $E6, $93, $A5, $93, $29, $07, $D0, $06, $A5, $91
-    .byte $49, $01, $85, $91, $A4, $97, $C0, $0E, $F0, $02, $E6, $97, $B9, $63, $A5, $30
-    .byte $06, $18, $65, $8D, $4C, $62, $A2, $18, $65, $8D, $B0, $02, $A9, $00, $85, $8D
-    .byte $C9, $F0, $90, $24, $AD, $AA, $02, $D0, $FB, $A9, $3C, $85, $68, $20, $BB, $B1
-    .byte $A9, $00, $85, $4D, $A5, $2A, $F0, $42, $C6, $2A, $A5, $DC, $F0, $03, $4C, $C3
-    .byte $82, $A5, $53, $D0, $04, $4C, $4C, $83, $60, $A9, $00, $85, $53, $20, $F6, $8C
-    .byte $20, $FD, $8C, $A5, $54, $85, $DF, $A5, $DF, $C9, $11, $D0, $04, $A9, $01, $85
-    .byte $9F, $20, $33, $A7, $A0, $00, $B9, $25, $07, $99, $8C, $00, $C8, $C0, $12, $D0
-    .byte $F5, $20, $13, $A2, $A5, $A5, $8D, $AA, $02, $60, $A5, $DC, $F0, $03, $4C, $48
-    .byte $80, $20, $65, $80, $A5, $21, $29, $10, $F0, $FA, $20, $D4, $A2, $4C, $85, $A2
-    .byte $A2, $00, $A9, $00, $9D, $98, $02, $E8, $E0, $08, $D0, $F8, $A9, $02, $85, $2A
-    .byte $A9, $02, $85, $2C, $60, $20, $B4, $A3, $20, $72, $A5, $A4, $9B, $B9, $2E, $A3
-    .byte $85, $43, $D0, $10, $A9, $01, $85, $8E, $A4, $95, $B9, $85, $A4, $85, $90, $A9
-    .byte $00, $85, $91, $60, $E6, $9B, $A5, $95, $F0, $10, $20, $9E, $A4, $C6, $43, $D0
-    .byte $F9, $A9, $00, $85, $91, $A9, $0B, $85, $90, $60, $20, $B4, $A4, $C6, $43, $D0
-    .byte $F9, $A9, $01, $85, $91, $A9, $0B, $85, $90, $60, $04, $03, $03, $02, $02, $02
-    .byte $00, $20, $B4, $A3, $20, $72, $A5, $60, $20, $43, $A3, $20, $72, $A5, $60, $A4
-    .byte $97, $B9, $9C, $A3, $10, $14, $A5, $8A, $D0, $06, $A5, $8D, $C9, $08, $90, $05
-    .byte $20, $3B, $9E, $B0, $05, $A9, $0E, $85, $97, $60, $20, $8F, $9E, $A5, $9E, $C9
-    .byte $00, $D0, $14, $A9, $01, $85, $8E, $A4, $95, $B9, $85, $A4, $85, $90, $A9, $00
-    .byte $85, $91, $A9, $0E, $85, $97, $60, $20, $87, $A4, $A4, $97, $B9, $9C, $A3, $85
-    .byte $08, $C9, $04, $F0, $0B, $A5, $99, $F0, $05, $C6, $99, $4C, $94, $A3, $E6, $97
-    .byte $A5, $8D, $18, $65, $08, $85, $8D, $60, $FC, $FD, $FD, $FE, $FE, $FE, $FF, $FF
-    .byte $FF, $FF, $00, $00, $00, $00, $01, $01, $01, $01, $02, $02, $02, $03, $03, $04
-    .byte $A5, $92, $F0, $16, $E6, $93, $A5, $93, $29, $0F, $D0, $0B, $A9, $00, $85, $92
-    .byte $A4, $95, $B9, $85, $A4, $85, $90, $4C, $E0, $A3, $E6, $93, $A5, $93, $25, $94
-    .byte $D0, $0A, $A5, $91, $D0, $04, $A9, $03, $85, $91, $C6, $91, $20, $F7, $A5, $29
-    .byte $08, $D0, $0B, $A9, $07, $85, $94, $A9, $00, $85, $61, $4C, $2B, $A4, $A5, $61
-    .byte $F0, $09, $E6, $61, $C9, $0A, $F0, $EF, $4C, $2B, $A4, $E6, $61, $A5, $92, $D0
-    .byte $07, $A4, $95, $B9, $85, $A4, $85, $90, $A9, $03, $85, $94, $A4, $97, $C0, $0E
-    .byte $D0, $07, $A9, $00, $85, $99, $4C, $27, $A4, $A5, $99, $C9, $14, $B0, $04, $E6
-    .byte $99, $E6, $99, $A9, $00, $85, $97, $20, $CE, $A4, $20, $65, $9E, $B0, $16, $20
-    .byte $F7, $A5, $29, $03, $D0, $0F, $A5, $92, $D0, $08, $A9, $08, $85, $90, $A9, $00
-    .byte $85, $91, $4C, $57, $A4, $20, $F7, $A5, $29, $02, $D0, $0E, $20, $F7, $A5, $29
-    .byte $01, $D0, $1A, $A9, $00, $85, $96, $4C, $81, $A4, $A5, $92, $D0, $04, $A9, $00
-    .byte $85, $90, $A9, $00, $85, $95, $A9, $01, $85, $96, $4C, $81, $A4, $A5, $92, $D0
-    .byte $04, $A9, $03, $85, $90, $A9, $01, $85, $95, $A9, $01, $85, $96, $20, $87, $A4
-    .byte $60, $00, $03, $E6, $9C, $A5, $9C, $29, $01, $D0, $03, $20, $92, $A4, $A5, $96
-    .byte $F0, $07, $A5, $95, $F0, $04, $4C, $B4, $A4, $60, $20, $E5, $9D, $B0, $05, $A9
-    .byte $00, $85, $96, $60, $C6, $8C, $D0, $07, $A9, $EC, $85, $8C, $20, $19, $A6, $60
-    .byte $20, $0F, $9E, $B0, $05, $A9, $00, $85, $96, $60, $E6, $8C, $A5, $8C, $C9, $F0
-    .byte $D0, $07, $A9, $04, $85, $8C, $20, $3A, $A6, $60, $A4, $97, $C0, $0E, $F0, $02
-    .byte $E6, $97, $B9, $63, $A5, $85, $A7, $F0, $05, $10, $50, $4C, $E3, $A4, $60, $E6
-    .byte $9D, $A5, $9D, $29, $01, $D0, $03, $20, $EE, $A4, $20, $3B, $9E, $B0, $05, $A9
-    .byte $0E, $85, $97, $60, $20, $8F, $9E, $A5, $9E, $C9, $14, $D0, $0E, $A9, $02, $85
-    .byte $8E, $A9, $00, $85, $97, $A9, $0C, $20, $DF, $A5, $60, $A5, $8D, $18, $65, $A7
-    .byte $85, $8D, $C9, $08, $B0, $0C, $A5, $8A, $D0, $09, $A9, $00, $85, $8D, $A9, $0E
-    .byte $85, $97, $60, $A9, $D0, $85, $8D, $20, $5D, $A6, $60, $20, $65, $9E, $B0, $05
-    .byte $A9, $00, $85, $96, $60, $20, $F7, $A5, $29, $04, $D0, $10, $E6, $98, $A5, $98
-    .byte $C9, $06, $90, $1A, $A9, $00, $85, $98, $A9, $01, $85, $A7, $A5, $8D, $18, $65
-    .byte $A7, $85, $8D, $C9, $D4, $90, $07, $A9, $0C, $85, $8D, $20, $88, $A6, $60, $FE
-    .byte $FE, $FE, $FE, $FF, $FF, $FF, $FF, $00, $00, $00, $00, $00, $00, $02, $20, $F7
-    .byte $A5, $29, $80, $D0, $03, $85, $63, $60, $A5, $63, $D0, $FB, $E6, $63, $A9, $01
-    .byte $85, $92, $A5, $95, $18, $69, $09, $85, $90, $A9, $00, $85, $91, $A9, $00, $85
-    .byte $93, $A2, $00, $BD, $F9, $06, $F0, $06, $E8, $E0, $02, $D0, $F6, $60, $A5, $95
-    .byte $D0, $0B, $A5, $8C, $C9, $12, $90, $32, $A0, $F8, $4C, $B9, $A5, $A5, $8C, $C9
-    .byte $EE, $B0, $27, $A0, $08, $98, $18, $65, $8C, $9D, $FB, $06, $A5, $8D, $18, $69
-    .byte $08, $9D, $FD, $06, $A5, $95, $9D, $FF, $06, $0A, $18, $69, $68, $9D, $01, $07
-    .byte $A9, $01, $9D, $F9, $06, $A9, $19, $20, $DF, $A5, $60, $86, $49, $84, $4A, $20
-    .byte $90, $BE, $A6, $49, $A4, $4A, $60, $86, $49, $84, $4A, $20, $B4, $BE, $A6, $49
-    .byte $A4, $4A, $60, $A5, $DC, $D0, $03, $A5, $21, $60, $A9, $00, $60, $A6, $8C, $A4
-    .byte $8D, $20, $1A, $A7, $A5, $90, $18, $65, $91, $85, $8F, $85, $79, $A9, $00, $85
-    .byte $7A, $20, $B6, $B4, $60, $A5, $89, $F0, $1C, $C6, $89, $A5, $DF, $85, $8B, $C6
-    .byte $8B, $20, $E6, $A6, $20, $B5, $A6, $20, $BF, $A6, $20, $F6, $8C, $C6, $DF, $20
-    .byte $FD, $8C, $20, $33, $A7, $60, $A5, $89, $C9, $07, $F0, $1C, $E6, $89, $A5, $DF
-    .byte $85, $8B, $E6, $8B, $20, $E6, $A6, $20, $B5, $A6, $20, $BF, $A6, $20, $F6, $8C
-    .byte $E6, $DF, $20, $FD, $8C, $20, $33, $A7, $60, $A5, $8A, $F0, $26, $C6, $8A, $A5
-    .byte $DF, $85, $8B, $A5, $8B, $38, $E9, $08, $85, $8B, $20, $E6, $A6, $20, $B5, $A6
-    .byte $20, $BF, $A6, $20, $F6, $8C, $A5, $DF, $38, $E9, $08, $85, $DF, $20, $FD, $8C
-    .byte $20, $33, $A7, $60, $A5, $8A, $C9, $07, $F0, $26, $E6, $8A, $A5, $DF, $85, $8B
-    .byte $A5, $8B, $18, $69, $08, $85, $8B, $20, $E6, $A6, $20, $B5, $A6, $20, $BF, $A6
-    .byte $20, $F6, $8C, $A5, $DF, $18, $69, $08, $85, $DF, $20, $FD, $8C, $20, $33, $A7
-    .byte $60, $A5, $8B, $C9, $3F, $D0, $03, $20, $6C, $86, $60, $A5, $8B, $C9, $27, $F0
-    .byte $09, $C9, $28, $F0, $0D, $C9, $34, $F0, $11, $60, $A5, $58, $D0, $FB, $20, $6C
-    .byte $86, $60, $A5, $59, $D0, $F3, $20, $6C, $86, $60, $A5, $5A, $D0, $EB, $20, $6C
-    .byte $86, $60, $A0, $00, $84, $3E, $B9, $B0, $06, $C5, $8B, $D0, $09, $B9, $BD, $06
-    .byte $C9, $18, $90, $02, $E6, $3E, $C8, $C0, $0D, $D0, $EB, $A5, $3E, $C9, $03, $90
-    .byte $14, $A5, $9A, $F0, $10, $A9, $00, $85, $9A, $A0, $00, $A9, $00, $99, $78, $06
-    .byte $C8, $C0, $08, $D0, $F6, $60, $A9, $00, $E0, $F8, $90, $02, $A9, $03, $86, $75
-    .byte $85, $76, $A9, $00, $C0, $F8, $90, $02, $A9, $03, $84, $77, $85, $78, $60, $20
-    .byte $63, $A8, $20, $76, $B2, $A9, $02, $20, $AA, $81, $A9, $90, $85, $19, $20, $EB
-    .byte $A8, $20, $35, $A8, $20, $A8, $8D, $20, $B4, $8D, $20, $25, $8C, $20, $AD, $8C
-    .byte $20, $53, $AB, $20, $F9, $AB, $A5, $A1, $F0, $03, $20, $17, $88, $A5, $51, $D0
-    .byte $26, $A5, $DF, $C9, $27, $F0, $0B, $C9, $28, $F0, $0E, $C9, $34, $F0, $11, $4C
-    .byte $9C, $A7, $A5, $58, $D0, $11, $4C, $9C, $A7, $A5, $59, $D0, $0A, $4C, $9C, $A7
-    .byte $A5, $5A, $D0, $03, $4C, $9C, $A7, $A5, $DF, $C9, $27, $F0, $08, $C9, $28, $F0
-    .byte $04, $C9, $34, $D0, $03, $20, $5C, $87, $A5, $9F, $F0, $0B, $20, $AF, $97, $A5
-    .byte $A0, $D0, $04, $A9, $00, $85, $9F, $20, $FF, $B3, $20, $86, $B2, $20, $B0, $A8
-    .byte $A9, $00, $85, $73, $85, $74, $A9, $00, $85, $CB, $85, $CC, $A9, $00, $85, $CE
-    .byte $85, $CF, $20, $E5, $A7, $AD, $AA, $02, $29, $7F, $C5, $A5, $F0, $0D, $C9, $03
-    .byte $D0, $04, $A5, $51, $D0, $05, $A5, $A5, $8D, $AA, $02, $A9, $00, $8D, $AB, $02
-    .byte $60, $A4, $DF, $B9, $F1, $A7, $A8, $B9, $31, $A8, $85, $A5, $60, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01
-    .byte $00, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $01, $01, $01, $01, $01
-    .byte $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $02, $02, $02, $01, $01, $01
-    .byte $01, $01, $02, $02, $02, $01, $01, $01, $01, $01, $02, $02, $03, $01, $02, $05
-    .byte $06, $A9, $00, $85, $40, $A6, $DF, $BD, $D2, $AD, $4A, $66, $40, $4A, $66, $40
-    .byte $4A, $66, $40, $85, $41, $A5, $40, $18, $69, $AE, $85, $40, $A5, $41, $69, $BC
-    .byte $85, $41, $A0, $00, $B1, $40, $99, $05, $07, $C8, $C0, $20, $D0, $F6, $60, $A2
-    .byte $80, $A0, $04, $86, $00, $84, $01, $A2, $05, $A0, $07, $86, $02, $84, $03, $A9
-    .byte $20, $85, $04, $20, $F1, $B1, $A2, $00, $86, $02, $BD, $80, $04, $C9, $0F, $F0
-    .byte $13, $E6, $02, $A8, $29, $30, $D0, $05, $A9, $0F, $4C, $95, $A8, $98, $38, $E9
-    .byte $10, $9D, $80, $04, $E8, $E0, $20, $D0, $E1, $A2, $80, $A0, $04, $20, $A3, $B2
-    .byte $A9, $03, $85, $68, $20, $BB, $B1, $A5, $02, $D0, $CB, $60, $A2, $00, $86, $02
-    .byte $BD, $80, $04, $DD, $05, $07, $F0, $17, $E6, $02, $C9, $0F, $D0, $08, $BD, $05
-    .byte $07, $29, $0F, $4C, $D0, $A8, $BD, $80, $04, $18, $69, $10, $9D, $80, $04, $E8
-    .byte $E0, $20, $D0, $DC, $A2, $80, $A0, $04, $20, $A3, $B2, $A9, $03, $85, $68, $20
-    .byte $BB, $B1, $A5, $02, $D0, $C6, $60, $20, $04, $A9, $A9, $00, $85, $88, $85, $86
-    .byte $85, $87, $A9, $1E, $85, $07, $20, $22, $A9, $E6, $88, $C6, $07, $D0, $F7, $60
-    .byte $A5, $DF, $29, $F8, $4A, $4A, $18, $69, $E6, $85, $85, $A5, $DF, $29, $07, $0A
-    .byte $0A, $0A, $18, $69, $F2, $85, $84, $A5, $85, $69, $00, $85, $85, $60, $20, $46
-    .byte $A9, $A2, $00, $A4, $88, $20, $BA, $B0, $A2, $A0, $A0, $04, $A9, $20, $20, $3A
-    .byte $B3, $A2, $00, $A4, $88, $20, $F8, $B0, $A2, $C0, $A0, $04, $A9, $08, $20, $3A
-    .byte $B3, $60, $20, $67, $A9, $A5, $87, $49, $02, $85, $87, $D0, $15, $A5, $86, $49
-    .byte $02, $85, $86, $D0, $0D, $A5, $84, $18, $69, $40, $85, $84, $A5, $85, $69, $00
-    .byte $85, $85, $60, $A2, $00, $86, $01, $A9, $00, $85, $03, $A4, $01, $B1, $84, $0A
-    .byte $26, $03, $0A, $26, $03, $18, $69, $F2, $85, $02, $A5, $03, $69, $E2, $85, $03
-    .byte $A5, $86, $85, $00, $20, $9C, $A9, $E6, $00, $20, $9C, $A9, $20, $C5, $A9, $E6
-    .byte $01, $A5, $01, $C9, $08, $D0, $D0, $60, $A9, $00, $85, $05, $A4, $00, $B1, $02
-    .byte $0A, $26, $05, $0A, $26, $05, $18, $69, $F2, $85, $04, $A5, $05, $69, $DE, $85
-    .byte $05, $A4, $87, $B1, $04, $9D, $A0, $04, $E8, $C8, $B1, $04, $9D, $A0, $04, $E8
-    .byte $60, $86, $3E, $A4, $00, $B1, $02, $AA, $BD, $F2, $DD, $0A, $0A, $85, $3C, $88
-    .byte $B1, $02, $AA, $BD, $F2, $DD, $05, $3C, $85, $3C, $0A, $0A, $0A, $0A, $85, $3D
-    .byte $A5, $88, $29, $FC, $0A, $18, $65, $01, $A8, $A5, $88, $29, $02, $D0, $0A, $B9
-    .byte $00, $04, $29, $F0, $05, $3C, $4C, $04, $AA, $B9, $00, $04, $29, $0F, $05, $3D
-    .byte $99, $00, $04, $A4, $01, $99, $C0, $04, $A6, $3E, $60, $48, $29, $0F, $85, $AA
-    .byte $68, $18, $69, $10, $85, $A9, $4A, $4A, $4A, $4A, $C5, $AA, $D0, $04, $A5, $AA
-    .byte $38, $60, $A5, $A9, $18, $60, $A5, $8C, $85, $00, $A5, $8D, $85, $01, $A9, $00
-    .byte $85, $04, $86, $02, $BD, $20, $06, $38, $E5, $02, $85, $03, $A9, $68, $85, $A2
-    .byte $A5, $02, $C9, $01, $F0, $04, $A9, $80, $85, $A2, $20, $52, $AA, $60, $A0, $F2
-    .byte $BD, $08, $06, $C5, $00, $B0, $02, $A0, $0E, $98, $18, $65, $00, $85, $08, $A0
-    .byte $F2, $BD, $10, $06, $C5, $01, $B0, $02, $A0, $0E, $98, $18, $65, $01, $85, $09
-    .byte $20, $AA, $AA, $E6, $02, $C6, $03, $C6, $03, $20, $9E, $AA, $E6, $02, $C6, $03
-    .byte $D0, $F7, $A6, $02, $BD, $07, $06, $85, $08, $BD, $0F, $06, $85, $09, $A9, $80
-    .byte $85, $3E, $A5, $A2, $85, $3F, $20, $B6, $AA, $60, $A6, $02, $BD, $07, $06, $85
-    .byte $08, $BD, $0F, $06, $85, $09, $A6, $02, $BD, $09, $06, $85, $3E, $BD, $11, $06
-    .byte $85, $3F, $A6, $02, $BD, $08, $06, $85, $3C, $BD, $10, $06, $85, $3D, $BD, $18
-    .byte $06, $20, $0F, $AA, $9D, $18, $06, $90, $23, $20, $F1, $AA, $A6, $02, $A5, $3C
-    .byte $38, $E5, $3E, $20, $49, $B1, $85, $40, $A5, $3D, $38, $E5, $3F, $20, $49, $B1
-    .byte $85, $41, $A5, $3C, $9D, $08, $06, $A5, $3D, $9D, $10, $06, $60, $A5, $3C, $38
-    .byte $E5, $08, $20, $49, $B1, $85, $40, $A5, $3C, $38, $E5, $3E, $20, $49, $B1, $C5
-    .byte $40, $B0, $08, $A6, $08, $20, $3B, $AB, $4C, $14, $AB, $A6, $3E, $20, $3B, $AB
-    .byte $A5, $3D, $38, $E5, $09, $20, $49, $B1, $85, $40, $A5, $3D, $38, $E5, $3F, $20
-    .byte $49, $B1, $C5, $40, $B0, $08, $A4, $09, $20, $47, $AB, $4C, $37, $AB, $A4, $3F
-    .byte $20, $47, $AB, $38, $60, $18, $60, $E4, $3C, $F0, $07, $B0, $03, $C6, $3C, $60
-    .byte $E6, $3C, $60, $C4, $3D, $F0, $07, $B0, $03, $C6, $3D, $60, $E6, $3D, $60, $20
-    .byte $53, $B1, $29, $07, $AA, $BD, $F1, $06, $C9, $FF, $F0, $3D, $85, $3E, $4A, $4A
-    .byte $4A, $C5, $8A, $F0, $16, $90, $0A, $A5, $3E, $38, $E9, $08, $85, $3E, $4C, $7C
-    .byte $AB, $A5, $3E, $18, $69, $08, $85, $3E, $20, $9E, $AB, $A5, $3E, $29, $07, $C5
-    .byte $89, $F0, $16, $90, $0A, $A5, $3E, $38, $E9, $01, $85, $3E, $4C, $9A, $AB, $A5
-    .byte $3E, $18, $69, $01, $85, $3E, $20, $9E, $AB, $60, $A4, $3E, $B9, $B9, $AB, $D0
-    .byte $13, $A0, $00, $A5, $3E, $D9, $F1, $06, $F0, $0A, $C8, $C0, $08, $D0, $F4, $A5
-    .byte $3E, $9D, $F1, $06, $60, $00, $00, $01, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $01, $01, $00, $01, $00, $01, $01, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $01, $01, $00, $00, $00, $01, $01, $00, $00
-    .byte $00, $00, $01, $01, $01, $00, $00, $00, $00, $01, $01, $01, $01, $00, $00, $00
-    .byte $00, $01, $01, $01, $01, $A9, $00, $85, $51, $A2, $00, $BD, $F1, $06, $C5, $DF
-    .byte $F0, $06, $E8, $E0, $08, $D0, $F4, $60, $A9, $00, $85, $51, $20, $04, $91, $90
-    .byte $56, $A9, $00, $85, $51, $A9, $00, $85, $C9, $85, $CA, $A9, $00, $85, $51, $E0
-    .byte $06, $B0, $44, $86, $C8, $A9, $01, $85, $51, $A0, $00, $20, $68, $8B, $B9, $6C
-    .byte $AC, $9D, $00, $06, $B9, $74, $AC, $18, $65, $C9, $9D, $08, $06, $B9, $7C, $AC
-    .byte $18, $65, $CA, $9D, $10, $06, $B9, $84, $AC, $9D, $38, $06, $84, $42, $A8, $B9
-    .byte $D5, $8E, $9D, $28, $06, $A4, $42, $A9, $1E, $9D, $68, $06, $C8, $E8, $E0, $08
-    .byte $D0, $C9, $A9, $03, $8D, $AA, $02, $60, $03, $03, $03, $03, $03, $03, $03, $03
-    .byte $68, $62, $68, $72, $7E, $88, $8E, $88, $88, $7C, $70, $68, $68, $70, $7C, $88
-    .byte $0A, $0B, $0B, $0B, $0B, $0B, $0B, $0B, $A9, $00, $85, $3F, $E0, $06, $B0, $18
-    .byte $20, $AE, $AC, $A4, $40, $8A, $99, $20, $06, $E0, $06, $B0, $09, $20, $AE, $AC
-    .byte $A4, $40, $8A, $99, $20, $06, $38, $60, $18, $60, $86, $40, $A9, $04, $85, $41
-    .byte $20, $68, $8B, $A4, $3F, $B9, $F9, $AC, $9D, $00, $06, $B9, $01, $AD, $9D, $08
-    .byte $06, $B9, $09, $AD, $9D, $10, $06, $B9, $11, $AD, $9D, $38, $06, $84, $42, $A8
-    .byte $B9, $D5, $8E, $9D, $28, $06, $A4, $42, $AD, $BD, $8E, $9D, $98, $06, $B9, $19
-    .byte $AD, $9D, $18, $06, $A9, $1E, $9D, $68, $06, $E6, $3F, $E8, $E0, $08, $F0, $04
-    .byte $C6, $41, $D0, $BC, $60, $01, $01, $01, $01, $01, $01, $01, $01, $68, $62, $68
-    .byte $72, $64, $6C, $74, $74, $88, $7C, $70, $68, $92, $88, $80, $80, $08, $09, $09
-    .byte $09, $08, $09, $09, $09, $01, $01, $02, $02, $02, $02, $03, $03, $A6, $C8, $BD
-    .byte $80, $06, $D0, $30, $20, $53, $B1, $29, $20, $09, $10, $9D, $80, $06, $20, $53
-    .byte $B1, $29, $01, $9D, $70, $06, $20, $53, $B1, $29, $C0, $09, $10, $DD, $50, $06
-    .byte $F0, $F4, $9D, $50, $06, $20, $53, $B1, $29, $C0, $09, $10, $DD, $58, $06, $F0
-    .byte $F4, $9D, $58, $06, $DE, $80, $06, $BD, $08, $06, $85, $3C, $BD, $10, $06, $85
-    .byte $3D, $BD, $70, $06, $F0, $0B, $BD, $58, $06, $A8, $BD, $50, $06, $AA, $4C, $79
-    .byte $AD, $A6, $8C, $A4, $8D, $20, $3B, $AB, $20, $47, $AB, $A6, $C8, $A5, $3C, $9D
-    .byte $08, $06, $A5, $3D, $9D, $10, $06, $86, $05, $A6, $05, $BD, $09, $06, $85, $3C
-    .byte $BD, $11, $06, $85, $3D, $BD, $10, $06, $A8, $BD, $08, $06, $AA, $8A, $38, $E5
-    .byte $3C, $20, $49, $B1, $C9, $06, $90, $03, $20, $3B, $AB, $98, $38, $E5, $3D, $20
-    .byte $49, $B1, $C9, $06, $90, $03, $20, $47, $AB, $A6, $05, $A5, $3C, $9D, $09, $06
-    .byte $A5, $3D, $9D, $11, $06, $E6, $05, $A5, $05, $C9, $07, $D0, $BC, $60, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $01, $01, $01, $00, $01, $01, $01, $00, $02, $02
-    .byte $0A, $02, $01, $02, $02, $02, $03, $03, $03, $02, $03, $03, $03, $03, $04, $04
-    .byte $04, $04, $04, $04, $05, $05, $06, $04, $04, $06, $06, $07, $06, $06, $06, $06
-    .byte $06, $06, $07, $07, $09, $09, $08, $08, $08, $08, $08, $0A, $0A, $0A, $20, $F4
-    .byte $A1, $A9, $00, $85, $00, $A9, $00, $85, $01, $A9, $08, $85, $02, $A9, $07, $8D
-    .byte $AA, $02, $A9, $00, $8D, $AB, $02, $A2, $7F, $9A, $A9, $00, $85, $68, $A9, $00
-    .byte $85, $74, $20, $01, $A6, $20, $19, $9D, $20, $5D, $AE, $A9, $01, $85, $14, $A9
-    .byte $01, $85, $68, $20, $BB, $B1, $A5, $02, $D0, $DD, $AD, $AA, $02, $30, $FB, $A9
-    .byte $5A, $85, $68, $20, $BB, $B1, $4C, $77, $80, $A5, $02, $F0, $5E, $A2, $00, $A4
-    .byte $01, $20, $BA, $B0, $A9, $00, $85, $72, $A2, $F2, $A0, $AE, $A9, $20, $20, $3A
-    .byte $B3, $A2, $00, $A9, $1D, $38, $E5, $01, $A8, $20, $BA, $B0, $A9, $00, $85, $72
-    .byte $A2, $F2, $A0, $AE, $A9, $20, $20, $3A, $B3, $A6, $00, $A0, $00, $20, $BA, $B0
-    .byte $A9, $01, $85, $72, $A2, $12, $A0, $AF, $A9, $1E, $20, $3A, $B3, $A9, $1F, $38
-    .byte $E5, $00, $AA, $A0, $00, $20, $BA, $B0, $A9, $01, $85, $72, $A2, $12, $A0, $AF
-    .byte $A9, $1E, $20, $3A, $B3, $E6, $00, $E6, $01, $C6, $02, $A9, $6C, $85, $8C, $A9
-    .byte $78, $85, $8D, $A9, $0D, $85, $90, $A9, $00, $85, $91, $A0, $00, $B9, $00, $06
-    .byte $C9, $01, $D0, $14, $B9, $38, $06, $C9, $1F, $D0, $08, $A9, $00, $99, $A0, $06
-    .byte $4C, $EC, $AE, $A9, $00, $99, $00, $06, $C8, $C0, $08, $D0, $E0, $60, $00, $00
+    .byte $A6, $00, $A5, $8D, $18, $69, $0C, $A8, $20, $19, $A0, $90, $8E, $A5, $00, $18
+    .byte $69, $08, $85, $00, $C6, $01, $D0, $E8, $4C, $35, $A0
+
+Bank2_Func_9EB9:
+    LDA a:$0608,X
+    STA $46
+    LDA a:$0610,X
+    STA $47
+
+Bank2_Func_9EC3:
+    STX $44
+    LDA $47
+    STA $00
+    LDA #$02
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9ED4:
+    LDA $46
+    CLC
+    ADC #$02
+    TAX
+    LDY $00
+    JSR Bank2_Func_A009
+    BCC Bank2_Label_9F29
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9ED4
+    LDX $44
+    JMP Bank2_Func_A035
+
+Bank2_Func_9EF1:
+    LDA a:$0608,X
+    STA $46
+    LDA a:$0610,X
+    STA $47
+
+Bank2_Func_9EFB:
+    STX $44
+    LDA $47
+    STA $00
+    LDA #$02
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9F0C:
+    LDA $46
+    CLC
+    ADC #$0E
+    TAX
+    LDY $00
+    JSR Bank2_Func_A009
+    BCC Bank2_Label_9F29
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9F0C
+    LDX $44
+    JMP Bank2_Func_A035
+
+Bank2_Label_9F29:
+    LDX $44
+    CLC
+    RTS
+
+Bank2_Func_9F2D:
+    LDA a:$0608,X
+    STA $46
+    LDA a:$0610,X
+    STA $47
+
+Bank2_Func_9F37:
+    STX $44
+    LDA $46
+    STA $00
+    STA $00
+    LDA #$02
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9F4A:
+    LDA $47
+    CLC
+    ADC #$02
+    TAY
+    LDX $00
+    JSR Bank2_Func_A009
+    BCC Bank2_Label_9F29
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9F4A
+    LDX $44
+    JMP Bank2_Func_A035
+
+Bank2_Func_9F67:
+    LDA a:$0608,X
+    STA $46
+    LDA a:$0610,X
+    STA $47
+
+Bank2_Func_9F71:
+    STX $44
+    LDA $46
+    STA $00
+    LDA #$02
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9F82:
+    LDA $47
+    CLC
+    ADC #$16
+    TAY
+    LDX $00
+    JSR Bank2_Func_A009
+    BCC Bank2_Label_9F29
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9F82
+    LDX $44
+    JMP Bank2_Func_A035
+    .byte $BD, $08, $06, $85, $46, $BD, $10, $06, $85, $47, $86, $44, $A5, $46, $85, $00
+    .byte $A9, $02, $85, $01, $A5, $00, $18, $69, $04, $85, $00, $A5, $47, $18, $69, $08
+    .byte $A8, $A6, $00, $20, $09, $A0, $90, $10, $A5, $00, $18, $69, $08, $85, $00, $C6
+    .byte $01, $D0, $E8, $A6, $44, $4C, $35, $A0
+
+Bank2_Label_9FD7:
+    LDX $44
+    CLC
+    RTS
+
+Bank2_Func_9FDB:
+    STX $44
+    LDA $46
+    STA $00
+    LDA #$02
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9FEC:
+    LDA $47
+    CLC
+    ADC #$08
+    TAY
+    LDX $00
+    JSR Bank2_Func_A019
+    BCC Bank2_Label_9FD7
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9FEC
+    LDX $44
+    JMP Bank2_Func_A035
+
+Bank2_Func_A009:
+    JSR Bank2_Func_A0C4
+    STA $9E
+    CMP #$26
+    BCS Bank2_Label_A031
+    CMP #$01
+    BEQ Bank2_Label_A031
+    JMP Bank2_Func_A035
+
+Bank2_Func_A019:
+    JSR Bank2_Func_A0C4
+    STA $9E
+    CMP #$26
+    BCC Bank2_Func_A035
+    JSR Bank2_Func_A061
+    BCS Bank2_Func_A035
+    JSR Bank2_Func_A050
+    BCS Bank2_Func_A035
+    JSR Bank2_Func_A039
+    BCS Bank2_Func_A035
+
+Bank2_Label_A031:
+    LDA $9E
+    CLC
+    RTS
+
+Bank2_Func_A035:
+    LDA $9E
+    SEC
+    RTS
+
+Bank2_Func_A039:
+    LDA $A1
+    BEQ Bank2_Label_A031
+    LDA $DF
+    CMP #$3C
+    BNE Bank2_Label_A031
+    LDA $9E
+    CMP #$26
+    BCC Bank2_Label_A031
+    CMP #$2A
+    BCC Bank2_Func_A035
+    JMP Bank2_Label_A031
+
+Bank2_Func_A050:
+    LDA $9F
+    BEQ Bank2_Label_A031
+    LDA $9E
+    CMP #$26
+    BCC Bank2_Label_A031
+    CMP #$2A
+    BCC Bank2_Func_A035
+    JMP Bank2_Label_A031
+
+Bank2_Func_A061:
+    LDA $DF
+    CMP #$27
+    BEQ Bank2_Label_A072
+    CMP #$28
+    BEQ Bank2_Label_A079
+    CMP #$34
+    BEQ Bank2_Label_A080
+
+Bank2_Label_A06F:
+    JMP Bank2_Label_A031
+
+Bank2_Label_A072:
+    LDA $58
+    BEQ Bank2_Label_A06F
+    JMP Bank2_Label_A087
+
+Bank2_Label_A079:
+    LDA $59
+    BEQ Bank2_Label_A06F
+    JMP Bank2_Label_A087
+
+Bank2_Label_A080:
+    LDA $5A
+    BEQ Bank2_Label_A06F
+    JMP Bank2_Label_A087
+
+Bank2_Label_A087:
+    LDA $9E
+    CMP #$26
+    BCC Bank2_Label_A031
+    CMP #$2A
+    BCC Bank2_Label_A0C0
+    CMP #$30
+    BCC Bank2_Label_A031
+    CMP #$4A
+    BCC Bank2_Label_A0C0
+    CMP #$50
+    BCC Bank2_Label_A031
+    CMP #$5A
+    BCC Bank2_Label_A0C0
+    CMP #$64
+    BCC Bank2_Label_A031
+    CMP #$6A
+    BCC Bank2_Label_A0C0
+    CMP #$6D
+    BEQ Bank2_Label_A0C0
+    CMP #$74
+    BEQ Bank2_Label_A0C0
+    CMP #$75
+    BEQ Bank2_Label_A0C0
+    CMP #$78
+    BEQ Bank2_Label_A0C0
+    CMP #$79
+    BEQ Bank2_Label_A0C0
+    JMP Bank2_Label_A031
+
+Bank2_Label_A0C0:
+    LDA $9E
+    SEC
+    RTS
+
+Bank2_Func_A0C4:
+    TXA
+    LSR A
+    LSR A
+    LSR A
+    STA $40
+    TYA
+    LSR A
+    LSR A
+    LSR A
+    STA $41
+    JSR Bank2_Func_A904
+    LDX #$00
+    STX $09
+    LDA $41
+    AND #$FC
+    ASL A
+    ROL $09
+    ASL A
+    ROL $09
+    ASL A
+    ROL $09
+    ASL A
+    ROL $09
+    CLC
+    ADC $84
+    STA $08
+    LDA $09
+    ADC $85
+    STA $09
+    LDA $40
+    LSR A
+    LSR A
+    TAY
+    LDA ($08),Y
+    LDX #$00
+    STX $3D
+    ASL A
+    ROL $3D
+    ASL A
+    ROL $3D
+    CLC
+    ADC #$F2
+    STA $3C
+    LDA $3D
+    ADC #$E2
+    STA $3D
+    LDA $41
+    AND #$02
+    STA $08
+    LDA $40
+    AND #$02
+    LSR A
+    ORA $08
+    TAY
+    LDA ($3C),Y
+    LDX #$00
+    STX $3D
+    ASL A
+    ROL $3D
+    ASL A
+    ROL $3D
+    CLC
+    ADC #$F2
+    STA $3C
+    LDA $3D
+    ADC #$DE
+    STA $3D
+    LDA $41
+    AND #$01
+    ASL A
+    STA $08
+    LDA $40
+    AND #$01
+    ORA $08
+    TAY
+    LDA ($3C),Y
+    RTS
+
+Bank2_Label_A144:
+    INC a:$0703,X
+    LDA a:$0703,X
+    AND #$03
+    BNE Bank2_Label_A1C0
+    INC a:$0701,X
+    LDA a:$0701,X
+    CMP #$A3
+    BNE Bank2_Label_A1C0
+    LDA #$00
+    STA a:$06F9,X
+    JMP Bank2_Label_A1C0
+
+Bank2_Func_A160:
+    LDA #$00
+    STA $07
+    LDA #$02
+    STA $06
+
+Bank2_Label_A168:
+    LDX $07
+    LDA a:$06F9,X
+    BEQ Bank2_Label_A1C0
+    CMP #$02
+    BEQ Bank2_Label_A144
+    LDA a:$06FB,X
+    STA $46
+    LDA a:$06FD,X
+    STA $47
+    JSR Bank2_Func_9FDB
+    BCS Bank2_Label_A19B
+    LDX $07
+    LDA #$02
+    STA a:$06F9,X
+    LDA #$00
+    STA a:$0703,X
+    LDA #$A0
+    STA a:$0701,X
+    LDA #$02
+    JSR Bank2_Func_A5DF
+    JMP Bank2_Label_A1C0
+
+Bank2_Label_A19B:
+    LDA a:$06FF,X
+    BNE Bank2_Label_A1AE
+    LDA a:$06FB,X
+    SEC
+    SBC #$03
+    STA a:$06FB,X
+    BCS Bank2_Label_A1C0
+    JMP Bank2_Label_A1BB
+
+Bank2_Label_A1AE:
+    LDA a:$06FB,X
+    CLC
+    ADC #$03
+    STA a:$06FB,X
+    CMP #$F0
+    BCC Bank2_Label_A1C0
+
+Bank2_Label_A1BB:
+    LDA #$00
+    STA a:$06F9,X
+
+Bank2_Label_A1C0:
+    INC $07
+    DEC $06
+    BNE Bank2_Label_A168
+    RTS
+
+Bank2_Func_A1C7:
+    LDA #$00
+    STA $00
+    LDA #$02
+    STA $01
+
+Bank2_Label_A1CF:
+    LDX $00
+    LDA a:$06F9,X
+    BEQ Bank2_Label_A1ED
+    LDA a:$0701,X
+    STA $79
+    LDA a:$06FD,X
+    TAY
+    LDA a:$06FB,X
+    TAX
+    JSR Bank2_Func_A71A
+    LDA #$00
+    STA $7A
+    JSR Bank2_Func_B4B6
+
+Bank2_Label_A1ED:
+    INC $00
+    DEC $01
+    BNE Bank2_Label_A1CF
+    RTS
+
+Bank2_Func_A1F4:
+    LDX #$00
+    TXA
+
+Bank2_Label_A1F7:
+    STA $8E,X
+    INX
+    CPX #$10
+    BNE Bank2_Label_A1F7
+    LDA #$01
+    STA $8E
+    LDA #$0E
+    STA $97
+    LDA #$07
+    STA $94
+    LDA #$01
+    STA $95
+    LDA #$03
+    STA $90
+    RTS
+
+Bank2_Func_A213:
+    LDA #$08
+    SEC
+    SBC $2C
+    ASL A
+    ASL A
+    STA $2B
+    RTS
+
+Bank2_Func_A21D:
+    LDA $8E
+    ASL A
+    TAX
+    LDA a:$A22F,X
+    STA $40
+    LDA a:$A230,X
+    STA $41
+    JSR Bank2_Func_931F
+    RTS
+    .byte $39, $A2, $35, $A3, $3C, $A3, $E9, $A2, $3A, $A2, $60, $E6, $93, $A5, $93, $29
+    .byte $07, $D0, $06, $A5, $91, $49, $01, $85, $91, $A4, $97, $C0, $0E, $F0, $02, $E6
+    .byte $97, $B9, $63, $A5, $30, $06, $18, $65, $8D, $4C, $62, $A2, $18, $65, $8D, $B0
+    .byte $02, $A9, $00, $85, $8D, $C9, $F0, $90, $24, $AD, $AA, $02, $D0, $FB
+
+Bank2_Func_A26D:
+    LDA #$3C
+    STA $68
+    JSR Bank2_Func_B1BB
+    LDA #$00
+    STA $4D
+    LDA $2A
+    BEQ Bank2_Label_A2BE
+    DEC $2A
+    LDA $DC
+    BEQ Bank2_Func_A285
+    JMP Bank2_Label_82C3
+
+Bank2_Func_A285:
+    LDA $53
+    BNE Bank2_Func_A28D
+    JMP Bank2_Label_834C
+    .byte $60
+
+Bank2_Func_A28D:
+    LDA #$00
+    STA $53
+    JSR Bank2_Func_8CF6
+    JSR Bank2_Func_8CFD
+    LDA $54
+    STA $DF
+    LDA $DF
+    CMP #$11
+    BNE Bank2_Label_A2A5
+    LDA #$01
+    STA $9F
+
+Bank2_Label_A2A5:
+    JSR Bank2_Func_A733
+    LDY #$00
+
+Bank2_Label_A2AA:
+    LDA a:$0725,Y
+    STA a:$008C,Y
+    INY
+    CPY #$12
+    BNE Bank2_Label_A2AA
+    JSR Bank2_Func_A213
+    LDA $A5
+    STA a:$02AA
+    RTS
+
+Bank2_Label_A2BE:
+    LDA $DC
+    BEQ Bank2_Label_A2C5
+    JMP Bank2_Func_8048
+
+Bank2_Label_A2C5:
+    JSR Bank2_Func_8065
+
+Bank2_Label_A2C8:
+    LDA $21
+    AND #$10
+    BEQ Bank2_Label_A2C8
+    JSR Bank2_Func_A2D4
+    JMP Bank2_Func_A285
+
+Bank2_Func_A2D4:
+    LDX #$00
+    LDA #$00
+
+Bank2_Label_A2D8:
+    STA a:$0298,X
+    INX
+    CPX #$08
+    BNE Bank2_Label_A2D8
+    LDA #$02
+    STA $2A
+    LDA #$02
+    STA $2C
+    RTS
+    .byte $20, $B4, $A3, $20, $72, $A5, $A4, $9B, $B9, $2E, $A3, $85, $43, $D0, $10, $A9
+    .byte $01, $85, $8E, $A4, $95, $B9, $85, $A4, $85, $90, $A9, $00, $85, $91, $60, $E6
+    .byte $9B, $A5, $95, $F0, $10, $20, $9E, $A4, $C6, $43, $D0, $F9, $A9, $00, $85, $91
+    .byte $A9, $0B, $85, $90, $60, $20, $B4, $A4, $C6, $43, $D0, $F9, $A9, $01, $85, $91
+    .byte $A9, $0B, $85, $90, $60, $04, $03, $03, $02, $02, $02, $00, $20, $B4, $A3, $20
+    .byte $72, $A5, $60, $20, $43, $A3, $20, $72, $A5, $60, $A4, $97, $B9, $9C, $A3, $10
+    .byte $14, $A5, $8A, $D0, $06, $A5, $8D, $C9, $08, $90, $05, $20, $3B, $9E, $B0, $05
+    .byte $A9, $0E, $85, $97, $60, $20, $8F, $9E, $A5, $9E, $C9, $00, $D0, $14, $A9, $01
+    .byte $85, $8E, $A4, $95, $B9, $85, $A4, $85, $90, $A9, $00, $85, $91, $A9, $0E, $85
+    .byte $97, $60, $20, $87, $A4, $A4, $97, $B9, $9C, $A3, $85, $08, $C9, $04, $F0, $0B
+    .byte $A5, $99, $F0, $05, $C6, $99, $4C, $94, $A3, $E6, $97, $A5, $8D, $18, $65, $08
+    .byte $85, $8D, $60, $FC, $FD, $FD, $FE, $FE, $FE, $FF, $FF, $FF, $FF, $00, $00, $00
+    .byte $00, $01, $01, $01, $01, $02, $02, $02, $03, $03, $04, $A5, $92, $F0, $16, $E6
+    .byte $93, $A5, $93, $29, $0F, $D0, $0B, $A9, $00, $85, $92, $A4, $95, $B9, $85, $A4
+    .byte $85, $90, $4C, $E0, $A3, $E6, $93, $A5, $93, $25, $94, $D0, $0A, $A5, $91, $D0
+    .byte $04, $A9, $03, $85, $91, $C6, $91, $20, $F7, $A5, $29, $08, $D0, $0B, $A9, $07
+    .byte $85, $94, $A9, $00, $85, $61, $4C, $2B, $A4, $A5, $61, $F0, $09, $E6, $61, $C9
+    .byte $0A, $F0, $EF, $4C, $2B, $A4, $E6, $61, $A5, $92, $D0, $07, $A4, $95, $B9, $85
+    .byte $A4, $85, $90, $A9, $03, $85, $94, $A4, $97, $C0, $0E, $D0, $07, $A9, $00, $85
+    .byte $99, $4C, $27, $A4, $A5, $99, $C9, $14, $B0, $04, $E6, $99, $E6, $99, $A9, $00
+    .byte $85, $97, $20, $CE, $A4, $20, $65, $9E, $B0, $16, $20, $F7, $A5, $29, $03, $D0
+    .byte $0F, $A5, $92, $D0, $08, $A9, $08, $85, $90, $A9, $00, $85, $91, $4C, $57, $A4
+    .byte $20, $F7, $A5, $29, $02, $D0, $0E, $20, $F7, $A5, $29, $01, $D0, $1A, $A9, $00
+    .byte $85, $96, $4C, $81, $A4, $A5, $92, $D0, $04, $A9, $00, $85, $90, $A9, $00, $85
+    .byte $95, $A9, $01, $85, $96, $4C, $81, $A4, $A5, $92, $D0, $04, $A9, $03, $85, $90
+    .byte $A9, $01, $85, $95, $A9, $01, $85, $96, $20, $87, $A4, $60, $00, $03, $E6, $9C
+    .byte $A5, $9C, $29, $01, $D0, $03, $20, $92, $A4, $A5, $96, $F0, $07, $A5, $95, $F0
+    .byte $04, $4C, $B4, $A4, $60, $20, $E5, $9D, $B0, $05, $A9, $00, $85, $96, $60, $C6
+    .byte $8C, $D0, $07, $A9, $EC, $85, $8C, $20, $19, $A6, $60, $20, $0F, $9E, $B0, $05
+    .byte $A9, $00, $85, $96, $60, $E6, $8C, $A5, $8C, $C9, $F0, $D0, $07, $A9, $04, $85
+    .byte $8C, $20, $3A, $A6, $60, $A4, $97, $C0, $0E, $F0, $02, $E6, $97, $B9, $63, $A5
+    .byte $85, $A7, $F0, $05, $10, $50, $4C, $E3, $A4, $60, $E6, $9D, $A5, $9D, $29, $01
+    .byte $D0, $03, $20, $EE, $A4, $20, $3B, $9E, $B0, $05, $A9, $0E, $85, $97, $60, $20
+    .byte $8F, $9E, $A5, $9E, $C9, $14, $D0, $0E, $A9, $02, $85, $8E, $A9, $00, $85, $97
+    .byte $A9, $0C, $20, $DF, $A5, $60, $A5, $8D, $18, $65, $A7, $85, $8D, $C9, $08, $B0
+    .byte $0C, $A5, $8A, $D0, $09, $A9, $00, $85, $8D, $A9, $0E, $85, $97, $60, $A9, $D0
+    .byte $85, $8D, $20, $5D, $A6, $60, $20, $65, $9E, $B0, $05, $A9, $00, $85, $96, $60
+    .byte $20, $F7, $A5, $29, $04, $D0, $10, $E6, $98, $A5, $98, $C9, $06, $90, $1A, $A9
+    .byte $00, $85, $98, $A9, $01, $85, $A7, $A5, $8D, $18, $65, $A7, $85, $8D, $C9, $D4
+    .byte $90, $07, $A9, $0C, $85, $8D, $20, $88, $A6, $60, $FE, $FE, $FE, $FE, $FF, $FF
+    .byte $FF, $FF, $00, $00, $00, $00, $00, $00, $02, $20, $F7, $A5, $29, $80, $D0, $03
+    .byte $85, $63, $60, $A5, $63, $D0, $FB, $E6, $63, $A9, $01, $85, $92, $A5, $95, $18
+    .byte $69, $09, $85, $90, $A9, $00, $85, $91, $A9, $00, $85, $93, $A2, $00, $BD, $F9
+    .byte $06, $F0, $06, $E8, $E0, $02, $D0, $F6, $60, $A5, $95, $D0, $0B, $A5, $8C, $C9
+    .byte $12, $90, $32, $A0, $F8, $4C, $B9, $A5, $A5, $8C, $C9, $EE, $B0, $27, $A0, $08
+    .byte $98, $18, $65, $8C, $9D, $FB, $06, $A5, $8D, $18, $69, $08, $9D, $FD, $06, $A5
+    .byte $95, $9D, $FF, $06, $0A, $18, $69, $68, $9D, $01, $07, $A9, $01, $9D, $F9, $06
+    .byte $A9, $19, $20, $DF, $A5, $60
+
+Bank2_Func_A5DF:
+    STX $49
+    STY $4A
+    JSR Bank2_Func_BE90
+    LDX $49
+    LDY $4A
+    RTS
+
+Bank2_Func_A5EB:
+    STX $49
+    STY $4A
+    JSR Bank2_Func_BEB4
+    LDX $49
+    LDY $4A
+    RTS
+
+Bank2_Func_A5F7:
+    LDA $DC
+    BNE Bank2_Label_A5FE
+    LDA $21
+    RTS
+
+Bank2_Label_A5FE:
+    LDA #$00
+    RTS
+
+Bank2_Func_A601:
+    LDX $8C
+    LDY $8D
+    JSR Bank2_Func_A71A
+    LDA $90
+    CLC
+    ADC $91
+    STA $8F
+    STA $79
+    LDA #$00
+    STA $7A
+    JSR Bank2_Func_B4B6
+    RTS
+
+Bank2_Func_A619:
+    LDA $89
+    BEQ Bank2_Label_A639
+    DEC $89
+    LDA $DF
+    STA $8B
+    DEC $8B
+    JSR Bank2_Func_A6E6
+    JSR Bank2_Func_A6B5
+    JSR Bank2_Func_A6BF
+    JSR Bank2_Func_8CF6
+    DEC $DF
+    JSR Bank2_Func_8CFD
+    JSR Bank2_Func_A733
+
+Bank2_Label_A639:
+    RTS
+
+Bank2_Func_A63A:
+    LDA $89
+    CMP #$07
+    BEQ Bank2_Label_A65C
+    INC $89
+    LDA $DF
+    STA $8B
+    INC $8B
+    JSR Bank2_Func_A6E6
+    JSR Bank2_Func_A6B5
+    JSR Bank2_Func_A6BF
+    JSR Bank2_Func_8CF6
+    INC $DF
+    JSR Bank2_Func_8CFD
+    JSR Bank2_Func_A733
+
+Bank2_Label_A65C:
+    RTS
+
+Bank2_Func_A65D:
+    LDA $8A
+    BEQ Bank2_Label_A687
+    DEC $8A
+    LDA $DF
+    STA $8B
+    LDA $8B
+    SEC
+    SBC #$08
+    STA $8B
+    JSR Bank2_Func_A6E6
+    JSR Bank2_Func_A6B5
+    JSR Bank2_Func_A6BF
+    JSR Bank2_Func_8CF6
+    LDA $DF
+    SEC
+    SBC #$08
+    STA $DF
+    JSR Bank2_Func_8CFD
+    JSR Bank2_Func_A733
+
+Bank2_Label_A687:
+    RTS
+
+Bank2_Func_A688:
+    LDA $8A
+    CMP #$07
+    BEQ Bank2_Label_A6B4
+    INC $8A
+    LDA $DF
+    STA $8B
+    LDA $8B
+    CLC
+    ADC #$08
+    STA $8B
+    JSR Bank2_Func_A6E6
+    JSR Bank2_Func_A6B5
+    JSR Bank2_Func_A6BF
+    JSR Bank2_Func_8CF6
+    LDA $DF
+    CLC
+    ADC #$08
+    STA $DF
+    JSR Bank2_Func_8CFD
+    JSR Bank2_Func_A733
+
+Bank2_Label_A6B4:
+    RTS
+
+Bank2_Func_A6B5:
+    LDA $8B
+    CMP #$3F
+    BNE Bank2_Label_A6BE
+    JSR Bank2_Func_866C
+
+Bank2_Label_A6BE:
+    RTS
+
+Bank2_Func_A6BF:
+    LDA $8B
+    CMP #$27
+    BEQ Bank2_Label_A6CE
+    CMP #$28
+    BEQ Bank2_Label_A6D6
+    CMP #$34
+    BEQ Bank2_Label_A6DE
+
+Bank2_Label_A6CD:
+    RTS
+
+Bank2_Label_A6CE:
+    LDA $58
+    BNE Bank2_Label_A6CD
+    JSR Bank2_Func_866C
+    RTS
+
+Bank2_Label_A6D6:
+    LDA $59
+    BNE Bank2_Label_A6CD
+    JSR Bank2_Func_866C
+    RTS
+
+Bank2_Label_A6DE:
+    LDA $5A
+    BNE Bank2_Label_A6CD
+    JSR Bank2_Func_866C
+    RTS
+
+Bank2_Func_A6E6:
+    LDY #$00
+    STY $3E
+
+Bank2_Label_A6EA:
+    LDA a:$06B0,Y
+    CMP $8B
+    BNE Bank2_Label_A6FA
+    LDA a:$06BD,Y
+    CMP #$18
+    BCC Bank2_Label_A6FA
+    INC $3E
+
+Bank2_Label_A6FA:
+    INY
+    CPY #$0D
+    BNE Bank2_Label_A6EA
+    LDA $3E
+    CMP #$03
+    BCC Bank2_Label_A719
+    LDA $9A
+    BEQ Bank2_Label_A719
+    LDA #$00
+    STA $9A
+    LDY #$00
+
+Bank2_Label_A70F:
+    LDA #$00
+    STA a:$0678,Y
+    INY
+    CPY #$08
+    BNE Bank2_Label_A70F
+
+Bank2_Label_A719:
+    RTS
+
+Bank2_Func_A71A:
+    LDA #$00
+    CPX #$F8
+    BCC Bank2_Label_A722
+    LDA #$03
+
+Bank2_Label_A722:
+    STX $75
+    STA $76
+    LDA #$00
+    CPY #$F8
+    BCC Bank2_Label_A72E
+    LDA #$03
+
+Bank2_Label_A72E:
+    STY $77
+    STA $78
+    RTS
+
+Bank2_Func_A733:
+    JSR Bank2_Func_A863
+    JSR Bank2_Func_B276
+    LDA #$02
+    JSR Bank2_Func_81AA
+    LDA #$90
+    STA $19
+    JSR Bank2_Func_A8EB
+    JSR Bank2_Func_A835
+    JSR Bank2_Func_8DA8
+    JSR Bank2_Func_8DB4
+    JSR Bank2_Func_8C25
+    JSR Bank2_Func_8CAD
+    JSR Bank2_Func_AB53
+    JSR Bank2_Func_ABF9
+    LDA $A1
+    BEQ Bank2_Label_A761
+    JSR Bank2_Func_8817
+
+Bank2_Label_A761:
+    LDA $51
+    BNE Bank2_Label_A78B
+    LDA $DF
+    CMP #$27
+    BEQ Bank2_Label_A776
+    CMP #$28
+    BEQ Bank2_Label_A77D
+    CMP #$34
+    BEQ Bank2_Label_A784
+    JMP Bank2_Label_A79C
+
+Bank2_Label_A776:
+    LDA $58
+    BNE Bank2_Label_A78B
+    JMP Bank2_Label_A79C
+
+Bank2_Label_A77D:
+    LDA $59
+    BNE Bank2_Label_A78B
+    JMP Bank2_Label_A79C
+
+Bank2_Label_A784:
+    LDA $5A
+    BNE Bank2_Label_A78B
+    JMP Bank2_Label_A79C
+
+Bank2_Label_A78B:
+    LDA $DF
+    CMP #$27
+    BEQ Bank2_Label_A799
+    CMP #$28
+    BEQ Bank2_Label_A799
+    CMP #$34
+    BNE Bank2_Label_A79C
+
+Bank2_Label_A799:
+    JSR Bank2_Func_875C
+
+Bank2_Label_A79C:
+    LDA $9F
+    BEQ Bank2_Label_A7AB
+    JSR Bank2_Func_97AF
+    LDA $A0
+    BNE Bank2_Label_A7AB
+    LDA #$00
+    STA $9F
+
+Bank2_Label_A7AB:
+    JSR Bank2_Func_B3FF
+    JSR Bank2_Func_B286
+    JSR Bank2_Func_A8B0
+    LDA #$00
+    STA $73
+    STA $74
+    LDA #$00
+    STA $CB
+    STA $CC
+    LDA #$00
+    STA $CE
+    STA $CF
+    JSR Bank2_Func_A7E5
+    LDA a:$02AA
+    AND #$7F
+    CMP $A5
+    BEQ Bank2_Label_A7DF
+    CMP #$03
+    BNE Bank2_Label_A7DA
+    LDA $51
+    BNE Bank2_Label_A7DF
+
+Bank2_Label_A7DA:
+    LDA $A5
+    STA a:$02AA
+
+Bank2_Label_A7DF:
+    LDA #$00
+    STA a:$02AB
+    RTS
+
+Bank2_Func_A7E5:
+    LDY $DF
+    LDA a:$A7F1,Y
+    TAY
+    LDA a:$A831,Y
+    STA $A5
+    RTS
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $01, $01, $00, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $01, $01
+    .byte $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $02, $02, $02
+    .byte $01, $01, $01, $01, $01, $02, $02, $02, $01, $01, $01, $01, $01, $02, $02, $03
+    .byte $01, $02, $05, $06
+
+Bank2_Func_A835:
+    LDA #$00
+    STA $40
+    LDX $DF
+    LDA a:$ADD2,X
+    LSR A
+    ROR $40
+    LSR A
+    ROR $40
+    LSR A
+    ROR $40
+    STA $41
+    LDA $40
+    CLC
+    ADC #$AE
+    STA $40
+    LDA $41
+    ADC #$BC
+    STA $41
+    LDY #$00
+
+Bank2_Label_A858:
+    LDA ($40),Y
+    STA a:$0705,Y
+    INY
+    CPY #$20
+    BNE Bank2_Label_A858
+    RTS
+
+Bank2_Func_A863:
+    LDX #$80
+    LDY #$04
+    STX $00
+    STY $01
+    LDX #$05
+    LDY #$07
+    STX $02
+    STY $03
+    LDA #$20
+    STA $04
+    JSR Bank2_Func_B1F1
+
+Bank2_Label_A87A:
+    LDX #$00
+    STX $02
+
+Bank2_Label_A87E:
+    LDA a:$0480,X
+    CMP #$0F
+    BEQ Bank2_Label_A898
+    INC $02
+    TAY
+    AND #$30
+    BNE Bank2_Label_A891
+    LDA #$0F
+    JMP Bank2_Label_A895
+
+Bank2_Label_A891:
+    TYA
+    SEC
+    SBC #$10
+
+Bank2_Label_A895:
+    STA a:$0480,X
+
+Bank2_Label_A898:
+    INX
+    CPX #$20
+    BNE Bank2_Label_A87E
+    LDX #$80
+    LDY #$04
+    JSR Bank2_Func_B2A3
+    LDA #$03
+    STA $68
+    JSR Bank2_Func_B1BB
+    LDA $02
+    BNE Bank2_Label_A87A
+    RTS
+
+Bank2_Func_A8B0:
+    LDX #$00
+    STX $02
+
+Bank2_Label_A8B4:
+    LDA a:$0480,X
+    CMP a:$0705,X
+    BEQ Bank2_Label_A8D3
+    INC $02
+    CMP #$0F
+    BNE Bank2_Label_A8CA
+    LDA a:$0705,X
+    AND #$0F
+    JMP Bank2_Label_A8D0
+
+Bank2_Label_A8CA:
+    LDA a:$0480,X
+    CLC
+    ADC #$10
+
+Bank2_Label_A8D0:
+    STA a:$0480,X
+
+Bank2_Label_A8D3:
+    INX
+    CPX #$20
+    BNE Bank2_Label_A8B4
+    LDX #$80
+    LDY #$04
+    JSR Bank2_Func_B2A3
+    LDA #$03
+    STA $68
+    JSR Bank2_Func_B1BB
+    LDA $02
+    BNE Bank2_Func_A8B0
+    RTS
+
+Bank2_Func_A8EB:
+    JSR Bank2_Func_A904
+    LDA #$00
+    STA $88
+    STA $86
+    STA $87
+    LDA #$1E
+    STA $07
+
+Bank2_Label_A8FA:
+    JSR Bank2_Func_A922
+    INC $88
+    DEC $07
+    BNE Bank2_Label_A8FA
+    RTS
+
+Bank2_Func_A904:
+    LDA $DF
+    AND #$F8
+    LSR A
+    LSR A
+    CLC
+    ADC #$E6
+    STA $85
+    LDA $DF
+    AND #$07
+    ASL A
+    ASL A
+    ASL A
+    CLC
+    ADC #$F2
+    STA $84
+    LDA $85
+    ADC #$00
+    STA $85
+    RTS
+
+Bank2_Func_A922:
+    JSR Bank2_Func_A946
+    LDX #$00
+    LDY $88
+    JSR Bank2_Func_B0BA
+    LDX #$A0
+    LDY #$04
+    LDA #$20
+    JSR Bank2_Func_B33A
+    LDX #$00
+    LDY $88
+    JSR Bank2_Func_B0F8
+    LDX #$C0
+    LDY #$04
+    LDA #$08
+    JSR Bank2_Func_B33A
+    RTS
+
+Bank2_Func_A946:
+    JSR Bank2_Func_A967
+    LDA $87
+    EOR #$02
+    STA $87
+    BNE Bank2_Label_A966
+    LDA $86
+    EOR #$02
+    STA $86
+    BNE Bank2_Label_A966
+    LDA $84
+    CLC
+    ADC #$40
+    STA $84
+    LDA $85
+    ADC #$00
+    STA $85
+
+Bank2_Label_A966:
+    RTS
+
+Bank2_Func_A967:
+    LDX #$00
+    STX $01
+
+Bank2_Label_A96B:
+    LDA #$00
+    STA $03
+    LDY $01
+    LDA ($84),Y
+    ASL A
+    ROL $03
+    ASL A
+    ROL $03
+    CLC
+    ADC #$F2
+    STA $02
+    LDA $03
+    ADC #$E2
+    STA $03
+    LDA $86
+    STA $00
+    JSR Bank2_Func_A99C
+    INC $00
+    JSR Bank2_Func_A99C
+    JSR Bank2_Func_A9C5
+    INC $01
+    LDA $01
+    CMP #$08
+    BNE Bank2_Label_A96B
+    RTS
+
+Bank2_Func_A99C:
+    LDA #$00
+    STA $05
+    LDY $00
+    LDA ($02),Y
+    ASL A
+    ROL $05
+    ASL A
+    ROL $05
+    CLC
+    ADC #$F2
+    STA $04
+    LDA $05
+    ADC #$DE
+    STA $05
+    LDY $87
+    LDA ($04),Y
+    STA a:$04A0,X
+    INX
+    INY
+    LDA ($04),Y
+    STA a:$04A0,X
+    INX
+    RTS
+
+Bank2_Func_A9C5:
+    STX $3E
+    LDY $00
+    LDA ($02),Y
+    TAX
+    LDA a:$DDF2,X
+    ASL A
+    ASL A
+    STA $3C
+    DEY
+    LDA ($02),Y
+    TAX
+    LDA a:$DDF2,X
+    ORA $3C
+    STA $3C
+    ASL A
+    ASL A
+    ASL A
+    ASL A
+    STA $3D
+    LDA $88
+    AND #$FC
+    ASL A
+    CLC
+    ADC $01
+    TAY
+    LDA $88
+    AND #$02
+    BNE Bank2_Label_A9FD
+    LDA a:$0400,Y
+    AND #$F0
+    ORA $3C
+    JMP Bank2_Label_AA04
+
+Bank2_Label_A9FD:
+    LDA a:$0400,Y
+    AND #$0F
+    ORA $3D
+
+Bank2_Label_AA04:
+    STA a:$0400,Y
+    LDY $01
+    STA a:$04C0,Y
+    LDX $3E
+    RTS
+
+Bank2_Func_AA0F:
+    PHA
+    AND #$0F
+    STA $AA
+    PLA
+    CLC
+    ADC #$10
+    STA $A9
+    LSR A
+    LSR A
+    LSR A
+    LSR A
+    CMP $AA
+    BNE Bank2_Label_AA26
+    LDA $AA
+    SEC
+    RTS
+
+Bank2_Label_AA26:
+    LDA $A9
+    CLC
+    RTS
+    .byte $A5, $8C, $85, $00, $A5, $8D, $85, $01, $A9, $00, $85, $04, $86, $02, $BD, $20
+    .byte $06, $38, $E5, $02, $85, $03, $A9, $68, $85, $A2, $A5, $02, $C9, $01, $F0, $04
+    .byte $A9, $80, $85, $A2, $20, $52, $AA, $60, $A0, $F2, $BD, $08, $06, $C5, $00, $B0
+    .byte $02, $A0, $0E, $98, $18, $65, $00, $85, $08, $A0, $F2, $BD, $10, $06, $C5, $01
+    .byte $B0, $02, $A0, $0E, $98, $18, $65, $01, $85, $09, $20, $AA, $AA, $E6, $02, $C6
+    .byte $03, $C6, $03, $20, $9E, $AA, $E6, $02, $C6, $03, $D0, $F7, $A6, $02, $BD, $07
+    .byte $06, $85, $08, $BD, $0F, $06, $85, $09, $A9, $80, $85, $3E, $A5, $A2, $85, $3F
+    .byte $20, $B6, $AA, $60, $A6, $02, $BD, $07, $06, $85, $08, $BD, $0F, $06, $85, $09
+    .byte $A6, $02, $BD, $09, $06, $85, $3E, $BD, $11, $06, $85, $3F, $A6, $02, $BD, $08
+    .byte $06, $85, $3C, $BD, $10, $06, $85, $3D, $BD, $18, $06, $20, $0F, $AA, $9D, $18
+    .byte $06, $90, $23, $20, $F1, $AA, $A6, $02, $A5, $3C, $38, $E5, $3E, $20, $49, $B1
+    .byte $85, $40, $A5, $3D, $38, $E5, $3F, $20, $49, $B1, $85, $41, $A5, $3C, $9D, $08
+    .byte $06, $A5, $3D, $9D, $10, $06, $60, $A5, $3C, $38, $E5, $08, $20, $49, $B1, $85
+    .byte $40, $A5, $3C, $38, $E5, $3E, $20, $49, $B1, $C5, $40, $B0, $08, $A6, $08, $20
+    .byte $3B, $AB, $4C, $14, $AB, $A6, $3E, $20, $3B, $AB, $A5, $3D, $38, $E5, $09, $20
+    .byte $49, $B1, $85, $40, $A5, $3D, $38, $E5, $3F, $20, $49, $B1, $C5, $40, $B0, $08
+    .byte $A4, $09, $20, $47, $AB, $4C, $37, $AB, $A4, $3F, $20, $47, $AB, $38, $60, $18
+    .byte $60, $E4, $3C, $F0, $07, $B0, $03, $C6, $3C, $60, $E6, $3C, $60, $C4, $3D, $F0
+    .byte $07, $B0, $03, $C6, $3D, $60, $E6, $3D, $60
+
+Bank2_Func_AB53:
+    JSR Bank2_Func_B153
+    AND #$07
+    TAX
+    LDA a:$06F1,X
+    CMP #$FF
+    BEQ Bank2_Label_AB9D
+    STA $3E
+    LSR A
+    LSR A
+    LSR A
+    CMP $8A
+    BEQ Bank2_Label_AB7F
+    BCC Bank2_Label_AB75
+    LDA $3E
+    SEC
+    SBC #$08
+    STA $3E
+    JMP Bank2_Label_AB7C
+
+Bank2_Label_AB75:
+    LDA $3E
+    CLC
+    ADC #$08
+    STA $3E
+
+Bank2_Label_AB7C:
+    JSR Bank2_Func_AB9E
+
+Bank2_Label_AB7F:
+    LDA $3E
+    AND #$07
+    CMP $89
+    BEQ Bank2_Label_AB9D
+    BCC Bank2_Label_AB93
+    LDA $3E
+    SEC
+    SBC #$01
+    STA $3E
+    JMP Bank2_Label_AB9A
+
+Bank2_Label_AB93:
+    LDA $3E
+    CLC
+    ADC #$01
+    STA $3E
+
+Bank2_Label_AB9A:
+    JSR Bank2_Func_AB9E
+
+Bank2_Label_AB9D:
+    RTS
+
+Bank2_Func_AB9E:
+    LDY $3E
+    LDA a:$ABB9,Y
+    BNE Bank2_Label_ABB8
+    LDY #$00
+
+Bank2_Label_ABA7:
+    LDA $3E
+    CMP a:$06F1,Y
+    BEQ Bank2_Label_ABB8
+    INY
+    CPY #$08
+    BNE Bank2_Label_ABA7
+    LDA $3E
+    STA a:$06F1,X
+
+Bank2_Label_ABB8:
+    RTS
+    .byte $00, $00, $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $01, $01, $00, $01, $00, $01, $01, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00, $00, $01, $01, $00, $00, $00, $01, $01, $00, $00, $00, $00, $01, $01, $01
+    .byte $00, $00, $00, $00, $01, $01, $01, $01, $00, $00, $00, $00, $01, $01, $01, $01
+
+Bank2_Func_ABF9:
+    LDA #$00
+    STA $51
+    LDX #$00
+
+Bank2_Label_ABFF:
+    LDA a:$06F1,X
+    CMP $DF
+    BEQ Bank2_Label_AC0C
+    INX
+    CPX #$08
+    BNE Bank2_Label_ABFF
+    RTS
+
+Bank2_Label_AC0C:
+    LDA #$00
+    STA $51
+    JSR Bank2_Func_9104
+    BCC Bank2_Label_AC6B
+    LDA #$00
+    STA $51
+    LDA #$00
+    STA $C9
+    STA $CA
+    LDA #$00
+    STA $51
+    CPX #$06
+    BCS Bank2_Label_AC6B
+    STX $C8
+    LDA #$01
+    STA $51
+    LDY #$00
+
+Bank2_Label_AC2F:
+    JSR Bank2_Func_8B68
+    LDA a:$AC6C,Y
+    STA a:$0600,X
+    LDA a:$AC74,Y
+    CLC
+    ADC $C9
+    STA a:$0608,X
+    LDA a:$AC7C,Y
+    CLC
+    ADC $CA
+    STA a:$0610,X
+    LDA a:$AC84,Y
+    STA a:$0638,X
+    STY $42
+    TAY
+    LDA a:$8ED5,Y
+    STA a:$0628,X
+    LDY $42
+    LDA #$1E
+    STA a:$0668,X
+    INY
+    INX
+    CPX #$08
+    BNE Bank2_Label_AC2F
+    LDA #$03
+    STA a:$02AA
+
+Bank2_Label_AC6B:
+    RTS
+    .byte $03, $03, $03, $03, $03, $03, $03, $03, $68, $62, $68, $72, $7E, $88, $8E, $88
+    .byte $88, $7C, $70, $68, $68, $70, $7C, $88, $0A, $0B, $0B, $0B, $0B, $0B, $0B, $0B
+    .byte $A9, $00, $85, $3F, $E0, $06, $B0, $18, $20, $AE, $AC, $A4, $40, $8A, $99, $20
+    .byte $06, $E0, $06, $B0, $09, $20, $AE, $AC, $A4, $40, $8A, $99, $20, $06, $38, $60
+    .byte $18, $60, $86, $40, $A9, $04, $85, $41, $20, $68, $8B, $A4, $3F, $B9, $F9, $AC
+    .byte $9D, $00, $06, $B9, $01, $AD, $9D, $08, $06, $B9, $09, $AD, $9D, $10, $06, $B9
+    .byte $11, $AD, $9D, $38, $06, $84, $42, $A8, $B9, $D5, $8E, $9D, $28, $06, $A4, $42
+    .byte $AD, $BD, $8E, $9D, $98, $06, $B9, $19, $AD, $9D, $18, $06, $A9, $1E, $9D, $68
+    .byte $06, $E6, $3F, $E8, $E0, $08, $F0, $04, $C6, $41, $D0, $BC, $60, $01, $01, $01
+    .byte $01, $01, $01, $01, $01, $68, $62, $68, $72, $64, $6C, $74, $74, $88, $7C, $70
+    .byte $68, $92, $88, $80, $80, $08, $09, $09, $09, $08, $09, $09, $09, $01, $01, $02
+    .byte $02, $02, $02, $03, $03, $A6, $C8, $BD, $80, $06, $D0, $30, $20, $53, $B1, $29
+    .byte $20, $09, $10, $9D, $80, $06, $20, $53, $B1, $29, $01, $9D, $70, $06, $20, $53
+    .byte $B1, $29, $C0, $09, $10, $DD, $50, $06, $F0, $F4, $9D, $50, $06, $20, $53, $B1
+    .byte $29, $C0, $09, $10, $DD, $58, $06, $F0, $F4, $9D, $58, $06, $DE, $80, $06, $BD
+    .byte $08, $06, $85, $3C, $BD, $10, $06, $85, $3D, $BD, $70, $06, $F0, $0B, $BD, $58
+    .byte $06, $A8, $BD, $50, $06, $AA, $4C, $79, $AD, $A6, $8C, $A4, $8D, $20, $3B, $AB
+    .byte $20, $47, $AB, $A6, $C8, $A5, $3C, $9D, $08, $06, $A5, $3D, $9D, $10, $06, $86
+    .byte $05, $A6, $05, $BD, $09, $06, $85, $3C, $BD, $11, $06, $85, $3D, $BD, $10, $06
+    .byte $A8, $BD, $08, $06, $AA, $8A, $38, $E5, $3C, $20, $49, $B1, $C9, $06, $90, $03
+    .byte $20, $3B, $AB, $98, $38, $E5, $3D, $20, $49, $B1, $C9, $06, $90, $03, $20, $47
+    .byte $AB, $A6, $05, $A5, $3C, $9D, $09, $06, $A5, $3D, $9D, $11, $06, $E6, $05, $A5
+    .byte $05, $C9, $07, $D0, $BC, $60, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01
+    .byte $01, $00, $01, $01, $01, $00, $02, $02, $0A, $02, $01, $02, $02, $02, $03, $03
+    .byte $03, $02, $03, $03, $03, $03, $04, $04, $04, $04, $04, $04, $05, $05, $06, $04
+    .byte $04, $06, $06, $07, $06, $06, $06, $06, $06, $06, $07, $07, $09, $09, $08, $08
+    .byte $08, $08, $08, $0A, $0A, $0A
+
+Bank2_Func_AE12:
+    JSR Bank2_Func_A1F4
+    LDA #$00
+    STA $00
+    LDA #$00
+    STA $01
+    LDA #$08
+    STA $02
+    LDA #$07
+    STA a:$02AA
+    LDA #$00
+    STA a:$02AB
+
+Bank2_Label_AE2B:
+    LDX #$7F
+    TXS
+    LDA #$00
+    STA $68
+    LDA #$00
+    STA $74
+    JSR Bank2_Func_A601
+    JSR Bank2_Func_9D19
+    JSR Bank2_Func_AE5D
+    LDA #$01
+    STA $14
+    LDA #$01
+    STA $68
+    JSR Bank2_Func_B1BB
+    LDA $02
+    BNE Bank2_Label_AE2B
+
+Bank2_Label_AE4E:
+    LDA a:$02AA
+    BMI Bank2_Label_AE4E
+    LDA #$5A
+    STA $68
+    JSR Bank2_Func_B1BB
+    JMP Bank2_Func_8077
+
+Bank2_Func_AE5D:
+    LDA $02
+    BEQ Bank2_Label_AEBF
+    LDX #$00
+    LDY $01
+    JSR Bank2_Func_B0BA
+    LDA #$00
+    STA $72
+    LDX #$F2
+    LDY #$AE
+    LDA #$20
+    JSR Bank2_Func_B33A
+    LDX #$00
+    LDA #$1D
+    SEC
+    SBC $01
+    TAY
+    JSR Bank2_Func_B0BA
+    LDA #$00
+    STA $72
+    LDX #$F2
+    LDY #$AE
+    LDA #$20
+    JSR Bank2_Func_B33A
+    LDX $00
+    LDY #$00
+    JSR Bank2_Func_B0BA
+    LDA #$01
+    STA $72
+    LDX #$12
+    LDY #$AF
+    LDA #$1E
+    JSR Bank2_Func_B33A
+    LDA #$1F
+    SEC
+    SBC $00
+    TAX
+    LDY #$00
+    JSR Bank2_Func_B0BA
+    LDA #$01
+    STA $72
+    LDX #$12
+    LDY #$AF
+    LDA #$1E
+    JSR Bank2_Func_B33A
+    INC $00
+    INC $01
+    DEC $02
+
+Bank2_Label_AEBF:
+    LDA #$6C
+    STA $8C
+    LDA #$78
+    STA $8D
+    LDA #$0D
+    STA $90
+    LDA #$00
+    STA $91
+    LDY #$00
+
+Bank2_Label_AED1:
+    LDA a:$0600,Y
+    CMP #$01
+    BNE Bank2_Label_AEEC
+    LDA a:$0638,Y
+    CMP #$1F
+    BNE Bank2_Label_AEE7
+    LDA #$00
+    STA a:$06A0,Y
+    JMP Bank2_Label_AEEC
+
+Bank2_Label_AEE7:
+    LDA #$00
+    STA a:$0600,Y
+
+Bank2_Label_AEEC:
+    INY
+    CPY #$08
+    BNE Bank2_Label_AED1
+    RTS
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $A5, $DF, $C9, $3F
-    .byte $D0, $1A, $E6, $50, $A5, $50, $29, $10, $D0, $12, $A2, $70, $A0, $74, $20, $1A
-    .byte $A7, $A9, $00, $85, $7A, $A9, $AC, $85, $79, $20, $B6, $B4, $60, $48, $20, $5B
-    .byte $B2, $68, $09, $30, $8D, $01, $03, $A9, $80, $8D, $00, $03, $8D, $03, $03, $A9
-    .byte $00, $8D, $02, $03, $A9, $01, $85, $14, $4C, $6C, $AF, $20, $DA, $80, $A9, $90
-    .byte $85, $19, $A9, $02, $20, $AA, $81, $20, $76, $B2, $A2, $EE, $A0, $BD, $86, $00
-    .byte $84, $01, $20, $9F, $B2, $A9, $00, $85, $00, $20, $D4, $B2, $A9, $00, $85, $00
-    .byte $20, $FD, $B2, $20, $5B, $B2, $20, $FD, $80, $20, $86, $B2, $A2, $C6, $A0, $AF
-    .byte $86, $00, $84, $01, $A2, $00, $A0, $03, $86, $02, $84, $03, $A9, $20, $85, $04
-    .byte $20, $F1, $B1, $A9, $01, $85, $14, $A9, $07, $8D, $AA, $02, $A9, $00, $8D, $AB
-    .byte $02, $60, $58, $EE, $00, $78, $58, $EF, $00, $80, $60, $FE, $00, $78, $60, $FF
-    .byte $00, $80, $68, $2E, $00, $78, $68, $2F, $00, $80, $70, $E5, $00, $78, $70, $F5
-    .byte $00, $80
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+Bank2_Func_AF30:
+    LDA $DF
+    CMP #$3F
+    BNE Bank2_Label_AF50
+    INC $50
+    LDA $50
+    AND #$10
+    BNE Bank2_Label_AF50
+    LDX #$70
+    LDY #$74
+    JSR Bank2_Func_A71A
+    LDA #$00
+    STA $7A
+    LDA #$AC
+    STA $79
+    JSR Bank2_Func_B4B6
+
+Bank2_Label_AF50:
+    RTS
+
+Bank2_Func_AF51:
+    PHA
+    JSR Bank2_Func_B25B
+    PLA
+    ORA #$30
+    STA a:$0301
+    LDA #$80
+    STA a:$0300
+    STA a:$0303
+    LDA #$00
+    STA a:$0302
+    LDA #$01
+    STA $14
+
+Bank2_Label_AF6C:
+    JMP Bank2_Label_AF6C
+
+Bank2_Func_AF6F:
+    JSR Bank2_Func_80DA
+    LDA #$90
+    STA $19
+    LDA #$02
+    JSR Bank2_Func_81AA
+    JSR Bank2_Func_B276
+    LDX #$EE
+    LDY #$BD
+    STX $00
+    STY $01
+    JSR Bank2_Func_B29F
+    LDA #$00
+    STA $00
+    JSR Bank2_Func_B2D4
+    LDA #$00
+    STA $00
+    JSR Bank2_Func_B2FD
+    JSR Bank2_Func_B25B
+    JSR Bank2_Func_80FD
+    JSR Bank2_Func_B286
+    LDX #$C6
+    LDY #$AF
+    STX $00
+    STY $01
+    LDX #$00
+    LDY #$03
+    STX $02
+    STY $03
+    LDA #$20
+    STA $04
+    JSR Bank2_Func_B1F1
+    LDA #$01
+    STA $14
+    LDA #$07
+    STA a:$02AA
+    LDA #$00
+    STA a:$02AB
+    RTS
+    .byte $58, $EE, $00, $78, $58, $EF, $00, $80, $60, $FE, $00, $78, $60, $FF, $00, $80
+    .byte $68, $2E, $00, $78, $68, $2F, $00, $80, $70, $E5, $00, $78, $70, $F5, $00, $80
 
 Bank2_Func_AFE6:
     JSR Bank2_Func_BEC5
@@ -1200,9 +4915,41 @@ Bank2_Label_B043:
 Bank2_Label_B057:
     STX $6B
     RTS
-    .byte $A5, $67, $F0, $03, $20, $0D, $B0, $60, $48, $A5, $6C, $C5, $6B, $D0, $FA, $68
-    .byte $60, $48, $A5, $6C, $C5, $6B, $F0, $09, $A5, $6B, $38, $E5, $6C, $C9, $24, $90
-    .byte $F1, $68, $60
+
+Bank2_Func_B05A:
+    LDA $67
+    BEQ Bank2_Label_B061
+    JSR Bank2_Func_B00D
+
+Bank2_Label_B061:
+    RTS
+
+Bank2_Func_B062:
+    PHA
+
+Bank2_Label_B063:
+    LDA $6C
+    CMP $6B
+    BNE Bank2_Label_B063
+    PLA
+    RTS
+
+Bank2_Func_B06B:
+    PHA
+
+Bank2_Label_B06C:
+    LDA $6C
+    CMP $6B
+    BEQ Bank2_Label_B07B
+    LDA $6B
+    SEC
+    SBC $6C
+    CMP #$24
+    BCC Bank2_Label_B06C
+
+Bank2_Label_B07B:
+    PLA
+    RTS
 
 Bank2_Func_B07D:
     LDA #$3F
@@ -1224,34 +4971,236 @@ Bank2_Func_B08E:
     STA $19
     STA a:$2000
     RTS
-    .byte $A9, $00, $8D, $03, $20, $A9, $03, $8D, $14, $40, $60, $AD, $02, $20, $30, $FB
-    .byte $AD, $02, $20, $10, $FB, $60, $A9, $20, $85, $6A, $E0, $20, $90, $09, $8A, $38
-    .byte $E9, $20, $AA, $A9, $24, $85, $6A, $C0, $1E, $90, $09, $98, $38, $E9, $1E, $A8
-    .byte $A9, $24, $85, $6A, $A9, $00, $85, $69, $98, $4A, $66, $69, $4A, $66, $69, $4A
-    .byte $66, $69, $18, $65, $6A, $85, $6A, $8A, $18, $65, $69, $85, $69, $A5, $6A, $69
-    .byte $00, $85, $6A, $60, $A9, $23, $85, $6A, $A9, $00, $85, $41, $E0, $20, $90, $0D
-    .byte $8A, $38, $E9, $20, $AA, $A9, $27, $85, $6A, $A9, $40, $85, $41, $C0, $1E, $90
-    .byte $0D, $98, $38, $E9, $1E, $A8, $A9, $27, $85, $6A, $A9, $40, $85, $41, $98, $29
-    .byte $FC, $0A, $85, $40, $8A, $4A, $4A, $18, $65, $40, $05, $41, $85, $41, $09, $C0
-    .byte $85, $69, $60, $C9, $80, $90, $0D, $48, $8A, $49, $FF, $18, $69, $01, $AA, $68
-    .byte $49, $FF, $69, $00, $60, $C9, $80, $90, $05, $49, $FF, $18, $69, $01, $60, $E6
-    .byte $D6, $C6, $D7, $D0, $04, $A9, $75, $85, $D7, $A5, $D6, $C9, $77, $D0, $04, $A9
-    .byte $01, $85, $D6, $45, $D7, $0A, $08, $4A, $28, $2A, $0A, $08, $4A, $28, $2A, $45
-    .byte $D8, $38, $E5, $D7, $18, $65, $D6, $18, $65, $D6, $85, $D8, $86, $E2, $A6, $E1
-    .byte $55, $00, $A6, $E2, $60, $E6, $D9, $C6, $DA, $D0, $04, $A9, $75, $85, $DA, $A5
-    .byte $D9, $C9, $77, $D0, $04, $A9, $01, $85, $D9, $45, $DA, $0A, $08, $4A, $28, $2A
-    .byte $0A, $08, $4A, $28, $2A, $45, $DB, $38, $E5, $DA, $18, $65, $D9, $18, $65, $D9
-    .byte $85, $DB, $60, $A5, $00, $85, $68, $E6, $D6, $A5, $68, $D0, $FA, $60, $A2, $00
-    .byte $20, $D1, $B1, $85, $65, $A2, $01, $20, $D1, $B1, $85, $66, $60, $B5, $1F, $D0
-    .byte $03, $95, $5F, $60, $B5, $5F, $D0, $07, $A9, $08, $95, $5F, $B5, $1F, $60, $D6
-    .byte $5F, $F0, $03, $A9, $00, $60, $A9, $04, $95, $5F, $B5, $1F, $60, $A0, $00, $A6
-    .byte $04, $B1, $00, $91, $02, $C8, $CA, $D0, $F8, $60, $A9, $10, $8D, $00, $20, $85
-    .byte $19, $A9, $00, $8D, $01, $20, $20, $AF, $B0, $A2, $00, $8A, $55, $00, $E8, $D0
-    .byte $FB, $85, $D6, $AA, $BD, $FE, $B1, $85, $D7, $AA, $BD, $FE, $B1, $85, $D8, $A2
-    .byte $3C, $A9, $00, $95, $00, $E8, $E0, $D6, $D0, $F9, $A9, $00, $85, $1B, $85, $1C
-    .byte $A9, $04, $85, $5E, $A9, $90, $8D, $00, $20, $85, $19, $A9, $00, $8D, $11, $40
-    .byte $8D, $15, $40, $8D, $10, $40, $A9, $40, $8D, $17, $40, $A9, $00, $8D, $A0, $02
-    .byte $8D, $AA, $02, $8D, $AB, $02, $60
+
+Bank2_Func_B0A4:
+    LDA #$00
+    STA a:$2003
+    LDA #$03
+    STA a:$4014
+    RTS
+
+Bank2_Func_B0AF:
+    LDA a:$2002
+    BMI Bank2_Func_B0AF
+
+Bank2_Label_B0B4:
+    LDA a:$2002
+    BPL Bank2_Label_B0B4
+    RTS
+
+Bank2_Func_B0BA:
+    LDA #$20
+    STA $6A
+    CPX #$20
+    BCC Bank2_Label_B0CB
+    TXA
+    SEC
+    SBC #$20
+    TAX
+    LDA #$24
+    STA $6A
+
+Bank2_Label_B0CB:
+    CPY #$1E
+    BCC Bank2_Label_B0D8
+    TYA
+    SEC
+    SBC #$1E
+    TAY
+    LDA #$24
+    STA $6A
+
+Bank2_Label_B0D8:
+    LDA #$00
+    STA $69
+    TYA
+    LSR A
+    ROR $69
+    LSR A
+    ROR $69
+    LSR A
+    ROR $69
+    CLC
+    ADC $6A
+    STA $6A
+    TXA
+    CLC
+    ADC $69
+    STA $69
+    LDA $6A
+    ADC #$00
+    STA $6A
+    RTS
+
+Bank2_Func_B0F8:
+    LDA #$23
+    STA $6A
+    LDA #$00
+    STA $41
+    CPX #$20
+    BCC Bank2_Label_B111
+    TXA
+    SEC
+    SBC #$20
+    TAX
+    LDA #$27
+    STA $6A
+    LDA #$40
+    STA $41
+
+Bank2_Label_B111:
+    CPY #$1E
+    BCC Bank2_Label_B122
+    TYA
+    SEC
+    SBC #$1E
+    TAY
+    LDA #$27
+    STA $6A
+    LDA #$40
+    STA $41
+
+Bank2_Label_B122:
+    TYA
+    AND #$FC
+    ASL A
+    STA $40
+    TXA
+    LSR A
+    LSR A
+    CLC
+    ADC $40
+    ORA $41
+    STA $41
+    ORA #$C0
+    STA $69
+    RTS
+    .byte $C9, $80, $90, $0D, $48, $8A, $49, $FF, $18, $69, $01, $AA, $68, $49, $FF, $69
+    .byte $00, $60
+
+Bank2_Func_B149:
+    CMP #$80
+    BCC Bank2_Label_B152
+    EOR #$FF
+    CLC
+    ADC #$01
+
+Bank2_Label_B152:
+    RTS
+
+Bank2_Func_B153:
+    INC $D6
+    DEC $D7
+    BNE Bank2_Label_B15D
+    LDA #$75
+    STA $D7
+
+Bank2_Label_B15D:
+    LDA $D6
+    CMP #$77
+    BNE Bank2_Label_B167
+    LDA #$01
+    STA $D6
+
+Bank2_Label_B167:
+    EOR $D7
+    ASL A
+    PHP
+    LSR A
+    PLP
+    ROL A
+    ASL A
+    PHP
+    LSR A
+    PLP
+    ROL A
+    EOR $D8
+    SEC
+    SBC $D7
+    CLC
+    ADC $D6
+    CLC
+    ADC $D6
+    STA $D8
+    STX $E2
+    LDX $E1
+    EOR $00,X
+    LDX $E2
+    RTS
+    .byte $E6, $D9, $C6, $DA, $D0, $04, $A9, $75, $85, $DA, $A5, $D9, $C9, $77, $D0, $04
+    .byte $A9, $01, $85, $D9, $45, $DA, $0A, $08, $4A, $28, $2A, $0A, $08, $4A, $28, $2A
+    .byte $45, $DB, $38, $E5, $DA, $18, $65, $D9, $18, $65, $D9, $85, $DB, $60, $A5, $00
+    .byte $85, $68
+
+Bank2_Func_B1BB:
+    INC $D6
+    LDA $68
+    BNE Bank2_Func_B1BB
+    RTS
+    .byte $A2, $00, $20, $D1, $B1, $85, $65, $A2, $01, $20, $D1, $B1, $85, $66, $60, $B5
+    .byte $1F, $D0, $03, $95, $5F, $60, $B5, $5F, $D0, $07, $A9, $08, $95, $5F, $B5, $1F
+    .byte $60, $D6, $5F, $F0, $03, $A9, $00, $60, $A9, $04, $95, $5F, $B5, $1F, $60
+
+Bank2_Func_B1F1:
+    LDY #$00
+    LDX $04
+
+Bank2_Label_B1F5:
+    LDA ($00),Y
+    STA ($02),Y
+    INY
+    DEX
+    BNE Bank2_Label_B1F5
+    RTS
+
+Bank2_Func_B1FE:
+    LDA #$10
+    STA a:$2000
+    STA $19
+    LDA #$00
+    STA a:$2001
+    JSR Bank2_Func_B0AF
+    LDX #$00
+    TXA
+
+Bank2_Label_B210:
+    EOR $00,X
+    INX
+    BNE Bank2_Label_B210
+    STA $D6
+    TAX
+    LDA a:$B1FE,X
+    STA $D7
+    TAX
+    LDA a:$B1FE,X
+    STA $D8
+    LDX #$3C
+    LDA #$00
+
+Bank2_Label_B227:
+    STA $00,X
+    INX
+    CPX #$D6
+    BNE Bank2_Label_B227
+    LDA #$00
+    STA $1B
+    STA $1C
+    LDA #$04
+    STA $5E
+    LDA #$90
+    STA a:$2000
+    STA $19
+    LDA #$00
+    STA a:$4011
+    STA a:$4015
+    STA a:$4010
+    LDA #$40
+    STA a:$4017
+    LDA #$00
+    STA a:$02A0
+    STA a:$02AA
+    STA a:$02AB
+    RTS
 
 Bank2_Func_B25B:
     LDX #$00
@@ -1270,203 +5219,794 @@ Bank2_Label_B25F:
     DEY
     BNE Bank2_Label_B25F
     RTS
-    .byte $20, $5B, $B2, $20, $AF, $B0, $A9, $01, $85, $67, $A9, $00, $8D, $01, $20, $60
-    .byte $20, $62, $B0, $20, $AF, $B0, $20, $A4, $B0, $20, $7D, $B0, $20, $8E, $B0, $A9
-    .byte $00, $85, $67, $A9, $1E, $8D, $01, $20, $60, $A6, $00, $A4, $01, $20, $6B, $B0
-    .byte $86, $3C, $84, $3D, $A6, $6C, $A0, $00, $A9, $3F, $9D, $00, $05, $E8, $A9, $00
-    .byte $9D, $00, $05, $E8, $A9, $20, $9D, $00, $05, $E8, $B1, $3C, $9D, $00, $05, $99
-    .byte $80, $04, $E8, $C8, $C0, $20, $D0, $F2, $86, $6C, $20, $5A, $B0, $60, $A5, $00
-    .byte $A2, $00, $9D, $A0, $04, $E8, $E0, $20, $D0, $F8, $A9, $00, $85, $41, $A2, $00
-    .byte $A4, $41, $20, $BA, $B0, $A2, $A0, $A0, $04, $A9, $20, $20, $3A, $B3, $E6, $41
-    .byte $A5, $41, $C9, $3C, $D0, $E8, $60, $A5, $00, $AA, $BD, $F3, $B3, $A2, $00, $9D
-    .byte $00, $04, $E8, $E0, $80, $D0, $F8, $A9, $00, $85, $3F, $A2, $00, $A4, $3F, $20
-    .byte $F8, $B0, $A2, $00, $A0, $04, $A9, $20, $20, $3A, $B3, $A5, $3F, $18, $69, $10
-    .byte $85, $3F, $C9, $40, $D0, $E5, $60, $A6, $00, $A4, $01, $20, $BA, $B0, $A6, $02
-    .byte $A4, $03, $A5, $04, $20, $6B, $B0, $86, $3C, $84, $3D, $85, $3E, $A6, $6C, $A4
-    .byte $72, $F0, $02, $A0, $80, $98, $05, $6A, $9D, $00, $05, $E8, $A5, $69, $9D, $00
-    .byte $05, $E8, $A5, $3E, $9D, $00, $05, $E8, $A0, $00, $B1, $3C, $9D, $00, $05, $E8
-    .byte $C8, $C6, $3E, $D0, $F5, $86, $6C, $20, $5A, $B0, $60, $A6, $00, $A4, $01, $20
-    .byte $BA, $B0, $A5, $02, $20, $6B, $B0, $48, $A6, $6C, $A5, $6A, $9D, $00, $05, $E8
-    .byte $A5, $69, $9D, $00, $05, $E8, $A9, $01, $9D, $00, $05, $E8, $68, $9D, $00, $05
-    .byte $E8, $86, $6C, $20, $5A, $B0, $60, $A6, $00, $A4, $01, $A5, $02, $85, $3C, $86
-    .byte $3D, $84, $3E, $20, $6B, $B0, $20, $F8, $B0, $8A, $4A, $29, $01, $85, $3D, $98
-    .byte $29, $02, $18, $65, $3D, $AA, $A4, $3C, $B9, $F3, $B3, $3D, $FB, $B3, $85, $3C
-    .byte $A4, $41, $B9, $00, $04, $3D, $F7, $B3, $05, $3C, $99, $00, $04, $48, $A6, $6C
-    .byte $A5, $6A, $9D, $00, $05, $E8, $A5, $69, $9D, $00, $05, $E8, $A9, $01, $9D, $00
-    .byte $05, $E8, $68, $9D, $00, $05, $E8, $86, $6C, $20, $5A, $B0, $60, $00, $55, $AA
-    .byte $FF, $FC, $F3, $CF, $3F, $03, $0C, $30, $C0, $20, $06, $B4, $20, $60, $B4, $60
-    .byte $A0, $00, $A9, $5C, $85, $83, $A9, $18, $85, $80, $A9, $00, $85, $82, $B9, $98
-    .byte $02, $D0, $0C, $A5, $83, $18, $69, $08, $85, $83, $C8, $C0, $06, $D0, $EF, $B9
-    .byte $98, $02, $29, $0F, $09, $30, $85, $81, $20, $BA, $B6, $A5, $83, $18, $69, $08
-    .byte $85, $83, $C8, $C0, $07, $D0, $E8, $A9, $32, $85, $80, $A9, $E6, $85, $83, $A9
-    .byte $00, $85, $82, $A9, $3A, $85, $81, $20, $BA, $B6, $A9, $F0, $85, $83, $A5, $2A
-    .byte $29, $0F, $09, $30, $85, $81, $20, $BA, $B6, $60, $A5, $2C, $0A, $0A, $18, $69
-    .byte $50, $85, $80, $A9, $EC, $85, $83, $A9, $00, $85, $82, $A9, $04, $85, $0A, $A5
-    .byte $2B, $85, $81, $A0, $07, $A5, $81, $38, $E9, $04, $90, $0C, $85, $81, $A9, $3F
-    .byte $99, $0A, $00, $88, $10, $EF, $30, $11, $18, $69, $3F, $99, $0A, $00, $88, $30
-    .byte $08, $A9, $3B, $99, $0A, $00, $88, $10, $FA, $A4, $2C, $B9, $0A, $00, $85, $81
-    .byte $20, $BA, $B6, $A5, $80, $18, $69, $08, $85, $80, $C8, $C0, $08, $D0, $EC, $60
-    .byte $A5, $7A, $29, $40, $F0, $08, $A5, $16, $4A, $29, $01, $F0, $01, $60, $A5, $7A
-    .byte $10, $12, $A5, $16, $29, $08, $F0, $0C, $A5, $7A, $0A, $0A, $29, $80, $05, $7A
-    .byte $4A, $4A, $85, $7A, $A6, $79, $8A, $0A, $A8, $A9, $00, $69, $B6, $85, $7C, $A9
-    .byte $D7, $85, $7B, $C8, $B1, $7B, $C9, $04, $B0, $42, $48, $88, $B1, $7B, $AA, $0A
-    .byte $A8, $A9, $00, $69, $B6, $85, $7C, $A9, $D7, $85, $7B, $B1, $7B, $48, $C8, $B1
-    .byte $7B, $85, $7C, $68, $85, $7B, $A0, $00, $B1, $7B, $C8, $85, $7F, $B1, $7B, $C8
-    .byte $85, $7D, $B1, $7B, $C8, $85, $7E, $68, $F0, $09, $C9, $02, $F0, $0B, $90, $06
-    .byte $4C, $54, $B6, $4C, $44, $B5, $4C, $F6, $B5, $4C, $98, $B5, $48, $88, $B1, $7B
-    .byte $85, $7B, $68, $85, $7C, $A0, $00, $B1, $7B, $C8, $85, $7F, $C8, $C8, $B1, $7B
-    .byte $C8, $AA, $29, $7F, $18, $65, $77, $85, $80, $A5, $78, $69, $00, $29, $03, $D0
-    .byte $39, $A5, $80, $C9, $F0, $B0, $33, $8A, $29, $80, $85, $82, $B1, $7B, $C8, $AA
-    .byte $29, $7F, $18, $65, $75, $85, $83, $A5, $76, $69, $00, $29, $03, $D0, $1C, $8A
-    .byte $29, $80, $4A, $05, $82, $85, $82, $B1, $7B, $C8, $85, $81, $A5, $7A, $29, $23
-    .byte $05, $82, $85, $82, $20, $BA, $B6, $4C, $92, $B5, $C8, $C8, $C6, $7F, $D0, $AE
-    .byte $18, $60, $B1, $7B, $C8, $AA, $29, $7F, $38, $E5, $7E, $49, $FF, $18, $69, $01
-    .byte $18, $65, $77, $85, $80, $A5, $78, $69, $00, $29, $03, $D0, $3B, $A5, $80, $C9
-    .byte $F0, $B0, $35, $8A, $29, $80, $85, $82, $B1, $7B, $C8, $AA, $29, $7F, $18, $65
-    .byte $75, $85, $83, $A5, $76, $69, $00, $29, $03, $D0, $1E, $8A, $29, $80, $4A, $05
-    .byte $82, $85, $82, $B1, $7B, $C8, $85, $81, $A5, $7A, $29, $23, $05, $82, $49, $80
-    .byte $85, $82, $20, $BA, $B6, $4C, $F0, $B5, $C8, $C8, $C6, $7F, $D0, $A4, $18, $60
-    .byte $B1, $7B, $C8, $AA, $29, $7F, $18, $65, $77, $85, $80, $A5, $78, $69, $00, $29
-    .byte $03, $D0, $43, $A5, $80, $C9, $F0, $B0, $3D, $8A, $29, $80, $85, $82, $B1, $7B
-    .byte $C8, $AA, $29, $7F, $38, $E5, $7D, $49, $FF, $18, $69, $01, $18, $65, $75, $85
-    .byte $83, $A5, $76, $69, $00, $29, $03, $D0, $1E, $8A, $29, $80, $4A, $05, $82, $85
-    .byte $82, $B1, $7B, $C8, $85, $81, $A5, $7A, $29, $23, $05, $82, $49, $40, $85, $82
-    .byte $20, $BA, $B6, $4C, $4E, $B6, $C8, $C8, $C6, $7F, $D0, $A4, $18, $60, $B1, $7B
-    .byte $C8, $AA, $29, $7F, $38, $E5, $7E, $49, $FF, $18, $69, $01, $18, $65, $77, $85
-    .byte $80, $A5, $78, $69, $00, $29, $03, $D0, $43, $A5, $80, $C9, $F0, $B0, $3D, $8A
-    .byte $29, $80, $85, $82, $B1, $7B, $C8, $AA, $29, $7F, $38, $E5, $7D, $49, $FF, $18
-    .byte $69, $01, $18, $65, $75, $85, $83, $A5, $76, $69, $00, $29, $03, $D0, $1E, $8A
-    .byte $29, $80, $4A, $05, $82, $85, $82, $B1, $7B, $C8, $85, $81, $A5, $7A, $29, $23
-    .byte $05, $82, $49, $C0, $85, $82, $20, $BA, $B6, $4C, $B4, $B6, $C8, $C8, $C6, $7F
-    .byte $D0, $9C, $18, $60, $A5, $74, $0A, $AA, $A5, $80, $9D, $00, $03, $A5, $81, $9D
-    .byte $01, $03, $A5, $82, $9D, $02, $03, $A5, $83, $9D, $03, $03, $E6, $74, $E6, $74
-    .byte $60, $79, $B8, $64, $B8, $4F, $B8, $00, $01, $01, $01, $02, $01, $8E, $B8, $04
-    .byte $01, $A3, $B8, $B8, $B8, $09, $01, $E2, $B8, $0B, $01, $F7, $B8, $F7, $B8, $4F
-    .byte $B8, $39, $B9, $2A, $B9, $10, $01, $11, $01, $0C, $B9, $1B, $B9, $14, $01, $15
-    .byte $01, $48, $B9, $48, $B9, $18, $01, $19, $01, $57, $B9, $57, $B9, $1C, $01, $1D
-    .byte $01, $66, $B9, $75, $B9, $20, $01, $21, $01, $84, $B9, $93, $B9, $24, $01, $25
-    .byte $01, $A2, $B9, $B1, $B9, $28, $01, $29, $01, $C0, $B9, $C0, $B9, $2C, $01, $2D
-    .byte $01, $CF, $B9, $CF, $B9, $30, $01, $31, $01, $DE, $B9, $DE, $B9, $34, $01, $35
-    .byte $01, $0C, $B9, $0C, $B9, $38, $01, $39, $01, $0C, $B9, $0C, $B9, $3C, $01, $3D
-    .byte $01, $ED, $B9, $ED, $B9, $40, $01, $41, $01, $F6, $B9, $F6, $B9, $F6, $B9, $F6
-    .byte $B9, $05, $BA, $05, $BA, $05, $BA, $05, $BA, $14, $BA, $14, $BA, $14, $BA, $14
-    .byte $BA, $23, $BA, $23, $BA, $50, $01, $51, $01, $23, $BA, $23, $BA, $54, $01, $55
-    .byte $01, $23, $BA, $23, $BA, $58, $01, $59, $01, $23, $BA, $23, $BA, $5C, $01, $5D
-    .byte $01, $32, $BA, $32, $BA, $60, $01, $61, $01, $50, $BA, $50, $BA, $50, $BA, $50
-    .byte $BA, $41, $BA, $41, $BA, $68, $01, $69, $01, $5F, $BA, $6E, $BA, $7D, $BA, $8C
-    .byte $BA, $9B, $BA, $9B, $BA, $9B, $BA, $9B, $BA, $AA, $BA, $AA, $BA, $AA, $BA, $AA
-    .byte $BA, $0C, $B9, $0C, $B9, $0C, $B9, $0C, $B9, $0C, $B9, $0C, $B9, $0C, $B9, $0C
-    .byte $B9, $B9, $BA, $B9, $BA, $B9, $BA, $B9, $BA, $CE, $BA, $CE, $BA, $CE, $BA, $CE
-    .byte $BA, $E3, $BA, $F8, $BA, $0D, $BB, $F8, $BA, $22, $BB, $37, $BB, $4C, $BB, $37
-    .byte $BB, $61, $BB, $76, $BB, $90, $01, $91, $01, $8B, $BB, $A0, $BB, $94, $01, $95
-    .byte $01, $B5, $BB, $CA, $BB, $98, $01, $99, $01, $DF, $BB, $DF, $BB, $9C, $01, $9D
-    .byte $01, $F4, $BB, $03, $BC, $12, $BC, $F4, $BB, $21, $BC, $30, $BC, $A4, $01, $A5
-    .byte $01, $3F, $BC, $4E, $BC, $A8, $01, $A9, $01, $5D, $BC, $5D, $BC, $5D, $BC, $5D
-    .byte $BC, $6C, $BC, $6C, $BC, $6C, $BC, $6C, $BC, $7B, $BC, $8A, $BC, $B4, $01, $B5
-    .byte $01, $99, $BC, $99, $BC, $99, $BC, $99, $BC, $06, $08, $0E, $00, $00, $00, $00
-    .byte $08, $01, $08, $00, $10, $08, $08, $11, $10, $00, $20, $10, $08, $21, $06, $08
-    .byte $0E, $00, $00, $00, $00, $08, $01, $08, $00, $10, $08, $08, $11, $10, $00, $22
-    .byte $10, $08, $23, $06, $08, $0E, $00, $00, $00, $00, $08, $01, $08, $00, $02, $08
-    .byte $08, $03, $10, $00, $12, $10, $08, $13, $06, $08, $0E, $00, $00, $08, $00, $08
-    .byte $09, $08, $00, $18, $08, $08, $18, $10, $00, $29, $10, $08, $29, $06, $08, $0E
-    .byte $00, $00, $06, $00, $08, $07, $08, $00, $16, $08, $08, $17, $10, $00, $26, $10
-    .byte $08, $27, $06, $08, $0E, $00, $00, $00, $00, $08, $01, $08, $00, $04, $08, $08
-    .byte $11, $10, $00, $14, $10, $08, $21, $06, $08, $0E, $00, $00, $00, $00, $08, $01
-    .byte $08, $00, $05, $08, $08, $11, $10, $00, $15, $10, $08, $23, $06, $08, $0E, $00
-    .byte $00, $08, $00, $08, $09, $08, $00, $18, $08, $08, $19, $10, $00, $28, $10, $08
-    .byte $29, $06, $08, $0E, $00, $00, $06, $00, $08, $07, $08, $00, $24, $08, $08, $25
-    .byte $10, $00, $26, $10, $08, $27, $04, $08, $08, $00, $00, $66, $00, $08, $67, $08
-    .byte $00, $76, $08, $08, $77, $04, $08, $08, $00, $00, $68, $00, $08, $69, $08, $00
-    .byte $78, $08, $08, $79, $04, $08, $08, $00, $00, $80, $00, $08, $81, $08, $00, $90
-    .byte $08, $08, $91, $04, $08, $08, $00, $00, $82, $00, $08, $81, $08, $00, $92, $08
-    .byte $08, $93, $04, $08, $08, $00, $00, $44, $00, $08, $45, $08, $00, $54, $08, $08
-    .byte $55, $04, $08, $08, $00, $00, $88, $00, $08, $89, $08, $00, $98, $08, $08, $99
-    .byte $04, $08, $08, $00, $00, $AC, $00, $08, $AD, $08, $00, $BC, $08, $08, $BD, $04
-    .byte $08, $08, $00, $00, $AE, $00, $08, $AF, $08, $00, $BE, $08, $08, $BF, $04, $08
-    .byte $08, $00, $00, $A8, $00, $08, $A9, $08, $00, $B8, $08, $08, $B9, $04, $08, $08
-    .byte $00, $00, $AA, $00, $08, $AB, $08, $00, $BA, $08, $08, $BB, $04, $08, $08, $00
-    .byte $00, $84, $00, $08, $85, $08, $00, $94, $08, $08, $95, $04, $08, $08, $00, $00
-    .byte $8A, $00, $08, $8B, $08, $00, $9A, $08, $08, $9B, $04, $08, $08, $00, $00, $86
-    .byte $00, $88, $86, $08, $00, $96, $08, $88, $96, $04, $08, $08, $88, $00, $A4, $88
-    .byte $08, $A5, $80, $00, $B4, $80, $08, $B5, $04, $08, $08, $00, $00, $A6, $00, $08
-    .byte $A7, $08, $00, $B6, $08, $08, $B7, $02, $08, $04, $04, $00, $0A, $04, $88, $0A
-    .byte $04, $08, $08, $00, $00, $40, $00, $08, $41, $08, $00, $50, $08, $08, $51, $04
-    .byte $08, $08, $00, $00, $6C, $00, $08, $6D, $08, $00, $6E, $08, $08, $6F, $04, $08
-    .byte $08, $00, $00, $0E, $00, $08, $0F, $08, $00, $1E, $08, $08, $1F, $04, $08, $08
-    .byte $00, $00, $42, $00, $08, $43, $08, $00, $52, $08, $08, $53, $04, $08, $08, $00
-    .byte $00, $0D, $00, $88, $0D, $88, $00, $0D, $88, $88, $0D, $04, $08, $08, $00, $00
-    .byte $46, $00, $08, $47, $08, $00, $56, $08, $08, $57, $04, $08, $08, $00, $00, $1C
-    .byte $00, $08, $1D, $08, $00, $2C, $08, $08, $2D, $04, $08, $08, $0A, $0A, $59, $0A
-    .byte $12, $59, $12, $0A, $59, $12, $12, $59, $04, $08, $08, $08, $08, $58, $08, $14
-    .byte $58, $14, $08, $58, $14, $14, $58, $04, $08, $08, $06, $06, $49, $06, $16, $49
-    .byte $16, $06, $49, $16, $16, $49, $04, $08, $08, $04, $04, $48, $04, $18, $48, $18
-    .byte $04, $48, $18, $18, $48, $04, $08, $08, $00, $00, $60, $00, $08, $61, $08, $00
-    .byte $70, $08, $08, $71, $04, $08, $08, $00, $00, $62, $00, $08, $63, $08, $00, $72
-    .byte $08, $08, $73, $06, $08, $0C, $00, $00, $A0, $00, $08, $A1, $08, $00, $B0, $08
-    .byte $08, $B1, $10, $00, $C0, $10, $08, $C1, $06, $08, $0C, $00, $00, $A2, $00, $08
-    .byte $A3, $08, $00, $B2, $08, $08, $B3, $10, $00, $C2, $10, $08, $C3, $06, $08, $0C
-    .byte $00, $00, $D0, $00, $08, $D1, $08, $00, $E0, $08, $08, $E1, $10, $00, $F0, $10
-    .byte $08, $F1, $06, $08, $0C, $00, $00, $D0, $00, $08, $C4, $08, $00, $E0, $08, $08
-    .byte $D4, $10, $00, $F0, $10, $08, $F1, $06, $08, $0C, $00, $00, $D0, $00, $08, $C6
-    .byte $08, $00, $E0, $08, $08, $D6, $10, $00, $F0, $10, $08, $F1, $06, $08, $0C, $00
-    .byte $00, $D2, $00, $08, $D3, $08, $00, $E2, $08, $08, $E3, $10, $00, $F2, $10, $08
-    .byte $F3, $06, $08, $0C, $00, $00, $C5, $00, $08, $D3, $08, $00, $D5, $08, $08, $E3
-    .byte $10, $00, $F2, $10, $08, $F3, $06, $08, $0C, $00, $00, $C7, $00, $08, $D3, $08
-    .byte $00, $D7, $08, $08, $E3, $10, $00, $F2, $10, $08, $F3, $06, $08, $0C, $00, $00
-    .byte $CC, $00, $08, $CD, $08, $00, $DC, $08, $08, $DD, $10, $00, $EC, $10, $08, $ED
-    .byte $06, $08, $0C, $00, $00, $CC, $00, $08, $CD, $08, $00, $DC, $08, $08, $E7, $10
-    .byte $00, $EC, $10, $08, $F7, $06, $08, $0C, $00, $00, $CA, $00, $08, $CB, $08, $00
-    .byte $DA, $08, $08, $DB, $10, $00, $EA, $10, $08, $EB, $06, $08, $0C, $00, $00, $CA
-    .byte $00, $08, $CB, $08, $00, $DA, $08, $08, $E6, $10, $00, $EA, $10, $08, $F6, $06
-    .byte $08, $0C, $00, $00, $C8, $00, $08, $C9, $08, $00, $D8, $08, $08, $D9, $10, $00
-    .byte $E8, $10, $08, $E9, $06, $08, $0C, $00, $00, $C8, $00, $08, $C9, $08, $00, $D8
-    .byte $08, $08, $E4, $10, $00, $E8, $10, $08, $F4, $06, $08, $0C, $00, $00, $7C, $00
-    .byte $08, $7D, $08, $00, $8C, $08, $08, $8D, $10, $00, $9C, $10, $08, $9D, $04, $08
-    .byte $08, $00, $00, $4A, $00, $08, $4B, $08, $00, $5A, $08, $08, $5B, $04, $08, $08
-    .byte $00, $00, $6A, $00, $08, $6B, $08, $00, $7A, $08, $08, $7B, $04, $08, $08, $00
-    .byte $00, $7E, $00, $08, $7F, $08, $00, $8E, $08, $08, $8F, $04, $08, $08, $00, $00
-    .byte $CE, $00, $08, $CF, $08, $00, $DE, $08, $08, $DF, $04, $08, $08, $00, $00, $F8
-    .byte $00, $08, $F9, $08, $00, $FA, $08, $08, $FB, $04, $08, $08, $00, $00, $64, $00
-    .byte $08, $65, $08, $00, $74, $08, $08, $75, $04, $08, $08, $00, $00, $9E, $00, $08
-    .byte $9F, $08, $00, $87, $08, $08, $97, $04, $08, $08, $00, $00, $4E, $00, $08, $4F
-    .byte $08, $00, $5E, $08, $08, $5F, $04, $08, $08, $00, $00, $4C, $00, $08, $4D, $08
-    .byte $00, $5C, $08, $08, $5D, $04, $08, $08, $00, $00, $1A, $00, $08, $1B, $08, $00
-    .byte $2A, $08, $08, $2B, $04, $08, $08, $00, $00, $0B, $00, $08, $0C, $08, $00, $05
-    .byte $08, $08, $15, $06, $08, $08, $00, $00, $EE, $00, $08, $EF, $08, $00, $FE, $08
-    .byte $08, $FF, $10, $00, $2E, $10, $08, $2F, $01, $23, $3C, $1C, $01, $19, $29, $01
-    .byte $01, $17, $27, $11, $01, $23, $3C, $16, $01, $15, $21, $30, $01, $15, $26, $30
-    .byte $01, $19, $26, $30, $01, $29, $05, $30, $01, $19, $28, $09, $01, $07, $27, $01
-    .byte $01, $00, $10, $20, $01, $19, $28, $15, $01, $15, $21, $30, $01, $15, $26, $30
-    .byte $01, $0F, $24, $30, $01, $21, $0F, $30, $0C, $0F, $27, $37, $0C, $0F, $2C, $0C
-    .byte $0C, $07, $27, $0F, $0C, $0F, $0A, $1A, $0C, $15, $21, $30, $0C, $05, $26, $30
-    .byte $0C, $19, $26, $30, $0C, $16, $31, $30, $0C, $0F, $14, $24, $0C, $0F, $11, $0C
-    .byte $0C, $07, $17, $27, $0C, $0F, $0A, $1A, $0C, $15, $21, $30, $0C, $05, $26, $30
-    .byte $0C, $15, $29, $30, $0C, $21, $26, $30, $0F, $0F, $09, $19, $0F, $15, $21, $30
-    .byte $0F, $0C, $1C, $2C, $0F, $0F, $27, $37, $0F, $15, $21, $30, $0F, $05, $26, $30
-    .byte $0F, $15, $27, $30, $0F, $19, $27, $30, $0F, $0F, $09, $19, $0F, $15, $21, $30
-    .byte $0F, $0C, $1C, $2C, $0F, $15, $25, $37, $0F, $15, $21, $30, $0F, $05, $26, $30
-    .byte $0F, $11, $25, $30, $0F, $05, $15, $30, $0F, $0F, $01, $11, $0F, $0F, $00, $10
-    .byte $0F, $07, $17, $27, $0F, $15, $25, $37, $0F, $15, $21, $30, $0F, $05, $26, $30
-    .byte $0F, $11, $25, $30, $0F, $05, $15, $35, $0F, $0F, $02, $1C, $0F, $0F, $07, $37
-    .byte $0F, $0F, $11, $21, $0F, $15, $25, $37, $0F, $15, $21, $30, $0F, $05, $26, $30
-    .byte $0F, $00, $21, $30, $0F, $05, $15, $35, $0F, $0F, $07, $16, $0F, $0F, $07, $21
-    .byte $0F, $0F, $15, $26, $0F, $15, $25, $37, $0F, $15, $21, $30, $0F, $05, $26, $30
-    .byte $0F, $12, $26, $30, $0F, $2B, $15, $30, $0F, $07, $17, $27, $0F, $00, $10, $20
-    .byte $0F, $05, $15, $25, $0F, $01, $11, $21, $0F, $15, $21, $30, $0F, $05, $26, $30
-    .byte $0F, $12, $26, $30, $0F, $05, $15, $30, $0F, $07, $17, $27, $0F, $00, $10, $20
-    .byte $0F, $0F, $09, $19, $0F, $00, $10, $20, $0F, $15, $21, $30, $0F, $05, $26, $30
-    .byte $0F, $01, $21, $31, $0F, $21, $26, $30, $00, $54, $64, $4C, $40, $44, $04, $38
-    .byte $34, $3C, $1C, $50, $58, $60, $2C, $28, $08, $48, $30, $20, $24, $18, $14, $10
-    .byte $0C, $5C, $2B, $BF, $2A, $BF, $4C, $C0, $64, $C0, $A3, $C0, $BD, $C0, $E7, $C3
-    .byte $F1, $C3, $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $84, $C1
-    .byte $91, $C1, $A5, $C3, $BA, $C2, $AE, $C3, $CB, $C3, $A6, $C2, $BA, $C2, $63, $C2
-    .byte $72, $C2, $64, $C3, $7F, $C3, $3B, $C1, $1D, $BF, $0D, $C1, $1D, $BF, $54, $C1
-    .byte $6B, $C1, $15, $C0, $BA, $C2, $1D, $C0, $BA, $C2, $33, $C3, $47, $C3, $25, $C1
-    .byte $1D, $BF, $EA, $C1, $1D, $BF, $05, $C2, $1D, $BF, $58, $BF, $7A, $BF, $58, $BF
-    .byte $C3, $BF, $1B, $C2, $2F, $C2, $F3, $BF, $22, $BF, $C9, $1A, $B0, $1A, $86, $D1
-    .byte $AE, $A0, $02, $30, $0E, $84, $D2, $A8, $BD, $0E, $BE, $D9, $0E, $BE, $90, $09
-    .byte $98, $A4, $D2, $8D, $A0, $02, $A6, $D1, $60, $A4, $D2, $4C, $AC, $BE, $C9, $1A
-    .byte $B0, $F6, $86, $D1, $A2, $00, $8E, $A1, $02, $8D, $A0, $02, $A6, $D1, $60
+
+Bank2_Func_B276:
+    JSR Bank2_Func_B25B
+    JSR Bank2_Func_B0AF
+    LDA #$01
+    STA $67
+    LDA #$00
+    STA a:$2001
+    RTS
+
+Bank2_Func_B286:
+    JSR Bank2_Func_B062
+    JSR Bank2_Func_B0AF
+    JSR Bank2_Func_B0A4
+    JSR Bank2_Func_B07D
+    JSR Bank2_Func_B08E
+    LDA #$00
+    STA $67
+    LDA #$1E
+    STA a:$2001
+    RTS
+
+Bank2_Func_B29F:
+    LDX $00
+    LDY $01
+
+Bank2_Func_B2A3:
+    JSR Bank2_Func_B06B
+    STX $3C
+    STY $3D
+    LDX $6C
+    LDY #$00
+    LDA #$3F
+    STA a:$0500,X
+    INX
+    LDA #$00
+    STA a:$0500,X
+    INX
+    LDA #$20
+    STA a:$0500,X
+    INX
+
+Bank2_Label_B2C0:
+    LDA ($3C),Y
+    STA a:$0500,X
+    STA a:$0480,Y
+    INX
+    INY
+    CPY #$20
+    BNE Bank2_Label_B2C0
+    STX $6C
+    JSR Bank2_Func_B05A
+    RTS
+
+Bank2_Func_B2D4:
+    LDA $00
+    LDX #$00
+
+Bank2_Label_B2D8:
+    STA a:$04A0,X
+    INX
+    CPX #$20
+    BNE Bank2_Label_B2D8
+    LDA #$00
+    STA $41
+
+Bank2_Label_B2E4:
+    LDX #$00
+    LDY $41
+    JSR Bank2_Func_B0BA
+    LDX #$A0
+    LDY #$04
+    LDA #$20
+    JSR Bank2_Func_B33A
+    INC $41
+    LDA $41
+    CMP #$3C
+    BNE Bank2_Label_B2E4
+    RTS
+
+Bank2_Func_B2FD:
+    LDA $00
+    TAX
+    LDA a:$B3F3,X
+    LDX #$00
+
+Bank2_Label_B305:
+    STA a:$0400,X
+    INX
+    CPX #$80
+    BNE Bank2_Label_B305
+    LDA #$00
+    STA $3F
+
+Bank2_Label_B311:
+    LDX #$00
+    LDY $3F
+    JSR Bank2_Func_B0F8
+    LDX #$00
+    LDY #$04
+    LDA #$20
+    JSR Bank2_Func_B33A
+    LDA $3F
+    CLC
+    ADC #$10
+    STA $3F
+    CMP #$40
+    BNE Bank2_Label_B311
+    RTS
+    .byte $A6, $00, $A4, $01, $20, $BA, $B0, $A6, $02, $A4, $03, $A5, $04
+
+Bank2_Func_B33A:
+    JSR Bank2_Func_B06B
+    STX $3C
+    STY $3D
+    STA $3E
+    LDX $6C
+    LDY $72
+    BEQ Bank2_Label_B34B
+    LDY #$80
+
+Bank2_Label_B34B:
+    TYA
+    ORA $6A
+    STA a:$0500,X
+    INX
+    LDA $69
+    STA a:$0500,X
+    INX
+    LDA $3E
+    STA a:$0500,X
+    INX
+    LDY #$00
+
+Bank2_Label_B360:
+    LDA ($3C),Y
+    STA a:$0500,X
+    INX
+    INY
+    DEC $3E
+    BNE Bank2_Label_B360
+    STX $6C
+    JSR Bank2_Func_B05A
+    RTS
+    .byte $A6, $00, $A4, $01, $20, $BA, $B0, $A5, $02, $20, $6B, $B0, $48, $A6, $6C, $A5
+    .byte $6A, $9D, $00, $05, $E8, $A5, $69, $9D, $00, $05, $E8, $A9, $01, $9D, $00, $05
+    .byte $E8, $68, $9D, $00, $05, $E8, $86, $6C, $20, $5A, $B0, $60, $A6, $00, $A4, $01
+    .byte $A5, $02, $85, $3C, $86, $3D, $84, $3E, $20, $6B, $B0, $20, $F8, $B0, $8A, $4A
+    .byte $29, $01, $85, $3D, $98, $29, $02, $18, $65, $3D, $AA, $A4, $3C, $B9, $F3, $B3
+    .byte $3D, $FB, $B3, $85, $3C, $A4, $41, $B9, $00, $04, $3D, $F7, $B3, $05, $3C, $99
+    .byte $00, $04, $48, $A6, $6C, $A5, $6A, $9D, $00, $05, $E8, $A5, $69, $9D, $00, $05
+    .byte $E8, $A9, $01, $9D, $00, $05, $E8, $68, $9D, $00, $05, $E8, $86, $6C, $20, $5A
+    .byte $B0, $60, $00, $55, $AA, $FF, $FC, $F3, $CF, $3F, $03, $0C, $30, $C0
+
+Bank2_Func_B3FF:
+    JSR Bank2_Func_B406
+    JSR Bank2_Func_B460
+    RTS
+
+Bank2_Func_B406:
+    LDY #$00
+    LDA #$5C
+    STA $83
+    LDA #$18
+    STA $80
+    LDA #$00
+    STA $82
+
+Bank2_Label_B414:
+    LDA a:$0298,Y
+    BNE Bank2_Label_B425
+    LDA $83
+    CLC
+    ADC #$08
+    STA $83
+    INY
+    CPY #$06
+    BNE Bank2_Label_B414
+
+Bank2_Label_B425:
+    LDA a:$0298,Y
+    AND #$0F
+    ORA #$30
+    STA $81
+    JSR Bank2_Func_B6BA
+    LDA $83
+    CLC
+    ADC #$08
+    STA $83
+    INY
+    CPY #$07
+    BNE Bank2_Label_B425
+    LDA #$32
+    STA $80
+    LDA #$E6
+    STA $83
+    LDA #$00
+    STA $82
+    LDA #$3A
+    STA $81
+    JSR Bank2_Func_B6BA
+    LDA #$F0
+    STA $83
+    LDA $2A
+    AND #$0F
+    ORA #$30
+    STA $81
+    JSR Bank2_Func_B6BA
+    RTS
+
+Bank2_Func_B460:
+    LDA $2C
+    ASL A
+    ASL A
+    CLC
+    ADC #$50
+    STA $80
+    LDA #$EC
+    STA $83
+    LDA #$00
+    STA $82
+    LDA #$04
+    STA $0A
+    LDA $2B
+    STA $81
+    LDY #$07
+
+Bank2_Label_B47B:
+    LDA $81
+    SEC
+    SBC #$04
+    BCC Bank2_Label_B48E
+    STA $81
+    LDA #$3F
+    STA a:$000A,Y
+    DEY
+    BPL Bank2_Label_B47B
+    BMI Bank2_Label_B49F
+
+Bank2_Label_B48E:
+    CLC
+    ADC #$3F
+    STA a:$000A,Y
+    DEY
+    BMI Bank2_Label_B49F
+    LDA #$3B
+
+Bank2_Label_B499:
+    STA a:$000A,Y
+    DEY
+    BPL Bank2_Label_B499
+
+Bank2_Label_B49F:
+    LDY $2C
+
+Bank2_Label_B4A1:
+    LDA a:$000A,Y
+    STA $81
+    JSR Bank2_Func_B6BA
+    LDA $80
+    CLC
+    ADC #$08
+    STA $80
+    INY
+    CPY #$08
+    BNE Bank2_Label_B4A1
+    RTS
+
+Bank2_Func_B4B6:
+    LDA $7A
+    AND #$40
+    BEQ Bank2_Label_B4C4
+    LDA $16
+    LSR A
+    AND #$01
+    BEQ Bank2_Label_B4C4
+    RTS
+
+Bank2_Label_B4C4:
+    LDA $7A
+    BPL Bank2_Label_B4DA
+    LDA $16
+    AND #$08
+    BEQ Bank2_Label_B4DA
+    LDA $7A
+    ASL A
+    ASL A
+    AND #$80
+    ORA $7A
+    LSR A
+    LSR A
+    STA $7A
+
+Bank2_Label_B4DA:
+    LDX $79
+    TXA
+    ASL A
+    TAY
+    LDA #$00
+    ADC #$B6
+    STA $7C
+    LDA #$D7
+    STA $7B
+    INY
+    LDA ($7B),Y
+    CMP #$04
+    BCS Bank2_Label_B532
+    PHA
+    DEY
+    LDA ($7B),Y
+    TAX
+    ASL A
+    TAY
+    LDA #$00
+    ADC #$B6
+    STA $7C
+    LDA #$D7
+    STA $7B
+    LDA ($7B),Y
+    PHA
+    INY
+    LDA ($7B),Y
+    STA $7C
+    PLA
+    STA $7B
+    LDY #$00
+    LDA ($7B),Y
+    INY
+    STA $7F
+    LDA ($7B),Y
+    INY
+    STA $7D
+    LDA ($7B),Y
+    INY
+    STA $7E
+    PLA
+    BEQ Bank2_Label_B529
+    CMP #$02
+    BEQ Bank2_Label_B52F
+    BCC Bank2_Label_B52C
+    JMP Bank2_Label_B654
+
+Bank2_Label_B529:
+    JMP Bank2_Label_B544
+
+Bank2_Label_B52C:
+    JMP Bank2_Label_B5F6
+
+Bank2_Label_B52F:
+    JMP Bank2_Label_B598
+
+Bank2_Label_B532:
+    PHA
+    DEY
+    LDA ($7B),Y
+    STA $7B
+    PLA
+    STA $7C
+    LDY #$00
+    LDA ($7B),Y
+    INY
+    STA $7F
+    INY
+    INY
+
+Bank2_Label_B544:
+    LDA ($7B),Y
+    INY
+    TAX
+    AND #$7F
+    CLC
+    ADC $77
+    STA $80
+    LDA $78
+    ADC #$00
+    AND #$03
+    BNE Bank2_Label_B590
+    LDA $80
+    CMP #$F0
+    BCS Bank2_Label_B590
+    TXA
+    AND #$80
+    STA $82
+    LDA ($7B),Y
+    INY
+    TAX
+    AND #$7F
+    CLC
+    ADC $75
+    STA $83
+    LDA $76
+    ADC #$00
+    AND #$03
+    BNE Bank2_Label_B591
+    TXA
+    AND #$80
+    LSR A
+    ORA $82
+    STA $82
+    LDA ($7B),Y
+    INY
+    STA $81
+    LDA $7A
+    AND #$23
+    ORA $82
+    STA $82
+    JSR Bank2_Func_B6BA
+    JMP Bank2_Label_B592
+
+Bank2_Label_B590:
+    INY
+
+Bank2_Label_B591:
+    INY
+
+Bank2_Label_B592:
+    DEC $7F
+    BNE Bank2_Label_B544
+    CLC
+    RTS
+
+Bank2_Label_B598:
+    LDA ($7B),Y
+    INY
+    TAX
+    AND #$7F
+    SEC
+    SBC $7E
+    EOR #$FF
+    CLC
+    ADC #$01
+    CLC
+    ADC $77
+    STA $80
+    LDA $78
+    ADC #$00
+    AND #$03
+    BNE Bank2_Label_B5EE
+    LDA $80
+    CMP #$F0
+    BCS Bank2_Label_B5EE
+    TXA
+    AND #$80
+    STA $82
+    LDA ($7B),Y
+    INY
+    TAX
+    AND #$7F
+    CLC
+    ADC $75
+    STA $83
+    LDA $76
+    ADC #$00
+    AND #$03
+    BNE Bank2_Label_B5EF
+    TXA
+    AND #$80
+    LSR A
+    ORA $82
+    STA $82
+    LDA ($7B),Y
+    INY
+    STA $81
+    LDA $7A
+    AND #$23
+    ORA $82
+    EOR #$80
+    STA $82
+    JSR Bank2_Func_B6BA
+    JMP Bank2_Label_B5F0
+
+Bank2_Label_B5EE:
+    INY
+
+Bank2_Label_B5EF:
+    INY
+
+Bank2_Label_B5F0:
+    DEC $7F
+    BNE Bank2_Label_B598
+    CLC
+    RTS
+
+Bank2_Label_B5F6:
+    LDA ($7B),Y
+    INY
+    TAX
+    AND #$7F
+    CLC
+    ADC $77
+    STA $80
+    LDA $78
+    ADC #$00
+    AND #$03
+    BNE Bank2_Label_B64C
+    LDA $80
+    CMP #$F0
+    BCS Bank2_Label_B64C
+    TXA
+    AND #$80
+    STA $82
+    LDA ($7B),Y
+    INY
+    TAX
+    AND #$7F
+    SEC
+    SBC $7D
+    EOR #$FF
+    CLC
+    ADC #$01
+    CLC
+    ADC $75
+    STA $83
+    LDA $76
+    ADC #$00
+    AND #$03
+    BNE Bank2_Label_B64D
+    TXA
+    AND #$80
+    LSR A
+    ORA $82
+    STA $82
+    LDA ($7B),Y
+    INY
+    STA $81
+    LDA $7A
+    AND #$23
+    ORA $82
+    EOR #$40
+    STA $82
+    JSR Bank2_Func_B6BA
+    JMP Bank2_Label_B64E
+
+Bank2_Label_B64C:
+    INY
+
+Bank2_Label_B64D:
+    INY
+
+Bank2_Label_B64E:
+    DEC $7F
+    BNE Bank2_Label_B5F6
+    CLC
+    RTS
+
+Bank2_Label_B654:
+    LDA ($7B),Y
+    INY
+    TAX
+    AND #$7F
+    SEC
+    SBC $7E
+    EOR #$FF
+    CLC
+    ADC #$01
+    CLC
+    ADC $77
+    STA $80
+    LDA $78
+    ADC #$00
+    AND #$03
+    BNE Bank2_Label_B6B2
+    LDA $80
+    CMP #$F0
+    BCS Bank2_Label_B6B2
+    TXA
+    AND #$80
+    STA $82
+    LDA ($7B),Y
+    INY
+    TAX
+    AND #$7F
+    SEC
+    SBC $7D
+    EOR #$FF
+    CLC
+    ADC #$01
+    CLC
+    ADC $75
+    STA $83
+    LDA $76
+    ADC #$00
+    AND #$03
+    BNE Bank2_Label_B6B3
+    TXA
+    AND #$80
+    LSR A
+    ORA $82
+    STA $82
+    LDA ($7B),Y
+    INY
+    STA $81
+    LDA $7A
+    AND #$23
+    ORA $82
+    EOR #$C0
+    STA $82
+    JSR Bank2_Func_B6BA
+    JMP Bank2_Label_B6B4
+
+Bank2_Label_B6B2:
+    INY
+
+Bank2_Label_B6B3:
+    INY
+
+Bank2_Label_B6B4:
+    DEC $7F
+    BNE Bank2_Label_B654
+    CLC
+    RTS
+
+Bank2_Func_B6BA:
+    LDA $74
+    ASL A
+    TAX
+    LDA $80
+    STA a:$0300,X
+    LDA $81
+    STA a:$0301,X
+    LDA $82
+    STA a:$0302,X
+    LDA $83
+    STA a:$0303,X
+    INC $74
+    INC $74
+    RTS
+    .byte $79, $B8, $64, $B8, $4F, $B8, $00, $01, $01, $01, $02, $01, $8E, $B8, $04, $01
+    .byte $A3, $B8, $B8, $B8, $09, $01, $E2, $B8, $0B, $01, $F7, $B8, $F7, $B8, $4F, $B8
+    .byte $39, $B9, $2A, $B9, $10, $01, $11, $01, $0C, $B9, $1B, $B9, $14, $01, $15, $01
+    .byte $48, $B9, $48, $B9, $18, $01, $19, $01, $57, $B9, $57, $B9, $1C, $01, $1D, $01
+    .byte $66, $B9, $75, $B9, $20, $01, $21, $01, $84, $B9, $93, $B9, $24, $01, $25, $01
+    .byte $A2, $B9, $B1, $B9, $28, $01, $29, $01, $C0, $B9, $C0, $B9, $2C, $01, $2D, $01
+    .byte $CF, $B9, $CF, $B9, $30, $01, $31, $01, $DE, $B9, $DE, $B9, $34, $01, $35, $01
+    .byte $0C, $B9, $0C, $B9, $38, $01, $39, $01, $0C, $B9, $0C, $B9, $3C, $01, $3D, $01
+    .byte $ED, $B9, $ED, $B9, $40, $01, $41, $01, $F6, $B9, $F6, $B9, $F6, $B9, $F6, $B9
+    .byte $05, $BA, $05, $BA, $05, $BA, $05, $BA, $14, $BA, $14, $BA, $14, $BA, $14, $BA
+    .byte $23, $BA, $23, $BA, $50, $01, $51, $01, $23, $BA, $23, $BA, $54, $01, $55, $01
+    .byte $23, $BA, $23, $BA, $58, $01, $59, $01, $23, $BA, $23, $BA, $5C, $01, $5D, $01
+    .byte $32, $BA, $32, $BA, $60, $01, $61, $01, $50, $BA, $50, $BA, $50, $BA, $50, $BA
+    .byte $41, $BA, $41, $BA, $68, $01, $69, $01, $5F, $BA, $6E, $BA, $7D, $BA, $8C, $BA
+    .byte $9B, $BA, $9B, $BA, $9B, $BA, $9B, $BA, $AA, $BA, $AA, $BA, $AA, $BA, $AA, $BA
+    .byte $0C, $B9, $0C, $B9, $0C, $B9, $0C, $B9, $0C, $B9, $0C, $B9, $0C, $B9, $0C, $B9
+    .byte $B9, $BA, $B9, $BA, $B9, $BA, $B9, $BA, $CE, $BA, $CE, $BA, $CE, $BA, $CE, $BA
+    .byte $E3, $BA, $F8, $BA, $0D, $BB, $F8, $BA, $22, $BB, $37, $BB, $4C, $BB, $37, $BB
+    .byte $61, $BB, $76, $BB, $90, $01, $91, $01, $8B, $BB, $A0, $BB, $94, $01, $95, $01
+    .byte $B5, $BB, $CA, $BB, $98, $01, $99, $01, $DF, $BB, $DF, $BB, $9C, $01, $9D, $01
+    .byte $F4, $BB, $03, $BC, $12, $BC, $F4, $BB, $21, $BC, $30, $BC, $A4, $01, $A5, $01
+    .byte $3F, $BC, $4E, $BC, $A8, $01, $A9, $01, $5D, $BC, $5D, $BC, $5D, $BC, $5D, $BC
+    .byte $6C, $BC, $6C, $BC, $6C, $BC, $6C, $BC, $7B, $BC, $8A, $BC, $B4, $01, $B5, $01
+    .byte $99, $BC, $99, $BC, $99, $BC, $99, $BC, $06, $08, $0E, $00, $00, $00, $00, $08
+    .byte $01, $08, $00, $10, $08, $08, $11, $10, $00, $20, $10, $08, $21, $06, $08, $0E
+    .byte $00, $00, $00, $00, $08, $01, $08, $00, $10, $08, $08, $11, $10, $00, $22, $10
+    .byte $08, $23, $06, $08, $0E, $00, $00, $00, $00, $08, $01, $08, $00, $02, $08, $08
+    .byte $03, $10, $00, $12, $10, $08, $13, $06, $08, $0E, $00, $00, $08, $00, $08, $09
+    .byte $08, $00, $18, $08, $08, $18, $10, $00, $29, $10, $08, $29, $06, $08, $0E, $00
+    .byte $00, $06, $00, $08, $07, $08, $00, $16, $08, $08, $17, $10, $00, $26, $10, $08
+    .byte $27, $06, $08, $0E, $00, $00, $00, $00, $08, $01, $08, $00, $04, $08, $08, $11
+    .byte $10, $00, $14, $10, $08, $21, $06, $08, $0E, $00, $00, $00, $00, $08, $01, $08
+    .byte $00, $05, $08, $08, $11, $10, $00, $15, $10, $08, $23, $06, $08, $0E, $00, $00
+    .byte $08, $00, $08, $09, $08, $00, $18, $08, $08, $19, $10, $00, $28, $10, $08, $29
+    .byte $06, $08, $0E, $00, $00, $06, $00, $08, $07, $08, $00, $24, $08, $08, $25, $10
+    .byte $00, $26, $10, $08, $27, $04, $08, $08, $00, $00, $66, $00, $08, $67, $08, $00
+    .byte $76, $08, $08, $77, $04, $08, $08, $00, $00, $68, $00, $08, $69, $08, $00, $78
+    .byte $08, $08, $79, $04, $08, $08, $00, $00, $80, $00, $08, $81, $08, $00, $90, $08
+    .byte $08, $91, $04, $08, $08, $00, $00, $82, $00, $08, $81, $08, $00, $92, $08, $08
+    .byte $93, $04, $08, $08, $00, $00, $44, $00, $08, $45, $08, $00, $54, $08, $08, $55
+    .byte $04, $08, $08, $00, $00, $88, $00, $08, $89, $08, $00, $98, $08, $08, $99, $04
+    .byte $08, $08, $00, $00, $AC, $00, $08, $AD, $08, $00, $BC, $08, $08, $BD, $04, $08
+    .byte $08, $00, $00, $AE, $00, $08, $AF, $08, $00, $BE, $08, $08, $BF, $04, $08, $08
+    .byte $00, $00, $A8, $00, $08, $A9, $08, $00, $B8, $08, $08, $B9, $04, $08, $08, $00
+    .byte $00, $AA, $00, $08, $AB, $08, $00, $BA, $08, $08, $BB, $04, $08, $08, $00, $00
+    .byte $84, $00, $08, $85, $08, $00, $94, $08, $08, $95, $04, $08, $08, $00, $00, $8A
+    .byte $00, $08, $8B, $08, $00, $9A, $08, $08, $9B, $04, $08, $08, $00, $00, $86, $00
+    .byte $88, $86, $08, $00, $96, $08, $88, $96, $04, $08, $08, $88, $00, $A4, $88, $08
+    .byte $A5, $80, $00, $B4, $80, $08, $B5, $04, $08, $08, $00, $00, $A6, $00, $08, $A7
+    .byte $08, $00, $B6, $08, $08, $B7, $02, $08, $04, $04, $00, $0A, $04, $88, $0A, $04
+    .byte $08, $08, $00, $00, $40, $00, $08, $41, $08, $00, $50, $08, $08, $51, $04, $08
+    .byte $08, $00, $00, $6C, $00, $08, $6D, $08, $00, $6E, $08, $08, $6F, $04, $08, $08
+    .byte $00, $00, $0E, $00, $08, $0F, $08, $00, $1E, $08, $08, $1F, $04, $08, $08, $00
+    .byte $00, $42, $00, $08, $43, $08, $00, $52, $08, $08, $53, $04, $08, $08, $00, $00
+    .byte $0D, $00, $88, $0D, $88, $00, $0D, $88, $88, $0D, $04, $08, $08, $00, $00, $46
+    .byte $00, $08, $47, $08, $00, $56, $08, $08, $57, $04, $08, $08, $00, $00, $1C, $00
+    .byte $08, $1D, $08, $00, $2C, $08, $08, $2D, $04, $08, $08, $0A, $0A, $59, $0A, $12
+    .byte $59, $12, $0A, $59, $12, $12, $59, $04, $08, $08, $08, $08, $58, $08, $14, $58
+    .byte $14, $08, $58, $14, $14, $58, $04, $08, $08, $06, $06, $49, $06, $16, $49, $16
+    .byte $06, $49, $16, $16, $49, $04, $08, $08, $04, $04, $48, $04, $18, $48, $18, $04
+    .byte $48, $18, $18, $48, $04, $08, $08, $00, $00, $60, $00, $08, $61, $08, $00, $70
+    .byte $08, $08, $71, $04, $08, $08, $00, $00, $62, $00, $08, $63, $08, $00, $72, $08
+    .byte $08, $73, $06, $08, $0C, $00, $00, $A0, $00, $08, $A1, $08, $00, $B0, $08, $08
+    .byte $B1, $10, $00, $C0, $10, $08, $C1, $06, $08, $0C, $00, $00, $A2, $00, $08, $A3
+    .byte $08, $00, $B2, $08, $08, $B3, $10, $00, $C2, $10, $08, $C3, $06, $08, $0C, $00
+    .byte $00, $D0, $00, $08, $D1, $08, $00, $E0, $08, $08, $E1, $10, $00, $F0, $10, $08
+    .byte $F1, $06, $08, $0C, $00, $00, $D0, $00, $08, $C4, $08, $00, $E0, $08, $08, $D4
+    .byte $10, $00, $F0, $10, $08, $F1, $06, $08, $0C, $00, $00, $D0, $00, $08, $C6, $08
+    .byte $00, $E0, $08, $08, $D6, $10, $00, $F0, $10, $08, $F1, $06, $08, $0C, $00, $00
+    .byte $D2, $00, $08, $D3, $08, $00, $E2, $08, $08, $E3, $10, $00, $F2, $10, $08, $F3
+    .byte $06, $08, $0C, $00, $00, $C5, $00, $08, $D3, $08, $00, $D5, $08, $08, $E3, $10
+    .byte $00, $F2, $10, $08, $F3, $06, $08, $0C, $00, $00, $C7, $00, $08, $D3, $08, $00
+    .byte $D7, $08, $08, $E3, $10, $00, $F2, $10, $08, $F3, $06, $08, $0C, $00, $00, $CC
+    .byte $00, $08, $CD, $08, $00, $DC, $08, $08, $DD, $10, $00, $EC, $10, $08, $ED, $06
+    .byte $08, $0C, $00, $00, $CC, $00, $08, $CD, $08, $00, $DC, $08, $08, $E7, $10, $00
+    .byte $EC, $10, $08, $F7, $06, $08, $0C, $00, $00, $CA, $00, $08, $CB, $08, $00, $DA
+    .byte $08, $08, $DB, $10, $00, $EA, $10, $08, $EB, $06, $08, $0C, $00, $00, $CA, $00
+    .byte $08, $CB, $08, $00, $DA, $08, $08, $E6, $10, $00, $EA, $10, $08, $F6, $06, $08
+    .byte $0C, $00, $00, $C8, $00, $08, $C9, $08, $00, $D8, $08, $08, $D9, $10, $00, $E8
+    .byte $10, $08, $E9, $06, $08, $0C, $00, $00, $C8, $00, $08, $C9, $08, $00, $D8, $08
+    .byte $08, $E4, $10, $00, $E8, $10, $08, $F4, $06, $08, $0C, $00, $00, $7C, $00, $08
+    .byte $7D, $08, $00, $8C, $08, $08, $8D, $10, $00, $9C, $10, $08, $9D, $04, $08, $08
+    .byte $00, $00, $4A, $00, $08, $4B, $08, $00, $5A, $08, $08, $5B, $04, $08, $08, $00
+    .byte $00, $6A, $00, $08, $6B, $08, $00, $7A, $08, $08, $7B, $04, $08, $08, $00, $00
+    .byte $7E, $00, $08, $7F, $08, $00, $8E, $08, $08, $8F, $04, $08, $08, $00, $00, $CE
+    .byte $00, $08, $CF, $08, $00, $DE, $08, $08, $DF, $04, $08, $08, $00, $00, $F8, $00
+    .byte $08, $F9, $08, $00, $FA, $08, $08, $FB, $04, $08, $08, $00, $00, $64, $00, $08
+    .byte $65, $08, $00, $74, $08, $08, $75, $04, $08, $08, $00, $00, $9E, $00, $08, $9F
+    .byte $08, $00, $87, $08, $08, $97, $04, $08, $08, $00, $00, $4E, $00, $08, $4F, $08
+    .byte $00, $5E, $08, $08, $5F, $04, $08, $08, $00, $00, $4C, $00, $08, $4D, $08, $00
+    .byte $5C, $08, $08, $5D, $04, $08, $08, $00, $00, $1A, $00, $08, $1B, $08, $00, $2A
+    .byte $08, $08, $2B, $04, $08, $08, $00, $00, $0B, $00, $08, $0C, $08, $00, $05, $08
+    .byte $08, $15, $06, $08, $08, $00, $00, $EE, $00, $08, $EF, $08, $00, $FE, $08, $08
+    .byte $FF, $10, $00, $2E, $10, $08, $2F, $01, $23, $3C, $1C, $01, $19, $29, $01, $01
+    .byte $17, $27, $11, $01, $23, $3C, $16, $01, $15, $21, $30, $01, $15, $26, $30, $01
+    .byte $19, $26, $30, $01, $29, $05, $30, $01, $19, $28, $09, $01, $07, $27, $01, $01
+    .byte $00, $10, $20, $01, $19, $28, $15, $01, $15, $21, $30, $01, $15, $26, $30, $01
+    .byte $0F, $24, $30, $01, $21, $0F, $30, $0C, $0F, $27, $37, $0C, $0F, $2C, $0C, $0C
+    .byte $07, $27, $0F, $0C, $0F, $0A, $1A, $0C, $15, $21, $30, $0C, $05, $26, $30, $0C
+    .byte $19, $26, $30, $0C, $16, $31, $30, $0C, $0F, $14, $24, $0C, $0F, $11, $0C, $0C
+    .byte $07, $17, $27, $0C, $0F, $0A, $1A, $0C, $15, $21, $30, $0C, $05, $26, $30, $0C
+    .byte $15, $29, $30, $0C, $21, $26, $30, $0F, $0F, $09, $19, $0F, $15, $21, $30, $0F
+    .byte $0C, $1C, $2C, $0F, $0F, $27, $37, $0F, $15, $21, $30, $0F, $05, $26, $30, $0F
+    .byte $15, $27, $30, $0F, $19, $27, $30, $0F, $0F, $09, $19, $0F, $15, $21, $30, $0F
+    .byte $0C, $1C, $2C, $0F, $15, $25, $37, $0F, $15, $21, $30, $0F, $05, $26, $30, $0F
+    .byte $11, $25, $30, $0F, $05, $15, $30, $0F, $0F, $01, $11, $0F, $0F, $00, $10, $0F
+    .byte $07, $17, $27, $0F, $15, $25, $37, $0F, $15, $21, $30, $0F, $05, $26, $30, $0F
+    .byte $11, $25, $30, $0F, $05, $15, $35, $0F, $0F, $02, $1C, $0F, $0F, $07, $37, $0F
+    .byte $0F, $11, $21, $0F, $15, $25, $37, $0F, $15, $21, $30, $0F, $05, $26, $30, $0F
+    .byte $00, $21, $30, $0F, $05, $15, $35, $0F, $0F, $07, $16, $0F, $0F, $07, $21, $0F
+    .byte $0F, $15, $26, $0F, $15, $25, $37, $0F, $15, $21, $30, $0F, $05, $26, $30, $0F
+    .byte $12, $26, $30, $0F, $2B, $15, $30, $0F, $07, $17, $27, $0F, $00, $10, $20, $0F
+    .byte $05, $15, $25, $0F, $01, $11, $21, $0F, $15, $21, $30, $0F, $05, $26, $30, $0F
+    .byte $12, $26, $30, $0F, $05, $15, $30, $0F, $07, $17, $27, $0F, $00, $10, $20, $0F
+    .byte $0F, $09, $19, $0F, $00, $10, $20, $0F, $15, $21, $30, $0F, $05, $26, $30, $0F
+    .byte $01, $21, $31, $0F, $21, $26, $30, $00, $54, $64, $4C, $40, $44, $04, $38, $34
+    .byte $3C, $1C, $50, $58, $60, $2C, $28, $08, $48, $30, $20, $24, $18, $14, $10, $0C
+    .byte $5C, $2B, $BF, $2A, $BF, $4C, $C0, $64, $C0, $A3, $C0, $BD, $C0, $E7, $C3, $F1
+    .byte $C3, $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $E7, $C3, $F1, $C3, $84, $C1, $91
+    .byte $C1, $A5, $C3, $BA, $C2, $AE, $C3, $CB, $C3, $A6, $C2, $BA, $C2, $63, $C2, $72
+    .byte $C2, $64, $C3, $7F, $C3, $3B, $C1, $1D, $BF, $0D, $C1, $1D, $BF, $54, $C1, $6B
+    .byte $C1, $15, $C0, $BA, $C2, $1D, $C0, $BA, $C2, $33, $C3, $47, $C3, $25, $C1, $1D
+    .byte $BF, $EA, $C1, $1D, $BF, $05, $C2, $1D, $BF, $58, $BF, $7A, $BF, $58, $BF, $C3
+    .byte $BF, $1B, $C2, $2F, $C2, $F3, $BF, $22, $BF
+
+Bank2_Func_BE90:
+    CMP #$1A
+    BCS Bank2_Label_BEAE
+    STX $D1
+    LDX a:$02A0
+    BMI Bank2_Label_BEA9
+    STY $D2
+    TAY
+    LDA a:$BE0E,X
+    CMP a:$BE0E,Y
+    BCC Bank2_Label_BEAF
+    TYA
+    LDY $D2
+
+Bank2_Label_BEA9:
+    STA a:$02A0
+
+Bank2_Label_BEAC:
+    LDX $D1
+
+Bank2_Label_BEAE:
+    RTS
+
+Bank2_Label_BEAF:
+    LDY $D2
+    JMP Bank2_Label_BEAC
+
+Bank2_Func_BEB4:
+    CMP #$1A
+    BCS Bank2_Label_BEAE
+    STX $D1
+    LDX #$00
+    STX a:$02A1
+    STA a:$02A0
+    LDX $D1
+    RTS
 
 Bank2_Func_BEC5:
     LDX #$03
@@ -2873,6 +7413,9 @@ World3_Map:
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+
+Bank2_Label_FC00:
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
@@ -2936,8 +7479,7 @@ World3_Map:
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 Bank2_NmiVector:
     .addr Bank2_Nmi
 

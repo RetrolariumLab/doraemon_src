@@ -67,7 +67,12 @@ Bank1_Func_8065:
     JSR Bank1_Func_827D
     PLA
     JMP Bank1_Func_81B2
-    .byte $20, $F0, $80, $A9, $03, $20, $B2, $81, $4C, $80, $82
+
+Bank1_Func_8077:
+    JSR Bank1_Func_80F0
+    LDA #$03
+    JSR Bank1_Func_81B2
+    JMP Bank1_Label_8280
 
 Bank1_Func_8082:
     JSR Bank1_Func_80F0
@@ -376,7 +381,7 @@ Bank1_MapperValueTable:
     .byte $00, $10, $20, $30, $01, $11, $21, $31, $02, $12, $22, $32, $03, $13, $23, $33
 
 Bank1_Func_8271:
-    JMP Bank1_Label_88A4
+    JMP Bank1_World2Main
 
 Bank1_Func_8274:
     JMP Bank1_Func_829F
@@ -1062,7 +1067,7 @@ Bank1_Func_8891:
     STA $2C
     BNE Bank1_Label_88B1
 
-Bank1_Label_88A4:
+Bank1_World2Main:
     LDX #$7F
     TXS
     LDA #$00
@@ -1160,7 +1165,7 @@ Bank1_Label_8940:
     JSR Bank1_Func_80FD
     JSR Bank1_Func_98F8
 
-Bank1_Label_8959:
+Bank1_World2FrameLoop:
     JSR Bank1_Func_8A39
     JSR Bank1_Func_8B3B
     JSR Bank1_Func_8B4C
@@ -1188,7 +1193,7 @@ Bank1_Label_8991:
     AND $21
     BNE Bank1_Label_89D7
     LDA $A2
-    BEQ Bank1_Label_8959
+    BEQ Bank1_World2FrameLoop
     LDA $27
     BNE Bank1_Label_89DB
     LDA #$06
@@ -1266,7 +1271,7 @@ Bank1_Label_8A0B:
     BNE Bank1_Label_8A0B
     PLA
     STA $41
-    JMP Bank1_Label_8959
+    JMP Bank1_World2FrameLoop
 
 Bank1_Func_8A1A:
     JSR Bank1_Func_8A39
@@ -1321,7 +1326,7 @@ Bank1_Label_8A66:
     JSR Bank1_Func_8A74
 
 Bank1_Label_8A71:
-    JMP Bank1_Label_8959
+    JMP Bank1_World2FrameLoop
 
 Bank1_Func_8A74:
     LDA $7C,X

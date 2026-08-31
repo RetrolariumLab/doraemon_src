@@ -60,6 +60,18 @@ bank-3 `$8277` entry. World 3 likewise follows PRG2 -> PRG3 -> PRG2 at frames
 206-209. These round trips are runtime evidence that bank 3 supplies a callable
 common presentation service, not merely the title's top-level loop.
 
+Runtime probes also identify each chapter's long-lived execution path:
+
+| Scenario | Main entry | First frame-loop iteration | Steady selector |
+| --- | --- | --- | --- |
+| World 2 cave | bank 1 `$88A4`, frame 186 | bank 1 `$8959`, frame 295 | `$05` |
+| World 3 underwater | bank 2 `$82F6`, frame 194 | bank 2 `$838E`, frame 338 | `$0A` |
+
+Both frame-loop probes recur once per emulated frame for the remainder of their
+900-frame scenarios. The World 3 dispatch target initially sat behind the build
+string at `$827D-$82AC`; the runtime entry plus the bank-2 `$8271 -> $82F6` jump
+establishes the exact code/data boundary used by the disassembly pipeline.
+
 ## World 1 city to underground
 
 The `world1-underground` scenario repeats the real two-Start game entry, moves
@@ -74,3 +86,38 @@ the renderer/mode transition occurs without a mapper change. The generated
 final screenshot is written to `build/runtime/screens/world1-underground.png`
 and shows the side-view brick tunnel; screenshots and CSV traces remain ignored
 build evidence.
+
+## World 2 to World 3 transition
+
+Long chapter completions are reproduced with declared RAM-state patches rather
+than controller macros that play the whole game. The `chapter-transition`
+scenario enters World 2 normally, then writes `$01` to the bank-1 completion
+flag at `$00B2` on frame 400. It does not patch ROM or redirect the CPU.
+
+The ordinary code path reaches bank-1 `$8A32` on frame 641, uses gateway `$808D`,
+and enters the bank-3 transition at `$8C43` on frame 643 with selector `$07`
+(PRG3/CHR1). The transition animation exits through `$8016`; World 3 reaches
+its normal `$82F6` entry on frame 1162 and its `$838E` frame loop on frame 1306
+with selector `$0A`. This proves the complete PRG1 -> PRG3 -> PRG2 chapter edge.
+
+Static code shows the paired World 1 route: bank-3 `$8C3F` stores transition
+kind 0 and exits through `$800B` to PRG1, while `$8C43` stores kind 1 and exits
+through `$8016` to PRG2.
+
+## Ending and credits
+
+The `ending-credits` scenario enters World 3 normally and applies two declared
+RAM patches. `$004F = $01` on frame 400 selects the chapter's existing completion
+countdown; `$003B = $00` on frame 800 supplies the full-game state that the title
+shortcut does not establish. The resulting execution is entirely original code:
+
+| Frame | Evidence |
+| ---: | --- |
+| 401 | bank-2 completion sequence at `$AE12` |
+| 733 | PRG3 ending entry at `$8A88` via gateway `$8077/$8280` |
+| 1490 | credits scroll loop at `$8B18`, reading from `$BDBC` |
+
+The credits loop remains active through the 6000-frame capture with selector
+`$0F` (PRG3/CHR3). `build/runtime/screens/ending-credits.png` visibly shows the
+scrolling developer credits. Runtime patch events include frame, address, value,
+and name, and the validator requires them before accepting the probe sequence.

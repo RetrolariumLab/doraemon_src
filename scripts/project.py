@@ -64,6 +64,41 @@ def load_prg_data_ranges(path: Path) -> list[tuple[str, int, int, int, str]]:
     return ranges
 
 
+def load_prg_code_entries(path: Path) -> list[tuple[int, int, str]]:
+    try:
+        lines = read_source_text(path, encoding="utf-8").splitlines()
+    except OSError as exc:
+        raise ProjectError(f"cannot read PRG code entries {path}: {exc}") from exc
+    entries: list[tuple[int, int, str]] = []
+    previous_key = (-1, 0x7FFF)
+    names: set[str] = set()
+    for line_number, raw in enumerate(lines, 1):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        fields = line.split()
+        if len(fields) != 4 or fields[0] != "entry":
+            raise ProjectError(f"invalid PRG code entry at {path}:{line_number}")
+        try:
+            bank = int(fields[1], 10)
+            address = int(fields[2], 16)
+        except ValueError as exc:
+            raise ProjectError(f"invalid PRG code address at {path}:{line_number}") from exc
+        name = fields[3]
+        if not 0 <= bank < PRG_BANK_COUNT or not 0x8000 <= address <= 0xFFFF:
+            raise ProjectError(f"PRG code entry is out of bounds at {path}:{line_number}")
+        if (bank, address) <= previous_key:
+            raise ProjectError(f"PRG code entries are duplicate or unsorted at {path}:{line_number}")
+        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name) or name.lower() in names:
+            raise ProjectError(f"invalid or duplicate PRG code entry name at {path}:{line_number}")
+        entries.append((bank, address, name))
+        previous_key = (bank, address)
+        names.add(name.lower())
+    if not entries:
+        raise ProjectError(f"PRG code entry registry is empty: {path}")
+    return entries
+
+
 def digest(data: bytes, algorithm: str = "sha1") -> str:
     return hashlib.new(algorithm, data).hexdigest()
 
@@ -276,11 +311,12 @@ def command_clean(args: argparse.Namespace) -> None:
 def command_lint(_args: argparse.Namespace) -> None:
     required = (
         "README.md", "Makefile", "assets/manifest.json", "config/linker/gnrom.cfg",
-        "config/symbols.json", "config/prg_data_ranges.txt", "docs/verification.md",
+        "config/symbols.json", "config/prg_data_ranges.txt", "config/prg_code_entries.txt",
+        "docs/verification.md",
         "tools/disassembly.lock.json", "src/main.asm", "scripts/asm_style.py",
         "scripts/verify_rom.py", "scripts/format_project.py",
         "scripts/generate_disassembly.py", "scripts/run_ghidra.py", "scripts/map_data.py",
-        "tools/ghidra_scripts/ClearKnownData.java",
+        "tools/ghidra_scripts/ClearKnownData.java", "tools/ghidra_scripts/ApplyKnownCode.java",
     )
     missing = [name for name in required if not (ROOT / name).is_file()]
     if missing:
@@ -290,6 +326,7 @@ def command_lint(_args: argparse.Namespace) -> None:
     if not isinstance(reference, dict) or reference.get("mapper") != 66:
         raise ProjectError("manifest does not describe mapper 66")
     load_prg_data_ranges(ROOT / "config/prg_data_ranges.txt")
+    load_prg_code_entries(ROOT / "config/prg_code_entries.txt")
     symbols = json.loads(read_source_text(ROOT / "config/symbols.json", encoding="utf-8"))
     if symbols.get("schema_version") != 1 or not symbols.get("symbols"):
         raise ProjectError("invalid or empty symbol registry")

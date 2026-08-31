@@ -112,5 +112,29 @@ class PrgDataRangeTests(unittest.TestCase):
                 project.load_prg_data_ranges(path)
 
 
+class PrgCodeEntryTests(unittest.TestCase):
+    def test_loads_bank_qualified_entries(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "entries.txt"
+            path.write_text(
+                "entry 1 88A4 World2Main\nentry 2 82F6 World3Main\n",
+                encoding="utf-8",
+            )
+            self.assertEqual(
+                project.load_prg_code_entries(path),
+                [(1, 0x88A4, "World2Main"), (2, 0x82F6, "World3Main")],
+            )
+
+    def test_rejects_duplicate_bank_address(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "entries.txt"
+            path.write_text(
+                "entry 2 82F6 World3Main\nentry 2 82F6 World3MainAgain\n",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(project.ProjectError, "duplicate or unsorted"):
+                project.load_prg_code_entries(path)
+
+
 if __name__ == "__main__":
     unittest.main()

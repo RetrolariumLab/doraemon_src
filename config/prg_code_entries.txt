@@ -1,0 +1,10 @@
+# Doraemon evidence-backed PRG code entry points v1
+# kind bank address name
+entry 2 82AD Bank2_World3AlternateEntry
+entry 2 82F6 Bank2_World3Main
+entry 3 827D Bank3_GameOverDispatch
+entry 3 8280 Bank3_EndingDispatch
+entry 3 8283 Bank3_World1TransitionDispatch
+entry 3 8286 Bank3_World2TransitionDispatch
+entry 3 8A17 Bank3_ShowGameOver
+entry 3 8A88 Bank3_RunEnding

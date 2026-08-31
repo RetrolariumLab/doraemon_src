@@ -67,7 +67,12 @@ Bank0_Func_8065:
     JSR Bank0_Func_827D
     PLA
     JMP Bank0_Func_81B2
-    .byte $20, $F0, $80, $A9, $03, $20, $B2, $81, $4C, $80, $82
+
+Bank0_Func_8077:
+    JSR Bank0_Func_80F0
+    LDA #$03
+    JSR Bank0_Func_81B2
+    JMP Bank0_Label_8280
 
 Bank0_Func_8082:
     JSR Bank0_Func_80F0
@@ -389,6 +394,8 @@ Bank0_Func_827A:
 
 Bank0_Func_827D:
     LDA $26
+
+Bank0_Label_8280 = * + 1  ; overlapping entry $8280
     BEQ Bank0_Label_8288
     LDA #$10
 

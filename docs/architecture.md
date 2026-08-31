@@ -80,7 +80,7 @@ The 152-byte range `$8000-$8097` is byte-identical in every bank (SHA-1
 | `$8053/$8065` | save selector, call PRG 3 `$8277/$827D`, restore selector |
 | `$8077/$8082/$808D` | switch to PRG 3 and jump through `$8280/$8283/$8286` |
 
-`config/bank_gateways.json` records the exact stub bytes and all 24 direct call
+`config/bank_gateways.json` records the exact stub bytes and all 31 direct call
 sites currently represented as instructions. `make validate-bank-gateways`
 checks the four copies, source calls, and possible graph edges. The resulting
 static PRG graph is `{0,1,2}->3` plus `3->{0,1,2,3}`; runtime traces exercise

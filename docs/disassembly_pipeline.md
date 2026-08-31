@@ -10,7 +10,8 @@ exact mapper-66 reference
   -> split four 32 KiB PRG banks
   -> wrap each bank in a temporary fixed 32 KiB NROM image
   -> run pinned Ghidra/GhidraNes independently
-  -> clear bank-qualified typed data ranges
+  -> seed recursive analysis at evidence-backed code entries
+  -> clear bank-qualified typed data ranges after analysis
   -> export instruction facts
   -> propagate byte-identical common prefix facts through $8270
   -> emit src/banks/bank_0.asm ... bank_3.asm
@@ -25,6 +26,14 @@ Facts include address, bytes, mnemonic, operands, control flows, symbols, and
 function entries. The generator validates every fact against the corresponding
 bank bytes. Unclassified spans are emitted as `.byte`, and every internal direct
 control-flow target receives a bank-qualified label.
+
+`config/prg_code_entries.txt` records entry points that the NROM loader cannot
+discover by ordinary control flow. In bank 2, the embedded build string ends at
+`$82AC`; the dispatch table proves executable entries at `$82AD` and `$82F6`,
+and the World 3 runtime scenario directly executes `$82F6`.
+The tracked seeds make that code/data boundary reproducible in a fresh analysis.
+The same registry seeds bank 3's four secondary dispatch jumps and the otherwise
+unreachable `$8A17` game-over and `$8A88` ending services.
 
 Use `make disassemble` to update the canonical listing and
 `make disassembly-check` to reproduce it without accepting changes.

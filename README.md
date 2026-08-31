@@ -26,7 +26,8 @@ incrementally without weakening byte identity.
 - Deterministic FCEUX traces prove the reset-to-title PRG 0 to PRG 3 switch,
   post-write mapping, title NMI path, bus-conflict values, controller shortcut,
   entry into all three gameplay PRG banks, and the World 1 city-to-underground
-  mode transition without a mapper change.
+  mode transition without a mapper change. Controlled RAM-state scenarios also
+  prove the World 2-to-World 3 transition and the complete ending/credits path.
 - The original mapper routine at `$81BB` indexes a ROM table at `$8261` and
   writes back to that same ROM address. The table bytes safely expose mapper 66
   values despite discrete-board bus conflicts.
@@ -35,8 +36,8 @@ incrementally without weakening byte identity.
 - `make verify` proves the assembled 163,856-byte image is byte-identical to the
   reference.
 
-The initial static listing contains 5,697 Ghidra instructions in bank 0, 3,655
-in bank 1, 517 in bank 2, and 1,371 in bank 3. Identical common code through
+The current static listing contains 5,697 Ghidra instructions in bank 0, 3,655
+in bank 1, 4,708 in bank 2, and 1,593 in bank 3. Identical common code through
 `$8270` is conservatively propagated between banks when the bytes match.
 Unclassified bytes remain explicit `.byte` data rather than speculative code.
 
@@ -104,6 +105,7 @@ assets/manifest.json        exact reference and extraction contract
 bin/                        local ca65/ld65 toolchain and license
 config/linker/gnrom.cfg     header, four PRG windows, and CHR layout
 config/prg_data_ranges.txt  bank-qualified evidence-backed data ranges
+config/prg_code_entries.txt bank-qualified evidence-backed code seeds
 config/symbols.json         bank-qualified semantic symbol registry
 config/debugger_*.json      initial Mesen watches and breakpoints
 docs/                       architecture, formats, evidence, and roadmap

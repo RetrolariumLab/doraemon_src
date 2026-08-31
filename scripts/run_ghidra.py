@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 
 import project
 
@@ -44,20 +45,20 @@ def run_headless(
         raise PipelineError(
             "local Ghidra is missing; run make ghidra-bootstrap or set GHIDRA_HEADLESS"
         )
-    projects = WORK_DIR / "projects"
-    projects.mkdir(parents=True, exist_ok=True)
-    command = [
-        str(HEADLESS), str(projects), project_name,
-        "-import", str(image.resolve()), "-overwrite",
-        "-analysisTimeoutPerFile", "600",
-        "-scriptPath", str(SCRIPT_DIR.resolve()),
-    ]
-    for script, arguments in scripts:
-        command.extend(("-postScript", script, *arguments))
-    command.append("-deleteProject")
-    result = subprocess.run(
-        command, cwd=ROOT, capture_output=True, text=True, errors="replace"
-    )
+    WORK_DIR.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=f"{project_name}_", dir=WORK_DIR) as projects:
+        command = [
+            str(HEADLESS), projects, project_name,
+            "-import", str(image.resolve()), "-overwrite",
+            "-analysisTimeoutPerFile", "600",
+            "-scriptPath", str(SCRIPT_DIR.resolve()),
+        ]
+        for script, arguments in scripts:
+            command.extend(("-postScript", script, *arguments))
+        command.append("-deleteProject")
+        result = subprocess.run(
+            command, cwd=ROOT, capture_output=True, text=True, errors="replace"
+        )
     log.parent.mkdir(parents=True, exist_ok=True)
     log.write_text(result.stdout + result.stderr, encoding="utf-8", newline="\n")
     for line in (result.stdout + result.stderr).splitlines():
@@ -99,6 +100,22 @@ def stage_data_ranges() -> list[Path]:
     return paths
 
 
+def stage_code_entries() -> list[Path]:
+    entries = project.load_prg_code_entries(ROOT / "config" / "prg_code_entries.txt")
+    entry_dir = WORK_DIR / "entries"
+    entry_dir.mkdir(parents=True, exist_ok=True)
+    paths: list[Path] = []
+    for bank in range(PRG_BANK_COUNT):
+        lines = ["# address name"]
+        for item_bank, address, name in entries:
+            if item_bank == bank:
+                lines.append(f"{address:04X} {name}")
+        path = entry_dir / f"bank_{bank}.txt"
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+        paths.append(path)
+    return paths
+
+
 def command_inspect(args: argparse.Namespace) -> None:
     image = Path(args.image)
     validated_prg(image)
@@ -125,6 +142,7 @@ def command_inspect(args: argparse.Namespace) -> None:
 def command_export_facts(args: argparse.Namespace) -> None:
     images = stage_bank_inputs(Path(args.image))
     ranges = stage_data_ranges()
+    entries = stage_code_entries()
     output_dir = Path(args.output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     for bank in range(PRG_BANK_COUNT):
@@ -132,6 +150,7 @@ def command_export_facts(args: argparse.Namespace) -> None:
         run_headless(
             f"doraemon_bank_{bank}", images[bank],
             [
+                ("ApplyKnownCode.java", [str(entries[bank].resolve())]),
                 ("ClearKnownData.java", [str(ranges[bank].resolve())]),
                 ("ExportInstructionFacts.java", [str(output)]),
             ],

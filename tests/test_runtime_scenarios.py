@@ -15,6 +15,13 @@ SPEC = importlib.util.spec_from_file_location(
 assert SPEC is not None and SPEC.loader is not None
 RUNTIME = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(RUNTIME)
+RUN_SPEC = importlib.util.spec_from_file_location(
+    "run_runtime_scenarios",
+    ROOT / "scripts" / "runtime" / "run_runtime_scenarios.py",
+)
+assert RUN_SPEC is not None and RUN_SPEC.loader is not None
+RUNNER = importlib.util.module_from_spec(RUN_SPEC)
+RUN_SPEC.loader.exec_module(RUNNER)
 
 
 def row(event: str, **changes: str) -> dict[str, str]:
@@ -38,6 +45,32 @@ def row(event: str, **changes: str) -> dict[str, str]:
 
 
 class RuntimeValidationTests(unittest.TestCase):
+    def test_encodes_valid_wram_patch(self) -> None:
+        encoded = RUNNER.encode_memory_patches(
+            [
+                {
+                    "frame": 400,
+                    "address": "0x004F",
+                    "value": "0x01",
+                    "name": "completion_countdown",
+                }
+            ]
+        )
+        self.assertEqual(encoded, "400:004F:01:completion_countdown")
+
+    def test_rejects_runtime_patch_outside_wram(self) -> None:
+        with self.assertRaisesRegex(ValueError, "memory patch"):
+            RUNNER.encode_memory_patches(
+                [
+                    {
+                        "frame": 1,
+                        "address": "0x8000",
+                        "value": "0x01",
+                        "name": "rom_write",
+                    }
+                ]
+            )
+
     def test_accepts_bus_conflict_safe_mapper_row(self) -> None:
         self.assertTrue(RUNTIME.mapper_rows_are_safe([row("mapper_write")]))
 
@@ -113,6 +146,51 @@ class RuntimeValidationTests(unittest.TestCase):
         ]
         self.assertTrue(RUNTIME.probe_sequence(scenario, ordered))
         self.assertFalse(RUNTIME.probe_sequence(scenario, list(reversed(ordered))))
+
+    def test_probe_sequence_can_require_active_bank(self) -> None:
+        scenario = {
+            "expected_probes": [
+                {"name": "main_entry", "bank": 2},
+                {"name": "frame_loop", "bank": 2},
+            ]
+        }
+        correct = [
+            row("probe", detail="main_entry", bank="2"),
+            row("probe", detail="frame_loop", bank="2"),
+        ]
+        wrong_bank = [
+            row("probe", detail="main_entry", bank="1"),
+            row("probe", detail="frame_loop", bank="2"),
+        ]
+        self.assertTrue(RUNTIME.probe_sequence(scenario, correct))
+        self.assertFalse(RUNTIME.probe_sequence(scenario, wrong_bank))
+
+    def test_requires_declared_memory_patch(self) -> None:
+        scenario = {
+            "memory_patches": [
+                {
+                    "frame": 400,
+                    "address": "0x004F",
+                    "value": "0x01",
+                    "name": "completion_countdown",
+                }
+            ]
+        }
+        observed = [
+            row(
+                "memory_patch",
+                frame="400",
+                detail="completion_countdown",
+                address="004F",
+                rom_value="01",
+            )
+        ]
+        self.assertTrue(RUNTIME.observed_memory_patches(scenario, observed))
+        self.assertFalse(
+            RUNTIME.observed_memory_patches(
+                scenario, [row("memory_patch", frame="400", address="004F")]
+            )
+        )
 
 
 if __name__ == "__main__":
