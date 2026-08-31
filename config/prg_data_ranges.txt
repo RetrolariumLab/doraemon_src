@@ -1,0 +1,19 @@
+# Doraemon typed PRG data v1
+# kind bank start end (inclusive CPU addresses) name
+table 0 A9EF AAEE World1BlockAttributes
+table 0 AAEF AEEE World1SmallBlocks
+table 0 AEEF B2EE World1BigBlocks
+map 0 B2EF C2EE World1CityMap
+map 0 C2EF C92E World1UndergroundMap
+vectors 0 FFFA FFFF Bank0InterruptVectors
+table 1 B9CE BA9E World2BlockAttributes
+table 1 BA9F BDEB World2SmallBlocksProvenPrefix
+map 1 BDEC F62B World2Screens
+vectors 1 FFFA FFFF Bank1InterruptVectors
+text 2 827D 82AC World3BuildString
+table 2 DDF2 DEF1 World3BlockAttributes
+table 2 DEF2 E2F1 World3SmallBlocks
+table 2 E2F2 E6F1 World3BigBlocks
+map 2 E6F2 F6F1 World3Map
+vectors 2 FFFA FFFF Bank2InterruptVectors
+vectors 3 FFFA FFFF Bank3InterruptVectors

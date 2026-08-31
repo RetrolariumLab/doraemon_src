@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "notes": "Bank-qualified CPU breakpoints for the original Japanese revision",
+  "breakpoints": [
+    {
+      "bank": "any",
+      "address": "0x8098",
+      "type": "execute",
+      "name": "Reset"
+    },
+    {
+      "bank": "any",
+      "address": "0x813C",
+      "type": "execute",
+      "name": "Nmi"
+    },
+    {
+      "bank": "any",
+      "address": "0x81BB",
+      "type": "execute",
+      "name": "WriteMapper"
+    },
+    {
+      "bank": "any",
+      "address": "0x81C1",
+      "type": "write",
+      "name": "MapperBusConflictWrite"
+    }
+  ]
+}

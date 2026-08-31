@@ -1,0 +1,165 @@
+{
+  "images": [
+    {
+      "id": "original",
+      "file": "Doraemon (J) (PRG0) [!].nes",
+      "size": 163856,
+      "sha1": "d47ebb0be5697820691065faedff277607ac10fd"
+    }
+  ],
+  "output": "assets/generated",
+  "assets": [
+    {
+      "path": "audio/music/prg0-f03b.bin",
+      "size": 3204,
+      "sha1": "aab81fdeae5fbbb98583bbbc924e945889e3eb90",
+      "sources": {
+        "original": 28747
+      }
+    },
+    {
+      "path": "audio/music/prg1-b313.bin",
+      "size": 1487,
+      "sha1": "3d0ffe560ecd436aeb54de7ce9f9986f7e14c05b",
+      "sources": {
+        "original": 45859
+      }
+    },
+    {
+      "path": "audio/music/prg1-b900.bin",
+      "size": 207,
+      "sha1": "080df62c3f978bb33139a36400345212cd2f65f6",
+      "sources": {
+        "original": 47376
+      }
+    },
+    {
+      "path": "audio/music/prg2-cb33.bin",
+      "size": 2872,
+      "sha1": "323e37f818c48741a5768a096eccd65dd258d34c",
+      "sources": {
+        "original": 84803
+      }
+    },
+    {
+      "path": "audio/music/prg3-a4f6.bin",
+      "size": 2246,
+      "sha1": "1f70c58110a45b1ce2fa686695283c91c2dbe7c9",
+      "sources": {
+        "original": 107782
+      }
+    },
+    {
+      "path": "audio/sfx/prg0-pitch-periods.bin",
+      "size": 74,
+      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8",
+      "sources": {
+        "original": 26626
+      }
+    },
+    {
+      "path": "audio/sfx/prg0-pulse-control.bin",
+      "size": 2,
+      "sha1": "7df32e720763ca992447dbb8cf9c15196d6c093c",
+      "sources": {
+        "original": 26945
+      }
+    },
+    {
+      "path": "audio/sfx/prg0-pulse-steps.bin",
+      "size": 22,
+      "sha1": "c8758c07ae56406f13b247f7470151cb18fd4cc8",
+      "sources": {
+        "original": 26947
+      }
+    },
+    {
+      "path": "audio/sfx/prg0-tone-low.bin",
+      "size": 4,
+      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf",
+      "sources": {
+        "original": 26555
+      }
+    },
+    {
+      "path": "audio/sfx/prg1-pitch-periods.bin",
+      "size": 74,
+      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8",
+      "sources": {
+        "original": 43973
+      }
+    },
+    {
+      "path": "audio/sfx/prg1-tone-low.bin",
+      "size": 4,
+      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf",
+      "sources": {
+        "original": 43902
+      }
+    },
+    {
+      "path": "audio/sfx/prg2-pitch-periods.bin",
+      "size": 74,
+      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8",
+      "sources": {
+        "original": 82682
+      }
+    },
+    {
+      "path": "audio/sfx/prg2-pulse-control.bin",
+      "size": 2,
+      "sha1": "7df32e720763ca992447dbb8cf9c15196d6c093c",
+      "sources": {
+        "original": 83001
+      }
+    },
+    {
+      "path": "audio/sfx/prg2-pulse-steps.bin",
+      "size": 22,
+      "sha1": "c8758c07ae56406f13b247f7470151cb18fd4cc8",
+      "sources": {
+        "original": 83003
+      }
+    },
+    {
+      "path": "audio/sfx/prg2-tone-low.bin",
+      "size": 4,
+      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf",
+      "sources": {
+        "original": 82611
+      }
+    },
+    {
+      "path": "audio/sfx/prg3-pitch-periods.bin",
+      "size": 74,
+      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8",
+      "sources": {
+        "original": 105584
+      }
+    },
+    {
+      "path": "audio/sfx/prg3-pulse-control.bin",
+      "size": 2,
+      "sha1": "7df32e720763ca992447dbb8cf9c15196d6c093c",
+      "sources": {
+        "original": 106012
+      }
+    },
+    {
+      "path": "audio/sfx/prg3-pulse-steps.bin",
+      "size": 22,
+      "sha1": "c8758c07ae56406f13b247f7470151cb18fd4cc8",
+      "sources": {
+        "original": 106014
+      }
+    },
+    {
+      "path": "audio/sfx/prg3-tone-low.bin",
+      "size": 4,
+      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf",
+      "sources": {
+        "original": 105513
+      }
+    }
+  ]
+}

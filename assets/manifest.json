@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "identity_status": "exact-local-reference",
+  "reference_rom": {
+    "name": "Doraemon (Japan, original revision)",
+    "catalog_id": "HFC-DO",
+    "file_size": 163856,
+    "file_sha1": "d47ebb0be5697820691065faedff277607ac10fd",
+    "file_md5": "1a3a7ce7f95c3b0ece74142de9b02d7c",
+    "file_crc32": "a9eb0de9",
+    "payload_sha1": "5e4119e0771bec24a46bad4e874df05521bb953c",
+    "payload_crc32": "bde3ae9b",
+    "header_size": 16,
+    "header_sha1": "0d2f09f8d9874c35ee717751f521a34af0ce6384",
+    "header_crc32": "06d1cedd",
+    "prg_size": 131072,
+    "prg_sha1": "a03aee101b5ae0f5e13ad5af47bbeb54c964607c",
+    "prg_crc32": "b00abe1c",
+    "chr_size": 32768,
+    "chr_sha1": "779b7847a124cd5276972947e0a0762c18c76da7",
+    "chr_crc32": "761f994e",
+    "trainer_size": 0,
+    "mapper": 66,
+    "mirroring": "vertical",
+    "prg_cpu_base": "0x8000",
+    "prg_bank_size": 32768,
+    "prg_bank_count": 4,
+    "chr_bank_size": 8192,
+    "chr_bank_count": 4
+  },
+  "known_variants": [
+    {
+      "name": "Doraemon (Japan, Revision A)",
+      "payload_crc32": "336093ef",
+      "prg_crc32": "fe90d6eb",
+      "chr_crc32": "761f994e",
+      "mapper": 66,
+      "mirroring": "vertical"
+    }
+  ],
+  "extracted_assets": [
+    {
+      "path": "header/doraemon.hdr",
+      "region": "header",
+      "size": 16,
+      "sha1": "0d2f09f8d9874c35ee717751f521a34af0ce6384",
+      "crc32": "06d1cedd"
+    },
+    {
+      "path": "prg/doraemon.prg",
+      "region": "prg",
+      "size": 131072,
+      "sha1": "a03aee101b5ae0f5e13ad5af47bbeb54c964607c",
+      "crc32": "b00abe1c"
+    },
+    {
+      "path": "chr/doraemon.chr",
+      "region": "chr",
+      "size": 32768,
+      "sha1": "779b7847a124cd5276972947e0a0762c18c76da7",
+      "crc32": "761f994e"
+    }
+  ]
+}

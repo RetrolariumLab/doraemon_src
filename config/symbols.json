@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "symbols": [
+    {
+      "bank": 0,
+      "address": "0x8098",
+      "name": "Bank0_Reset",
+      "evidence": "reset-vector"
+    },
+    {
+      "bank": 0,
+      "address": "0x80CF",
+      "name": "Bank0_WaitForVblank",
+      "evidence": "ppu-status-loop"
+    },
+    {
+      "bank": 0,
+      "address": "0x813C",
+      "name": "Bank0_Nmi",
+      "evidence": "nmi-vector"
+    },
+    {
+      "bank": 0,
+      "address": "0x81BB",
+      "name": "Bank0_WriteMapper",
+      "evidence": "bus-conflict-safe-rom-write"
+    },
+    {
+      "bank": 0,
+      "address": "0x8261",
+      "name": "Bank0_MapperValueTable",
+      "evidence": "mapper-write-index"
+    },
+    {
+      "bank": 0,
+      "address": "0xA9EF",
+      "name": "World1_BlockAttributes",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 0,
+      "address": "0xAAEF",
+      "name": "World1_SmallBlocks",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 0,
+      "address": "0xAEEF",
+      "name": "World1_BigBlocks",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 0,
+      "address": "0xB2EF",
+      "name": "World1_CityMap",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 0,
+      "address": "0xC2EF",
+      "name": "World1_UndergroundMap",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 1,
+      "address": "0x8098",
+      "name": "Bank1_Reset",
+      "evidence": "reset-vector"
+    },
+    {
+      "bank": 1,
+      "address": "0x80CF",
+      "name": "Bank1_WaitForVblank",
+      "evidence": "ppu-status-loop"
+    },
+    {
+      "bank": 1,
+      "address": "0x813C",
+      "name": "Bank1_Nmi",
+      "evidence": "nmi-vector"
+    },
+    {
+      "bank": 1,
+      "address": "0x81BB",
+      "name": "Bank1_WriteMapper",
+      "evidence": "bus-conflict-safe-rom-write"
+    },
+    {
+      "bank": 1,
+      "address": "0x8261",
+      "name": "Bank1_MapperValueTable",
+      "evidence": "mapper-write-index"
+    },
+    {
+      "bank": 1,
+      "address": "0xB9CE",
+      "name": "World2_BlockAttributes",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 1,
+      "address": "0xBA9F",
+      "name": "World2_SmallBlocks",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 1,
+      "address": "0xBDEC",
+      "name": "World2_Screens",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 2,
+      "address": "0x8098",
+      "name": "Bank2_Reset",
+      "evidence": "reset-vector"
+    },
+    {
+      "bank": 2,
+      "address": "0x80CF",
+      "name": "Bank2_WaitForVblank",
+      "evidence": "ppu-status-loop"
+    },
+    {
+      "bank": 2,
+      "address": "0x813C",
+      "name": "Bank2_Nmi",
+      "evidence": "nmi-vector"
+    },
+    {
+      "bank": 2,
+      "address": "0x81BB",
+      "name": "Bank2_WriteMapper",
+      "evidence": "bus-conflict-safe-rom-write"
+    },
+    {
+      "bank": 2,
+      "address": "0x8261",
+      "name": "Bank2_MapperValueTable",
+      "evidence": "mapper-write-index"
+    },
+    {
+      "bank": 2,
+      "address": "0x827D",
+      "name": "World3_BuildString",
+      "evidence": "embedded-ascii"
+    },
+    {
+      "bank": 2,
+      "address": "0xDDF2",
+      "name": "World3_BlockAttributes",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 2,
+      "address": "0xDEF2",
+      "name": "World3_SmallBlocks",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 2,
+      "address": "0xE2F2",
+      "name": "World3_BigBlocks",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 2,
+      "address": "0xE6F2",
+      "name": "World3_Map",
+      "evidence": "cadeditor"
+    },
+    {
+      "bank": 3,
+      "address": "0x8098",
+      "name": "Bank3_Reset",
+      "evidence": "reset-vector"
+    },
+    {
+      "bank": 3,
+      "address": "0x80CF",
+      "name": "Bank3_WaitForVblank",
+      "evidence": "ppu-status-loop"
+    },
+    {
+      "bank": 3,
+      "address": "0x813C",
+      "name": "Bank3_Nmi",
+      "evidence": "nmi-vector"
+    },
+    {
+      "bank": 3,
+      "address": "0x81BB",
+      "name": "Bank3_WriteMapper",
+      "evidence": "bus-conflict-safe-rom-write"
+    },
+    {
+      "bank": 3,
+      "address": "0x8261",
+      "name": "Bank3_MapperValueTable",
+      "evidence": "mapper-write-index"
+    },
+    {
+      "bank": 3,
+      "address": "0x931E",
+      "name": "TitleScreen_Text",
+      "evidence": "embedded-ascii"
+    },
+    {
+      "bank": 3,
+      "address": "0xBDBC",
+      "name": "EndingCredits_Text",
+      "evidence": "embedded-ascii"
+    }
+  ]
+}
