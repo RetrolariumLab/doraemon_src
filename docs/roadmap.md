@@ -49,6 +49,10 @@ remains active work.
 
 Complete maps, metatiles, screen sequences, collision properties, object
 placements, transitions, and their cross-references for all three worlds.
+The exact World 1 and World 3 map/metatile hierarchies are now validated and
+losslessly editable. World 2's runtime screen sequence is also losslessly
+editable; its true small-block extent, transition semantics, and the remaining
+cross-references keep this milestone planned while RAM/object work is active.
 
 ### 7. Rendering, graphics, and text - Planned
 

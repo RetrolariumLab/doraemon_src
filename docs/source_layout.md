@@ -10,6 +10,7 @@
 | `src/common/bank0_*.asm` | PRG bank 0 | reset/NMI/mapper/gateways and vectors |
 | `src/world1/*.asm` | PRG bank 0 | city and underground runtime systems |
 | `src/world1/data/*.asm` | PRG bank 0 | maps and two-level metatile data |
+| `data/world1/*.json` | editable data | lossless World 1 maps, attributes, and metatiles |
 | `src/common/bank1_*.asm` | PRG bank 1 | reset/NMI/mapper/gateways and vectors |
 | `src/world2/*.asm` | PRG bank 1 | cave shooter runtime and audio systems |
 | `src/world2/data/*.asm` | PRG bank 1 | blocks, stage sequence, pointers, and compressed screens |
@@ -17,7 +18,7 @@
 | `src/common/bank2_*.asm` | PRG bank 2 | reset/NMI/mapper/gateways and vectors |
 | `src/world3/*.asm` | PRG bank 2 | underwater runtime, objects, and audio |
 | `src/world3/data/*.asm` | PRG bank 2 | build string, objects, behavior streams, maps, metatiles, and tail |
-| `data/world3/*.json` | editable data | lossless decoded World 3 behavior streams |
+| `data/world3/*.json` | editable data | lossless World 3 behavior streams, maps, attributes, and metatiles |
 | `src/common/bank3_*.asm` | PRG bank 3 | reset/NMI/mapper/gateways and vectors |
 | `src/shell/*.asm` | PRG bank 3 | title, game over, ending, and transitions |
 | `src/rendering/*.asm` | PRG bank 3 | shell PPU/text/frame services |

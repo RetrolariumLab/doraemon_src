@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "worlds": [
+    {
+      "id": "world1",
+      "bank": 0,
+      "address": "0xA9EF",
+      "end_address": "0xC92E",
+      "crc32": "fe76a8f2",
+      "expected_used_big_block_count": 233,
+      "attributes": {
+        "address": "0xA9EF",
+        "count": 256,
+        "crc32": "6a49bda5",
+        "expected_palette_counts": {
+          "0": 84,
+          "1": 74,
+          "2": 44,
+          "3": 54
+        },
+        "expected_property_value_count": 1
+      },
+      "small_blocks": {
+        "address": "0xAAEF",
+        "count": 256,
+        "width": 2,
+        "height": 2,
+        "crc32": "af4f410e",
+        "expected_unique_tile_count": 250
+      },
+      "big_blocks": {
+        "address": "0xAEEF",
+        "count": 256,
+        "width": 2,
+        "height": 2,
+        "crc32": "aaf5256c",
+        "expected_referenced_small_block_count": 236
+      },
+      "maps": [
+        {
+          "id": "city",
+          "address": "0xB2EF",
+          "width": 64,
+          "height": 64,
+          "crc32": "4e576e12",
+          "expected_used_big_block_count": 164
+        },
+        {
+          "id": "underground",
+          "address": "0xC2EF",
+          "width": 64,
+          "height": 25,
+          "crc32": "b4ea516e",
+          "expected_used_big_block_count": 69
+        }
+      ]
+    },
+    {
+      "id": "world3",
+      "bank": 2,
+      "address": "0xDDF2",
+      "end_address": "0xF6F1",
+      "crc32": "779d61b5",
+      "expected_used_big_block_count": 204,
+      "attributes": {
+        "address": "0xDDF2",
+        "count": 256,
+        "crc32": "34675935",
+        "expected_palette_counts": {
+          "0": 89,
+          "1": 56,
+          "2": 78,
+          "3": 33
+        },
+        "expected_property_value_count": 1
+      },
+      "small_blocks": {
+        "address": "0xDEF2",
+        "count": 256,
+        "width": 2,
+        "height": 2,
+        "crc32": "bcb462ed",
+        "expected_unique_tile_count": 252
+      },
+      "big_blocks": {
+        "address": "0xE2F2",
+        "count": 256,
+        "width": 2,
+        "height": 2,
+        "crc32": "03edd061",
+        "expected_referenced_small_block_count": 175
+      },
+      "maps": [
+        {
+          "id": "underwater",
+          "address": "0xE6F2",
+          "width": 64,
+          "height": 64,
+          "crc32": "52f49b90",
+          "expected_used_big_block_count": 204
+        }
+      ]
+    }
+  ]
+}

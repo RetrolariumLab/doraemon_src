@@ -43,6 +43,9 @@ WORLD2_SCREEN_AUTHORING := data/world2/compressed_screens.json
 WORLD3_OBJECT_DATA := config/world3_object_data.json
 WORLD3_BEHAVIOR := config/world3_behavior.json
 WORLD3_BEHAVIOR_AUTHORING := data/world3/behavior_streams.json
+WORLD_DATA := config/world_data.json
+WORLD1_DATA_AUTHORING := data/world1/hierarchical_world.json
+WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -56,7 +59,7 @@ WORLD3_BEHAVIOR_AUTHORING := data/world3/behavior_streams.json
 	object-dispatch validate-object-dispatch object-placements \
 	validate-object-placements world2-streaming validate-world2-streaming \
 	world3-object-data validate-world3-object-data world3-behavior \
-	validate-world3-behavior
+	validate-world3-behavior world-data validate-world-data
 
 all: verify
 
@@ -210,6 +213,12 @@ world3-behavior validate-world3-behavior: $(PRG_ASSET)
 		--manifest "$(WORLD3_BEHAVIOR)" \
 		--authoring "$(WORLD3_BEHAVIOR_AUTHORING)"
 
+world-data validate-world-data: $(PRG_ASSET)
+	$(PYTHON) scripts/world_data.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD_DATA)" \
+		--authoring "$(WORLD1_DATA_AUTHORING)" \
+		--authoring "$(WORLD3_DATA_AUTHORING)"
+
 ghidra-bootstrap:
 	$(PYTHON) scripts/bootstrap_ghidra.py install
 
@@ -237,7 +246,8 @@ validate-maps: $(ROM)
 release-check: quality-check disassembly-check verify validate-maps \
 	validate-audio-dispatch validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world2-streaming \
-	validate-world3-object-data validate-world3-behavior
+	validate-world3-object-data validate-world3-behavior \
+	validate-world-data
 
 check: release-check
 

@@ -25,9 +25,11 @@ header and the physical 32 KiB bank base.
 | world 3 big blocks | `$16302` | 2:`$E2F2` | 1,024 |
 | underwater map | `$16702` | 2:`$E6F2` | 64x64 |
 
-Small blocks are linear 2x2 CHR-tile groups. Large blocks are linear 2x2 groups
-of small-block indexes. Attribute bytes retain collision/type bits; CadEditor
-masks only the low two palette bits while editing.
+Small blocks are linear row-major 2x2 CHR-tile groups. Large blocks are linear
+row-major 2x2 groups of small-block indexes. CadEditor masks the low two palette
+selector bits while editing and preserves the upper six bits. Those upper bits
+are zero throughout the canonical World 1 and World 3 tables, so their runtime
+meaning remains unclassified rather than being assumed to be collision data.
 
 The world 2 CadEditor declarations are a useful editable projection, not the
 runtime storage format. The claimed 256x4 small-block table and 60 fixed-size
@@ -53,6 +55,12 @@ All overlapping views are losslessly editable through
 
 `scripts/map_data.py` validates all CadEditor-declared regions against
 independent CRC32 values and reports their overlap explicitly.
+
+`config/world_data.json` proves the exact contiguous World 1 and World 3
+hierarchies and their cross-reference metrics. `scripts/world_data.py` validates
+the PRG and the lossless authoring documents at
+`data/world1/hierarchical_world.json` and
+`data/world3/hierarchical_world.json`; see `docs/world_data.md`.
 
 World 3 initializes its persistent object registry from five contiguous
 13-byte arrays rather than from interleaved records. The arrays are room, type,

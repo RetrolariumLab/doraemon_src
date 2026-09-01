@@ -86,7 +86,14 @@
     {
       "id": "world_data_formats",
       "status": "planned",
-      "evidence": []
+      "evidence": [
+        "config/world_data.json",
+        "data/world1/hierarchical_world.json",
+        "data/world3/hierarchical_world.json",
+        "docs/world_data.md",
+        "scripts/world_data.py",
+        "tests/test_world_data.py"
+      ]
     },
     {
       "id": "rendering_graphics_text",
@@ -108,12 +115,17 @@
       "evidence": [
         "data/world2/compressed_screens.json",
         "data/world3/behavior_streams.json",
+        "data/world1/hierarchical_world.json",
+        "data/world3/hierarchical_world.json",
         "docs/world2_streaming.md",
         "docs/world3_behavior.md",
+        "docs/world_data.md",
         "scripts/world2_streaming.py",
         "scripts/world3_behavior.py",
+        "scripts/world_data.py",
         "tests/test_world2_streaming.py",
-        "tests/test_world3_behavior.py"
+        "tests/test_world3_behavior.py",
+        "tests/test_world_data.py"
       ]
     },
     {

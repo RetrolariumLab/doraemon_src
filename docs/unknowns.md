@@ -25,6 +25,16 @@
 - Unknown: the true used small-block count and exact stage-command semantics
   above `$EF`.
 
+## WORLD-DATA-002 - attribute properties
+
+- Known: World 1 and World 3 use complete contiguous map -> big block -> small
+  block -> CHR-index hierarchies, now validated and losslessly round-trippable.
+- Known: bits 0-1 of each attribute byte select one of four palettes; CadEditor
+  preserves bits 2-7 independently.
+- Known: bits 2-7 are zero in every canonical World 1 and World 3 attribute.
+- Unknown: whether the engine reserves those upper bits for runtime properties
+  or they are simply unused in Doraemon. Collision semantics are not inferred.
+
 ## OBJ-001 - chapter object formats
 
 - Known: CadEditor disables enemy editing for all four configurations.
