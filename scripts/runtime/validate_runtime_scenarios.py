@@ -217,6 +217,19 @@ def observed_memory_patches(
     return True
 
 
+def world2_terminal_screen(rows: list[dict[str, str]]) -> bool:
+    selections = [
+        row
+        for row in rows
+        if row["event"] == "world2_terminal_select"
+        and row["detail"] == "id=7F;ptr=00FC;scroll=00"
+        and int(row["bank"]) == 1
+    ]
+    return len(selections) == 1 and not any(
+        row["event"] == "world2_terminal_token_read" for row in rows
+    )
+
+
 def validate_check(
     check_id: str, scenario: dict[str, object], rows: list[dict[str, str]]
 ) -> bool:
@@ -234,6 +247,7 @@ def validate_check(
         "chapter-steady-state": lambda: chapter_steady_state(scenario, rows),
         "probe-sequence": lambda: probe_sequence(scenario, rows),
         "observed-memory-patches": lambda: observed_memory_patches(scenario, rows),
+        "world2-terminal-screen": lambda: world2_terminal_screen(rows),
     }
     if check_id not in checks:
         raise ValueError(f"unknown runtime check: {check_id}")

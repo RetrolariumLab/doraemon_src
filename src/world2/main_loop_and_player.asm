@@ -13,7 +13,7 @@ Bank1_World2Main:
 
 Bank1_Label_88B1:
     LDA #$00
-    STA $73
+    STA World2FrameCounter
     STA $A9
 
 Bank1_Label_88B7:
@@ -36,7 +36,7 @@ Bank1_Label_88B7:
     STA $AE
     STA $5F
     STA $A4
-    STA $9D
+    STA World2PendingBackgroundPalette
     STA $93
     STA $92
     STA $7B
@@ -246,8 +246,8 @@ Bank1_Func_8A46:
     STA $A4
     LDA #$64
     STA $AD
-    LDA $B4
-    STA $9D
+    LDA World2SavedBackgroundPalette
+    STA World2PendingBackgroundPalette
     LDA $A9
     CMP #$02
     BEQ Bank1_Label_8A66
@@ -284,7 +284,7 @@ Bank1_Func_8A84:
 Bank1_Label_8A88:
     JSR Bank1_Func_8A1A
     LDA #$FF
-    STA $9D
+    STA World2PendingBackgroundPalette
     DEC $AD
     BNE Bank1_Label_8A88
     RTS
@@ -310,7 +310,7 @@ Bank1_Func_8AAB:
     LDA #$00
 
 Bank1_Label_8AAF:
-    STA a:$0400,X
+    STA a:World2ScreenMetatiles,X
     DEX
     BNE Bank1_Label_8AAF
     RTS
@@ -341,11 +341,11 @@ Bank1_Func_8ADF:
     LDX a:World2_StageSequenceStartOffsets,Y
     DEX
     STX World2StageSequenceOffset
-    LDX a:$8BA9,Y
-    JSR Bank1_Func_8784
+    LDX a:World2_InitialSpritePaletteOffsets,Y
+    JSR World2_UploadSpritePalette
     LDX $A9
-    LDA a:$8BA6,X
-    JSR Bank1_Func_8751
+    LDA a:World2_InitialBackgroundPaletteIds,X
+    JSR World2_UploadBackgroundPalette
     LDA #$0F
     STA World2ScreenRowIndex
     LDA #$00
@@ -452,7 +452,13 @@ Bank1_Label_8B92:
     STA $26
     LDA #$0D
     JMP World2_Audio_QueueEffect
-    .byte $01, $02, $03, $01, $01, $04, $05, $10, $20, $30
+    .byte $01, $02, $03, $01
+
+World2_InitialBackgroundPaletteIds:
+    .byte $01, $04, $05
+
+World2_InitialSpritePaletteOffsets:
+    .byte $10, $20, $30
 
 Bank1_Func_8BAC:
     JSR Bank1_Func_8E3C
@@ -471,7 +477,7 @@ Bank1_Func_8BAC:
     BNE Bank1_Label_8C3B
     LDA $27
     BEQ Bank1_Label_8BDF
-    LDA $73
+    LDA World2FrameCounter
     ROL A
     BCS Bank1_Label_8BDF
     LDA #$00

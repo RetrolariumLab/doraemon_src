@@ -1,8 +1,8 @@
 ; Doraemon PRG bank 1 $BA9F-$BDDE
-; World 2 CadEditor small-block region preceding the runtime stage sequence
+; World 2 exact 208-entry metatile CHR-tile quads
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-World2_SmallBlocks:
+World2_MetatileTiles_00_3F:
     .byte $00, $00, $00, $00, $01, $01, $01, $01, $01, $1C, $01, $01, $1D, $21, $01, $01
     .byte $29, $2A, $01, $01, $13, $20, $20, $21, $20, $31, $21, $29, $17, $18, $00, $2A
     .byte $17, $C0, $1C, $1D, $19, $19, $1E, $1F, $19, $24, $24, $0C, $21, $08, $10, $11
@@ -19,6 +19,8 @@ World2_SmallBlocks:
     .byte $60, $00, $00, $00, $00, $55, $55, $4E, $A1, $A2, $01, $01, $57, $57, $52, $57
     .byte $01, $01, $2A, $01, $01, $0F, $1C, $1D, $0B, $A4, $A1, $A2, $00, $23, $00, $26
     .byte $C9, $CA, $D9, $DA, $0C, $10, $01, $10, $03, $01, $0C, $01, $44, $57, $00, $44
+
+World2_MetatileTiles_40_7F:
     .byte $5E, $A4, $00, $1A, $00, $00, $00, $55, $56, $55, $5A, $4E, $00, $55, $55, $3E
     .byte $16, $2B, $2A, $01, $2B, $01, $16, $01, $0A, $00, $01, $0B, $6F, $7F, $00, $00
     .byte $98, $A4, $00, $1A, $99, $7F, $00, $00, $14, $0C, $24, $0C, $00, $56, $00, $5A
@@ -35,6 +37,8 @@ World2_SmallBlocks:
     .byte $A0, $00, $C1, $A0, $4E, $4D, $3E, $3D, $00, $56, $42, $5A, $56, $00, $52, $41
     .byte $A3, $00, $A3, $00, $39, $3A, $49, $63, $3B, $3C, $4B, $4C, $00, $22, $00, $5E
     .byte $00, $5D, $00, $00, $51, $57, $5E, $52, $57, $57, $52, $57, $57, $5C, $51, $5B
+
+World2_MetatileTiles_80_BF:
     .byte $5C, $00, $5B, $00, $60, $61, $00, $00, $61, $60, $00, $00, $A8, $A9, $00, $00
     .byte $E4, $C1, $F4, $C1, $13, $19, $19, $24, $C1, $E5, $C1, $F5, $15, $0A, $25, $B4
     .byte $C1, $C1, $C1, $C1, $B9, $C1, $D4, $C1, $C1, $BA, $C1, $D5, $3D, $08, $4D, $4E
@@ -51,6 +55,8 @@ World2_SmallBlocks:
     .byte $6D, $6E, $7D, $7E, $EB, $EC, $FB, $FC, $ED, $EE, $00, $FE, $EF, $00, $FF, $17
     .byte $67, $68, $84, $84, $69, $6A, $2C, $96, $6B, $00, $84, $07, $8B, $8C, $9B, $9C
     .byte $8D, $8E, $9D, $9E, $8F, $00, $9F, $00, $AB, $AC, $BB, $BC, $AD, $AE, $BD, $BE
+
+World2_MetatileTiles_C0_CF:
     .byte $AF, $00, $BF, $00, $00, $CC, $DB, $DC, $CD, $CE, $DD, $DE, $CF, $00, $DF, $00
     .byte $40, $9A, $C5, $CB, $43, $00, $5A, $41, $00, $00, $A6, $A7, $E0, $E3, $F0, $F3
     .byte $C9, $CA, $F6, $F7, $B8, $9A, $F8, $CB, $E0, $E1, $F0, $F1, $E2, $E3, $F2, $F3

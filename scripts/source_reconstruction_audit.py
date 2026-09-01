@@ -133,6 +133,7 @@ def validate_contract_shape(document: dict[str, Any]) -> list[str]:
         "world1-city",
         "world1-underground",
         "world2-cave",
+        "world2-terminal-screen",
         "world3-underwater",
         "chapter-transition",
         "ending-credits",

@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank1_Func_827D:
-    JSR Bank1_Func_8747
+    JSR World2_ApplyPendingBackgroundPalette
 
 Bank1_Label_8280:
     LDA PpuMaskShadow
@@ -199,8 +199,8 @@ Bank1_Label_83A3:
     CMP #$F8
     BEQ Bank1_Label_83B1
     AND #$07
-    STA $9D
-    STA $B4
+    STA World2PendingBackgroundPalette
+    STA World2SavedBackgroundPalette
     BNE Bank1_Label_838B
 
 Bank1_Label_83B1:
@@ -209,7 +209,7 @@ Bank1_Label_83B1:
     BEQ Bank1_Label_838B
 
 Bank1_Label_83B7:
-    LDA $9E
+    LDA World2SavedStageSequenceOffset
     STA World2StageSequenceOffset
     JMP Bank1_Label_838B
 

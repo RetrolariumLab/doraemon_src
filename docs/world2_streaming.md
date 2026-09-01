@@ -1,8 +1,11 @@
 # World 2 compressed screens
 
 World 2 does not store the 60 fixed 16x15 screens exposed by CadEditor. Runtime
-uses a 255-byte stage sequence at `$BDDF`, a standard 119-entry pointer table at
+uses a 229-byte stage sequence at `$BDDF-$BEC3`, a standard 119-entry pointer table at
 `$BEDE`, and compressed screen bytes beginning at `$BFCC`.
+
+Literal cells index the exact 208-record 2x2 CHR-tile catalog documented in
+`docs/world2_metatiles.md`.
 
 The stage sequence is a separate one-byte instruction stream rather than a flat
 list of screen IDs. Its complete command contract and editable representation
@@ -60,9 +63,12 @@ The final RLE token is stored at `$FFF9` and consumes `$FFFA`, the low byte of
 the bank's NMI vector, as its repeated literal. The vector remains valid while
 also serving as compressed data.
 
-Selectors `$7B` and `$7F` are exceptional dynamic screens. Indexing the
-overlapping 128-slot pointer view yields WRAM addresses `$0515` and `$00FC`;
-they are not part of the 119 standard ROM screen views.
+Selector `$7F` is a terminal sentinel rather than a compressed screen. The
+preceding `$F8` command stops scrolling; the selector routine still indexes the
+overlapping pointer view and stores `$00FC`, but deterministic runtime evidence
+observes no call to the token decoder afterward. Bytes `$BEC4-$BEDD` are a
+separate metatile collision bitmap, so their leading `$7B` byte is not a stage
+selector at all.
 
 ## Lossless authoring format
 

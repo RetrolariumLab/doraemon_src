@@ -34,7 +34,7 @@ side-view initializer in that order while PRG0/CHR0 stays selected.
 
 ## World 2 / bank 1
 
-The bank owns a 255-byte stage sequence, 119 standard compressed-screen
+The bank owns a 229-byte stage sequence, 119 standard compressed-screen
 selectors, and shooter-specific code/data. Its token decoder expands sixteen
 rows of at least fifteen cells; literal cells, runs, early row endings, and
 enemy spawns share the same stream. Three overlapping 16-slot RTS tables drive
@@ -45,6 +45,9 @@ then repeats the frame loop at `$8959` once per frame with PRG1/CHR1 selected.
 The 119 selector views share one globally unambiguous 16,431-byte token pool;
 its lossless authoring representation is described in
 `docs/world2_streaming.md`.
+The stage terminates with a stopped `$7F` sentinel. Its adjacent 26-byte bitmap
+classifies all 208 metatiles for collision, and that bitmap is editable alongside
+the palette and CHR-tile fields.
 
 ## World 3 / bank 2
 

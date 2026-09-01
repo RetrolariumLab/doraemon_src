@@ -96,7 +96,7 @@ Bank1_Reset:
     TXA
 
 Bank1_Label_80AC:
-    STA a:$0400,X
+    STA a:World2ScreenMetatiles,X
     STA a:$0500,X
     STA a:$0600,X
     STA a:$0700,X

@@ -45,6 +45,10 @@ WORLD2_ENEMY_STATES := config/world2_enemy_states.json
 WORLD2_ENEMY_AUTHORING := data/world2/enemy_states.json
 WORLD2_STAGE_SEQUENCE := config/world2_stage_sequence.json
 WORLD2_STAGE_AUTHORING := data/world2/stage_sequence.json
+WORLD2_METATILES := config/world2_metatiles.json
+WORLD2_METATILE_AUTHORING := data/world2/metatiles.json
+WORLD2_PALETTES := config/world2_palettes.json
+WORLD2_PALETTE_AUTHORING := data/world2/palettes.json
 WORLD3_OBJECT_DATA := config/world3_object_data.json
 WORLD3_BEHAVIOR := config/world3_behavior.json
 WORLD3_BEHAVIOR_AUTHORING := data/world3/behavior_streams.json
@@ -67,6 +71,8 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	validate-object-placements world2-streaming validate-world2-streaming \
 	world2-enemy-states validate-world2-enemy-states \
 	world2-stage-sequence validate-world2-stage-sequence \
+	world2-metatiles validate-world2-metatiles \
+	world2-palettes validate-world2-palettes \
 	world3-object-data validate-world3-object-data world3-behavior \
 	validate-world3-behavior world3-entity-types validate-world3-entity-types \
 	world3-object-catalog validate-world3-object-catalog \
@@ -228,6 +234,18 @@ world2-stage-sequence validate-world2-stage-sequence: $(PRG_ASSET)
 		--manifest "$(WORLD2_STAGE_SEQUENCE)" \
 		--authoring "$(WORLD2_STAGE_AUTHORING)"
 
+world2-metatiles validate-world2-metatiles: $(PRG_ASSET)
+	$(PYTHON) scripts/world2_metatiles.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_METATILES)" \
+		--screen-authoring "$(WORLD2_SCREEN_AUTHORING)" \
+		--authoring "$(WORLD2_METATILE_AUTHORING)"
+
+world2-palettes validate-world2-palettes: $(PRG_ASSET)
+	$(PYTHON) scripts/world2_palettes.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_PALETTES)" \
+		--stage-authoring "$(WORLD2_STAGE_AUTHORING)" \
+		--authoring "$(WORLD2_PALETTE_AUTHORING)"
+
 world3-object-data validate-world3-object-data: $(PRG_ASSET)
 	$(PYTHON) scripts/world3_object_data.py --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD3_OBJECT_DATA)"
@@ -284,6 +302,8 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-object-placements validate-world2-streaming \
 	validate-world2-enemy-states \
 	validate-world2-stage-sequence \
+	validate-world2-metatiles \
+	validate-world2-palettes \
 	validate-world3-object-data validate-world3-behavior \
 	validate-world3-entity-types validate-world3-object-catalog \
 	validate-world-data

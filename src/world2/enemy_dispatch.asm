@@ -43,7 +43,7 @@ Bank1_Label_9922:
     CMP #$70
     BCC Bank1_Label_9946
     JSR Bank1_Func_A0DC
-    LDA $73
+    LDA World2FrameCounter
     AND #$07
     BNE Bank1_Label_991A
     INC a:World2EnemyState,X

@@ -1,5 +1,5 @@
 ; Doraemon PRG bank 1 $8444-$88A3
-; World 2 compressed row expansion, PPU transfer services, and RTS dispatch tables
+; World 2 compressed row expansion, palette catalog, PPU transfer services, and RTS dispatch tables
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World2_DecodeScreenToken:
@@ -22,13 +22,13 @@ Bank1_Label_845A:
     INY
 
 Bank1_Label_8461:
-    STA a:$04F0,X
+    STA a:World2ScreenMetatiles+$F0,X
     INX
     DEC World2ScreenRunLength
     BNE Bank1_Label_8461
 
 Bank1_Label_8469:
-    STA a:$04F0,X
+    STA a:World2ScreenMetatiles+$F0,X
     INX
     RTS
 
@@ -82,12 +82,12 @@ Bank1_Func_84AB:
     STX $53
 
 Bank1_Label_84AF:
-    LDA a:$04F0,X
+    LDA a:World2ScreenMetatiles+$F0,X
     LDY $53
     STA ($51),Y
     TAY
     INC $53
-    JSR Bank1_Func_84FC
+    JSR World2_ExpandMetatileToTransferBuffers
     CPX #$10
     BNE Bank1_Label_84AF
     RTS
@@ -117,7 +117,7 @@ Bank1_Func_84E1:
     STX $53
 
 Bank1_Label_84E5:
-    LDA a:$04F0,X
+    LDA a:World2ScreenMetatiles+$F0,X
     LDY $53
     STA ($51),Y
     TAY
@@ -125,13 +125,13 @@ Bank1_Label_84E5:
     CLC
     ADC #$10
     STA $53
-    JSR Bank1_Func_84FC
+    JSR World2_ExpandMetatileToTransferBuffers
     CPX #$0F
     BNE Bank1_Label_84E5
     RTS
 
-Bank1_Func_84FC:
-    LDA a:$B9CF,Y
+World2_ExpandMetatileToTransferBuffers:
+    LDA a:World2_MetatilePaletteSelectors,Y
     STA a:$0500,X
     TYA
     ASL A
@@ -139,7 +139,7 @@ Bank1_Func_84FC:
     ASL A
     BCS Bank1_Label_8524
     TAY
-    LDA a:$BA9F,Y
+    LDA a:World2_MetatileTiles_00_3F,Y
     STA a:$0510,X
     LDA a:$BAA0,Y
     STA a:$0520,X
@@ -152,7 +152,7 @@ Bank1_Func_84FC:
 
 Bank1_Label_8524:
     TAY
-    LDA a:$BB9F,Y
+    LDA a:World2_MetatileTiles_40_7F,Y
     STA a:$0510,X
     LDA a:$BBA0,Y
     STA a:$0520,X
@@ -167,7 +167,7 @@ Bank1_Label_853F:
     ASL A
     BCS Bank1_Label_855D
     TAY
-    LDA a:$BC9F,Y
+    LDA a:World2_MetatileTiles_80_BF,Y
     STA a:$0510,X
     LDA a:$BCA0,Y
     STA a:$0520,X
@@ -180,7 +180,7 @@ Bank1_Label_853F:
 
 Bank1_Label_855D:
     TAY
-    LDA a:$BD9F,Y
+    LDA a:World2_MetatileTiles_C0_CF,Y
     STA a:$0510,X
     LDA a:$BDA0,Y
     STA a:$0520,X
@@ -447,7 +447,7 @@ Bank1_Func_8711:
     JSR Bank1_Func_80DA
     JSR Bank1_WaitForVblank
     JSR Bank1_Func_80F0
-    JSR Bank1_Func_8771
+    JSR World2_UploadDefaultBackgroundPalette
     LDA #$10
     STA PpuCtrlShadow
     STA a:PPU_CTRL
@@ -456,7 +456,7 @@ Bank1_Func_8711:
     STA $3F
     JSR Bank1_Func_8131
     JSR Bank1_Func_80DA
-    JSR Bank1_Func_8771
+    JSR World2_UploadDefaultBackgroundPalette
     LDA #$20
     LDX #$00
     JSR Bank1_Func_870A
@@ -473,17 +473,17 @@ Bank1_Label_873D:
 Bank1_Label_8746:
     RTS
 
-Bank1_Func_8747:
-    LDA $9D
+World2_ApplyPendingBackgroundPalette:
+    LDA World2PendingBackgroundPalette
     BEQ Bank1_Label_8746
-    BPL Bank1_Func_8751
-    LDA $73
+    BPL World2_UploadBackgroundPalette
+    LDA World2FrameCounter
     AND #$03
 
-Bank1_Func_8751:
+World2_UploadBackgroundPalette:
     PHA
     LDA #$00
-    STA $9D
+    STA World2PendingBackgroundPalette
     LDA #$3F
     LDX #$00
     JSR Bank1_Func_870A
@@ -496,35 +496,37 @@ Bank1_Func_8751:
     LDY #$10
 
 Bank1_Label_8765:
-    LDA a:$8791,X
+    LDA a:World2_BackgroundPaletteIndexBase,X
     STA a:PPU_DATA
     INX
     DEY
     BNE Bank1_Label_8765
     BEQ Bank1_Label_8790
 
-Bank1_Func_8771:
+World2_UploadDefaultBackgroundPalette:
     LDA #$3F
     LDX #$00
     JSR Bank1_Func_870A
     LDY #$10
 
 Bank1_Label_877A:
-    LDA a:$87A1,X
+    LDA a:World2_PaletteSets,X
     STA a:PPU_DATA
     INX
     DEY
     BNE Bank1_Label_877A
 
-Bank1_Func_8784:
+World2_UploadSpritePalette:
     LDY #$10
 
 Bank1_Label_8786:
-    LDA a:$87F1,X
+    LDA a:World2_SpritePaletteOffsetBase,X
     STA a:PPU_DATA
     INX
     DEY
     BNE Bank1_Label_8786
+
+World2_BackgroundPaletteIndexBase = * + 1  ; overlapping entry $8791
 
 Bank1_Label_8790:
     LDA #$3F
@@ -534,11 +536,15 @@ Bank1_Label_8790:
     STA a:PPU_ADDR
     STA a:PPU_ADDR
     RTS
+
+World2_PaletteSets:
     .byte $0F, $17, $26, $07, $0F, $19, $29, $07, $0F, $17, $26, $07, $0F, $1C, $11, $07
     .byte $0F, $17, $26, $07, $0F, $19, $29, $07, $0F, $17, $26, $07, $0F, $06, $15, $07
     .byte $0F, $17, $26, $07, $0F, $19, $29, $07, $0F, $17, $26, $07, $0F, $00, $10, $07
     .byte $0F, $17, $26, $07, $0F, $19, $29, $07, $0F, $1C, $10, $08, $0F, $1C, $21, $09
     .byte $0F, $17, $26, $07, $0F, $1A, $10, $0A, $0F, $00, $10, $08, $0F, $00, $31, $0B
+
+World2_SpritePaletteOffsetBase:
     .byte $0F, $05, $15, $0F, $0F, $23, $20, $15, $0F, $00, $10, $08, $0F, $00, $31, $0B
     .byte $0F, $15, $21, $30, $0F, $15, $26, $30, $0F, $19, $28, $30, $0F, $17, $27, $36
     .byte $0F, $15, $21, $30, $0F, $15, $26, $30, $0F, $11, $21, $30, $0F, $17, $27, $36

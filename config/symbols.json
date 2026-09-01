@@ -781,6 +781,57 @@
     },
     {
       "bank": 1,
+      "address": "0x84FC",
+      "name": "World2_ExpandMetatileToTransferBuffers",
+      "evidence": "metatile-id-to-palette-and-four-chr-tile-expansion"
+    },
+    {
+      "bank": 1,
+      "address": "0x8747",
+      "name": "World2_ApplyPendingBackgroundPalette",
+      "evidence": "pending-id-or-frame-phase-selects-and-uploads-sixteen-background-colors"
+    },
+    {
+      "bank": 1,
+      "address": "0x8751",
+      "name": "World2_UploadBackgroundPalette",
+      "evidence": "palette-id-times-sixteen-indexes-8791-and-writes-ppu-3f00"
+    },
+    {
+      "bank": 1,
+      "address": "0x8771",
+      "name": "World2_UploadDefaultBackgroundPalette",
+      "evidence": "writes-sixteen-colors-from-87a1-to-ppu-3f00"
+    },
+    {
+      "bank": 1,
+      "address": "0x8784",
+      "name": "World2_UploadSpritePalette",
+      "evidence": "writes-sixteen-colors-from-87f1-plus-chapter-offset-to-ppu-3f10"
+    },
+    {
+      "bank": 1,
+      "address": "0x8791",
+      "name": "World2_BackgroundPaletteIndexBase",
+      "operand_symbol": true,
+      "evidence": "sixteen-by-id-background-palette-base-overlapping-upload-code"
+    },
+    {
+      "bank": 1,
+      "address": "0x87A1",
+      "name": "World2_PaletteSets",
+      "operand_symbol": true,
+      "evidence": "nine-contiguous-sixteen-byte-nes-palette-sets"
+    },
+    {
+      "bank": 1,
+      "address": "0x87F1",
+      "name": "World2_SpritePaletteOffsetBase",
+      "operand_symbol": true,
+      "evidence": "chapter-offset-base-for-sprite-palette-upload"
+    },
+    {
+      "bank": 1,
       "address": "0x8831",
       "name": "World2_FrameScreenServiceRtsTable",
       "evidence": "16-slot-target-minus-one-table-used-by-bank1-func-835d"
@@ -818,9 +869,36 @@
     },
     {
       "bank": 1,
+      "address": "0x8BA6",
+      "name": "World2_InitialBackgroundPaletteIds",
+      "operand_symbol": true,
+      "evidence": "three-chapter-background-palette-selectors-loaded-at-bank1-8af2"
+    },
+    {
+      "bank": 1,
+      "address": "0x8BA9",
+      "name": "World2_InitialSpritePaletteOffsets",
+      "operand_symbol": true,
+      "evidence": "three-chapter-sprite-palette-offsets-loaded-at-bank1-8aea"
+    },
+    {
+      "bank": 1,
       "address": "0x9036",
       "name": "World2_UpdatePlayerProjectiles",
       "evidence": "seven-slot-player-projectile-motion-collision-and-despawn-loop"
+    },
+    {
+      "bank": 1,
+      "address": "0x9377",
+      "name": "World2_TestMetatileCollision",
+      "evidence": "maps-world-position-to-screen-metatile-and-tests-msb-first-bec4-collision-bit"
+    },
+    {
+      "bank": 1,
+      "address": "0x93AF",
+      "name": "World2_CollisionBitMasks",
+      "operand_symbol": true,
+      "evidence": "indexed-by-metatile-id-low-three-bits-at-bank1-939d"
     },
     {
       "bank": 1,
@@ -1104,14 +1182,43 @@
     {
       "bank": 1,
       "address": "0xB9CE",
-      "name": "World2_BlockAttributes",
-      "evidence": "cadeditor"
+      "name": "World2_UnindexedAttributePrefix",
+      "evidence": "cadeditor-prefix-immediately-before-renderer-indexed-table"
+    },
+    {
+      "bank": 1,
+      "address": "0xB9CF",
+      "name": "World2_MetatilePaletteSelectors",
+      "operand_symbol": true,
+      "evidence": "indexed-by-metatile-id-at-bank1-84fc"
     },
     {
       "bank": 1,
       "address": "0xBA9F",
-      "name": "World2_SmallBlocks",
-      "evidence": "cadeditor"
+      "name": "World2_MetatileTiles_00_3F",
+      "operand_symbol": true,
+      "evidence": "metatile-high-bits-dispatch-base-at-bank1-850a"
+    },
+    {
+      "bank": 1,
+      "address": "0xBB9F",
+      "name": "World2_MetatileTiles_40_7F",
+      "operand_symbol": true,
+      "evidence": "metatile-high-bits-dispatch-base-at-bank1-8525"
+    },
+    {
+      "bank": 1,
+      "address": "0xBC9F",
+      "name": "World2_MetatileTiles_80_BF",
+      "operand_symbol": true,
+      "evidence": "metatile-high-bits-dispatch-base-at-bank1-8541"
+    },
+    {
+      "bank": 1,
+      "address": "0xBD9F",
+      "name": "World2_MetatileTiles_C0_CF",
+      "operand_symbol": true,
+      "evidence": "metatile-high-bits-dispatch-base-at-bank1-855e"
     },
     {
       "bank": 1,
@@ -1125,6 +1232,13 @@
       "name": "World2_StageSequenceData",
       "operand_symbol": true,
       "evidence": "indexed-by-world2-stage-sequence-offset-at-bank1-838b"
+    },
+    {
+      "bank": 1,
+      "address": "0xBEC4",
+      "name": "World2_MetatileCollisionBits",
+      "operand_symbol": true,
+      "evidence": "metatile-id-divided-by-eight-and-tested-msb-first-at-bank1-9377"
     },
     {
       "bank": 1,
@@ -2111,12 +2225,44 @@
       "evidence": "masked-stage-token-used-to-index-world2-screen-pointer-table"
     },
     {
+      "address": "0x0073",
+      "name": "World2FrameCounter",
+      "banks": [
+        1
+      ],
+      "evidence": "cleared-at-world2-init-incremented-by-bank1-nmi-and-used-for-animation-phase"
+    },
+    {
       "address": "0x0074",
       "name": "World2EnemySpawnState",
       "banks": [
         1
       ],
       "evidence": "d0-through-ee-compressed-screen-token-passed-to-world2-enemy-spawn"
+    },
+    {
+      "address": "0x009D",
+      "name": "World2PendingBackgroundPalette",
+      "banks": [
+        1
+      ],
+      "evidence": "stage-command-palette-id-consumed-and-cleared-by-bank1-8747"
+    },
+    {
+      "address": "0x009E",
+      "name": "World2SavedStageSequenceOffset",
+      "banks": [
+        1
+      ],
+      "evidence": "saved-by-special-screen-branching-and-restored-by-f7-stage-command"
+    },
+    {
+      "address": "0x00B4",
+      "name": "World2SavedBackgroundPalette",
+      "banks": [
+        1
+      ],
+      "evidence": "stage-command-palette-id-restored-after-world2-transition"
     },
     {
       "address": "0x0068",
@@ -2238,6 +2384,15 @@
         0
       ],
       "evidence": "48-slot-active-type-array-and-four-subsystem-clear-loops"
+    },
+    {
+      "address": "0x0400",
+      "name": "World2ScreenMetatiles",
+      "size": 256,
+      "banks": [
+        1
+      ],
+      "evidence": "16-by-16-expanded-screen-cells-read-by-world2-collision-lookup"
     },
     {
       "address": "0x0430",

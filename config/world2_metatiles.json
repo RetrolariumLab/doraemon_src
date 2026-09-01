@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "bank": 1,
+  "metatile_count": 208,
+  "runtime_id_range": [
+    "0x00",
+    "0xCF"
+  ],
+  "unindexed_prefix": {
+    "address": "0xB9CE",
+    "size": 1,
+    "value": "0xFF",
+    "crc32": "ff000000"
+  },
+  "palette_selectors": {
+    "address": "0xB9CF",
+    "count": 208,
+    "value_limit": 4,
+    "histogram": [
+      123,
+      20,
+      28,
+      37
+    ],
+    "crc32": "2e118ad3"
+  },
+  "tile_quads": {
+    "address": "0xBA9F",
+    "count": 208,
+    "bytes_per_metatile": 4,
+    "order": [
+      "top_left",
+      "top_right",
+      "bottom_left",
+      "bottom_right"
+    ],
+    "crc32": "a0a46c1f"
+  },
+  "collision_bits": {
+    "address": "0xBEC4",
+    "size": 26,
+    "bit_order": "msb-first",
+    "solid_metatile_count": 100,
+    "crc32": "38c00148"
+  },
+  "next_region_address": "0xBDDF",
+  "renderer": {
+    "address": "0x84FC",
+    "signature": "B9 CF B9 9D 00 05 98 0A B0 39 0A B0 1B A8 B9 9F BA 9D 10 05 B9 A0 BA 9D 20 05 B9 A1 BA 9D 30 05 B9 A2 BA 9D 40 05 E8 60 A8 B9 9F BB 9D 10 05 B9 A0 BB 9D 20 05 B9 A1 BB 9D 30 05 B9 A2 BB 9D 40 05 E8 60 0A B0 1B A8 B9 9F BC 9D 10 05 B9 A0 BC 9D 20 05 B9 A1 BC 9D 30 05 B9 A2 BC 9D 40 05 E8 60 A8 B9 9F BD 9D 10 05 B9 A0 BD 9D 20 05 B9 A1 BD 9D 30 05 B9 A2 BD 9D 40 05 E8 60",
+    "palette_address": "0xB9CF",
+    "tile_table_bases": [
+      "0xBA9F",
+      "0xBB9F",
+      "0xBC9F",
+      "0xBD9F"
+    ]
+  },
+  "collision_lookup": {
+    "address": "0x9377",
+    "signature": "A5 68 18 65 40 90 02 69 0F 29 F0 C9 F0 D0 02 A9 00 85 69 A5 67 18 65 3F 6A 6A 6A 6A 29 0F 05 69 A8 B9 00 04 48 29 07 A8 B9 AF 93 85 AF 68 4A 4A 4A A8 B9 C4 BE 25 AF 60",
+    "screen_buffer_address": "0x0400",
+    "bit_mask_address": "0x93AF",
+    "collision_bits_address": "0xBEC4"
+  },
+  "standard_stream_references": {
+    "authoring": "data/world2/compressed_screens.json",
+    "expected_unique_count": 203,
+    "unreferenced_ids": [
+      "0x27",
+      "0x38",
+      "0x44",
+      "0x51",
+      "0x79"
+    ]
+  }
+}

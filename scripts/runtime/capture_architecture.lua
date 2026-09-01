@@ -14,6 +14,10 @@ local PPU_CTRL_SHADOW = 0x0019
 local PPU_MASK_SHADOW = 0x001A
 local CONTROLLER_1 = 0x001F
 local MAPPER_TABLE = 0x8261
+local WORLD2_SCROLL_ACTIVE = 0x0041
+local WORLD2_SCREEN_POINTER = 0x0046
+local WORLD2_SCREEN_ROW = 0x0056
+local WORLD2_SCREEN_ID = 0x0058
 
 local fingerprints = {
     ["07A91020"] = 0,
@@ -135,6 +139,43 @@ for address, probe in pairs(probes) do
         end
     end)
 end
+
+memory.registerexecute(0x83CE, function()
+    if active_bank() ~= 1 or byte(WORLD2_SCREEN_ID) ~= 0x7F then
+        return
+    end
+    local pointer = byte(WORLD2_SCREEN_POINTER) +
+        0x100 * byte(WORLD2_SCREEN_POINTER + 1)
+    emit(
+        "world2_terminal_select",
+        string.format(
+            "id=7F;ptr=%04X;scroll=%02X",
+            pointer, byte(WORLD2_SCROLL_ACTIVE)
+        )
+    )
+end)
+
+memory.registerexecute(0x8444, function()
+    if active_bank() ~= 1 or byte(WORLD2_SCREEN_ID) ~= 0x7F then
+        return
+    end
+    local pointer = byte(WORLD2_SCREEN_POINTER) +
+        0x100 * byte(WORLD2_SCREEN_POINTER + 1)
+    local offset = memory.getregister("y")
+    local token_address = bit.band(pointer + offset, 0xFFFF)
+    local token = byte(token_address)
+    local operand = "--"
+    if token >= 0xF1 then
+        operand = string.format("%02X", byte(bit.band(token_address + 1, 0xFFFF)))
+    end
+    emit(
+        "world2_terminal_token_read",
+        string.format(
+            "id=7F;ptr=%04X;row=%02X;off=%02X;token=%02X;operand=%s",
+            pointer, byte(WORLD2_SCREEN_ROW), offset, token, operand
+        )
+    )
+end)
 
 while emu.framecount() < max_frames do
     for _, patch in ipairs(memory_patches) do

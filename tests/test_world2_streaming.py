@@ -24,7 +24,7 @@ class World2StreamingTests(unittest.TestCase):
             offset = bank_offset + address - world2_streaming.CPU_BASE
             prg[offset:offset + len(data)] = data
 
-        stage_data = bytes((0,))
+        stage_data = bytes((0xF8, 0))
         pointer_data = (0x8200).to_bytes(2, "little")
         stream_data = bytes((0x12,))
         write(0x8000, stage_data)
@@ -46,11 +46,16 @@ class World2StreamingTests(unittest.TestCase):
             ],
             "stage_sequence": {
                 "address": "0x8000",
-                "size": 1,
+                "size": 2,
                 "crc32": world2_streaming.crc32(stage_data),
                 "start_table_address": "0x8050",
                 "start_offsets": [0],
-                "dynamic_screen_ids": {},
+                "terminal_screen": {
+                    "screen_id": "0x00",
+                    "sequence_offset": 1,
+                    "preceding_stop_scroll_offset": 0,
+                    "indexed_pointer": "0x8200",
+                },
             },
             "screen_pointer_table": {
                 "address": "0x8100",
@@ -107,10 +112,10 @@ class World2StreamingTests(unittest.TestCase):
     def test_rejects_illegal_stage_selector(self) -> None:
         prg, document, entries = self.fixture()
         changed = bytearray(prg)
-        changed[world2_streaming.BANK_SIZE] = 2
+        changed[world2_streaming.BANK_SIZE + 1] = 2
         changed_document = copy.deepcopy(document)
         changed_document["stage_sequence"]["crc32"] = world2_streaming.crc32(
-            bytes((2,))
+            bytes((0xF8, 2))
         )
         errors, _report = world2_streaming.validate(
             bytes(changed), changed_document, entries

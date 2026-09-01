@@ -1,0 +1,2103 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world2-metatiles",
+  "bank": 1,
+  "unindexed_prefix": {
+    "address": "0xB9CE",
+    "value": "0xFF"
+  },
+  "palette_address": "0xB9CF",
+  "tile_address": "0xBA9F",
+  "collision_address": "0xBEC4",
+  "metatile_count": 208,
+  "tile_order": [
+    "top_left",
+    "top_right",
+    "bottom_left",
+    "bottom_right"
+  ],
+  "records": [
+    {
+      "id": 0,
+      "palette": 1,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 1,
+      "palette": 0,
+      "top_left": "0x01",
+      "top_right": "0x01",
+      "bottom_left": "0x01",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 2,
+      "palette": 0,
+      "top_left": "0x01",
+      "top_right": "0x1C",
+      "bottom_left": "0x01",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 3,
+      "palette": 0,
+      "top_left": "0x1D",
+      "top_right": "0x21",
+      "bottom_left": "0x01",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 4,
+      "palette": 0,
+      "top_left": "0x29",
+      "top_right": "0x2A",
+      "bottom_left": "0x01",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 5,
+      "palette": 0,
+      "top_left": "0x13",
+      "top_right": "0x20",
+      "bottom_left": "0x20",
+      "bottom_right": "0x21",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 6,
+      "palette": 0,
+      "top_left": "0x20",
+      "top_right": "0x31",
+      "bottom_left": "0x21",
+      "bottom_right": "0x29",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 7,
+      "palette": 0,
+      "top_left": "0x17",
+      "top_right": "0x18",
+      "bottom_left": "0x00",
+      "bottom_right": "0x2A",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 8,
+      "palette": 0,
+      "top_left": "0x17",
+      "top_right": "0xC0",
+      "bottom_left": "0x1C",
+      "bottom_right": "0x1D",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 9,
+      "palette": 0,
+      "top_left": "0x19",
+      "top_right": "0x19",
+      "bottom_left": "0x1E",
+      "bottom_right": "0x1F",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 10,
+      "palette": 0,
+      "top_left": "0x19",
+      "top_right": "0x24",
+      "bottom_left": "0x24",
+      "bottom_right": "0x0C",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 11,
+      "palette": 0,
+      "top_left": "0x21",
+      "top_right": "0x08",
+      "bottom_left": "0x10",
+      "bottom_right": "0x11",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 12,
+      "palette": 0,
+      "top_left": "0x2B",
+      "top_right": "0x01",
+      "bottom_left": "0x08",
+      "bottom_right": "0x2B",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 13,
+      "palette": 0,
+      "top_left": "0x2B",
+      "top_right": "0x01",
+      "bottom_left": "0x01",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 14,
+      "palette": 0,
+      "top_left": "0x1C",
+      "top_right": "0x1D",
+      "bottom_left": "0x0D",
+      "bottom_right": "0x0E",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 15,
+      "palette": 0,
+      "top_left": "0x1E",
+      "top_right": "0x25",
+      "bottom_left": "0x12",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 16,
+      "palette": 0,
+      "top_left": "0x16",
+      "top_right": "0x01",
+      "bottom_left": "0x01",
+      "bottom_right": "0x27",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 17,
+      "palette": 0,
+      "top_left": "0x0D",
+      "top_right": "0x05",
+      "bottom_left": "0x20",
+      "bottom_right": "0x21",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 18,
+      "palette": 0,
+      "top_left": "0x06",
+      "top_right": "0x17",
+      "bottom_left": "0x29",
+      "bottom_right": "0x2A",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 19,
+      "palette": 0,
+      "top_left": "0x18",
+      "top_right": "0x28",
+      "bottom_left": "0x01",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 20,
+      "palette": 0,
+      "top_left": "0x28",
+      "top_right": "0x18",
+      "bottom_left": "0x01",
+      "bottom_right": "0x27",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 21,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x00",
+      "bottom_right": "0x04",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 22,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x05",
+      "bottom_right": "0x06",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 23,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x09",
+      "bottom_left": "0x13",
+      "bottom_right": "0x19",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 24,
+      "palette": 0,
+      "top_left": "0x19",
+      "top_right": "0x24",
+      "bottom_left": "0x1B",
+      "bottom_right": "0x14",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 25,
+      "palette": 0,
+      "top_left": "0x25",
+      "top_right": "0x16",
+      "bottom_left": "0x15",
+      "bottom_right": "0x11",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 26,
+      "palette": 0,
+      "top_left": "0x2B",
+      "top_right": "0x0A",
+      "bottom_left": "0x16",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 27,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x0B",
+      "bottom_right": "0x17",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 28,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x18",
+      "bottom_right": "0x17",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 29,
+      "palette": 0,
+      "top_left": "0x04",
+      "top_right": "0x05",
+      "bottom_left": "0x14",
+      "bottom_right": "0x15",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 30,
+      "palette": 0,
+      "top_left": "0x06",
+      "top_right": "0x00",
+      "bottom_left": "0x16",
+      "bottom_right": "0x0A",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 31,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x04",
+      "bottom_left": "0x13",
+      "bottom_right": "0x14",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 32,
+      "palette": 0,
+      "top_left": "0x05",
+      "top_right": "0x06",
+      "bottom_left": "0x15",
+      "bottom_right": "0x2B",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 33,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x0A",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 34,
+      "palette": 2,
+      "top_left": "0x35",
+      "top_right": "0x36",
+      "bottom_left": "0x45",
+      "bottom_right": "0x46",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 35,
+      "palette": 2,
+      "top_left": "0x37",
+      "top_right": "0x38",
+      "bottom_left": "0x47",
+      "bottom_right": "0x48",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 36,
+      "palette": 2,
+      "top_left": "0x3D",
+      "top_right": "0x4E",
+      "bottom_left": "0x60",
+      "bottom_right": "0x61",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 37,
+      "palette": 0,
+      "top_left": "0x4D",
+      "top_right": "0x4E",
+      "bottom_left": "0x60",
+      "bottom_right": "0x60",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 38,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x04",
+      "bottom_right": "0x05",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 39,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x06",
+      "bottom_right": "0x42",
+      "referenced_by_standard_stream": false,
+      "solid": false
+    },
+    {
+      "id": 40,
+      "palette": 2,
+      "top_left": "0x39",
+      "top_right": "0x3A",
+      "bottom_left": "0x49",
+      "bottom_right": "0x63",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 41,
+      "palette": 2,
+      "top_left": "0x3B",
+      "top_right": "0x3C",
+      "bottom_left": "0x4B",
+      "bottom_right": "0x4C",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 42,
+      "palette": 0,
+      "top_left": "0x62",
+      "top_right": "0x71",
+      "bottom_left": "0x80",
+      "bottom_right": "0x81",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 43,
+      "palette": 0,
+      "top_left": "0x64",
+      "top_right": "0x65",
+      "bottom_left": "0x82",
+      "bottom_right": "0x83",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 44,
+      "palette": 0,
+      "top_left": "0x90",
+      "top_right": "0x91",
+      "bottom_left": "0x70",
+      "bottom_right": "0x71",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 45,
+      "palette": 0,
+      "top_left": "0x92",
+      "top_right": "0x93",
+      "bottom_left": "0x72",
+      "bottom_right": "0x73",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 46,
+      "palette": 0,
+      "top_left": "0x60",
+      "top_right": "0x3D",
+      "bottom_left": "0x00",
+      "bottom_right": "0x60",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 47,
+      "palette": 0,
+      "top_left": "0x3D",
+      "top_right": "0x3E",
+      "bottom_left": "0x4D",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 48,
+      "palette": 0,
+      "top_left": "0x59",
+      "top_right": "0x3E",
+      "bottom_left": "0x5E",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 49,
+      "palette": 0,
+      "top_left": "0x3D",
+      "top_right": "0x53",
+      "bottom_left": "0x4D",
+      "bottom_right": "0x54",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 50,
+      "palette": 2,
+      "top_left": "0x3D",
+      "top_right": "0x57",
+      "bottom_left": "0x4D",
+      "bottom_right": "0x5C",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 51,
+      "palette": 2,
+      "top_left": "0x58",
+      "top_right": "0x3E",
+      "bottom_left": "0x59",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 52,
+      "palette": 0,
+      "top_left": "0x60",
+      "top_right": "0x00",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 53,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x55",
+      "bottom_left": "0x55",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 54,
+      "palette": 1,
+      "top_left": "0xA1",
+      "top_right": "0xA2",
+      "bottom_left": "0x01",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 55,
+      "palette": 2,
+      "top_left": "0x57",
+      "top_right": "0x57",
+      "bottom_left": "0x52",
+      "bottom_right": "0x57",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 56,
+      "palette": 0,
+      "top_left": "0x01",
+      "top_right": "0x01",
+      "bottom_left": "0x2A",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": false,
+      "solid": true
+    },
+    {
+      "id": 57,
+      "palette": 0,
+      "top_left": "0x01",
+      "top_right": "0x0F",
+      "bottom_left": "0x1C",
+      "bottom_right": "0x1D",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 58,
+      "palette": 1,
+      "top_left": "0x0B",
+      "top_right": "0xA4",
+      "bottom_left": "0xA1",
+      "bottom_right": "0xA2",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 59,
+      "palette": 1,
+      "top_left": "0x00",
+      "top_right": "0x23",
+      "bottom_left": "0x00",
+      "bottom_right": "0x26",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 60,
+      "palette": 0,
+      "top_left": "0xC9",
+      "top_right": "0xCA",
+      "bottom_left": "0xD9",
+      "bottom_right": "0xDA",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 61,
+      "palette": 0,
+      "top_left": "0x0C",
+      "top_right": "0x10",
+      "bottom_left": "0x01",
+      "bottom_right": "0x10",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 62,
+      "palette": 0,
+      "top_left": "0x03",
+      "top_right": "0x01",
+      "bottom_left": "0x0C",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 63,
+      "palette": 2,
+      "top_left": "0x44",
+      "top_right": "0x57",
+      "bottom_left": "0x00",
+      "bottom_right": "0x44",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 64,
+      "palette": 1,
+      "top_left": "0x5E",
+      "top_right": "0xA4",
+      "bottom_left": "0x00",
+      "bottom_right": "0x1A",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 65,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x00",
+      "bottom_right": "0x55",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 66,
+      "palette": 0,
+      "top_left": "0x56",
+      "top_right": "0x55",
+      "bottom_left": "0x5A",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 67,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x55",
+      "bottom_left": "0x55",
+      "bottom_right": "0x3E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 68,
+      "palette": 0,
+      "top_left": "0x16",
+      "top_right": "0x2B",
+      "bottom_left": "0x2A",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": false,
+      "solid": true
+    },
+    {
+      "id": 69,
+      "palette": 0,
+      "top_left": "0x2B",
+      "top_right": "0x01",
+      "bottom_left": "0x16",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 70,
+      "palette": 3,
+      "top_left": "0x0A",
+      "top_right": "0x00",
+      "bottom_left": "0x01",
+      "bottom_right": "0x0B",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 71,
+      "palette": 1,
+      "top_left": "0x6F",
+      "top_right": "0x7F",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 72,
+      "palette": 1,
+      "top_left": "0x98",
+      "top_right": "0xA4",
+      "bottom_left": "0x00",
+      "bottom_right": "0x1A",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 73,
+      "palette": 1,
+      "top_left": "0x99",
+      "top_right": "0x7F",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 74,
+      "palette": 0,
+      "top_left": "0x14",
+      "top_right": "0x0C",
+      "bottom_left": "0x24",
+      "bottom_right": "0x0C",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 75,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x56",
+      "bottom_left": "0x00",
+      "bottom_right": "0x5A",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 76,
+      "palette": 0,
+      "top_left": "0x14",
+      "top_right": "0x0C",
+      "bottom_left": "0x0C",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 77,
+      "palette": 1,
+      "top_left": "0xA8",
+      "top_right": "0xA9",
+      "bottom_left": "0x00",
+      "bottom_right": "0x1A",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 78,
+      "palette": 3,
+      "top_left": "0xB1",
+      "top_right": "0x19",
+      "bottom_left": "0xB1",
+      "bottom_right": "0x19",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 79,
+      "palette": 2,
+      "top_left": "0x3D",
+      "top_right": "0x3E",
+      "bottom_left": "0x81",
+      "bottom_right": "0x49",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 80,
+      "palette": 3,
+      "top_left": "0x40",
+      "top_right": "0x95",
+      "bottom_left": "0xC5",
+      "bottom_right": "0xCB",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 81,
+      "palette": 0,
+      "top_left": "0x01",
+      "top_right": "0x0B",
+      "bottom_left": "0x01",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": false,
+      "solid": true
+    },
+    {
+      "id": 82,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x00",
+      "bottom_right": "0xAA",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 83,
+      "palette": 0,
+      "top_left": "0xB0",
+      "top_right": "0x19",
+      "bottom_left": "0xB1",
+      "bottom_right": "0xB1",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 84,
+      "palette": 1,
+      "top_left": "0x7F",
+      "top_right": "0xFD",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 85,
+      "palette": 1,
+      "top_left": "0x0B",
+      "top_right": "0xA4",
+      "bottom_left": "0x01",
+      "bottom_right": "0xA4",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 86,
+      "palette": 0,
+      "top_left": "0x78",
+      "top_right": "0x79",
+      "bottom_left": "0x00",
+      "bottom_right": "0x7A",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 87,
+      "palette": 1,
+      "top_left": "0x84",
+      "top_right": "0x84",
+      "bottom_left": "0x84",
+      "bottom_right": "0x84",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 88,
+      "palette": 0,
+      "top_left": "0x18",
+      "top_right": "0x09",
+      "bottom_left": "0x0F",
+      "bottom_right": "0x19",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 89,
+      "palette": 0,
+      "top_left": "0x0D",
+      "top_right": "0x05",
+      "bottom_left": "0x4D",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 90,
+      "palette": 0,
+      "top_left": "0x76",
+      "top_right": "0x79",
+      "bottom_left": "0x00",
+      "bottom_right": "0x7A",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 91,
+      "palette": 0,
+      "top_left": "0xB1",
+      "top_right": "0x24",
+      "bottom_left": "0x24",
+      "bottom_right": "0x0C",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 92,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0xB0",
+      "bottom_left": "0xAA",
+      "bottom_right": "0xB1",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 93,
+      "palette": 0,
+      "top_left": "0xB1",
+      "top_right": "0x19",
+      "bottom_left": "0xB1",
+      "bottom_right": "0x19",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 94,
+      "palette": 0,
+      "top_left": "0x11",
+      "top_right": "0x3E",
+      "bottom_left": "0x4D",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 95,
+      "palette": 0,
+      "top_left": "0xE9",
+      "top_right": "0xEA",
+      "bottom_left": "0xF9",
+      "bottom_right": "0xFA",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 96,
+      "palette": 2,
+      "top_left": "0x80",
+      "top_right": "0x81",
+      "bottom_left": "0x90",
+      "bottom_right": "0x91",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 97,
+      "palette": 2,
+      "top_left": "0x82",
+      "top_right": "0x83",
+      "bottom_left": "0x92",
+      "bottom_right": "0x93",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 98,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x42",
+      "bottom_left": "0x42",
+      "bottom_right": "0x5A",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 99,
+      "palette": 0,
+      "top_left": "0x43",
+      "top_right": "0x00",
+      "bottom_left": "0x5A",
+      "bottom_right": "0x41",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 100,
+      "palette": 0,
+      "top_left": "0x0B",
+      "top_right": "0x00",
+      "bottom_left": "0x01",
+      "bottom_right": "0x0B",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 101,
+      "palette": 0,
+      "top_left": "0x09",
+      "top_right": "0xB1",
+      "bottom_left": "0xB1",
+      "bottom_right": "0xB2",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 102,
+      "palette": 2,
+      "top_left": "0x39",
+      "top_right": "0x3A",
+      "bottom_left": "0x49",
+      "bottom_right": "0x4A",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 103,
+      "palette": 2,
+      "top_left": "0x59",
+      "top_right": "0x3E",
+      "bottom_left": "0x5E",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 104,
+      "palette": 0,
+      "top_left": "0x35",
+      "top_right": "0x36",
+      "bottom_left": "0x45",
+      "bottom_right": "0x46",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 105,
+      "palette": 0,
+      "top_left": "0xB1",
+      "top_right": "0xB1",
+      "bottom_left": "0xB1",
+      "bottom_right": "0x24",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 106,
+      "palette": 0,
+      "top_left": "0x55",
+      "top_right": "0x56",
+      "bottom_left": "0x3D",
+      "bottom_right": "0x3E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 107,
+      "palette": 0,
+      "top_left": "0x37",
+      "top_right": "0x38",
+      "bottom_left": "0x47",
+      "bottom_right": "0x48",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 108,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0xAA",
+      "bottom_left": "0x00",
+      "bottom_right": "0xB0",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 109,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0xB5",
+      "bottom_right": "0xB6",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 110,
+      "palette": 2,
+      "top_left": "0x3D",
+      "top_right": "0x3E",
+      "bottom_left": "0x60",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 111,
+      "palette": 2,
+      "top_left": "0x00",
+      "top_right": "0x60",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 112,
+      "palette": 0,
+      "top_left": "0x53",
+      "top_right": "0x00",
+      "bottom_left": "0x54",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 113,
+      "palette": 0,
+      "top_left": "0x57",
+      "top_right": "0x00",
+      "bottom_left": "0x50",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 114,
+      "palette": 2,
+      "top_left": "0x00",
+      "top_right": "0x58",
+      "bottom_left": "0x00",
+      "bottom_right": "0x59",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 115,
+      "palette": 2,
+      "top_left": "0x00",
+      "top_right": "0x5A",
+      "bottom_left": "0x00",
+      "bottom_right": "0xBB",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 116,
+      "palette": 3,
+      "top_left": "0xA0",
+      "top_right": "0x00",
+      "bottom_left": "0xC1",
+      "bottom_right": "0xA0",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 117,
+      "palette": 0,
+      "top_left": "0x4E",
+      "top_right": "0x4D",
+      "bottom_left": "0x3E",
+      "bottom_right": "0x3D",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 118,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x56",
+      "bottom_left": "0x42",
+      "bottom_right": "0x5A",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 119,
+      "palette": 0,
+      "top_left": "0x56",
+      "top_right": "0x00",
+      "bottom_left": "0x52",
+      "bottom_right": "0x41",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 120,
+      "palette": 3,
+      "top_left": "0xA3",
+      "top_right": "0x00",
+      "bottom_left": "0xA3",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 121,
+      "palette": 0,
+      "top_left": "0x39",
+      "top_right": "0x3A",
+      "bottom_left": "0x49",
+      "bottom_right": "0x63",
+      "referenced_by_standard_stream": false,
+      "solid": true
+    },
+    {
+      "id": 122,
+      "palette": 0,
+      "top_left": "0x3B",
+      "top_right": "0x3C",
+      "bottom_left": "0x4B",
+      "bottom_right": "0x4C",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 123,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x22",
+      "bottom_left": "0x00",
+      "bottom_right": "0x5E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 124,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x5D",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 125,
+      "palette": 0,
+      "top_left": "0x51",
+      "top_right": "0x57",
+      "bottom_left": "0x5E",
+      "bottom_right": "0x52",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 126,
+      "palette": 0,
+      "top_left": "0x57",
+      "top_right": "0x57",
+      "bottom_left": "0x52",
+      "bottom_right": "0x57",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 127,
+      "palette": 0,
+      "top_left": "0x57",
+      "top_right": "0x5C",
+      "bottom_left": "0x51",
+      "bottom_right": "0x5B",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 128,
+      "palette": 0,
+      "top_left": "0x5C",
+      "top_right": "0x00",
+      "bottom_left": "0x5B",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 129,
+      "palette": 2,
+      "top_left": "0x60",
+      "top_right": "0x61",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 130,
+      "palette": 2,
+      "top_left": "0x61",
+      "top_right": "0x60",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 131,
+      "palette": 1,
+      "top_left": "0xA8",
+      "top_right": "0xA9",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 132,
+      "palette": 3,
+      "top_left": "0xE4",
+      "top_right": "0xC1",
+      "bottom_left": "0xF4",
+      "bottom_right": "0xC1",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 133,
+      "palette": 0,
+      "top_left": "0x13",
+      "top_right": "0x19",
+      "bottom_left": "0x19",
+      "bottom_right": "0x24",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 134,
+      "palette": 3,
+      "top_left": "0xC1",
+      "top_right": "0xE5",
+      "bottom_left": "0xC1",
+      "bottom_right": "0xF5",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 135,
+      "palette": 0,
+      "top_left": "0x15",
+      "top_right": "0x0A",
+      "bottom_left": "0x25",
+      "bottom_right": "0xB4",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 136,
+      "palette": 3,
+      "top_left": "0xC1",
+      "top_right": "0xC1",
+      "bottom_left": "0xC1",
+      "bottom_right": "0xC1",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 137,
+      "palette": 3,
+      "top_left": "0xB9",
+      "top_right": "0xC1",
+      "bottom_left": "0xD4",
+      "bottom_right": "0xC1",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 138,
+      "palette": 3,
+      "top_left": "0xC1",
+      "top_right": "0xBA",
+      "bottom_left": "0xC1",
+      "bottom_right": "0xD5",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 139,
+      "palette": 0,
+      "top_left": "0x3D",
+      "top_right": "0x08",
+      "bottom_left": "0x4D",
+      "bottom_right": "0x4E",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 140,
+      "palette": 2,
+      "top_left": "0x00",
+      "top_right": "0x60",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 141,
+      "palette": 0,
+      "top_left": "0x01",
+      "top_right": "0x0F",
+      "bottom_left": "0x0F",
+      "bottom_right": "0x19",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 142,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x13",
+      "bottom_left": "0x09",
+      "bottom_right": "0x24",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 143,
+      "palette": 3,
+      "top_left": "0x2D",
+      "top_right": "0x2E",
+      "bottom_left": "0x2F",
+      "bottom_right": "0x32",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 144,
+      "palette": 3,
+      "top_left": "0x33",
+      "top_right": "0x34",
+      "bottom_left": "0x74",
+      "bottom_right": "0x75",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 145,
+      "palette": 2,
+      "top_left": "0xC2",
+      "top_right": "0xC3",
+      "bottom_left": "0xD2",
+      "bottom_right": "0xD3",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 146,
+      "palette": 0,
+      "top_left": "0xA6",
+      "top_right": "0xA7",
+      "bottom_left": "0xA7",
+      "bottom_right": "0xA6",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 147,
+      "palette": 3,
+      "top_left": "0x76",
+      "top_right": "0x76",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 148,
+      "palette": 3,
+      "top_left": "0x76",
+      "top_right": "0x34",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 149,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x58",
+      "bottom_left": "0x00",
+      "bottom_right": "0x22",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 150,
+      "palette": 3,
+      "top_left": "0xD1",
+      "top_right": "0x1B",
+      "bottom_left": "0x1B",
+      "bottom_right": "0x19",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 151,
+      "palette": 3,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0xA5",
+      "bottom_right": "0xA5",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 152,
+      "palette": 2,
+      "top_left": "0x60",
+      "top_right": "0x00",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 153,
+      "palette": 3,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0x00",
+      "bottom_right": "0xAA",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 154,
+      "palette": 3,
+      "top_left": "0x00",
+      "top_right": "0xB0",
+      "bottom_left": "0xAA",
+      "bottom_right": "0xB1",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 155,
+      "palette": 3,
+      "top_left": "0xB0",
+      "top_right": "0x19",
+      "bottom_left": "0xB1",
+      "bottom_right": "0xB1",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 156,
+      "palette": 3,
+      "top_left": "0x19",
+      "top_right": "0x24",
+      "bottom_left": "0x24",
+      "bottom_right": "0x0C",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 157,
+      "palette": 3,
+      "top_left": "0xB1",
+      "top_right": "0x19",
+      "bottom_left": "0xB1",
+      "bottom_right": "0x24",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 158,
+      "palette": 3,
+      "top_left": "0x19",
+      "top_right": "0x19",
+      "bottom_left": "0x1E",
+      "bottom_right": "0x1F",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 159,
+      "palette": 3,
+      "top_left": "0x17",
+      "top_right": "0xC0",
+      "bottom_left": "0x1C",
+      "bottom_right": "0x1D",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 160,
+      "palette": 3,
+      "top_left": "0x14",
+      "top_right": "0x0C",
+      "bottom_left": "0x0C",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 161,
+      "palette": 3,
+      "top_left": "0x21",
+      "top_right": "0x08",
+      "bottom_left": "0x10",
+      "bottom_right": "0x11",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 162,
+      "palette": 3,
+      "top_left": "0x00",
+      "top_right": "0x04",
+      "bottom_left": "0x13",
+      "bottom_right": "0x14",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 163,
+      "palette": 3,
+      "top_left": "0xB1",
+      "top_right": "0x24",
+      "bottom_left": "0x1B",
+      "bottom_right": "0x14",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 164,
+      "palette": 3,
+      "top_left": "0x25",
+      "top_right": "0x16",
+      "bottom_left": "0x15",
+      "bottom_right": "0x11",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 165,
+      "palette": 3,
+      "top_left": "0x2B",
+      "top_right": "0x01",
+      "bottom_left": "0x08",
+      "bottom_right": "0x2B",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 166,
+      "palette": 3,
+      "top_left": "0x2B",
+      "top_right": "0x01",
+      "bottom_left": "0x16",
+      "bottom_right": "0x01",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 167,
+      "palette": 3,
+      "top_left": "0x06",
+      "top_right": "0x00",
+      "bottom_left": "0x16",
+      "bottom_right": "0x0A",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 168,
+      "palette": 0,
+      "top_left": "0x72",
+      "top_right": "0x73",
+      "bottom_left": "0x82",
+      "bottom_right": "0x83",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 169,
+      "palette": 0,
+      "top_left": "0x57",
+      "top_right": "0xC3",
+      "bottom_left": "0x57",
+      "bottom_right": "0x52",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 170,
+      "palette": 1,
+      "top_left": "0x7F",
+      "top_right": "0x7F",
+      "bottom_left": "0x00",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 171,
+      "palette": 1,
+      "top_left": "0x00",
+      "top_right": "0xA4",
+      "bottom_left": "0x00",
+      "bottom_right": "0x1A",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 172,
+      "palette": 2,
+      "top_left": "0xC2",
+      "top_right": "0xC3",
+      "bottom_left": "0xD2",
+      "bottom_right": "0xD0",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 173,
+      "palette": 0,
+      "top_left": "0xC2",
+      "top_right": "0xC3",
+      "bottom_left": "0xD2",
+      "bottom_right": "0xD3",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 174,
+      "palette": 3,
+      "top_left": "0xE4",
+      "top_right": "0xE4",
+      "bottom_left": "0xE4",
+      "bottom_right": "0xE4",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 175,
+      "palette": 0,
+      "top_left": "0x57",
+      "top_right": "0x57",
+      "bottom_left": "0x3E",
+      "bottom_right": "0xC3",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 176,
+      "palette": 3,
+      "top_left": "0xD1",
+      "top_right": "0xD1",
+      "bottom_left": "0xC1",
+      "bottom_right": "0xC1",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 177,
+      "palette": 3,
+      "top_left": "0xC4",
+      "top_right": "0xC4",
+      "bottom_left": "0xE4",
+      "bottom_right": "0xE4",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 178,
+      "palette": 3,
+      "top_left": "0x40",
+      "top_right": "0x95",
+      "bottom_left": "0xF8",
+      "bottom_right": "0xCB",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 179,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0x6C",
+      "bottom_left": "0x00",
+      "bottom_right": "0x7C",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 180,
+      "palette": 0,
+      "top_left": "0x6D",
+      "top_right": "0x6E",
+      "bottom_left": "0x7D",
+      "bottom_right": "0x7E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 181,
+      "palette": 0,
+      "top_left": "0xEB",
+      "top_right": "0xEC",
+      "bottom_left": "0xFB",
+      "bottom_right": "0xFC",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 182,
+      "palette": 0,
+      "top_left": "0xED",
+      "top_right": "0xEE",
+      "bottom_left": "0x00",
+      "bottom_right": "0xFE",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 183,
+      "palette": 0,
+      "top_left": "0xEF",
+      "top_right": "0x00",
+      "bottom_left": "0xFF",
+      "bottom_right": "0x17",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 184,
+      "palette": 0,
+      "top_left": "0x67",
+      "top_right": "0x68",
+      "bottom_left": "0x84",
+      "bottom_right": "0x84",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 185,
+      "palette": 0,
+      "top_left": "0x69",
+      "top_right": "0x6A",
+      "bottom_left": "0x2C",
+      "bottom_right": "0x96",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 186,
+      "palette": 0,
+      "top_left": "0x6B",
+      "top_right": "0x00",
+      "bottom_left": "0x84",
+      "bottom_right": "0x07",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 187,
+      "palette": 0,
+      "top_left": "0x8B",
+      "top_right": "0x8C",
+      "bottom_left": "0x9B",
+      "bottom_right": "0x9C",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 188,
+      "palette": 0,
+      "top_left": "0x8D",
+      "top_right": "0x8E",
+      "bottom_left": "0x9D",
+      "bottom_right": "0x9E",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 189,
+      "palette": 0,
+      "top_left": "0x8F",
+      "top_right": "0x00",
+      "bottom_left": "0x9F",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 190,
+      "palette": 0,
+      "top_left": "0xAB",
+      "top_right": "0xAC",
+      "bottom_left": "0xBB",
+      "bottom_right": "0xBC",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 191,
+      "palette": 0,
+      "top_left": "0xAD",
+      "top_right": "0xAE",
+      "bottom_left": "0xBD",
+      "bottom_right": "0xBE",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 192,
+      "palette": 0,
+      "top_left": "0xAF",
+      "top_right": "0x00",
+      "bottom_left": "0xBF",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 193,
+      "palette": 0,
+      "top_left": "0x00",
+      "top_right": "0xCC",
+      "bottom_left": "0xDB",
+      "bottom_right": "0xDC",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 194,
+      "palette": 0,
+      "top_left": "0xCD",
+      "top_right": "0xCE",
+      "bottom_left": "0xDD",
+      "bottom_right": "0xDE",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 195,
+      "palette": 0,
+      "top_left": "0xCF",
+      "top_right": "0x00",
+      "bottom_left": "0xDF",
+      "bottom_right": "0x00",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 196,
+      "palette": 3,
+      "top_left": "0x40",
+      "top_right": "0x9A",
+      "bottom_left": "0xC5",
+      "bottom_right": "0xCB",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 197,
+      "palette": 2,
+      "top_left": "0x43",
+      "top_right": "0x00",
+      "bottom_left": "0x5A",
+      "bottom_right": "0x41",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 198,
+      "palette": 1,
+      "top_left": "0x00",
+      "top_right": "0x00",
+      "bottom_left": "0xA6",
+      "bottom_right": "0xA7",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 199,
+      "palette": 2,
+      "top_left": "0xE0",
+      "top_right": "0xE3",
+      "bottom_left": "0xF0",
+      "bottom_right": "0xF3",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 200,
+      "palette": 0,
+      "top_left": "0xC9",
+      "top_right": "0xCA",
+      "bottom_left": "0xF6",
+      "bottom_right": "0xF7",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 201,
+      "palette": 3,
+      "top_left": "0xB8",
+      "top_right": "0x9A",
+      "bottom_left": "0xF8",
+      "bottom_right": "0xCB",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 202,
+      "palette": 2,
+      "top_left": "0xE0",
+      "top_right": "0xE1",
+      "bottom_left": "0xF0",
+      "bottom_right": "0xF1",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 203,
+      "palette": 2,
+      "top_left": "0xE2",
+      "top_right": "0xE3",
+      "bottom_left": "0xF2",
+      "bottom_right": "0xF3",
+      "referenced_by_standard_stream": true,
+      "solid": true
+    },
+    {
+      "id": 204,
+      "palette": 1,
+      "top_left": "0x00",
+      "top_right": "0xE6",
+      "bottom_left": "0xA6",
+      "bottom_right": "0xA7",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 205,
+      "palette": 1,
+      "top_left": "0xE7",
+      "top_right": "0xE8",
+      "bottom_left": "0xA6",
+      "bottom_right": "0xA7",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 206,
+      "palette": 1,
+      "top_left": "0x00",
+      "top_right": "0xC6",
+      "bottom_left": "0x00",
+      "bottom_right": "0xD6",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    },
+    {
+      "id": 207,
+      "palette": 1,
+      "top_left": "0xC7",
+      "top_right": "0xC8",
+      "bottom_left": "0xD7",
+      "bottom_right": "0xD8",
+      "referenced_by_standard_stream": true,
+      "solid": false
+    }
+  ],
+  "covered_byte_count": 1067,
+  "covered_crc32": "e281b622"
+}

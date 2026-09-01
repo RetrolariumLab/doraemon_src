@@ -5,7 +5,7 @@
 Bank1_Func_8C5D:
     LDA $A8
     BEQ Bank1_Label_8C73
-    LDA $73
+    LDA World2FrameCounter
     AND #$07
     BNE Bank1_Label_8C73
     INC $A8
@@ -360,7 +360,7 @@ Bank1_Label_8E39:
 Bank1_Func_8E3C:
     LDA $27
     BEQ Bank1_Label_8E4E
-    LDA $73
+    LDA World2FrameCounter
     ROL A
     ROL A
     ROL A

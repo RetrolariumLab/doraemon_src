@@ -99,15 +99,24 @@
       "id": "world_data_formats",
       "status": "planned",
       "evidence": [
+        "config/world2_metatiles.json",
         "config/world2_stage_sequence.json",
         "config/world_data.json",
         "data/world1/hierarchical_world.json",
         "data/world2/stage_sequence.json",
+        "data/world2/metatiles.json",
+        "data/world2/palettes.json",
         "data/world3/hierarchical_world.json",
+        "docs/world2_metatiles.md",
+        "docs/world2_palettes.md",
         "docs/world2_stage_sequence.md",
         "docs/world_data.md",
+        "scripts/world2_metatiles.py",
+        "scripts/world2_palettes.py",
         "scripts/world2_stage_sequence.py",
         "scripts/world_data.py",
+        "tests/test_world2_metatiles.py",
+        "tests/test_world2_palettes.py",
         "tests/test_world2_stage_sequence.py",
         "tests/test_world_data.py"
       ]
@@ -115,7 +124,13 @@
     {
       "id": "rendering_graphics_text",
       "status": "planned",
-      "evidence": []
+      "evidence": [
+        "config/world2_palettes.json",
+        "data/world2/palettes.json",
+        "docs/world2_palettes.md",
+        "scripts/world2_palettes.py",
+        "tests/test_world2_palettes.py"
+      ]
     },
     {
       "id": "audio",
@@ -131,16 +146,24 @@
       "status": "planned",
       "evidence": [
         "data/world2/compressed_screens.json",
+        "data/world2/metatiles.json",
+        "data/world2/palettes.json",
         "data/world3/behavior_streams.json",
         "data/world1/hierarchical_world.json",
         "data/world3/hierarchical_world.json",
         "docs/world2_streaming.md",
+        "docs/world2_metatiles.md",
+        "docs/world2_palettes.md",
         "docs/world3_behavior.md",
         "docs/world_data.md",
         "scripts/world2_streaming.py",
+        "scripts/world2_metatiles.py",
+        "scripts/world2_palettes.py",
         "scripts/world3_behavior.py",
         "scripts/world_data.py",
         "tests/test_world2_streaming.py",
+        "tests/test_world2_metatiles.py",
+        "tests/test_world2_palettes.py",
         "tests/test_world3_behavior.py",
         "tests/test_world_data.py"
       ]
@@ -163,6 +186,7 @@
       "world1-city",
       "world1-underground",
       "world2-cave",
+      "world2-terminal-screen",
       "world3-underwater",
       "chapter-transition",
       "ending-credits"

@@ -192,6 +192,31 @@ class RuntimeValidationTests(unittest.TestCase):
             )
         )
 
+    def test_accepts_stopped_world2_terminal_screen_without_token_reads(self) -> None:
+        rows = [
+            row(
+                "world2_terminal_select",
+                detail="id=7F;ptr=00FC;scroll=00",
+                bank="1",
+            )
+        ]
+        self.assertTrue(RUNTIME.world2_terminal_screen(rows))
+        self.assertFalse(
+            RUNTIME.world2_terminal_screen(
+                rows + [row("world2_terminal_token_read", bank="1")]
+            )
+        )
+
+    def test_rejects_terminal_screen_selected_while_scrolling(self) -> None:
+        rows = [
+            row(
+                "world2_terminal_select",
+                detail="id=7F;ptr=00FC;scroll=01",
+                bank="1",
+            )
+        ]
+        self.assertFalse(RUNTIME.world2_terminal_screen(rows))
+
 
 if __name__ == "__main__":
     unittest.main()

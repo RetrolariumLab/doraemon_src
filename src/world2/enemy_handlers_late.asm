@@ -20,7 +20,7 @@ Bank1_Label_9F99:
 
 Bank1_Func_9F9A:
     LDY a:World2EnemyPhaseCounter,X
-    LDA $73
+    LDA World2FrameCounter
     AND #$03
     BNE Bank1_Label_9FC2
     LDA a:World2EnemyY,X
@@ -63,7 +63,7 @@ Bank1_Func_9FF4:
     DEC a:World2EnemyX,X
     DEC a:World2EnemyX,X
     DEC a:World2EnemyX,X
-    LDA $73
+    LDA World2FrameCounter
     ROR A
     BCS Bank1_Label_A00F
     LDA a:World2EnemyY,X
@@ -73,12 +73,12 @@ Bank1_Func_9FF4:
     DEC a:World2EnemyBehaviorParameter,X
 
 Bank1_Label_A00F:
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BEQ Bank1_Label_A017
     JSR Bank1_Func_9B40
 
 Bank1_Label_A017:
-    LDA $73
+    LDA World2FrameCounter
     AND #$0F
     BNE Bank1_Label_A020
     INC a:World2EnemyPhaseCounter,X
@@ -109,17 +109,17 @@ Bank1_Func_A03D:
 
 Bank1_Func_A03E:
     JSR Bank1_Func_A0C4
-    LDA $73
+    LDA World2FrameCounter
     AND #$03
     BEQ Bank1_Label_A057
     RTS
 
 Bank1_Func_A048:
-    LDA $73
+    LDA World2FrameCounter
     AND #$01
     BNE Bank1_Label_A062
     JSR Bank1_Func_A0C4
-    LDA $73
+    LDA World2FrameCounter
     AND #$02
     BNE Bank1_Label_A062
 
@@ -133,7 +133,7 @@ Bank1_Label_A062:
     RTS
 
 Bank1_Func_A063:
-    LDA $73
+    LDA World2FrameCounter
     AND #$10
     ROR A
     ROR A
@@ -141,7 +141,7 @@ Bank1_Func_A063:
     BNE Bank1_Label_A073
 
 Bank1_Func_A06D:
-    LDA $73
+    LDA World2FrameCounter
     AND #$04
     ADC #$28
 
@@ -187,7 +187,7 @@ Bank1_Label_A0B8:
     RTS
 
 Bank1_Func_A0B9:
-    LDA $73
+    LDA World2FrameCounter
     AND #$04
     ROR A
     ROR A

@@ -1,5 +1,5 @@
 ; Doraemon PRG bank 1 $BDDF-$BEDD
-; World 2 stage command and compressed-screen selection sequence
+; World 2 stage bytecode and 208-bit metatile collision bitmap
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World2_StageSequenceData:
@@ -19,6 +19,8 @@ World2_CadEditorScreenRegion:
     .byte $F0, $43, $F2, $45, $F0, $4F, $F7, $F2, $46, $47, $F0, $48, $49, $F1, $4A, $50
     .byte $F0, $2A, $F7, $F2, $4B, $47, $F0, $49, $F1, $4A, $51, $F0, $F7, $F2, $4C, $47
     .byte $F0, $49, $F1, $4D, $52, $F0, $F7, $4E, $53, $F7, $F1, $6C, $6D, $F2, $70, $5F
-    .byte $F0, $F7, $F2, $74, $F1, $6E, $F0, $F7, $7B, $FF, $F8, $C0, $3C, $FD, $23, $FE
-    .byte $8C, $AB, $D5, $D6, $06, $D0, $04, $62, $00, $15, $A2, $1F, $DE, $CF, $60, $00
-    .byte $09, $F0
+    .byte $F0, $F7, $F2, $74, $F1, $6E, $F0, $F7
+
+World2_MetatileCollisionBits:
+    .byte $7B, $FF, $F8, $C0, $3C, $FD, $23, $FE, $8C, $AB, $D5, $D6, $06, $D0, $04, $62
+    .byte $00, $15, $A2, $1F, $DE, $CF, $60, $00, $09, $F0

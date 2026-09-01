@@ -3,7 +3,7 @@
   "format": "doraemon-world2-stage-sequence",
   "bank": 1,
   "address": "0xBDDF",
-  "size": 255,
+  "size": 229,
   "start_table_address": "0x8B38",
   "start_offsets": [
     0,
@@ -21,8 +21,8 @@
     {
       "offset": 1,
       "raw": "0xF9",
-      "command": "set_event_code",
-      "event_code": 1
+      "command": "set_background_palette",
+      "palette_id": 1
     },
     {
       "offset": 2,
@@ -170,8 +170,8 @@
     {
       "offset": 23,
       "raw": "0xFA",
-      "command": "set_event_code",
-      "event_code": 2
+      "command": "set_background_palette",
+      "palette_id": 2
     },
     {
       "offset": 24,
@@ -230,8 +230,8 @@
     {
       "offset": 32,
       "raw": "0xFB",
-      "command": "set_event_code",
-      "event_code": 3
+      "command": "set_background_palette",
+      "palette_id": 3
     },
     {
       "offset": 33,
@@ -269,8 +269,8 @@
     {
       "offset": 38,
       "raw": "0xFC",
-      "command": "set_event_code",
-      "event_code": 4
+      "command": "set_background_palette",
+      "palette_id": 4
     },
     {
       "offset": 39,
@@ -559,8 +559,8 @@
     {
       "offset": 81,
       "raw": "0xFD",
-      "command": "set_event_code",
-      "event_code": 5
+      "command": "set_background_palette",
+      "palette_id": 5
     },
     {
       "offset": 82,
@@ -616,8 +616,8 @@
     {
       "offset": 90,
       "raw": "0xFE",
-      "command": "set_event_code",
-      "event_code": 6
+      "command": "set_background_palette",
+      "palette_id": 6
     },
     {
       "offset": 91,
@@ -656,8 +656,8 @@
     {
       "offset": 96,
       "raw": "0xFE",
-      "command": "set_event_code",
-      "event_code": 6
+      "command": "set_background_palette",
+      "palette_id": 6
     },
     {
       "offset": 97,
@@ -1516,184 +1516,8 @@
       "offset": 228,
       "raw": "0xF7",
       "command": "restore_saved_offset"
-    },
-    {
-      "offset": 229,
-      "raw": "0x7B",
-      "command": "select_screen",
-      "screen_id": "0x7B",
-      "high_bit": false
-    },
-    {
-      "offset": 230,
-      "raw": "0xFF",
-      "command": "set_event_code",
-      "event_code": 7
-    },
-    {
-      "offset": 231,
-      "raw": "0xF8",
-      "command": "stop_scroll"
-    },
-    {
-      "offset": 232,
-      "raw": "0xC0",
-      "command": "select_screen",
-      "screen_id": "0x40",
-      "high_bit": true
-    },
-    {
-      "offset": 233,
-      "raw": "0x3C",
-      "command": "select_screen",
-      "screen_id": "0x3C",
-      "high_bit": false
-    },
-    {
-      "offset": 234,
-      "raw": "0xFD",
-      "command": "set_event_code",
-      "event_code": 5
-    },
-    {
-      "offset": 235,
-      "raw": "0x23",
-      "command": "select_screen",
-      "screen_id": "0x23",
-      "high_bit": false
-    },
-    {
-      "offset": 236,
-      "raw": "0xFE",
-      "command": "set_event_code",
-      "event_code": 6
-    },
-    {
-      "offset": 237,
-      "raw": "0x8C",
-      "command": "select_screen",
-      "screen_id": "0x0C",
-      "high_bit": true
-    },
-    {
-      "offset": 238,
-      "raw": "0xAB",
-      "command": "select_screen",
-      "screen_id": "0x2B",
-      "high_bit": true
-    },
-    {
-      "offset": 239,
-      "raw": "0xD5",
-      "command": "select_screen",
-      "screen_id": "0x55",
-      "high_bit": true
-    },
-    {
-      "offset": 240,
-      "raw": "0xD6",
-      "command": "select_screen",
-      "screen_id": "0x56",
-      "high_bit": true
-    },
-    {
-      "offset": 241,
-      "raw": "0x06",
-      "command": "select_screen",
-      "screen_id": "0x06",
-      "high_bit": false
-    },
-    {
-      "offset": 242,
-      "raw": "0xD0",
-      "command": "select_screen",
-      "screen_id": "0x50",
-      "high_bit": true
-    },
-    {
-      "offset": 243,
-      "raw": "0x04",
-      "command": "select_screen",
-      "screen_id": "0x04",
-      "high_bit": false
-    },
-    {
-      "offset": 244,
-      "raw": "0x62",
-      "command": "select_screen",
-      "screen_id": "0x62",
-      "high_bit": false
-    },
-    {
-      "offset": 245,
-      "raw": "0x00",
-      "command": "select_screen",
-      "screen_id": "0x00",
-      "high_bit": false
-    },
-    {
-      "offset": 246,
-      "raw": "0x15",
-      "command": "select_screen",
-      "screen_id": "0x15",
-      "high_bit": false
-    },
-    {
-      "offset": 247,
-      "raw": "0xA2",
-      "command": "select_screen",
-      "screen_id": "0x22",
-      "high_bit": true
-    },
-    {
-      "offset": 248,
-      "raw": "0x1F",
-      "command": "select_screen",
-      "screen_id": "0x1F",
-      "high_bit": false
-    },
-    {
-      "offset": 249,
-      "raw": "0xDE",
-      "command": "select_screen",
-      "screen_id": "0x5E",
-      "high_bit": true
-    },
-    {
-      "offset": 250,
-      "raw": "0xCF",
-      "command": "select_screen",
-      "screen_id": "0x4F",
-      "high_bit": true
-    },
-    {
-      "offset": 251,
-      "raw": "0x60",
-      "command": "select_screen",
-      "screen_id": "0x60",
-      "high_bit": false
-    },
-    {
-      "offset": 252,
-      "raw": "0x00",
-      "command": "select_screen",
-      "screen_id": "0x00",
-      "high_bit": false
-    },
-    {
-      "offset": 253,
-      "raw": "0x09",
-      "command": "select_screen",
-      "screen_id": "0x09",
-      "high_bit": false
-    },
-    {
-      "offset": 254,
-      "raw": "0xF0",
-      "command": "set_pending_direction",
-      "direction": 0
     }
   ],
-  "covered_byte_count": 258,
-  "covered_crc32": "6e8d7e45"
+  "covered_byte_count": 232,
+  "covered_crc32": "063ebda9"
 }

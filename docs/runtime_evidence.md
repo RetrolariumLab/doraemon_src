@@ -72,6 +72,20 @@ Both frame-loop probes recur once per emulated frame for the remainder of their
 string at `$827D-$82AC`; the runtime entry plus the bank-2 `$8271 -> $82F6` jump
 establishes the exact code/data boundary used by the disassembly pipeline.
 
+## World 2 terminal sentinel
+
+Scenario `world2-terminal-screen` enters World 2 normally, then applies two
+declared RAM patches at frame 400: stage offset `$83` positions the next decode
+at the canonical `$F8,$7F` pair, and row index `$0F` completes the current
+screen. At frame 424 the original sequence decoder clears the scrolling byte,
+selects screen ID `$7F`, and the generic pointer lookup stores `$00FC`.
+
+The trace continues through frame 1000 without a single execution of the
+compressed-token decoder at `$8444` while `$7F` is active. The validator
+requires the exact `id=7F;ptr=00FC;scroll=00` selection and rejects any terminal
+token-read event. This proves `$7F` is a stopped sentinel, not a RAM-backed
+compressed screen.
+
 ## World 1 city to underground
 
 The `world1-underground` scenario repeats the real two-Start game entry, moves

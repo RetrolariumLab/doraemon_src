@@ -58,13 +58,19 @@ placements, transitions, and their cross-references for all three worlds.
 The exact World 1 and World 3 map/metatile hierarchies are now validated and
 losslessly editable. World 2's runtime screen sequence is also losslessly
 editable, including all five stage-sequence command classes and three entry
-offsets. Its true small-block extent and remaining cross-references keep this
-milestone planned while RAM/object work is active.
+offsets. Its exact 208-entry metatile catalog, palette selectors, renderer
+addressing, all standard-stream cross-references, and the 208 solid flags are
+now losslessly editable. The apparent dynamic selectors are resolved: `$7F` is
+a stopped terminal sentinel and `$7B` begins the collision bitmap. Remaining
+cross-references keep this milestone planned while RAM/object work is active.
 
 ### 7. Rendering, graphics, and text - Planned
 
 Recover PPU update paths, palettes, sprites/metasprites, CHR ownership, title,
-HUD, dialogue, item names, and ending presentation.
+HUD, dialogue, item names, and ending presentation. World 2's nine palette
+sets, background and sprite upload paths, stage palette commands, three chapter
+selector pairs, and deliberate code/data overlap are now exact and losslessly
+editable.
 
 ### 8. Audio - Planned
 

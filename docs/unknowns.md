@@ -22,11 +22,22 @@
 - Known: all 119 standard selector views, their three aliases, shared-stream
   overlaps, and all 16,431 token/operand bytes are losslessly decoded and
   round-trippable through `data/world2/compressed_screens.json`.
-- Known: the complete 255-byte stage-sequence opcode partition, all command
+- Known: the complete 229-byte stage-sequence opcode partition, all command
   counts, and its three starting offsets are decoded and losslessly editable in
   `data/world2/stage_sequence.json`.
-- Unknown: the true used small-block count and remaining stage-event consumer
-  semantics beyond the proven event codes written by `$F9-$FF`.
+- Known: the renderer addresses exactly 208 metatiles `$00-$CF`, stored as 208
+  palette selectors and 208 four-byte CHR-tile quads. Standard ROM streams
+  reference 203 IDs; the complete catalog is losslessly editable in
+  `data/world2/metatiles.json`.
+- Known: the 26 bytes at `$BEC4-$BEDD` are an MSB-first collision bitmap for
+  those 208 metatiles; 100 entries are solid and their flags round-trip with
+  the metatile catalog.
+- Known: stage tokens `$F9-$FF` can queue background-palette IDs `$01-$07`;
+  the canonical 229-byte sequence uses seven commands with IDs `$01-$06`;
+  the consumer, nine palette sets, chapter selectors, and upload-code overlap
+  are exact and losslessly editable through `data/world2/palettes.json`.
+- Known: `$7F` is a terminal sentinel preceded by `stop_scroll`; runtime assigns
+  its generic `$00FC` pointer but never calls the compressed-token decoder.
 
 ## WORLD-DATA-002 - attribute properties
 

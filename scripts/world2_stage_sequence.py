@@ -18,7 +18,7 @@ COMMANDS = (
     "set_pending_direction",
     "restore_saved_offset",
     "stop_scroll",
-    "set_event_code",
+    "set_background_palette",
 )
 
 
@@ -46,7 +46,7 @@ def command_for_token(token: int) -> str:
         return "restore_saved_offset"
     if token == 0xF8:
         return "stop_scroll"
-    return "set_event_code"
+    return "set_background_palette"
 
 
 def decode_token(offset: int, token: int) -> dict[str, Any]:
@@ -61,8 +61,8 @@ def decode_token(offset: int, token: int) -> dict[str, Any]:
         result["high_bit"] = bool(token & 0x80)
     elif command == "set_pending_direction":
         result["direction"] = token & 0x03
-    elif command == "set_event_code":
-        result["event_code"] = token & 0x07
+    elif command == "set_background_palette":
+        result["palette_id"] = token & 0x07
     return result
 
 
@@ -83,9 +83,9 @@ def encode_token(entry: dict[str, Any]) -> int:
     elif command == "set_pending_direction":
         if int(entry["direction"]) != (raw & 0x03):
             raise ValueError("stage-sequence direction differs from raw token")
-    elif command == "set_event_code":
-        if int(entry["event_code"]) != (raw & 0x07):
-            raise ValueError("stage-sequence event code differs from raw token")
+    elif command == "set_background_palette":
+        if int(entry["palette_id"]) != (raw & 0x07):
+            raise ValueError("stage-sequence palette id differs from raw token")
     return raw
 
 
@@ -154,6 +154,17 @@ def validate_manifest(
     screen_ids = {token & 0x7F for token in data if token < 0xF0}
     if len(screen_ids) != int(sequence_spec["expected_unique_screen_id_count"]):
         errors.append("World 2 unique screen-id count differs")
+    terminal = sequence_spec["terminal_screen"]
+    stop_offset = int(terminal["stop_scroll_offset"])
+    selector_offset = int(terminal["selector_offset"])
+    terminal_screen_id = number(terminal["screen_id"])
+    if not (
+        0 <= stop_offset < selector_offset < len(data)
+        and data[stop_offset] == 0xF8
+        and data[selector_offset] == terminal_screen_id
+        and terminal_screen_id not in range(119)
+    ):
+        errors.append("World 2 terminal screen contract differs")
 
     starts = manifest["start_offsets"]
     start_data = bank_slice(
@@ -172,7 +183,7 @@ def validate_manifest(
         ("0xF0-0xF6", "set_pending_direction"),
         ("0xF7", "restore_saved_offset"),
         ("0xF8", "stop_scroll"),
-        ("0xF9-0xFF", "set_event_code"),
+        ("0xF9-0xFF", "set_background_palette"),
     ]
     actual_opcodes = [
         (str(entry["range"]), str(entry["command"]))
@@ -191,6 +202,7 @@ def validate_manifest(
         "screen_command_count": counts["select_screen"],
         "control_command_count": len(data) - counts["select_screen"],
         "unique_screen_id_count": len(screen_ids),
+        "terminal_screen_id": terminal_screen_id,
     }
 
 

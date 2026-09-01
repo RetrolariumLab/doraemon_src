@@ -8,7 +8,7 @@
 .include "../common/bank1_boot_and_gateways.asm"
 ; $827D-$8443: World 2 stage sequence, compressed-screen selection, and row decoding control
 .include "../world2/screen_streaming.asm"
-; $8444-$88A3: World 2 compressed row expansion, PPU transfer services, and RTS dispatch tables
+; $8444-$88A3: World 2 compressed row expansion, palette catalog, PPU transfer services, and RTS dispatch tables
 .include "../world2/ppu_screen_services.asm"
 ; $88A4-$8C5C: World 2 initialization, frame loop, and player flight state
 .include "../world2/main_loop_and_player.asm"
@@ -42,11 +42,11 @@
 .include "../world2/music_commands.asm"
 ; $B11B-$B9CD: World 2 APU period tables, track headers, and music streams
 .include "../world2/music_data.asm"
-; $B9CE-$BA9E: World 2 CadEditor block attribute table
+; $B9CE-$BA9E: World 2 unindexed CadEditor prefix and exact 208-entry metatile palette table
 .include "../world2/data/block_attributes.asm"
-; $BA9F-$BDDE: World 2 CadEditor small-block region preceding the runtime stage sequence
+; $BA9F-$BDDE: World 2 exact 208-entry metatile CHR-tile quads
 .include "../world2/data/small_blocks.asm"
-; $BDDF-$BEDD: World 2 stage command and compressed-screen selection sequence
+; $BDDF-$BEDD: World 2 stage bytecode and 208-bit metatile collision bitmap
 .include "../world2/data/stage_sequence.asm"
 ; $BEDE-$BFCB: World 2 standard 119-entry compressed-screen pointer table
 .include "../world2/data/screen_pointer_table.asm"

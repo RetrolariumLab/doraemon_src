@@ -74,7 +74,7 @@ Bank1_Func_8FA2:
     CLC
     ADC #$08
     STA $68
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BEQ Bank1_Label_8FC3
     LDA $A9
     ORA #$80
@@ -241,7 +241,7 @@ Bank1_Label_90B4:
     STA $68
 
 Bank1_Label_90C8:
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BEQ Bank1_Label_90D2
 
 Bank1_Label_90CD:
@@ -335,9 +335,9 @@ Bank1_Func_912F:
     STA $71
     CMP #$E0
     BCS Bank1_Label_9172
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BNE Bank1_Label_9172
-    LDA $73
+    LDA World2FrameCounter
     AND #$07
     BNE Bank1_Label_916E
     LDA $72
@@ -366,7 +366,7 @@ Bank1_Func_9177:
     STA $67
     LDA $8C
     STA $68
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BEQ Bank1_Label_918F
     LDA #$00
     STA $6A

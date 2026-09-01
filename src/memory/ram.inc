@@ -66,7 +66,12 @@ World2StageSequenceOffset = $0055
 World2ScreenRowIndex      = $0056
 World2ScreenRunLength     = $0057
 World2CurrentScreenId     = $0058
+World2FrameCounter        = $0073
 World2EnemySpawnState     = $0074
+World2PendingBackgroundPalette = $009D
+World2SavedStageSequenceOffset = $009E
+World2SavedBackgroundPalette = $00B4
+World2ScreenMetatiles     = $0400
 
 ; World 2 bank-local parallel pools
 World2EnemyState                 = $0558

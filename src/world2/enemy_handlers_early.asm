@@ -17,7 +17,7 @@ Bank1_Label_9B53:
 Bank1_Func_9B58:
     LDA #$02
     STA $98
-    LDA $73
+    LDA World2FrameCounter
     AND #$20
     BEQ Bank1_Label_9B64
     INC $98
@@ -75,7 +75,7 @@ Bank1_Label_9BB0:
 
 Bank1_Label_9BBA:
     STA $67
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BNE Bank1_Label_9BC4
     JSR Bank1_Func_9D2B
 
@@ -121,7 +121,7 @@ Bank1_Label_9BF9:
 
 Bank1_Label_9C03:
     STA $68
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BNE Bank1_Label_9C0F
     LDA $68
     STA a:World2EnemyY,X
@@ -134,7 +134,7 @@ Bank1_Label_9C12:
     JMP Bank1_Func_A0DC
 
 Bank1_Func_9C18:
-    LDA $73
+    LDA World2FrameCounter
     AND #$18
     LSR A
     LSR A
@@ -147,7 +147,7 @@ Bank1_Func_9C18:
 
 Bank1_Func_9C2C:
     JSR Bank1_Func_A0DC
-    LDA $73
+    LDA World2FrameCounter
     AND #$01
     BNE Bank1_Label_9C38
     INC a:World2EnemyPhaseCounter,X
@@ -179,7 +179,7 @@ Bank1_Label_9C5D:
 
 Bank1_Label_9C65:
     STA $67
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BNE Bank1_Label_9C72
     JSR Bank1_Func_9D2B
     JMP Bank1_Label_9C78
@@ -200,7 +200,7 @@ Bank1_Label_9C82:
 Bank1_Func_9C85:
     LDA #$08
     STA $98
-    LDA $73
+    LDA World2FrameCounter
     AND #$08
     BEQ Bank1_Label_9C91
     DEC $98
@@ -242,7 +242,7 @@ Bank1_Label_9CC1:
 
 Bank1_Label_9CC7:
     STA $67
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BNE Bank1_Label_9CD1
     JSR Bank1_Func_9D2B
 
@@ -269,7 +269,7 @@ Bank1_Func_9CDE:
 Bank1_Label_9CEB:
     LDA #$09
     STA $98
-    LDA $73
+    LDA World2FrameCounter
     AND #$04
     BEQ Bank1_Label_9CF7
     INC $98
@@ -299,7 +299,7 @@ Bank1_Func_9D05:
     SEC
     SBC a:$A5CE,Y
     STA $68
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BNE Bank1_Label_9D35
 
 Bank1_Func_9D2B:
@@ -317,7 +317,7 @@ Bank1_Func_9D36:
     LDA a:World2EnemyPhaseCounter,X
     AND #$20
     BEQ Bank1_Label_9D49
-    LDA $73
+    LDA World2FrameCounter
     AND #$04
     BEQ Bank1_Label_9D49
     INC $98

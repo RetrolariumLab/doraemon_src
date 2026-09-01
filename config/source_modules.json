@@ -286,7 +286,7 @@
       "start": "0x8444",
       "end": "0x88A3",
       "path": "world2/ppu_screen_services.asm",
-      "responsibility": "World 2 compressed row expansion, PPU transfer services, and RTS dispatch tables"
+      "responsibility": "World 2 compressed row expansion, palette catalog, PPU transfer services, and RTS dispatch tables"
     },
     {
       "bank": 1,
@@ -405,21 +405,21 @@
       "start": "0xB9CE",
       "end": "0xBA9E",
       "path": "world2/data/block_attributes.asm",
-      "responsibility": "World 2 CadEditor block attribute table"
+      "responsibility": "World 2 unindexed CadEditor prefix and exact 208-entry metatile palette table"
     },
     {
       "bank": 1,
       "start": "0xBA9F",
       "end": "0xBDDE",
       "path": "world2/data/small_blocks.asm",
-      "responsibility": "World 2 CadEditor small-block region preceding the runtime stage sequence"
+      "responsibility": "World 2 exact 208-entry metatile CHR-tile quads"
     },
     {
       "bank": 1,
       "start": "0xBDDF",
       "end": "0xBEDD",
       "path": "world2/data/stage_sequence.asm",
-      "responsibility": "World 2 stage command and compressed-screen selection sequence"
+      "responsibility": "World 2 stage bytecode and 208-bit metatile collision bitmap"
     },
     {
       "bank": 1,

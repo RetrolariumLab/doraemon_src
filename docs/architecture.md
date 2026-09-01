@@ -51,7 +51,7 @@ bank, independently confirming the selector interpretation. See
 | Bank | Confirmed landmarks | Working role |
 | --- | --- | --- |
 | 0 | city/underground maps and shared metatiles | world 1 |
-| 1 | stage sequence and 119 compressed screen selectors | world 2 cave shooter |
+| 1 | stage sequence, 119 compressed screens, and metatile collision bits | world 2 cave shooter |
 | 2 | `DORAEMON WORLD3...` build string and underwater map | world 3 |
 | 3 | title strings, item names, credits, common presentation | shell/title/ending |
 

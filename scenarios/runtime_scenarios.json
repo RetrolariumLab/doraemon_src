@@ -143,6 +143,75 @@
       ]
     },
     {
+      "id": "world2-terminal-screen",
+      "method": "enter World 2, then use declared RAM patches to advance through the canonical stop-scroll/$7F terminal pair",
+      "max_frames": 1000,
+      "inputs": [
+        {
+          "first_frame": 150,
+          "last_frame": 210,
+          "buttons": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "first_frame": 160,
+          "last_frame": 164,
+          "buttons": [
+            "select"
+          ]
+        },
+        {
+          "first_frame": 180,
+          "last_frame": 184,
+          "buttons": [
+            "start"
+          ]
+        }
+      ],
+      "memory_patches": [
+        {
+          "frame": 400,
+          "address": "0x0055",
+          "value": "0x83",
+          "name": "sequence_before_stop_scroll"
+        },
+        {
+          "frame": 400,
+          "address": "0x0056",
+          "value": "0x0F",
+          "name": "complete_current_screen"
+        }
+      ],
+      "chapter_entry": {
+        "source_prg": 3,
+        "target_prg": 1,
+        "target_chr": 3,
+        "dispatch": "8271",
+        "steady_selector": "05"
+      },
+      "expected_probes": [
+        {
+          "name": "world2_main_entry",
+          "bank": 1
+        },
+        {
+          "name": "world2_frame_loop",
+          "bank": 1
+        }
+      ],
+      "checks": [
+        "mapper-bus-conflict",
+        "observed-inputs",
+        "observed-memory-patches",
+        "chapter-bank-entry",
+        "chapter-steady-state",
+        "probe-sequence",
+        "world2-terminal-screen"
+      ]
+    },
+    {
       "id": "world3-underwater",
       "method": "title A+B hold, two Select presses, then Start",
       "max_frames": 900,

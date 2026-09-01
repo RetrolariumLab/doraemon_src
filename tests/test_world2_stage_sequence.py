@@ -18,10 +18,10 @@ class World2StageSequenceTests(unittest.TestCase):
     def fixture(self) -> tuple[bytes, dict[str, object]]:
         prg = bytearray(4 * world2_stage_sequence.BANK_SIZE)
         bank_offset = world2_stage_sequence.BANK_SIZE
-        sequence = bytes((0x01, 0x81, 0xF0, 0xF4, 0xF7, 0xF8, 0xF9, 0xFF))
+        sequence = bytes((0x01, 0x81, 0xF0, 0xF4, 0xF7, 0xF8, 0x7F, 0xF9, 0xFF))
         starts = bytes((0, 2))
         signature = bytes((0xC9, 0xF0, 0x90, 0x28))
-        prg[bank_offset + 0x1000:bank_offset + 0x1008] = sequence
+        prg[bank_offset + 0x1000:bank_offset + 0x1009] = sequence
         prg[bank_offset + 0x1100:bank_offset + 0x1102] = starts
         prg[bank_offset + 0x1200:bank_offset + 0x1204] = signature
         manifest: dict[str, object] = {
@@ -29,17 +29,23 @@ class World2StageSequenceTests(unittest.TestCase):
             "bank": 1,
             "sequence": {
                 "address": "0x9000",
-                "size": 8,
+                "size": 9,
                 "crc32": world2_stage_sequence.crc32(sequence),
                 "expected_command_counts": {
-                    "select_screen": 2,
+                    "select_screen": 3,
                     "set_pending_direction": 2,
                     "restore_saved_offset": 1,
                     "stop_scroll": 1,
-                    "set_event_code": 2,
+                    "set_background_palette": 2,
                 },
                 "expected_high_screen_token_count": 1,
-                "expected_unique_screen_id_count": 1,
+                "expected_unique_screen_id_count": 2,
+                "terminal_screen": {
+                    "stop_scroll_offset": 5,
+                    "selector_offset": 6,
+                    "screen_id": "0x7F",
+                    "indexed_pointer": "0x0000",
+                },
             },
             "start_offsets": {
                 "address": "0x9100",
@@ -55,7 +61,7 @@ class World2StageSequenceTests(unittest.TestCase):
                 },
                 {"range": "0xF7", "command": "restore_saved_offset"},
                 {"range": "0xF8", "command": "stop_scroll"},
-                {"range": "0xF9-0xFF", "command": "set_event_code"},
+                {"range": "0xF9-0xFF", "command": "set_background_palette"},
             ],
             "decoder_signatures": [
                 {"address": "0x9200", "bytes": signature.hex(" ")}
@@ -73,7 +79,7 @@ class World2StageSequenceTests(unittest.TestCase):
         prg, manifest = self.fixture()
         decoded = world2_stage_sequence.decode_authoring(prg, manifest)
         self.assertEqual(world2_stage_sequence.apply_authoring(prg, decoded), prg)
-        self.assertEqual(decoded["covered_byte_count"], 10)
+        self.assertEqual(decoded["covered_byte_count"], 11)
 
     def test_authoring_encoder_allows_screen_edit(self) -> None:
         prg, manifest = self.fixture()

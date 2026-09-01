@@ -96,6 +96,28 @@ inverse exchange. The active spawn mask is then refreshed from the selected
 persistent set. The adjacent 128-byte attribute cache spans `$06B0-$072F` and
 is updated bitwise as metatiles are streamed into either nametable.
 
+## World 2 screen and palette state
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `World2ScreenStreamPointer` | `$0046-$0047` | Active compressed-screen stream pointer |
+| `World2ScreenStreamOffset` | `$0054` | Byte offset within the selected stream |
+| `World2StageSequenceOffset` | `$0055` | Current stage-bytecode offset |
+| `World2ScreenRowIndex` | `$0056` | Row counter used to advance after sixteen rows |
+| `World2ScreenRunLength` | `$0057` | Low-nibble-derived RLE counter |
+| `World2CurrentScreenId` | `$0058` | Masked screen selector |
+| `World2FrameCounter` | `$0073` | Bank-1 NMI counter and animation phase |
+| `World2EnemySpawnState` | `$0074` | Current `$D0-$EE` spawn token |
+| `World2PendingBackgroundPalette` | `$009D` | Palette ID consumed and cleared by `$8747` |
+| `World2SavedStageSequenceOffset` | `$009E` | Branch return restored by stage token `$F7` |
+| `World2SavedBackgroundPalette` | `$00B4` | Palette ID restored after a transition |
+| `World2ScreenMetatiles` | `$0400-$04FF` | Expanded 16x16 screen used by rendering and collision |
+
+Stage tokens `$F9-$FF` write the same ID to the pending and saved palette
+fields. The uploader clears only the pending byte. The transition path copies
+the saved byte back, proving that `$00B4` is persistent palette state rather
+than a second event channel.
+
 ## World 2 entity pools
 
 Bank 1 uses compact parallel arrays whose stride is the pool capacity, rather

@@ -343,17 +343,23 @@ def validate(
     ):
         errors.append("World 2 standard stream pointer is outside ROM streams")
 
-    dynamic_screens = {
-        number(screen_id): number(pointer)
-        for screen_id, pointer in stage["dynamic_screen_ids"].items()
-    }
-    for screen_id, expected_pointer in dynamic_screens.items():
-        if screen_id >= len(pointers) or pointers[screen_id] != expected_pointer:
-            errors.append(
-                f"World 2 dynamic screen ${screen_id:02X} pointer differs "
-                "from manifest"
-            )
-    allowed_screen_ids = set(range(standard_slot_count)) | set(dynamic_screens)
+    terminal = stage["terminal_screen"]
+    terminal_screen_id = number(terminal["screen_id"])
+    terminal_sequence_offset = int(terminal["sequence_offset"])
+    stop_scroll_offset = int(terminal["preceding_stop_scroll_offset"])
+    expected_terminal_pointer = number(terminal["indexed_pointer"])
+    if not (
+        0 <= stop_scroll_offset < terminal_sequence_offset < len(stage_data)
+        and stage_data[stop_scroll_offset] == 0xF8
+        and stage_data[terminal_sequence_offset] == terminal_screen_id
+    ):
+        errors.append("World 2 terminal screen sequence differs from manifest")
+    if (
+        terminal_screen_id >= len(pointers)
+        or pointers[terminal_screen_id] != expected_terminal_pointer
+    ):
+        errors.append("World 2 terminal screen indexed pointer differs from manifest")
+    allowed_screen_ids = set(range(standard_slot_count)) | {terminal_screen_id}
     illegal_selectors = sorted({
         token & 0x7F
         for token in stage_data

@@ -33,7 +33,7 @@ Bank1_Label_9D71:
     BCS Bank1_Label_9D9A
     CMP #$10
     BCC Bank1_Label_9D9A
-    LDA $73
+    LDA World2FrameCounter
     AND #$03
     BNE Bank1_Label_9D9A
     LDY #$05
@@ -58,7 +58,7 @@ Bank1_Label_9D9B:
     STA a:World2EnemyProjectileY,Y
     LDA #$80
     STA a:World2EnemyProjectileFlags,Y
-    LDA $73
+    LDA World2FrameCounter
     AND #$1C
     ROR A
     ROR A
@@ -79,7 +79,7 @@ Bank1_Func_9DC9:
     BNE Bank1_Label_9DC8
     LDA #$0E
     STA $98
-    LDA $73
+    LDA World2FrameCounter
     AND #$20
     BEQ Bank1_Label_9DDC
     INC $98
@@ -98,7 +98,7 @@ Bank1_Func_9DE7:
     JMP Bank1_Func_A0DC
 
 Bank1_Func_9DEA:
-    LDA $73
+    LDA World2FrameCounter
     AND #$0C
     LSR A
     LSR A
@@ -159,7 +159,7 @@ Bank1_Label_9E50:
     STA $67
 
 Bank1_Label_9E54:
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BNE Bank1_Label_9E5F
     JSR Bank1_Func_9D2B
     JMP Bank1_Func_A0DC
@@ -217,7 +217,7 @@ Bank1_Label_9EAB:
     JMP Bank1_Label_9E54
 
 Bank1_Func_9EB2:
-    LDA $73
+    LDA World2FrameCounter
     AND #$08
     ROR A
     ROR A
@@ -243,11 +243,11 @@ Bank1_Label_9ED1:
     STA $68
 
 Bank1_Label_9EDC:
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BNE Bank1_Label_9EED
     JSR Bank1_Func_9D2B
     STA a:World2EnemyY,X
-    LDA $73
+    LDA World2FrameCounter
     AND #$03
     BNE Bank1_Label_9EF8
 
@@ -264,7 +264,7 @@ Bank1_Func_9EFB:
     LDA a:World2EnemyPhaseCounter,X
     AND #$08
     STA $67
-    LDA $73
+    LDA World2FrameCounter
     AND #$10
     ROR A
     ROR A
@@ -277,7 +277,7 @@ Bank1_Func_9EFB:
     .byte $06, $FE, $6D, $05, $4C, $DC, $A0, $20, $2B, $9D, $4C, $DC, $A0
 
 Bank1_Func_9F2E:
-    LDA $73
+    LDA World2FrameCounter
     AND #$08
     ROR A
     ROR A
@@ -309,7 +309,7 @@ Bank1_Label_9F58:
     STA a:World2EnemyY,X
     CMP #$F0
     BCS Bank1_Label_9F81
-    LDA $73
+    LDA World2FrameCounter
     AND #$03
     BNE Bank1_Label_9F7E
     INC a:World2EnemyPhaseCounter,X

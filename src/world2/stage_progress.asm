@@ -163,10 +163,10 @@ Bank1_Label_A6F3:
 
 Bank1_Label_A6FA:
     LDA World2StageSequenceOffset
-    STA $9E
+    STA World2SavedStageSequenceOffset
     LDA a:$A742,Y
     BEQ Bank1_Label_A705
-    STA $9E
+    STA World2SavedStageSequenceOffset
 
 Bank1_Label_A705:
     LDA a:$A720,Y

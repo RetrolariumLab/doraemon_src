@@ -77,17 +77,19 @@
   ],
   "stage_sequence": {
     "address": "0xBDDF",
-    "size": 255,
-    "crc32": "ce61b81a",
+    "size": 229,
+    "crc32": "1388a987",
     "start_table_address": "0x8B38",
     "start_offsets": [
       0,
       37,
       92
     ],
-    "dynamic_screen_ids": {
-      "0x7B": "0x0515",
-      "0x7F": "0x00FC"
+    "terminal_screen": {
+      "screen_id": "0x7F",
+      "sequence_offset": 133,
+      "preceding_stop_scroll_offset": 132,
+      "indexed_pointer": "0x00FC"
     }
   },
   "screen_pointer_table": {

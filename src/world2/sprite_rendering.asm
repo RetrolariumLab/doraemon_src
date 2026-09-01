@@ -145,7 +145,7 @@ Bank1_Label_9809:
     BEQ Bank1_Label_9864
     DEX
     BEQ Bank1_Label_9834
-    LDA $73
+    LDA World2FrameCounter
     AND #$07
     BNE Bank1_Label_9822
     LDX #$06
@@ -170,7 +170,7 @@ Bank1_Label_9823:
     BNE Bank1_Func_9858
 
 Bank1_Label_9834:
-    LDA $73
+    LDA World2FrameCounter
     AND #$07
     BNE Bank1_Label_98A2
     LDX #$06
@@ -201,7 +201,7 @@ Bank1_Func_985B:
     RTS
 
 Bank1_Label_9864:
-    LDA $73
+    LDA World2FrameCounter
     AND #$03
     BNE Bank1_Label_98A2
     LDX #$06
@@ -220,7 +220,7 @@ Bank1_Label_9875:
     STA a:World2EnemyState,X
     LDA #$80
     STA a:World2EnemyY,X
-    LDA $73
+    LDA World2FrameCounter
     AND #$04
     ASL A
     ASL A
@@ -228,7 +228,7 @@ Bank1_Label_9875:
     ADC #$CE
     STA a:World2EnemyX,X
     JSR Bank1_Func_9858
-    LDA $73
+    LDA World2FrameCounter
     LSR A
     LSR A
     LSR A

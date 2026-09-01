@@ -30,7 +30,11 @@ incrementally without weakening byte identity.
   post-write mapping, title NMI path, bus-conflict values, controller shortcut,
   entry into all three gameplay PRG banks, and the World 1 city-to-underground
   mode transition without a mapper change. Controlled RAM-state scenarios also
-  prove the World 2-to-World 3 transition and the complete ending/credits path.
+  prove the stopped World 2 `$7F` terminal sentinel, the World 2-to-World 3
+  transition, and the complete ending/credits path.
+- World 2's 229-byte stage stream, 119 compressed screens, 208 metatiles, and
+  208-bit collision bitmap are losslessly editable; the original ROM marks 100
+  metatiles solid.
 - The original mapper routine at `$81BB` indexes a ROM table at `$8261` and
   writes back to that same ROM address. The table bytes safely expose mapper 66
   values despite discrete-board bus conflicts.
@@ -96,6 +100,8 @@ make object-dispatch    # validate indirect object-handler tables and code seeds
 make object-placements  # validate and round-trip World 1 object data
 make world2-enemy-states # validate World 2 token/state/property domains
 make world2-stage-sequence # validate and round-trip World 2 stage bytecode
+make world2-metatiles   # validate and round-trip exact World 2 metatiles
+make world2-palettes    # validate and round-trip World 2 palette sets
 make world3-object-catalog # validate and round-trip World 3 object/type data
 make maps               # describe all CadEditor-backed regions as JSON
 make validate-maps      # validate map/table sizes and CRCs
@@ -120,9 +126,13 @@ config/object_dispatch.json indirect chapter object-handler tables
 config/object_placements.json World 1 placement and descriptor contract
 config/world2_enemy_states.json World 2 enemy token/state property contract
 config/world2_stage_sequence.json World 2 stage bytecode contract
+config/world2_metatiles.json exact World 2 metatile/render/collision contract
+config/world2_palettes.json World 2 palette lookup and upload contract
 data/world1/object_data.json lossless editable World 1 object representation
 data/world2/enemy_states.json lossless editable World 2 state properties
 data/world2/stage_sequence.json lossless editable World 2 stage sequence
+data/world2/metatiles.json lossless editable World 2 metatile catalog
+data/world2/palettes.json lossless editable World 2 palette catalog
 data/world3/object_catalog.json lossless editable World 3 object/type catalog
 config/symbols.json         bank-qualified semantic symbol registry
 config/debugger_*.json      initial Mesen watches and breakpoints

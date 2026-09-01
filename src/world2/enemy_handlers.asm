@@ -192,7 +192,7 @@ Bank1_Label_A1D3:
     CMP #$E0
     BCS Bank1_Label_A213
     STA a:World2EnemyProjectileY,X
-    LDA $73
+    LDA World2FrameCounter
     AND #$03
     BNE Bank1_Label_A269
     INC a:World2EnemyProjectileMotionY,X
@@ -297,7 +297,7 @@ Bank1_Label_A2A4:
     CLC
     ADC #$04
     STA $68
-    JSR Bank1_Func_9377
+    JSR World2_TestMetatileCollision
     BEQ Bank1_Label_A2BE
     LDA #$00
     STA a:World2EnemyProjectileY,X

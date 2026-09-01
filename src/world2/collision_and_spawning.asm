@@ -51,7 +51,7 @@ Bank1_Label_9321:
     .byte $06, $0A, $09, $09, $09, $8A, $86, $85, $08, $07, $0A, $09, $09, $09, $8A, $87
     .byte $88
 
-Bank1_Func_9377:
+World2_TestMetatileCollision:
     LDA $68
     CLC
     ADC $40
@@ -76,20 +76,22 @@ Bank1_Label_9388:
     AND #$0F
     ORA $69
     TAY
-    LDA a:$0400,Y
+    LDA a:World2ScreenMetatiles,Y
     PHA
     AND #$07
     TAY
-    LDA a:$93AF,Y
+    LDA a:World2_CollisionBitMasks,Y
     STA $AF
     PLA
     LSR A
     LSR A
     LSR A
     TAY
-    LDA a:$BEC4,Y
+    LDA a:World2_MetatileCollisionBits,Y
     AND $AF
     RTS
+
+World2_CollisionBitMasks:
     .byte $80, $40, $20, $10, $08, $04, $02, $01
 
 Bank1_Func_93B7:
@@ -379,7 +381,7 @@ Bank1_Func_9573:
     CMP #$03
     BEQ Bank1_Label_9591
     LDX #$18
-    LDA $73
+    LDA World2FrameCounter
     AND #$10
     BEQ Bank1_Label_9586
     INX
@@ -423,7 +425,7 @@ Bank1_Func_95B4:
     CMP #$03
     BEQ Bank1_Label_95D2
     LDX #$10
-    LDA $73
+    LDA World2FrameCounter
     AND #$10
     BEQ Bank1_Label_95C7
     INX
@@ -457,7 +459,7 @@ Bank1_Label_95DB:
     TAX
 
 Bank1_Label_95F1:
-    LDA $73
+    LDA World2FrameCounter
     AND #$02
     BEQ Bank1_Label_95F8
     INX
@@ -481,14 +483,14 @@ Bank1_Func_9606:
     BNE Bank1_Label_9619
     LDX $A0
     BEQ Bank1_Label_9628
-    LDA $73
+    LDA World2FrameCounter
     ROR A
     BCS Bank1_Label_966A
 
 Bank1_Label_9619:
     CPX #$50
     BCC Bank1_Label_9628
-    LDA $73
+    LDA World2FrameCounter
     AND #$08
     LSR A
     LSR A
@@ -500,7 +502,7 @@ Bank1_Label_9628:
     LDA $42
     BEQ Bank1_Label_963D
     TAX
-    LDA $73
+    LDA World2FrameCounter
     AND #$02
     LSR A
     ADC #$04
@@ -511,11 +513,11 @@ Bank1_Label_9628:
     BNE Bank1_Label_964C
 
 Bank1_Label_963D:
-    LDA $73
+    LDA World2FrameCounter
     AND #$02
     LSR A
     TAX
-    LDA $73
+    LDA World2FrameCounter
     AND #$10
     BEQ Bank1_Label_964B
     INX
