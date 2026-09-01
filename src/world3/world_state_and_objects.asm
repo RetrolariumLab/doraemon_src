@@ -292,7 +292,7 @@ Bank2_Label_895C:
     JSR Bank2_Func_897C
     LDA a:World3EntityType,X
     TAY
-    LDA a:$8F35,Y
+    LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     RTS
 
@@ -364,7 +364,7 @@ Bank2_Func_89A1:
     JSR Bank2_Func_897C
     LDA a:World3EntityType,X
     TAY
-    LDA a:$8F35,Y
+    LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA $A8
     BEQ Bank2_Label_89E6
@@ -385,7 +385,7 @@ Bank2_Label_89EA:
     JSR Bank2_Func_897C
     LDA a:World3EntityType,X
     TAY
-    LDA a:$8F35,Y
+    LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$0E
     JSR Bank2_Func_A5EB
@@ -465,7 +465,7 @@ Bank2_Label_8A60:
     JSR Bank2_Func_897C
     LDA a:World3EntityType,X
     TAY
-    LDA a:$8F35,Y
+    LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$01
     STA $CB
@@ -481,7 +481,7 @@ Bank2_Label_8A87:
     JSR Bank2_Func_897C
     LDA a:World3EntityType,X
     TAY
-    LDA a:$8F35,Y
+    LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$0E
     JSR Bank2_Func_A5EB
@@ -511,7 +511,7 @@ Bank2_Label_8AB7:
     JSR Bank2_Func_897C
     LDA a:World3EntityType,X
     TAY
-    LDA a:$8F35,Y
+    LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$13
     JSR Bank2_Func_A5EB
@@ -525,7 +525,7 @@ Bank2_Label_8AD7:
     JSR Bank2_Func_897C
     LDA a:World3EntityType,X
     TAY
-    LDA a:$8F35,Y
+    LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$0E
     JSR Bank2_Func_A5EB
@@ -544,7 +544,7 @@ Bank2_Label_8AEC:
     BEQ Bank2_Label_8B67
     LDA $2B
     SEC
-    SBC a:$8F15,Y
+    SBC a:World3_EntityContactDamageByType,Y
     BCS Bank2_Label_8B08
     LDA #$00
 

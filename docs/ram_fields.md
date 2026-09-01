@@ -185,6 +185,12 @@ image at `$D96B-$D9AB`, then randomizes two type-only slot groups. The exact
 initial rooms, types, coordinates, zero states, and shuffle multisets are fixed
 by `config/world3_object_data.json`.
 
+The active `World3EntityType` value also indexes five complete ROM columns for
+hit points, base metasprite, render flags, contact damage, and score reward.
+Their 32-entry contents and the four lifecycle domains spanning `$00-$1F` are
+validated by `config/world3_entity_types.json` and described in
+`docs/world3_entity_types.md`.
+
 `World3EncounterRoomList` at `$06F1-$06F8` stores eight room numbers. Empty
 entries contain `$FF`; encounter placement expands the list to adjacent valid
 rooms, room entry uses it to materialize a type-`$0A/$0B` group, and defeating

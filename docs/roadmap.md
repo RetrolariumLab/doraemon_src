@@ -42,8 +42,10 @@ screen-stream enemy tokens, overlapping screen views, lossless authoring data,
 and screen-service dispatch graph are also proven;
 World 3's initial thirteen-record persistent registry, randomized type groups,
 and low-type behavior pointers are now exact. All sixteen low-type behavior
-streams are decoded into a lossless editable format; per-entity semantic naming
-remains active work.
+streams are decoded into a lossless editable format. Its full 32-type catalog,
+five property columns, four lifecycle domains, and two encoded transformations
+are now exact; character identities and remaining transient placement semantics
+remain active work.
 
 ### 6. World data formats - Planned
 

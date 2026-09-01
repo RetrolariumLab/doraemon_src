@@ -47,10 +47,14 @@
   parallel ROM arrays; the exact initial fields, two randomized type groups,
   fixed type slot, and sixteen low-type behavior pointers are validated by
   `config/world3_object_data.json`.
+- Known: all 32 World 3 type IDs are partitioned into four lifecycle domains;
+  their five property tables, three dispatch views, and the `$10-$13` and
+  `$1C-$1E` type transformations are validated by
+  `config/world3_entity_types.json`.
 - Unknown: the remaining World 1 descriptor semantics, individual World 2
-  enemy-state meanings, semantic names for World 3 persistent entity types,
-  and transient World 3 enemy/projectile placement rules. The World 3 behavior
-  bytecode itself is fully decoded and losslessly round-trippable.
+  enemy-state meanings, character identities for World 3 types, and remaining
+  transient World 3 enemy/projectile placement rules. The World 3 behavior
+  bytecode and structural type catalog are fully decoded and validated.
 
 ## AUDIO-002 - command and stream semantics
 

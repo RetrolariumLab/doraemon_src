@@ -103,6 +103,25 @@ class SymbolRegistryTests(unittest.TestCase):
             memory = disasm.load_memory_symbols(self.write_registry(directory, [item]))
         self.assertEqual(memory, {(1, 0x42): "ChapterState", (3, 0x42): "ChapterState"})
 
+    def test_prg_operand_symbol_is_limited_to_its_bank(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "symbols.json"
+            path.write_text(
+                json.dumps({
+                    "schema_version": 1,
+                    "symbols": [{
+                        "bank": 2,
+                        "address": "0x8ED5",
+                        "name": "EntityMetasprites",
+                        "operand_symbol": True,
+                    }],
+                    "memory_symbols": [],
+                }),
+                encoding="utf-8",
+            )
+            operands = disasm.load_operand_symbols(path)
+        self.assertEqual(operands, {(2, 0x8ED5): "EntityMetasprites"})
+
     def test_memory_array_expands_to_symbolic_offsets(self) -> None:
         item = {
             "address": "0x0400",

@@ -89,3 +89,11 @@ arrays, shuffle groups, fixed slot, pointer table, and stream payload.
 The behavior bytecode is fully decoded in `docs/world3_behavior.md`. Its
 machine contract covers all 1,062 bytes as 532 instructions and operands, and
 `data/world3/behavior_streams.json` provides a lossless editable round trip.
+
+The full `$00-$1F` type domain is joined in
+`config/world3_entity_types.json`. Five 32-byte property columns supply hit
+points, base metasprites, render flags, contact damage, and score reward codes.
+The catalog also proves the initializer/behavior/update dispatch cardinalities,
+partitions all types into lifecycle domains, and fixes the `$10-$13` post-defeat
+and `$1C-$1E` persistent transformations. See
+`docs/world3_entity_types.md`.

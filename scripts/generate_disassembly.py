@@ -128,7 +128,11 @@ def propagate_identical_common_code(
 
 def load_symbol_registry(
     path: Path,
-) -> tuple[dict[tuple[int, int], str], dict[tuple[int, int], str]]:
+) -> tuple[
+    dict[tuple[int, int], str],
+    dict[tuple[int, int], str],
+    dict[tuple[int, int], str],
+]:
     try:
         document = json.loads(read_source_text(path, encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -136,6 +140,7 @@ def load_symbol_registry(
     if document.get("schema_version") != 1 or not isinstance(document.get("symbols"), list):
         raise DisassemblyError("unsupported symbols schema")
     result: dict[tuple[int, int], str] = {}
+    operands: dict[tuple[int, int], str] = {}
     names: set[str] = set()
     for item in document["symbols"]:
         if not isinstance(item, dict):
@@ -151,6 +156,11 @@ def load_symbol_registry(
         if key in result or name.lower() in names:
             raise DisassemblyError(f"duplicate symbol: bank {bank} ${address:04X} {name}")
         result[key] = name
+        operand_symbol = item.get("operand_symbol", False)
+        if not isinstance(operand_symbol, bool):
+            raise DisassemblyError(f"invalid operand_symbol flag: {item!r}")
+        if operand_symbol:
+            operands[key] = name
         names.add(name.lower())
     memory: dict[tuple[int, int], str] = {}
     memory_names: set[str] = set()
@@ -191,7 +201,7 @@ def load_symbol_registry(
                         f"${item_address:04X} {name}"
                     )
                 memory[key] = name if offset == 0 else f"{name}+${offset:02X}"
-    return result, memory
+    return result, memory, operands
 
 
 def load_known_symbols(path: Path) -> dict[tuple[int, int], str]:
@@ -200,6 +210,10 @@ def load_known_symbols(path: Path) -> dict[tuple[int, int], str]:
 
 def load_memory_symbols(path: Path) -> dict[tuple[int, int], str]:
     return load_symbol_registry(path)[1]
+
+
+def load_operand_symbols(path: Path) -> dict[tuple[int, int], str]:
+    return load_symbol_registry(path)[2]
 
 
 def load_source_modules(path: Path) -> dict[int, list[SourceModule]]:
@@ -491,7 +505,7 @@ def build_texts(args: argparse.Namespace) -> dict[PurePosixPath, str]:
     facts_dir = Path(args.facts_dir)
     fact_sets = [load_facts(facts_dir / f"bank_{bank}.tsv", banks[bank]) for bank in range(4)]
     propagate_identical_common_code(banks, fact_sets)
-    known, memory = load_symbol_registry(Path(args.symbols))
+    known, memory, operands = load_symbol_registry(Path(args.symbols))
     module_layout = load_source_modules(Path(args.modules))
     outputs: dict[PurePosixPath, str] = {}
     for bank in range(PRG_BANK_COUNT):
@@ -501,6 +515,11 @@ def build_texts(args: argparse.Namespace) -> dict[PurePosixPath, str]:
             for (item_bank, address), name in memory.items()
             if item_bank == bank
         }
+        memory_labels.update({
+            address: name
+            for (item_bank, address), name in operands.items()
+            if item_bank == bank
+        })
         if bank in module_layout:
             outputs.update(
                 generate_semantic_bank(

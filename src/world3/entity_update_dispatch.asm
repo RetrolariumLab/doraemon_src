@@ -60,7 +60,7 @@ Bank2_Label_91E7:
     ADC #$10
     STA a:World3EntityType,X
     TAY
-    LDA a:$8ED5,Y
+    LDA a:World3_EntityMetaspriteByType,Y
     STA a:World3EntityMetasprite,X
 
 Bank2_Label_91FE:

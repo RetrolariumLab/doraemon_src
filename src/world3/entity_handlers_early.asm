@@ -387,9 +387,9 @@ Bank2_Label_95FF:
     LDA #$02
     STA a:World3EntityType,X
     TAY
-    LDA a:$8EB5,Y
+    LDA a:World3_EntityHitPointsByType,Y
     STA a:World3EntityHitPoints,X
-    LDA a:$8ED5,Y
+    LDA a:World3_EntityMetaspriteByType,Y
     STA a:World3EntityMetasprite,X
     LDY $3E
     LDA a:World3EntityX,Y

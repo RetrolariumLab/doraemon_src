@@ -1137,6 +1137,41 @@
     },
     {
       "bank": 2,
+      "address": "0x8EB5",
+      "name": "World3_EntityHitPointsByType",
+      "operand_symbol": true,
+      "evidence": "32-byte-table-indexed-by-entity-type-when-spawning"
+    },
+    {
+      "bank": 2,
+      "address": "0x8ED5",
+      "name": "World3_EntityMetaspriteByType",
+      "operand_symbol": true,
+      "evidence": "32-byte-table-indexed-by-entity-type-when-materializing-and-spawning"
+    },
+    {
+      "bank": 2,
+      "address": "0x8EF5",
+      "name": "World3_EntityRenderFlagsByType",
+      "operand_symbol": true,
+      "evidence": "32-byte-table-indexed-by-entity-type-and-ored-into-render-flags"
+    },
+    {
+      "bank": 2,
+      "address": "0x8F15",
+      "name": "World3_EntityContactDamageByType",
+      "operand_symbol": true,
+      "evidence": "32-byte-table-indexed-by-colliding-entity-type-and-subtracted-from-player-health"
+    },
+    {
+      "bank": 2,
+      "address": "0x8F35",
+      "name": "World3_EntityScoreRewardCodeByType",
+      "operand_symbol": true,
+      "evidence": "32-byte-table-indexed-by-defeated-or-collected-entity-type-and-passed-to-score-update"
+    },
+    {
+      "bank": 2,
       "address": "0x8F55",
       "name": "World3_InitializeSpawnedEntity",
       "evidence": "loads-random-spawn-type-handler-and-calls-shared-indirect-trampoline"

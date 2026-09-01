@@ -65,7 +65,7 @@ Bank2_Label_9D71:
 Bank2_Label_9D76:
     LDA a:World3EntityType,X
     TAY
-    LDA a:$8EF5,Y
+    LDA a:World3_EntityRenderFlagsByType,Y
     ORA $7A
     STA $7A
     LDA a:World3EntityState,X

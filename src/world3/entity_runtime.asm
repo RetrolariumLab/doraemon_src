@@ -185,7 +185,7 @@ Bank2_Label_8CB1:
     STA a:World3EntityType,X
     STY $42
     TAY
-    LDA a:$8ED5,Y
+    LDA a:World3_EntityMetaspriteByType,Y
     STA a:World3EntityMetasprite,X
     LDY $42
     LDA a:World3RoomObjectState,Y
@@ -451,9 +451,9 @@ Bank2_Label_8E7D:
     LDA $C4
     STA a:World3EntityType,X
     TAY
-    LDA a:$8EB5,Y
+    LDA a:World3_EntityHitPointsByType,Y
     STA a:World3EntityHitPoints,X
-    LDA a:$8ED5,Y
+    LDA a:World3_EntityMetaspriteByType,Y
     STA a:World3EntityMetasprite,X
     LDA #$FF
     STA a:World3EntityX,X
@@ -468,13 +468,23 @@ Bank2_Label_8E7D:
 
 Bank2_Label_8EB4:
     RTS
+
+World3_EntityHitPointsByType:
     .byte $01, $02, $01, $02, $02, $00, $00, $00, $08, $00, $00, $00, $10, $10, $10, $10
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+World3_EntityMetaspriteByType:
     .byte $10, $14, $18, $1C, $20, $24, $40, $B0, $30, $34, $28, $2C, $80, $84, $88, $8C
     .byte $64, $40, $70, $74, $50, $54, $58, $5C, $44, $60, $4C, $48, $90, $94, $98, $9C
+
+World3_EntityRenderFlagsByType:
     .byte $02, $03, $01, $03, $20, $00, $01, $00, $03, $03, $00, $00, $02, $02, $02, $02
     .byte $00, $01, $00, $01, $01, $01, $01, $01, $00, $00, $01, $00, $01, $01, $01, $01
+
+World3_EntityContactDamageByType:
     .byte $02, $02, $04, $02, $02, $00, $04, $00, $02, $02, $04, $04, $04, $04, $04, $04
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+World3_EntityScoreRewardCodeByType:
     .byte $55, $41, $51, $42, $41, $51, $45, $33, $35, $51, $35, $51, $25, $25, $25, $25
     .byte $45, $41, $32, $31, $31, $31, $31, $31, $51, $51, $51, $51, $51, $51, $51, $51

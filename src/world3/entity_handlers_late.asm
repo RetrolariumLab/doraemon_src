@@ -130,7 +130,7 @@ Bank2_Label_973A:
     STA $A6
     JSR Bank2_Func_86C4
     LDY #$0A
-    LDA a:$8F35,Y
+    LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     RTS
 
@@ -312,7 +312,7 @@ Bank2_Label_987E:
     STA a:World3RoomObjectType,X
     STA a:World3EntityType,Y
     TAX
-    LDA a:$8ED5,X
+    LDA a:World3_EntityMetaspriteByType,X
     STA a:World3EntityMetasprite,Y
     LDA #$00
     STA $4D

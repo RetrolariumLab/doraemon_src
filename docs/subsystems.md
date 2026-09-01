@@ -173,3 +173,10 @@ render flags, and persistence field are named in the complete active-pool RAM
 grid. Recursive control-flow decoding accounts for all 1,062 stream bytes as
 532 instructions; the exact opcode contract and editable form are documented
 in `docs/world3_behavior.md`.
+
+Five contiguous 32-byte columns at `$8EB5-$8F54` provide the per-type hit
+points, base metasprite, render flags, contact damage, and score reward code.
+`config/world3_entity_types.json` joins those columns to all three type-indexed
+dispatch views and proves a complete four-domain partition of `$00-$1F`.
+The catalog and its encoded type transformations are documented in
+`docs/world3_entity_types.md`.

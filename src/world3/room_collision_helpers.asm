@@ -157,7 +157,7 @@ Bank2_Label_AC2F:
     STA a:World3EntityType,X
     STY $42
     TAY
-    LDA a:$8ED5,Y
+    LDA a:World3_EntityMetaspriteByType,Y
     STA a:World3EntityMetasprite,X
     LDY $42
     LDA #$1E
@@ -216,7 +216,7 @@ Bank2_Label_ACB4:
     STA a:World3EntityType,X
     STY $42
     TAY
-    LDA a:$8ED5,Y
+    LDA a:World3_EntityMetaspriteByType,Y
     STA a:World3EntityMetasprite,X
     LDY $42
     LDA a:$8EBD

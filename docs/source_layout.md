@@ -32,6 +32,10 @@ labels are bank-qualified because identical CPU addresses can identify different
 physical bytes. PRG files contain instructions, explicit `.byte` data, or
 generated source includes only; they never include extracted binaries.
 
+Known PRG data labels can opt into operand substitution with the explicit
+`operand_symbol` flag in `config/symbols.json`. This keeps indexed table reads
+symbolic without turning every generated control-flow label into a data symbol.
+
 `config/source_modules.json` is the canonical address-to-module map. It covers
 every byte of all four banks without gaps or overlaps. The generator rejects a
 boundary through an instruction, and the reconstruction audit enforces the
