@@ -338,7 +338,7 @@ Bank1_Func_8AD0:
 Bank1_Func_8ADF:
     JSR Bank1_WaitForVblank
     LDY $A9
-    LDX a:$8B38,Y
+    LDX a:World2_StageSequenceStartOffsets,Y
     DEX
     STX World2StageSequenceOffset
     LDX a:$8BA9,Y
@@ -377,6 +377,8 @@ Bank1_Label_8B14:
     DEC $67
     BNE Bank1_Label_8B14
     RTS
+
+World2_StageSequenceStartOffsets:
     .byte $00, $25, $5C
 
 Bank1_Func_8B3B:

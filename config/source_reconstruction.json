@@ -99,11 +99,16 @@
       "id": "world_data_formats",
       "status": "planned",
       "evidence": [
+        "config/world2_stage_sequence.json",
         "config/world_data.json",
         "data/world1/hierarchical_world.json",
+        "data/world2/stage_sequence.json",
         "data/world3/hierarchical_world.json",
+        "docs/world2_stage_sequence.md",
         "docs/world_data.md",
+        "scripts/world2_stage_sequence.py",
         "scripts/world_data.py",
+        "tests/test_world2_stage_sequence.py",
         "tests/test_world_data.py"
       ]
     },

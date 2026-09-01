@@ -22,8 +22,11 @@
 - Known: all 119 standard selector views, their three aliases, shared-stream
   overlaps, and all 16,431 token/operand bytes are losslessly decoded and
   round-trippable through `data/world2/compressed_screens.json`.
-- Unknown: the true used small-block count and exact stage-command semantics
-  above `$EF`.
+- Known: the complete 255-byte stage-sequence opcode partition, all command
+  counts, and its three starting offsets are decoded and losslessly editable in
+  `data/world2/stage_sequence.json`.
+- Unknown: the true used small-block count and remaining stage-event consumer
+  semantics beyond the proven event codes written by `$F9-$FF`.
 
 ## WORLD-DATA-002 - attribute properties
 

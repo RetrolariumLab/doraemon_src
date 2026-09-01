@@ -183,7 +183,7 @@ Bank1_Label_8385:
 Bank1_Label_838B:
     INC World2StageSequenceOffset
     LDY World2StageSequenceOffset
-    LDA a:$BDDF,Y
+    LDA a:World2_StageSequenceData,Y
     CMP #$F0
     BCC World2_SelectCompressedScreen
     CMP #$F7

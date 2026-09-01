@@ -4,6 +4,10 @@ World 2 does not store the 60 fixed 16x15 screens exposed by CadEditor. Runtime
 uses a 255-byte stage sequence at `$BDDF`, a standard 119-entry pointer table at
 `$BEDE`, and compressed screen bytes beginning at `$BFCC`.
 
+The stage sequence is a separate one-byte instruction stream rather than a flat
+list of screen IDs. Its complete command contract and editable representation
+are documented in `docs/world2_stage_sequence.md`.
+
 ## Token format
 
 Each selected stream expands sixteen rows. A row stops once the output width

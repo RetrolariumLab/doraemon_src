@@ -1,0 +1,1699 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world2-stage-sequence",
+  "bank": 1,
+  "address": "0xBDDF",
+  "size": 255,
+  "start_table_address": "0x8B38",
+  "start_offsets": [
+    0,
+    37,
+    92
+  ],
+  "entries": [
+    {
+      "offset": 0,
+      "raw": "0x32",
+      "command": "select_screen",
+      "screen_id": "0x32",
+      "high_bit": false
+    },
+    {
+      "offset": 1,
+      "raw": "0xF9",
+      "command": "set_event_code",
+      "event_code": 1
+    },
+    {
+      "offset": 2,
+      "raw": "0x32",
+      "command": "select_screen",
+      "screen_id": "0x32",
+      "high_bit": false
+    },
+    {
+      "offset": 3,
+      "raw": "0x01",
+      "command": "select_screen",
+      "screen_id": "0x01",
+      "high_bit": false
+    },
+    {
+      "offset": 4,
+      "raw": "0x02",
+      "command": "select_screen",
+      "screen_id": "0x02",
+      "high_bit": false
+    },
+    {
+      "offset": 5,
+      "raw": "0x03",
+      "command": "select_screen",
+      "screen_id": "0x03",
+      "high_bit": false
+    },
+    {
+      "offset": 6,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 7,
+      "raw": "0x04",
+      "command": "select_screen",
+      "screen_id": "0x04",
+      "high_bit": false
+    },
+    {
+      "offset": 8,
+      "raw": "0x04",
+      "command": "select_screen",
+      "screen_id": "0x04",
+      "high_bit": false
+    },
+    {
+      "offset": 9,
+      "raw": "0x05",
+      "command": "select_screen",
+      "screen_id": "0x05",
+      "high_bit": false
+    },
+    {
+      "offset": 10,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 11,
+      "raw": "0x06",
+      "command": "select_screen",
+      "screen_id": "0x06",
+      "high_bit": false
+    },
+    {
+      "offset": 12,
+      "raw": "0x07",
+      "command": "select_screen",
+      "screen_id": "0x07",
+      "high_bit": false
+    },
+    {
+      "offset": 13,
+      "raw": "0x06",
+      "command": "select_screen",
+      "screen_id": "0x06",
+      "high_bit": false
+    },
+    {
+      "offset": 14,
+      "raw": "0x06",
+      "command": "select_screen",
+      "screen_id": "0x06",
+      "high_bit": false
+    },
+    {
+      "offset": 15,
+      "raw": "0x08",
+      "command": "select_screen",
+      "screen_id": "0x08",
+      "high_bit": false
+    },
+    {
+      "offset": 16,
+      "raw": "0x09",
+      "command": "select_screen",
+      "screen_id": "0x09",
+      "high_bit": false
+    },
+    {
+      "offset": 17,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 18,
+      "raw": "0x0A",
+      "command": "select_screen",
+      "screen_id": "0x0A",
+      "high_bit": false
+    },
+    {
+      "offset": 19,
+      "raw": "0x0A",
+      "command": "select_screen",
+      "screen_id": "0x0A",
+      "high_bit": false
+    },
+    {
+      "offset": 20,
+      "raw": "0x0B",
+      "command": "select_screen",
+      "screen_id": "0x0B",
+      "high_bit": false
+    },
+    {
+      "offset": 21,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 22,
+      "raw": "0x0C",
+      "command": "select_screen",
+      "screen_id": "0x0C",
+      "high_bit": false
+    },
+    {
+      "offset": 23,
+      "raw": "0xFA",
+      "command": "set_event_code",
+      "event_code": 2
+    },
+    {
+      "offset": 24,
+      "raw": "0x0D",
+      "command": "select_screen",
+      "screen_id": "0x0D",
+      "high_bit": false
+    },
+    {
+      "offset": 25,
+      "raw": "0x0D",
+      "command": "select_screen",
+      "screen_id": "0x0D",
+      "high_bit": false
+    },
+    {
+      "offset": 26,
+      "raw": "0x09",
+      "command": "select_screen",
+      "screen_id": "0x09",
+      "high_bit": false
+    },
+    {
+      "offset": 27,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 28,
+      "raw": "0x0E",
+      "command": "select_screen",
+      "screen_id": "0x0E",
+      "high_bit": false
+    },
+    {
+      "offset": 29,
+      "raw": "0x0F",
+      "command": "select_screen",
+      "screen_id": "0x0F",
+      "high_bit": false
+    },
+    {
+      "offset": 30,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 31,
+      "raw": "0x10",
+      "command": "select_screen",
+      "screen_id": "0x10",
+      "high_bit": false
+    },
+    {
+      "offset": 32,
+      "raw": "0xFB",
+      "command": "set_event_code",
+      "event_code": 3
+    },
+    {
+      "offset": 33,
+      "raw": "0x00",
+      "command": "select_screen",
+      "screen_id": "0x00",
+      "high_bit": false
+    },
+    {
+      "offset": 34,
+      "raw": "0x11",
+      "command": "select_screen",
+      "screen_id": "0x11",
+      "high_bit": false
+    },
+    {
+      "offset": 35,
+      "raw": "0xF8",
+      "command": "stop_scroll"
+    },
+    {
+      "offset": 36,
+      "raw": "0x22",
+      "command": "select_screen",
+      "screen_id": "0x22",
+      "high_bit": false
+    },
+    {
+      "offset": 37,
+      "raw": "0x32",
+      "command": "select_screen",
+      "screen_id": "0x32",
+      "high_bit": false
+    },
+    {
+      "offset": 38,
+      "raw": "0xFC",
+      "command": "set_event_code",
+      "event_code": 4
+    },
+    {
+      "offset": 39,
+      "raw": "0x23",
+      "command": "select_screen",
+      "screen_id": "0x23",
+      "high_bit": false
+    },
+    {
+      "offset": 40,
+      "raw": "0x23",
+      "command": "select_screen",
+      "screen_id": "0x23",
+      "high_bit": false
+    },
+    {
+      "offset": 41,
+      "raw": "0x24",
+      "command": "select_screen",
+      "screen_id": "0x24",
+      "high_bit": false
+    },
+    {
+      "offset": 42,
+      "raw": "0x25",
+      "command": "select_screen",
+      "screen_id": "0x25",
+      "high_bit": false
+    },
+    {
+      "offset": 43,
+      "raw": "0x26",
+      "command": "select_screen",
+      "screen_id": "0x26",
+      "high_bit": false
+    },
+    {
+      "offset": 44,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 45,
+      "raw": "0x27",
+      "command": "select_screen",
+      "screen_id": "0x27",
+      "high_bit": false
+    },
+    {
+      "offset": 46,
+      "raw": "0x28",
+      "command": "select_screen",
+      "screen_id": "0x28",
+      "high_bit": false
+    },
+    {
+      "offset": 47,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 48,
+      "raw": "0x29",
+      "command": "select_screen",
+      "screen_id": "0x29",
+      "high_bit": false
+    },
+    {
+      "offset": 49,
+      "raw": "0x2A",
+      "command": "select_screen",
+      "screen_id": "0x2A",
+      "high_bit": false
+    },
+    {
+      "offset": 50,
+      "raw": "0x2B",
+      "command": "select_screen",
+      "screen_id": "0x2B",
+      "high_bit": false
+    },
+    {
+      "offset": 51,
+      "raw": "0x2C",
+      "command": "select_screen",
+      "screen_id": "0x2C",
+      "high_bit": false
+    },
+    {
+      "offset": 52,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 53,
+      "raw": "0x2D",
+      "command": "select_screen",
+      "screen_id": "0x2D",
+      "high_bit": false
+    },
+    {
+      "offset": 54,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 55,
+      "raw": "0x2E",
+      "command": "select_screen",
+      "screen_id": "0x2E",
+      "high_bit": false
+    },
+    {
+      "offset": 56,
+      "raw": "0x2F",
+      "command": "select_screen",
+      "screen_id": "0x2F",
+      "high_bit": false
+    },
+    {
+      "offset": 57,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 58,
+      "raw": "0x30",
+      "command": "select_screen",
+      "screen_id": "0x30",
+      "high_bit": false
+    },
+    {
+      "offset": 59,
+      "raw": "0x31",
+      "command": "select_screen",
+      "screen_id": "0x31",
+      "high_bit": false
+    },
+    {
+      "offset": 60,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 61,
+      "raw": "0x33",
+      "command": "select_screen",
+      "screen_id": "0x33",
+      "high_bit": false
+    },
+    {
+      "offset": 62,
+      "raw": "0x34",
+      "command": "select_screen",
+      "screen_id": "0x34",
+      "high_bit": false
+    },
+    {
+      "offset": 63,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 64,
+      "raw": "0x35",
+      "command": "select_screen",
+      "screen_id": "0x35",
+      "high_bit": false
+    },
+    {
+      "offset": 65,
+      "raw": "0x36",
+      "command": "select_screen",
+      "screen_id": "0x36",
+      "high_bit": false
+    },
+    {
+      "offset": 66,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 67,
+      "raw": "0x37",
+      "command": "select_screen",
+      "screen_id": "0x37",
+      "high_bit": false
+    },
+    {
+      "offset": 68,
+      "raw": "0x38",
+      "command": "select_screen",
+      "screen_id": "0x38",
+      "high_bit": false
+    },
+    {
+      "offset": 69,
+      "raw": "0x69",
+      "command": "select_screen",
+      "screen_id": "0x69",
+      "high_bit": false
+    },
+    {
+      "offset": 70,
+      "raw": "0x6A",
+      "command": "select_screen",
+      "screen_id": "0x6A",
+      "high_bit": false
+    },
+    {
+      "offset": 71,
+      "raw": "0x6B",
+      "command": "select_screen",
+      "screen_id": "0x6B",
+      "high_bit": false
+    },
+    {
+      "offset": 72,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 73,
+      "raw": "0x39",
+      "command": "select_screen",
+      "screen_id": "0x39",
+      "high_bit": false
+    },
+    {
+      "offset": 74,
+      "raw": "0x3A",
+      "command": "select_screen",
+      "screen_id": "0x3A",
+      "high_bit": false
+    },
+    {
+      "offset": 75,
+      "raw": "0x3B",
+      "command": "select_screen",
+      "screen_id": "0x3B",
+      "high_bit": false
+    },
+    {
+      "offset": 76,
+      "raw": "0x3C",
+      "command": "select_screen",
+      "screen_id": "0x3C",
+      "high_bit": false
+    },
+    {
+      "offset": 77,
+      "raw": "0x3D",
+      "command": "select_screen",
+      "screen_id": "0x3D",
+      "high_bit": false
+    },
+    {
+      "offset": 78,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 79,
+      "raw": "0x3E",
+      "command": "select_screen",
+      "screen_id": "0x3E",
+      "high_bit": false
+    },
+    {
+      "offset": 80,
+      "raw": "0x3F",
+      "command": "select_screen",
+      "screen_id": "0x3F",
+      "high_bit": false
+    },
+    {
+      "offset": 81,
+      "raw": "0xFD",
+      "command": "set_event_code",
+      "event_code": 5
+    },
+    {
+      "offset": 82,
+      "raw": "0x40",
+      "command": "select_screen",
+      "screen_id": "0x40",
+      "high_bit": false
+    },
+    {
+      "offset": 83,
+      "raw": "0xF8",
+      "command": "stop_scroll"
+    },
+    {
+      "offset": 84,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 85,
+      "raw": "0x54",
+      "command": "select_screen",
+      "screen_id": "0x54",
+      "high_bit": false
+    },
+    {
+      "offset": 86,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 87,
+      "raw": "0x55",
+      "command": "select_screen",
+      "screen_id": "0x55",
+      "high_bit": false
+    },
+    {
+      "offset": 88,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 89,
+      "raw": "0x56",
+      "command": "select_screen",
+      "screen_id": "0x56",
+      "high_bit": false
+    },
+    {
+      "offset": 90,
+      "raw": "0xFE",
+      "command": "set_event_code",
+      "event_code": 6
+    },
+    {
+      "offset": 91,
+      "raw": "0x57",
+      "command": "select_screen",
+      "screen_id": "0x57",
+      "high_bit": false
+    },
+    {
+      "offset": 92,
+      "raw": "0x5B",
+      "command": "select_screen",
+      "screen_id": "0x5B",
+      "high_bit": false
+    },
+    {
+      "offset": 93,
+      "raw": "0x55",
+      "command": "select_screen",
+      "screen_id": "0x55",
+      "high_bit": false
+    },
+    {
+      "offset": 94,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 95,
+      "raw": "0x56",
+      "command": "select_screen",
+      "screen_id": "0x56",
+      "high_bit": false
+    },
+    {
+      "offset": 96,
+      "raw": "0xFE",
+      "command": "set_event_code",
+      "event_code": 6
+    },
+    {
+      "offset": 97,
+      "raw": "0x57",
+      "command": "select_screen",
+      "screen_id": "0x57",
+      "high_bit": false
+    },
+    {
+      "offset": 98,
+      "raw": "0x58",
+      "command": "select_screen",
+      "screen_id": "0x58",
+      "high_bit": false
+    },
+    {
+      "offset": 99,
+      "raw": "0x59",
+      "command": "select_screen",
+      "screen_id": "0x59",
+      "high_bit": false
+    },
+    {
+      "offset": 100,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 101,
+      "raw": "0x5A",
+      "command": "select_screen",
+      "screen_id": "0x5A",
+      "high_bit": false
+    },
+    {
+      "offset": 102,
+      "raw": "0x5B",
+      "command": "select_screen",
+      "screen_id": "0x5B",
+      "high_bit": false
+    },
+    {
+      "offset": 103,
+      "raw": "0x5B",
+      "command": "select_screen",
+      "screen_id": "0x5B",
+      "high_bit": false
+    },
+    {
+      "offset": 104,
+      "raw": "0x73",
+      "command": "select_screen",
+      "screen_id": "0x73",
+      "high_bit": false
+    },
+    {
+      "offset": 105,
+      "raw": "0x75",
+      "command": "select_screen",
+      "screen_id": "0x75",
+      "high_bit": false
+    },
+    {
+      "offset": 106,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 107,
+      "raw": "0x5C",
+      "command": "select_screen",
+      "screen_id": "0x5C",
+      "high_bit": false
+    },
+    {
+      "offset": 108,
+      "raw": "0x5D",
+      "command": "select_screen",
+      "screen_id": "0x5D",
+      "high_bit": false
+    },
+    {
+      "offset": 109,
+      "raw": "0x5E",
+      "command": "select_screen",
+      "screen_id": "0x5E",
+      "high_bit": false
+    },
+    {
+      "offset": 110,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 111,
+      "raw": "0x5A",
+      "command": "select_screen",
+      "screen_id": "0x5A",
+      "high_bit": false
+    },
+    {
+      "offset": 112,
+      "raw": "0x60",
+      "command": "select_screen",
+      "screen_id": "0x60",
+      "high_bit": false
+    },
+    {
+      "offset": 113,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 114,
+      "raw": "0x61",
+      "command": "select_screen",
+      "screen_id": "0x61",
+      "high_bit": false
+    },
+    {
+      "offset": 115,
+      "raw": "0x62",
+      "command": "select_screen",
+      "screen_id": "0x62",
+      "high_bit": false
+    },
+    {
+      "offset": 116,
+      "raw": "0x63",
+      "command": "select_screen",
+      "screen_id": "0x63",
+      "high_bit": false
+    },
+    {
+      "offset": 117,
+      "raw": "0x64",
+      "command": "select_screen",
+      "screen_id": "0x64",
+      "high_bit": false
+    },
+    {
+      "offset": 118,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 119,
+      "raw": "0x65",
+      "command": "select_screen",
+      "screen_id": "0x65",
+      "high_bit": false
+    },
+    {
+      "offset": 120,
+      "raw": "0x6F",
+      "command": "select_screen",
+      "screen_id": "0x6F",
+      "high_bit": false
+    },
+    {
+      "offset": 121,
+      "raw": "0x72",
+      "command": "select_screen",
+      "screen_id": "0x72",
+      "high_bit": false
+    },
+    {
+      "offset": 122,
+      "raw": "0x65",
+      "command": "select_screen",
+      "screen_id": "0x65",
+      "high_bit": false
+    },
+    {
+      "offset": 123,
+      "raw": "0x71",
+      "command": "select_screen",
+      "screen_id": "0x71",
+      "high_bit": false
+    },
+    {
+      "offset": 124,
+      "raw": "0x72",
+      "command": "select_screen",
+      "screen_id": "0x72",
+      "high_bit": false
+    },
+    {
+      "offset": 125,
+      "raw": "0x76",
+      "command": "select_screen",
+      "screen_id": "0x76",
+      "high_bit": false
+    },
+    {
+      "offset": 126,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 127,
+      "raw": "0x66",
+      "command": "select_screen",
+      "screen_id": "0x66",
+      "high_bit": false
+    },
+    {
+      "offset": 128,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 129,
+      "raw": "0x67",
+      "command": "select_screen",
+      "screen_id": "0x67",
+      "high_bit": false
+    },
+    {
+      "offset": 130,
+      "raw": "0xF8",
+      "command": "stop_scroll"
+    },
+    {
+      "offset": 131,
+      "raw": "0x68",
+      "command": "select_screen",
+      "screen_id": "0x68",
+      "high_bit": false
+    },
+    {
+      "offset": 132,
+      "raw": "0xF8",
+      "command": "stop_scroll"
+    },
+    {
+      "offset": 133,
+      "raw": "0x7F",
+      "command": "select_screen",
+      "screen_id": "0x7F",
+      "high_bit": false
+    },
+    {
+      "offset": 134,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 135,
+      "raw": "0x12",
+      "command": "select_screen",
+      "screen_id": "0x12",
+      "high_bit": false
+    },
+    {
+      "offset": 136,
+      "raw": "0x13",
+      "command": "select_screen",
+      "screen_id": "0x13",
+      "high_bit": false
+    },
+    {
+      "offset": 137,
+      "raw": "0x14",
+      "command": "select_screen",
+      "screen_id": "0x14",
+      "high_bit": false
+    },
+    {
+      "offset": 138,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 139,
+      "raw": "0x15",
+      "command": "select_screen",
+      "screen_id": "0x15",
+      "high_bit": false
+    },
+    {
+      "offset": 140,
+      "raw": "0x16",
+      "command": "select_screen",
+      "screen_id": "0x16",
+      "high_bit": false
+    },
+    {
+      "offset": 141,
+      "raw": "0x17",
+      "command": "select_screen",
+      "screen_id": "0x17",
+      "high_bit": false
+    },
+    {
+      "offset": 142,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 143,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 144,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 145,
+      "raw": "0x18",
+      "command": "select_screen",
+      "screen_id": "0x18",
+      "high_bit": false
+    },
+    {
+      "offset": 146,
+      "raw": "0x19",
+      "command": "select_screen",
+      "screen_id": "0x19",
+      "high_bit": false
+    },
+    {
+      "offset": 147,
+      "raw": "0x1A",
+      "command": "select_screen",
+      "screen_id": "0x1A",
+      "high_bit": false
+    },
+    {
+      "offset": 148,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 149,
+      "raw": "0x1B",
+      "command": "select_screen",
+      "screen_id": "0x1B",
+      "high_bit": false
+    },
+    {
+      "offset": 150,
+      "raw": "0x1C",
+      "command": "select_screen",
+      "screen_id": "0x1C",
+      "high_bit": false
+    },
+    {
+      "offset": 151,
+      "raw": "0x1D",
+      "command": "select_screen",
+      "screen_id": "0x1D",
+      "high_bit": false
+    },
+    {
+      "offset": 152,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 153,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 154,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 155,
+      "raw": "0x1E",
+      "command": "select_screen",
+      "screen_id": "0x1E",
+      "high_bit": false
+    },
+    {
+      "offset": 156,
+      "raw": "0x1F",
+      "command": "select_screen",
+      "screen_id": "0x1F",
+      "high_bit": false
+    },
+    {
+      "offset": 157,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 158,
+      "raw": "0x20",
+      "command": "select_screen",
+      "screen_id": "0x20",
+      "high_bit": false
+    },
+    {
+      "offset": 159,
+      "raw": "0x21",
+      "command": "select_screen",
+      "screen_id": "0x21",
+      "high_bit": false
+    },
+    {
+      "offset": 160,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 161,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 162,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 163,
+      "raw": "0x41",
+      "command": "select_screen",
+      "screen_id": "0x41",
+      "high_bit": false
+    },
+    {
+      "offset": 164,
+      "raw": "0x42",
+      "command": "select_screen",
+      "screen_id": "0x42",
+      "high_bit": false
+    },
+    {
+      "offset": 165,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 166,
+      "raw": "0x43",
+      "command": "select_screen",
+      "screen_id": "0x43",
+      "high_bit": false
+    },
+    {
+      "offset": 167,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 168,
+      "raw": "0x44",
+      "command": "select_screen",
+      "screen_id": "0x44",
+      "high_bit": false
+    },
+    {
+      "offset": 169,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 170,
+      "raw": "0x43",
+      "command": "select_screen",
+      "screen_id": "0x43",
+      "high_bit": false
+    },
+    {
+      "offset": 171,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 172,
+      "raw": "0x44",
+      "command": "select_screen",
+      "screen_id": "0x44",
+      "high_bit": false
+    },
+    {
+      "offset": 173,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 174,
+      "raw": "0x43",
+      "command": "select_screen",
+      "screen_id": "0x43",
+      "high_bit": false
+    },
+    {
+      "offset": 175,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 176,
+      "raw": "0x45",
+      "command": "select_screen",
+      "screen_id": "0x45",
+      "high_bit": false
+    },
+    {
+      "offset": 177,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 178,
+      "raw": "0x4F",
+      "command": "select_screen",
+      "screen_id": "0x4F",
+      "high_bit": false
+    },
+    {
+      "offset": 179,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 180,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 181,
+      "raw": "0x46",
+      "command": "select_screen",
+      "screen_id": "0x46",
+      "high_bit": false
+    },
+    {
+      "offset": 182,
+      "raw": "0x47",
+      "command": "select_screen",
+      "screen_id": "0x47",
+      "high_bit": false
+    },
+    {
+      "offset": 183,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 184,
+      "raw": "0x48",
+      "command": "select_screen",
+      "screen_id": "0x48",
+      "high_bit": false
+    },
+    {
+      "offset": 185,
+      "raw": "0x49",
+      "command": "select_screen",
+      "screen_id": "0x49",
+      "high_bit": false
+    },
+    {
+      "offset": 186,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 187,
+      "raw": "0x4A",
+      "command": "select_screen",
+      "screen_id": "0x4A",
+      "high_bit": false
+    },
+    {
+      "offset": 188,
+      "raw": "0x50",
+      "command": "select_screen",
+      "screen_id": "0x50",
+      "high_bit": false
+    },
+    {
+      "offset": 189,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 190,
+      "raw": "0x2A",
+      "command": "select_screen",
+      "screen_id": "0x2A",
+      "high_bit": false
+    },
+    {
+      "offset": 191,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 192,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 193,
+      "raw": "0x4B",
+      "command": "select_screen",
+      "screen_id": "0x4B",
+      "high_bit": false
+    },
+    {
+      "offset": 194,
+      "raw": "0x47",
+      "command": "select_screen",
+      "screen_id": "0x47",
+      "high_bit": false
+    },
+    {
+      "offset": 195,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 196,
+      "raw": "0x49",
+      "command": "select_screen",
+      "screen_id": "0x49",
+      "high_bit": false
+    },
+    {
+      "offset": 197,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 198,
+      "raw": "0x4A",
+      "command": "select_screen",
+      "screen_id": "0x4A",
+      "high_bit": false
+    },
+    {
+      "offset": 199,
+      "raw": "0x51",
+      "command": "select_screen",
+      "screen_id": "0x51",
+      "high_bit": false
+    },
+    {
+      "offset": 200,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 201,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 202,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 203,
+      "raw": "0x4C",
+      "command": "select_screen",
+      "screen_id": "0x4C",
+      "high_bit": false
+    },
+    {
+      "offset": 204,
+      "raw": "0x47",
+      "command": "select_screen",
+      "screen_id": "0x47",
+      "high_bit": false
+    },
+    {
+      "offset": 205,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 206,
+      "raw": "0x49",
+      "command": "select_screen",
+      "screen_id": "0x49",
+      "high_bit": false
+    },
+    {
+      "offset": 207,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 208,
+      "raw": "0x4D",
+      "command": "select_screen",
+      "screen_id": "0x4D",
+      "high_bit": false
+    },
+    {
+      "offset": 209,
+      "raw": "0x52",
+      "command": "select_screen",
+      "screen_id": "0x52",
+      "high_bit": false
+    },
+    {
+      "offset": 210,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 211,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 212,
+      "raw": "0x4E",
+      "command": "select_screen",
+      "screen_id": "0x4E",
+      "high_bit": false
+    },
+    {
+      "offset": 213,
+      "raw": "0x53",
+      "command": "select_screen",
+      "screen_id": "0x53",
+      "high_bit": false
+    },
+    {
+      "offset": 214,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 215,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 216,
+      "raw": "0x6C",
+      "command": "select_screen",
+      "screen_id": "0x6C",
+      "high_bit": false
+    },
+    {
+      "offset": 217,
+      "raw": "0x6D",
+      "command": "select_screen",
+      "screen_id": "0x6D",
+      "high_bit": false
+    },
+    {
+      "offset": 218,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 219,
+      "raw": "0x70",
+      "command": "select_screen",
+      "screen_id": "0x70",
+      "high_bit": false
+    },
+    {
+      "offset": 220,
+      "raw": "0x5F",
+      "command": "select_screen",
+      "screen_id": "0x5F",
+      "high_bit": false
+    },
+    {
+      "offset": 221,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 222,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 223,
+      "raw": "0xF2",
+      "command": "set_pending_direction",
+      "direction": 2
+    },
+    {
+      "offset": 224,
+      "raw": "0x74",
+      "command": "select_screen",
+      "screen_id": "0x74",
+      "high_bit": false
+    },
+    {
+      "offset": 225,
+      "raw": "0xF1",
+      "command": "set_pending_direction",
+      "direction": 1
+    },
+    {
+      "offset": 226,
+      "raw": "0x6E",
+      "command": "select_screen",
+      "screen_id": "0x6E",
+      "high_bit": false
+    },
+    {
+      "offset": 227,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    },
+    {
+      "offset": 228,
+      "raw": "0xF7",
+      "command": "restore_saved_offset"
+    },
+    {
+      "offset": 229,
+      "raw": "0x7B",
+      "command": "select_screen",
+      "screen_id": "0x7B",
+      "high_bit": false
+    },
+    {
+      "offset": 230,
+      "raw": "0xFF",
+      "command": "set_event_code",
+      "event_code": 7
+    },
+    {
+      "offset": 231,
+      "raw": "0xF8",
+      "command": "stop_scroll"
+    },
+    {
+      "offset": 232,
+      "raw": "0xC0",
+      "command": "select_screen",
+      "screen_id": "0x40",
+      "high_bit": true
+    },
+    {
+      "offset": 233,
+      "raw": "0x3C",
+      "command": "select_screen",
+      "screen_id": "0x3C",
+      "high_bit": false
+    },
+    {
+      "offset": 234,
+      "raw": "0xFD",
+      "command": "set_event_code",
+      "event_code": 5
+    },
+    {
+      "offset": 235,
+      "raw": "0x23",
+      "command": "select_screen",
+      "screen_id": "0x23",
+      "high_bit": false
+    },
+    {
+      "offset": 236,
+      "raw": "0xFE",
+      "command": "set_event_code",
+      "event_code": 6
+    },
+    {
+      "offset": 237,
+      "raw": "0x8C",
+      "command": "select_screen",
+      "screen_id": "0x0C",
+      "high_bit": true
+    },
+    {
+      "offset": 238,
+      "raw": "0xAB",
+      "command": "select_screen",
+      "screen_id": "0x2B",
+      "high_bit": true
+    },
+    {
+      "offset": 239,
+      "raw": "0xD5",
+      "command": "select_screen",
+      "screen_id": "0x55",
+      "high_bit": true
+    },
+    {
+      "offset": 240,
+      "raw": "0xD6",
+      "command": "select_screen",
+      "screen_id": "0x56",
+      "high_bit": true
+    },
+    {
+      "offset": 241,
+      "raw": "0x06",
+      "command": "select_screen",
+      "screen_id": "0x06",
+      "high_bit": false
+    },
+    {
+      "offset": 242,
+      "raw": "0xD0",
+      "command": "select_screen",
+      "screen_id": "0x50",
+      "high_bit": true
+    },
+    {
+      "offset": 243,
+      "raw": "0x04",
+      "command": "select_screen",
+      "screen_id": "0x04",
+      "high_bit": false
+    },
+    {
+      "offset": 244,
+      "raw": "0x62",
+      "command": "select_screen",
+      "screen_id": "0x62",
+      "high_bit": false
+    },
+    {
+      "offset": 245,
+      "raw": "0x00",
+      "command": "select_screen",
+      "screen_id": "0x00",
+      "high_bit": false
+    },
+    {
+      "offset": 246,
+      "raw": "0x15",
+      "command": "select_screen",
+      "screen_id": "0x15",
+      "high_bit": false
+    },
+    {
+      "offset": 247,
+      "raw": "0xA2",
+      "command": "select_screen",
+      "screen_id": "0x22",
+      "high_bit": true
+    },
+    {
+      "offset": 248,
+      "raw": "0x1F",
+      "command": "select_screen",
+      "screen_id": "0x1F",
+      "high_bit": false
+    },
+    {
+      "offset": 249,
+      "raw": "0xDE",
+      "command": "select_screen",
+      "screen_id": "0x5E",
+      "high_bit": true
+    },
+    {
+      "offset": 250,
+      "raw": "0xCF",
+      "command": "select_screen",
+      "screen_id": "0x4F",
+      "high_bit": true
+    },
+    {
+      "offset": 251,
+      "raw": "0x60",
+      "command": "select_screen",
+      "screen_id": "0x60",
+      "high_bit": false
+    },
+    {
+      "offset": 252,
+      "raw": "0x00",
+      "command": "select_screen",
+      "screen_id": "0x00",
+      "high_bit": false
+    },
+    {
+      "offset": 253,
+      "raw": "0x09",
+      "command": "select_screen",
+      "screen_id": "0x09",
+      "high_bit": false
+    },
+    {
+      "offset": 254,
+      "raw": "0xF0",
+      "command": "set_pending_direction",
+      "direction": 0
+    }
+  ],
+  "covered_byte_count": 258,
+  "covered_crc32": "6e8d7e45"
+}

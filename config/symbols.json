@@ -811,6 +811,13 @@
     },
     {
       "bank": 1,
+      "address": "0x8B38",
+      "name": "World2_StageSequenceStartOffsets",
+      "operand_symbol": true,
+      "evidence": "three stage-indexed starting offsets loaded before entering the World 2 sequence"
+    },
+    {
+      "bank": 1,
       "address": "0x9036",
       "name": "World2_UpdatePlayerProjectiles",
       "evidence": "seven-slot-player-projectile-motion-collision-and-despawn-loop"
@@ -1116,6 +1123,7 @@
       "bank": 1,
       "address": "0xBDDF",
       "name": "World2_StageSequenceData",
+      "operand_symbol": true,
       "evidence": "indexed-by-world2-stage-sequence-offset-at-bank1-838b"
     },
     {

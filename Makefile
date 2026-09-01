@@ -43,6 +43,8 @@ WORLD2_STREAMING := config/world2_streaming.json
 WORLD2_SCREEN_AUTHORING := data/world2/compressed_screens.json
 WORLD2_ENEMY_STATES := config/world2_enemy_states.json
 WORLD2_ENEMY_AUTHORING := data/world2/enemy_states.json
+WORLD2_STAGE_SEQUENCE := config/world2_stage_sequence.json
+WORLD2_STAGE_AUTHORING := data/world2/stage_sequence.json
 WORLD3_OBJECT_DATA := config/world3_object_data.json
 WORLD3_BEHAVIOR := config/world3_behavior.json
 WORLD3_BEHAVIOR_AUTHORING := data/world3/behavior_streams.json
@@ -64,6 +66,7 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	object-dispatch validate-object-dispatch object-placements \
 	validate-object-placements world2-streaming validate-world2-streaming \
 	world2-enemy-states validate-world2-enemy-states \
+	world2-stage-sequence validate-world2-stage-sequence \
 	world3-object-data validate-world3-object-data world3-behavior \
 	validate-world3-behavior world3-entity-types validate-world3-entity-types \
 	world3-object-catalog validate-world3-object-catalog \
@@ -220,6 +223,11 @@ world2-enemy-states validate-world2-enemy-states: $(PRG_ASSET)
 		--screen-authoring "$(WORLD2_SCREEN_AUTHORING)" \
 		--authoring "$(WORLD2_ENEMY_AUTHORING)"
 
+world2-stage-sequence validate-world2-stage-sequence: $(PRG_ASSET)
+	$(PYTHON) scripts/world2_stage_sequence.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_STAGE_SEQUENCE)" \
+		--authoring "$(WORLD2_STAGE_AUTHORING)"
+
 world3-object-data validate-world3-object-data: $(PRG_ASSET)
 	$(PYTHON) scripts/world3_object_data.py --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD3_OBJECT_DATA)"
@@ -275,6 +283,7 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-audio-dispatch validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world2-streaming \
 	validate-world2-enemy-states \
+	validate-world2-stage-sequence \
 	validate-world3-object-data validate-world3-behavior \
 	validate-world3-entity-types validate-world3-object-catalog \
 	validate-world-data

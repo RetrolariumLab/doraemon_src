@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "bank": 1,
+  "sequence": {
+    "address": "0xBDDF",
+    "size": 255,
+    "crc32": "ce61b81a",
+    "expected_command_counts": {
+      "select_screen": 167,
+      "set_pending_direction": 63,
+      "restore_saved_offset": 10,
+      "stop_scroll": 5,
+      "set_event_code": 10
+    },
+    "expected_high_screen_token_count": 9,
+    "expected_unique_screen_id_count": 121
+  },
+  "start_offsets": {
+    "address": "0x8B38",
+    "count": 3,
+    "crc32": "756f142a",
+    "values": [
+      0,
+      37,
+      92
+    ]
+  },
+  "opcodes": [
+    {
+      "range": "0x00-0xEF",
+      "command": "select_screen",
+      "semantics": "screen_id = token & 0x7F"
+    },
+    {
+      "range": "0xF0-0xF6",
+      "command": "set_pending_direction",
+      "semantics": "direction = token & 0x03"
+    },
+    {
+      "range": "0xF7",
+      "command": "restore_saved_offset",
+      "semantics": "sequence_offset = saved_sequence_offset"
+    },
+    {
+      "range": "0xF8",
+      "command": "stop_scroll",
+      "semantics": "scroll_active = 0"
+    },
+    {
+      "range": "0xF9-0xFF",
+      "command": "set_event_code",
+      "semantics": "event_code = token & 0x07"
+    }
+  ],
+  "decoder_signatures": [
+    {
+      "address": "0x838B",
+      "bytes": "E6 55 A4 55 B9 DF BD C9 F0 90 28 C9 F7 B0 09 29 03 85 43 A9 0F 85 56 60"
+    },
+    {
+      "address": "0x83A3",
+      "bytes": "F0 12 C9 F8 F0 08 29 07 85 9D 85 B4 D0 DA A9 00 85 41 F0 D4 A5 9E 85 55 4C 8B 83"
+    }
+  ]
+}
