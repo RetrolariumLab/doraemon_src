@@ -180,6 +180,11 @@ field base so accidental gaps cannot be mistaken for completed analysis. The
 persistent registry is likewise a complete five-field grid from `$06B0`
 through `$06F0`, with a 13-byte stride.
 
+Initialization copies this grid byte-for-byte from the matching five-array ROM
+image at `$D96B-$D9AB`, then randomizes two type-only slot groups. The exact
+initial rooms, types, coordinates, zero states, and shuffle multisets are fixed
+by `config/world3_object_data.json`.
+
 `World3EncounterRoomList` at `$06F1-$06F8` stores eight room numbers. Empty
 entries contain `$FF`; encounter placement expands the list to adjacent valid
 rooms, room entry uses it to materialize a type-`$0A/$0B` group, and defeating

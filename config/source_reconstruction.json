@@ -68,14 +68,19 @@
         "config/object_placements.json",
         "config/object_pools.json",
         "config/world2_streaming.json",
+        "config/world3_behavior.json",
+        "config/world3_object_data.json",
         "src/memory/ram.inc",
         "docs/ram_fields.md",
         "docs/object_formats.md",
         "docs/subsystems.md",
+        "docs/world3_behavior.md",
         "scripts/object_dispatch.py",
         "scripts/object_placements.py",
         "scripts/object_pools.py",
-        "scripts/world2_streaming.py"
+        "scripts/world2_streaming.py",
+        "scripts/world3_behavior.py",
+        "scripts/world3_object_data.py"
       ]
     },
     {
@@ -100,7 +105,12 @@
     {
       "id": "authoring_roundtrips",
       "status": "planned",
-      "evidence": []
+      "evidence": [
+        "data/world3/behavior_streams.json",
+        "docs/world3_behavior.md",
+        "scripts/world3_behavior.py",
+        "tests/test_world3_behavior.py"
+      ]
     },
     {
       "id": "relocation_proof",

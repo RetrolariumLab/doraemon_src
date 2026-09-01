@@ -39,6 +39,9 @@ OBJECT_POOLS := config/object_pools.json
 OBJECT_DISPATCH := config/object_dispatch.json
 OBJECT_PLACEMENTS := config/object_placements.json
 WORLD2_STREAMING := config/world2_streaming.json
+WORLD3_OBJECT_DATA := config/world3_object_data.json
+WORLD3_BEHAVIOR := config/world3_behavior.json
+WORLD3_BEHAVIOR_AUTHORING := data/world3/behavior_streams.json
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -50,7 +53,9 @@ WORLD2_STREAMING := config/world2_streaming.json
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
 	audio-dispatch validate-audio-dispatch object-pools validate-object-pools \
 	object-dispatch validate-object-dispatch object-placements \
-	validate-object-placements world2-streaming validate-world2-streaming
+	validate-object-placements world2-streaming validate-world2-streaming \
+	world3-object-data validate-world3-object-data world3-behavior \
+	validate-world3-behavior
 
 all: verify
 
@@ -194,6 +199,15 @@ world2-streaming validate-world2-streaming: $(PRG_ASSET)
 		--manifest "$(WORLD2_STREAMING)" \
 		--code-entries config/prg_code_entries.txt
 
+world3-object-data validate-world3-object-data: $(PRG_ASSET)
+	$(PYTHON) scripts/world3_object_data.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD3_OBJECT_DATA)"
+
+world3-behavior validate-world3-behavior: $(PRG_ASSET)
+	$(PYTHON) scripts/world3_behavior.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD3_BEHAVIOR)" \
+		--authoring "$(WORLD3_BEHAVIOR_AUTHORING)"
+
 ghidra-bootstrap:
 	$(PYTHON) scripts/bootstrap_ghidra.py install
 
@@ -220,7 +234,8 @@ validate-maps: $(ROM)
 
 release-check: quality-check disassembly-check verify validate-maps \
 	validate-audio-dispatch validate-object-pools validate-object-dispatch \
-	validate-object-placements validate-world2-streaming
+	validate-object-placements validate-world2-streaming \
+	validate-world3-object-data validate-world3-behavior
 
 check: release-check
 

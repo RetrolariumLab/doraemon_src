@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "bank": 2,
+  "initial_registry": {
+    "address": "0xD96B",
+    "capacity": 13,
+    "layout": "structure-of-arrays",
+    "crc32": "19daf044",
+    "fields": [
+      {
+        "name": "room",
+        "values": [
+          "0x07",
+          "0x0B",
+          "0x0C",
+          "0x19",
+          "0x02",
+          "0x11",
+          "0x14",
+          "0x17",
+          "0x22",
+          "0x27",
+          "0x28",
+          "0x34",
+          "0x3F"
+        ]
+      },
+      {
+        "name": "type",
+        "values": [
+          "0x18",
+          "0x19",
+          "0x1A",
+          "0x1B",
+          "0x17",
+          "0x17",
+          "0x17",
+          "0x17",
+          "0x17",
+          "0x14",
+          "0x15",
+          "0x16",
+          "0x1F"
+        ]
+      },
+      {
+        "name": "x",
+        "values": [
+          "0xA0",
+          "0x60",
+          "0xA0",
+          "0x80",
+          "0x80",
+          "0x60",
+          "0x90",
+          "0xA0",
+          "0x40",
+          "0xA0",
+          "0xA0",
+          "0xC0",
+          "0x84"
+        ]
+      },
+      {
+        "name": "y",
+        "values": [
+          "0x40",
+          "0x60",
+          "0xA0",
+          "0x80",
+          "0x50",
+          "0x28",
+          "0x90",
+          "0x30",
+          "0x40",
+          "0xC0",
+          "0xC0",
+          "0xC0",
+          "0x78"
+        ]
+      },
+      {
+        "name": "state",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "type_shuffle_groups": [
+      {
+        "start": 0,
+        "count": 4,
+        "multiset": [
+          "0x18",
+          "0x19",
+          "0x1A",
+          "0x1B"
+        ]
+      },
+      {
+        "start": 4,
+        "count": 8,
+        "multiset": [
+          "0x17",
+          "0x17",
+          "0x17",
+          "0x17",
+          "0x17",
+          "0x14",
+          "0x15",
+          "0x16"
+        ]
+      }
+    ],
+    "fixed_type_slots": {
+      "12": "0x1F"
+    }
+  },
+  "behavior_pointer_table": {
+    "address": "0xD9AC",
+    "slot_count": 16,
+    "crc32": "5843a7c5",
+    "targets": [
+      "0xD9CC",
+      "0xD9F4",
+      "0xDA6B",
+      "0xDB63",
+      "0xDB78",
+      "0xDBD8",
+      "0xDC0F",
+      "0xDD07",
+      "0xDD08",
+      "0xDD16",
+      "0xDD17",
+      "0xDD39",
+      "0xDD3A",
+      "0xDDBC",
+      "0xDDCE",
+      "0xDDE0"
+    ]
+  },
+  "behavior_streams": {
+    "address": "0xD9CC",
+    "end_address": "0xDDF1",
+    "crc32": "f182109b"
+  }
+}

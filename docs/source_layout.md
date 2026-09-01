@@ -15,7 +15,8 @@
 | `src/world2/data/*.asm` | PRG bank 1 | blocks, stage sequence, pointers, and compressed screens |
 | `src/common/bank2_*.asm` | PRG bank 2 | reset/NMI/mapper/gateways and vectors |
 | `src/world3/*.asm` | PRG bank 2 | underwater runtime, objects, and audio |
-| `src/world3/data/*.asm` | PRG bank 2 | build string, maps, metatiles, and tail |
+| `src/world3/data/*.asm` | PRG bank 2 | build string, objects, behavior streams, maps, metatiles, and tail |
+| `data/world3/*.json` | editable data | lossless decoded World 3 behavior streams |
 | `src/common/bank3_*.asm` | PRG bank 3 | reset/NMI/mapper/gateways and vectors |
 | `src/shell/*.asm` | PRG bank 3 | title, game over, ending, and transitions |
 | `src/rendering/*.asm` | PRG bank 3 | shell PPU/text/frame services |

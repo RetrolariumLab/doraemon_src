@@ -30,9 +30,14 @@
   city tail; `config/object_placements.json` validates both lists.
 - Known: World 2 enemy spawns are `$D0-$EE` tokens embedded in compressed
   screen streams; all 738 occurrences are validated.
+- Known: World 3 begins with thirteen persistent objects stored as five
+  parallel ROM arrays; the exact initial fields, two randomized type groups,
+  fixed type slot, and sixteen low-type behavior pointers are validated by
+  `config/world3_object_data.json`.
 - Unknown: the remaining World 1 descriptor semantics, individual World 2
-  enemy-state meanings, and the World 3 enemy, item, NPC, boss, trigger, door,
-  and projectile record semantics.
+  enemy-state meanings, semantic names for World 3 persistent entity types,
+  and transient World 3 enemy/projectile placement rules. The World 3 behavior
+  bytecode itself is fully decoded and losslessly round-trippable.
 
 ## AUDIO-002 - command and stream semantics
 

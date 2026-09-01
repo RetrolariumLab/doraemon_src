@@ -18,6 +18,9 @@ header and the physical 32 KiB bank base.
 | world 2 screen pointers | `$BEEE` | 1:`$BEDE` | 119 standard entries |
 | world 2 compressed streams | `$BFDC` | 1:`$BFCC` | through `$FFFA` |
 | world 3 attributes | `$15E02` | 2:`$DDF2` | 256 |
+| world 3 initial room objects | `$1597B` | 2:`$D96B` | 5x13 bytes |
+| world 3 behavior pointers | `$159BC` | 2:`$D9AC` | 16 pointers |
+| world 3 behavior streams | `$159DC` | 2:`$D9CC` | 1,062 bytes |
 | world 3 small blocks | `$15F02` | 2:`$DEF2` | 1,024 |
 | world 3 big blocks | `$16302` | 2:`$E2F2` | 1,024 |
 | underwater map | `$16702` | 2:`$E6F2` | 64x64 |
@@ -48,3 +51,12 @@ the editor-compatible view. `config/world2_streaming.json` and
 
 `scripts/map_data.py` validates all CadEditor-declared regions against
 independent CRC32 values and reports their overlap explicitly.
+
+World 3 initializes its persistent object registry from five contiguous
+13-byte arrays rather than from interleaved records. The arrays are room, type,
+X, Y, and state. The next 32 bytes are sixteen little-endian behavior-stream
+pointers for entity types `$00-$0F`; their targets cover `$D9CC-$DDF1`.
+`config/world3_object_data.json` fixes both layouts and their CRCs.
+`config/world3_behavior.json` additionally proves that all 1,062 behavior bytes
+decode without gaps or invalid control-flow targets and validates the lossless
+editable representation in `data/world3/behavior_streams.json`.

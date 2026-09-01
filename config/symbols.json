@@ -1179,6 +1179,108 @@
     },
     {
       "bank": 2,
+      "address": "0x9A59",
+      "name": "World3_ExecuteBehaviorCommand",
+      "evidence": "reads-current-stream-byte-and-dispatches-on-high-nibble"
+    },
+    {
+      "bank": 2,
+      "address": "0x9A72",
+      "name": "World3_BehaviorMoveXPositive",
+      "evidence": "opcode-0-or-direction-reversed-opcode-1-positive-x-motion"
+    },
+    {
+      "bank": 2,
+      "address": "0x9AA1",
+      "name": "World3_BehaviorMoveXNegative",
+      "evidence": "opcode-1-or-direction-reversed-opcode-0-negative-x-motion"
+    },
+    {
+      "bank": 2,
+      "address": "0x9AD0",
+      "name": "World3_BehaviorMoveYNegative",
+      "evidence": "opcode-2-or-direction-reversed-opcode-3-negative-y-motion"
+    },
+    {
+      "bank": 2,
+      "address": "0x9AF7",
+      "name": "World3_BehaviorMoveYPositive",
+      "evidence": "opcode-3-or-direction-reversed-opcode-2-positive-y-motion"
+    },
+    {
+      "bank": 2,
+      "address": "0x9B19",
+      "name": "World3_BehaviorJump",
+      "evidence": "opcode-4-loads-next-byte-as-absolute-stream-offset"
+    },
+    {
+      "bank": 2,
+      "address": "0x9B2C",
+      "name": "World3_BehaviorWait",
+      "evidence": "opcode-5-loads-and-decrements-next-byte-frame-count"
+    },
+    {
+      "bank": 2,
+      "address": "0x9B4C",
+      "name": "World3_BehaviorSetRate",
+      "evidence": "opcode-6-writes-low-nibble-to-packed-rate-counter"
+    },
+    {
+      "bank": 2,
+      "address": "0x9B5B",
+      "name": "World3_BehaviorSetDirection",
+      "evidence": "opcode-7-selects-random-or-fixed-horizontal-and-vertical-directions"
+    },
+    {
+      "bank": 2,
+      "address": "0x9BC3",
+      "name": "World3_BehaviorLoop",
+      "evidence": "opcode-80-loads-count-and-81-through-8f-loop-to-saved-offset"
+    },
+    {
+      "bank": 2,
+      "address": "0x9BF7",
+      "name": "World3_BehaviorMoveRelative",
+      "evidence": "opcode-9-consumes-direction-adjusted-x-and-y-deltas"
+    },
+    {
+      "bank": 2,
+      "address": "0x9C3D",
+      "name": "World3_BehaviorSetPosition",
+      "evidence": "opcode-a-loads-absolute-x-y-and-clears-activation-timer"
+    },
+    {
+      "bank": 2,
+      "address": "0x9C64",
+      "name": "World3_BehaviorSetMetaspriteVariant",
+      "evidence": "opcode-b-writes-low-nibble-to-metasprite-variant-bit1-field"
+    },
+    {
+      "bank": 2,
+      "address": "0x9C73",
+      "name": "World3_BehaviorConditionalBranch",
+      "evidence": "opcode-c-random-or-player-coordinate-condition-and-absolute-offset"
+    },
+    {
+      "bank": 2,
+      "address": "0x9CDF",
+      "name": "World3_BehaviorSetFollowAnchor",
+      "evidence": "opcode-d-loads-next-byte-follow-anchor-flag"
+    },
+    {
+      "bank": 2,
+      "address": "0x9CF5",
+      "name": "World3_BehaviorToggleMetaspriteVariant",
+      "evidence": "opcode-e-toggles-metasprite-variant-bit0"
+    },
+    {
+      "bank": 2,
+      "address": "0x9D07",
+      "name": "World3_BehaviorStop",
+      "evidence": "opcode-f-returns-and-nonzero-low-nibble-deactivates-non-state4-entity"
+    },
+    {
+      "bank": 2,
       "address": "0x9D19",
       "name": "World3_RenderEntities",
       "evidence": "eight-slot-forward-or-reverse-render-traversal"
@@ -1422,6 +1524,24 @@
       "address": "0xC91E",
       "name": "World3_Audio_ReadStreamByte",
       "evidence": "indirect-stream-read-and-pointer-advance"
+    },
+    {
+      "bank": 2,
+      "address": "0xD96B",
+      "name": "World3_InitialRoomObjectRegistry",
+      "evidence": "65-byte-five-field-registry-copied-to-06b0-through-06f0"
+    },
+    {
+      "bank": 2,
+      "address": "0xD9AC",
+      "name": "World3_EntityBehaviorPointerTable",
+      "evidence": "sixteen-little-endian-pointers-indexed-by-entity-type-below-10"
+    },
+    {
+      "bank": 2,
+      "address": "0xD9CC",
+      "name": "World3_EntityBehaviorStreams",
+      "evidence": "first-target-of-world3-entity-behavior-pointer-table"
     },
     {
       "bank": 2,

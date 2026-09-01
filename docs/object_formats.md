@@ -56,3 +56,33 @@ width can reach 22 cells.
 streams, three screen-service RTS tables, 738 spawn tokens, 3,623 run tokens,
 and the final read at `$FFFA`. `make validate-world2-streaming` checks those
 invariants and every indirect dispatch target against the canonical PRG.
+
+## World 3 initial persistent registry
+
+`World3_InitializeRoomObjectRegistry` copies 65 bytes at `$D96B` directly into
+RAM `$06B0-$06F0`. ROM and RAM therefore share the same structure-of-arrays
+layout, with thirteen bytes in each field:
+
+| Field | ROM | RAM | Meaning |
+| --- | --- | --- | --- |
+| room | `$D96B` | `$06B0` | owning room number |
+| type | `$D978` | `$06BD` | persistent object type |
+| X | `$D985` | `$06CA` | saved horizontal position |
+| Y | `$D992` | `$06D7` | saved vertical position |
+| state | `$D99F` | `$06E4` | materialization/persistence state |
+
+All thirteen initial states are zero. After the copy, initialization randomly
+permutes types `$18-$1B` among slots 0-3. It separately permutes the slot 4-11
+multiset (five `$17` values plus `$14`, `$15`, and `$16`). Slot 12 remains the
+fixed type `$1F`. Rooms and coordinates stay in their original slots; only the
+type arrays are shuffled.
+
+Types below `$10` select one of sixteen packed behavior streams through the
+little-endian pointer table at `$D9AC`. The table targets are strictly
+increasing from `$D9CC` through `$DDE0`, within the 1,062-byte stream region
+ending at `$DDF1`. `make validate-world3-object-data` proves the five initial
+arrays, shuffle groups, fixed slot, pointer table, and stream payload.
+
+The behavior bytecode is fully decoded in `docs/world3_behavior.md`. Its
+machine contract covers all 1,062 bytes as 532 instructions and operands, and
+`data/world3/behavior_streams.json` provides a lossless editable round trip.

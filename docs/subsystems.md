@@ -153,10 +153,20 @@ manifest. Room exit saves coordinates and state back through two state-class
 passes. This is a different ownership model from both earlier chapters, not a
 shared object engine hidden behind different data.
 
+The thirteen-record registry begins as a 65-byte ROM image at `$D96B`: five
+parallel room/type/X/Y/state arrays are copied directly to `$06B0-$06F0`.
+Initialization then shuffles types in a four-slot group and an eight-slot group
+without moving rooms or coordinates; the final slot retains type `$1F`.
+`config/world3_object_data.json` validates this bootstrap representation and
+the adjacent sixteen-entry behavior-stream pointer table.
+
 Types below `$10` additionally select a behavior stream through the pointer
-table at `$D9AC`. `World3_RunEntityBehaviorScript` decodes the command high
+table at `$D9AC`. Its sixteen targets span the packed stream region
+`$D9CC-$DDF1`. `World3_RunEntityBehaviorScript` decodes the command high
 nibble, while the low nibble and following bytes control motion, delays,
 direction, loops, branches, position, animation variants, and termination.
 The per-entity script offset, wait/rate counters, directions, loop state, HP,
 render flags, and persistence field are named in the complete active-pool RAM
-grid.
+grid. Recursive control-flow decoding accounts for all 1,062 stream bytes as
+532 instructions; the exact opcode contract and editable form are documented
+in `docs/world3_behavior.md`.

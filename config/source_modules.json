@@ -634,9 +634,30 @@
     {
       "bank": 2,
       "start": "0xC92C",
-      "end": "0xDDF1",
+      "end": "0xD96A",
       "path": "world3/music_data.asm",
       "responsibility": "World 3 APU period tables, track headers, and music streams"
+    },
+    {
+      "bank": 2,
+      "start": "0xD96B",
+      "end": "0xD9AB",
+      "path": "world3/data/initial_room_objects.asm",
+      "responsibility": "World 3 five-field initial registry for thirteen persistent room objects"
+    },
+    {
+      "bank": 2,
+      "start": "0xD9AC",
+      "end": "0xD9CB",
+      "path": "world3/data/entity_behavior_pointers.asm",
+      "responsibility": "World 3 sixteen-entry entity behavior-stream pointer table"
+    },
+    {
+      "bank": 2,
+      "start": "0xD9CC",
+      "end": "0xDDF1",
+      "path": "world3/data/entity_behavior_streams.asm",
+      "responsibility": "World 3 packed behavior streams for entity types below sixteen"
     },
     {
       "bank": 2,
