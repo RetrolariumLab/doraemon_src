@@ -38,7 +38,8 @@ Recover shared and chapter-specific RAM, enemies, items, NPCs, projectiles,
 doors, manholes, bosses, triggers, and persistent progression state. The World
 1 entity grid, persistence masks, dispatch graphs, and three-byte city and
 underground placement lists are now machine-validated. World 2's embedded
-screen-stream enemy tokens and screen-service dispatch graph are also proven;
+screen-stream enemy tokens, overlapping screen views, lossless authoring data,
+and screen-service dispatch graph are also proven;
 World 3's initial thirteen-record persistent registry, randomized type groups,
 and low-type behavior pointers are now exact. All sixteen low-type behavior
 streams are decoded into a lossless editable format; per-entity semantic naming

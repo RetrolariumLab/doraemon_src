@@ -109,6 +109,12 @@
     "expected_spawn_tokens": 738,
     "expected_rle_tokens": 3623,
     "expected_row_terminators": 107,
-    "expected_max_row_width": 22
+    "expected_max_row_width": 22,
+    "expected_unique_tokens": 13048,
+    "expected_unique_literal_tokens": 8877,
+    "expected_unique_spawn_tokens": 685,
+    "expected_unique_row_end_tokens": 103,
+    "expected_unique_rle_tokens": 3383,
+    "expected_max_stream_overlap": 3
   }
 }

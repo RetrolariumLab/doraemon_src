@@ -72,6 +72,12 @@ class World2StreamingTests(unittest.TestCase):
                 "expected_rle_tokens": 0,
                 "expected_row_terminators": 0,
                 "expected_max_row_width": 1,
+                "expected_unique_tokens": 1,
+                "expected_unique_literal_tokens": 1,
+                "expected_unique_spawn_tokens": 0,
+                "expected_unique_row_end_tokens": 0,
+                "expected_unique_rle_tokens": 0,
+                "expected_max_stream_overlap": 1,
             },
         }
         return bytes(prg), document, [(1, 0x9000, "Handler")]
@@ -124,6 +130,52 @@ class World2StreamingTests(unittest.TestCase):
             bytes(changed), changed_document, entries
         )
         self.assertTrue(any("invalid $F0 token" in error for error in errors))
+
+    def test_lossless_screen_authoring_roundtrip(self) -> None:
+        prg, document, entries = self.fixture()
+        decoded = world2_streaming.decode_authoring(prg, document, entries)
+        self.assertEqual(
+            world2_streaming.encode_authoring(decoded),
+            bytes((0x00, 0x82, 0x12)),
+        )
+
+    def test_rejects_invalid_authoring_literal(self) -> None:
+        prg, document, entries = self.fixture()
+        decoded = world2_streaming.decode_authoring(prg, document, entries)
+        changed = copy.deepcopy(decoded)
+        changed["tokens"][0] = "0000:L:D0"
+        with self.assertRaisesRegex(ValueError, "literal token"):
+            world2_streaming.encode_authoring(changed)
+
+    def test_rejects_changed_authoring_row_metadata(self) -> None:
+        prg, document, entries = self.fixture()
+        decoded = world2_streaming.decode_authoring(prg, document, entries)
+        changed = copy.deepcopy(decoded)
+        changed["selectors"][0]["rows"][0] = "0000-0001:2"
+        with self.assertRaisesRegex(ValueError, "row metadata differs"):
+            world2_streaming.encode_authoring(changed)
+
+    def test_authoring_encoder_allows_literal_edits(self) -> None:
+        prg, document, entries = self.fixture()
+        decoded = world2_streaming.decode_authoring(prg, document, entries)
+        changed = copy.deepcopy(decoded)
+        changed["tokens"][0] = "0000:L:13"
+        self.assertEqual(
+            world2_streaming.encode_authoring(changed),
+            bytes((0x00, 0x82, 0x13)),
+        )
+
+    def test_rejects_pointer_into_rle_operand(self) -> None:
+        errors, _screens, _tokens, _covered, _overlap = (
+            world2_streaming.collect_screen_layout(
+                bytes((0xF1, 0x01)),
+                [0x8000, 0x8001],
+                0x8000,
+                1,
+                1,
+            )
+        )
+        self.assertTrue(any("token/operand conflict" in error for error in errors))
 
 
 if __name__ == "__main__":

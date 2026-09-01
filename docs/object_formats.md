@@ -56,6 +56,9 @@ width can reach 22 cells.
 streams, three screen-service RTS tables, 738 spawn tokens, 3,623 run tokens,
 and the final read at `$FFFA`. `make validate-world2-streaming` checks those
 invariants and every indirect dispatch target against the canonical PRG.
+The shared token storage and all selector row views also round-trip through
+`data/world2/compressed_screens.json` as documented in
+`docs/world2_streaming.md`.
 
 ## World 3 initial persistent registry
 

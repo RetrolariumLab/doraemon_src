@@ -19,6 +19,9 @@
   reads a stage sequence at `$BDDF`, a pointer table at `$BEDE`, and compressed
   streams at `$BFCC`; the editor overlap is therefore a configuration
   approximation.
+- Known: all 119 standard selector views, their three aliases, shared-stream
+  overlaps, and all 16,431 token/operand bytes are losslessly decoded and
+  round-trippable through `data/world2/compressed_screens.json`.
 - Unknown: the true used small-block count and exact stage-command semantics
   above `$EF`.
 

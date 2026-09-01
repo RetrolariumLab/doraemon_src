@@ -42,6 +42,9 @@ forward, reverse, and per-frame screen services. Automatic scrolling, player
 flight, projectiles, and this screen pipeline form a chapter-specific
 object/update system. Runtime reaches the bank-local main entry at `$88A4` and
 then repeats the frame loop at `$8959` once per frame with PRG1/CHR1 selected.
+The 119 selector views share one globally unambiguous 16,431-byte token pool;
+its lossless authoring representation is described in
+`docs/world2_streaming.md`.
 
 ## World 3 / bank 2
 

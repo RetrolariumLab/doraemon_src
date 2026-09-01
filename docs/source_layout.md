@@ -13,6 +13,7 @@
 | `src/common/bank1_*.asm` | PRG bank 1 | reset/NMI/mapper/gateways and vectors |
 | `src/world2/*.asm` | PRG bank 1 | cave shooter runtime and audio systems |
 | `src/world2/data/*.asm` | PRG bank 1 | blocks, stage sequence, pointers, and compressed screens |
+| `data/world2/*.json` | editable data | lossless shared-token World 2 screen views |
 | `src/common/bank2_*.asm` | PRG bank 2 | reset/NMI/mapper/gateways and vectors |
 | `src/world3/*.asm` | PRG bank 2 | underwater runtime, objects, and audio |
 | `src/world3/data/*.asm` | PRG bank 2 | build string, objects, behavior streams, maps, metatiles, and tail |

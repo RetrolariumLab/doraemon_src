@@ -48,6 +48,8 @@ reads through `$FFFA`, reusing the low byte of the NMI vector as data.
 `config/prg_data_ranges.txt` retains the CadEditor ranges as provenance for
 the editor-compatible view. `config/world2_streaming.json` and
 `scripts/world2_streaming.py` are authoritative for the runtime representation.
+All overlapping views are losslessly editable through
+`data/world2/compressed_screens.json`; see `docs/world2_streaming.md`.
 
 `scripts/map_data.py` validates all CadEditor-declared regions against
 independent CRC32 values and reports their overlap explicitly.

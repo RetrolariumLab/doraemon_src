@@ -39,6 +39,7 @@ OBJECT_POOLS := config/object_pools.json
 OBJECT_DISPATCH := config/object_dispatch.json
 OBJECT_PLACEMENTS := config/object_placements.json
 WORLD2_STREAMING := config/world2_streaming.json
+WORLD2_SCREEN_AUTHORING := data/world2/compressed_screens.json
 WORLD3_OBJECT_DATA := config/world3_object_data.json
 WORLD3_BEHAVIOR := config/world3_behavior.json
 WORLD3_BEHAVIOR_AUTHORING := data/world3/behavior_streams.json
@@ -195,9 +196,10 @@ object-placements validate-object-placements: $(PRG_ASSET)
 		--manifest "$(OBJECT_PLACEMENTS)"
 
 world2-streaming validate-world2-streaming: $(PRG_ASSET)
-	$(PYTHON) scripts/world2_streaming.py --prg "$(PRG_ASSET)" \
+	$(PYTHON) scripts/world2_streaming.py validate --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD2_STREAMING)" \
-		--code-entries config/prg_code_entries.txt
+		--code-entries config/prg_code_entries.txt \
+		--authoring "$(WORLD2_SCREEN_AUTHORING)"
 
 world3-object-data validate-world3-object-data: $(PRG_ASSET)
 	$(PYTHON) scripts/world3_object_data.py --prg "$(PRG_ASSET)" \
