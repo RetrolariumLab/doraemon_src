@@ -59,6 +59,15 @@ World1SavedCityObjectBits = $0690
 World1SavedUndergroundObjectBits = $06A0
 World1AttributeTableCache = $06B0
 
+; World 2 compressed-screen decoder state
+World2ScreenStreamPointer = $0046
+World2ScreenStreamOffset  = $0054
+World2StageSequenceOffset = $0055
+World2ScreenRowIndex      = $0056
+World2ScreenRunLength     = $0057
+World2CurrentScreenId     = $0058
+World2EnemySpawnState     = $0074
+
 ; World 2 bank-local parallel pools
 World2EnemyState                 = $0558
 World2EnemyX                     = $055F

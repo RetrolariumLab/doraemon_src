@@ -1,5 +1,5 @@
-; Doraemon PRG bank 1 $BA9F-$BDEB
-; World 2 CadEditor small-block table proven prefix
+; Doraemon PRG bank 1 $BA9F-$BDDE
+; World 2 CadEditor small-block region preceding the runtime stage sequence
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World2_SmallBlocks:
@@ -55,4 +55,3 @@ World2_SmallBlocks:
     .byte $40, $9A, $C5, $CB, $43, $00, $5A, $41, $00, $00, $A6, $A7, $E0, $E3, $F0, $F3
     .byte $C9, $CA, $F6, $F7, $B8, $9A, $F8, $CB, $E0, $E1, $F0, $F1, $E2, $E3, $F2, $F3
     .byte $00, $E6, $A6, $A7, $E7, $E8, $A6, $A7, $00, $C6, $00, $D6, $C7, $C8, $D7, $D8
-    .byte $32, $F9, $32, $01, $02, $03, $F2, $04, $04, $05, $F0, $06, $07

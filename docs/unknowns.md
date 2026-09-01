@@ -15,8 +15,12 @@
 
 - Known: CadEditor requests 1,024 bytes at file `$BAAF`; screens begin at
   `$BDFC`, producing a 179-byte overlap.
-- Unknown: the true used block count and whether the overlap is intentional,
-  harmless unused capacity, or a configuration approximation.
+- Known: runtime code does not use CadEditor's 60-screen fixed-size model. It
+  reads a stage sequence at `$BDDF`, a pointer table at `$BEDE`, and compressed
+  streams at `$BFCC`; the editor overlap is therefore a configuration
+  approximation.
+- Unknown: the true used small-block count and exact stage-command semantics
+  above `$EF`.
 
 ## OBJ-001 - chapter object formats
 
@@ -24,8 +28,11 @@
 - Known: World 1 city and underground placements are three-byte X/Y/type
   records, including their terminators, persistent IDs, type split, and sorted
   city tail; `config/object_placements.json` validates both lists.
-- Unknown: the remaining descriptor semantics and the World 2/World 3 enemy,
-  item, NPC, boss, trigger, door, and projectile record formats.
+- Known: World 2 enemy spawns are `$D0-$EE` tokens embedded in compressed
+  screen streams; all 738 occurrences are validated.
+- Unknown: the remaining World 1 descriptor semantics, individual World 2
+  enemy-state meanings, and the World 3 enemy, item, NPC, boss, trigger, door,
+  and projectile record semantics.
 
 ## AUDIO-002 - command and stream semantics
 

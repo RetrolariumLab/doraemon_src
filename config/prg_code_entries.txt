@@ -94,6 +94,25 @@ entry 0 EDFB Bank0_MusicCommandEntry_EDFB
 entry 0 EE03 Bank0_MusicCommandEntry_EE03
 # Bank 1's overlapping $A548 render and $A570 update RTS tables have 41
 # reachable slots and 36 unique targets. Each manually pushes a continuation.
+# Bank 1 uses three overlapping 16-slot target-minus-one RTS tables at
+# $8831/$8851/$8871 for screen streaming and PPU services.
+entry 1 8365 Bank1_World2ScreenService_8365
+entry 1 8371 Bank1_World2ScreenService_8371
+entry 1 83CF Bank1_World2ScreenService_83CF
+entry 1 83DD Bank1_World2ScreenService_83DD
+entry 1 8405 Bank1_World2ScreenService_8405
+entry 1 8471 Bank1_World2ScreenService_8471
+entry 1 84AB Bank1_World2ScreenService_84AB
+entry 1 84C1 Bank1_World2ScreenService_84C1
+entry 1 84E1 Bank1_World2ScreenService_84E1
+entry 1 8578 Bank1_World2ScreenService_8578
+entry 1 85A5 Bank1_World2ScreenService_85A5
+entry 1 85F7 Bank1_World2ScreenService_85F7
+entry 1 8641 Bank1_World2ScreenService_8641
+entry 1 8660 Bank1_World2ScreenService_8660
+entry 1 86C9 Bank1_World2ScreenService_86C9
+entry 1 86EB Bank1_World2ScreenService_86EB
+entry 1 8747 Bank1_World2ScreenService_8747
 entry 1 9965 Bank1_EnemyUpdateDispatchContinuation_9965
 entry 1 9B2F Bank1_EnemyHandlerEntry_9B2F
 entry 1 9B46 Bank1_EnemyHandlerEntry_9B46

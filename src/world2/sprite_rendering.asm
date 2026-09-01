@@ -107,7 +107,7 @@ Bank1_Func_97C5:
     LDX $A9
     LDA $A4
     BNE Bank1_Label_97D5
-    LDA $58
+    LDA World2CurrentScreenId
     CMP a:$98BB,X
     BNE Bank1_Label_97D4
     INC $A4
@@ -272,7 +272,7 @@ Bank1_Label_98DE:
 
 Bank1_Label_98E0:
     STA a:World2EnemyPhaseCounter,X
-    LDA $74
+    LDA World2EnemySpawnState
     STA a:World2EnemyState,X
     LDA $75
     STA a:World2EnemyX,X

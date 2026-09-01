@@ -67,13 +67,15 @@
         "config/object_dispatch.json",
         "config/object_placements.json",
         "config/object_pools.json",
+        "config/world2_streaming.json",
         "src/memory/ram.inc",
         "docs/ram_fields.md",
         "docs/object_formats.md",
         "docs/subsystems.md",
         "scripts/object_dispatch.py",
         "scripts/object_placements.py",
-        "scripts/object_pools.py"
+        "scripts/object_pools.py",
+        "scripts/world2_streaming.py"
       ]
     },
     {

@@ -12,7 +12,7 @@
 | `src/world1/data/*.asm` | PRG bank 0 | maps and two-level metatile data |
 | `src/common/bank1_*.asm` | PRG bank 1 | reset/NMI/mapper/gateways and vectors |
 | `src/world2/*.asm` | PRG bank 1 | cave shooter runtime and audio systems |
-| `src/world2/data/*.asm` | PRG bank 1 | blocks, 60 screens, and trailing data |
+| `src/world2/data/*.asm` | PRG bank 1 | blocks, stage sequence, pointers, and compressed screens |
 | `src/common/bank2_*.asm` | PRG bank 2 | reset/NMI/mapper/gateways and vectors |
 | `src/world3/*.asm` | PRG bank 2 | underwater runtime, objects, and audio |
 | `src/world3/data/*.asm` | PRG bank 2 | build string, maps, metatiles, and tail |
@@ -32,7 +32,9 @@ generated source includes only; they never include extracted binaries.
 `config/source_modules.json` is the canonical address-to-module map. It covers
 every byte of all four banks without gaps or overlaps. The generator rejects a
 boundary through an instruction, and the reconstruction audit enforces the
-700-line limit on every declared semantic module. The two World 2 screen files
-divide the 60 fixed-size screens at the exact 29/30 boundary. The two
-ending-credit files are contiguous storage shards rather than a claim that
-`$DBBC` is a format-level boundary.
+700-line limit on every declared semantic module. World 2 separates the stage
+sequence and standard pointer table from three contiguous storage shards for
+the variable-length screen streams; the shard boundaries do not claim
+format-level screen boundaries. Likewise, the two ending-credit files are
+contiguous storage shards rather than a claim that `$DBBC` is a format-level
+boundary.

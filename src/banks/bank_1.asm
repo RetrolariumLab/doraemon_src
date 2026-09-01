@@ -6,8 +6,10 @@
 
 ; $8000-$827C: Bank 1 reset, NMI, input, mapper switching, and cross-bank gateways
 .include "../common/bank1_boot_and_gateways.asm"
-; $827D-$88A3: World 2 pre-game presentation, PPU services, and local RTS dispatch tables
-.include "../world2/presentation_and_dispatch.asm"
+; $827D-$8443: World 2 stage sequence, compressed-screen selection, and row decoding control
+.include "../world2/screen_streaming.asm"
+; $8444-$88A3: World 2 compressed row expansion, PPU transfer services, and RTS dispatch tables
+.include "../world2/ppu_screen_services.asm"
 ; $88A4-$8C5C: World 2 initialization, frame loop, and player flight state
 .include "../world2/main_loop_and_player.asm"
 ; $8C5D-$8F4A: World 2 player animation, weapon state, and projectile creation
@@ -42,13 +44,17 @@
 .include "../world2/music_data.asm"
 ; $B9CE-$BA9E: World 2 CadEditor block attribute table
 .include "../world2/data/block_attributes.asm"
-; $BA9F-$BDEB: World 2 CadEditor small-block table proven prefix
+; $BA9F-$BDDE: World 2 CadEditor small-block region preceding the runtime stage sequence
 .include "../world2/data/small_blocks.asm"
-; $BDEC-$DA0B: World 2 CadEditor screens 0 through 29
-.include "../world2/data/screens_00_29.asm"
-; $DA0C-$F62B: World 2 CadEditor screens 30 through 59
-.include "../world2/data/screens_30_59.asm"
-; $F62C-$FFF9: World 2 trailing stage data pending format classification
-.include "../world2/data/bank_tail.asm"
+; $BDDF-$BEDD: World 2 stage command and compressed-screen selection sequence
+.include "../world2/data/stage_sequence.asm"
+; $BEDE-$BFCB: World 2 standard 119-entry compressed-screen pointer table
+.include "../world2/data/screen_pointer_table.asm"
+; $BFCC-$D52C: World 2 early compressed screen streams with embedded enemy tokens
+.include "../world2/data/screen_streams_1.asm"
+; $D52D-$EA4E: World 2 middle compressed screen streams with embedded enemy tokens
+.include "../world2/data/screen_streams_2.asm"
+; $EA4F-$FFF9: World 2 late compressed screen streams ending at the vector overlap
+.include "../world2/data/screen_streams_3.asm"
 ; $FFFA-$FFFF: Bank 1 NMI, RESET, and IRQ vectors
 .include "../common/bank1_vectors.asm"

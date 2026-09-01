@@ -37,8 +37,9 @@ gaps or overlaps, and every module remains at or below 700 lines.
 Recover shared and chapter-specific RAM, enemies, items, NPCs, projectiles,
 doors, manholes, bosses, triggers, and persistent progression state. The World
 1 entity grid, persistence masks, dispatch graphs, and three-byte city and
-underground placement lists are now machine-validated; later chapter placement
-formats remain active work.
+underground placement lists are now machine-validated. World 2's embedded
+screen-stream enemy tokens and screen-service dispatch graph are also proven;
+World 3 placement semantics remain active work.
 
 ### 6. World data formats - Planned
 

@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank1_Func_A612:
-    LDA $58
+    LDA World2CurrentScreenId
     CMP #$7F
     BNE Bank1_Label_A62A
     LDA $5C
@@ -55,7 +55,7 @@ Bank1_Label_A65E:
 
 Bank1_Label_A660:
     LDA a:$A6B5,Y
-    CMP $58
+    CMP World2CurrentScreenId
     BEQ Bank1_Label_A66B
     DEY
     BPL Bank1_Label_A660
@@ -117,14 +117,14 @@ Bank1_Label_A6AA:
 Bank1_Func_A6BC:
     LDA $AE
     BNE Bank1_Label_A6D5
-    LDA $56
+    LDA World2ScreenRowIndex
     CMP #$0D
     BNE Bank1_Label_A6D4
     LDY #$00
 
 Bank1_Label_A6C8:
     LDA a:$A70F,Y
-    CMP $58
+    CMP World2CurrentScreenId
     BEQ Bank1_Label_A6D8
     INY
     CPY #$11
@@ -162,7 +162,7 @@ Bank1_Label_A6F3:
     RTS
 
 Bank1_Label_A6FA:
-    LDA $55
+    LDA World2StageSequenceOffset
     STA $9E
     LDA a:$A742,Y
     BEQ Bank1_Label_A705
@@ -170,8 +170,8 @@ Bank1_Label_A6FA:
 
 Bank1_Label_A705:
     LDA a:$A720,Y
-    STA $55
-    DEC $55
+    STA World2StageSequenceOffset
+    DEC World2StageSequenceOffset
     DEC $AE
     RTS
     .byte $07, $0C, $10, $25, $2B, $33, $3E, $2F, $6B, $6A, $5A, $75, $73, $76, $72, $57

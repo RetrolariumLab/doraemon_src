@@ -32,3 +32,27 @@ of which its 67-record tail satisfies the ordering invariant.
 `config/object_placements.json` fixes both ranges, counts, terminators, and
 CRCs. `make validate-object-placements` also proves the type encoding and the
 sorted-tail invariant directly against the canonical PRG.
+
+## World 2 embedded enemy spawns
+
+World 2 has no separate fixed-size enemy placement list. Its screen decoder at
+`$8444` consumes map cells and enemy records from one variable-length stream:
+
+| Token | Meaning |
+| --- | --- |
+| `$00-$CF` | literal screen cell |
+| `$D0-$EE` | write an empty cell and spawn an enemy with this state |
+| `$EF` | terminate the current row |
+| `$F0` | reserved and absent from all standard streams |
+| `$F1-$FF` | repeat the following literal `(token & $0F) + 1` times |
+
+The selected screen pointer is stored at `$0046-$0047`; `$0054` is its current
+byte offset, `$0056` counts rows, and `$0074` carries an embedded spawn state
+into the enemy allocator. Each standard screen expands sixteen rows, stopping
+each row after at least fifteen cells. Because a final run is not clipped, row
+width can reach 22 cells.
+
+`config/world2_streaming.json` fixes all 119 standard selectors, 116 unique ROM
+streams, three screen-service RTS tables, 738 spawn tokens, 3,623 run tokens,
+and the final read at `$FFFA`. `make validate-world2-streaming` checks those
+invariants and every indirect dispatch target against the canonical PRG.

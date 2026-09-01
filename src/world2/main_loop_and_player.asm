@@ -340,14 +340,14 @@ Bank1_Func_8ADF:
     LDY $A9
     LDX a:$8B38,Y
     DEX
-    STX $55
+    STX World2StageSequenceOffset
     LDX a:$8BA9,Y
     JSR Bank1_Func_8784
     LDX $A9
     LDA a:$8BA6,X
     JSR Bank1_Func_8751
     LDA #$0F
-    STA $56
+    STA World2ScreenRowIndex
     LDA #$00
     STA $40
     STA $44
@@ -363,7 +363,7 @@ Bank1_Func_8ADF:
 
 Bank1_Label_8B14:
     JSR Bank1_Func_8371
-    JSR Bank1_Func_83CF
+    JSR World2_DecodeScreenRow15
     JSR Bank1_Func_8471
     JSR Bank1_Func_84C1
     JSR Bank1_Func_84E1

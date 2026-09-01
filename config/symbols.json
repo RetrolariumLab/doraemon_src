@@ -681,6 +681,54 @@
     },
     {
       "bank": 1,
+      "address": "0x837D",
+      "name": "World2_AdvanceStageSequence",
+      "evidence": "advances-16-row-screen-state-and-selects-next-stage-sequence-token"
+    },
+    {
+      "bank": 1,
+      "address": "0x83BE",
+      "name": "World2_SelectCompressedScreen",
+      "evidence": "masks-stage-token-and-loads-screen-stream-pointer-from-bede"
+    },
+    {
+      "bank": 1,
+      "address": "0x83CF",
+      "name": "World2_DecodeScreenRow15",
+      "evidence": "expands-compressed-screen-tokens-until-at-least-15-output-cells"
+    },
+    {
+      "bank": 1,
+      "address": "0x8405",
+      "name": "World2_DecodeScreenRow16",
+      "evidence": "expands-compressed-screen-tokens-until-at-least-16-output-cells"
+    },
+    {
+      "bank": 1,
+      "address": "0x8444",
+      "name": "World2_DecodeScreenToken",
+      "evidence": "literal-enemy-rle-and-ef-row-terminator-decoder"
+    },
+    {
+      "bank": 1,
+      "address": "0x8831",
+      "name": "World2_FrameScreenServiceRtsTable",
+      "evidence": "16-slot-target-minus-one-table-used-by-bank1-func-835d"
+    },
+    {
+      "bank": 1,
+      "address": "0x8851",
+      "name": "World2_ReverseScreenServiceRtsTable",
+      "evidence": "16-slot-target-minus-one-table-used-while-scroll-position-decrements"
+    },
+    {
+      "bank": 1,
+      "address": "0x8871",
+      "name": "World2_ForwardScreenServiceRtsTable",
+      "evidence": "16-slot-target-minus-one-table-used-while-scroll-position-increments"
+    },
+    {
+      "bank": 1,
       "address": "0x88A4",
       "name": "Bank1_World2Main",
       "evidence": "world2-cave-runtime-entry"
@@ -970,8 +1018,26 @@
     {
       "bank": 1,
       "address": "0xBDEC",
-      "name": "World2_Screens",
-      "evidence": "cadeditor"
+      "name": "World2_CadEditorScreenRegion",
+      "evidence": "cadeditor-region-overlaps-runtime-stage-sequence-and-compressed-screen-data"
+    },
+    {
+      "bank": 1,
+      "address": "0xBDDF",
+      "name": "World2_StageSequenceData",
+      "evidence": "indexed-by-world2-stage-sequence-offset-at-bank1-838b"
+    },
+    {
+      "bank": 1,
+      "address": "0xBEDE",
+      "name": "World2_ScreenPointerTable",
+      "evidence": "screen-id-indexed-little-endian-pointer-table-at-bank1-83be"
+    },
+    {
+      "bank": 1,
+      "address": "0xBFCC",
+      "name": "World2_CompressedScreenStreams",
+      "evidence": "first-standard-pointer-target-and-token-decoder-input"
     },
     {
       "bank": 2,
@@ -1740,6 +1806,63 @@
       "address": "0x0021",
       "name": "CombinedControllerButtons",
       "evidence": "or-of-four-controller-shift-registers"
+    },
+    {
+      "address": "0x0046",
+      "name": "World2ScreenStreamPointer",
+      "size": 2,
+      "banks": [
+        1
+      ],
+      "evidence": "little-endian-compressed-screen-pointer-loaded-from-bede-table"
+    },
+    {
+      "address": "0x0054",
+      "name": "World2ScreenStreamOffset",
+      "banks": [
+        1
+      ],
+      "evidence": "byte-offset-advanced-by-world2-compressed-screen-token-reader"
+    },
+    {
+      "address": "0x0055",
+      "name": "World2StageSequenceOffset",
+      "banks": [
+        1
+      ],
+      "evidence": "index-into-world2-stage-sequence-at-bddf"
+    },
+    {
+      "address": "0x0056",
+      "name": "World2ScreenRowIndex",
+      "banks": [
+        1
+      ],
+      "evidence": "counts-sixteen-rows-before-advancing-world2-stage-sequence"
+    },
+    {
+      "address": "0x0057",
+      "name": "World2ScreenRunLength",
+      "banks": [
+        1
+      ],
+      "evidence": "low-nibble-plus-shared-tail-repeat-count-for-f1-through-ff-tokens"
+    },
+    {
+      "address": "0x0058",
+      "name": "World2CurrentScreenId",
+      "banks": [
+        1
+      ],
+      "evidence": "masked-stage-token-used-to-index-world2-screen-pointer-table"
+    },
+    {
+      "address": "0x0074",
+      "name": "World2EnemySpawnState",
+      "banks": [
+        1
+      ],
+      "evidence": "d0-through-ee-compressed-screen-token-passed-to-world2-enemy-spawn"
     },
     {
       "address": "0x0068",

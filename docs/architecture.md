@@ -51,7 +51,7 @@ bank, independently confirming the selector interpretation. See
 | Bank | Confirmed landmarks | Working role |
 | --- | --- | --- |
 | 0 | city/underground maps and shared metatiles | world 1 |
-| 1 | 60 direct small-block screens | world 2 cave shooter |
+| 1 | stage sequence and 119 compressed screen selectors | world 2 cave shooter |
 | 2 | `DORAEMON WORLD3...` build string and underwater map | world 3 |
 | 3 | title strings, item names, credits, common presentation | shell/title/ending |
 
@@ -89,6 +89,8 @@ the shell-to-chapter edges and callable shell returns.
 ## Three gameplay systems
 
 World 1 uses a 64x64 city map plus a 64x25 underground map and two metatile
-layers. World 2 uses 60 independent 16x15 screens and no large-block layer.
-World 3 returns to a 64x64 map with separate metatile tables. This makes three
-chapter-specific update/rendering systems the safest current model.
+layers. World 2 follows a stage-command sequence and expands variable-length
+streams into sixteen-row screens; its literal, run-length, row-end, and enemy
+spawn tokens have no large-block layer. World 3 returns to a 64x64 map with
+separate metatile tables. This makes three chapter-specific update/rendering
+systems the safest current model.

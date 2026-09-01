@@ -34,11 +34,14 @@ side-view initializer in that order while PRG0/CHR0 stays selected.
 
 ## World 2 / bank 1
 
-The bank owns 60 direct 16x15 screens and shooter-specific code/data. Automatic
-scrolling, player flight, projectiles, and screen sequencing should be treated
-as a separate object/update system until code sharing is demonstrated.
-Runtime reaches the bank-local main entry at `$88A4` and then repeats the frame
-loop at `$8959` once per frame with PRG1/CHR1 selected.
+The bank owns a 255-byte stage sequence, 119 standard compressed-screen
+selectors, and shooter-specific code/data. Its token decoder expands sixteen
+rows of at least fifteen cells; literal cells, runs, early row endings, and
+enemy spawns share the same stream. Three overlapping 16-slot RTS tables drive
+forward, reverse, and per-frame screen services. Automatic scrolling, player
+flight, projectiles, and this screen pipeline form a chapter-specific
+object/update system. Runtime reaches the bank-local main entry at `$88A4` and
+then repeats the frame loop at `$8959` once per frame with PRG1/CHR1 selected.
 
 ## World 3 / bank 2
 
@@ -129,6 +132,11 @@ terminators are validated by `config/object_placements.json`.
 World 2 uses three smaller pools: seven enemies, six enemy projectiles, and
 seven player projectiles. Its main frame path independently updates the enemy
 and player-projectile pools, and initialization clears all three active fields.
+Enemy records are embedded directly in compressed screen streams: token values
+`$D0-$EE` become the new enemy state while the decoder emits an empty map cell.
+Across the 119 standard selectors, the decoder encounters 738 such spawn
+tokens. This ties enemy materialization to scrolling rather than to a separate
+fixed-size placement list.
 Enemy states use overlapping target-minus-one tables: rendering indexes a base
 at `$A548` (reachable states `$01-$14` begin at `$A54A`), while updating indexes
 21 slots at `$A570`. The shared bytes at `$A570-$A571`, 36 unique destinations,

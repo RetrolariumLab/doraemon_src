@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "bank": 1,
+  "dispatch_tables": [
+    {
+      "name": "frame_screen_services",
+      "address": "0x8831",
+      "encoding": "rts-minus-one",
+      "slot_count": 16,
+      "targets": [
+        "0x8365",
+        "0x8371",
+        "0x8365",
+        "0x83CF",
+        "0x8747",
+        "0x8471",
+        "0x8365",
+        "0x84C1",
+        "0x8365",
+        "0x84E1",
+        "0x8365",
+        "0x8578",
+        "0x8365",
+        "0x85A5",
+        "0x8365",
+        "0x85F7"
+      ]
+    },
+    {
+      "name": "reverse_screen_services",
+      "address": "0x8851",
+      "encoding": "rts-minus-one",
+      "slot_count": 16,
+      "targets": [
+        "0x8365",
+        "0x8365",
+        "0x8365",
+        "0x8747",
+        "0x8365",
+        "0x86C9",
+        "0x8365",
+        "0x8365",
+        "0x8365",
+        "0x86EB",
+        "0x8660",
+        "0x8641",
+        "0x84AB",
+        "0x8405",
+        "0x83DD",
+        "0x8365"
+      ]
+    },
+    {
+      "name": "forward_screen_services",
+      "address": "0x8871",
+      "encoding": "rts-minus-one",
+      "slot_count": 16,
+      "targets": [
+        "0x8365",
+        "0x83DD",
+        "0x8405",
+        "0x84AB",
+        "0x86C9",
+        "0x8660",
+        "0x86EB",
+        "0x8365",
+        "0x8365",
+        "0x8365",
+        "0x8641",
+        "0x8365",
+        "0x8747",
+        "0x8365",
+        "0x8365",
+        "0x8365"
+      ]
+    }
+  ],
+  "stage_sequence": {
+    "address": "0xBDDF",
+    "size": 255,
+    "crc32": "ce61b81a",
+    "start_table_address": "0x8B38",
+    "start_offsets": [
+      0,
+      37,
+      92
+    ],
+    "dynamic_screen_ids": {
+      "0x7B": "0x0515",
+      "0x7F": "0x00FC"
+    }
+  },
+  "screen_pointer_table": {
+    "address": "0xBEDE",
+    "slot_count": 128,
+    "standard_rom_slots": 119,
+    "standard_crc32": "a96f7b57",
+    "full_crc32": "38fe86b0",
+    "standard_unique_pointer_count": 116,
+    "first_stream_address": "0xBFCC"
+  },
+  "screen_streams": {
+    "address": "0xBFCC",
+    "last_consumed_address": "0xFFFA",
+    "crc32": "c1d464bb",
+    "rows_per_screen": 16,
+    "minimum_cells_per_row": 15,
+    "expected_screen_count": 119,
+    "expected_spawn_tokens": 738,
+    "expected_rle_tokens": 3623,
+    "expected_row_terminators": 107,
+    "expected_max_row_width": 22
+  }
+}

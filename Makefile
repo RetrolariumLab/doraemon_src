@@ -38,6 +38,7 @@ AUDIO_DISPATCH := config/audio_dispatch.json
 OBJECT_POOLS := config/object_pools.json
 OBJECT_DISPATCH := config/object_dispatch.json
 OBJECT_PLACEMENTS := config/object_placements.json
+WORLD2_STREAMING := config/world2_streaming.json
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -49,7 +50,7 @@ OBJECT_PLACEMENTS := config/object_placements.json
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
 	audio-dispatch validate-audio-dispatch object-pools validate-object-pools \
 	object-dispatch validate-object-dispatch object-placements \
-	validate-object-placements
+	validate-object-placements world2-streaming validate-world2-streaming
 
 all: verify
 
@@ -188,6 +189,11 @@ object-placements validate-object-placements: $(PRG_ASSET)
 	$(PYTHON) scripts/object_placements.py --prg "$(PRG_ASSET)" \
 		--manifest "$(OBJECT_PLACEMENTS)"
 
+world2-streaming validate-world2-streaming: $(PRG_ASSET)
+	$(PYTHON) scripts/world2_streaming.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_STREAMING)" \
+		--code-entries config/prg_code_entries.txt
+
 ghidra-bootstrap:
 	$(PYTHON) scripts/bootstrap_ghidra.py install
 
@@ -214,7 +220,7 @@ validate-maps: $(ROM)
 
 release-check: quality-check disassembly-check verify validate-maps \
 	validate-audio-dispatch validate-object-pools validate-object-dispatch \
-	validate-object-placements
+	validate-object-placements validate-world2-streaming
 
 check: release-check
 
