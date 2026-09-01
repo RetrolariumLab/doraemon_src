@@ -100,7 +100,7 @@ World2_EnemyUpdateDispatchContinuation:
 
 Bank1_Label_9991:
     LDA a:World2EnemyDamageCounter,X
-    CMP a:$A511,Y
+    CMP a:World2_EnemyDamageThresholdByState,Y
     BCC Bank1_Label_99D8
 
 Bank1_Label_9999:
@@ -136,7 +136,7 @@ Bank1_Label_99C0:
     STA $B8
 
 Bank1_Label_99C4:
-    LDA a:$A599,Y
+    LDA a:World2_EnemyScoreRewardCodeByState,Y
     BEQ Bank1_Label_99CC
     JSR Bank1_Func_81C9
 
@@ -155,7 +155,7 @@ Bank1_Label_99D8:
 Bank1_Label_99E0:
     INC a:World2EnemyAttackTimer,X
     LDA a:World2EnemyAttackTimer,X
-    CMP a:$A4FD,Y
+    CMP a:World2_EnemyAttackPeriodByState,Y
     BCC Bank1_Label_9A3F
     LDA #$00
     STA a:World2EnemyAttackTimer,X

@@ -40,8 +40,9 @@ doors, manholes, bosses, triggers, and persistent progression state. The World
 underground placement lists, thirteen descriptor definitions, transient
 selectors, and five collision-extent tables are now machine-validated and
 losslessly editable. World 2's embedded screen-stream enemy tokens, overlapping
-screen views, lossless authoring data, and screen-service dispatch graph are
-also proven;
+screen views, lossless authoring data, token-to-state normalization, complete
+20-state runtime domain, three editable property tables, and dispatch graphs
+are proven;
 World 3's initial thirteen-record persistent registry, randomized type groups,
 and low-type behavior pointers are now exact. All sixteen low-type behavior
 streams are decoded into a lossless editable format. Its full 32-type catalog,

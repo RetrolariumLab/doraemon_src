@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "bank": 1,
+  "spawn_encoding": {
+    "token_min": "0xD0",
+    "token_max": "0xDE",
+    "state_formula": "((token & 0x1F) ^ 0x10) + 1",
+    "state_min": "0x01",
+    "state_max": "0x0F",
+    "expected_physical_total": 685,
+    "expected_selector_total": 738,
+    "token_counts": {
+      "0xD0": 101,
+      "0xD1": 124,
+      "0xD2": 105,
+      "0xD3": 8,
+      "0xD4": 2,
+      "0xD5": 64,
+      "0xD6": 5,
+      "0xD7": 61,
+      "0xD8": 12,
+      "0xD9": 62,
+      "0xDA": 45,
+      "0xDB": 9,
+      "0xDC": 15,
+      "0xDD": 57,
+      "0xDE": 15
+    },
+    "normalization_signature": {
+      "address": "0x9A32",
+      "bytes": "BD 58 05 29 1F 49 10 18 69 01 9D 58 05"
+    }
+  },
+  "runtime_states": {
+    "state_count": 20,
+    "direct_spawn_states": [
+      "0x01",
+      "0x02",
+      "0x03",
+      "0x04",
+      "0x05",
+      "0x06",
+      "0x07",
+      "0x08",
+      "0x09",
+      "0x0A",
+      "0x0B",
+      "0x0C",
+      "0x0D",
+      "0x0E",
+      "0x0F"
+    ],
+    "internal_states": [
+      "0x10",
+      "0x11",
+      "0x12",
+      "0x13",
+      "0x14"
+    ]
+  },
+  "property_tables": [
+    {
+      "name": "attack_period_by_state",
+      "address": "0xA4FD",
+      "slot_count": 21,
+      "index_semantics": "runtime state 0x00-0x14; state zero is inactive",
+      "crc32": "0dd52e04",
+      "values": [
+        "0x01",
+        "0x40",
+        "0x30",
+        "0x80",
+        "0x30",
+        "0x20",
+        "0x40",
+        "0xFF",
+        "0xFF",
+        "0x35",
+        "0xFF",
+        "0xFF",
+        "0x20",
+        "0xFF",
+        "0xFF",
+        "0xFF",
+        "0xFF",
+        "0xFF",
+        "0xFF",
+        "0xFF",
+        "0x04"
+      ]
+    },
+    {
+      "name": "damage_threshold_by_state",
+      "address": "0xA511",
+      "slot_count": 21,
+      "index_semantics": "runtime state 0x00-0x14; state zero is inactive",
+      "crc32": "24a5225f",
+      "values": [
+        "0x04",
+        "0x01",
+        "0x01",
+        "0x01",
+        "0x01",
+        "0x01",
+        "0x01",
+        "0x08",
+        "0x02",
+        "0x20",
+        "0x03",
+        "0x08",
+        "0x04",
+        "0x02",
+        "0x20",
+        "0x08",
+        "0x01",
+        "0x20",
+        "0x20",
+        "0x20",
+        "0x01"
+      ]
+    },
+    {
+      "name": "score_reward_code_by_state",
+      "address": "0xA599",
+      "slot_count": 21,
+      "index_semantics": "runtime state 0x00-0x14; state zero overlaps update dispatch",
+      "crc32": "d8159427",
+      "values": [
+        "0xA0",
+        "0x51",
+        "0x52",
+        "0x53",
+        "0x41",
+        "0x31",
+        "0x55",
+        "0x43",
+        "0x45",
+        "0x32",
+        "0x45",
+        "0x45",
+        "0x31",
+        "0x41",
+        "0x41",
+        "0x31",
+        "0x00",
+        "0x21",
+        "0x21",
+        "0x21",
+        "0x45"
+      ]
+    }
+  ],
+  "dispatch_contracts": [
+    {
+      "name": "world2_enemy_render_handlers",
+      "state_min": "0x01",
+      "state_max": "0x14",
+      "slot_count": 20
+    },
+    {
+      "name": "world2_enemy_update_handlers",
+      "state_min": "0x00",
+      "state_max": "0x14",
+      "slot_count": 21
+    }
+  ],
+  "shared_boundaries": [
+    {
+      "left": "attack_period_by_state",
+      "left_last_byte": "0xA511",
+      "right": "damage_threshold_by_state",
+      "right_first_byte": "0xA511"
+    },
+    {
+      "left": "world2_enemy_update_handlers",
+      "left_last_byte": "0xA599",
+      "right": "score_reward_code_by_state",
+      "right_first_byte": "0xA599"
+    }
+  ],
+  "shared_overlaps": [
+    {
+      "left": "world2_enemy_render_handlers",
+      "right": "world2_enemy_update_handlers",
+      "overlap_address": "0xA570",
+      "overlap_size": 2
+    }
+  ]
+}

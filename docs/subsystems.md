@@ -143,6 +143,11 @@ Enemy records are embedded directly in compressed screen streams: token values
 Across the 119 standard selectors, the decoder encounters 738 such spawn
 tokens. This ties enemy materialization to scrolling rather than to a separate
 fixed-size placement list.
+The overlapping screen views contain 685 unique physical spawn-token bytes,
+all in `$D0-$DE`. The delayed spawn path maps them exactly to states `$01-$0F`;
+five further states `$10-$14` arise internally. Three 21-slot property tables
+provide attack periods, damage thresholds, and score reward codes across the
+complete state domain.
 Enemy states use overlapping target-minus-one tables: rendering indexes a base
 at `$A548` (reachable states `$01-$14` begin at `$A54A`), while updating indexes
 21 slots at `$A570`. The shared bytes at `$A570-$A571`, 36 unique destinations,

@@ -69,6 +69,14 @@ The shared token storage and all selector row views also round-trip through
 `data/world2/compressed_screens.json` as documented in
 `docs/world2_streaming.md`.
 
+Only physical tokens `$D0-$DE` occur. After their delayed negative-state phase,
+the normalization at `$9A32` maps them one-to-one to runtime states `$01-$0F`.
+States `$10-$14` are internal-only extensions of the same render/update and
+property-table domain. The exact token frequencies, transformation signature,
+three state property tables, and overlapping dispatch storage are documented in
+`docs/world2_enemy_states.md`. Their 21 row-oriented state records are losslessly
+editable in `data/world2/enemy_states.json`.
+
 ## World 3 initial persistent registry
 
 `World3_InitializeRoomObjectRegistry` copies 65 bytes at `$D96B` directly into

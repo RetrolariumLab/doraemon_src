@@ -44,8 +44,10 @@
 - Known: the World 1 high-bit path uses thirteen four-byte descriptors. Their
   four fields, placement encoding and usage, transient selectors, and five
   collision-extent tables are exact; see `docs/world1_descriptors.md`.
-- Known: World 2 enemy spawns are `$D0-$EE` tokens embedded in compressed
-  screen streams; all 738 occurrences are validated.
+- Known: World 2 enemy spawns are embedded in compressed screen streams; 685
+  physical `$D0-$DE` bytes appear as 738 selector-view occurrences and map
+  exactly to runtime states `$01-$0F`. States `$10-$14`, three property tables,
+  and both dispatch domains are structurally validated.
 - Known: World 3 begins with thirteen persistent objects stored as five
   parallel ROM arrays; the exact initial fields, two randomized type groups,
   fixed type slot, and sixteen low-type behavior pointers are validated by
@@ -55,7 +57,8 @@
   `$1C-$1E` type transformations are validated by
   `config/world3_entity_types.json`.
 - Unknown: character/item identities for World 1 descriptors, individual World
-  2 enemy-state meanings, character identities for World 3 types, and remaining
+  2 enemy identities and handler-specific meanings, character identities for
+  World 3 types, and remaining
   transient World 3 enemy/projectile placement rules. The World 3 behavior
   bytecode and structural type catalog are fully decoded and validated.
 

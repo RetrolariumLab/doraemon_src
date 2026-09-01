@@ -859,6 +859,20 @@
     },
     {
       "bank": 1,
+      "address": "0xA4FD",
+      "name": "World2_EnemyAttackPeriodByState",
+      "operand_symbol": true,
+      "evidence": "21-byte attack-timer threshold table indexed by runtime enemy state"
+    },
+    {
+      "bank": 1,
+      "address": "0xA511",
+      "name": "World2_EnemyDamageThresholdByState",
+      "operand_symbol": true,
+      "evidence": "21-byte damage threshold table indexed by runtime enemy state"
+    },
+    {
+      "bank": 1,
       "address": "0xA548",
       "name": "World2_EnemyRenderHandlerRtsTable",
       "evidence": "enemy-state-target-minus-one-render-rts-dispatch-base"
@@ -868,6 +882,13 @@
       "address": "0xA570",
       "name": "World2_EnemyUpdateHandlerRtsTable",
       "evidence": "21-slot-enemy-state-target-minus-one-update-rts-dispatch"
+    },
+    {
+      "bank": 1,
+      "address": "0xA599",
+      "name": "World2_EnemyScoreRewardCodeByState",
+      "operand_symbol": true,
+      "evidence": "21-byte reward-code table indexed by defeated runtime enemy state"
     },
     {
       "bank": 1,

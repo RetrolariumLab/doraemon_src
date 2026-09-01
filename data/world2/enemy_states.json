@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world2-enemy-states",
+  "bank": 1,
+  "state_count": 20,
+  "properties": [
+    "attack_period_by_state",
+    "damage_threshold_by_state",
+    "score_reward_code_by_state"
+  ],
+  "property_addresses": {
+    "attack_period_by_state": "0xA4FD",
+    "damage_threshold_by_state": "0xA511",
+    "score_reward_code_by_state": "0xA599"
+  },
+  "records": [
+    {
+      "id": 0,
+      "attack_period_by_state": "0x01",
+      "damage_threshold_by_state": "0x04",
+      "score_reward_code_by_state": "0xA0"
+    },
+    {
+      "id": 1,
+      "attack_period_by_state": "0x40",
+      "damage_threshold_by_state": "0x01",
+      "score_reward_code_by_state": "0x51"
+    },
+    {
+      "id": 2,
+      "attack_period_by_state": "0x30",
+      "damage_threshold_by_state": "0x01",
+      "score_reward_code_by_state": "0x52"
+    },
+    {
+      "id": 3,
+      "attack_period_by_state": "0x80",
+      "damage_threshold_by_state": "0x01",
+      "score_reward_code_by_state": "0x53"
+    },
+    {
+      "id": 4,
+      "attack_period_by_state": "0x30",
+      "damage_threshold_by_state": "0x01",
+      "score_reward_code_by_state": "0x41"
+    },
+    {
+      "id": 5,
+      "attack_period_by_state": "0x20",
+      "damage_threshold_by_state": "0x01",
+      "score_reward_code_by_state": "0x31"
+    },
+    {
+      "id": 6,
+      "attack_period_by_state": "0x40",
+      "damage_threshold_by_state": "0x01",
+      "score_reward_code_by_state": "0x55"
+    },
+    {
+      "id": 7,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x08",
+      "score_reward_code_by_state": "0x43"
+    },
+    {
+      "id": 8,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x02",
+      "score_reward_code_by_state": "0x45"
+    },
+    {
+      "id": 9,
+      "attack_period_by_state": "0x35",
+      "damage_threshold_by_state": "0x20",
+      "score_reward_code_by_state": "0x32"
+    },
+    {
+      "id": 10,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x03",
+      "score_reward_code_by_state": "0x45"
+    },
+    {
+      "id": 11,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x08",
+      "score_reward_code_by_state": "0x45"
+    },
+    {
+      "id": 12,
+      "attack_period_by_state": "0x20",
+      "damage_threshold_by_state": "0x04",
+      "score_reward_code_by_state": "0x31"
+    },
+    {
+      "id": 13,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x02",
+      "score_reward_code_by_state": "0x41"
+    },
+    {
+      "id": 14,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x20",
+      "score_reward_code_by_state": "0x41"
+    },
+    {
+      "id": 15,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x08",
+      "score_reward_code_by_state": "0x31"
+    },
+    {
+      "id": 16,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x01",
+      "score_reward_code_by_state": "0x00"
+    },
+    {
+      "id": 17,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x20",
+      "score_reward_code_by_state": "0x21"
+    },
+    {
+      "id": 18,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x20",
+      "score_reward_code_by_state": "0x21"
+    },
+    {
+      "id": 19,
+      "attack_period_by_state": "0xFF",
+      "damage_threshold_by_state": "0x20",
+      "score_reward_code_by_state": "0x21"
+    },
+    {
+      "id": 20,
+      "attack_period_by_state": "0x04",
+      "damage_threshold_by_state": "0x01",
+      "score_reward_code_by_state": "0x45"
+    }
+  ],
+  "covered_byte_count": 62,
+  "covered_crc32": "327584e9"
+}
