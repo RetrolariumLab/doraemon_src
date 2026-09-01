@@ -94,6 +94,7 @@ make bank-gateways      # report the validated cross-bank gateway graph
 make object-pools       # validate chapter pool capacities, fields, and lifecycle API
 make object-dispatch    # validate indirect object-handler tables and code seeds
 make object-placements  # validate and round-trip World 1 object data
+make world3-object-catalog # validate and round-trip World 3 object/type data
 make maps               # describe all CadEditor-backed regions as JSON
 make validate-maps      # validate map/table sizes and CRCs
 make quality-check      # formatting, lint, and unit tests
@@ -116,6 +117,7 @@ config/object_pools.json machine-checked chapter entity storage contract
 config/object_dispatch.json indirect chapter object-handler tables
 config/object_placements.json World 1 placement and descriptor contract
 data/world1/object_data.json lossless editable World 1 object representation
+data/world3/object_catalog.json lossless editable World 3 object/type catalog
 config/symbols.json         bank-qualified semantic symbol registry
 config/debugger_*.json      initial Mesen watches and breakpoints
 docs/                       architecture, formats, evidence, and roadmap

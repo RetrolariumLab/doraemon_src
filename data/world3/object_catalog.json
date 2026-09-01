@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world3-object-catalog",
+  "bank": 2,
+  "persistent_registry": {
+    "address": "0xD96B",
+    "capacity": 13,
+    "records": [
+      {
+        "id": 0,
+        "room": "0x07",
+        "type": "0x18",
+        "x": "0xA0",
+        "y": "0x40",
+        "state": "0x00"
+      },
+      {
+        "id": 1,
+        "room": "0x0B",
+        "type": "0x19",
+        "x": "0x60",
+        "y": "0x60",
+        "state": "0x00"
+      },
+      {
+        "id": 2,
+        "room": "0x0C",
+        "type": "0x1A",
+        "x": "0xA0",
+        "y": "0xA0",
+        "state": "0x00"
+      },
+      {
+        "id": 3,
+        "room": "0x19",
+        "type": "0x1B",
+        "x": "0x80",
+        "y": "0x80",
+        "state": "0x00"
+      },
+      {
+        "id": 4,
+        "room": "0x02",
+        "type": "0x17",
+        "x": "0x80",
+        "y": "0x50",
+        "state": "0x00"
+      },
+      {
+        "id": 5,
+        "room": "0x11",
+        "type": "0x17",
+        "x": "0x60",
+        "y": "0x28",
+        "state": "0x00"
+      },
+      {
+        "id": 6,
+        "room": "0x14",
+        "type": "0x17",
+        "x": "0x90",
+        "y": "0x90",
+        "state": "0x00"
+      },
+      {
+        "id": 7,
+        "room": "0x17",
+        "type": "0x17",
+        "x": "0xA0",
+        "y": "0x30",
+        "state": "0x00"
+      },
+      {
+        "id": 8,
+        "room": "0x22",
+        "type": "0x17",
+        "x": "0x40",
+        "y": "0x40",
+        "state": "0x00"
+      },
+      {
+        "id": 9,
+        "room": "0x27",
+        "type": "0x14",
+        "x": "0xA0",
+        "y": "0xC0",
+        "state": "0x00"
+      },
+      {
+        "id": 10,
+        "room": "0x28",
+        "type": "0x15",
+        "x": "0xA0",
+        "y": "0xC0",
+        "state": "0x00"
+      },
+      {
+        "id": 11,
+        "room": "0x34",
+        "type": "0x16",
+        "x": "0xC0",
+        "y": "0xC0",
+        "state": "0x00"
+      },
+      {
+        "id": 12,
+        "room": "0x3F",
+        "type": "0x1F",
+        "x": "0x84",
+        "y": "0x78",
+        "state": "0x00"
+      }
+    ]
+  },
+  "entity_types": {
+    "type_count": 32,
+    "property_addresses": {
+      "hit_points": "0x8EB5",
+      "metasprite_base": "0x8ED5",
+      "render_flags": "0x8EF5",
+      "contact_damage": "0x8F15",
+      "score_reward_code": "0x8F35"
+    },
+    "records": [
+      {
+        "id": 0,
+        "hit_points": "0x01",
+        "metasprite_base": "0x10",
+        "render_flags": "0x02",
+        "contact_damage": "0x02",
+        "score_reward_code": "0x55"
+      },
+      {
+        "id": 1,
+        "hit_points": "0x02",
+        "metasprite_base": "0x14",
+        "render_flags": "0x03",
+        "contact_damage": "0x02",
+        "score_reward_code": "0x41"
+      },
+      {
+        "id": 2,
+        "hit_points": "0x01",
+        "metasprite_base": "0x18",
+        "render_flags": "0x01",
+        "contact_damage": "0x04",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 3,
+        "hit_points": "0x02",
+        "metasprite_base": "0x1C",
+        "render_flags": "0x03",
+        "contact_damage": "0x02",
+        "score_reward_code": "0x42"
+      },
+      {
+        "id": 4,
+        "hit_points": "0x02",
+        "metasprite_base": "0x20",
+        "render_flags": "0x20",
+        "contact_damage": "0x02",
+        "score_reward_code": "0x41"
+      },
+      {
+        "id": 5,
+        "hit_points": "0x00",
+        "metasprite_base": "0x24",
+        "render_flags": "0x00",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 6,
+        "hit_points": "0x00",
+        "metasprite_base": "0x40",
+        "render_flags": "0x01",
+        "contact_damage": "0x04",
+        "score_reward_code": "0x45"
+      },
+      {
+        "id": 7,
+        "hit_points": "0x00",
+        "metasprite_base": "0xB0",
+        "render_flags": "0x00",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x33"
+      },
+      {
+        "id": 8,
+        "hit_points": "0x08",
+        "metasprite_base": "0x30",
+        "render_flags": "0x03",
+        "contact_damage": "0x02",
+        "score_reward_code": "0x35"
+      },
+      {
+        "id": 9,
+        "hit_points": "0x00",
+        "metasprite_base": "0x34",
+        "render_flags": "0x03",
+        "contact_damage": "0x02",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 10,
+        "hit_points": "0x00",
+        "metasprite_base": "0x28",
+        "render_flags": "0x00",
+        "contact_damage": "0x04",
+        "score_reward_code": "0x35"
+      },
+      {
+        "id": 11,
+        "hit_points": "0x00",
+        "metasprite_base": "0x2C",
+        "render_flags": "0x00",
+        "contact_damage": "0x04",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 12,
+        "hit_points": "0x10",
+        "metasprite_base": "0x80",
+        "render_flags": "0x02",
+        "contact_damage": "0x04",
+        "score_reward_code": "0x25"
+      },
+      {
+        "id": 13,
+        "hit_points": "0x10",
+        "metasprite_base": "0x84",
+        "render_flags": "0x02",
+        "contact_damage": "0x04",
+        "score_reward_code": "0x25"
+      },
+      {
+        "id": 14,
+        "hit_points": "0x10",
+        "metasprite_base": "0x88",
+        "render_flags": "0x02",
+        "contact_damage": "0x04",
+        "score_reward_code": "0x25"
+      },
+      {
+        "id": 15,
+        "hit_points": "0x10",
+        "metasprite_base": "0x8C",
+        "render_flags": "0x02",
+        "contact_damage": "0x04",
+        "score_reward_code": "0x25"
+      },
+      {
+        "id": 16,
+        "hit_points": "0x00",
+        "metasprite_base": "0x64",
+        "render_flags": "0x00",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x45"
+      },
+      {
+        "id": 17,
+        "hit_points": "0x00",
+        "metasprite_base": "0x40",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x41"
+      },
+      {
+        "id": 18,
+        "hit_points": "0x00",
+        "metasprite_base": "0x70",
+        "render_flags": "0x00",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x32"
+      },
+      {
+        "id": 19,
+        "hit_points": "0x00",
+        "metasprite_base": "0x74",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x31"
+      },
+      {
+        "id": 20,
+        "hit_points": "0x00",
+        "metasprite_base": "0x50",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x31"
+      },
+      {
+        "id": 21,
+        "hit_points": "0x00",
+        "metasprite_base": "0x54",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x31"
+      },
+      {
+        "id": 22,
+        "hit_points": "0x00",
+        "metasprite_base": "0x58",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x31"
+      },
+      {
+        "id": 23,
+        "hit_points": "0x00",
+        "metasprite_base": "0x5C",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x31"
+      },
+      {
+        "id": 24,
+        "hit_points": "0x00",
+        "metasprite_base": "0x44",
+        "render_flags": "0x00",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 25,
+        "hit_points": "0x00",
+        "metasprite_base": "0x60",
+        "render_flags": "0x00",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 26,
+        "hit_points": "0x00",
+        "metasprite_base": "0x4C",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 27,
+        "hit_points": "0x00",
+        "metasprite_base": "0x48",
+        "render_flags": "0x00",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 28,
+        "hit_points": "0x00",
+        "metasprite_base": "0x90",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 29,
+        "hit_points": "0x00",
+        "metasprite_base": "0x94",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 30,
+        "hit_points": "0x00",
+        "metasprite_base": "0x98",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x51"
+      },
+      {
+        "id": 31,
+        "hit_points": "0x00",
+        "metasprite_base": "0x9C",
+        "render_flags": "0x01",
+        "contact_damage": "0x00",
+        "score_reward_code": "0x51"
+      }
+    ]
+  },
+  "covered_byte_count": 225,
+  "covered_crc32": "1094fda4"
+}

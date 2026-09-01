@@ -105,4 +105,7 @@ points, base metasprites, render flags, contact damage, and score reward codes.
 The catalog also proves the initializer/behavior/update dispatch cardinalities,
 partitions all types into lifecycle domains, and fixes the `$10-$13` post-defeat
 and `$1C-$1E` persistent transformations. See
-`docs/world3_entity_types.md`.
+`docs/world3_entity_types.md`. The row-oriented editable view in
+`data/world3/object_catalog.json` losslessly transposes both the thirteen
+persistent records and all 32 five-property type records back into their ROM
+structure-of-arrays layouts.

@@ -45,6 +45,7 @@ WORLD3_OBJECT_DATA := config/world3_object_data.json
 WORLD3_BEHAVIOR := config/world3_behavior.json
 WORLD3_BEHAVIOR_AUTHORING := data/world3/behavior_streams.json
 WORLD3_ENTITY_TYPES := config/world3_entity_types.json
+WORLD3_OBJECT_AUTHORING := data/world3/object_catalog.json
 WORLD_DATA := config/world_data.json
 WORLD1_DATA_AUTHORING := data/world1/hierarchical_world.json
 WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
@@ -62,6 +63,7 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	validate-object-placements world2-streaming validate-world2-streaming \
 	world3-object-data validate-world3-object-data world3-behavior \
 	validate-world3-behavior world3-entity-types validate-world3-entity-types \
+	world3-object-catalog validate-world3-object-catalog \
 	world-data validate-world-data
 
 all: verify
@@ -223,6 +225,12 @@ world3-entity-types validate-world3-entity-types: $(PRG_ASSET)
 		--object-dispatch "$(OBJECT_DISPATCH)" \
 		--object-data "$(WORLD3_OBJECT_DATA)"
 
+world3-object-catalog validate-world3-object-catalog: $(PRG_ASSET)
+	$(PYTHON) scripts/world3_object_catalog.py validate --prg "$(PRG_ASSET)" \
+		--object-data "$(WORLD3_OBJECT_DATA)" \
+		--entity-types "$(WORLD3_ENTITY_TYPES)" \
+		--authoring "$(WORLD3_OBJECT_AUTHORING)"
+
 world-data validate-world-data: $(PRG_ASSET)
 	$(PYTHON) scripts/world_data.py validate --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD_DATA)" \
@@ -257,7 +265,8 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-audio-dispatch validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world2-streaming \
 	validate-world3-object-data validate-world3-behavior \
-	validate-world3-entity-types validate-world-data
+	validate-world3-entity-types validate-world3-object-catalog \
+	validate-world-data
 
 check: release-check
 

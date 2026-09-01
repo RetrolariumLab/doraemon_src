@@ -59,3 +59,8 @@ make validate-world3-entity-types
 It proves five property columns, 16 initializer pointers, 16 behavior pointers,
 32 update pointers, four nonoverlapping lifecycle domains, the exact initial
 persistent type multiset, and both encoded type transformations.
+
+For editing, `data/world3/object_catalog.json` joins each type's five property
+values into one record and also joins the five persistent registry columns into
+thirteen object records. `make validate-world3-object-catalog` transposes that
+representation back to the original ROM layout and requires a byte-exact match.
