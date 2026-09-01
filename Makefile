@@ -38,6 +38,7 @@ AUDIO_DISPATCH := config/audio_dispatch.json
 OBJECT_POOLS := config/object_pools.json
 OBJECT_DISPATCH := config/object_dispatch.json
 OBJECT_PLACEMENTS := config/object_placements.json
+OBJECT_PLACEMENTS_AUTHORING := data/world1/object_data.json
 WORLD2_STREAMING := config/world2_streaming.json
 WORLD2_SCREEN_AUTHORING := data/world2/compressed_screens.json
 WORLD3_OBJECT_DATA := config/world3_object_data.json
@@ -197,8 +198,9 @@ object-dispatch validate-object-dispatch: $(PRG_ASSET)
 		--code-entries config/prg_code_entries.txt
 
 object-placements validate-object-placements: $(PRG_ASSET)
-	$(PYTHON) scripts/object_placements.py --prg "$(PRG_ASSET)" \
-		--manifest "$(OBJECT_PLACEMENTS)"
+	$(PYTHON) scripts/object_placements.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(OBJECT_PLACEMENTS)" \
+		--authoring "$(OBJECT_PLACEMENTS_AUTHORING)"
 
 world2-streaming validate-world2-streaming: $(PRG_ASSET)
 	$(PYTHON) scripts/world2_streaming.py validate --prg "$(PRG_ASSET)" \

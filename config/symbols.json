@@ -417,6 +417,76 @@
     },
     {
       "bank": 0,
+      "address": "0x94D4",
+      "name": "World1_TransientDescriptorSelectorTable",
+      "operand_symbol": true,
+      "evidence": "four descriptor indexes selected by collision-spawn random value"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC0A",
+      "name": "World1_ObjectDescriptorTable",
+      "operand_symbol": true,
+      "evidence": "thirteen four-byte records selected by high-bit placement low nibble"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC0B",
+      "name": "World1_ObjectDescriptorMetaspriteField",
+      "operand_symbol": true,
+      "evidence": "second byte of four-byte descriptor records loaded with the same scaled index"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC0C",
+      "name": "World1_ObjectDescriptorRenderFlagsField",
+      "operand_symbol": true,
+      "evidence": "third byte of four-byte descriptor records loaded with the same scaled index"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC0D",
+      "name": "World1_ObjectDescriptorPrimaryBehaviorField",
+      "operand_symbol": true,
+      "evidence": "fourth byte of four-byte descriptor records loaded with the same scaled index"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC3D",
+      "name": "World1_ObjectProjectileHitboxXByType",
+      "operand_symbol": true,
+      "evidence": "fourteen-byte projectile-x extent table indexed by runtime object type"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC4A",
+      "name": "World1_ObjectProjectileHitboxYByType",
+      "operand_symbol": true,
+      "evidence": "fourteen-byte projectile-y extent table indexed by runtime object type"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC58",
+      "name": "World1_ObjectInteractionHitboxXByTypeMinusOne",
+      "operand_symbol": true,
+      "evidence": "thirteen-byte interaction-x extent table indexed by runtime type minus one"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC65",
+      "name": "World1_ObjectInteractionHitboxYNegativeByTypeMinusOne",
+      "operand_symbol": true,
+      "evidence": "thirteen-byte negative-y interaction extent table indexed by runtime type minus one"
+    },
+    {
+      "bank": 0,
+      "address": "0xCC72",
+      "name": "World1_ObjectInteractionHitboxYPositiveByTypeMinusOne",
+      "operand_symbol": true,
+      "evidence": "thirteen-byte positive-y interaction extent table indexed by runtime type minus one"
+    },
+    {
+      "bank": 0,
       "address": "0xA9EF",
       "name": "World1_BlockAttributes",
       "evidence": "cadeditor"

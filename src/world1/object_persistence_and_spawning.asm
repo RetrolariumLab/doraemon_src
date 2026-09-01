@@ -159,9 +159,9 @@ Bank0_Label_8E2F:
     ASL A
     AND #$3F
     TAY
-    LDA a:$CC0A,Y
+    LDA a:World1_ObjectDescriptorTable,Y
     STA a:World1EntityType,X
-    LDA a:$CC0B,Y
+    LDA a:World1_ObjectDescriptorMetaspriteField,Y
     STA a:World1EntityMetasprite,X
     BNE Bank0_Label_8E4C
     LDA $7B
@@ -170,7 +170,7 @@ Bank0_Label_8E2F:
     STA a:World1EntityMetasprite,X
 
 Bank0_Label_8E4C:
-    LDA a:$CC0C,Y
+    LDA a:World1_ObjectDescriptorRenderFlagsField,Y
     STA a:World1EntityRenderFlags,X
     PLA
     AND #$40
@@ -183,7 +183,7 @@ Bank0_Label_8E5F:
     LDA World1CurrentPlacementId
     STA a:World1EntitySourceObjectId,X
     JSR World1_MarkObjectSpawned
-    LDA a:$CC0D,Y
+    LDA a:World1_ObjectDescriptorPrimaryBehaviorField,Y
     STA a:World1EntityPrimaryBehavior,X
     JMP World1_InitializeEntityPosition
     .byte $64, $5C, $56, $60, $58, $4C, $54, $70, $6C, $3E, $60, $58, $00, $00, $00, $00

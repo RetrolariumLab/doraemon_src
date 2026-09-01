@@ -129,8 +129,11 @@ City and underground objects share three-byte X-cell/Y-cell/type placement
 records at `$D989` and `$D925`. Camera-edge scans preserve the zero-based record
 index as the persistence ID. Nonnegative types enter slots 0-9 and dispatch
 through eight spawn initializers at `$8DA4`; high-bit types enter slots 38-47
-through a 16-entry descriptor table at `$CC0A`. The exact 145 records and both
-terminators are validated by `config/object_placements.json`.
+through a 13-entry descriptor table at `$CC0A`. Its runtime type, metasprite,
+render flags, and primary behavior fields are joined to the placement encoding,
+the transient selector table, and five collision-extent tables. The exact 145
+placements and all descriptor contracts are validated by
+`config/object_placements.json`; see `docs/world1_descriptors.md`.
 
 World 2 uses three smaller pools: seven enemies, six enemy projectiles, and
 seven player projectiles. Its main frame path independently updates the enemy

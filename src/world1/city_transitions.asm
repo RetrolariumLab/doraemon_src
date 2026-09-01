@@ -98,14 +98,36 @@ Bank0_Label_CBE7:
 
 World1_CityItemHandlerTable:
     .byte $0E, $CB, $A7, $CA, $C3, $CA, $F5, $CA, $DB, $CA, $32, $CB, $4B, $CB, $73, $CB
-    .byte $AF, $CB, $C6, $CB, $DD, $CB, $01, $29, $01, $03, $02, $25, $01, $03, $03, $2E
-    .byte $01, $03, $04, $2D, $00, $03, $05, $2F, $01, $10, $06, $00, $01, $02, $07, $30
-    .byte $01, $02, $08, $34, $01, $02, $09, $16, $01, $04, $0A, $14, $01, $20, $0B, $28
-    .byte $01, $02, $0C, $17, $00, $02, $0D, $35, $03, $02, $14, $1C, $0C, $0C, $0C, $0C
-    .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $05, $28, $0C, $0C, $0C, $0C, $0C, $0C, $0C
-    .byte $0C, $0C, $0C, $0C, $14, $1C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
-    .byte $0C, $E8, $FF, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $00, $18
-    .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
+    .byte $AF, $CB, $C6, $CB, $DD, $CB
+
+World1_ObjectDescriptorTable:
+    .byte $01
+
+World1_ObjectDescriptorMetaspriteField:
+    .byte $29
+
+World1_ObjectDescriptorRenderFlagsField:
+    .byte $01
+
+World1_ObjectDescriptorPrimaryBehaviorField:
+    .byte $03, $02, $25, $01, $03, $03, $2E, $01, $03, $04, $2D, $00, $03, $05, $2F, $01
+    .byte $10, $06, $00, $01, $02, $07, $30, $01, $02, $08, $34, $01, $02, $09, $16, $01
+    .byte $04, $0A, $14, $01, $20, $0B, $28, $01, $02, $0C, $17, $00, $02, $0D, $35, $03
+
+World1_ObjectProjectileHitboxXByType:
+    .byte $02, $14, $1C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
+
+World1_ObjectProjectileHitboxYByType:
+    .byte $0C, $05, $28, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
+
+World1_ObjectInteractionHitboxXByTypeMinusOne:
+    .byte $14, $1C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
+
+World1_ObjectInteractionHitboxYNegativeByTypeMinusOne:
+    .byte $E8, $FF, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC
+
+World1_ObjectInteractionHitboxYPositiveByTypeMinusOne:
+    .byte $00, $18, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
 
 Bank0_TryEnterWorld1Door:
     LDA CombinedControllerButtons

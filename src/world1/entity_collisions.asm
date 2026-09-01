@@ -380,7 +380,7 @@ Bank0_Label_9483:
 
 Bank0_Label_9494:
     TAX
-    LDA a:$94D4,X
+    LDA a:World1_TransientDescriptorSelectorTable,X
     STA $00
     BEQ Bank0_Label_94CF
     JSR World1_FindFreeEntitySlot38_47
@@ -397,11 +397,11 @@ Bank0_Label_9494:
     ASL A
     ASL A
     TAY
-    LDA a:$CC0A,Y
+    LDA a:World1_ObjectDescriptorTable,Y
     STA a:World1EntityType,X
-    LDA a:$CC0B,Y
+    LDA a:World1_ObjectDescriptorMetaspriteField,Y
     STA a:World1EntityMetasprite,X
-    LDA a:$CC0C,Y
+    LDA a:World1_ObjectDescriptorRenderFlagsField,Y
     STA a:World1EntityRenderFlags,X
 
 Bank0_Label_94CF:
@@ -410,6 +410,8 @@ Bank0_Label_94CF:
     PLA
     TAX
     RTS
+
+World1_TransientDescriptorSelectorTable:
     .byte $06, $0A, $0B, $02, $0C, $06, $06, $05, $04, $01, $06, $06, $A2, $15, $CA, $D0
     .byte $FD, $EA, $EA, $88, $D0, $F6, $60
 

@@ -12,8 +12,254 @@
       "terminator_value": 0,
       "always_scanned_prefix": 45,
       "normal_type_max": 11,
-      "descriptor_count": 16
+      "descriptor_count": 13
     }
+  },
+  "world1_descriptor_objects": {
+    "bank": 0,
+    "address": "0xCC0A",
+    "record_size": 4,
+    "record_count": 13,
+    "crc32": "191fd4c6",
+    "fields": [
+      "runtime_type",
+      "metasprite_base",
+      "render_flags",
+      "primary_behavior"
+    ],
+    "records": [
+      [
+        "0x01",
+        "0x29",
+        "0x01",
+        "0x03"
+      ],
+      [
+        "0x02",
+        "0x25",
+        "0x01",
+        "0x03"
+      ],
+      [
+        "0x03",
+        "0x2E",
+        "0x01",
+        "0x03"
+      ],
+      [
+        "0x04",
+        "0x2D",
+        "0x00",
+        "0x03"
+      ],
+      [
+        "0x05",
+        "0x2F",
+        "0x01",
+        "0x10"
+      ],
+      [
+        "0x06",
+        "0x00",
+        "0x01",
+        "0x02"
+      ],
+      [
+        "0x07",
+        "0x30",
+        "0x01",
+        "0x02"
+      ],
+      [
+        "0x08",
+        "0x34",
+        "0x01",
+        "0x02"
+      ],
+      [
+        "0x09",
+        "0x16",
+        "0x01",
+        "0x04"
+      ],
+      [
+        "0x0A",
+        "0x14",
+        "0x01",
+        "0x20"
+      ],
+      [
+        "0x0B",
+        "0x28",
+        "0x01",
+        "0x02"
+      ],
+      [
+        "0x0C",
+        "0x17",
+        "0x00",
+        "0x02"
+      ],
+      [
+        "0x0D",
+        "0x35",
+        "0x03",
+        "0x02"
+      ]
+    ],
+    "placement_encoding": {
+      "descriptor_flag": "0x80",
+      "runtime_high_flag": "0x40",
+      "selector_mask": "0x0F",
+      "forbidden_mask": "0x30",
+      "expected_record_count": 33,
+      "expected_runtime_high_flag_count": 21,
+      "expected_index_counts": {
+        "0": 9,
+        "1": 8,
+        "3": 2,
+        "4": 1,
+        "5": 3,
+        "6": 4,
+        "7": 3,
+        "8": 1,
+        "9": 1,
+        "11": 1
+      }
+    },
+    "transient_selector_table": {
+      "address": "0x94D4",
+      "values": [
+        "0x06",
+        "0x0A",
+        "0x0B",
+        "0x02"
+      ],
+      "crc32": "0442bdf1"
+    },
+    "collision_tables": [
+      {
+        "name": "projectile_x_extent_by_runtime_type",
+        "address": "0xCC3D",
+        "indexing": "runtime_type",
+        "values": [
+          2,
+          20,
+          28,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12
+        ],
+        "crc32": "7f9947bc"
+      },
+      {
+        "name": "projectile_y_extent_by_runtime_type",
+        "address": "0xCC4A",
+        "indexing": "runtime_type",
+        "values": [
+          12,
+          5,
+          40,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12
+        ],
+        "crc32": "cabc6018"
+      },
+      {
+        "name": "interaction_x_extent_by_type_minus_one",
+        "address": "0xCC58",
+        "indexing": "runtime_type_minus_one",
+        "values": [
+          20,
+          28,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12
+        ],
+        "crc32": "4038bc54"
+      },
+      {
+        "name": "interaction_y_negative_extent_by_type_minus_one",
+        "address": "0xCC65",
+        "indexing": "runtime_type_minus_one",
+        "values": [
+          232,
+          255,
+          236,
+          236,
+          236,
+          236,
+          236,
+          236,
+          236,
+          236,
+          236,
+          236,
+          236
+        ],
+        "crc32": "eaff7d3e"
+      },
+      {
+        "name": "interaction_y_positive_extent_by_type_minus_one",
+        "address": "0xCC72",
+        "indexing": "runtime_type_minus_one",
+        "values": [
+          0,
+          24,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12
+        ],
+        "crc32": "37804b67"
+      }
+    ],
+    "shared_boundaries": [
+      {
+        "left": "descriptor_table",
+        "left_last_byte": "0xCC3D",
+        "right": "projectile_x_extent_by_runtime_type",
+        "right_first_byte": "0xCC3D"
+      },
+      {
+        "left": "projectile_x_extent_by_runtime_type",
+        "left_last_byte": "0xCC4A",
+        "right": "projectile_y_extent_by_runtime_type",
+        "right_first_byte": "0xCC4A"
+      }
+    ]
   },
   "lists": [
     {

@@ -41,6 +41,9 @@
 - Known: World 1 city and underground placements are three-byte X/Y/type
   records, including their terminators, persistent IDs, type split, and sorted
   city tail; `config/object_placements.json` validates both lists.
+- Known: the World 1 high-bit path uses thirteen four-byte descriptors. Their
+  four fields, placement encoding and usage, transient selectors, and five
+  collision-extent tables are exact; see `docs/world1_descriptors.md`.
 - Known: World 2 enemy spawns are `$D0-$EE` tokens embedded in compressed
   screen streams; all 738 occurrences are validated.
 - Known: World 3 begins with thirteen persistent objects stored as five
@@ -51,8 +54,8 @@
   their five property tables, three dispatch views, and the `$10-$13` and
   `$1C-$1E` type transformations are validated by
   `config/world3_entity_types.json`.
-- Unknown: the remaining World 1 descriptor semantics, individual World 2
-  enemy-state meanings, character identities for World 3 types, and remaining
+- Unknown: character/item identities for World 1 descriptors, individual World
+  2 enemy-state meanings, character identities for World 3 types, and remaining
   transient World 3 enemy/projectile placement rules. The World 3 behavior
   bytecode and structural type catalog are fully decoded and validated.
 

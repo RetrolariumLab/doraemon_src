@@ -1,0 +1,1105 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world1-object-data",
+  "bank": 0,
+  "placement_lists": [
+    {
+      "id": "world1_underground_objects",
+      "address": "0xD925",
+      "record_count": 33,
+      "terminator_address": "0xD988",
+      "records": [
+        {
+          "id": 0,
+          "x_cell": 123,
+          "y_cell": 57,
+          "type": "0x85"
+        },
+        {
+          "id": 1,
+          "x_cell": 163,
+          "y_cell": 41,
+          "type": "0xC5"
+        },
+        {
+          "id": 2,
+          "x_cell": 208,
+          "y_cell": 85,
+          "type": "0x83"
+        },
+        {
+          "id": 3,
+          "x_cell": 59,
+          "y_cell": 77,
+          "type": "0xC5"
+        },
+        {
+          "id": 4,
+          "x_cell": 155,
+          "y_cell": 85,
+          "type": "0xC4"
+        },
+        {
+          "id": 5,
+          "x_cell": 187,
+          "y_cell": 10,
+          "type": "0xC8"
+        },
+        {
+          "id": 6,
+          "x_cell": 169,
+          "y_cell": 85,
+          "type": "0xC7"
+        },
+        {
+          "id": 7,
+          "x_cell": 72,
+          "y_cell": 54,
+          "type": "0x86"
+        },
+        {
+          "id": 8,
+          "x_cell": 136,
+          "y_cell": 50,
+          "type": "0x06"
+        },
+        {
+          "id": 9,
+          "x_cell": 178,
+          "y_cell": 50,
+          "type": "0x06"
+        },
+        {
+          "id": 10,
+          "x_cell": 176,
+          "y_cell": 58,
+          "type": "0x06"
+        },
+        {
+          "id": 11,
+          "x_cell": 202,
+          "y_cell": 58,
+          "type": "0x00"
+        },
+        {
+          "id": 12,
+          "x_cell": 244,
+          "y_cell": 42,
+          "type": "0x00"
+        },
+        {
+          "id": 13,
+          "x_cell": 19,
+          "y_cell": 90,
+          "type": "0x0A"
+        },
+        {
+          "id": 14,
+          "x_cell": 43,
+          "y_cell": 90,
+          "type": "0x0A"
+        },
+        {
+          "id": 15,
+          "x_cell": 95,
+          "y_cell": 86,
+          "type": "0x0A"
+        },
+        {
+          "id": 16,
+          "x_cell": 143,
+          "y_cell": 86,
+          "type": "0x06"
+        },
+        {
+          "id": 17,
+          "x_cell": 64,
+          "y_cell": 10,
+          "type": "0x08"
+        },
+        {
+          "id": 18,
+          "x_cell": 80,
+          "y_cell": 10,
+          "type": "0x08"
+        },
+        {
+          "id": 19,
+          "x_cell": 94,
+          "y_cell": 26,
+          "type": "0x0B"
+        },
+        {
+          "id": 20,
+          "x_cell": 104,
+          "y_cell": 18,
+          "type": "0x06"
+        },
+        {
+          "id": 21,
+          "x_cell": 111,
+          "y_cell": 26,
+          "type": "0x0A"
+        },
+        {
+          "id": 22,
+          "x_cell": 140,
+          "y_cell": 8,
+          "type": "0x09"
+        },
+        {
+          "id": 23,
+          "x_cell": 148,
+          "y_cell": 26,
+          "type": "0x0B"
+        },
+        {
+          "id": 24,
+          "x_cell": 162,
+          "y_cell": 18,
+          "type": "0x06"
+        },
+        {
+          "id": 25,
+          "x_cell": 216,
+          "y_cell": 26,
+          "type": "0x0B"
+        },
+        {
+          "id": 26,
+          "x_cell": 248,
+          "y_cell": 10,
+          "type": "0x06"
+        },
+        {
+          "id": 27,
+          "x_cell": 176,
+          "y_cell": 90,
+          "type": "0x0B"
+        },
+        {
+          "id": 28,
+          "x_cell": 8,
+          "y_cell": 50,
+          "type": "0x0A"
+        },
+        {
+          "id": 29,
+          "x_cell": 8,
+          "y_cell": 58,
+          "type": "0x06"
+        },
+        {
+          "id": 30,
+          "x_cell": 6,
+          "y_cell": 26,
+          "type": "0x01"
+        },
+        {
+          "id": 31,
+          "x_cell": 8,
+          "y_cell": 18,
+          "type": "0x06"
+        },
+        {
+          "id": 32,
+          "x_cell": 8,
+          "y_cell": 34,
+          "type": "0x00"
+        }
+      ]
+    },
+    {
+      "id": "world1_city_objects",
+      "address": "0xD989",
+      "record_count": 112,
+      "terminator_address": "0xDAD9",
+      "records": [
+        {
+          "id": 0,
+          "x_cell": 190,
+          "y_cell": 146,
+          "type": "0x81"
+        },
+        {
+          "id": 1,
+          "x_cell": 42,
+          "y_cell": 206,
+          "type": "0xC1"
+        },
+        {
+          "id": 2,
+          "x_cell": 16,
+          "y_cell": 176,
+          "type": "0x81"
+        },
+        {
+          "id": 3,
+          "x_cell": 126,
+          "y_cell": 28,
+          "type": "0xC1"
+        },
+        {
+          "id": 4,
+          "x_cell": 198,
+          "y_cell": 100,
+          "type": "0xC1"
+        },
+        {
+          "id": 5,
+          "x_cell": 154,
+          "y_cell": 152,
+          "type": "0x81"
+        },
+        {
+          "id": 6,
+          "x_cell": 43,
+          "y_cell": 100,
+          "type": "0xC1"
+        },
+        {
+          "id": 7,
+          "x_cell": 26,
+          "y_cell": 228,
+          "type": "0xC1"
+        },
+        {
+          "id": 8,
+          "x_cell": 238,
+          "y_cell": 242,
+          "type": "0x80"
+        },
+        {
+          "id": 9,
+          "x_cell": 190,
+          "y_cell": 226,
+          "type": "0xC0"
+        },
+        {
+          "id": 10,
+          "x_cell": 160,
+          "y_cell": 120,
+          "type": "0x80"
+        },
+        {
+          "id": 11,
+          "x_cell": 76,
+          "y_cell": 122,
+          "type": "0xC0"
+        },
+        {
+          "id": 12,
+          "x_cell": 72,
+          "y_cell": 172,
+          "type": "0x80"
+        },
+        {
+          "id": 13,
+          "x_cell": 6,
+          "y_cell": 106,
+          "type": "0xC0"
+        },
+        {
+          "id": 14,
+          "x_cell": 236,
+          "y_cell": 14,
+          "type": "0x80"
+        },
+        {
+          "id": 15,
+          "x_cell": 114,
+          "y_cell": 70,
+          "type": "0xC0"
+        },
+        {
+          "id": 16,
+          "x_cell": 30,
+          "y_cell": 56,
+          "type": "0x80"
+        },
+        {
+          "id": 17,
+          "x_cell": 8,
+          "y_cell": 14,
+          "type": "0xC3"
+        },
+        {
+          "id": 18,
+          "x_cell": 10,
+          "y_cell": 40,
+          "type": "0x02"
+        },
+        {
+          "id": 19,
+          "x_cell": 10,
+          "y_cell": 242,
+          "type": "0x03"
+        },
+        {
+          "id": 20,
+          "x_cell": 12,
+          "y_cell": 50,
+          "type": "0x00"
+        },
+        {
+          "id": 21,
+          "x_cell": 12,
+          "y_cell": 66,
+          "type": "0x03"
+        },
+        {
+          "id": 22,
+          "x_cell": 12,
+          "y_cell": 208,
+          "type": "0x03"
+        },
+        {
+          "id": 23,
+          "x_cell": 16,
+          "y_cell": 118,
+          "type": "0x05"
+        },
+        {
+          "id": 24,
+          "x_cell": 16,
+          "y_cell": 130,
+          "type": "0x05"
+        },
+        {
+          "id": 25,
+          "x_cell": 18,
+          "y_cell": 236,
+          "type": "0x05"
+        },
+        {
+          "id": 26,
+          "x_cell": 20,
+          "y_cell": 16,
+          "type": "0x03"
+        },
+        {
+          "id": 27,
+          "x_cell": 20,
+          "y_cell": 24,
+          "type": "0x01"
+        },
+        {
+          "id": 28,
+          "x_cell": 20,
+          "y_cell": 108,
+          "type": "0x03"
+        },
+        {
+          "id": 29,
+          "x_cell": 20,
+          "y_cell": 152,
+          "type": "0x05"
+        },
+        {
+          "id": 30,
+          "x_cell": 26,
+          "y_cell": 120,
+          "type": "0x05"
+        },
+        {
+          "id": 31,
+          "x_cell": 26,
+          "y_cell": 134,
+          "type": "0x05"
+        },
+        {
+          "id": 32,
+          "x_cell": 32,
+          "y_cell": 14,
+          "type": "0x02"
+        },
+        {
+          "id": 33,
+          "x_cell": 32,
+          "y_cell": 152,
+          "type": "0x04"
+        },
+        {
+          "id": 34,
+          "x_cell": 32,
+          "y_cell": 156,
+          "type": "0x05"
+        },
+        {
+          "id": 35,
+          "x_cell": 34,
+          "y_cell": 124,
+          "type": "0x02"
+        },
+        {
+          "id": 36,
+          "x_cell": 36,
+          "y_cell": 140,
+          "type": "0xC7"
+        },
+        {
+          "id": 37,
+          "x_cell": 38,
+          "y_cell": 68,
+          "type": "0x07"
+        },
+        {
+          "id": 38,
+          "x_cell": 44,
+          "y_cell": 184,
+          "type": "0x05"
+        },
+        {
+          "id": 39,
+          "x_cell": 46,
+          "y_cell": 46,
+          "type": "0x05"
+        },
+        {
+          "id": 40,
+          "x_cell": 48,
+          "y_cell": 148,
+          "type": "0x02"
+        },
+        {
+          "id": 41,
+          "x_cell": 50,
+          "y_cell": 14,
+          "type": "0x01"
+        },
+        {
+          "id": 42,
+          "x_cell": 50,
+          "y_cell": 236,
+          "type": "0x05"
+        },
+        {
+          "id": 43,
+          "x_cell": 52,
+          "y_cell": 172,
+          "type": "0x03"
+        },
+        {
+          "id": 44,
+          "x_cell": 53,
+          "y_cell": 189,
+          "type": "0xC6"
+        },
+        {
+          "id": 45,
+          "x_cell": 54,
+          "y_cell": 64,
+          "type": "0x01"
+        },
+        {
+          "id": 46,
+          "x_cell": 60,
+          "y_cell": 44,
+          "type": "0x02"
+        },
+        {
+          "id": 47,
+          "x_cell": 60,
+          "y_cell": 180,
+          "type": "0x05"
+        },
+        {
+          "id": 48,
+          "x_cell": 64,
+          "y_cell": 140,
+          "type": "0x05"
+        },
+        {
+          "id": 49,
+          "x_cell": 68,
+          "y_cell": 12,
+          "type": "0x01"
+        },
+        {
+          "id": 50,
+          "x_cell": 70,
+          "y_cell": 72,
+          "type": "0x05"
+        },
+        {
+          "id": 51,
+          "x_cell": 74,
+          "y_cell": 160,
+          "type": "0x03"
+        },
+        {
+          "id": 52,
+          "x_cell": 74,
+          "y_cell": 236,
+          "type": "0x05"
+        },
+        {
+          "id": 53,
+          "x_cell": 76,
+          "y_cell": 112,
+          "type": "0x05"
+        },
+        {
+          "id": 54,
+          "x_cell": 76,
+          "y_cell": 124,
+          "type": "0x05"
+        },
+        {
+          "id": 55,
+          "x_cell": 84,
+          "y_cell": 158,
+          "type": "0x05"
+        },
+        {
+          "id": 56,
+          "x_cell": 86,
+          "y_cell": 34,
+          "type": "0x00"
+        },
+        {
+          "id": 57,
+          "x_cell": 86,
+          "y_cell": 34,
+          "type": "0x05"
+        },
+        {
+          "id": 58,
+          "x_cell": 88,
+          "y_cell": 224,
+          "type": "0x05"
+        },
+        {
+          "id": 59,
+          "x_cell": 92,
+          "y_cell": 46,
+          "type": "0x07"
+        },
+        {
+          "id": 60,
+          "x_cell": 92,
+          "y_cell": 214,
+          "type": "0x03"
+        },
+        {
+          "id": 61,
+          "x_cell": 98,
+          "y_cell": 146,
+          "type": "0x02"
+        },
+        {
+          "id": 62,
+          "x_cell": 100,
+          "y_cell": 120,
+          "type": "0x05"
+        },
+        {
+          "id": 63,
+          "x_cell": 102,
+          "y_cell": 154,
+          "type": "0x05"
+        },
+        {
+          "id": 64,
+          "x_cell": 104,
+          "y_cell": 16,
+          "type": "0x04"
+        },
+        {
+          "id": 65,
+          "x_cell": 106,
+          "y_cell": 32,
+          "type": "0x05"
+        },
+        {
+          "id": 66,
+          "x_cell": 112,
+          "y_cell": 50,
+          "type": "0x05"
+        },
+        {
+          "id": 67,
+          "x_cell": 128,
+          "y_cell": 34,
+          "type": "0x01"
+        },
+        {
+          "id": 68,
+          "x_cell": 130,
+          "y_cell": 52,
+          "type": "0x01"
+        },
+        {
+          "id": 69,
+          "x_cell": 130,
+          "y_cell": 64,
+          "type": "0x03"
+        },
+        {
+          "id": 70,
+          "x_cell": 133,
+          "y_cell": 192,
+          "type": "0xC6"
+        },
+        {
+          "id": 71,
+          "x_cell": 134,
+          "y_cell": 218,
+          "type": "0x03"
+        },
+        {
+          "id": 72,
+          "x_cell": 144,
+          "y_cell": 34,
+          "type": "0x05"
+        },
+        {
+          "id": 73,
+          "x_cell": 144,
+          "y_cell": 134,
+          "type": "0x05"
+        },
+        {
+          "id": 74,
+          "x_cell": 144,
+          "y_cell": 168,
+          "type": "0x05"
+        },
+        {
+          "id": 75,
+          "x_cell": 148,
+          "y_cell": 52,
+          "type": "0x05"
+        },
+        {
+          "id": 76,
+          "x_cell": 150,
+          "y_cell": 180,
+          "type": "0x05"
+        },
+        {
+          "id": 77,
+          "x_cell": 152,
+          "y_cell": 16,
+          "type": "0xC9"
+        },
+        {
+          "id": 78,
+          "x_cell": 153,
+          "y_cell": 164,
+          "type": "0x05"
+        },
+        {
+          "id": 79,
+          "x_cell": 160,
+          "y_cell": 110,
+          "type": "0x07"
+        },
+        {
+          "id": 80,
+          "x_cell": 162,
+          "y_cell": 34,
+          "type": "0x01"
+        },
+        {
+          "id": 81,
+          "x_cell": 166,
+          "y_cell": 234,
+          "type": "0x00"
+        },
+        {
+          "id": 82,
+          "x_cell": 168,
+          "y_cell": 28,
+          "type": "0x02"
+        },
+        {
+          "id": 83,
+          "x_cell": 168,
+          "y_cell": 60,
+          "type": "0x07"
+        },
+        {
+          "id": 84,
+          "x_cell": 168,
+          "y_cell": 180,
+          "type": "0x03"
+        },
+        {
+          "id": 85,
+          "x_cell": 169,
+          "y_cell": 185,
+          "type": "0xCB"
+        },
+        {
+          "id": 86,
+          "x_cell": 176,
+          "y_cell": 208,
+          "type": "0x03"
+        },
+        {
+          "id": 87,
+          "x_cell": 177,
+          "y_cell": 133,
+          "type": "0x03"
+        },
+        {
+          "id": 88,
+          "x_cell": 180,
+          "y_cell": 192,
+          "type": "0x04"
+        },
+        {
+          "id": 89,
+          "x_cell": 186,
+          "y_cell": 70,
+          "type": "0x05"
+        },
+        {
+          "id": 90,
+          "x_cell": 190,
+          "y_cell": 10,
+          "type": "0x03"
+        },
+        {
+          "id": 91,
+          "x_cell": 190,
+          "y_cell": 30,
+          "type": "0x05"
+        },
+        {
+          "id": 92,
+          "x_cell": 192,
+          "y_cell": 156,
+          "type": "0x02"
+        },
+        {
+          "id": 93,
+          "x_cell": 192,
+          "y_cell": 192,
+          "type": "0x05"
+        },
+        {
+          "id": 94,
+          "x_cell": 202,
+          "y_cell": 210,
+          "type": "0x05"
+        },
+        {
+          "id": 95,
+          "x_cell": 204,
+          "y_cell": 26,
+          "type": "0x04"
+        },
+        {
+          "id": 96,
+          "x_cell": 208,
+          "y_cell": 14,
+          "type": "0x02"
+        },
+        {
+          "id": 97,
+          "x_cell": 210,
+          "y_cell": 50,
+          "type": "0x05"
+        },
+        {
+          "id": 98,
+          "x_cell": 220,
+          "y_cell": 36,
+          "type": "0x01"
+        },
+        {
+          "id": 99,
+          "x_cell": 220,
+          "y_cell": 70,
+          "type": "0x03"
+        },
+        {
+          "id": 100,
+          "x_cell": 230,
+          "y_cell": 28,
+          "type": "0x05"
+        },
+        {
+          "id": 101,
+          "x_cell": 230,
+          "y_cell": 104,
+          "type": "0x02"
+        },
+        {
+          "id": 102,
+          "x_cell": 232,
+          "y_cell": 24,
+          "type": "0x05"
+        },
+        {
+          "id": 103,
+          "x_cell": 233,
+          "y_cell": 152,
+          "type": "0x87"
+        },
+        {
+          "id": 104,
+          "x_cell": 234,
+          "y_cell": 48,
+          "type": "0x02"
+        },
+        {
+          "id": 105,
+          "x_cell": 234,
+          "y_cell": 128,
+          "type": "0x04"
+        },
+        {
+          "id": 106,
+          "x_cell": 234,
+          "y_cell": 172,
+          "type": "0x04"
+        },
+        {
+          "id": 107,
+          "x_cell": 236,
+          "y_cell": 188,
+          "type": "0x05"
+        },
+        {
+          "id": 108,
+          "x_cell": 242,
+          "y_cell": 68,
+          "type": "0x05"
+        },
+        {
+          "id": 109,
+          "x_cell": 242,
+          "y_cell": 114,
+          "type": "0x05"
+        },
+        {
+          "id": 110,
+          "x_cell": 244,
+          "y_cell": 164,
+          "type": "0x05"
+        },
+        {
+          "id": 111,
+          "x_cell": 250,
+          "y_cell": 189,
+          "type": "0xC6"
+        }
+      ]
+    }
+  ],
+  "descriptor_objects": {
+    "address": "0xCC0A",
+    "record_count": 13,
+    "records": [
+      {
+        "id": 0,
+        "runtime_type": "0x01",
+        "metasprite_base": "0x29",
+        "render_flags": "0x01",
+        "primary_behavior": "0x03"
+      },
+      {
+        "id": 1,
+        "runtime_type": "0x02",
+        "metasprite_base": "0x25",
+        "render_flags": "0x01",
+        "primary_behavior": "0x03"
+      },
+      {
+        "id": 2,
+        "runtime_type": "0x03",
+        "metasprite_base": "0x2E",
+        "render_flags": "0x01",
+        "primary_behavior": "0x03"
+      },
+      {
+        "id": 3,
+        "runtime_type": "0x04",
+        "metasprite_base": "0x2D",
+        "render_flags": "0x00",
+        "primary_behavior": "0x03"
+      },
+      {
+        "id": 4,
+        "runtime_type": "0x05",
+        "metasprite_base": "0x2F",
+        "render_flags": "0x01",
+        "primary_behavior": "0x10"
+      },
+      {
+        "id": 5,
+        "runtime_type": "0x06",
+        "metasprite_base": "0x00",
+        "render_flags": "0x01",
+        "primary_behavior": "0x02"
+      },
+      {
+        "id": 6,
+        "runtime_type": "0x07",
+        "metasprite_base": "0x30",
+        "render_flags": "0x01",
+        "primary_behavior": "0x02"
+      },
+      {
+        "id": 7,
+        "runtime_type": "0x08",
+        "metasprite_base": "0x34",
+        "render_flags": "0x01",
+        "primary_behavior": "0x02"
+      },
+      {
+        "id": 8,
+        "runtime_type": "0x09",
+        "metasprite_base": "0x16",
+        "render_flags": "0x01",
+        "primary_behavior": "0x04"
+      },
+      {
+        "id": 9,
+        "runtime_type": "0x0A",
+        "metasprite_base": "0x14",
+        "render_flags": "0x01",
+        "primary_behavior": "0x20"
+      },
+      {
+        "id": 10,
+        "runtime_type": "0x0B",
+        "metasprite_base": "0x28",
+        "render_flags": "0x01",
+        "primary_behavior": "0x02"
+      },
+      {
+        "id": 11,
+        "runtime_type": "0x0C",
+        "metasprite_base": "0x17",
+        "render_flags": "0x00",
+        "primary_behavior": "0x02"
+      },
+      {
+        "id": 12,
+        "runtime_type": "0x0D",
+        "metasprite_base": "0x35",
+        "render_flags": "0x03",
+        "primary_behavior": "0x02"
+      }
+    ]
+  },
+  "transient_selector_table": {
+    "address": "0x94D4",
+    "descriptor_indexes": [
+      6,
+      10,
+      11,
+      2
+    ]
+  },
+  "collision_tables": [
+    {
+      "name": "projectile_x_extent_by_runtime_type",
+      "address": "0xCC3D",
+      "indexing": "runtime_type",
+      "values": [
+        "0x02",
+        "0x14",
+        "0x1C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C"
+      ]
+    },
+    {
+      "name": "projectile_y_extent_by_runtime_type",
+      "address": "0xCC4A",
+      "indexing": "runtime_type",
+      "values": [
+        "0x0C",
+        "0x05",
+        "0x28",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C"
+      ]
+    },
+    {
+      "name": "interaction_x_extent_by_type_minus_one",
+      "address": "0xCC58",
+      "indexing": "runtime_type_minus_one",
+      "values": [
+        "0x14",
+        "0x1C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C"
+      ]
+    },
+    {
+      "name": "interaction_y_negative_extent_by_type_minus_one",
+      "address": "0xCC65",
+      "indexing": "runtime_type_minus_one",
+      "values": [
+        "0xE8",
+        "0xFF",
+        "0xEC",
+        "0xEC",
+        "0xEC",
+        "0xEC",
+        "0xEC",
+        "0xEC",
+        "0xEC",
+        "0xEC",
+        "0xEC",
+        "0xEC",
+        "0xEC"
+      ]
+    },
+    {
+      "name": "interaction_y_positive_extent_by_type_minus_one",
+      "address": "0xCC72",
+      "indexing": "runtime_type_minus_one",
+      "values": [
+        "0x00",
+        "0x18",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C",
+        "0x0C"
+      ]
+    }
+  ],
+  "covered_byte_count": 558,
+  "covered_crc32": "2683494b"
+}

@@ -109,7 +109,7 @@ World1_CheckCityObjectInteraction:
     RTS
 
 Bank0_Label_C9AA:
-    CMP a:$CC58,Y
+    CMP a:World1_ObjectInteractionHitboxXByTypeMinusOne,Y
     BCS Bank0_Label_C9CD
 
 Bank0_Label_C9AF:
@@ -117,12 +117,12 @@ Bank0_Label_C9AF:
     SEC
     SBC a:World1EntityY+$26,X
     BCS Bank0_Label_C9BD
-    CMP a:$CC65,Y
+    CMP a:World1_ObjectInteractionHitboxYNegativeByTypeMinusOne,Y
     BCS Bank0_Label_C9C2
     RTS
 
 Bank0_Label_C9BD:
-    CMP a:$CC72,Y
+    CMP a:World1_ObjectInteractionHitboxYPositiveByTypeMinusOne,Y
     BCS Bank0_Label_C9CD
 
 Bank0_Label_C9C2:
@@ -177,7 +177,7 @@ Bank0_Label_C9F6:
     RTS
 
 Bank0_Label_CA04:
-    CMP a:$CC3D,X
+    CMP a:World1_ObjectProjectileHitboxXByType,X
     BCS Bank0_Label_C9E0
 
 Bank0_Label_CA09:
@@ -191,7 +191,7 @@ Bank0_Label_CA09:
     RTS
 
 Bank0_Label_CA17:
-    CMP a:$CC4A,X
+    CMP a:World1_ObjectProjectileHitboxYByType,X
     BCS Bank0_Label_C9E0
 
 Bank0_Label_CA1C:

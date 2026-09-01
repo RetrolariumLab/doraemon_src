@@ -20,18 +20,27 @@ resulting camera-relative pixel coordinates into a free entity slot.
 Types below `$80` materialize in slots 0-9. The stored entity state is
 `type + 1`, and `type & 7` selects one of eight target-minus-one spawn
 initializers at `$8DA4`. Types `$80-$8F` and `$C0-$CF` materialize in slots
-38-47; the low nibble selects a four-byte descriptor at `$CC0A`, bit 6 is
-preserved as the spawned entity's high state flag, and bit 7 distinguishes this
-descriptor path from the ordinary entity path.
+38-47; the low nibble selects one of thirteen four-byte descriptors at `$CC0A`,
+bit 6 sets the spawned runtime type's high flag, and bit 7 distinguishes this
+descriptor path from the ordinary entity path. Bits 4-5 are reserved and zero
+in every canonical placement.
+
+Each descriptor supplies the runtime type, base metasprite, render flags, and
+primary behavior. The exact table, transient selector path, per-index placement
+counts, and five related collision-extent tables are documented in
+`docs/world1_descriptors.md`.
 
 The first 45 records are always scanned. Records after that prefix are ordered
 by `x_cell`, allowing horizontal scans to stop once the requested column has
 been passed. The underground list has only 33 records; the city list has 112,
 of which its 67-record tail satisfies the ordering invariant.
 
-`config/object_placements.json` fixes both ranges, counts, terminators, and
-CRCs. `make validate-object-placements` also proves the type encoding and the
-sorted-tail invariant directly against the canonical PRG.
+`config/object_placements.json` fixes both ranges, counts, terminators, CRCs,
+all thirteen descriptors, and their collision tables.
+`make validate-object-placements` proves these contracts and the sorted-tail
+invariant directly against the canonical PRG. The same command losslessly
+round-trips the editable placements, descriptors, transient selectors, and
+collision extents in `data/world1/object_data.json`.
 
 ## World 2 embedded enemy spawns
 
