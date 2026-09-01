@@ -2,6 +2,50 @@
   "schema_version": 1,
   "tables": [
     {
+      "name": "world1_entity_spawn_initializers",
+      "bank": 0,
+      "address": "0x8DA4",
+      "encoding": "rts-minus-one",
+      "slot_count": 8,
+      "index_semantics": "nonnegative World 1 placement type modulo 8 during entity materialization",
+      "targets": [
+        "0x8EA0",
+        "0xDC33",
+        "0x8EA0",
+        "0x8EA0",
+        "0x8EA0",
+        "0x8EA0",
+        "0xE017",
+        "0xE142"
+      ]
+    },
+    {
+      "name": "world1_entity_update_handlers",
+      "bank": 0,
+      "address": "0x88FB",
+      "encoding": "rts-minus-one",
+      "slot_count": 16,
+      "index_semantics": "World1EntityType low states 0x00-0x0F; inactive state 0 overlaps the preceding JMP operand and is not dispatched",
+      "targets": [
+        "0x88A2",
+        "0xDBDA",
+        "0xDC49",
+        "0xDCB2",
+        "0xDD29",
+        "0xDEBB",
+        "0xDF70",
+        "0xE01F",
+        "0xE14B",
+        "0xE1E0",
+        "0xE249",
+        "0xDDD3",
+        "0xDF08",
+        "0xDBDA",
+        "0xD597",
+        "0xD597"
+      ]
+    },
+    {
       "name": "world1_city_item_handlers",
       "bank": 0,
       "address": "0xCBF4",

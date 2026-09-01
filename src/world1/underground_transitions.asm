@@ -6,10 +6,10 @@ Bank0_Func_D3A9:
     LDX #$00
 
 Bank0_Label_D3AB:
-    LDA a:$0680,X
-    STA a:$0690,X
-    LDA a:$06A0,X
-    STA a:$0680,X
+    LDA a:World1CollectedObjectBits,X
+    STA a:World1SavedCityObjectBits,X
+    LDA a:World1SavedUndergroundObjectBits,X
+    STA a:World1CollectedObjectBits,X
     INX
     CPX #$10
     BNE Bank0_Label_D3AB
@@ -55,9 +55,9 @@ Bank0_Label_D3CB:
     LDA #$C2
     STA $67
     LDA #$25
-    STA $68
+    STA World1ObjectPlacementList
     LDA #$D9
-    STA $69
+    STA World1ObjectPlacementList+$01
     LDA #$02
     STA $29
     JSR Bank0_Func_83BD
@@ -77,8 +77,8 @@ Bank0_Label_D429:
     JSR Bank0_Func_CA6D
     JSR Bank0_Func_9201
     JSR Bank0_Func_D47C
-    JSR Bank0_Func_8BDE
-    JSR Bank0_Func_888F
+    JSR World1_SpawnObjectsAtCameraEdges
+    JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
     JSR Bank0_Func_87F8
@@ -195,7 +195,7 @@ Bank0_Func_D4EE:
     STA $9B
     JSR World1_ClearEntitySlots10_29
     JSR World1_ClearEntitySlots00_09
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     LDA #$00
     STA a:World1EntityType
     LDA #$3A
@@ -209,15 +209,15 @@ Bank0_Func_D4EE:
     LDA #$01
     STA a:World1EntityRenderFlags
     LDA #$FF
-    STA a:$0520
+    STA a:World1EntitySourceObjectId
     LDA #$00
-    STA a:$0550
+    STA a:World1EntityPrimaryBehavior
     LDA #$00
-    STA a:$0580
+    STA a:World1EntitySecondaryBehavior
     LDA #$18
-    STA a:$05B0
+    STA a:World1EntityHealthOrVelocity
     LDA #$00
-    STA a:$05E0
+    STA a:World1EntityDamageTimerOrAcceleration
     LDA #$07
     STA $9C
     LDA #$00
@@ -240,7 +240,7 @@ Bank0_Label_D560:
     JSR Bank0_Func_CF7A
     JSR Bank0_Func_CA6D
     JSR Bank0_Func_9201
-    JSR Bank0_Func_888F
+    JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
     JSR Bank0_Func_87F8
@@ -257,7 +257,9 @@ Bank0_Label_D560:
 
 Bank0_Label_D594:
     JMP Bank0_Func_D465
-    .byte $60
+
+World1_EntityHandler_States0E_0F:
+    RTS
 
 Bank0_Label_D598:
     LDA #$0E
@@ -280,7 +282,7 @@ Bank0_Label_D5B2:
     JSR Bank0_Func_9B54
     JSR Bank0_Func_CF7A
     JSR Bank0_Func_CA6D
-    JSR Bank0_Func_888F
+    JSR World1_UpdateEntities
     JSR Bank0_Func_9201
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
@@ -376,7 +378,7 @@ Bank0_Func_D67A:
     JSR World1_Audio_QueueEffectWithPriority
 
 Bank0_Label_D68C:
-    LDA a:$0550
+    LDA a:World1EntityPrimaryBehavior
     BEQ Bank0_Label_D6D4
     LDA $9D
     CMP #$18
@@ -404,7 +406,7 @@ Bank0_Label_D6B8:
 
 Bank0_Label_D6BD:
     LDA #$00
-    STA a:$0550
+    STA a:World1EntityPrimaryBehavior
     LDA #$38
     STA a:World1EntityMetasprite
     JSR Bank0_Func_964A
@@ -422,14 +424,14 @@ Bank0_Label_D6D4:
     AND #$01
     ORA #$38
     STA a:World1EntityMetasprite
-    LDA a:$0580
+    LDA a:World1EntitySecondaryBehavior
     BEQ Bank0_Label_D6F7
     INC a:World1EntityX
     LDA a:World1EntityX
     CMP #$70
     BCC Bank0_Label_D706
     LDA #$00
-    STA a:$0580
+    STA a:World1EntitySecondaryBehavior
     JMP Bank0_Label_D706
 
 Bank0_Label_D6F7:
@@ -438,13 +440,13 @@ Bank0_Label_D6F7:
     CMP #$08
     BCS Bank0_Label_D706
     LDA #$01
-    STA a:$0580
+    STA a:World1EntitySecondaryBehavior
 
 Bank0_Label_D706:
     DEC $9F
     BPL Bank0_Label_D718
     LDA #$01
-    STA a:$0550
+    STA a:World1EntityPrimaryBehavior
     LDA #$EC
     STA $9D
     LDA #$3A
@@ -477,19 +479,19 @@ Bank0_Label_D725:
     LDA #$01
     STA a:World1EntityRenderFlags+$0A,Y
     LDA #$FF
-    STA a:$052A,Y
+    STA a:World1EntitySourceObjectId+$0A,Y
     JSR Bank0_Func_962F
     AND #$03
     CLC
     ADC #$01
-    STA a:$055A,Y
+    STA a:World1EntityPrimaryBehavior+$0A,Y
     JSR Bank0_Func_962F
     AND #$07
     TAX
     LDA a:$9126,X
-    STA a:$05BA,Y
+    STA a:World1EntityHealthOrVelocity+$0A,Y
     LDA #$00
-    STA a:$05EA,Y
+    STA a:World1EntityDamageTimerOrAcceleration+$0A,Y
     LDA #$02
-    STA a:$058A,Y
+    STA a:World1EntitySecondaryBehavior+$0A,Y
     RTS

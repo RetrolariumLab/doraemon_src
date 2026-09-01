@@ -414,7 +414,7 @@ Bank0_Label_9B72:
     JMP Bank0_Label_9BBD
 
 Bank0_Label_9B7A:
-    LDA a:$056E,X
+    LDA a:World1EntityPrimaryBehavior+$1E,X
     ASL A
     TAY
     LDA a:$9BC3,Y
@@ -561,9 +561,9 @@ Bank0_Label_9C26:
     STA a:World1EntityType+$1E,X
     LDA $7F
     AND #$03
-    STA a:$056E,X
+    STA a:World1EntityPrimaryBehavior+$1E,X
     LDA #$FF
-    STA a:$053E,X
+    STA a:World1EntitySourceObjectId+$1E,X
     LDA $77
     AND #$0C
     LDA #$06

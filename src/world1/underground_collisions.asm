@@ -160,9 +160,9 @@ Bank0_Label_D243:
     RTS
 
 Bank0_EnterWorld1Manhole:
-    LDA a:$06A0
+    LDA a:World1SavedUndergroundObjectBits
     AND #$FE
-    STA a:$06A0
+    STA a:World1SavedUndergroundObjectBits
     LDA #$00
     STA a:AudioMusicState
     STA a:AudioMusicControl
@@ -173,7 +173,7 @@ Bank0_EnterWorld1Manhole:
     JSR World1_ClearEntitySlots10_29
     JSR World1_ClearEntitySlots30_37
     LDX $80
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     STA $81
     TAY
     LDA a:World1EntityX+$26,X
@@ -222,7 +222,7 @@ Bank0_Label_D2A4:
     CPX #$14
     BNE Bank0_Label_D2A4
     JSR World1_ClearEntitySlots38_47
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     LDX $81
     JMP Bank0_InitWorld1SideView
 
@@ -235,7 +235,7 @@ Bank0_Func_D2C3:
     STA $83
     STA $B2
     JSR World1_ClearEntitySlots38_47
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     JSR World1_ClearEntitySlots00_09
     JSR World1_ClearEntitySlots10_29
     JSR World1_ClearEntitySlots30_37
@@ -273,9 +273,9 @@ Bank0_Func_D2C3:
     LDA #$B2
     STA $67
     LDA #$89
-    STA $68
+    STA World1ObjectPlacementList
     LDA #$D9
-    STA $69
+    STA World1ObjectPlacementList+$01
     LDA #$00
     STA $29
     LDA $5C
@@ -288,15 +288,15 @@ Bank0_Label_D33A:
     LDX #$00
 
 Bank0_Label_D33C:
-    LDA a:$0680,X
-    STA a:$06A0,X
-    LDA a:$0690,X
-    STA a:$0680,X
+    LDA a:World1CollectedObjectBits,X
+    STA a:World1SavedUndergroundObjectBits,X
+    LDA a:World1SavedCityObjectBits,X
+    STA a:World1CollectedObjectBits,X
     INX
     CPX #$10
     BNE Bank0_Label_D33C
     JSR World1_ClearEntitySlots38_47
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_83BD
     JSR Bank0_Func_9535
     JSR Bank0_Func_A7DB

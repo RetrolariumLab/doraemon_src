@@ -15,6 +15,12 @@ Controller1Buttons     = $001F
 Controller1ButtonsAlt  = $0020
 CombinedControllerButtons = $0021
 
+World1ObjectPlacementList = $0068
+World1CurrentPlacementId = $0090
+World1PlacementScanPointer = $0091
+World1PlacementXCell = $0093
+World1PlacementYCell = $0094
+
 ScoreDigitsCurrent     = $0290
 ScoreDigitsWorking     = $0298
 
@@ -39,6 +45,19 @@ World1EntityRenderFlags   = $0460
 World1EntityPositionHigh  = $0490
 World1EntityX             = $04C0
 World1EntityY             = $04F0
+World1EntitySourceObjectId = $0520
+World1EntityPrimaryBehavior = $0550
+World1EntitySecondaryBehavior = $0580
+World1EntityHealthOrVelocity = $05B0
+World1EntityDamageTimerOrAcceleration = $05E0
+World1EntityActionCooldown = $0610
+World1EntityReservedBehavior = $0640
+
+World1ObjectSpawnMask = $0670
+World1CollectedObjectBits = $0680
+World1SavedCityObjectBits = $0690
+World1SavedUndergroundObjectBits = $06A0
+World1AttributeTableCache = $06B0
 
 ; World 2 bank-local parallel pools
 World2EnemyState                 = $0558

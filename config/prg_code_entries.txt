@@ -1,5 +1,9 @@
 # Doraemon evidence-backed PRG code entry points v1
 # kind bank address name
+entry 0 88A2 Bank0_World1InactiveEntityDispatchTarget_88A2
+# Bank 0 materializes nonnegative placement types through the first eight
+# entries of the target-minus-one initializer table at $8DA4.
+entry 0 8EA0 Bank0_World1EntitySpawnInitializer_8EA0
 # Bank 0 dispatches city entity types $03-$0D through the ordinary pointer
 # table at $CBF4 and a shared JMP ($0000) at $C9DD.
 entry 0 CAA7 Bank0_World1CityItemHandler_CAA7
@@ -13,6 +17,24 @@ entry 0 CB73 Bank0_World1CityItemHandler_CB73
 entry 0 CBAF Bank0_World1CityItemHandler_CBAF
 entry 0 CBC6 Bank0_World1CityItemHandler_CBC6
 entry 0 CBDD Bank0_World1CityItemHandler_CBDD
+# Bank 0's overlapping $88FB target-minus-one RTS table dispatches 16 low
+# entity states through 14 unique targets. State 0 is inactive and unreachable.
+entry 0 D597 Bank0_World1EntityHandler_D597
+entry 0 DBDA Bank0_World1EntityHandler_DBDA
+entry 0 DC33 Bank0_World1EntitySpawnInitializer_DC33
+entry 0 DC49 Bank0_World1EntityHandler_DC49
+entry 0 DCB2 Bank0_World1EntityHandler_DCB2
+entry 0 DD29 Bank0_World1EntityHandler_DD29
+entry 0 DDD3 Bank0_World1EntityHandler_DDD3
+entry 0 DEBB Bank0_World1EntityHandler_DEBB
+entry 0 DF08 Bank0_World1EntityHandler_DF08
+entry 0 DF70 Bank0_World1EntityHandler_DF70
+entry 0 E017 Bank0_World1EntitySpawnInitializer_E017
+entry 0 E01F Bank0_World1EntityHandler_E01F
+entry 0 E142 Bank0_World1EntitySpawnInitializer_E142
+entry 0 E14B Bank0_World1EntityHandler_E14B
+entry 0 E1E0 Bank0_World1EntityHandler_E1E0
+entry 0 E249 Bank0_World1EntityHandler_E249
 # Bank 0's $E330 audio-effect table has 52 slots and 38 unique targets.
 entry 0 E426 Bank0_AudioEffectEntry_E426
 entry 0 E42B Bank0_AudioEffectEntry_E42B

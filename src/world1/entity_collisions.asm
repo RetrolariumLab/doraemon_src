@@ -1,124 +1,6 @@
-; Doraemon PRG bank 0 $8F9E-$95CA
-; World 1 entity behavior handlers and object update services
+; Doraemon PRG bank 0 $9201-$95CA
+; World 1 entity collision scans, damage resolution, and interaction helpers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
-
-Bank0_Func_8F9E:
-    LDA a:$0550,X
-    JSR World1_MoveEntityXByA
-    INC a:$05E0,X
-    LDA a:$05E0,X
-    AND #$03
-    BNE Bank0_Label_8FBF
-    INC a:$05B0,X
-    BMI Bank0_Label_8FBF
-    LDA a:$05B0,X
-    CMP #$09
-    BCC Bank0_Label_8FBF
-    LDA #$08
-    STA a:$05B0,X
-
-Bank0_Label_8FBF:
-    LDA a:$05B0,X
-    JMP World1_MoveEntityYByA
-
-Bank0_Func_8FC5:
-    LDA a:$0550,X
-    AND #$07
-    ASL A
-    STA $01
-    LDA FrameCounter
-    AND #$01
-    ORA $01
-    PHA
-    TAY
-    LDA a:$8FE4,Y
-    JSR World1_MoveEntityXByA
-    PLA
-    TAY
-    LDA a:$8FF4,Y
-    JSR World1_MoveEntityYByA
-    RTS
-    .byte $00, $00, $01, $01, $02, $01, $01, $00, $00, $00, $FF, $00, $FE, $FF, $FF, $00
-    .byte $02, $01, $01, $01, $00, $00, $FF, $00, $FE, $FF, $FF, $00, $00, $00, $01, $00
-
-Bank0_Func_9004:
-    LDA a:World1EntityPositionHigh,X
-    STA $A4
-    LDA PpuScrollXShadow
-    AND #$07
-    CLC
-    ADC #$04
-    ADC a:World1EntityX,X
-    STA $A0
-    LDA $A4
-    ADC #$00
-    LSR A
-    ROR $A0
-    LSR A
-    ROR $A0
-    LDA $A0
-    AND #$80
-    LSR $A0
-    ORA $A0
-    CLC
-    ADC $5B
-    STA $A0
-    LDA a:World1EntityPositionHigh,X
-    LSR A
-    LSR A
-    STA $A4
-    LDA PpuScrollYShadow
-    AND #$07
-    CLC
-    ADC #$04
-    ADC a:World1EntityY,X
-    STA $A2
-    LDA $A4
-    ADC #$00
-    LSR A
-    ROR $A2
-    LSR A
-    ROR $A2
-    LDA $A2
-    AND #$80
-    LSR $A2
-    ORA $A2
-    CLC
-    ADC $5C
-    STA $A2
-    STX $A4
-    LDX $A0
-    LDY $A2
-    JSR Bank0_Func_A6A7
-    LDX $A4
-    LDA a:$DADA,Y
-    RTS
-    .byte $20, $87, $89, $85, $AA, $20, $E3, $91, $BD, $0A, $04, $D0, $3D, $20, $2F, $96
-    .byte $C9, $08, $B0, $36, $A9, $01, $9D, $0A, $04, $A9, $33, $9D, $3A, $04, $BD, $90
-    .byte $04, $9D, $9A, $04, $A9, $81, $9D, $6A, $04, $BD, $C0, $04, $18, $69, $04, $9D
-    .byte $CA, $04, $BD, $F0, $04, $18, $69, $04, $9D, $FA, $04, $A9, $FF, $9D, $2A, $05
-    .byte $A5, $AA, $9D, $5A, $05, $A9, $02, $9D, $8A, $05, $60, $A0, $0A, $B9, $0A, $04
-    .byte $F0, $07, $C8, $C0, $14, $D0, $F6, $38, $60, $20, $E3, $91, $A9, $02, $99, $0A
-    .byte $04, $A9, $32, $99, $3A, $04, $A9, $01, $99, $6A, $04, $BD, $90, $04, $99, $9A
-    .byte $04, $BD, $C0, $04, $18, $69, $04, $99, $CA, $04, $BD, $F0, $04, $18, $69, $04
-    .byte $99, $FA, $04, $A9, $FF, $99, $2A, $05, $8A, $48, $20, $2F, $96, $29, $0F, $AA
-    .byte $BD, $16, $91, $99, $5A, $05, $20, $2F, $96, $4A, $4A, $29, $07, $AA, $BD, $26
-    .byte $91, $99, $BA, $05, $A9, $00, $99, $EA, $05, $A9, $01, $99, $8A, $05, $68, $AA
-    .byte $60, $FC, $FD, $FE, $FF, $00, $01, $02, $03, $FF, $FE, $FF, $00, $01, $02, $04
-    .byte $01, $F9, $FA, $FB, $FC, $FC, $FD, $FD, $FE, $38, $60, $BD, $0A, $04, $D0, $F9
-    .byte $20, $E3, $91, $A9, $00, $85, $AD, $BD, $C0, $04, $38, $E5, $75, $B0, $07, $E6
-    .byte $AD, $49, $FF, $18, $69, $01, $85, $AA, $06, $AD, $BD, $F0, $04, $38, $E5, $76
-    .byte $B0, $07, $E6, $AD, $49, $FF, $18, $69, $01, $85, $AB, $06, $AD, $C5, $AA, $90
-    .byte $0C, $A5, $AA, $85, $AE, $A5, $AB, $85, $B0, $E6, $AD, $D0, $08, $A5, $AA, $85
-    .byte $B0, $A5, $AB, $85, $AE, $20, $BF, $91, $A9, $03, $9D, $0A, $04, $A9, $31, $9D
-    .byte $3A, $04, $A9, $01, $9D, $6A, $04, $BD, $90, $04, $9D, $9A, $04, $BD, $C0, $04
-    .byte $18, $69, $04, $9D, $CA, $04, $BD, $F0, $04, $18, $69, $04, $9D, $FA, $04, $A9
-    .byte $FF, $9D, $2A, $05, $A5, $AD, $9D, $5A, $05, $A9, $01, $9D, $8A, $05, $A9, $00
-    .byte $9D, $BA, $05, $A5, $AF, $9D, $EA, $05, $18, $60, $A9, $00, $85, $AF, $A9, $08
-    .byte $85, $B1, $A5, $AE, $38, $E5, $B0, $90, $0D, $26, $AF, $2A, $C6, $B1, $D0, $F4
-    .byte $60, $18, $65, $B0, $B0, $F3, $26, $AF, $2A, $C6, $B1, $D0, $F4, $60, $BD, $90
-    .byte $04, $29, $0F, $D0, $13, $BD, $C0, $04, $C9, $F5, $B0, $0C, $BD, $F0, $04, $C9
-    .byte $08, $90, $05, $C9, $E4, $B0, $01, $60, $68, $68, $38, $60
 
 Bank0_Func_9201:
     LDA #$00
@@ -235,21 +117,21 @@ Bank0_Label_92AD:
     LDA a:World1EntityType+$1E,X
     AND #$07
     STA $04
-    LDA a:$05B0,Y
+    LDA a:World1EntityHealthOrVelocity,Y
     SEC
     SBC $04
-    STA a:$05B0,Y
+    STA a:World1EntityHealthOrVelocity,Y
     BCC Bank0_Label_92D3
     LDA a:World1EntityType,Y
     ORA #$80
     STA a:World1EntityType,Y
     LDA #$00
-    STA a:$05E0,Y
+    STA a:World1EntityDamageTimerOrAcceleration,Y
     BEQ Bank0_Label_92EB
 
 Bank0_Label_92D3:
     LDA #$00
-    STA a:$05E0,Y
+    STA a:World1EntityDamageTimerOrAcceleration,Y
     LDA a:World1EntityType,Y
     ORA #$C0
     STA a:World1EntityType,Y
@@ -371,7 +253,7 @@ Bank0_Label_93A7:
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$01
     STA $79
-    LDA a:$058A,X
+    LDA a:World1EntitySecondaryBehavior+$0A,X
     STA $00
     LDA $2B
     SEC
@@ -436,7 +318,7 @@ Bank0_Label_9405:
     STA $79
     LDA $2B
     CLC
-    SBC a:$05B0,X
+    SBC a:World1EntityHealthOrVelocity,X
     STA $2B
     BPL Bank0_Label_9428
     LDA #$80
@@ -453,7 +335,7 @@ Bank0_Label_942A:
 
 Bank0_Label_942B:
     LDA #$00
-    STA a:$05E0,X
+    STA a:World1EntityDamageTimerOrAcceleration,X
     LDA a:World1EntityType,X
     ORA #$C0
     STA a:World1EntityType,X
@@ -510,7 +392,7 @@ Bank0_Label_9494:
     LDA a:World1EntityY,Y
     STA a:World1EntityY,X
     LDA #$FF
-    STA a:$0520,X
+    STA a:World1EntitySourceObjectId,X
     LDA $00
     ASL A
     ASL A
@@ -571,7 +453,7 @@ Bank0_Func_951B:
     LDA #$00
 
 Bank0_Label_951F:
-    STA a:$06B0,X
+    STA a:World1AttributeTableCache,X
     INX
     CPX #$80
     BNE Bank0_Label_951F

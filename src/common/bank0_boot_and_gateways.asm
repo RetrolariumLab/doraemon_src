@@ -98,8 +98,8 @@ Bank0_Reset:
 Bank0_Label_80AC:
     STA a:World1EntityType,X
     STA a:World1EntityY+$10,X
-    STA a:$0600,X
-    STA a:$0700,X
+    STA a:World1EntityDamageTimerOrAcceleration+$20,X
+    STA a:World1AttributeTableCache+$50,X
     INX
     BNE Bank0_Label_80AC
     LDA #$10

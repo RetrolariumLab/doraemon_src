@@ -19,10 +19,10 @@ Bank0_Func_CB61:
     RTS
 
 World1_CityItemHandler_Type0A:
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB7D
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CB7D:
     TXA
@@ -57,10 +57,10 @@ Bank0_Label_CBA6:
     JMP Bank0_Func_C982
 
 World1_CityItemHandler_Type0B:
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CBB9
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CBB9:
     JSR Bank0_Func_C982
@@ -70,10 +70,10 @@ Bank0_Label_CBB9:
     JMP Bank0_Func_81C9
 
 World1_CityItemHandler_Type0C:
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CBD0
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CBD0:
     JSR Bank0_Func_C982
@@ -83,10 +83,10 @@ Bank0_Label_CBD0:
     JMP Bank0_Func_81C9
 
 World1_CityItemHandler_Type0D:
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CBE7
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CBE7:
     JSR Bank0_Func_C982
@@ -131,7 +131,7 @@ Bank0_EnterWorld1Door:
     JSR World1_ClearEntitySlots10_29
     JSR World1_ClearEntitySlots30_37
     LDX $80
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     STA $81
     TAY
     LDA a:World1EntityX+$26,X
@@ -205,7 +205,7 @@ Bank0_Label_CD05:
 Bank0_Label_CD1F:
     PLA
     JSR World1_ClearEntitySlots38_47
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     LDA $81
     TAY
     LDA a:$CDA9,Y
@@ -246,7 +246,7 @@ Bank0_Label_CD42:
     STA $78
     STA $77
     STA $7F
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_80DA
     JSR Bank0_Func_A7DB
     JSR Bank0_Func_843B

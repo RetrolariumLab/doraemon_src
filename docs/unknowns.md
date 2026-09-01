@@ -21,7 +21,11 @@
 ## OBJ-001 - chapter object formats
 
 - Known: CadEditor disables enemy editing for all four configurations.
-- Unknown: enemy, item, NPC, boss, trigger, door, and projectile records.
+- Known: World 1 city and underground placements are three-byte X/Y/type
+  records, including their terminators, persistent IDs, type split, and sorted
+  city tail; `config/object_placements.json` validates both lists.
+- Unknown: the remaining descriptor semantics and the World 2/World 3 enemy,
+  item, NPC, boss, trigger, door, and projectile record formats.
 
 ## AUDIO-002 - command and stream semantics
 

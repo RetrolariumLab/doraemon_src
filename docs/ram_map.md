@@ -12,7 +12,7 @@
 | `$001D-$0020` | 4 | controller shift state | populated from `$4016/$4017` |
 | `$0290-$0295` | 6 | current score digits | decimal compare/copy loop |
 | `$0298-$029D` | 6 | working score digits | decimal carry loop |
-| `$0400-$051F` | 288 | World 1 entity core fields | six parallel 48-slot arrays used by motion, collision, and metasprite code |
+| `$0400-$066F` | 624 | World 1 entity storage | complete 13-column, 48-slot structure-of-arrays grid with class-specific behavior overlays |
 | `$0558-$05CE` | 119 | World 2 entity pools | bank-1 overlay containing 7 enemies, 6 enemy projectiles, and 7 player projectiles |
 | `$0600-$06AF` | 176 | World 3 active objects | bank-2 overlay containing eight parallel runtime entity slots |
 | `$06B0-$06F0` | 65 | World 3 persistent objects | thirteen room records with room, type, coordinates, and saved state |

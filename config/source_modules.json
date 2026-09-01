@@ -18,23 +18,44 @@
     {
       "bank": 0,
       "start": "0x856C",
-      "end": "0x8A6B",
+      "end": "0x888E",
       "path": "world1/player_and_camera.asm",
       "responsibility": "World 1 player state, directional movement, and camera-relative positioning"
     },
     {
       "bank": 0,
+      "start": "0x888F",
+      "end": "0x8A6B",
+      "path": "world1/entity_update_dispatch.asm",
+      "responsibility": "World 1 entity traversal, low-state RTS dispatch, and shared update helpers"
+    },
+    {
+      "bank": 0,
       "start": "0x8A6C",
-      "end": "0x8F9D",
+      "end": "0x8D21",
       "path": "world1/object_motion.asm",
       "responsibility": "World 1 object coordinate stepping, animation, and collision helpers"
     },
     {
       "bank": 0,
+      "start": "0x8D22",
+      "end": "0x8F9D",
+      "path": "world1/object_persistence_and_spawning.asm",
+      "responsibility": "World 1 persistent object masks, spawning, and entity-slot initialization"
+    },
+    {
+      "bank": 0,
       "start": "0x8F9E",
+      "end": "0x9200",
+      "path": "world1/entity_motion_helpers.asm",
+      "responsibility": "World 1 entity direction, motion, and bounds helpers"
+    },
+    {
+      "bank": 0,
+      "start": "0x9201",
       "end": "0x95CA",
-      "path": "world1/entity_handlers.asm",
-      "responsibility": "World 1 entity behavior handlers and object update services"
+      "path": "world1/entity_collisions.asm",
+      "responsibility": "World 1 entity collision scans, damage resolution, and interaction helpers"
     },
     {
       "bank": 0,
@@ -144,9 +165,58 @@
     {
       "bank": 0,
       "start": "0xD770",
+      "end": "0xD7A8",
+      "path": "world1/underground_object_spawning.asm",
+      "responsibility": "World 1 underground transient-object allocation and positioning"
+    },
+    {
+      "bank": 0,
+      "start": "0xD7A9",
+      "end": "0xD924",
+      "path": "world1/data/underground_chapter_tables.asm",
+      "responsibility": "World 1 underground chapter tables preceding object placements"
+    },
+    {
+      "bank": 0,
+      "start": "0xD925",
+      "end": "0xD988",
+      "path": "world1/data/underground_object_placements.asm",
+      "responsibility": "World 1 underground three-byte object placement records and terminator"
+    },
+    {
+      "bank": 0,
+      "start": "0xD989",
+      "end": "0xDAD9",
+      "path": "world1/data/city_object_placements.asm",
+      "responsibility": "World 1 city three-byte object placement records and terminator"
+    },
+    {
+      "bank": 0,
+      "start": "0xDADA",
+      "end": "0xDBD9",
+      "path": "world1/data/entity_behavior_tables.asm",
+      "responsibility": "World 1 entity collision and behavior parameter tables"
+    },
+    {
+      "bank": 0,
+      "start": "0xDBDA",
+      "end": "0xDEBA",
+      "path": "world1/entity_handlers_early.asm",
+      "responsibility": "World 1 low-state entity handlers at DBDA through DEBA"
+    },
+    {
+      "bank": 0,
+      "start": "0xDEBB",
+      "end": "0xE14A",
+      "path": "world1/entity_handlers_middle.asm",
+      "responsibility": "World 1 low-state entity handlers at DEBB through E14A"
+    },
+    {
+      "bank": 0,
+      "start": "0xE14B",
       "end": "0xE315",
-      "path": "world1/underground_objects_and_tables.asm",
-      "responsibility": "World 1 underground object spawning and chapter-specific tables"
+      "path": "world1/entity_handlers_late.asm",
+      "responsibility": "World 1 low-state entity handlers at E14B through E315"
     },
     {
       "bank": 0,

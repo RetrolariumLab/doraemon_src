@@ -36,7 +36,7 @@ Bank0_Label_829F:
     JSR World1_ClearEntitySlots00_09
     JSR World1_ClearEntitySlots10_29
     JSR World1_ClearEntitySlots38_47
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_9535
     JSR Bank0_Func_A7DB
     JSR Bank0_Func_843B
@@ -51,8 +51,8 @@ Bank0_Label_82C1:
     JSR Bank0_Func_CA6D
     JSR Bank0_Func_9201
     JSR Bank0_Func_8706
-    JSR Bank0_Func_8BDE
-    JSR Bank0_Func_888F
+    JSR World1_SpawnObjectsAtCameraEdges
+    JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
     JSR Bank0_TryEnterWorld1Door
@@ -81,7 +81,7 @@ Bank0_Func_830C:
     STA $27
 
 Bank0_Func_8313:
-    JSR Bank0_Func_C976
+    JSR World1_InitializeObjectSpawnMask
     LDA #$02
     STA $2A
     LDA #$E0
@@ -118,9 +118,9 @@ Bank0_Func_834E:
     LDA #$B2
     STA $67
     LDA #$89
-    STA $68
+    STA World1ObjectPlacementList
     LDA #$D9
-    STA $69
+    STA World1ObjectPlacementList+$01
     RTS
 
 Bank0_Func_8362:
@@ -148,8 +148,8 @@ Bank0_Label_837F:
     STA a:OamBuffer,X
     STA a:World1EntityType,X
     STA a:World1EntityY+$10,X
-    STA a:$0600,X
-    STA a:$0700,X
+    STA a:World1EntityDamageTimerOrAcceleration+$20,X
+    STA a:World1AttributeTableCache+$50,X
     CPX #$F8
     BCS Bank0_Label_8398
     CPX #$3C
@@ -244,7 +244,7 @@ Bank0_Label_841D:
     STA PpuCtrlShadow
     LDA #$00
     JSR Bank0_Func_81AA
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_8362
     RTS
 

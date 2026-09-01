@@ -36,5 +36,11 @@ The tracked seeds make that code/data boundary reproducible in a fresh analysis.
 The same registry seeds bank 3's four secondary dispatch jumps and the otherwise
 unreachable `$8A17` game-over and `$8A88` ending services.
 
+Bank 0 also needs explicit seeds for World 1's indirect entity update graph. Its
+16 target-minus-one entries begin at `$88FB`; slot zero overlaps the preceding
+`JMP` operand, while active slots `$01-$0F` lead into `$DBDA-$E315`. Registering
+the thirteen unique active targets lets recursive analysis recover their shared
+helpers at `$9065-$95CA` without treating the behavior engine as opaque data.
+
 Use `make disassemble` to update the canonical listing and
 `make disassembly-check` to reproduce it without accepting changes.

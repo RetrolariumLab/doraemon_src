@@ -48,11 +48,53 @@ collision, and metasprite helpers.
 | `World1EntityPositionHigh` | `$0490` | 48 | Packed X/Y high bits, updated when either low coordinate crosses a byte boundary |
 | `World1EntityX` | `$04C0` | 48 | Low byte of the entity X coordinate |
 | `World1EntityY` | `$04F0` | 48 | Low byte of the entity Y coordinate |
+| `World1EntitySourceObjectId` | `$0520` | 48 | Map-object ID whose spawn bit belongs to the entity, or `$FF` for transient entities |
+| `World1EntityPrimaryBehavior` | `$0550` | 48 | Primary state-specific counter, direction, or motion value |
+| `World1EntitySecondaryBehavior` | `$0580` | 48 | Secondary substate, direction, and motion flags |
+| `World1EntityHealthOrVelocity` | `$05B0` | 48 | Main-entity hit points, overlaid by transient vertical velocity |
+| `World1EntityDamageTimerOrAcceleration` | `$05E0` | 48 | Main-entity damage/recovery counter, overlaid by transient acceleration |
+| `World1EntityActionCooldown` | `$0610` | 48 | Randomized countdown gating low-state actions and projectile spawns |
+| `World1EntityReservedBehavior` | `$0640` | 48 | Cleared on entity materialization; no read has been proven |
 
-These aliases apply only to PRG bank 0. Later fields at `$0520-$066F` contain
-parallel behavior state but retain numeric operands until their per-type roles
-are separated. The `$0670-$06AF` area is also deliberately unnamed because the
-city object bitsets and underground mode reuse parts of it differently.
+These aliases apply only to PRG bank 0. The manifest proves that entity storage
+is a 13-field structure-of-arrays grid from `$0400-$066F`, with a 48-byte
+stride. The last six columns are deliberate overlays: slots 0-9 use health,
+damage recovery, direction, and action timing, while transient slots 10-29
+reuse the same addresses for motion vectors and acceleration. The names retain
+both proven roles instead of pretending that every slot class shares one entity
+schema. `$0640-$066F` is clear-only in all currently recovered code and remains
+explicitly reserved until a read path is demonstrated.
+
+## World 1 object persistence and attribute cache
+
+World 1 addresses each map object by a bit in a 16-byte set. Materializing an
+object sets its bit in the current scene's spawn mask. Despawning a temporary
+object clears that bit through `World1EntitySourceObjectId`, while collecting a
+persistent item sets the corresponding bit in the collected-object set.
+
+The placement decoder owns a small bank-0 zero-page overlay:
+
+| Symbol | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World1ObjectPlacementList` | `$0068` | 2 | Base pointer for the active city or underground placement list |
+| `World1CurrentPlacementId` | `$0090` | 1 | Zero-based record index and persistence bit ID |
+| `World1PlacementScanPointer` | `$0091` | 2 | Cursor advanced by three bytes per record |
+| `World1PlacementXCell` | `$0093` | 1 | Retained record X cell used during materialization |
+| `World1PlacementYCell` | `$0094` | 1 | Retained record Y cell used during materialization |
+
+| Symbol | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World1ObjectSpawnMask` | `$0670` | 16 | Suppresses objects already materialized or persistently collected in the current scene |
+| `World1CollectedObjectBits` | `$0680` | 16 | Persistent object state for whichever mode is currently active |
+| `World1SavedCityObjectBits` | `$0690` | 16 | City state saved while the side-view underground mode is active |
+| `World1SavedUndergroundObjectBits` | `$06A0` | 16 | Underground state saved while the city mode is active |
+| `World1AttributeTableCache` | `$06B0` | 128 | Attribute bytes for both streamed nametables |
+
+Entering the underground copies `$0680-$068F` to the city backing store and
+loads the underground backing store into `$0680-$068F`; returning performs the
+inverse exchange. The active spawn mask is then refreshed from the selected
+persistent set. The adjacent 128-byte attribute cache spans `$06B0-$072F` and
+is updated bitwise as metatiles are streamed into either nametable.
 
 ## World 2 entity pools
 

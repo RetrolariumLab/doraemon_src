@@ -1,4 +1,4 @@
-; Doraemon PRG bank 0 $856C-$8A6B
+; Doraemon PRG bank 0 $856C-$888E
 ; World 1 player state, directional movement, and camera-relative positioning
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
@@ -444,10 +444,10 @@ Bank0_Label_8832:
 Bank0_Label_8839:
     LDA #$00
     STA a:World1EntityType,Y
-    LDA a:$0520,Y
+    LDA a:World1EntitySourceObjectId,Y
     BMI Bank0_Label_8848
     AND #$7F
-    JSR Bank0_Func_8D62
+    JSR World1_ReleaseObjectSpawn
 
 Bank0_Label_8848:
     DEY
@@ -495,94 +495,3 @@ Bank0_Label_8880:
 
 Bank0_Label_888E:
     RTS
-
-Bank0_Func_888F:
-    LDX #$00
-
-Bank0_Label_8891:
-    LDA a:World1EntityType,X
-    BEQ Bank0_Label_88A1
-    BMI Bank0_Label_88B8
-    PHA
-    LDA $82
-    BNE Bank0_Label_88B4
-    PLA
-    JSR Bank0_Func_88A7
-
-Bank0_Label_88A1:
-    INX
-    CPX #$0A
-    BNE Bank0_Label_8891
-    RTS
-
-Bank0_Func_88A7:
-    AND #$1F
-    ASL A
-    TAY
-    LDA a:$88FC,Y
-    PHA
-    LDA a:$88FB,Y
-    PHA
-    RTS
-
-Bank0_Label_88B4:
-    PLA
-    JMP Bank0_Label_88A1
-
-Bank0_Label_88B8:
-    CMP #$C0
-    BCS Bank0_Label_88E4
-    INC a:$05E0,X
-    LDA a:$05E0,X
-    CMP #$28
-    BCS Bank0_Label_88D1
-    LDA a:World1EntityRenderFlags,X
-    ORA #$C0
-    STA a:World1EntityRenderFlags,X
-    JMP Bank0_Label_88A1
-
-Bank0_Label_88D1:
-    LDA a:World1EntityRenderFlags,X
-    AND #$03
-    STA a:World1EntityRenderFlags,X
-    LDA a:World1EntityType,X
-    AND #$7F
-    STA a:World1EntityType,X
-    JMP Bank0_Label_88A1
-
-Bank0_Label_88E4:
-    LDA #$02
-    STA a:World1EntityPositionHigh,X
-    LDA a:$0520,X
-    BMI Bank0_Label_88EE
-
-Bank0_Label_88EE:
-    LDA a:World1EntityType,X
-    AND #$3F
-    TAY
-    LDA a:$891B,Y
-    JSR Bank0_Func_81C9
-    JMP Bank0_Label_88A1
-    .byte $D9, $DB, $48, $DC, $B1, $DC, $28, $DD, $BA, $DE, $6F, $DF, $1E, $E0, $4A, $E1
-    .byte $DF, $E1, $48, $E2, $D2, $DD, $07, $DF, $D9, $DB, $96, $D5, $96, $D5, $41, $42
-    .byte $42, $45, $41, $42, $55, $48, $55, $31, $55, $55, $55, $21, $55, $55, $20, $D4
-    .byte $8A, $BD, $80, $05, $4C, $45, $8B, $38, $BD, $C0, $04, $E5, $75, $08, $A9, $00
-    .byte $2A, $0A, $0A, $09, $02, $9D, $80, $05, $28, $90, $04, $A9, $40, $D0, $02, $A9
-    .byte $42, $9D, $30, $04, $60, $BD, $80, $05, $49, $04, $9D, $80, $05, $BD, $80, $05
-    .byte $29, $07, $4C, $62, $89, $48, $29, $07, $48, $A8, $B9, $77, $89, $20, $6C, $8A
-    .byte $68, $A8, $B9, $7F, $89, $20, $A6, $8A, $68, $60, $00, $01, $01, $01, $00, $FF
-    .byte $FF, $FF, $01, $01, $00, $FF, $FF, $FF, $00, $01, $BD, $90, $04, $85, $00, $BD
-    .byte $C0, $04, $46, $00, $6A, $46, $00, $6A, $18, $69, $40, $85, $01, $BD, $F0, $04
-    .byte $46, $00, $6A, $46, $00, $6A, $18, $69, $40, $85, $00, $A5, $75, $4A, $4A, $09
-    .byte $40, $38, $E5, $01, $85, $01, $B0, $49, $49, $FF, $18, $69, $01, $85, $01, $A5
-    .byte $76, $4A, $4A, $09, $40, $38, $E5, $00, $85, $00, $B0, $1E, $49, $FF, $18, $69
-    .byte $01, $85, $00, $A5, $01, $4A, $C5, $00, $90, $03, $A9, $06, $60, $A5, $00, $4A
-    .byte $C5, $01, $90, $03, $A9, $04, $60, $A9, $05, $60, $A5, $01, $4A, $C5, $00, $90
-    .byte $03, $A9, $06, $60, $A5, $00, $4A, $C5, $01, $90, $03, $A9, $00, $60, $A9, $07
-    .byte $60, $A5, $76, $4A, $4A, $09, $40, $38, $E5, $00, $85, $00, $B0, $1E, $49, $FF
-    .byte $18, $69, $01, $85, $00, $A5, $01, $4A, $C5, $00, $90, $03, $A9, $02, $60, $A5
-    .byte $00, $4A, $C5, $01, $90, $03, $A9, $04, $60, $A9, $03, $60, $A5, $01, $4A, $C5
-    .byte $00, $90, $03, $A9, $02, $60, $A5, $00, $4A, $C5, $01, $90, $03, $A9, $00, $60
-    .byte $A9, $01, $60, $BD, $90, $04, $29, $03, $F0, $0D, $C9, $03, $D0, $1B, $BD, $C0
-    .byte $04, $C9, $E0, $B0, $02, $B0, $12, $BD, $90, $04, $29, $0C, $F0, $0E, $C9, $0C
-    .byte $D0, $07, $BD, $F0, $04, $C9, $E0, $B0, $03, $A9, $01, $60, $A9, $00, $60

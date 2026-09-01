@@ -39,6 +39,30 @@
     },
     {
       "bank": 0,
+      "address": "0x888F",
+      "name": "World1_UpdateEntities",
+      "evidence": "walks-active-slots-00-through-09-and-dispatches-low-entity-state"
+    },
+    {
+      "bank": 0,
+      "address": "0x88A2",
+      "name": "World1_InactiveEntityDispatchTarget",
+      "evidence": "overlapping-state-00-rts-table-entry-lands-on-loop-tail"
+    },
+    {
+      "bank": 0,
+      "address": "0x88A7",
+      "name": "World1_DispatchEntityUpdate",
+      "evidence": "low-five-state-bits-index-overlapping-target-minus-one-rts-table"
+    },
+    {
+      "bank": 0,
+      "address": "0x88FB",
+      "name": "World1_EntityUpdateHandlerRtsTable",
+      "evidence": "16-slot-overlapping-target-minus-one-rts-dispatch-for-low-entity-states"
+    },
+    {
+      "bank": 0,
       "address": "0x8A6C",
       "name": "World1_MoveEntityXByA",
       "evidence": "signed-a-add-to-entity-x-with-packed-high-bit-carry"
@@ -48,6 +72,54 @@
       "address": "0x8AA6",
       "name": "World1_MoveEntityYByA",
       "evidence": "signed-a-add-to-entity-y-with-packed-high-bit-carry"
+    },
+    {
+      "bank": 0,
+      "address": "0x8BDE",
+      "name": "World1_SpawnObjectsAtCameraEdges",
+      "evidence": "selects-horizontal-or-vertical-placement-list-scan-when-camera-crosses-a-cell"
+    },
+    {
+      "bank": 0,
+      "address": "0x8D22",
+      "name": "World1_IsObjectSpawnSuppressed",
+      "evidence": "tests-source-object-bit-in-current-spawn-mask-and-collected-state"
+    },
+    {
+      "bank": 0,
+      "address": "0x8D45",
+      "name": "World1_MarkObjectSpawned",
+      "evidence": "sets-source-object-bit-in-current-scene-spawn-mask"
+    },
+    {
+      "bank": 0,
+      "address": "0x8D62",
+      "name": "World1_ReleaseObjectSpawn",
+      "evidence": "clears-source-object-bit-when-a-nonpersistent-entity-despawns"
+    },
+    {
+      "bank": 0,
+      "address": "0x8D81",
+      "name": "World1_MarkObjectCollected",
+      "evidence": "sets-source-object-bit-in-current-mode-persistent-bitset"
+    },
+    {
+      "bank": 0,
+      "address": "0x8DA4",
+      "name": "World1_EntitySpawnInitializerRtsTable",
+      "evidence": "eight-slot-target-minus-one-table-indexed-by-placement-type-modulo-eight"
+    },
+    {
+      "bank": 0,
+      "address": "0x8DC4",
+      "name": "World1_MaterializePlacement",
+      "evidence": "placement-type-split-into-main-entity-or-descriptor-backed-object-slot"
+    },
+    {
+      "bank": 0,
+      "address": "0x8EA0",
+      "name": "World1_InitializeEntityPosition",
+      "evidence": "common-placement-coordinate-to-camera-relative-entity-position-initializer"
     },
     {
       "bank": 0,
@@ -102,6 +174,18 @@
       "address": "0xC95F",
       "name": "World1_ClearEntitySlots38_47",
       "evidence": "zeroes-ten-type-slots-at-0426"
+    },
+    {
+      "bank": 0,
+      "address": "0xC96A",
+      "name": "World1_RefreshObjectSpawnMask",
+      "evidence": "copies-current-mode-persistent-bits-into-current-scene-spawn-mask"
+    },
+    {
+      "bank": 0,
+      "address": "0xC976",
+      "name": "World1_InitializeObjectSpawnMask",
+      "evidence": "initial-entry-copy-of-current-mode-persistent-bits-into-spawn-mask"
     },
     {
       "bank": 0,
@@ -222,6 +306,114 @@
       "address": "0xD244",
       "name": "Bank0_EnterWorld1Manhole",
       "evidence": "world1-underground-runtime-probe"
+    },
+    {
+      "bank": 0,
+      "address": "0xD597",
+      "name": "World1_EntityHandler_States0E_0F",
+      "evidence": "88fb-rts-table-slots-0e-and-0f"
+    },
+    {
+      "bank": 0,
+      "address": "0xD925",
+      "name": "World1_UndergroundObjectPlacements",
+      "evidence": "pointer-installed-by-underground-init-and-consumed-as-three-byte-placement-records"
+    },
+    {
+      "bank": 0,
+      "address": "0xD989",
+      "name": "World1_CityObjectPlacements",
+      "evidence": "pointer-installed-by-city-init-and-consumed-as-three-byte-placement-records"
+    },
+    {
+      "bank": 0,
+      "address": "0xDBDA",
+      "name": "World1_EntityHandler_States01_0D",
+      "evidence": "88fb-rts-table-slots-01-and-0d"
+    },
+    {
+      "bank": 0,
+      "address": "0xDC33",
+      "name": "World1_InitializeEntityDirection",
+      "evidence": "8da4-rts-table-slot-01-computes-player-relative-direction"
+    },
+    {
+      "bank": 0,
+      "address": "0xDC49",
+      "name": "World1_EntityHandler_State02",
+      "evidence": "88fb-rts-table-slot-02"
+    },
+    {
+      "bank": 0,
+      "address": "0xDCB2",
+      "name": "World1_EntityHandler_State03",
+      "evidence": "88fb-rts-table-slot-03"
+    },
+    {
+      "bank": 0,
+      "address": "0xDD29",
+      "name": "World1_EntityHandler_State04",
+      "evidence": "88fb-rts-table-slot-04"
+    },
+    {
+      "bank": 0,
+      "address": "0xDDD3",
+      "name": "World1_EntityHandler_State0B",
+      "evidence": "88fb-rts-table-slot-0b"
+    },
+    {
+      "bank": 0,
+      "address": "0xDEBB",
+      "name": "World1_EntityHandler_State05",
+      "evidence": "88fb-rts-table-slot-05"
+    },
+    {
+      "bank": 0,
+      "address": "0xDF08",
+      "name": "World1_EntityHandler_State0C",
+      "evidence": "88fb-rts-table-slot-0c"
+    },
+    {
+      "bank": 0,
+      "address": "0xDF70",
+      "name": "World1_EntityHandler_State06",
+      "evidence": "88fb-rts-table-slot-06"
+    },
+    {
+      "bank": 0,
+      "address": "0xE017",
+      "name": "World1_InitializeEntityPrimaryBehavior3C",
+      "evidence": "8da4-rts-table-slot-06-stores-3c-before-common-position-initializer"
+    },
+    {
+      "bank": 0,
+      "address": "0xE01F",
+      "name": "World1_EntityHandler_State07",
+      "evidence": "88fb-rts-table-slot-07"
+    },
+    {
+      "bank": 0,
+      "address": "0xE142",
+      "name": "World1_InitializeEntityRandomPrimaryBehavior",
+      "evidence": "8da4-rts-table-slot-07-stores-random-byte-before-common-position-initializer"
+    },
+    {
+      "bank": 0,
+      "address": "0xE14B",
+      "name": "World1_EntityHandler_State08",
+      "evidence": "88fb-rts-table-slot-08"
+    },
+    {
+      "bank": 0,
+      "address": "0xE1E0",
+      "name": "World1_EntityHandler_State09",
+      "evidence": "88fb-rts-table-slot-09"
+    },
+    {
+      "bank": 0,
+      "address": "0xE249",
+      "name": "World1_EntityHandler_State0A",
+      "evidence": "88fb-rts-table-slot-0a"
     },
     {
       "bank": 0,
@@ -1550,6 +1742,48 @@
       "evidence": "or-of-four-controller-shift-registers"
     },
     {
+      "address": "0x0068",
+      "name": "World1ObjectPlacementList",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "city-or-underground-three-byte-placement-list-base-pointer"
+    },
+    {
+      "address": "0x0090",
+      "name": "World1CurrentPlacementId",
+      "banks": [
+        0
+      ],
+      "evidence": "zero-based-record-index-used-as-object-persistence-bit-id"
+    },
+    {
+      "address": "0x0091",
+      "name": "World1PlacementScanPointer",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "three-byte-placement-record-pointer-advanced-by-decoder"
+    },
+    {
+      "address": "0x0093",
+      "name": "World1PlacementXCell",
+      "banks": [
+        0
+      ],
+      "evidence": "placement-record-byte-zero-retained-for-materialization"
+    },
+    {
+      "address": "0x0094",
+      "name": "World1PlacementYCell",
+      "banks": [
+        0
+      ],
+      "evidence": "placement-record-byte-one-retained-for-materialization"
+    },
+    {
       "address": "0x0290",
       "name": "ScoreDigitsCurrent",
       "evidence": "score-digit-arithmetic-and-display"
@@ -1672,6 +1906,114 @@
         0
       ],
       "evidence": "48-slot-y-low-byte-used-by-motion-collision-and-rendering"
+    },
+    {
+      "address": "0x0520",
+      "name": "World1EntitySourceObjectId",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "48-slot-map-object-id-used-to-mark-spawn-and-release-or-ff-for-transient-entities"
+    },
+    {
+      "address": "0x0550",
+      "name": "World1EntityPrimaryBehavior",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "state-specific-primary-counter-direction-or-motion-value-across-48-world1-slots"
+    },
+    {
+      "address": "0x0580",
+      "name": "World1EntitySecondaryBehavior",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "state-specific-substate-direction-and-motion-flags-across-48-world1-slots"
+    },
+    {
+      "address": "0x05B0",
+      "name": "World1EntityHealthOrVelocity",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "main-entity-hit-points-and-transient-entity-vertical-velocity-overlay"
+    },
+    {
+      "address": "0x05E0",
+      "name": "World1EntityDamageTimerOrAcceleration",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "main-entity-damage-recovery-counter-and-transient-motion-acceleration-overlay"
+    },
+    {
+      "address": "0x0610",
+      "name": "World1EntityActionCooldown",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "randomized-countdown-gating-projectile-and-action-spawns-in-low-state-handlers"
+    },
+    {
+      "address": "0x0640",
+      "name": "World1EntityReservedBehavior",
+      "size": 48,
+      "banks": [
+        0
+      ],
+      "evidence": "48-slot-column-cleared-during-entity-materialization-with-no-proven-read"
+    },
+    {
+      "address": "0x0670",
+      "name": "World1ObjectSpawnMask",
+      "size": 16,
+      "banks": [
+        0
+      ],
+      "evidence": "current-scene-object-bits-queried-on-spawn-set-on-materialization-and-cleared-on-despawn"
+    },
+    {
+      "address": "0x0680",
+      "name": "World1CollectedObjectBits",
+      "size": 16,
+      "banks": [
+        0
+      ],
+      "evidence": "current-mode-persistent-object-bits-set-by-city-item-handlers-and-swapped-at-underground-entry"
+    },
+    {
+      "address": "0x0690",
+      "name": "World1SavedCityObjectBits",
+      "size": 16,
+      "banks": [
+        0
+      ],
+      "evidence": "backs-up-city-persistent-object-bits-while-side-view-underground-mode-is-active"
+    },
+    {
+      "address": "0x06A0",
+      "name": "World1SavedUndergroundObjectBits",
+      "size": 16,
+      "banks": [
+        0
+      ],
+      "evidence": "stores-underground-persistent-object-bits-while-city-mode-is-active"
+    },
+    {
+      "address": "0x06B0",
+      "name": "World1AttributeTableCache",
+      "size": 128,
+      "banks": [
+        0
+      ],
+      "evidence": "128-byte-two-nametable-attribute-cache-cleared-and-updated-by-metatile-streaming"
     },
     {
       "address": "0x0558",

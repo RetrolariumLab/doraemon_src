@@ -56,22 +56,22 @@ Bank0_Label_C963:
     BPL Bank0_Label_C963
     RTS
 
-Bank0_Func_C96A:
+World1_RefreshObjectSpawnMask:
     LDX #$0F
 
 Bank0_Label_C96C:
-    LDA a:$0680,X
-    STA a:$0670,X
+    LDA a:World1CollectedObjectBits,X
+    STA a:World1ObjectSpawnMask,X
     DEX
     BPL Bank0_Label_C96C
     RTS
 
-Bank0_Func_C976:
+World1_InitializeObjectSpawnMask:
     LDX #$0F
 
 Bank0_Label_C978:
-    LDA a:$0680,X
-    STA a:$0670,X
+    LDA a:World1CollectedObjectBits,X
+    STA a:World1ObjectSpawnMask,X
     DEX
     BPL Bank0_Label_C978
     RTS
@@ -211,10 +211,10 @@ Bank0_Label_CA1C:
 Bank0_Label_CA37:
     LDA #$80
     STA a:World1EntityType+$1E,X
-    LDA a:$0576,Y
+    LDA a:World1EntityPrimaryBehavior+$26,Y
     SEC
     SBC #$01
-    STA a:$0576,Y
+    STA a:World1EntityPrimaryBehavior+$26,Y
     BNE Bank0_Label_CA63
     LDA a:World1EntityType+$26,Y
     AND #$7F
@@ -279,10 +279,10 @@ Bank0_Label_CAA6:
 World1_CityItemHandler_Type04:
     DEC $2C
     JSR Bank0_Func_8362
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CAB6
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CAB6:
     JSR Bank0_Func_C982
@@ -293,10 +293,10 @@ Bank0_Label_CAB6:
 
 World1_CityItemHandler_Type05:
     INC $2A
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CACF
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CACF:
     JSR Bank0_Func_C982
@@ -307,10 +307,10 @@ Bank0_Label_CACF:
 
 World1_CityItemHandler_Type07:
     JSR Bank0_Func_8362
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CAE8
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CAE8:
     JSR Bank0_Func_C982
@@ -321,10 +321,10 @@ Bank0_Label_CAE8:
 
 World1_CityItemHandler_Type06:
     INC $7B
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB01
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CB01:
     JSR Bank0_Func_C982
@@ -338,10 +338,10 @@ World1_CityItemHandler_Type03:
     STA $82
     LDA #$F0
     STA $83
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB20
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CB20:
     JSR Bank0_Func_C982
@@ -354,10 +354,10 @@ Bank0_Label_CB20:
 
 World1_CityItemHandler_Type08:
     INC $84
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB3E
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CB3E:
     JSR Bank0_Func_C982
@@ -369,10 +369,10 @@ Bank0_Label_CB3E:
 World1_CityItemHandler_Type09:
     LDA #$01
     STA $37
-    LDA a:$0546,X
+    LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB59
     STA $00
-    JSR Bank0_Func_8D81
+    JSR World1_MarkObjectCollected
 
 Bank0_Label_CB59:
     LDA #$0B

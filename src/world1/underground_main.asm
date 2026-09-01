@@ -6,10 +6,10 @@ Bank0_InitWorld1SideView:
     LDX #$00
 
 Bank0_Label_CDB7:
-    LDA a:$0680,X
-    STA a:$0690,X
-    LDA a:$06A0,X
-    STA a:$0680,X
+    LDA a:World1CollectedObjectBits,X
+    STA a:World1SavedCityObjectBits,X
+    LDA a:World1SavedUndergroundObjectBits,X
+    STA a:World1CollectedObjectBits,X
     INX
     CPX #$10
     BNE Bank0_Label_CDB7
@@ -71,10 +71,10 @@ Bank0_Label_CDE3:
     LDA #$C2
     STA $67
     LDA #$25
-    STA $68
+    STA World1ObjectPlacementList
     LDA #$D9
-    STA $69
-    JSR Bank0_Func_C96A
+    STA World1ObjectPlacementList+$01
+    JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_83BD
     JSR Bank0_Func_A7DB
     JSR Bank0_Func_9535
@@ -91,9 +91,9 @@ Bank0_Label_CE55:
     JSR Bank0_Func_CA6D
     JSR Bank0_Func_9201
     JSR Bank0_Func_CF08
-    JSR Bank0_Func_8BDE
-    JSR Bank0_Func_8BDE
-    JSR Bank0_Func_888F
+    JSR World1_SpawnObjectsAtCameraEdges
+    JSR World1_SpawnObjectsAtCameraEdges
+    JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
     JSR Bank0_Func_820E
@@ -148,7 +148,7 @@ Bank0_Label_CEC2:
     SEC
     SBC #$E0
     STA $76
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_9614
     JSR Bank0_Func_A7DB
     JSR Bank0_Func_95ED
@@ -166,7 +166,7 @@ Bank0_Label_CEE5:
     CLC
     ADC #$B0
     STA $76
-    JSR Bank0_Func_C96A
+    JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_9614
     JSR Bank0_Func_A7DB
     JSR Bank0_Func_95ED

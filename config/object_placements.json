@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "formats": {
+    "world1_map_objects": {
+      "record_size": 3,
+      "fields": [
+        "x_cell",
+        "y_cell",
+        "type"
+      ],
+      "terminator_field": "x_cell",
+      "terminator_value": 0,
+      "always_scanned_prefix": 45,
+      "normal_type_max": 11,
+      "descriptor_count": 16
+    }
+  },
+  "lists": [
+    {
+      "id": "world1_underground_objects",
+      "format": "world1_map_objects",
+      "bank": 0,
+      "address": "0xD925",
+      "record_count": 33,
+      "terminator_address": "0xD988",
+      "crc32_with_terminator": "0bb8659a"
+    },
+    {
+      "id": "world1_city_objects",
+      "format": "world1_map_objects",
+      "bank": 0,
+      "address": "0xD989",
+      "record_count": 112,
+      "terminator_address": "0xDAD9",
+      "crc32_with_terminator": "8d73b206"
+    }
+  ]
+}

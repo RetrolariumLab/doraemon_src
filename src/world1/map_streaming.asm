@@ -77,9 +77,9 @@ Bank0_Label_A56E:
     STA $5F
     LDA a:$A7D7,Y
     EOR #$FF
-    AND a:$06B0,X
+    AND a:World1AttributeTableCache,X
     ORA $5F
-    STA a:$06B0,X
+    STA a:World1AttributeTableCache,X
     LDA $74
     EOR #$02
     STA $74
@@ -110,7 +110,7 @@ Bank0_Label_A5AE:
     LDY #$00
 
 Bank0_Label_A5B6:
-    LDA a:$06B0,X
+    LDA a:World1AttributeTableCache,X
     STA a:$0255,Y
     TXA
     CLC
@@ -218,9 +218,9 @@ Bank0_Label_A65B:
     STA $5F
     LDA a:$A7D7,Y
     EOR #$FF
-    AND a:$06B0,X
+    AND a:World1AttributeTableCache,X
     ORA $5F
-    STA a:$06B0,X
+    STA a:World1AttributeTableCache,X
     LDY $5D
     STA a:$0286,Y
     LDA $74
@@ -284,6 +284,8 @@ Bank0_Func_A6A7:
     LDY $71
     LDA ($6C),Y
     JSR Bank0_Func_A79B
+
+Bank0_Func_A6E2:
     LDY $70
     LDA ($6A),Y
     TAY
@@ -473,14 +475,14 @@ Bank0_Label_A807:
     STA $62
     JSR Bank0_Func_A484
     JSR Bank0_Func_A87E
-    JSR Bank0_Func_8BDE
+    JSR World1_SpawnObjectsAtCameraEdges
     JSR Bank0_Func_8750
     LDA #$00
     STA $61
     STA $62
     JSR Bank0_Func_A484
     JSR Bank0_Func_A87E
-    JSR Bank0_Func_8BDE
+    JSR World1_SpawnObjectsAtCameraEdges
     JSR Bank0_Func_8750
     DEC $60
     BNE Bank0_Label_A807
@@ -514,14 +516,14 @@ Bank0_Label_A853:
     STA $62
     JSR Bank0_Func_A42F
     JSR Bank0_Func_A87E
-    JSR Bank0_Func_8BDE
+    JSR World1_SpawnObjectsAtCameraEdges
     JSR Bank0_Func_8750
     LDA #$00
     STA $61
     STA $62
     JSR Bank0_Func_A42F
     JSR Bank0_Func_A87E
-    JSR Bank0_Func_8BDE
+    JSR World1_SpawnObjectsAtCameraEdges
     JSR Bank0_Func_8750
     DEC $60
     BNE Bank0_Label_A853

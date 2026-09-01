@@ -110,6 +110,22 @@ City entity types `$03-$0D` select eleven interaction handlers through the
 ordinary pointer table at `$CBF4` and `JMP ($0000)` at `$C9DD`; this table is
 also covered by the object-dispatch manifest.
 
+The ten actively updated city slots use a separate low-state dispatcher at
+`$88A7`. It masks the entity type to five bits and uses a 16-slot
+target-minus-one table beginning at `$88FB`, followed by the standard
+`PHA`/`PHA`/`RTS` idiom. The state-zero entry deliberately overlaps the operand
+of the preceding `JMP $88A1` and resolves to the inactive loop tail at `$88A2`;
+active states `$01-$0F` reach thirteen unique handlers. Those table targets also
+recover the previously opaque behavior code at `$DBDA-$E315` and its shared
+motion and collision helpers at `$9065-$95CA`.
+
+City and underground objects share three-byte X-cell/Y-cell/type placement
+records at `$D989` and `$D925`. Camera-edge scans preserve the zero-based record
+index as the persistence ID. Nonnegative types enter slots 0-9 and dispatch
+through eight spawn initializers at `$8DA4`; high-bit types enter slots 38-47
+through a 16-entry descriptor table at `$CC0A`. The exact 145 records and both
+terminators are validated by `config/object_placements.json`.
+
 World 2 uses three smaller pools: seven enemies, six enemy projectiles, and
 seven player projectiles. Its main frame path independently updates the enemy
 and player-projectile pools, and initialization clears all three active fields.

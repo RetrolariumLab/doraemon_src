@@ -30,8 +30,41 @@
         {
           "symbol": "World1EntityY",
           "role": "Y coordinate low byte"
+        },
+        {
+          "symbol": "World1EntitySourceObjectId",
+          "role": "map object id or 0xFF for transient entities"
+        },
+        {
+          "symbol": "World1EntityPrimaryBehavior",
+          "role": "state-specific primary counter, direction, or motion value"
+        },
+        {
+          "symbol": "World1EntitySecondaryBehavior",
+          "role": "state-specific substate, direction, and motion flags"
+        },
+        {
+          "symbol": "World1EntityHealthOrVelocity",
+          "role": "main-entity hit points overlaid by transient vertical velocity"
+        },
+        {
+          "symbol": "World1EntityDamageTimerOrAcceleration",
+          "role": "main-entity damage timer overlaid by transient acceleration"
+        },
+        {
+          "symbol": "World1EntityActionCooldown",
+          "role": "randomized low-state action and projectile countdown"
+        },
+        {
+          "symbol": "World1EntityReservedBehavior",
+          "role": "clear-only reserved behavior column"
         }
       ],
+      "layout": {
+        "start": "0x0400",
+        "field_stride": 48,
+        "field_count": 13
+      },
       "groups": [
         {
           "start": 0,
@@ -59,10 +92,18 @@
         }
       ],
       "lifecycle": [
+        "World1_UpdateEntities",
+        "World1_DispatchEntityUpdate",
+        "World1_SpawnObjectsAtCameraEdges",
+        "World1_MaterializePlacement",
         "World1_MoveEntityXByA",
         "World1_MoveEntityYByA",
         "World1_ComposeMetasprite",
-        "World1_FindFreeEntitySlot38_47"
+        "World1_FindFreeEntitySlot38_47",
+        "World1_IsObjectSpawnSuppressed",
+        "World1_MarkObjectSpawned",
+        "World1_ReleaseObjectSpawn",
+        "World1_MarkObjectCollected"
       ]
     },
     {
