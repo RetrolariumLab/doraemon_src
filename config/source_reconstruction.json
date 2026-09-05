@@ -70,8 +70,21 @@
       ]
     },
     {
+      "id": "semantic_naming",
+      "status": "partial",
+      "evidence": [
+        "config/reconstruction_inventory.json",
+        "config/symbols.json",
+        "src/memory/ram.inc",
+        "docs/reconstruction_inventory.md",
+        "docs/subsystems.md",
+        "docs/unknowns.md",
+        "scripts/reconstruction_inventory.py"
+      ]
+    },
+    {
       "id": "ram_and_object_systems",
-      "status": "in-progress",
+      "status": "partial",
       "evidence": [
         "config/object_dispatch.json",
         "config/object_placements.json",
@@ -147,7 +160,7 @@
     },
     {
       "id": "world_data_formats",
-      "status": "planned",
+      "status": "partial",
       "evidence": [
         "config/world2_metatiles.json",
         "config/world2_stage_sequence.json",
@@ -173,7 +186,7 @@
     },
     {
       "id": "rendering_graphics_text",
-      "status": "planned",
+      "status": "partial",
       "evidence": [
         "config/world1_metasprites.json",
         "config/world2_metasprites.json",
@@ -203,7 +216,7 @@
     },
     {
       "id": "audio",
-      "status": "planned",
+      "status": "partial",
       "evidence": [
         "config/audio_dispatch.json",
         "docs/subsystems.md",
@@ -212,7 +225,7 @@
     },
     {
       "id": "authoring_roundtrips",
-      "status": "planned",
+      "status": "partial",
       "evidence": [
         "data/world1/metasprites.json",
         "data/world2/compressed_screens.json",
@@ -262,11 +275,6 @@
       ]
     },
     {
-      "id": "relocation_proof",
-      "status": "planned",
-      "evidence": []
-    },
-    {
       "id": "source_reconstruction_1_0",
       "status": "planned",
       "evidence": []
@@ -301,22 +309,28 @@
     ]
   },
   "authoring_contract": {
-    "lossless_roundtrip_required": true,
-    "required_formats": [
-      "maps",
-      "metatiles",
-      "objects",
-      "collisions",
-      "graphics",
-      "palettes",
-      "text",
-      "audio"
-    ]
+    "lossless_roundtrip_required_for_primary_formats": true,
+    "required_primary_families": [
+      "world-maps-and-metatiles",
+      "gameplay-objects-and-collisions",
+      "chapter-metasprites-and-palettes",
+      "title-hud-and-dialogue",
+      "audio-command-streams"
+    ],
+    "secondary_fixed_tables_policy": "typed-source-or-registered-unknown",
+    "exhaustive_visual_editors_required": false
   },
+  "deferred_to_source_2_0": [
+    "relocation-build",
+    "revision-a",
+    "translations-and-regional-profiles",
+    "exhaustive-secondary-graphics-and-text-editors"
+  ],
   "required_documents": [
     "README.md",
     "docs/architecture.md",
     "docs/ram_map.md",
+    "docs/reconstruction_inventory.md",
     "docs/roadmap.md",
     "docs/source_reconstruction.md",
     "docs/unknowns.md",

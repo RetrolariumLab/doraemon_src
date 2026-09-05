@@ -89,6 +89,7 @@ WORLD3_METASPRITE_AUTHORING := data/world3/metasprites.json
 WORLD_DATA := config/world_data.json
 WORLD1_DATA_AUTHORING := data/world1/hierarchical_world.json
 WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
+RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -97,6 +98,7 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	ghidra-bootstrap ghidra-status ghidra-inspect ghidra-analyze disassemble \
 	disassembly-check maps validate-maps release-check check clean \
 	source-audit source-release-audit source-check trace-runtime \
+	reconstruction-inventory validate-reconstruction-inventory \
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
 	audio-dispatch validate-audio-dispatch object-pools validate-object-pools \
 	object-dispatch validate-object-dispatch object-placements \
@@ -224,6 +226,10 @@ source-audit:
 
 source-release-audit:
 	$(PYTHON) scripts/source_reconstruction_audit.py --require-ready
+
+reconstruction-inventory validate-reconstruction-inventory:
+	$(PYTHON) scripts/reconstruction_inventory.py \
+		--manifest "$(RECONSTRUCTION_INVENTORY)"
 
 source-check: release-check source-audit
 
@@ -494,6 +500,7 @@ validate-maps: $(ROM)
 	$(PYTHON) scripts/map_data.py --image "$(ROM)" --validate
 
 release-check: quality-check disassembly-check verify validate-maps \
+	validate-reconstruction-inventory \
 	validate-audio-dispatch validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world1-metasprites \
 	validate-world1-random \

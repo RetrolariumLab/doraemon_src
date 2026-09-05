@@ -17,15 +17,15 @@ EXPECTED_MILESTONES = [
     "runtime_architecture",
     "chapter_execution_evidence",
     "semantic_source_layout",
+    "semantic_naming",
     "ram_and_object_systems",
     "world_data_formats",
     "rendering_graphics_text",
     "audio",
     "authoring_roundtrips",
-    "relocation_proof",
     "source_reconstruction_1_0",
 ]
-VALID_STATES = {"planned", "in-progress", "complete"}
+VALID_STATES = {"planned", "partial", "complete"}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -59,21 +59,9 @@ def validate_milestones(
             return ["tag-ready reconstruction has incomplete milestones"]
         return []
 
-    errors: list[str] = []
-    active = states.count("in-progress")
-    if active != 1:
-        errors.append("development reconstruction requires exactly one active milestone")
-    first_open = next((state for state in states if state != "complete"), None)
-    if first_open != "in-progress":
-        errors.append("first open milestone is not active")
-    seen_open = False
-    for state in states:
-        if state == "complete" and seen_open:
-            errors.append("completed milestone follows an open milestone")
-            break
-        if state != "complete":
-            seen_open = True
-    return errors
+    if all(state == "complete" for state in states):
+        return ["development reconstruction has no incomplete milestones"]
+    return []
 
 
 def make_targets(text: str) -> set[str]:
@@ -153,19 +141,30 @@ def validate_contract_shape(document: dict[str, Any]) -> list[str]:
         errors.append("required runtime scenarios differ")
 
     authoring = document.get("authoring_contract", {})
-    if authoring.get("lossless_roundtrip_required") is not True:
-        errors.append("authoring formats must require lossless round trips")
-    if authoring.get("required_formats") != [
-        "maps",
-        "metatiles",
-        "objects",
-        "collisions",
-        "graphics",
-        "palettes",
-        "text",
-        "audio",
+    if authoring.get("lossless_roundtrip_required_for_primary_formats") is not True:
+        errors.append("primary authoring formats must require lossless round trips")
+    if authoring.get("required_primary_families") != [
+        "world-maps-and-metatiles",
+        "gameplay-objects-and-collisions",
+        "chapter-metasprites-and-palettes",
+        "title-hud-and-dialogue",
+        "audio-command-streams",
     ]:
-        errors.append("required authoring formats differ")
+        errors.append("required primary authoring families differ")
+    if authoring.get("secondary_fixed_tables_policy") != (
+        "typed-source-or-registered-unknown"
+    ):
+        errors.append("secondary fixed-table policy differs")
+    if authoring.get("exhaustive_visual_editors_required") is not False:
+        errors.append("exhaustive visual editors must remain outside 1.0")
+
+    if document.get("deferred_to_source_2_0") != [
+        "relocation-build",
+        "revision-a",
+        "translations-and-regional-profiles",
+        "exhaustive-secondary-graphics-and-text-editors",
+    ]:
+        errors.append("Source 2.0 deferred scope differs")
     return errors
 
 

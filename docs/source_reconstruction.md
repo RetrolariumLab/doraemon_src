@@ -27,12 +27,16 @@ Source Reconstruction 1.0 is tag-ready only when all of these conditions hold:
   runtime evidence tied to symbols and static call paths;
 - physical bank listings have been split into address-ordered semantic modules,
   normally 200-500 lines and never more than 700 lines;
-- routines, RAM state, object systems, collision, rendering, sound, and text are
-  named from evidence rather than guessed from bank ownership;
-- maps, metatiles, objects, collisions, graphics, palettes, text, and audio have
+- all major routines, indirect-dispatch targets, and key RAM state are named
+  from evidence rather than guessed from bank ownership;
+- primary maps/metatiles, gameplay objects/collisions, chapter
+  metasprites/palettes, title/HUD/dialogue, and audio command streams have
   documented lossless decode/encode formats with round-trip tests;
-- a relocation build proves that reconstructed code and references are genuine
-  source relationships rather than position-dependent transcription;
+- secondary fixed tables are typed source or explicit registered unknowns; a
+  visual editor for every graphics or text byte is not required;
+- linker-derived debugger symbols and fresh runtime captures cover every bank,
+  NMI, all three worlds, transitions, and the ending;
+- one `source-1-audit` target performs the clean release gate;
 - `make source-check` passes on a clean tree and the manifest status is changed
   to `tag-ready` only in the release commit.
 
@@ -43,10 +47,9 @@ by itself a semantic module boundary.
 ## Evidence policy
 
 A milestone may be marked `complete` only when its evidence files are tracked
-and its focused checks pass. Development manifests must contain one active
-milestone, preceded only by completed milestones and followed only by planned
-ones. Unknown behavior stays listed in `docs/unknowns.md`; a plausible name is
-not evidence.
+and its focused checks pass. Independent workstreams use `partial`; their order
+does not imply that later formats are untouched. Unknown behavior stays listed
+in `docs/unknowns.md`; a plausible name is not evidence.
 
 Runtime captures will use the original PRG0 image, deterministic inputs, frame
 or event boundaries, bank-qualified program counters, and relevant RAM/mapper
@@ -64,3 +67,7 @@ make source-check          # full project gate plus reconstruction audit
 The normal `make verify` and `make check` targets remain available throughout
 the work. Incremental commits should finish one coherent evidence or source
 change and leave all checks relevant to that change passing.
+
+Relocation builds, Revision A, translations/region profiles, and exhaustive
+editors for secondary graphics/text tables are explicitly deferred to Source
+Reconstruction 2.0.

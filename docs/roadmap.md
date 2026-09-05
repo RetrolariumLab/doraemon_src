@@ -1,7 +1,7 @@
 # Roadmap
 
-The status sequence below mirrors `config/source_reconstruction.json`. Detailed
-acceptance criteria and the evidence policy are in
+The independent workstream statuses below mirror
+`config/source_reconstruction.json`. Detailed acceptance criteria are in
 `docs/source_reconstruction.md`.
 
 ### 0. Preservation baseline - Complete
@@ -12,7 +12,7 @@ baseline commit.
 
 ### 1. Reconstruction contract - Complete
 
-The target quality, ordered milestones, evidence rules, release gates, and
+The target quality, independent workstreams, evidence rules, release gates, and
 immutable predecessor are machine-audited.
 
 ### 2. Runtime architecture - Complete
@@ -32,7 +32,15 @@ Replace the four monolithic physical-bank listings with address-ordered common,
 world, audio, and data modules. Every byte of all four banks is covered without
 gaps or overlaps, and every module remains at or below 700 lines.
 
-### 5. RAM and object systems - In Progress
+### 5. Semantic naming - Partial
+
+Replace neutral address-based names for all major routines, indirect-dispatch
+targets, and key RAM state with evidence-backed roles. Local branch labels are
+lower priority and remain address-qualified where their role is not material.
+Progress is measured per bank by a machine-audited reconstruction inventory,
+not inferred from module names.
+
+### 6. RAM and object systems - Partial
 
 Recover shared and chapter-specific RAM, enemies, items, NPCs, projectiles,
 doors, manholes, bosses, triggers, and persistent progression state. The World
@@ -103,7 +111,7 @@ address/flags/length/payload record.
 Its record geometry, capacity invariant, RAM ownership, routine addresses, and
 representative consumer/producer bytes are enforced by the release gate.
 
-### 6. World data formats - Planned
+### 7. World data formats - Partial
 
 Complete maps, metatiles, screen sequences, collision properties, object
 placements, transitions, and their cross-references for all three worlds.
@@ -116,9 +124,9 @@ offsets. Its exact 208-entry metatile catalog, palette selectors, renderer
 addressing, all standard-stream cross-references, and the 208 solid flags are
 now losslessly editable. The apparent dynamic selectors are resolved: `$7F` is
 a stopped terminal sentinel and `$7B` begins the collision bitmap. Remaining
-cross-references keep this milestone planned while RAM/object work is active.
+cross-references keep this workstream partial.
 
-### 7. Rendering, graphics, and text - Planned
+### 8. Rendering, graphics, and text - Partial
 
 Recover PPU update paths, palettes, sprites/metasprites, CHR ownership, title,
 HUD, dialogue, item names, and ending presentation. World 1's complete
@@ -143,22 +151,27 @@ and losslessly editable. Its NMI/disabled-rendering queue ownership, ring
 indexes, record flags, address calculators, and palette/attribute shadows are
 also documented.
 
-### 8. Audio - Planned
+### 9. Audio - Partial
 
 Recover the sound driver, channel state, command streams, music, and sound
 effects with documented formats and bank ownership.
 
-### 9. Authoring round trips - Planned
+### 10. Authoring round trips - Partial
 
-Provide lossless decode/encode tools and tests for maps, metatiles, objects,
-collisions, graphics, palettes, text, and audio.
-
-### 10. Relocation proof - Planned
-
-Build and validate a deliberately relocated development image to prove source
-relationships and expose hidden absolute-address assumptions.
+Provide lossless decode/encode tools and tests for the primary map/metatile,
+gameplay object/collision, chapter metasprite/palette, title/HUD/dialogue, and
+audio command-stream families. Secondary fixed tables need typed source or a
+registered unknown, not necessarily a dedicated visual editor.
 
 ### 11. Source Reconstruction 1.0 - Planned
 
-Resolve or explicitly classify remaining unknowns, run the clean aggregate
-gate, finalize the documentation, and prepare the audited release commit.
+Resolve or explicitly classify remaining release-scope unknowns, generate and
+live-validate linker-derived debugger symbols, refresh all eight runtime
+scenarios, run one clean aggregate `source-1-audit`, and prepare the audited
+release commit.
+
+## Deferred to Source Reconstruction 2.0
+
+Relocation builds, Revision A, translations and regional profiles, and
+exhaustive editors for secondary graphics/text tables are outside the 1.0
+definition of done.

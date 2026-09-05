@@ -24,16 +24,20 @@ class MilestoneTests(unittest.TestCase):
             for identifier, state in zip(AUDIT.EXPECTED_MILESTONES, states, strict=True)
         ]
 
-    def test_accepts_completed_prefix_and_one_active_milestone(self) -> None:
-        states = ["complete", "complete", "in-progress"] + ["planned"] * 9
+    def test_accepts_independent_partial_milestones(self) -> None:
+        states = ["complete", "partial", "complete"] + ["planned"] * 9
         self.assertEqual(AUDIT.validate_milestones(self.milestones(states), "development"), [])
 
-    def test_rejects_completion_after_open_milestone(self) -> None:
-        states = ["complete", "in-progress", "complete"] + ["planned"] * 9
-        self.assertTrue(AUDIT.validate_milestones(self.milestones(states), "development"))
+    def test_rejects_development_with_every_milestone_complete(self) -> None:
+        states = ["complete"] * len(AUDIT.EXPECTED_MILESTONES)
+        self.assertTrue(
+            AUDIT.validate_milestones(self.milestones(states), "development")
+        )
 
     def test_tag_ready_requires_every_milestone(self) -> None:
-        states = ["complete"] * 11 + ["in-progress"]
+        states = ["complete"] * (len(AUDIT.EXPECTED_MILESTONES) - 1) + [
+            "partial"
+        ]
         self.assertTrue(AUDIT.validate_milestones(self.milestones(states), "tag-ready"))
 
 
@@ -76,18 +80,25 @@ class ContractHelpersTests(unittest.TestCase):
                 ],
             },
             "authoring_contract": {
-                "lossless_roundtrip_required": True,
-                "required_formats": [
-                    "maps",
-                    "metatiles",
-                    "objects",
-                    "collisions",
-                    "graphics",
-                    "palettes",
-                    "text",
-                    "audio",
+                "lossless_roundtrip_required_for_primary_formats": True,
+                "required_primary_families": [
+                    "world-maps-and-metatiles",
+                    "gameplay-objects-and-collisions",
+                    "chapter-metasprites-and-palettes",
+                    "title-hud-and-dialogue",
+                    "audio-command-streams",
                 ],
+                "secondary_fixed_tables_policy": (
+                    "typed-source-or-registered-unknown"
+                ),
+                "exhaustive_visual_editors_required": False,
             },
+            "deferred_to_source_2_0": [
+                "relocation-build",
+                "revision-a",
+                "translations-and-regional-profiles",
+                "exhaustive-secondary-graphics-and-text-editors",
+            ],
         }
 
     def test_accepts_original_prg0_only_scope(self) -> None:

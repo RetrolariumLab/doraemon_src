@@ -10,8 +10,9 @@ tracked PRG assembly plus one private CHR input.
 Active development on `source-reconstruction` targets the audited
 [Source Reconstruction 1.0](docs/source_reconstruction.md) contract. The
 matching preservation state remains fixed on `main`; semantic reconstruction,
-runtime evidence, editable formats, and relocation proof are added
-incrementally without weakening byte identity.
+runtime evidence, editable primary formats, and debugger integration are added
+incrementally without weakening byte identity. Relocation builds are deferred
+to Source Reconstruction 2.0.
 
 - The exact local reference is identified by complete file, header, PRG, CHR,
   and payload hashes.
@@ -114,10 +115,11 @@ make world3-entity-types # validate all World 3 type properties and identities
 make maps               # describe all CadEditor-backed regions as JSON
 make validate-maps      # validate map/table sizes and CRCs
 make quality-check      # formatting, lint, and unit tests
+make reconstruction-inventory # measure semantic naming and typed-data progress
 make source-audit       # validate reconstruction milestones and evidence
 make runtime-architecture # capture and validate reset/NMI/mapper evidence
 make source-check       # complete project and reconstruction development gate
-make check              # complete release gate
+make check              # current byte-identity and subsystem verification gate
 make clean              # remove build artifacts only
 ```
 

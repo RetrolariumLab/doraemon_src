@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "snapshot": {
+    "source_labels": {
+      "module_count": 115,
+      "total": {
+        "global_labels": 3329,
+        "semantic_labels": 618,
+        "neutral_routine_labels": 577,
+        "neutral_local_labels": 2134
+      },
+      "by_bank": {
+        "0": {
+          "global_labels": 1009,
+          "semantic_labels": 183,
+          "neutral_routine_labels": 137,
+          "neutral_local_labels": 689
+        },
+        "1": {
+          "global_labels": 877,
+          "semantic_labels": 158,
+          "neutral_routine_labels": 160,
+          "neutral_local_labels": 559
+        },
+        "2": {
+          "global_labels": 1088,
+          "semantic_labels": 221,
+          "neutral_routine_labels": 184,
+          "neutral_local_labels": 683
+        },
+        "3": {
+          "global_labels": 355,
+          "semantic_labels": 56,
+          "neutral_routine_labels": 96,
+          "neutral_local_labels": 203
+        }
+      }
+    },
+    "evidence_backed_prg_symbols": {
+      "total": {
+        "semantic_code_symbols": 502,
+        "operand_symbols": 106
+      },
+      "by_bank": {
+        "0": {
+          "semantic_code_symbols": 149,
+          "operand_symbols": 32
+        },
+        "1": {
+          "semantic_code_symbols": 125,
+          "operand_symbols": 31
+        },
+        "2": {
+          "semantic_code_symbols": 176,
+          "operand_symbols": 42
+        },
+        "3": {
+          "semantic_code_symbols": 52,
+          "operand_symbols": 1
+        }
+      }
+    },
+    "indirect_code_entries": {
+      "total": {
+        "entries": 354,
+        "semantic_symbols": 198
+      },
+      "by_bank": {
+        "0": {
+          "entries": 84,
+          "semantic_symbols": 48
+        },
+        "1": {
+          "entries": 97,
+          "semantic_symbols": 60
+        },
+        "2": {
+          "entries": 106,
+          "semantic_symbols": 65
+        },
+        "3": {
+          "entries": 67,
+          "semantic_symbols": 25
+        }
+      }
+    },
+    "ram_aliases": {
+      "unique_symbols": 259,
+      "shared": {
+        "symbols": 62,
+        "bytes": 62
+      },
+      "bank_scoped": {
+        "0": {
+          "symbols": 93,
+          "bytes": 982
+        },
+        "1": {
+          "symbols": 39,
+          "bytes": 414
+        },
+        "2": {
+          "symbols": 65,
+          "bytes": 740
+        },
+        "3": {
+          "symbols": 0,
+          "bytes": 0
+        }
+      },
+      "effective_by_bank": {
+        "0": {
+          "symbols": 155,
+          "bytes": 1044
+        },
+        "1": {
+          "symbols": 101,
+          "bytes": 476
+        },
+        "2": {
+          "symbols": 127,
+          "bytes": 802
+        },
+        "3": {
+          "symbols": 62,
+          "bytes": 62
+        }
+      }
+    },
+    "typed_prg_data": {
+      "total": {
+        "range_count": 46,
+        "typed_bytes": 35792
+      },
+      "by_bank": {
+        "0": {
+          "range_count": 9,
+          "typed_bytes": 8120,
+          "bytes_by_kind": {
+            "map": 5696,
+            "table": 2418,
+            "vectors": 6
+          }
+        },
+        "1": {
+          "range_count": 16,
+          "typed_bytes": 18213,
+          "bytes_by_kind": {
+            "map": 16430,
+            "table": 1777,
+            "vectors": 6
+          }
+        },
+        "2": {
+          "range_count": 19,
+          "typed_bytes": 9437,
+          "bytes_by_kind": {
+            "map": 4096,
+            "table": 5287,
+            "text": 48,
+            "vectors": 6
+          }
+        },
+        "3": {
+          "range_count": 2,
+          "typed_bytes": 22,
+          "bytes_by_kind": {
+            "table": 16,
+            "vectors": 6
+          }
+        }
+      }
+    },
+    "open_unknowns": {
+      "section_count": 4,
+      "claim_count": 4,
+      "section_ids": [
+        "BANK-001",
+        "BANK-002",
+        "WORLD-DATA-002",
+        "AUDIO-002"
+      ]
+    }
+  }
+}
