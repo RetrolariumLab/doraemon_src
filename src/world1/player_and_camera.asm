@@ -257,8 +257,8 @@ Bank0_Label_8705:
 
 Bank0_Func_8706:
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     LDA World1PlayerX
     CMP #$50
     BCS Bank0_Label_871B
@@ -289,18 +289,18 @@ Bank0_Label_8734:
 Bank0_Label_873E:
     LDA World1PlayerX
     CLC
-    ADC $61
+    ADC World1ScreenDeltaX
     STA World1PlayerX
     LDA World1PlayerY
     CLC
-    ADC $62
+    ADC World1ScreenDeltaY
     STA World1PlayerY
     JSR Bank0_Func_8750
     RTS
 
 Bank0_Func_8750:
     LDY #$2F
-    LDA $61
+    LDA World1ScreenDeltaX
     BEQ Bank0_Label_87A2
     BMI Bank0_Label_877E
 
@@ -309,7 +309,7 @@ Bank0_Label_8758:
     BEQ Bank0_Label_8779
     LDA a:World1EntityX,Y
     CLC
-    ADC $61
+    ADC World1ScreenDeltaX
     STA a:World1EntityX,Y
     BCC Bank0_Label_8779
     LDA a:World1EntityPositionHigh,Y
@@ -332,7 +332,7 @@ Bank0_Label_877E:
     BEQ Bank0_Label_879F
     LDA a:World1EntityX,Y
     CLC
-    ADC $61
+    ADC World1ScreenDeltaX
     STA a:World1EntityX,Y
     BCS Bank0_Label_879F
     LDA a:World1EntityPositionHigh,Y
@@ -351,7 +351,7 @@ Bank0_Label_879F:
 
 Bank0_Label_87A2:
     LDY #$2F
-    LDA $62
+    LDA World1ScreenDeltaY
     BEQ Bank0_Func_87F8
     BMI Bank0_Label_87D2
 
@@ -360,7 +360,7 @@ Bank0_Label_87AA:
     BEQ Bank0_Label_87CD
     LDA a:World1EntityY,Y
     CLC
-    ADC $62
+    ADC World1ScreenDeltaY
     STA a:World1EntityY,Y
     BCC Bank0_Label_87CD
     LDA a:World1EntityPositionHigh,Y
@@ -384,7 +384,7 @@ Bank0_Label_87D2:
     BEQ Bank0_Label_87F5
     LDA a:World1EntityY,Y
     CLC
-    ADC $62
+    ADC World1ScreenDeltaY
     STA a:World1EntityY,Y
     BCS Bank0_Label_87F5
     LDA a:World1EntityPositionHigh,Y

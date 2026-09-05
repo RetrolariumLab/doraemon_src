@@ -85,9 +85,9 @@ Bank0_Func_8313:
     LDA #$02
     STA PlayerLives
     LDA #$E0
-    STA $5B
+    STA World1CameraTileX
     LDA #$D8
-    STA $5C
+    STA World1CameraTileY
     LDA #$78
     STA World1PlayerX
     LDA #$80
@@ -216,9 +216,9 @@ Bank0_Func_83E8:
     LDA #$00
     STA PpuScrollXShadow
     STA PpuScrollYShadow
-    STA $58
-    STA $59
-    STA $5A
+    STA World1NametableX
+    STA World1PpuScrollXLatched
+    STA World1PpuScrollYLatched
     STA $51
     JSR Bank0_Func_8131
     LDA #$5B
@@ -396,24 +396,24 @@ Bank0_Label_8531:
     STA a:PPU_CTRL
     LDA PpuMaskShadow
     STA a:PPU_MASK
-    LDA $59
+    LDA World1PpuScrollXLatched
     STA a:PPU_SCROLL
-    LDA $5A
+    LDA World1PpuScrollYLatched
     STA a:PPU_SCROLL
     LDA PpuScrollXShadow
-    STA $59
+    STA World1PpuScrollXLatched
     LDA PpuScrollYShadow
-    STA $5A
+    STA World1PpuScrollYLatched
     LDA PpuCtrlShadow
     AND #$FE
     STA $0A
-    LDA $58
+    LDA World1NametableX
     AND #$01
     ORA $0A
     STA PpuCtrlShadow
     JSR Bank0_Func_8131
     LDA #$00
-    STA $50
+    STA World1OamWriteIndex
     LDA $51
     BEQ Bank0_Label_856B
     JSR Bank0_Func_9674

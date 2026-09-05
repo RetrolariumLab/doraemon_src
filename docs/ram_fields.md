@@ -59,6 +59,32 @@ set. The title shell sets that flag before rotating through the three chapter
 entry gateways; normal World 1 and World 2 starts clear it, while demo-specific
 entry points set it. The same flag selects demo input, damage, and exit paths.
 
+## World 1 camera state
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `World1NametableX` | `$0058` | Horizontal nametable bit toggled when the pixel scroll wraps and copied into `PpuCtrlShadow` bit 0 |
+| `World1PpuScrollXLatched` | `$0059` | Horizontal scroll value published to `PPU_SCROLL` by NMI before latching the next value |
+| `World1PpuScrollYLatched` | `$005A` | Vertical scroll value published to `PPU_SCROLL` by NMI before latching the next value |
+| `World1CameraTileX` | `$005B` | Horizontal camera coordinate in 8-pixel world-map cells; bounded from 0 through `$E0` |
+| `World1CameraTileY` | `$005C` | Vertical camera coordinate in 8-pixel world-map cells; bounded from 0 through `$E2` |
+| `World1MapPrefillCounter` | `$0060` | Initial map-fill countdown: `$98` iterations, each advancing the camera twice |
+| `World1ScreenDeltaX` | `$0061` | Signed screen-space X adjustment accumulated while the camera moves during the current update |
+| `World1ScreenDeltaY` | `$0062` | Signed screen-space Y adjustment accumulated while the camera moves during the current update |
+
+The low three bits of `PpuScrollXShadow` and `PpuScrollYShadow` are the
+sub-cell pixel offsets. Crossing an eight-pixel boundary increments or
+decrements the corresponding camera-cell coordinate. Object spawning,
+collision lookup, map streaming, and world-to-screen entity conversion all
+consume this pair, in both city and underground modes. Each pixel of camera
+motion simultaneously accumulates the opposite signed screen delta; that
+delta keeps the player and all active entities stationary in world space.
+
+NMI writes the latched scroll pair to `PPU_SCROLL`, then copies the current
+scroll shadows into the latch for the following frame. Horizontal byte wrap
+toggles `World1NametableX`, which supplies both `PpuCtrlShadow` bit 0 and the
+nametable selector used by the edge-streaming address builders.
+
 ## Shared rendering and score state
 
 | Symbol | Address | Role |
@@ -66,6 +92,31 @@ entry points set it. The same flag selects demo input, damage, and exit paths.
 | `ScoreDigitsCurrent` | `$0290` | Current eight-byte score digit array |
 | `ScoreDigitsWorking` | `$0298` | Eight-byte score arithmetic and carry array |
 | `OamBuffer` | `$0300` | CPU page copied by OAM DMA and written as four-byte sprite records |
+
+## World 1 metasprite renderer workspace
+
+| Symbol | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World1OamY` | `$0041` | 1 | Staged OAM Y coordinate |
+| `World1OamTile` | `$0042` | 1 | Staged OAM tile index |
+| `World1OamAttributes` | `$0043` | 1 | Staged OAM palette/priority/flip attributes |
+| `World1OamX` | `$0044` | 1 | Staged OAM X coordinate |
+| `World1MetaspriteOriginX` | `$0045` | 1 | Low byte of the player/entity metasprite origin X |
+| `World1MetaspriteOriginXHigh` | `$0046` | 1 | X page bits extracted from packed entity position state |
+| `World1MetaspriteOriginY` | `$0047` | 1 | Low byte of the player/entity metasprite origin Y |
+| `World1MetaspriteOriginYHigh` | `$0048` | 1 | Y page bits extracted from packed entity position state |
+| `World1MetaspriteIndex` | `$0049` | 1 | Index into the 115-entry direct-pointer/alias table |
+| `World1MetaspriteRenderFlags` | `$004A` | 1 | OAM low bits plus two frame-modulated visibility modes |
+| `World1MetaspriteDataPointer` | `$004B` | 2 | Resolved variable-length metasprite record pointer |
+| `World1MetaspriteXMirrorExtent` | `$004D` | 1 | Header extent used to reflect X offsets |
+| `World1MetaspriteYMirrorExtent` | `$004E` | 1 | Header extent used to reflect Y offsets |
+| `World1MetaspritePiecesRemaining` | `$004F` | 1 | Header sprite count decremented after each piece |
+| `World1OamWriteIndex` | `$0050` | 1 | Even index doubled into an OAM byte offset; bit 7 means full |
+
+The player, HUD, and all four World 1 entity-slot classes populate the same
+bank-local workspace. `World1_EmitOamEntry` writes its first four bytes to
+`OamBuffer`; the metasprite validator pins the complete field geometry,
+symbol ownership, emitter address, and emitter machine-code signature.
 
 ## World 1 entity slots
 

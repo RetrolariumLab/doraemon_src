@@ -212,6 +212,12 @@
     },
     {
       "bank": 0,
+      "address": "0x9B35",
+      "name": "World1_EmitOamEntry",
+      "evidence": "writes-staged-y-tile-attributes-x-record-to-oam-buffer-and-advances-capacity-index"
+    },
+    {
+      "bank": 0,
       "address": "0x9CB6",
       "name": "World1_MetaspriteIndex",
       "evidence": "115-two-byte-direct-pointer-or-alias-entries"
@@ -3562,6 +3568,191 @@
       "address": "0x0037",
       "name": "World1FlashLightCarryFlag",
       "evidence": "set-by-world1-flash-light-pickup-consumed-into-world2-inventory-slot-two-then-cleared"
+    },
+    {
+      "address": "0x0041",
+      "name": "World1OamY",
+      "banks": [
+        0
+      ],
+      "evidence": "staged-oam-y-byte-produced-by-metasprite-piece-composition-and-hud-rendering"
+    },
+    {
+      "address": "0x0042",
+      "name": "World1OamTile",
+      "banks": [
+        0
+      ],
+      "evidence": "staged-oam-tile-byte-produced-by-metasprite-piece-composition-and-hud-rendering"
+    },
+    {
+      "address": "0x0043",
+      "name": "World1OamAttributes",
+      "banks": [
+        0
+      ],
+      "evidence": "staged-oam-attribute-byte-combining-piece-flips-alias-flips-and-render-flags"
+    },
+    {
+      "address": "0x0044",
+      "name": "World1OamX",
+      "banks": [
+        0
+      ],
+      "evidence": "staged-oam-x-byte-produced-by-metasprite-piece-composition-and-hud-rendering"
+    },
+    {
+      "address": "0x0045",
+      "name": "World1MetaspriteOriginX",
+      "banks": [
+        0
+      ],
+      "evidence": "low-byte-x-origin-loaded-from-player-or-entity-position-before-metasprite-composition"
+    },
+    {
+      "address": "0x0046",
+      "name": "World1MetaspriteOriginXHigh",
+      "banks": [
+        0
+      ],
+      "evidence": "x-high-bits-extracted-from-packed-entity-position-and-used-for-piece-clipping"
+    },
+    {
+      "address": "0x0047",
+      "name": "World1MetaspriteOriginY",
+      "banks": [
+        0
+      ],
+      "evidence": "low-byte-y-origin-loaded-from-player-or-entity-position-before-metasprite-composition"
+    },
+    {
+      "address": "0x0048",
+      "name": "World1MetaspriteOriginYHigh",
+      "banks": [
+        0
+      ],
+      "evidence": "y-high-bits-extracted-from-packed-entity-position-and-used-for-piece-clipping"
+    },
+    {
+      "address": "0x0049",
+      "name": "World1MetaspriteIndex",
+      "banks": [
+        0
+      ],
+      "evidence": "indexes-the-115-entry-direct-pointer-or-alias-metasprite-table"
+    },
+    {
+      "address": "0x004A",
+      "name": "World1MetaspriteRenderFlags",
+      "banks": [
+        0
+      ],
+      "evidence": "supplies-low-oam-attribute-bits-and-two-frame-visibility-modulation-modes"
+    },
+    {
+      "address": "0x004B",
+      "name": "World1MetaspriteDataPointer",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "little-endian-pointer-resolved-from-world1-metasprite-index-and-walked-by-piece-composer"
+    },
+    {
+      "address": "0x004D",
+      "name": "World1MetaspriteXMirrorExtent",
+      "banks": [
+        0
+      ],
+      "evidence": "second-metasprite-header-byte-used-to-reflect-piece-x-offsets"
+    },
+    {
+      "address": "0x004E",
+      "name": "World1MetaspriteYMirrorExtent",
+      "banks": [
+        0
+      ],
+      "evidence": "third-metasprite-header-byte-used-to-reflect-piece-y-offsets"
+    },
+    {
+      "address": "0x004F",
+      "name": "World1MetaspritePiecesRemaining",
+      "banks": [
+        0
+      ],
+      "evidence": "loaded-from-metasprite-header-sprite-count-and-decremented-per-composed-piece"
+    },
+    {
+      "address": "0x0050",
+      "name": "World1OamWriteIndex",
+      "banks": [
+        0
+      ],
+      "evidence": "even-valued-oam-entry-index-doubled-into-byte-offset-and-saturated-when-bit-seven-is-set"
+    },
+    {
+      "address": "0x0058",
+      "name": "World1NametableX",
+      "banks": [
+        0
+      ],
+      "evidence": "toggles-on-horizontal-scroll-byte-wrap-and-supplies-ppu-control-bit-zero-and-streaming-nametable-addresses"
+    },
+    {
+      "address": "0x0059",
+      "name": "World1PpuScrollXLatched",
+      "banks": [
+        0
+      ],
+      "evidence": "written-to-ppu-scroll-by-nmi-before-being-refreshed-from-the-current-horizontal-scroll-shadow"
+    },
+    {
+      "address": "0x005A",
+      "name": "World1PpuScrollYLatched",
+      "banks": [
+        0
+      ],
+      "evidence": "written-to-ppu-scroll-by-nmi-before-being-refreshed-from-the-current-vertical-scroll-shadow"
+    },
+    {
+      "address": "0x005B",
+      "name": "World1CameraTileX",
+      "banks": [
+        0
+      ],
+      "evidence": "increments-or-decrements-at-eight-pixel-horizontal-scroll-boundaries-and-converts-world-cell-x-to-screen-coordinates"
+    },
+    {
+      "address": "0x005C",
+      "name": "World1CameraTileY",
+      "banks": [
+        0
+      ],
+      "evidence": "increments-or-decrements-at-eight-pixel-vertical-scroll-boundaries-and-converts-world-cell-y-to-screen-coordinates"
+    },
+    {
+      "address": "0x0060",
+      "name": "World1MapPrefillCounter",
+      "banks": [
+        0
+      ],
+      "evidence": "initialized-to-0x98-and-decremented-once-per-two-pixel-map-prefill-iteration"
+    },
+    {
+      "address": "0x0061",
+      "name": "World1ScreenDeltaX",
+      "banks": [
+        0
+      ],
+      "evidence": "signed-per-frame-screen-space-x-compensation-accumulated-by-camera-scroll-and-applied-to-player-and-entities"
+    },
+    {
+      "address": "0x0062",
+      "name": "World1ScreenDeltaY",
+      "banks": [
+        0
+      ],
+      "evidence": "signed-per-frame-screen-space-y-compensation-accumulated-by-camera-scroll-and-applied-to-player-and-entities"
     },
     {
       "address": "0x0075",

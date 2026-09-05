@@ -46,9 +46,9 @@ Bank0_Label_CDE3:
     LDA a:$D216,Y
     STA $87
     LDA a:$D1EF,Y
-    STA $5B
+    STA World1CameraTileX
     LDA a:$D1F0,Y
-    STA $5C
+    STA World1CameraTileY
     LDA a:$D1F1,Y
     STA $88
     LDA a:$D1F2,Y
@@ -140,10 +140,10 @@ Bank0_Label_CEC2:
     INC $8B
     LDA #$00
     STA $8A
-    LDA $5C
+    LDA World1CameraTileY
     CLC
     ADC #$20
-    STA $5C
+    STA World1CameraTileY
     LDA World1PlayerY
     SEC
     SBC #$E0
@@ -158,10 +158,10 @@ Bank0_Label_CEE5:
     DEC $8B
     LDA #$00
     STA $8A
-    LDA $5C
+    LDA World1CameraTileY
     SEC
     SBC #$20
-    STA $5C
+    STA World1CameraTileY
     LDA World1PlayerY
     CLC
     ADC #$B0
@@ -174,8 +174,8 @@ Bank0_Label_CEE5:
 
 Bank0_Func_CF08:
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     LDA World1PlayerX
     SEC
     SBC #$6E
@@ -242,7 +242,7 @@ Bank0_Label_CF68:
 Bank0_Label_CF6F:
     LDA World1PlayerX
     CLC
-    ADC $61
+    ADC World1ScreenDeltaX
     STA World1PlayerX
     JSR Bank0_Func_8750
     RTS

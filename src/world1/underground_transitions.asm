@@ -32,9 +32,9 @@ Bank0_Label_D3CB:
     LDA #$B0
     STA World1PlayerY
     LDA #$00
-    STA $5B
+    STA World1CameraTileX
     LDA #$22
-    STA $5C
+    STA World1CameraTileY
     LDA #$22
     STA $88
     LDA #$22
@@ -85,7 +85,7 @@ Bank0_Label_D429:
     JSR World1_CommitScoreAndCheckExtraLife
     LDA PpuScrollYShadow
     AND #$07
-    ORA $5C
+    ORA World1CameraTileY
     BEQ Bank0_Label_D462
     LDA World1PlayerDamageState
     BMI Bank0_Func_D465
@@ -109,8 +109,8 @@ Bank0_Label_D46F:
 
 Bank0_Func_D47C:
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     LDA World1PlayerY
     SEC
     SBC #$6E
@@ -177,7 +177,7 @@ Bank0_Label_D4DC:
 Bank0_Label_D4E3:
     LDA World1PlayerY
     CLC
-    ADC $62
+    ADC World1ScreenDeltaY
     STA World1PlayerY
     JSR Bank0_Func_8750
     RTS

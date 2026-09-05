@@ -90,7 +90,7 @@ Bank0_Func_8AD4:
     LSR A
     ORA $00
     CLC
-    ADC $5B
+    ADC World1CameraTileX
     STA $00
     LDA a:World1EntityPositionHigh,X
     AND #$0C
@@ -117,7 +117,7 @@ Bank0_Func_8AD4:
     LSR A
     ORA $01
     CLC
-    ADC $5C
+    ADC World1CameraTileY
     STA $01
     RTS
 
@@ -243,7 +243,7 @@ Bank0_Label_8BDD:
     RTS
 
 World1_SpawnObjectsAtCameraEdges:
-    LDA $61
+    LDA World1ScreenDeltaX
     BMI Bank0_Label_8BE7
     BNE Bank0_Label_8C03
     JMP Bank0_Label_8C1A
@@ -257,7 +257,7 @@ Bank0_Label_8BE7:
     AND #$07
     CMP $8D
     BCS Bank0_Label_8C02
-    LDA $5B
+    LDA World1CameraTileX
     CLC
     ADC #$24
     BCS Bank0_Label_8C02
@@ -271,10 +271,10 @@ Bank0_Label_8C03:
     LDA PpuScrollXShadow
     AND #$07
     CLC
-    ADC $61
+    ADC World1ScreenDeltaX
     CMP #$08
     BCC Bank0_Label_8BE7
-    LDA $5B
+    LDA World1CameraTileX
     SEC
     SBC #$04
     BCC Bank0_Label_8C02
@@ -282,7 +282,7 @@ Bank0_Label_8C03:
     JMP Bank0_Label_8CBA
 
 Bank0_Label_8C1A:
-    LDA $62
+    LDA World1ScreenDeltaY
     BMI Bank0_Label_8C21
     BNE Bank0_Label_8C3E
     RTS
@@ -299,7 +299,7 @@ Bank0_Label_8C21:
     RTS
 
 Bank0_Label_8C31:
-    LDA $5C
+    LDA World1CameraTileY
     CLC
     ADC #$22
     BCC Bank0_Label_8C39
@@ -313,13 +313,13 @@ Bank0_Label_8C3E:
     LDA PpuScrollYShadow
     AND #$07
     CLC
-    ADC $62
+    ADC World1ScreenDeltaY
     CMP #$08
     BCS Bank0_Label_8C4A
     RTS
 
 Bank0_Label_8C4A:
-    LDA $5C
+    LDA World1CameraTileY
     SEC
     SBC #$04
     BCS Bank0_Label_8C52
@@ -331,7 +331,7 @@ Bank0_Label_8C52:
 Bank0_Label_8C54:
     LDA #$FF
     STA $8E
-    LDA $5B
+    LDA World1CameraTileX
     CLC
     ADC #$24
     BCS Bank0_Label_8C61
@@ -340,7 +340,7 @@ Bank0_Label_8C54:
 Bank0_Label_8C61:
     LDA #$00
     STA $8F
-    LDA $5B
+    LDA World1CameraTileX
     SEC
     SBC #$04
     BCC Bank0_Label_8C6E
@@ -399,7 +399,7 @@ Bank0_Label_8CB9:
 Bank0_Label_8CBA:
     LDA #$FF
     STA $8E
-    LDA $5C
+    LDA World1CameraTileY
     CLC
     ADC #$22
     BCS Bank0_Label_8CC7
@@ -408,7 +408,7 @@ Bank0_Label_8CBA:
 Bank0_Label_8CC7:
     LDA #$00
     STA $8F
-    LDA $5C
+    LDA World1CameraTileY
     SEC
     SBC #$04
     BCC Bank0_Label_8CD4

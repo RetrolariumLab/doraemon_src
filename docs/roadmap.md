@@ -48,9 +48,13 @@ handlers. Shared lives, current health, and inverse health-capacity state are
 named across all four banks. World 1's shared city/underground player position,
 metasprite, render flags, damage/death state, animation divider, weapon tier,
 side-view airborne flag, signed vertical velocity, horizontal subpixel,
-four-way direction, projectile limit, Stopwatch state, invulnerability
-countdown, and Flash Light handoff into World 2 are also named from their
-producer and consumer paths.
+four-way direction, coarse 8-pixel camera coordinates, nametable selection,
+NMI scroll latches, per-frame screen compensation, map-prefill countdown,
+projectile limit, Stopwatch state, invulnerability countdown, and Flash Light
+handoff into World 2 are also named from their producer and consumer paths.
+The complete 16-byte World 1 metasprite renderer workspace and OAM emitter are
+now symbol-owned and machine-validated alongside the lossless 115-index sprite
+catalog.
 World 2's embedded screen-stream
 enemy tokens, overlapping screen views, lossless authoring data, token-to-state
 normalization, complete 20-state runtime domain, three editable property tables,

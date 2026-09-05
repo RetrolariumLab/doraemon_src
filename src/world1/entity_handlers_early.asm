@@ -176,7 +176,7 @@ Bank0_Label_DCEA:
     STA a:World1EntityPrimaryBehavior,X
 
 Bank0_Label_DD16:
-    LDA $5C
+    LDA World1CameraTileY
     CMP #$48
     BCS Bank0_Label_DD28
     LDA a:World1EntitySecondaryBehavior,X
@@ -249,7 +249,7 @@ Bank0_Label_DDA0:
     STA a:World1EntityPrimaryBehavior,X
 
 Bank0_Label_DDA5:
-    LDA $5C
+    LDA World1CameraTileY
     CMP #$50
     BCS Bank0_Label_DDBA
     JSR Bank0_Func_DE8E
@@ -329,7 +329,7 @@ Bank0_Label_DE35:
     LSR $A0
     ORA $A0
     CLC
-    ADC $5B
+    ADC World1CameraTileX
     STA $A0
     LDA a:World1EntityPositionHigh,X
     LSR A
@@ -362,7 +362,7 @@ Bank0_Label_DE6D:
     LSR $A2
     ORA $A2
     CLC
-    ADC $5C
+    ADC World1CameraTileY
     STA $A2
     STX $A4
     LDX $A0

@@ -201,7 +201,7 @@ World1_InitializeEntityPosition:
     STA a:World1EntityPositionHigh,X
     LDA $07
     SEC
-    SBC $5C
+    SBC World1CameraTileY
     ASL A
     ASL A
     ROL a:World1EntityPositionHigh,X
@@ -220,7 +220,7 @@ World1_InitializeEntityPosition:
 Bank0_Label_8EC6:
     LDA $06
     SEC
-    SBC $5B
+    SBC World1CameraTileX
     ASL A
     ASL A
     ROL a:World1EntityPositionHigh,X

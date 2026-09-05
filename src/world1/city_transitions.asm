@@ -172,11 +172,11 @@ World1_EnterAnywhereDoor:
 Bank0_Label_CCC8:
     JSR Bank0_Func_94F1
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     JSR Bank0_Func_8706
-    LDA $61
-    ORA $62
+    LDA World1ScreenDeltaX
+    ORA World1ScreenDeltaY
     BNE Bank0_Label_CCC8
     LDA #$14
 
@@ -249,10 +249,10 @@ Bank0_Label_CD42:
     ASL A
     TAY
     LDA a:$CD89,Y
-    STA $5B
+    STA World1CameraTileX
     INY
     LDA a:$CD89,Y
-    STA $5C
+    STA World1CameraTileY
     INY
     LDA a:$CD89,Y
     INY

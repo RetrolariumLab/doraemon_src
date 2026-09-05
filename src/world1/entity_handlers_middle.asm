@@ -177,7 +177,7 @@ Bank0_Label_DFE3:
     AND #$1F
     ADC #$60
     STA a:World1EntityActionCooldown,X
-    LDA $5C
+    LDA World1CameraTileY
     CMP #$48
     BCS Bank0_Label_DFFB
     JSR Bank0_Func_9130

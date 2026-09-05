@@ -124,7 +124,7 @@ Bank0_Func_D1C3:
     LSR A
     LSR A
     CLC
-    ADC $5B
+    ADC World1CameraTileX
     TAX
     STY $04
     LDA PpuScrollYShadow
@@ -137,7 +137,7 @@ Bank0_Func_D1C3:
     LSR A
     LSR A
     CLC
-    ADC $5C
+    ADC World1CameraTileY
     TAY
     JSR Bank0_Func_A6A7
     CPY #$42
@@ -192,11 +192,11 @@ World1_EnterManhole:
 Bank0_Label_D283:
     JSR Bank0_Func_94F1
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     JSR Bank0_Func_8706
-    LDA $61
-    ORA $62
+    LDA World1ScreenDeltaX
+    ORA World1ScreenDeltaY
     BNE Bank0_Label_D283
     LDX #$0A
 
@@ -244,9 +244,9 @@ Bank0_Func_D2C3:
     ASL A
     TAX
     LDA a:$D37E,X
-    STA $5B
+    STA World1CameraTileX
     LDA a:$D37F,X
-    STA $5C
+    STA World1CameraTileY
     LDA a:$D380,X
     STA a:World1EntityX+$26
     CLC
@@ -278,7 +278,7 @@ Bank0_Func_D2C3:
     STA World1ObjectPlacementList+$01
     LDA #$00
     STA $29
-    LDA $5C
+    LDA World1CameraTileY
     CMP #$40
     BCS Bank0_Label_D33A
     LDA #$01

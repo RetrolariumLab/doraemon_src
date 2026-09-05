@@ -4,22 +4,22 @@
 
 Bank0_Func_990A:
     LDA a:World1EntityPositionHigh+$26,Y
-    STA $46
+    STA World1MetaspriteOriginXHigh
     LSR A
     LSR A
-    STA $48
+    STA World1MetaspriteOriginYHigh
     LDA a:World1EntityX+$26,Y
-    STA $45
+    STA World1MetaspriteOriginX
     LDA a:World1EntityY+$26,Y
-    STA $47
+    STA World1MetaspriteOriginY
     LDA a:World1EntityRenderFlags+$26,Y
-    STA $4A
+    STA World1MetaspriteRenderFlags
     LDA a:World1EntityMetasprite+$26,Y
-    STA $49
+    STA World1MetaspriteIndex
     JMP World1_ComposeMetasprite
 
 World1_ComposeMetasprite:
-    LDA $4A
+    LDA World1MetaspriteRenderFlags
     AND #$40
     BEQ Bank0_Label_9937
     LDA FrameCounter
@@ -28,56 +28,56 @@ World1_ComposeMetasprite:
     RTS
 
 Bank0_Label_9937:
-    LDA $4A
+    LDA World1MetaspriteRenderFlags
     BPL Bank0_Label_9945
     LDA FrameCounter
     AND #$08
     BEQ Bank0_Label_9945
-    LSR $4A
-    LSR $4A
+    LSR World1MetaspriteRenderFlags
+    LSR World1MetaspriteRenderFlags
 
 Bank0_Label_9945:
-    LDX $49
+    LDX World1MetaspriteIndex
     TXA
     ASL A
     TAY
     LDA #$00
     ADC #$9C
-    STA $4C
+    STA World1MetaspriteDataPointer+$01
     LDA #$B6
-    STA $4B
+    STA World1MetaspriteDataPointer
     INY
-    LDA ($4B),Y
+    LDA (World1MetaspriteDataPointer),Y
     CMP #$04
     BCS Bank0_Label_999D
     PHA
     DEY
-    LDA ($4B),Y
+    LDA (World1MetaspriteDataPointer),Y
     TAX
     ASL A
     TAY
     LDA #$00
     ADC #$9C
-    STA $4C
+    STA World1MetaspriteDataPointer+$01
     LDA #$B6
-    STA $4B
-    LDA ($4B),Y
+    STA World1MetaspriteDataPointer
+    LDA (World1MetaspriteDataPointer),Y
     PHA
     INY
-    LDA ($4B),Y
-    STA $4C
+    LDA (World1MetaspriteDataPointer),Y
+    STA World1MetaspriteDataPointer+$01
     PLA
-    STA $4B
+    STA World1MetaspriteDataPointer
     LDY #$00
-    LDA ($4B),Y
+    LDA (World1MetaspriteDataPointer),Y
     INY
-    STA $4F
-    LDA ($4B),Y
+    STA World1MetaspritePiecesRemaining
+    LDA (World1MetaspriteDataPointer),Y
     INY
-    STA $4D
-    LDA ($4B),Y
+    STA World1MetaspriteXMirrorExtent
+    LDA (World1MetaspriteDataPointer),Y
     INY
-    STA $4E
+    STA World1MetaspriteYMirrorExtent
     PLA
     BEQ Bank0_Label_9994
     CMP #$02
@@ -97,61 +97,61 @@ Bank0_Label_999A:
 Bank0_Label_999D:
     PHA
     DEY
-    LDA ($4B),Y
-    STA $4B
+    LDA (World1MetaspriteDataPointer),Y
+    STA World1MetaspriteDataPointer
     PLA
-    STA $4C
+    STA World1MetaspriteDataPointer+$01
     LDY #$00
-    LDA ($4B),Y
+    LDA (World1MetaspriteDataPointer),Y
     INY
-    STA $4F
+    STA World1MetaspritePiecesRemaining
     INY
     INY
 
 Bank0_Label_99AF:
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_9A06
-    LDA ($4B),Y
+    LDA (World1MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     CLC
-    ADC $47
-    STA $41
-    LDA $48
+    ADC World1MetaspriteOriginY
+    STA World1OamY
+    LDA World1MetaspriteOriginYHigh
     ADC #$00
     AND #$03
     BNE Bank0_Label_99FF
-    LDA $41
+    LDA World1OamY
     CMP #$F0
     BCS Bank0_Label_99FF
     TXA
     AND #$80
-    STA $43
-    LDA ($4B),Y
+    STA World1OamAttributes
+    LDA (World1MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     CLC
-    ADC $45
-    STA $44
-    LDA $46
+    ADC World1MetaspriteOriginX
+    STA World1OamX
+    LDA World1MetaspriteOriginXHigh
     ADC #$00
     AND #$03
     BNE Bank0_Label_9A00
     TXA
     AND #$80
     LSR A
-    ORA $43
-    STA $43
-    LDA ($4B),Y
+    ORA World1OamAttributes
+    STA World1OamAttributes
+    LDA (World1MetaspriteDataPointer),Y
     INY
-    STA $42
-    LDA $4A
+    STA World1OamTile
+    LDA World1MetaspriteRenderFlags
     AND #$03
-    ORA $43
-    STA $43
-    JSR Bank0_Func_9B35
+    ORA World1OamAttributes
+    STA World1OamAttributes
+    JSR World1_EmitOamEntry
     JMP Bank0_Label_9A01
 
 Bank0_Label_99FF:
@@ -161,7 +161,7 @@ Bank0_Label_9A00:
     INY
 
 Bank0_Label_9A01:
-    DEC $4F
+    DEC World1MetaspritePiecesRemaining
     BNE Bank0_Label_99AF
     CLC
 
@@ -169,55 +169,55 @@ Bank0_Label_9A06:
     RTS
 
 Bank0_Label_9A07:
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_9A68
-    LDA ($4B),Y
+    LDA (World1MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     SEC
-    SBC $4E
+    SBC World1MetaspriteYMirrorExtent
     EOR #$FF
     CLC
     ADC #$01
     CLC
-    ADC $47
-    STA $41
-    LDA $48
+    ADC World1MetaspriteOriginY
+    STA World1OamY
+    LDA World1MetaspriteOriginYHigh
     ADC #$00
     AND #$03
     BNE Bank0_Label_9A61
-    LDA $41
+    LDA World1OamY
     CMP #$F0
     BCS Bank0_Label_9A61
     TXA
     AND #$80
-    STA $43
-    LDA ($4B),Y
+    STA World1OamAttributes
+    LDA (World1MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     CLC
-    ADC $45
-    STA $44
-    LDA $46
+    ADC World1MetaspriteOriginX
+    STA World1OamX
+    LDA World1MetaspriteOriginXHigh
     ADC #$00
     AND #$03
     BNE Bank0_Label_9A62
     TXA
     AND #$80
     LSR A
-    ORA $43
-    STA $43
-    LDA ($4B),Y
+    ORA World1OamAttributes
+    STA World1OamAttributes
+    LDA (World1MetaspriteDataPointer),Y
     INY
-    STA $42
-    LDA $4A
+    STA World1OamTile
+    LDA World1MetaspriteRenderFlags
     AND #$03
-    ORA $43
+    ORA World1OamAttributes
     EOR #$80
-    STA $43
-    JSR Bank0_Func_9B35
+    STA World1OamAttributes
+    JSR World1_EmitOamEntry
     JMP Bank0_Label_9A63
 
 Bank0_Label_9A61:
@@ -227,7 +227,7 @@ Bank0_Label_9A62:
     INY
 
 Bank0_Label_9A63:
-    DEC $4F
+    DEC World1MetaspritePiecesRemaining
     BNE Bank0_Label_9A07
     CLC
 
@@ -235,55 +235,55 @@ Bank0_Label_9A68:
     RTS
 
 Bank0_Label_9A69:
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_9ACA
-    LDA ($4B),Y
+    LDA (World1MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     CLC
-    ADC $47
-    STA $41
-    LDA $48
+    ADC World1MetaspriteOriginY
+    STA World1OamY
+    LDA World1MetaspriteOriginYHigh
     ADC #$00
     AND #$03
     BNE Bank0_Label_9AC3
-    LDA $41
+    LDA World1OamY
     CMP #$F0
     BCS Bank0_Label_9AC3
     TXA
     AND #$80
-    STA $43
-    LDA ($4B),Y
+    STA World1OamAttributes
+    LDA (World1MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     SEC
-    SBC $4D
+    SBC World1MetaspriteXMirrorExtent
     EOR #$FF
     CLC
     ADC #$01
     CLC
-    ADC $45
-    STA $44
-    LDA $46
+    ADC World1MetaspriteOriginX
+    STA World1OamX
+    LDA World1MetaspriteOriginXHigh
     ADC #$00
     AND #$03
     BNE Bank0_Label_9AC4
     TXA
     AND #$80
     LSR A
-    ORA $43
-    STA $43
-    LDA ($4B),Y
+    ORA World1OamAttributes
+    STA World1OamAttributes
+    LDA (World1MetaspriteDataPointer),Y
     INY
-    STA $42
-    LDA $4A
+    STA World1OamTile
+    LDA World1MetaspriteRenderFlags
     AND #$03
-    ORA $43
+    ORA World1OamAttributes
     EOR #$40
-    STA $43
-    JSR Bank0_Func_9B35
+    STA World1OamAttributes
+    JSR World1_EmitOamEntry
     JMP Bank0_Label_9AC5
 
 Bank0_Label_9AC3:
@@ -293,7 +293,7 @@ Bank0_Label_9AC4:
     INY
 
 Bank0_Label_9AC5:
-    DEC $4F
+    DEC World1MetaspritePiecesRemaining
     BNE Bank0_Label_9A69
     CLC
 
@@ -301,60 +301,60 @@ Bank0_Label_9ACA:
     RTS
 
 Bank0_Label_9ACB:
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_9B34
-    LDA ($4B),Y
+    LDA (World1MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     SEC
-    SBC $4E
+    SBC World1MetaspriteYMirrorExtent
     EOR #$FF
     CLC
     ADC #$01
     CLC
-    ADC $47
-    STA $41
-    LDA $48
+    ADC World1MetaspriteOriginY
+    STA World1OamY
+    LDA World1MetaspriteOriginYHigh
     ADC #$00
     AND #$03
     BNE Bank0_Label_9B2D
-    LDA $41
+    LDA World1OamY
     CMP #$F0
     BCS Bank0_Label_9B2D
     TXA
     AND #$80
-    STA $43
-    LDA ($4B),Y
+    STA World1OamAttributes
+    LDA (World1MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     SEC
-    SBC $4D
+    SBC World1MetaspriteXMirrorExtent
     EOR #$FF
     CLC
     ADC #$01
     CLC
-    ADC $45
-    STA $44
-    LDA $46
+    ADC World1MetaspriteOriginX
+    STA World1OamX
+    LDA World1MetaspriteOriginXHigh
     ADC #$00
     AND #$03
     BNE Bank0_Label_9B2E
     TXA
     AND #$80
     LSR A
-    ORA $43
-    STA $43
-    LDA ($4B),Y
+    ORA World1OamAttributes
+    STA World1OamAttributes
+    LDA (World1MetaspriteDataPointer),Y
     INY
-    STA $42
-    LDA $4A
+    STA World1OamTile
+    LDA World1MetaspriteRenderFlags
     AND #$03
-    ORA $43
+    ORA World1OamAttributes
     EOR #$C0
-    STA $43
-    JSR Bank0_Func_9B35
+    STA World1OamAttributes
+    JSR World1_EmitOamEntry
     JMP Bank0_Label_9B2F
 
 Bank0_Label_9B2D:
@@ -364,28 +364,28 @@ Bank0_Label_9B2E:
     INY
 
 Bank0_Label_9B2F:
-    DEC $4F
+    DEC World1MetaspritePiecesRemaining
     BNE Bank0_Label_9ACB
     CLC
 
 Bank0_Label_9B34:
     RTS
 
-Bank0_Func_9B35:
-    LDA $50
+World1_EmitOamEntry:
+    LDA World1OamWriteIndex
     BMI Bank0_Label_9B53
     ASL A
     TAX
-    LDA $41
+    LDA World1OamY
     STA a:OamBuffer,X
-    LDA $42
+    LDA World1OamTile
     STA a:$0301,X
-    LDA $43
+    LDA World1OamAttributes
     STA a:$0302,X
-    LDA $44
+    LDA World1OamX
     STA a:$0303,X
-    INC $50
-    INC $50
+    INC World1OamWriteIndex
+    INC World1OamWriteIndex
 
 Bank0_Label_9B53:
     RTS
@@ -465,7 +465,7 @@ Bank0_Func_9BCB:
     LSR A
     LSR A
     LSR A
-    ADC $5B
+    ADC World1CameraTileX
     STA $A0
     LDA PpuScrollYShadow
     AND #$07
@@ -475,7 +475,7 @@ Bank0_Func_9BCB:
     LSR A
     LSR A
     LSR A
-    ADC $5C
+    ADC World1CameraTileY
     STA $A2
     STX $A4
     LDX $A0

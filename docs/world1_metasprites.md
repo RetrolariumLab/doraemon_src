@@ -2,8 +2,29 @@
 
 World 1 uses one variable-length metasprite catalog for Doraemon, projectiles,
 doors, items, enemies, and the chapter boss. `World1_ComposeMetasprite` receives
-an index in `$49`, resolves it through the table at `$9CB6`, and writes ordinary
-four-byte NES OAM entries.
+an index in `World1MetaspriteIndex`, resolves it through the table at `$9CB6`,
+and writes ordinary four-byte NES OAM entries.
+
+## Renderer RAM ABI
+
+Bank 0 reserves the contiguous 16-byte workspace `$0041-$0050` for sprite
+composition. Its exact field order is part of the validated metasprite
+contract:
+
+| Range | Role |
+| --- | --- |
+| `$0041-$0044` | staged OAM Y, tile, attributes, and X bytes |
+| `$0045-$0048` | metasprite origin X/Y low bytes and derived high bytes |
+| `$0049-$004A` | metasprite index and render flags |
+| `$004B-$004C` | resolved record pointer |
+| `$004D-$004E` | X/Y mirror extents from the record header |
+| `$004F` | remaining piece count |
+| `$0050` | even-valued OAM write index |
+
+`World1_EmitOamEntry` doubles the write index to obtain a four-byte OAM offset,
+stores the staged tuple, and adds two to the index. Bit 7 therefore marks the
+64-entry OAM buffer as full. The player, HUD, and all four entity-slot classes
+share this workspace and emitter.
 
 ## Index encoding
 
@@ -54,6 +75,7 @@ Run `make validate-world1-metasprites` to prove:
 - the exact 73-direct/42-alias partition;
 - record boundaries, pointer targets, and absence of nested aliases;
 - all descriptor-base cross-references;
+- the exact 16-byte renderer workspace and OAM-emitter symbol ownership;
 - the pinned CHR bank and renderer code signature;
 - a byte-exact decode/encode round trip over the full catalog.
 

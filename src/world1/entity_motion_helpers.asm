@@ -61,7 +61,7 @@ Bank0_Func_9004:
     LSR $A0
     ORA $A0
     CLC
-    ADC $5B
+    ADC World1CameraTileX
     STA $A0
     LDA a:World1EntityPositionHigh,X
     LSR A
@@ -84,7 +84,7 @@ Bank0_Func_9004:
     LSR $A2
     ORA $A2
     CLC
-    ADC $5C
+    ADC World1CameraTileY
     STA $A2
     STX $A4
     LDX $A0

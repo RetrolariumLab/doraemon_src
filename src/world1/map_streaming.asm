@@ -137,7 +137,7 @@ Bank0_Label_A5D4:
     LDA PpuScrollYShadow
     AND #$F8
     STA a:$0261
-    LDA $58
+    LDA World1NametableX
     AND #$01
     ASL a:$0261
     ROL A
@@ -161,7 +161,7 @@ Bank0_Func_A60B:
     PHA
     LDA #$00
     STA $74
-    LDA $58
+    LDA World1NametableX
     AND #$01
     LSR A
     ROR A
@@ -448,83 +448,83 @@ Bank0_Func_A7DB:
     STA a:$025F
     STA a:$0260
     STA a:$0230
-    LDA $5B
+    LDA World1CameraTileX
     AND #$01
     ASL A
     ASL A
     ASL A
     STA PpuScrollXShadow
-    LDA $5C
+    LDA World1CameraTileY
     AND #$01
     ASL A
     ASL A
     ASL A
     STA PpuScrollYShadow
     LDA #$98
-    STA $60
-    LDA $5C
+    STA World1MapPrefillCounter
+    LDA World1CameraTileY
     BMI Bank0_Label_A84C
-    LDA $5C
+    LDA World1CameraTileY
     CLC
     ADC #$26
-    STA $5C
+    STA World1CameraTileY
 
 Bank0_Label_A807:
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     JSR Bank0_Func_A484
     JSR Bank0_Func_A87E
     JSR World1_SpawnObjectsAtCameraEdges
     JSR Bank0_Func_8750
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     JSR Bank0_Func_A484
     JSR Bank0_Func_A87E
     JSR World1_SpawnObjectsAtCameraEdges
     JSR Bank0_Func_8750
-    DEC $60
+    DEC World1MapPrefillCounter
     BNE Bank0_Label_A807
 
 Bank0_Label_A82F:
     LDA PpuScrollXShadow
-    STA $59
+    STA World1PpuScrollXLatched
     LDA PpuScrollYShadow
-    STA $5A
+    STA World1PpuScrollYLatched
     LDA PpuCtrlShadow
     AND #$FE
     STA $5D
-    LDA $58
+    LDA World1NametableX
     AND #$01
     ORA $5D
     STA PpuCtrlShadow
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     RTS
 
 Bank0_Label_A84C:
-    LDA $5C
+    LDA World1CameraTileY
     SEC
     SBC #$26
-    STA $5C
+    STA World1CameraTileY
 
 Bank0_Label_A853:
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     JSR Bank0_Func_A42F
     JSR Bank0_Func_A87E
     JSR World1_SpawnObjectsAtCameraEdges
     JSR Bank0_Func_8750
     LDA #$00
-    STA $61
-    STA $62
+    STA World1ScreenDeltaX
+    STA World1ScreenDeltaY
     JSR Bank0_Func_A42F
     JSR Bank0_Func_A87E
     JSR World1_SpawnObjectsAtCameraEdges
     JSR Bank0_Func_8750
-    DEC $60
+    DEC World1MapPrefillCounter
     BNE Bank0_Label_A853
     JMP Bank0_Label_A82F

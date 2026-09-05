@@ -68,6 +68,25 @@ class World1MetaspriteTests(unittest.TestCase):
                 "sprite_count_histogram": {"1": 1, "2": 1},
                 "unique_tile_count": 3,
             },
+            "renderer_workspace": {
+                "start_address": "0x0041",
+                "end_address": "0x0051",
+                "fields": [
+                    {
+                        "name": name,
+                        "address": f"0x{address:04X}",
+                        "size": size,
+                    }
+                    for name, address, size
+                    in world1_metasprites.RENDERER_RAM_FIELDS
+                ],
+                "emitter": {
+                    "name": world1_metasprites.RENDERER_EMITTER[0],
+                    "address": (
+                        f"0x{world1_metasprites.RENDERER_EMITTER[1]:04X}"
+                    ),
+                },
+            },
             "signatures": [
                 {"address": "0x9200", "bytes": signature.hex(" ")}
             ],
@@ -82,6 +101,25 @@ class World1MetaspriteTests(unittest.TestCase):
         }
         return bytes(prg), bytes(chr_data), manifest, objects
 
+    def symbol_registry(self, manifest: dict[str, object]) -> dict[str, object]:
+        workspace = manifest["renderer_workspace"]
+        return {
+            "schema_version": 1,
+            "memory_symbols": [
+                {
+                    **field,
+                    "banks": [0],
+                }
+                for field in workspace["fields"]
+            ],
+            "symbols": [
+                {
+                    **workspace["emitter"],
+                    "bank": 0,
+                }
+            ],
+        }
+
     def test_accepts_exact_catalog(self) -> None:
         prg, chr_data, manifest, objects = self.fixture()
         errors, report = world1_metasprites.validate_manifest_data(
@@ -90,6 +128,33 @@ class World1MetaspriteTests(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertEqual(report["metasprite_count"], 2)
         self.assertEqual(report["alias_count"], 1)
+
+    def test_accepts_renderer_workspace_symbols(self) -> None:
+        _prg, _chr_data, manifest, _objects = self.fixture()
+        self.assertEqual(
+            world1_metasprites.validate_renderer_workspace(
+                manifest, self.symbol_registry(manifest)
+            ),
+            [],
+        )
+
+    def test_rejects_changed_renderer_ram_symbol(self) -> None:
+        _prg, _chr_data, manifest, _objects = self.fixture()
+        registry = self.symbol_registry(manifest)
+        registry["memory_symbols"][0]["address"] = "0x0040"
+        errors = world1_metasprites.validate_renderer_workspace(
+            manifest, registry
+        )
+        self.assertTrue(any("RAM symbol differs" in error for error in errors))
+
+    def test_rejects_changed_oam_emitter_symbol(self) -> None:
+        _prg, _chr_data, manifest, _objects = self.fixture()
+        registry = self.symbol_registry(manifest)
+        registry["symbols"][0]["address"] = "0x9B36"
+        errors = world1_metasprites.validate_renderer_workspace(
+            manifest, registry
+        )
+        self.assertTrue(any("emitter symbol differs" in error for error in errors))
 
     def test_lossless_authoring_roundtrip(self) -> None:
         prg, chr_data, manifest, objects = self.fixture()

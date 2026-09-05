@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank0_Func_A381:
-    LDA $5B
+    LDA World1CameraTileX
     CMP #$E0
     BNE Bank0_Label_A38E
     LDA PpuScrollXShadow
@@ -12,12 +12,12 @@ Bank0_Func_A381:
     RTS
 
 Bank0_Label_A38E:
-    DEC $61
+    DEC World1ScreenDeltaX
     INC PpuScrollXShadow
     BNE Bank0_Label_A39A
-    LDA $58
+    LDA World1NametableX
     EOR #$01
-    STA $58
+    STA World1NametableX
 
 Bank0_Label_A39A:
     LDA PpuScrollXShadow
@@ -26,12 +26,12 @@ Bank0_Label_A39A:
     RTS
 
 Bank0_Label_A3A1:
-    INC $5B
-    LDA $5B
+    INC World1CameraTileX
+    LDA World1CameraTileX
     CLC
     ADC #$20
     TAX
-    LDY $5C
+    LDY World1CameraTileY
     LDA PpuScrollYShadow
     AND #$07
     CMP #$04
@@ -39,19 +39,19 @@ Bank0_Label_A3A1:
     INY
 
 Bank0_Label_A3B4:
-    LDA $58
+    LDA World1NametableX
     EOR #$01
     AND #$01
     JSR Bank0_Func_A4C6
     LDA PpuScrollXShadow
     AND #$0F
     BNE Bank0_Label_A3D4
-    LDY $5C
-    LDA $5B
+    LDY World1CameraTileY
+    LDA World1CameraTileX
     CLC
     ADC #$20
     TAX
-    LDA $58
+    LDA World1NametableX
     AND #$01
     EOR #$01
     JSR Bank0_Func_A50A
@@ -67,7 +67,7 @@ Bank0_Label_A3D4:
     RTS
 
 Bank0_Func_A3E1:
-    LDA $5B
+    LDA World1CameraTileX
     BNE Bank0_Label_A3EC
     LDA PpuScrollXShadow
     AND #$07
@@ -75,12 +75,12 @@ Bank0_Func_A3E1:
     RTS
 
 Bank0_Label_A3EC:
-    INC $61
+    INC World1ScreenDeltaX
     LDA PpuScrollXShadow
     BNE Bank0_Label_A3F8
-    LDA $58
+    LDA World1NametableX
     EOR #$01
-    STA $58
+    STA World1NametableX
 
 Bank0_Label_A3F8:
     DEC PpuScrollXShadow
@@ -91,9 +91,9 @@ Bank0_Label_A3F8:
     RTS
 
 Bank0_Label_A403:
-    DEC $5B
-    LDX $5B
-    LDY $5C
+    DEC World1CameraTileX
+    LDX World1CameraTileX
+    LDY World1CameraTileY
     LDA PpuScrollYShadow
     AND #$07
     CMP #$04
@@ -101,22 +101,22 @@ Bank0_Label_A403:
     INY
 
 Bank0_Label_A412:
-    LDA $58
+    LDA World1NametableX
     AND #$01
     JSR Bank0_Func_A4C6
     LDA PpuScrollXShadow
     AND #$0F
     CMP #$0F
     BNE Bank0_Label_A3D4
-    LDY $5C
-    LDX $5B
-    LDA $58
+    LDY World1CameraTileY
+    LDX World1CameraTileX
+    LDA World1NametableX
     AND #$01
     JSR Bank0_Func_A50A
     JMP Bank0_Label_A3D4
 
 Bank0_Func_A42F:
-    LDA $5C
+    LDA World1CameraTileY
     CMP #$E2
     BNE Bank0_Label_A43C
     LDA PpuScrollYShadow
@@ -127,7 +127,7 @@ Bank0_Label_A43B:
     RTS
 
 Bank0_Label_A43C:
-    DEC $62
+    DEC World1ScreenDeltaY
     INC PpuScrollYShadow
     LDA PpuScrollYShadow
     CMP #$F0
@@ -139,13 +139,13 @@ Bank0_Label_A43C:
 Bank0_Label_A44B:
     AND #$07
     BNE Bank0_Label_A451
-    INC $5C
+    INC World1CameraTileY
 
 Bank0_Label_A451:
     CMP #$04
     BNE Bank0_Label_A463
-    LDX $5B
-    LDA $5C
+    LDX World1CameraTileX
+    LDA World1CameraTileY
     CLC
     ADC #$1E
     TAY
@@ -157,8 +157,8 @@ Bank0_Label_A463:
     AND #$0F
     CMP #$08
     BNE Bank0_Label_A43B
-    LDX $5B
-    LDA $5C
+    LDX World1CameraTileX
+    LDA World1CameraTileY
     CLC
     ADC #$1E
     TAY
@@ -176,7 +176,7 @@ Bank0_Label_A476:
     .byte $60
 
 Bank0_Func_A484:
-    LDA $5C
+    LDA World1CameraTileY
     BNE Bank0_Label_A48F
     LDA PpuScrollYShadow
     AND #$07
@@ -186,7 +186,7 @@ Bank0_Label_A48E:
     RTS
 
 Bank0_Label_A48F:
-    INC $62
+    INC World1ScreenDeltaY
     DEC PpuScrollYShadow
     LDA PpuScrollYShadow
     CMP #$F0
@@ -199,13 +199,13 @@ Bank0_Label_A49E:
     AND #$07
     CMP #$07
     BNE Bank0_Label_A4A6
-    DEC $5C
+    DEC World1CameraTileY
 
 Bank0_Label_A4A6:
     CMP #$03
     BNE Bank0_Label_A4B4
-    LDX $5B
-    LDY $5C
+    LDX World1CameraTileX
+    LDY World1CameraTileY
     JSR Bank0_Func_A5CF
     JMP Bank0_Label_A476
 
@@ -214,8 +214,8 @@ Bank0_Label_A4B4:
     AND #$0F
     CMP #$07
     BNE Bank0_Label_A48E
-    LDX $5B
-    LDY $5C
+    LDX World1CameraTileX
+    LDY World1CameraTileY
     JSR Bank0_Func_A60B
     JMP Bank0_Label_A476
 

@@ -257,6 +257,7 @@ world1-metasprites validate-world1-metasprites: $(PRG_ASSET) $(CHR_ASSET)
 		--chr "$(CHR_ASSET)" \
 		--manifest "$(WORLD1_METASPRITES)" \
 		--objects "$(OBJECT_PLACEMENTS)" \
+		--symbols "$(SYMBOLS)" \
 		--authoring "$(WORLD1_METASPRITE_AUTHORING)"
 
 world1-enemy-handlers validate-world1-enemy-handlers: $(PRG_ASSET)

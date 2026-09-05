@@ -13,8 +13,14 @@
 | `$0023-$0024` | 2 | Famicom microphone state | retained bit-2 sample and 20-frame edge window |
 | `$0025-$0027` | 3 | score award and demo state | next 1UP threshold, sound event, and attract-mode flag |
 | `$002A-$002C` | 3 | shared player progression | lives, current health, and inverse health-capacity index |
+| `$0041-$0050` | 16 | World 1 metasprite workspace (bank 0) | staged OAM tuple, origin, index/flags, record pointer/header, piece count, and write index |
 | `$004D` | 1 | World 3 treasure penalty counter | 20 diamond/gold pickups force punishment room `$12` |
 | `$0053-$0054` | 2 | World 3 punishment room state | active flag and saved return room |
+| `$0058` | 1 | World 1 horizontal nametable | PPU control bit 0 and streamed-edge destination selector |
+| `$0059-$005A` | 2 | World 1 PPU scroll latch | scroll pair published by NMI one update behind the current shadows |
+| `$005B-$005C` | 2 | World 1 coarse camera position | horizontal and vertical world-map coordinates in 8-pixel cells |
+| `$0060` | 1 | World 1 map prefill countdown | 152 two-pixel iterations prepare the initial viewport |
+| `$0061-$0062` | 2 | World 1 screen delta | signed camera-motion compensation applied to player and entities |
 | `$0075-$007F` | 11 | World 1 player state | X/Y, metasprite, render flags, damage/death state, animation divider, weapon tier, side-view airborne/velocity/subpixel state, and direction |
 | `$00A8` | 1 | World 3 punishment dorayaki remaining | starts at 20 and controls early exit |
 | `$00AB-$00C7` | 29 | World 3 transient scheduler | four type/count/delay/completion channels, prescaler phases, reload values, and scratch state |

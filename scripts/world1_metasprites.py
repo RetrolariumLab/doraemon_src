@@ -23,6 +23,24 @@ FLIP_MODES = {
     3: "horizontal_vertical",
 }
 FLIP_VALUES = {name: value for value, name in FLIP_MODES.items()}
+RENDERER_RAM_FIELDS = [
+    ("World1OamY", 0x0041, 1),
+    ("World1OamTile", 0x0042, 1),
+    ("World1OamAttributes", 0x0043, 1),
+    ("World1OamX", 0x0044, 1),
+    ("World1MetaspriteOriginX", 0x0045, 1),
+    ("World1MetaspriteOriginXHigh", 0x0046, 1),
+    ("World1MetaspriteOriginY", 0x0047, 1),
+    ("World1MetaspriteOriginYHigh", 0x0048, 1),
+    ("World1MetaspriteIndex", 0x0049, 1),
+    ("World1MetaspriteRenderFlags", 0x004A, 1),
+    ("World1MetaspriteDataPointer", 0x004B, 2),
+    ("World1MetaspriteXMirrorExtent", 0x004D, 1),
+    ("World1MetaspriteYMirrorExtent", 0x004E, 1),
+    ("World1MetaspritePiecesRemaining", 0x004F, 1),
+    ("World1OamWriteIndex", 0x0050, 1),
+]
+RENDERER_EMITTER = ("World1_EmitOamEntry", 0x9B35)
 
 
 def number(value: str | int) -> int:
@@ -149,6 +167,66 @@ def manifest_data(
 def descriptor_bases(objects: dict[str, Any]) -> list[int]:
     records = objects["world1_descriptor_objects"]["records"]
     return [number(record[1]) for record in records]
+
+
+def registry_symbol_matches(
+    registry: dict[str, Any],
+    section: str,
+    name: str,
+    address: int,
+    size: int,
+    bank: int,
+) -> bool:
+    matches = [
+        entry for entry in registry.get(section, [])
+        if entry.get("name") == name
+    ]
+    if len(matches) != 1:
+        return False
+    actual = matches[0]
+    if number(actual["address"]) != address:
+        return False
+    if section == "memory_symbols":
+        return (
+            int(actual.get("size", 1)) == size
+            and actual.get("banks") == [bank]
+        )
+    return int(actual.get("bank", -1)) == bank
+
+
+def validate_renderer_workspace(
+    manifest: dict[str, Any], registry: dict[str, Any]
+) -> list[str]:
+    workspace = manifest["renderer_workspace"]
+    bank = int(manifest["bank"])
+    errors: list[str] = []
+    if (
+        number(workspace["start_address"]) != 0x0041
+        or number(workspace["end_address"]) != 0x0051
+    ):
+        errors.append("World 1 renderer workspace range differs")
+    fields = [
+        (str(field["name"]), number(field["address"]), int(field["size"]))
+        for field in workspace["fields"]
+    ]
+    if fields != RENDERER_RAM_FIELDS:
+        errors.append("World 1 renderer workspace field layout differs")
+    for name, address, size in RENDERER_RAM_FIELDS:
+        if not registry_symbol_matches(
+            registry, "memory_symbols", name, address, size, bank
+        ):
+            errors.append(f"World 1 renderer RAM symbol differs: {name}")
+    emitter = workspace["emitter"]
+    emitter_name, emitter_address = RENDERER_EMITTER
+    if (
+        str(emitter["name"]) != emitter_name
+        or number(emitter["address"]) != emitter_address
+        or not registry_symbol_matches(
+            registry, "symbols", emitter_name, emitter_address, 1, bank
+        )
+    ):
+        errors.append("World 1 OAM emitter symbol differs")
+    return errors
 
 
 def validate_manifest_data(
@@ -548,6 +626,8 @@ def parser() -> argparse.ArgumentParser:
             child.add_argument("--chr", type=Path, required=True)
         if command in ("validate", "apply"):
             child.add_argument("--authoring", type=Path, required=True)
+        if command == "validate":
+            child.add_argument("--symbols", type=Path, required=True)
         if command in ("decode", "apply", "render"):
             child.add_argument("--output", type=Path, required=True)
     return result
@@ -577,6 +657,8 @@ def main() -> int:
             print(f"[OK] wrote {args.output}")
             return 0
         errors, report = validate_manifest_data(prg, chr_data, manifest, objects)
+        registry = load_json(args.symbols, "symbol registry")
+        errors.extend(validate_renderer_workspace(manifest, registry))
         errors.extend(validate_authoring(
             prg, chr_data, manifest, objects, args.authoring
         ))
@@ -591,6 +673,7 @@ def main() -> int:
         f"[OK] World 1 metasprites: {report['index_count']} indexes "
         f"({report['direct_count']} direct, {report['alias_count']} aliases), "
         f"{report['metasprite_count']} records; "
+        f"{len(RENDERER_RAM_FIELDS)} renderer RAM fields; "
         f"{report['covered_byte_count']} lossless authoring bytes"
     )
     return 0

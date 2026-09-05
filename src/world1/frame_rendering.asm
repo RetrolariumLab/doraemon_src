@@ -130,35 +130,35 @@ Bank0_Label_968D:
 Bank0_Func_96A0:
     LDA World1PlayerDamageState
     LDA World1PlayerX
-    STA $45
+    STA World1MetaspriteOriginX
     LDA World1PlayerY
-    STA $47
+    STA World1MetaspriteOriginY
     LDA #$00
-    STA $46
-    STA $48
+    STA World1MetaspriteOriginXHigh
+    STA World1MetaspriteOriginYHigh
     LDA World1PlayerMetasprite
-    STA $49
+    STA World1MetaspriteIndex
     LDA World1PlayerRenderFlags
-    STA $4A
+    STA World1MetaspriteRenderFlags
     JSR World1_ComposeMetasprite
     RTS
 
 Bank0_Func_96BC:
     LDY #$00
     LDA #$5C
-    STA $44
+    STA World1OamX
     LDA #$18
-    STA $41
+    STA World1OamY
     LDA #$00
-    STA $43
+    STA World1OamAttributes
 
 Bank0_Label_96CA:
     LDA a:ScoreDigitsWorking,Y
     BNE Bank0_Label_96DB
-    LDA $44
+    LDA World1OamX
     CLC
     ADC #$08
-    STA $44
+    STA World1OamX
     INY
     CPY #$06
     BNE Bank0_Label_96CA
@@ -167,53 +167,53 @@ Bank0_Label_96DB:
     LDA a:ScoreDigitsWorking,Y
     AND #$0F
     ORA #$30
-    STA $42
-    JSR Bank0_Func_9B35
-    LDA $44
+    STA World1OamTile
+    JSR World1_EmitOamEntry
+    LDA World1OamX
     CLC
     ADC #$08
-    STA $44
+    STA World1OamX
     INY
     CPY #$07
     BNE Bank0_Label_96DB
     LDA #$32
-    STA $41
+    STA World1OamY
     LDA #$E6
-    STA $44
+    STA World1OamX
     LDA #$00
-    STA $43
+    STA World1OamAttributes
     LDA #$3A
-    STA $42
-    JSR Bank0_Func_9B35
+    STA World1OamTile
+    JSR World1_EmitOamEntry
     LDA #$F0
-    STA $44
+    STA World1OamX
     LDA PlayerLives
     AND #$0F
     ORA #$30
-    STA $42
-    JSR Bank0_Func_9B35
+    STA World1OamTile
+    JSR World1_EmitOamEntry
     LDA PlayerHealthCapacityIndex
     ASL A
     ASL A
     CLC
     ADC #$50
-    STA $41
+    STA World1OamY
     LDA #$EC
-    STA $44
+    STA World1OamX
     LDA #$00
-    STA $43
+    STA World1OamAttributes
     LDA #$04
     STA $0A
     LDA PlayerHealth
-    STA $42
+    STA World1OamTile
     LDY #$07
 
 Bank0_Label_9730:
-    LDA $42
+    LDA World1OamTile
     SEC
     SBC #$04
     BCC Bank0_Label_9743
-    STA $42
+    STA World1OamTile
     LDA #$3F
     STA a:$000A,Y
     DEY
@@ -238,12 +238,12 @@ Bank0_Label_9754:
 
 Bank0_Label_9756:
     LDA a:$000A,Y
-    STA $42
-    JSR Bank0_Func_9B35
-    LDA $41
+    STA World1OamTile
+    JSR World1_EmitOamEntry
+    LDA World1OamY
     CLC
     ADC #$08
-    STA $41
+    STA World1OamY
     INY
     CPY #$08
     BNE Bank0_Label_9756
@@ -251,19 +251,19 @@ Bank0_Label_9756:
     AND #$10
     BEQ Bank0_Label_978E
     LDA #$E8
-    STA $45
+    STA World1MetaspriteOriginX
     LDA #$96
-    STA $47
+    STA World1MetaspriteOriginY
     LDA #$00
-    STA $46
-    STA $48
+    STA World1MetaspriteOriginXHigh
+    STA World1MetaspriteOriginYHigh
     LDA World1WeaponLevel
     BEQ Bank0_Label_978E
     CLC
     ADC #$29
-    STA $49
+    STA World1MetaspriteIndex
     LDA #$01
-    STA $4A
+    STA World1MetaspriteRenderFlags
     JSR World1_ComposeMetasprite
 
 Bank0_Label_978E:
@@ -289,7 +289,7 @@ Bank0_Label_97A4:
     LDA a:World1EntityType,Y
     BEQ Bank0_Label_97B2
     JSR Bank0_Func_97D2
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_97D1
 
 Bank0_Label_97B2:
@@ -308,7 +308,7 @@ Bank0_Label_97BF:
     LDA a:World1EntityType,Y
     BEQ Bank0_Label_97CD
     JSR Bank0_Func_97D2
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_97D1
 
 Bank0_Label_97CD:
@@ -329,18 +329,18 @@ Bank0_Func_97D2:
 
 Bank0_Label_97E0:
     LDA a:World1EntityPositionHigh,Y
-    STA $46
+    STA World1MetaspriteOriginXHigh
     LSR A
     LSR A
-    STA $48
+    STA World1MetaspriteOriginYHigh
     LDA a:World1EntityX,Y
-    STA $45
+    STA World1MetaspriteOriginX
     LDA a:World1EntityY,Y
-    STA $47
+    STA World1MetaspriteOriginY
     LDA a:World1EntityRenderFlags,Y
-    STA $4A
+    STA World1MetaspriteRenderFlags
     LDA a:World1EntityMetasprite,Y
-    STA $49
+    STA World1MetaspriteIndex
     JSR World1_ComposeMetasprite
     RTS
 
@@ -354,8 +354,8 @@ World1_RenderEntitySlots10_29:
 
 Bank0_Label_980C:
     LDA #$00
-    STA $46
-    STA $48
+    STA World1MetaspriteOriginXHigh
+    STA World1MetaspriteOriginYHigh
     LDA FrameCounter
     AND #$01
     BNE Bank0_Label_9833
@@ -367,7 +367,7 @@ Bank0_Label_981C:
     LDA a:World1EntityType+$0A,Y
     BEQ Bank0_Label_982A
     JSR Bank0_Func_984A
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_9849
 
 Bank0_Label_982A:
@@ -386,7 +386,7 @@ Bank0_Label_9837:
     LDA a:World1EntityType+$0A,Y
     BEQ Bank0_Label_9845
     JSR Bank0_Func_984A
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_9849
 
 Bank0_Label_9845:
@@ -398,24 +398,24 @@ Bank0_Label_9849:
 
 Bank0_Func_984A:
     LDA a:World1EntityPositionHigh+$0A,Y
-    STA $46
+    STA World1MetaspriteOriginXHigh
     LSR A
     LSR A
-    STA $48
+    STA World1MetaspriteOriginYHigh
     LDA a:World1EntityX+$0A,Y
-    STA $45
+    STA World1MetaspriteOriginX
     LDA a:World1EntityY+$0A,Y
-    STA $47
+    STA World1MetaspriteOriginY
     LDA a:World1EntityRenderFlags+$0A,Y
-    STA $4A
+    STA World1MetaspriteRenderFlags
     LDA a:World1EntityMetasprite+$0A,Y
-    STA $49
+    STA World1MetaspriteIndex
     JMP World1_ComposeMetasprite
 
 World1_RenderEntitySlots30_37:
     LDA #$00
-    STA $46
-    STA $48
+    STA World1MetaspriteOriginXHigh
+    STA World1MetaspriteOriginYHigh
     LDA FrameCounter
     AND #$01
     BNE Bank0_Label_9891
@@ -427,7 +427,7 @@ Bank0_Label_987A:
     LDA a:World1EntityType+$1E,Y
     BEQ Bank0_Label_9888
     JSR Bank0_Func_98A8
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_98A7
 
 Bank0_Label_9888:
@@ -446,7 +446,7 @@ Bank0_Label_9895:
     LDA a:World1EntityType+$1E,Y
     BEQ Bank0_Label_98A3
     JSR Bank0_Func_98A8
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_98A7
 
 Bank0_Label_98A3:
@@ -458,24 +458,24 @@ Bank0_Label_98A7:
 
 Bank0_Func_98A8:
     LDA a:World1EntityPositionHigh+$1E,Y
-    STA $46
+    STA World1MetaspriteOriginXHigh
     LSR A
     LSR A
-    STA $48
+    STA World1MetaspriteOriginYHigh
     LDA a:World1EntityX+$1E,Y
-    STA $45
+    STA World1MetaspriteOriginX
     LDA a:World1EntityY+$1E,Y
-    STA $47
+    STA World1MetaspriteOriginY
     LDA a:World1EntityRenderFlags+$1E,Y
-    STA $4A
+    STA World1MetaspriteRenderFlags
     LDA a:World1EntityMetasprite+$1E,Y
-    STA $49
+    STA World1MetaspriteIndex
     JMP World1_ComposeMetasprite
 
 World1_RenderEntitySlots38_47:
     LDA #$00
-    STA $46
-    STA $48
+    STA World1MetaspriteOriginXHigh
+    STA World1MetaspriteOriginYHigh
     LDA FrameCounter
     AND #$01
     BNE Bank0_Label_98F1
@@ -488,7 +488,7 @@ Bank0_Label_98D8:
     BMI Bank0_Label_98E8
     BEQ Bank0_Label_98E8
     JSR Bank0_Func_990A
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_9909
 
 Bank0_Label_98E8:
@@ -508,7 +508,7 @@ Bank0_Label_98F5:
     BMI Bank0_Label_9905
     BEQ Bank0_Label_9905
     JSR Bank0_Func_990A
-    LDA $50
+    LDA World1OamWriteIndex
     BMI Bank0_Label_9909
 
 Bank0_Label_9905:

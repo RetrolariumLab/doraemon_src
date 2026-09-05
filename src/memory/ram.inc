@@ -26,6 +26,33 @@ PlayerHealth              = $002B
 PlayerHealthCapacityIndex = $002C
 World1FlashLightCarryFlag = $0037
 
+; World 1 metasprite renderer workspace
+World1OamY                 = $0041
+World1OamTile              = $0042
+World1OamAttributes        = $0043
+World1OamX                 = $0044
+World1MetaspriteOriginX    = $0045
+World1MetaspriteOriginXHigh = $0046
+World1MetaspriteOriginY    = $0047
+World1MetaspriteOriginYHigh = $0048
+World1MetaspriteIndex      = $0049
+World1MetaspriteRenderFlags = $004A
+World1MetaspriteDataPointer = $004B
+World1MetaspriteXMirrorExtent = $004D
+World1MetaspriteYMirrorExtent = $004E
+World1MetaspritePiecesRemaining = $004F
+World1OamWriteIndex        = $0050
+
+; World 1 camera state
+World1NametableX           = $0058
+World1PpuScrollXLatched    = $0059
+World1PpuScrollYLatched    = $005A
+World1CameraTileX          = $005B
+World1CameraTileY          = $005C
+World1MapPrefillCounter    = $0060
+World1ScreenDeltaX         = $0061
+World1ScreenDeltaY         = $0062
+
 ; World 1 item-derived combat state
 World1PlayerX              = $0075
 World1PlayerY              = $0076
