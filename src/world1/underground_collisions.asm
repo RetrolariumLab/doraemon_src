@@ -12,11 +12,11 @@ Bank0_Func_D113:
 Bank0_Label_D11D:
     LDX #$04
     LDY #$1A
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D137
     LDX #$0A
     LDY #$1A
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D137
     LDA #$01
     STA World1PlayerAirborne
@@ -65,22 +65,22 @@ Bank0_Label_D165:
 Bank0_Label_D173:
     LDX #$04
     LDY #$1A
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D1AB
     LDX #$0A
     LDY #$1A
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D1AB
     RTS
 
 Bank0_Label_D186:
     LDX #$04
     LDY #$02
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D199
     LDX #$0A
     LDY #$02
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D199
     RTS
 
@@ -112,7 +112,7 @@ Bank0_Label_D1AB:
     STA World1PlayerAirborne
     RTS
 
-Bank0_Func_D1C3:
+World1_TestPlayerMapCollisionAtOffset:
     STX $04
     LDA PpuScrollXShadow
     AND #$07

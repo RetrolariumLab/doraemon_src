@@ -57,6 +57,11 @@ World1MapPrefillCounter    = $0060
 World1ScreenDeltaX         = $0061
 World1ScreenDeltaY         = $0062
 
+; World 1 input edges and weapon-pose timing
+World1WeaponPoseTimer      = $0063
+World1PreviousButtons      = $0064
+World1PressedButtons       = $0065
+
 ; World 1 hierarchical map decoder workspace
 World1MapDataPointer       = $0066
 World1CurrentSmallBlockPointer = $006A

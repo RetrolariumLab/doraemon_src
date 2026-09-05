@@ -129,3 +129,8 @@ see `docs/world2_stage_branches.md`.
 Seven screen IDs gate the appearance of World 2 companions and carried items.
 Their editable table and the associated three-array zero-page inventory model
 are documented in `docs/world2_inventory.md`.
+
+World 1's three weapon levels select one sound and four direction-specific
+projectile spawn profiles. The 51-byte contiguous region round-trips through
+`data/world1/weapons.json`; the level-biased sound lookup and four-field profile
+loader are fixed by `config/world1_weapons.json`. See `docs/world1_weapons.md`.

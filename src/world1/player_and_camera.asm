@@ -2,8 +2,8 @@
 ; World 1 player state, directional movement, and camera-relative positioning
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_856C:
-    JSR Bank0_Func_9BFC
+World1_UpdateCityPlayer:
+    JSR World1_UpdateWeaponAndTryFire
     LDA World1PlayerDamageState
     BEQ Bank0_Label_85B2
     BPL Bank0_Label_8576
@@ -53,7 +53,7 @@ Bank0_Label_85B2:
     STA World1PlayerRenderFlags
 
 Bank0_Label_85B6:
-    LDA $63
+    LDA World1WeaponPoseTimer
     BEQ Bank0_Label_85CD
     CMP #$03
     BCS Bank0_Label_85C7
@@ -125,13 +125,13 @@ Bank0_Label_861F:
     STA $01
     LDX #$00
     LDY #$14
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     LDX #$07
     LDY #$14
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     LDX #$0E
     LDY #$14
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     JMP Bank0_Label_86B7
 
 Bank0_Label_863B:
@@ -150,13 +150,13 @@ Bank0_Label_864D:
     STA $01
     LDX #$00
     LDY #$18
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     LDX #$07
     LDY #$18
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     LDX #$0E
     LDY #$18
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     JMP Bank0_Label_86B7
 
 Bank0_Label_8669:
@@ -175,10 +175,10 @@ Bank0_Label_867B:
     STA $01
     LDX #$00
     LDY #$18
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     LDX #$00
     LDY #$14
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     JMP Bank0_Label_86B7
 
 Bank0_Label_8690:
@@ -197,10 +197,10 @@ Bank0_Label_86A2:
     STA $01
     LDX #$0E
     LDY #$18
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     LDX #$0E
     LDY #$14
-    JSR Bank0_Func_86F8
+    JSR World1_RollbackCityPlayerOnCollision
     JMP Bank0_Label_86B7
 
 Bank0_Label_86B7:
@@ -221,10 +221,10 @@ Bank0_Label_86BF:
     STA World1PlayerMetasprite
     LDA #$00
     STA World1PlayerAnimationCounter
-    STA $63
+    STA World1WeaponPoseTimer
 
 Bank0_Label_86D7:
-    LDA $63
+    LDA World1WeaponPoseTimer
     BNE Bank0_Label_86F7
     INC World1PlayerAnimationCounter
     LDA World1PlayerAnimationCounter
@@ -244,8 +244,8 @@ Bank0_Label_86D7:
 Bank0_Label_86F7:
     RTS
 
-Bank0_Func_86F8:
-    JSR Bank0_Func_D1C3
+World1_RollbackCityPlayerOnCollision:
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCC Bank0_Label_8705
     LDA $06
     STA World1PlayerX

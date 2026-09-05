@@ -47,7 +47,7 @@ Bank0_Label_82C1:
     JSR Bank0_Func_8490
     JSR Bank0_Func_95CB
     JSR Bank0_Func_9B54
-    JSR Bank0_Func_856C
+    JSR World1_UpdateCityPlayer
     JSR Bank0_Func_CA6D
     JSR Bank0_Func_9201
     JSR World1_UpdateCameraFromPlayer
@@ -101,7 +101,7 @@ Bank0_Func_8313:
     STA World1PlayerRenderFlags
     STA World1PlayerRenderFlags
     STA World1WeaponLevel
-    STA $63
+    STA World1WeaponPoseTimer
     STA DemoModeActive
     STA $28
     STA $29
@@ -293,12 +293,12 @@ Bank0_Func_8490:
 
 Bank0_Label_8494:
     LDA CombinedControllerButtons
-    EOR $64
-    STA $65
+    EOR World1PreviousButtons
+    STA World1PressedButtons
     LDA CombinedControllerButtons
-    STA $64
-    AND $65
-    STA $65
+    STA World1PreviousButtons
+    AND World1PressedButtons
+    STA World1PressedButtons
     RTS
 
 Bank0_Label_84A3:

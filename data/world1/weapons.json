@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world1-weapons",
+  "bank": 0,
+  "address": "0x9C83",
+  "levels": [
+    {
+      "level": 1,
+      "sound_effect": "0x01",
+      "directions": [
+        {
+          "value": 0,
+          "name": "down",
+          "x_offset": "0x04",
+          "y_offset": "0x10",
+          "metasprite": "0x24",
+          "render_flags": "0x00"
+        },
+        {
+          "value": 1,
+          "name": "up",
+          "x_offset": "0x04",
+          "y_offset": "0x08",
+          "metasprite": "0x24",
+          "render_flags": "0x00"
+        },
+        {
+          "value": 2,
+          "name": "left",
+          "x_offset": "0x04",
+          "y_offset": "0x0C",
+          "metasprite": "0x24",
+          "render_flags": "0x00"
+        },
+        {
+          "value": 3,
+          "name": "right",
+          "x_offset": "0x04",
+          "y_offset": "0x0C",
+          "metasprite": "0x24",
+          "render_flags": "0x00"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "sound_effect": "0x0C",
+      "directions": [
+        {
+          "value": 0,
+          "name": "down",
+          "x_offset": "0x00",
+          "y_offset": "0x10",
+          "metasprite": "0x18",
+          "render_flags": "0x00"
+        },
+        {
+          "value": 1,
+          "name": "up",
+          "x_offset": "0x00",
+          "y_offset": "0x0C",
+          "metasprite": "0x19",
+          "render_flags": "0x00"
+        },
+        {
+          "value": 2,
+          "name": "left",
+          "x_offset": "0x00",
+          "y_offset": "0x08",
+          "metasprite": "0x1A",
+          "render_flags": "0x00"
+        },
+        {
+          "value": 3,
+          "name": "right",
+          "x_offset": "0x00",
+          "y_offset": "0x08",
+          "metasprite": "0x1B",
+          "render_flags": "0x00"
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "sound_effect": "0x0D",
+      "directions": [
+        {
+          "value": 0,
+          "name": "down",
+          "x_offset": "0x00",
+          "y_offset": "0x10",
+          "metasprite": "0x1C",
+          "render_flags": "0x82"
+        },
+        {
+          "value": 1,
+          "name": "up",
+          "x_offset": "0x00",
+          "y_offset": "0x0C",
+          "metasprite": "0x1D",
+          "render_flags": "0x82"
+        },
+        {
+          "value": 2,
+          "name": "left",
+          "x_offset": "0x00",
+          "y_offset": "0x08",
+          "metasprite": "0x1E",
+          "render_flags": "0x82"
+        },
+        {
+          "value": 3,
+          "name": "right",
+          "x_offset": "0x00",
+          "y_offset": "0x08",
+          "metasprite": "0x1F",
+          "render_flags": "0x82"
+        }
+      ]
+    }
+  ],
+  "covered_byte_count": 51,
+  "covered_crc32": "e3cbcdfb"
+}

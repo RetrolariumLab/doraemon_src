@@ -485,10 +485,10 @@ Bank0_Func_9BCB:
     LDA a:$DADA,Y
     RTS
 
-Bank0_Func_9BFC:
-    LDA $63
+World1_UpdateWeaponAndTryFire:
+    LDA World1WeaponPoseTimer
     BEQ Bank0_Label_9C02
-    DEC $63
+    DEC World1WeaponPoseTimer
 
 Bank0_Label_9C02:
     LDA World1PlayerDamageState
@@ -497,7 +497,7 @@ Bank0_Label_9C02:
     BCC Bank0_Label_9C10
 
 Bank0_Label_9C0A:
-    LDA $65
+    LDA World1PressedButtons
     AND #$40
     BNE Bank0_Label_9C11
 
@@ -523,7 +523,7 @@ Bank0_Label_9C25:
 
 Bank0_Label_9C26:
     LDY World1WeaponLevel
-    LDA a:$9C82,Y
+    LDA a:World1_WeaponSoundByLevelMinusOne,Y
     JSR World1_Audio_QueueEffectWithPriority
     LDA World1WeaponLevel
     SEC
@@ -539,20 +539,20 @@ Bank0_Label_9C26:
     AND #$0C
     ORA $00
     TAY
-    LDA a:$9C86,Y
+    LDA a:World1_ProjectileSpawnProfiles,Y
     INY
     CLC
     ADC World1PlayerX
     STA a:World1EntityX+$1E,X
-    LDA a:$9C86,Y
+    LDA a:World1_ProjectileSpawnProfiles,Y
     INY
     CLC
     ADC World1PlayerY
     STA a:World1EntityY+$1E,X
-    LDA a:$9C86,Y
+    LDA a:World1_ProjectileSpawnProfiles,Y
     INY
     STA a:World1EntityMetasprite+$1E,X
-    LDA a:$9C86,Y
+    LDA a:World1_ProjectileSpawnProfiles,Y
     INY
     STA a:World1EntityRenderFlags+$1E,X
     LDA #$00
@@ -567,12 +567,16 @@ Bank0_Label_9C26:
     LDA World1PlayerMetasprite
     AND #$0C
     LDA #$06
-    STA $63
+    STA World1WeaponPoseTimer
+
+World1_WeaponSoundByLevelMinusOne:
     RTS
-    .byte $01, $0C, $0D, $04, $10, $24, $00, $04, $08, $24, $00, $04, $0C, $24, $00, $04
-    .byte $0C, $24, $00, $00, $10, $18, $00, $00, $0C, $19, $00, $00, $08, $1A, $00, $00
-    .byte $08, $1B, $00, $00, $10, $1C, $82, $00, $0C, $1D, $82, $00, $08, $1E, $82, $00
-    .byte $08, $1F, $82
+    .byte $01, $0C, $0D
+
+World1_ProjectileSpawnProfiles:
+    .byte $04, $10, $24, $00, $04, $08, $24, $00, $04, $0C, $24, $00, $04, $0C, $24, $00
+    .byte $00, $10, $18, $00, $00, $0C, $19, $00, $00, $08, $1A, $00, $00, $08, $1B, $00
+    .byte $00, $10, $1C, $82, $00, $0C, $1D, $82, $00, $08, $1E, $82, $00, $08, $1F, $82
 
 World1_MetaspriteIndex:
     .byte $B1, $9D, $C6, $9D, $00, $00, $01, $01, $DB, $9D, $F0, $9D, $04, $01, $05, $01

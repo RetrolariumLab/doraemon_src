@@ -589,6 +589,44 @@
     },
     {
       "bank": 0,
+      "address": "0x856C",
+      "name": "World1_UpdateCityPlayer",
+      "evidence": "city-four-way-input-movement-hit-recovery-and-animation-update"
+    },
+    {
+      "bank": 0,
+      "address": "0x86F8",
+      "name": "World1_RollbackCityPlayerOnCollision",
+      "evidence": "map-collision-probe-wrapper-restoring-pre-movement-player-coordinates"
+    },
+    {
+      "bank": 0,
+      "address": "0x9BFC",
+      "name": "World1_UpdateWeaponAndTryFire",
+      "evidence": "weapon-pose-countdown-fire-edge-and-projectile-slot-initialization"
+    },
+    {
+      "bank": 0,
+      "address": "0x9C82",
+      "name": "World1_WeaponSoundByLevelMinusOne",
+      "operand_symbol": true,
+      "evidence": "level-indexed-sound-base-one-byte-before-three-entry-table-sharing-the-final-rts"
+    },
+    {
+      "bank": 0,
+      "address": "0x9C86",
+      "name": "World1_ProjectileSpawnProfiles",
+      "operand_symbol": true,
+      "evidence": "three-level-four-direction-four-field-projectile-spawn-profile-table"
+    },
+    {
+      "bank": 0,
+      "address": "0xD1C3",
+      "name": "World1_TestPlayerMapCollisionAtOffset",
+      "evidence": "player-offset-to-world-metatile-conversion-with-solid-id-threshold"
+    },
+    {
+      "bank": 0,
       "address": "0x8706",
       "name": "World1_UpdateCameraFromPlayer",
       "evidence": "two-pixel-camera-tracking-from-player-screen-thresholds"
@@ -3910,6 +3948,30 @@
         0
       ],
       "evidence": "signed-per-frame-screen-space-y-compensation-accumulated-by-camera-scroll-and-applied-to-player-and-entities"
+    },
+    {
+      "address": "0x0063",
+      "name": "World1WeaponPoseTimer",
+      "banks": [
+        0
+      ],
+      "evidence": "six-frame-post-fire-player-pose-countdown-shared-by-city-and-underground-animation"
+    },
+    {
+      "address": "0x0064",
+      "name": "World1PreviousButtons",
+      "banks": [
+        0
+      ],
+      "evidence": "previous-combined-button-mask-retained-for-world1-edge-detection"
+    },
+    {
+      "address": "0x0065",
+      "name": "World1PressedButtons",
+      "banks": [
+        0
+      ],
+      "evidence": "newly-pressed-world1-buttons-derived-from-current-xor-previous-and-current"
     },
     {
       "address": "0x0066",

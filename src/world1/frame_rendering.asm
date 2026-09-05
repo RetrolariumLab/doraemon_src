@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank0_Func_95CB:
-    LDA $65
+    LDA World1PressedButtons
     AND #$10
     BEQ Bank0_Label_95EC
     LDA #$01
@@ -14,7 +14,7 @@ Bank0_Func_95CB:
 Bank0_Label_95DB:
     JSR Bank0_Func_94F1
     JSR Bank0_Func_8490
-    LDA $65
+    LDA World1PressedButtons
     AND #$10
     BEQ Bank0_Label_95DB
     LDA #$00

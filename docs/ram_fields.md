@@ -99,6 +99,19 @@ viewport margins and releases their source-map spawn bits. The three routines,
 their 13 direct calls, and their full coordinate ABI are documented in
 `docs/world1_camera_entities.md`.
 
+## World 1 input and weapon timing
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `World1WeaponPoseTimer` | `$0063` | Six-frame post-fire pose countdown shared by city and underground animation |
+| `World1PreviousButtons` | `$0064` | Previous combined controller mask retained for edge detection |
+| `World1PressedButtons` | `$0065` | Newly pressed buttons after XOR/current filtering |
+
+The held directional mask comes from shared `CombinedControllerButtons`, while
+weapon firing consumes the `$40` edge in `World1PressedButtons`. Exact movement
+priority, screen bounds, collision probes, animation timing, and firing entry
+points are documented in `docs/world1_player_controls.md`.
+
 ## World 1 pseudorandom state
 
 | Symbol | Address | Size | Role |

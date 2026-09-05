@@ -57,6 +57,13 @@ now symbol-owned and machine-validated alongside the lossless 115-index sprite
 catalog. Its two independent pseudorandom state machines are also named and
 machine-validated: the two-byte frame-mixed generator has all seven direct
 callsites pinned, while the four-byte state-only generator has all eighteen.
+World 1's city player update, shared weapon firing path, collision rollback,
+and player-to-map collision sampler are exact across 589 routine bytes and 26
+direct calls. Direction priority, movement bounds, ten collision probes, hit
+recovery, animation cadence, and three input/weapon RAM fields are also pinned.
+Its three weapon sounds and twelve directional projectile spawn profiles are
+now losslessly editable across all 51 table bytes, with the biased lookup bases
+and loader code signatures enforced.
 World 2's embedded screen-stream
 enemy tokens, overlapping screen views, lossless authoring data, token-to-state
 normalization, complete 20-state runtime domain, three editable property tables,

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "directions": [
+    {
+      "value": 0,
+      "name": "down"
+    },
+    {
+      "value": 1,
+      "name": "up"
+    },
+    {
+      "value": 2,
+      "name": "left"
+    },
+    {
+      "value": 3,
+      "name": "right"
+    }
+  ],
+  "sound_effects": {
+    "operand_symbol": "World1_WeaponSoundByLevelMinusOne",
+    "operand_address": "0x9C82",
+    "data_address": "0x9C83",
+    "level_first": 1,
+    "count": 3,
+    "crc32": "2c878094"
+  },
+  "projectile_profiles": {
+    "symbol": "World1_ProjectileSpawnProfiles",
+    "address": "0x9C86",
+    "level_count": 3,
+    "direction_count": 4,
+    "record_size": 4,
+    "fields": [
+      "x_offset",
+      "y_offset",
+      "metasprite",
+      "render_flags"
+    ],
+    "crc32": "0ada9be4"
+  },
+  "signatures": [
+    {
+      "address": "0x9C26",
+      "purpose": "level-indexed sound through the table-minus-one base",
+      "bytes": "A4 7B B9 82 9C 20 98 E3"
+    },
+    {
+      "address": "0x9C2E",
+      "purpose": "sixteen-byte level stride and four-byte direction stride",
+      "bytes": "A5 7B 38 E9 01 0A 0A 0A 0A 85 00 A5 7F 0A 0A 29 0C 05 00 A8"
+    },
+    {
+      "address": "0x9C42",
+      "purpose": "four-field projectile profile loader",
+      "bytes": "B9 86 9C C8 18 65 75 9D DE 04 B9 86 9C C8 18 65 76 9D 0E 05 B9 86 9C C8 9D 4E 04 B9 86 9C C8 9D 7E 04"
+    }
+  ]
+}

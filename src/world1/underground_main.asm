@@ -248,7 +248,7 @@ Bank0_Label_CF6F:
     RTS
 
 Bank0_Func_CF7A:
-    JSR Bank0_Func_9BFC
+    JSR World1_UpdateWeaponAndTryFire
     LDA World1PlayerDamageState
     BEQ Bank0_Label_CFC0
     BPL Bank0_Label_CF84
@@ -300,7 +300,7 @@ Bank0_Label_CFC0:
 Bank0_Label_CFC4:
     LDA World1PlayerAirborne
     BNE Bank0_Label_CFDF
-    LDA $63
+    LDA World1WeaponPoseTimer
     BEQ Bank0_Label_CFDF
     CMP #$03
     BCS Bank0_Label_CFD9
@@ -327,7 +327,7 @@ Bank0_Label_CFDF:
     JMP Bank0_Label_D004
 
 Bank0_Label_CFF5:
-    LDA $65
+    LDA World1PressedButtons
     AND #$80
     BEQ Bank0_Label_D001
     JSR Bank0_Func_D138
@@ -391,15 +391,15 @@ Bank0_Label_D047:
 Bank0_Label_D051:
     LDX #$00
     LDY #$19
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D06C
     LDX #$00
     LDY #$0E
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D06C
     LDX #$00
     LDY #$02
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCC Bank0_Label_D070
 
 Bank0_Label_D06C:
@@ -441,15 +441,15 @@ Bank0_Label_D095:
 Bank0_Label_D09F:
     LDX #$0E
     LDY #$19
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D0BA
     LDX #$0E
     LDY #$0E
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCS Bank0_Label_D0BA
     LDX #$0E
     LDY #$02
-    JSR Bank0_Func_D1C3
+    JSR World1_TestPlayerMapCollisionAtOffset
     BCC Bank0_Label_D0BE
 
 Bank0_Label_D0BA:
@@ -488,10 +488,10 @@ Bank0_Label_D0DA:
     STA World1PlayerMetasprite
     LDA #$00
     STA World1PlayerAnimationCounter
-    STA $63
+    STA World1WeaponPoseTimer
 
 Bank0_Label_D0F2:
-    LDA $63
+    LDA World1WeaponPoseTimer
     BNE Bank0_Label_D112
     INC World1PlayerAnimationCounter
     LDA World1PlayerAnimationCounter
