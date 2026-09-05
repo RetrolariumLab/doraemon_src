@@ -20,7 +20,7 @@ Bank0_Label_DBEF:
     AND #$89
     CMP #$89
     BEQ Bank0_Label_DC04
-    LDA $79
+    LDA World1PlayerDamageState
     BNE Bank0_Label_DC07
     JSR Bank0_Func_8987
 
@@ -75,7 +75,7 @@ World1_UpdateSuneraa:
     CLC
     ADC #$10
     STA a:World1EntityPrimaryBehavior,X
-    LDA $79
+    LDA World1PlayerDamageState
     BNE Bank0_Label_DC75
     JSR Bank0_Func_8987
     SEC
@@ -378,7 +378,7 @@ Bank0_Func_DE8E:
     BNE Bank0_Label_DEB8
     SEC
     LDA a:World1EntityX,X
-    SBC $75
+    SBC World1PlayerX
     BCS Bank0_Label_DEA2
     EOR #$FF
     CLC
@@ -388,7 +388,7 @@ Bank0_Label_DEA2:
     STA $A0
     SEC
     LDA a:World1EntityY,X
-    SBC $76
+    SBC World1PlayerY
     BCS Bank0_Label_DEB1
     EOR #$FF
     CLC

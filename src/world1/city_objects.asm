@@ -100,7 +100,7 @@ World1_CheckCityObjectInteraction:
     LDA a:World1EntityType+$26,X
     TAY
     DEY
-    LDA $75
+    LDA World1PlayerX
     SEC
     SBC a:World1EntityX+$26,X
     BCS Bank0_Label_C9AA
@@ -113,7 +113,7 @@ Bank0_Label_C9AA:
     BCS Bank0_Label_C9CD
 
 Bank0_Label_C9AF:
-    LDA $76
+    LDA World1PlayerY
     SEC
     SBC a:World1EntityY+$26,X
     BCS Bank0_Label_C9BD
@@ -264,14 +264,14 @@ Bank0_Label_CA8A:
     LDA World1InvulnerabilityTimer
     BEQ Bank0_Label_CAA6
     LDA #$00
-    STA $79
+    STA World1PlayerDamageState
     LDA FrameCounter
     AND #$02
-    STA $78
+    STA World1PlayerRenderFlags
     DEC World1InvulnerabilityTimer
     BNE Bank0_Label_CAA6
     LDA #$00
-    STA $78
+    STA World1PlayerRenderFlags
 
 Bank0_Label_CAA6:
     RTS

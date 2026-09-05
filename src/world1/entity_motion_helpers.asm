@@ -197,7 +197,7 @@ Bank0_Func_9130:
     STA $AD
     LDA a:World1EntityX,X
     SEC
-    SBC $75
+    SBC World1PlayerX
     BCS Bank0_Label_914B
     INC $AD
     EOR #$FF
@@ -209,7 +209,7 @@ Bank0_Label_914B:
     ASL $AD
     LDA a:World1EntityY,X
     SEC
-    SBC $76
+    SBC World1PlayerY
     BCS Bank0_Label_915E
     INC $AD
     EOR #$FF

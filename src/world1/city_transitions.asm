@@ -159,15 +159,15 @@ World1_EnterAnywhereDoor:
     LDA a:World1EntityX+$26,X
     CLC
     ADC #$08
-    STA $75
+    STA World1PlayerX
     LDA a:World1EntityY+$26,X
     CLC
     ADC #$10
-    STA $76
+    STA World1PlayerY
     LDA #$04
-    STA $77
+    STA World1PlayerMetasprite
     LDA #$00
-    STA $78
+    STA World1PlayerRenderFlags
 
 Bank0_Label_CCC8:
     JSR Bank0_Func_94F1
@@ -200,7 +200,7 @@ Bank0_Label_CCDD:
 
 Bank0_Label_CCF7:
     LDA #$F0
-    STA $76
+    STA World1PlayerY
     DEC a:World1EntityMetasprite+$26,X
     LDA #$13
     JSR World1_Audio_QueueEffect
@@ -258,16 +258,16 @@ Bank0_Label_CD42:
     INY
     CLC
     ADC #$08
-    STA $75
+    STA World1PlayerX
     LDA a:$CD89,Y
     CLC
     ADC #$10
-    STA $76
+    STA World1PlayerY
     LDA #$00
-    STA $79
-    STA $78
-    STA $77
-    STA $7F
+    STA World1PlayerDamageState
+    STA World1PlayerRenderFlags
+    STA World1PlayerMetasprite
+    STA World1PlayerDirection
     JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_80DA
     JSR Bank0_Func_A7DB

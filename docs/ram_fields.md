@@ -135,16 +135,29 @@ is updated bitwise as metatiles are streamed into either nametable.
 
 | Symbol | Address | Role |
 | --- | ---: | --- |
+| `World1PlayerX` | `$0075` | Player horizontal coordinate used by both top-down and side-view modes |
+| `World1PlayerY` | `$0076` | Player vertical coordinate used by both top-down and side-view modes |
+| `World1PlayerMetasprite` | `$0077` | Direction and animation frame combined into the metasprite index |
+| `World1PlayerRenderFlags` | `$0078` | OAM attribute/visibility flags supplied to the player metasprite composer |
+| `World1PlayerDamageState` | `$0079` | Zero during normal control, positive during hit recovery, and negative on death |
+| `World1PlayerAnimationCounter` | `$007A` | Five-frame divider that advances the walking animation |
 | `World1WeaponLevel` | `$007B` | Weapon tier 0-3; selects the upgrade metasprite, projectile entity type, and shot pattern |
+| `World1PlayerAirborne` | `$007C` | Nonzero selects side-view jump/fall integration; vertical collision resolution clears it |
+| `World1PlayerYVelocity` | `$007D` | Signed side-view vertical velocity, initialized to -24 and increased by gravity up to +24 |
+| `World1PlayerXSubpixel` | `$007E` | Side-view fractional X accumulator; each step adds or subtracts `$80` and carries into the integer coordinate |
+| `World1PlayerDirection` | `$007F` | Direction 0/1/2/3 = down/up/left/right; selects the metasprite quadrant and projectile direction |
 | `World1EnemyFreezeActive` | `$0082` | Nonzero while the Stopwatch suppresses enemy updates and contact damage |
 | `World1EnemyFreezeTimer` | `$0083` | Stopwatch countdown initialized to `$F0`; also phases the warning sound |
 | `World1ProjectileMaxSlot` | `$0084` | Inclusive highest usable projectile slot; each Rapid-Fire Drink admits one additional simultaneous shot |
 | `World1InvulnerabilityTimer` | `$00B2` | Alternate-frame countdown initialized to `$FF`; blocks damage and drives player flashing |
 
 These aliases are limited to PRG bank 0 because the same zero-page addresses
-are chapter-local overlays elsewhere. The Flash Light carry flag is the
-exception: its producer in bank 0 and consumer in bank 1 prove a deliberate
-cross-bank lifetime.
+are chapter-local overlays elsewhere. City and underground modes share the
+same player position and rendering fields while applying different movement
+and collision rules. Underground movement adds a signed vertical-velocity and
+airborne state plus a half-pixel horizontal accumulator. The Flash Light carry
+flag is the exception: its producer
+in bank 0 and consumer in bank 1 prove a deliberate cross-bank lifetime.
 
 ## World 2 screen and palette state
 

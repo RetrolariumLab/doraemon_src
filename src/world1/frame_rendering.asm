@@ -128,17 +128,17 @@ Bank0_Label_968D:
     RTS
 
 Bank0_Func_96A0:
-    LDA $79
-    LDA $75
+    LDA World1PlayerDamageState
+    LDA World1PlayerX
     STA $45
-    LDA $76
+    LDA World1PlayerY
     STA $47
     LDA #$00
     STA $46
     STA $48
-    LDA $77
+    LDA World1PlayerMetasprite
     STA $49
-    LDA $78
+    LDA World1PlayerRenderFlags
     STA $4A
     JSR World1_ComposeMetasprite
     RTS

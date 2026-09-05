@@ -58,7 +58,7 @@ Bank0_Label_82C1:
     JSR World1_TryEnterAnywhereDoor
     JSR World1_TryEnterManhole
     JSR World1_CommitScoreAndCheckExtraLife
-    LDA $79
+    LDA World1PlayerDamageState
     BMI Bank0_Label_82F5
     JMP Bank0_Label_82C1
 
@@ -89,17 +89,17 @@ Bank0_Func_8313:
     LDA #$D8
     STA $5C
     LDA #$78
-    STA $75
+    STA World1PlayerX
     LDA #$80
-    STA $76
+    STA World1PlayerY
     LDA #$00
-    STA $79
+    STA World1PlayerDamageState
     STA ExtraLifeScoreThresholdIndex
     STA ExtraLifeSoundCounter
-    STA $77
-    STA $7F
-    STA $78
-    STA $78
+    STA World1PlayerMetasprite
+    STA World1PlayerDirection
+    STA World1PlayerRenderFlags
+    STA World1PlayerRenderFlags
     STA World1WeaponLevel
     STA $63
     STA DemoModeActive
@@ -131,13 +131,13 @@ Bank0_Func_8362:
     ASL A
     STA PlayerHealth
     LDA #$00
-    STA $79
+    STA World1PlayerDamageState
     LDA #$00
-    STA $77
+    STA World1PlayerMetasprite
     LDA #$00
-    STA $7F
+    STA World1PlayerDirection
     LDA #$00
-    STA $78
+    STA World1PlayerRenderFlags
     RTS
 
 Bank0_Func_837C:

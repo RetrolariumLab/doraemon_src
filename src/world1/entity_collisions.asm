@@ -158,7 +158,7 @@ Bank0_Func_931B:
     LDA #$00
     STA $81
     STA $80
-    LDA $79
+    LDA World1PlayerDamageState
     BNE Bank0_Label_9363
     LDA #$00
     STA $95
@@ -219,7 +219,7 @@ Bank0_Label_937A:
     RTS
 
 Bank0_Func_9383:
-    LDA $75
+    LDA World1PlayerX
     SEC
     SBC a:World1EntityX+$0A,X
     BCS Bank0_Label_9391
@@ -232,7 +232,7 @@ Bank0_Label_9391:
     BCS Bank0_Label_93D3
 
 Bank0_Label_9395:
-    LDA $76
+    LDA World1PlayerY
     SEC
     SBC a:World1EntityY+$0A,X
     BCS Bank0_Label_93A3
@@ -252,7 +252,7 @@ Bank0_Label_93A7:
     LDA #$0F
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$01
-    STA $79
+    STA World1PlayerDamageState
     LDA a:World1EntitySecondaryBehavior+$0A,X
     STA $00
     LDA PlayerHealth
@@ -260,7 +260,7 @@ Bank0_Label_93A7:
     SBC $00
     BCS Bank0_Label_93CA
     LDA #$80
-    STA $79
+    STA World1PlayerDamageState
     LDA #$00
 
 Bank0_Label_93CA:
@@ -282,7 +282,7 @@ Bank0_Func_93D4:
     AND #$3F
     TAY
     DEY
-    LDA $75
+    LDA World1PlayerX
     SEC
     SBC a:World1EntityX,X
     BCS Bank0_Label_93ED
@@ -295,7 +295,7 @@ Bank0_Label_93ED:
     BCS Bank0_Label_942A
 
 Bank0_Label_93F2:
-    LDA $76
+    LDA World1PlayerY
     SEC
     SBC a:World1EntityY,X
     BCS Bank0_Label_9400
@@ -315,14 +315,14 @@ Bank0_Label_9405:
     LDA #$0F
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$01
-    STA $79
+    STA World1PlayerDamageState
     LDA PlayerHealth
     CLC
     SBC a:World1EntityHealthOrVelocity,X
     STA PlayerHealth
     BPL Bank0_Label_9428
     LDA #$80
-    STA $79
+    STA World1PlayerDamageState
     LDA #$00
     STA PlayerHealth
 

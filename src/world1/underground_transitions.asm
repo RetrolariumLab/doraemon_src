@@ -24,13 +24,13 @@ Bank0_Label_D3BF:
 
 Bank0_Label_D3CB:
     LDA #$00
-    STA $79
+    STA World1PlayerDamageState
     LDA #$01
     STA $51
     LDA #$78
-    STA $75
+    STA World1PlayerX
     LDA #$B0
-    STA $76
+    STA World1PlayerY
     LDA #$00
     STA $5B
     LDA #$22
@@ -41,9 +41,9 @@ Bank0_Label_D3CB:
     STA $89
     LDA #$00
     STA $8A
-    STA $7C
-    STA $7D
-    STA $7E
+    STA World1PlayerAirborne
+    STA World1PlayerYVelocity
+    STA World1PlayerXSubpixel
     STA $9B
     STA a:AudioMusicControl
     STA World1EnemyFreezeActive
@@ -87,7 +87,7 @@ Bank0_Label_D429:
     AND #$07
     ORA $5C
     BEQ Bank0_Label_D462
-    LDA $79
+    LDA World1PlayerDamageState
     BMI Bank0_Func_D465
     JMP Bank0_Label_D429
 
@@ -111,7 +111,7 @@ Bank0_Func_D47C:
     LDA #$00
     STA $61
     STA $62
-    LDA $76
+    LDA World1PlayerY
     SEC
     SBC #$6E
     BCS Bank0_Label_D4B6
@@ -144,7 +144,7 @@ Bank0_Label_D4AD:
     BEQ Bank0_Label_D4E3
 
 Bank0_Label_D4B6:
-    LDA $76
+    LDA World1PlayerY
     SEC
     SBC #$92
     BCC Bank0_Label_D4E3
@@ -175,10 +175,10 @@ Bank0_Label_D4DC:
     BNE Bank0_Label_D4C9
 
 Bank0_Label_D4E3:
-    LDA $76
+    LDA World1PlayerY
     CLC
     ADC $62
-    STA $76
+    STA World1PlayerY
     JSR Bank0_Func_8750
     RTS
 
@@ -245,7 +245,7 @@ Bank0_Label_D560:
     JSR Bank0_Func_931B
     JSR Bank0_Func_87F8
     JSR World1_CommitScoreAndCheckExtraLife
-    LDA $79
+    LDA World1PlayerDamageState
     BMI Bank0_Label_D594
     DEC $9E
     BEQ Bank0_Label_D598
@@ -291,7 +291,7 @@ Bank0_Label_D5B2:
     JSR Bank0_Func_D67A
     LDA a:World1EntityType
     BEQ Bank0_Label_D5E5
-    LDA $79
+    LDA World1PlayerDamageState
     BMI Bank0_Label_D594
     JMP Bank0_Label_D5B2
 
@@ -340,15 +340,15 @@ Bank0_Label_D619:
     LDA #$88
     STA a:World1EntityY
     LDA #$00
-    STA $79
+    STA World1PlayerDamageState
     LDA #$12
-    STA $77
+    STA World1PlayerMetasprite
     LDA #$00
-    STA $78
+    STA World1PlayerRenderFlags
     LDA #$70
-    STA $75
+    STA World1PlayerX
     LDA #$86
-    STA $76
+    STA World1PlayerY
     LDA #$08
     STA a:AudioMusicState
 
@@ -363,7 +363,7 @@ Bank0_Label_D65D:
     LSR A
     AND #$01
     ORA #$12
-    STA $77
+    STA World1PlayerMetasprite
     LDA a:AudioMusicState
     BNE Bank0_Label_D65D
     JMP Bank0_Func_8082

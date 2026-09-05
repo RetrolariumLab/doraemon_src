@@ -83,7 +83,7 @@ World1_EnemyScoreRewardCodes:
 Bank0_Func_8934:
     SEC
     LDA a:World1EntityX,X
-    SBC $75
+    SBC World1PlayerX
     PHP
     LDA #$00
     ROL A
@@ -147,7 +147,7 @@ Bank0_Func_8987:
     CLC
     ADC #$40
     STA $00
-    LDA $75
+    LDA World1PlayerX
     LSR A
     LSR A
     ORA #$40
@@ -159,7 +159,7 @@ Bank0_Func_8987:
     CLC
     ADC #$01
     STA $01
-    LDA $76
+    LDA World1PlayerY
     LSR A
     LSR A
     ORA #$40
@@ -211,7 +211,7 @@ Bank0_Label_89FB:
     RTS
 
 Bank0_Label_89FE:
-    LDA $76
+    LDA World1PlayerY
     LSR A
     LSR A
     ORA #$40

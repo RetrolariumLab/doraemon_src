@@ -3564,12 +3564,92 @@
       "evidence": "set-by-world1-flash-light-pickup-consumed-into-world2-inventory-slot-two-then-cleared"
     },
     {
+      "address": "0x0075",
+      "name": "World1PlayerX",
+      "banks": [
+        0
+      ],
+      "evidence": "player-horizontal-coordinate-used-by-city-underground-collision-render-and-transition-paths"
+    },
+    {
+      "address": "0x0076",
+      "name": "World1PlayerY",
+      "banks": [
+        0
+      ],
+      "evidence": "player-vertical-coordinate-used-by-city-underground-collision-render-and-transition-paths"
+    },
+    {
+      "address": "0x0077",
+      "name": "World1PlayerMetasprite",
+      "banks": [
+        0
+      ],
+      "evidence": "direction-and-animation-frame-combine-into-index-passed-to-world1-metasprite-composer"
+    },
+    {
+      "address": "0x0078",
+      "name": "World1PlayerRenderFlags",
+      "banks": [
+        0
+      ],
+      "evidence": "player-oam-attribute-flags-passed-to-metasprite-composer-and-toggled-for-hit-and-invulnerability-rendering"
+    },
+    {
+      "address": "0x0079",
+      "name": "World1PlayerDamageState",
+      "banks": [
+        0
+      ],
+      "evidence": "zero-normal-positive-hit-recovery-sequence-and-negative-player-death-state"
+    },
+    {
+      "address": "0x007A",
+      "name": "World1PlayerAnimationCounter",
+      "banks": [
+        0
+      ],
+      "evidence": "five-frame-divider-reset-on-motion-direction-change-and-used-to-advance-player-metasprite-frame"
+    },
+    {
       "address": "0x007B",
       "name": "World1WeaponLevel",
       "banks": [
         0
       ],
       "evidence": "incremented-by-world1-weapon-upgrade-and-selects-projectile-type-and-upgrade-metasprite"
+    },
+    {
+      "address": "0x007C",
+      "name": "World1PlayerAirborne",
+      "banks": [
+        0
+      ],
+      "evidence": "nonzero-selects-underground-jump-and-fall-integration-and-is-cleared-by-vertical-collision-resolution"
+    },
+    {
+      "address": "0x007D",
+      "name": "World1PlayerYVelocity",
+      "banks": [
+        0
+      ],
+      "evidence": "signed-underground-vertical-velocity-starts-at-minus-24-increments-under-gravity-and-is-capped-at-plus-24"
+    },
+    {
+      "address": "0x007E",
+      "name": "World1PlayerXSubpixel",
+      "banks": [
+        0
+      ],
+      "evidence": "underground-horizontal-movement-adds-or-subtracts-0x80-and-carries-or-borrows-into-player-x"
+    },
+    {
+      "address": "0x007F",
+      "name": "World1PlayerDirection",
+      "banks": [
+        0
+      ],
+      "evidence": "values-zero-through-three-encode-down-up-left-right-and-select-player-metasprite-quadrant-and-projectile-direction"
     },
     {
       "address": "0x0082",

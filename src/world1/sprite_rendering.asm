@@ -491,7 +491,7 @@ Bank0_Func_9BFC:
     DEC $63
 
 Bank0_Label_9C02:
-    LDA $79
+    LDA World1PlayerDamageState
     BEQ Bank0_Label_9C0A
     CMP #$06
     BCC Bank0_Label_9C10
@@ -533,7 +533,7 @@ Bank0_Label_9C26:
     ASL A
     ASL A
     STA $00
-    LDA $7F
+    LDA World1PlayerDirection
     ASL A
     ASL A
     AND #$0C
@@ -542,12 +542,12 @@ Bank0_Label_9C26:
     LDA a:$9C86,Y
     INY
     CLC
-    ADC $75
+    ADC World1PlayerX
     STA a:World1EntityX+$1E,X
     LDA a:$9C86,Y
     INY
     CLC
-    ADC $76
+    ADC World1PlayerY
     STA a:World1EntityY+$1E,X
     LDA a:$9C86,Y
     INY
@@ -559,12 +559,12 @@ Bank0_Label_9C26:
     STA a:World1EntityPositionHigh+$1E,X
     LDA World1WeaponLevel
     STA a:World1EntityType+$1E,X
-    LDA $7F
+    LDA World1PlayerDirection
     AND #$03
     STA a:World1EntityPrimaryBehavior+$1E,X
     LDA #$FF
     STA a:World1EntitySourceObjectId+$1E,X
-    LDA $77
+    LDA World1PlayerMetasprite
     AND #$0C
     LDA #$06
     STA $63

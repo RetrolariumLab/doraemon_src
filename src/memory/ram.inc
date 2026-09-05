@@ -27,7 +27,17 @@ PlayerHealthCapacityIndex = $002C
 World1FlashLightCarryFlag = $0037
 
 ; World 1 item-derived combat state
+World1PlayerX              = $0075
+World1PlayerY              = $0076
+World1PlayerMetasprite     = $0077
+World1PlayerRenderFlags    = $0078
+World1PlayerDamageState    = $0079
+World1PlayerAnimationCounter = $007A
 World1WeaponLevel         = $007B
+World1PlayerAirborne      = $007C
+World1PlayerYVelocity     = $007D
+World1PlayerXSubpixel     = $007E
+World1PlayerDirection     = $007F
 World1EnemyFreezeActive   = $0082
 World1EnemyFreezeTimer    = $0083
 World1ProjectileMaxSlot   = $0084

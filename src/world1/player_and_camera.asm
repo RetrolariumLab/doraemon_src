@@ -4,21 +4,21 @@
 
 Bank0_Func_856C:
     JSR Bank0_Func_9BFC
-    LDA $79
+    LDA World1PlayerDamageState
     BEQ Bank0_Label_85B2
     BPL Bank0_Label_8576
     RTS
 
 Bank0_Label_8576:
     LDA #$40
-    STA $78
+    STA World1PlayerRenderFlags
     LDA FrameCounter
     AND #$03
     BNE Bank0_Label_8582
-    INC $79
+    INC World1PlayerDamageState
 
 Bank0_Label_8582:
-    LDA $79
+    LDA World1PlayerDamageState
     CMP #$06
     BCS Bank0_Label_8599
     LDA FrameCounter
@@ -26,53 +26,53 @@ Bank0_Label_8582:
     LSR A
     AND #$01
     ORA #$10
-    STA $77
+    STA World1PlayerMetasprite
     LDA #$00
-    STA $78
+    STA World1PlayerRenderFlags
     JMP Bank0_Label_85CD
 
 Bank0_Label_8599:
     CMP #$16
     BCC Bank0_Label_85A1
     LDA #$00
-    STA $79
+    STA World1PlayerDamageState
 
 Bank0_Label_85A1:
-    LDA $77
+    LDA World1PlayerMetasprite
     AND #$03
     STA $00
-    LDA $7F
+    LDA World1PlayerDirection
     ASL A
     ASL A
     ORA $00
-    STA $77
+    STA World1PlayerMetasprite
     JMP Bank0_Label_85B6
 
 Bank0_Label_85B2:
     LDA #$00
-    STA $78
+    STA World1PlayerRenderFlags
 
 Bank0_Label_85B6:
     LDA $63
     BEQ Bank0_Label_85CD
     CMP #$03
     BCS Bank0_Label_85C7
-    LDA $77
+    LDA World1PlayerMetasprite
     AND #$0C
-    STA $77
+    STA World1PlayerMetasprite
     JMP Bank0_Label_85CD
 
 Bank0_Label_85C7:
-    LDA $77
+    LDA World1PlayerMetasprite
     ORA #$01
-    STA $77
+    STA World1PlayerMetasprite
 
 Bank0_Label_85CD:
-    LDA $77
+    LDA World1PlayerMetasprite
     STA $01
-    LDA $75
+    LDA World1PlayerX
     STA $06
-    LDA $76
+    LDA World1PlayerY
     STA $07
     LDY CombinedControllerButtons
     TYA
@@ -87,21 +87,21 @@ Bank0_Label_85CD:
     TYA
     AND #$01
     BNE Bank0_Label_860A
-    LDA $79
+    LDA World1PlayerDamageState
     BEQ Bank0_Label_85F7
     CMP #$06
     BCC Bank0_Label_8609
 
 Bank0_Label_85F7:
-    INC $7A
-    LDA $7A
+    INC World1PlayerAnimationCounter
+    LDA World1PlayerAnimationCounter
     CMP #$05
     BCC Bank0_Label_8609
     LDA #$00
-    STA $7A
-    LDA $77
+    STA World1PlayerAnimationCounter
+    LDA World1PlayerMetasprite
     AND #$0C
-    STA $77
+    STA World1PlayerMetasprite
 
 Bank0_Label_8609:
     RTS
@@ -111,14 +111,14 @@ Bank0_Label_860A:
 
 Bank0_Label_860D:
     LDA #$01
-    STA $7F
-    DEC $76
-    DEC $76
-    LDA $76
+    STA World1PlayerDirection
+    DEC World1PlayerY
+    DEC World1PlayerY
+    LDA World1PlayerY
     CMP #$28
     BCS Bank0_Label_861F
     LDA #$28
-    STA $76
+    STA World1PlayerY
 
 Bank0_Label_861F:
     LDA #$05
@@ -136,14 +136,14 @@ Bank0_Label_861F:
 
 Bank0_Label_863B:
     LDA #$00
-    STA $7F
-    INC $76
-    INC $76
-    LDA $76
+    STA World1PlayerDirection
+    INC World1PlayerY
+    INC World1PlayerY
+    LDA World1PlayerY
     CMP #$C9
     BCC Bank0_Label_864D
     LDA #$C8
-    STA $76
+    STA World1PlayerY
 
 Bank0_Label_864D:
     LDA #$01
@@ -161,14 +161,14 @@ Bank0_Label_864D:
 
 Bank0_Label_8669:
     LDA #$02
-    STA $7F
-    DEC $75
-    DEC $75
-    LDA $75
+    STA World1PlayerDirection
+    DEC World1PlayerX
+    DEC World1PlayerX
+    LDA World1PlayerX
     CMP #$05
     BCS Bank0_Label_867B
     LDA #$05
-    STA $75
+    STA World1PlayerX
 
 Bank0_Label_867B:
     LDA #$09
@@ -183,14 +183,14 @@ Bank0_Label_867B:
 
 Bank0_Label_8690:
     LDA #$03
-    STA $7F
-    INC $75
-    INC $75
-    LDA $75
+    STA World1PlayerDirection
+    INC World1PlayerX
+    INC World1PlayerX
+    LDA World1PlayerX
     CMP #$EC
     BCC Bank0_Label_86A2
     LDA #$EB
-    STA $75
+    STA World1PlayerX
 
 Bank0_Label_86A2:
     LDA #$0D
@@ -204,13 +204,13 @@ Bank0_Label_86A2:
     JMP Bank0_Label_86B7
 
 Bank0_Label_86B7:
-    LDA $79
+    LDA World1PlayerDamageState
     BEQ Bank0_Label_86BF
     CMP #$06
     BCC Bank0_Label_86F7
 
 Bank0_Label_86BF:
-    LDA $77
+    LDA World1PlayerMetasprite
     AND #$0C
     STA $00
     LDA $01
@@ -218,28 +218,28 @@ Bank0_Label_86BF:
     CMP $00
     BEQ Bank0_Label_86D7
     LDA $01
-    STA $77
+    STA World1PlayerMetasprite
     LDA #$00
-    STA $7A
+    STA World1PlayerAnimationCounter
     STA $63
 
 Bank0_Label_86D7:
     LDA $63
     BNE Bank0_Label_86F7
-    INC $7A
-    LDA $7A
+    INC World1PlayerAnimationCounter
+    LDA World1PlayerAnimationCounter
     CMP #$05
     BCC Bank0_Label_86F7
     LDA #$00
-    STA $7A
-    LDA $77
+    STA World1PlayerAnimationCounter
+    LDA World1PlayerMetasprite
     AND #$0C
     STA $00
-    INC $77
-    LDA $77
+    INC World1PlayerMetasprite
+    LDA World1PlayerMetasprite
     AND #$03
     ORA $00
-    STA $77
+    STA World1PlayerMetasprite
 
 Bank0_Label_86F7:
     RTS
@@ -248,9 +248,9 @@ Bank0_Func_86F8:
     JSR Bank0_Func_D1C3
     BCC Bank0_Label_8705
     LDA $06
-    STA $75
+    STA World1PlayerX
     LDA $07
-    STA $76
+    STA World1PlayerY
 
 Bank0_Label_8705:
     RTS
@@ -259,7 +259,7 @@ Bank0_Func_8706:
     LDA #$00
     STA $61
     STA $62
-    LDA $75
+    LDA World1PlayerX
     CMP #$50
     BCS Bank0_Label_871B
     JSR Bank0_Func_A3E1
@@ -273,7 +273,7 @@ Bank0_Label_871B:
     JSR Bank0_Func_A381
 
 Bank0_Label_8725:
-    LDA $76
+    LDA World1PlayerY
     CMP #$48
     BCS Bank0_Label_8734
     JSR Bank0_Func_A484
@@ -287,14 +287,14 @@ Bank0_Label_8734:
     JSR Bank0_Func_A42F
 
 Bank0_Label_873E:
-    LDA $75
+    LDA World1PlayerX
     CLC
     ADC $61
-    STA $75
-    LDA $76
+    STA World1PlayerX
+    LDA World1PlayerY
     CLC
     ADC $62
-    STA $76
+    STA World1PlayerY
     JSR Bank0_Func_8750
     RTS
 
@@ -460,7 +460,7 @@ Bank0_Func_884C:
     LDA #$00
     STA a:AudioMusicState
     LDA #$00
-    STA $78
+    STA World1PlayerRenderFlags
     LDA #$78
     STA $97
 
@@ -471,7 +471,7 @@ Bank0_Label_885F:
     LSR A
     AND #$01
     ORA #$10
-    STA $77
+    STA World1PlayerMetasprite
     JSR Bank0_Func_94F1
     LDA $97
     CMP #$3C

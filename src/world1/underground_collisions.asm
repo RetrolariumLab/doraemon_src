@@ -5,7 +5,7 @@
 Bank0_Func_D113:
     LDA $9B
     BEQ Bank0_Label_D11D
-    LDA $76
+    LDA World1PlayerY
     CMP #$C6
     BCS Bank0_Label_D137
 
@@ -19,46 +19,46 @@ Bank0_Label_D11D:
     JSR Bank0_Func_D1C3
     BCS Bank0_Label_D137
     LDA #$01
-    STA $7C
+    STA World1PlayerAirborne
     LDA #$00
-    STA $7D
+    STA World1PlayerYVelocity
 
 Bank0_Label_D137:
     RTS
 
 Bank0_Func_D138:
     LDA #$E8
-    STA $7D
+    STA World1PlayerYVelocity
     LDA #$01
-    STA $7C
+    STA World1PlayerAirborne
     LDA #$12
     JSR World1_Audio_QueueEffect
 
 Bank0_Func_D145:
-    LDA $7D
+    LDA World1PlayerYVelocity
     AND #$80
     STA $00
-    LDA $7D
+    LDA World1PlayerYVelocity
     LSR A
     ORA $00
     LSR A
     ORA $00
-    ADC $76
-    STA $76
-    INC $7D
-    LDA $7D
+    ADC World1PlayerY
+    STA World1PlayerY
+    INC World1PlayerYVelocity
+    LDA World1PlayerYVelocity
     BMI Bank0_Label_D165
     CMP #$18
     BCC Bank0_Label_D165
     LDA #$18
-    STA $7D
+    STA World1PlayerYVelocity
 
 Bank0_Label_D165:
-    LDA $7D
+    LDA World1PlayerYVelocity
     BMI Bank0_Label_D186
     LDA $9B
     BEQ Bank0_Label_D173
-    LDA $76
+    LDA World1PlayerY
     CMP #$C6
     BCS Bank0_Label_D1AB
 
@@ -85,15 +85,15 @@ Bank0_Label_D186:
     RTS
 
 Bank0_Label_D199:
-    LDA $76
+    LDA World1PlayerY
     CLC
     ADC #$0A
     AND #$F8
-    STA $76
-    DEC $76
-    DEC $76
+    STA World1PlayerY
+    DEC World1PlayerY
+    DEC World1PlayerY
     LDA #$00
-    STA $7D
+    STA World1PlayerYVelocity
     RTS
 
 Bank0_Label_D1AB:
@@ -103,13 +103,13 @@ Bank0_Label_D1AB:
     ADC #$02
     STA $00
     CLC
-    ADC $76
+    ADC World1PlayerY
     AND #$F8
     SEC
     SBC $00
-    STA $76
+    STA World1PlayerY
     LDA #$00
-    STA $7C
+    STA World1PlayerAirborne
     RTS
 
 Bank0_Func_D1C3:
@@ -117,7 +117,7 @@ Bank0_Func_D1C3:
     LDA PpuScrollXShadow
     AND #$07
     CLC
-    ADC $75
+    ADC World1PlayerX
     CLC
     ADC $04
     LSR A
@@ -130,7 +130,7 @@ Bank0_Func_D1C3:
     LDA PpuScrollYShadow
     AND #$07
     CLC
-    ADC $76
+    ADC World1PlayerY
     CLC
     ADC $04
     LSR A
@@ -179,15 +179,15 @@ World1_EnterManhole:
     LDA a:World1EntityX+$26,X
     CLC
     ADC #$04
-    STA $75
+    STA World1PlayerX
     LDA a:World1EntityY+$26,X
     SEC
     SBC #$14
-    STA $76
+    STA World1PlayerY
     LDA #$00
-    STA $77
-    STA $78
-    STA $7F
+    STA World1PlayerMetasprite
+    STA World1PlayerRenderFlags
+    STA World1PlayerDirection
 
 Bank0_Label_D283:
     JSR Bank0_Func_94F1
@@ -216,8 +216,8 @@ Bank0_Label_D2A4:
     TAY
     LDA a:$D3A3,Y
     CLC
-    ADC $76
-    STA $76
+    ADC World1PlayerY
+    STA World1PlayerY
     INX
     CPX #$14
     BNE Bank0_Label_D2A4
@@ -251,22 +251,22 @@ Bank0_Func_D2C3:
     STA a:World1EntityX+$26
     CLC
     ADC #$04
-    STA $75
+    STA World1PlayerX
     LDA a:$D381,X
     STA a:World1EntityY+$26
     SEC
     SBC #$14
-    STA $76
+    STA World1PlayerY
     LDA #$00
-    STA $79
+    STA World1PlayerDamageState
     LDA #$00
-    STA $77
+    STA World1PlayerMetasprite
     LDA #$00
-    STA $7F
+    STA World1PlayerDirection
     LDA #$00
-    STA $78
+    STA World1PlayerRenderFlags
     LDA #$00
-    STA $7A
+    STA World1PlayerAnimationCounter
     JSR Bank0_Func_9614
     LDA #$EF
     STA $66
@@ -312,8 +312,8 @@ Bank0_Label_D364:
     TAY
     LDA a:$D3A2,Y
     CLC
-    ADC $76
-    STA $76
+    ADC World1PlayerY
+    STA World1PlayerY
     INX
     CPX #$1C
     BNE Bank0_Label_D364
