@@ -125,8 +125,9 @@
 - Unknown: semantic names for individual effects, music commands, track headers,
   and stream fields beyond their proven control-flow roles.
 
-## REV-001 - Revision A
+## Out-of-scope reference: Revision A
 
 - Known: CHR is unchanged; PRG and payload CRCs differ.
-- Unknown: exact changed ranges and behavioral fixes until a matching Rev A dump
-  is supplied and aligned.
+- Source Reconstruction 1.0 scope: Revision A is not a required source profile;
+  its changed ranges and behavioral fixes do not block the original PRG0
+  reconstruction or release audit.

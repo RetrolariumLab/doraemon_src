@@ -5,6 +5,12 @@ reconstruction comparable in scope to `smb1_src` and `pacman_src`. Exact ROM
 identity remains a permanent constraint; semantic source, runtime evidence, and
 editable data are added without replacing or weakening the preservation build.
 
+Version 1.0 targets exactly one image: the original Japanese PRG0 revision with
+payload CRC32 `BDE3AE9B`, PRG CRC32 `B00ABE1C`, and CHR CRC32 `761F994E`.
+Revision A, translations, regional variants, and multi-revision source profiles
+are outside the 1.0 definition of done. They may be considered only after the
+base reconstruction is complete.
+
 The immutable starting point is commit
 `499d4f8cdfa505456127d629fee58f185e79ce93` on `main`. Development takes place
 on `source-reconstruction`. The machine-readable contract is

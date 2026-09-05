@@ -66,8 +66,9 @@ CHR             32 KiB, CRC32 761F994E
 ```
 
 Revision A has PRG CRC32 `FE90D6EB` and payload CRC32 `336093EF`; its CHR is
-unchanged. The project does not treat translations or expanded mapper hacks as
-baseline revisions.
+unchanged. Source Reconstruction 1.0 intentionally targets only the original
+PRG0 image above: Revision A, translations, regional profiles, and expanded
+mapper hacks are not release requirements.
 
 ROM images and locally extracted regions are ignored by Git.
 

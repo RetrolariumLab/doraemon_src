@@ -38,6 +38,69 @@ class MilestoneTests(unittest.TestCase):
 
 
 class ContractHelpersTests(unittest.TestCase):
+    def contract_shape(self) -> dict[str, object]:
+        return {
+            "target_rom": {
+                "title": "Doraemon (Japan, original revision)",
+                "profile": "PRG0",
+                "payload_crc32": "BDE3AE9B",
+                "prg_crc32": "B00ABE1C",
+                "chr_crc32": "761F994E",
+                "multiple_revisions_required": False,
+                "regional_profiles_required": False,
+            },
+            "source_contract": {
+                "module_manifest": "config/source_modules.json",
+                "maximum_module_lines": 700,
+                "executable_incbin": False,
+                "physical_bank_names_are_boundaries_not_semantics": True,
+                "required_semantic_areas": [
+                    "common",
+                    "world1",
+                    "world2",
+                    "world3",
+                    "audio",
+                    "data",
+                ],
+            },
+            "runtime_contract": {
+                "required_scenarios": [
+                    "boot-title",
+                    "world1-city",
+                    "world1-underground",
+                    "world2-cave",
+                    "world2-terminal-screen",
+                    "world3-underwater",
+                    "chapter-transition",
+                    "ending-credits",
+                ],
+            },
+            "authoring_contract": {
+                "lossless_roundtrip_required": True,
+                "required_formats": [
+                    "maps",
+                    "metatiles",
+                    "objects",
+                    "collisions",
+                    "graphics",
+                    "palettes",
+                    "text",
+                    "audio",
+                ],
+            },
+        }
+
+    def test_accepts_original_prg0_only_scope(self) -> None:
+        self.assertEqual(
+            AUDIT.validate_contract_shape(self.contract_shape()), []
+        )
+
+    def test_rejects_multirevision_scope_drift(self) -> None:
+        contract = self.contract_shape()
+        contract["target_rom"]["multiple_revisions_required"] = True
+        errors = AUDIT.validate_contract_shape(contract)
+        self.assertTrue(any("target ROM scope differs" in error for error in errors))
+
     def test_extracts_real_targets_but_not_variables(self) -> None:
         text = "verify: build\nVALUE := no\nsource-audit: verify\n"
         self.assertEqual(AUDIT.make_targets(text), {"verify", "source-audit"})

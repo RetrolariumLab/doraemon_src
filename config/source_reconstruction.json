@@ -3,6 +3,15 @@
   "release": "Source Reconstruction 1.0",
   "tag": "source-reconstruction-1.0",
   "status": "development",
+  "target_rom": {
+    "title": "Doraemon (Japan, original revision)",
+    "profile": "PRG0",
+    "payload_crc32": "BDE3AE9B",
+    "prg_crc32": "B00ABE1C",
+    "chr_crc32": "761F994E",
+    "multiple_revisions_required": false,
+    "regional_profiles_required": false
+  },
   "preservation_baseline": {
     "branch": "main",
     "commit": "499d4f8cdfa505456127d629fee58f185e79ce93",

@@ -108,6 +108,18 @@ def validate_paths(
 
 def validate_contract_shape(document: dict[str, Any]) -> list[str]:
     errors: list[str] = []
+    target = document.get("target_rom", {})
+    if target != {
+        "title": "Doraemon (Japan, original revision)",
+        "profile": "PRG0",
+        "payload_crc32": "BDE3AE9B",
+        "prg_crc32": "B00ABE1C",
+        "chr_crc32": "761F994E",
+        "multiple_revisions_required": False,
+        "regional_profiles_required": False,
+    }:
+        errors.append("Source Reconstruction 1.0 target ROM scope differs")
+
     source = document.get("source_contract", {})
     if source.get("module_manifest") != "config/source_modules.json":
         errors.append("semantic module manifest path differs")
