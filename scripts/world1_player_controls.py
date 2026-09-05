@@ -29,6 +29,23 @@ EXPECTED_CONTROLS = (
     6,
     8,
 )
+EXPECTED_UNDERGROUND_CONTROLS = (
+    ["left", "right"],
+    [0x02, 0x01],
+    [2, 3],
+    0x80,
+    0x05,
+    0xEB,
+    0x80,
+    -24,
+    1,
+    24,
+    4,
+    [(0x04, 0x1A), (0x0A, 0x1A)],
+    [(0x04, 0x02), (0x0A, 0x02)],
+    [(0x00, 0x19), (0x00, 0x0E), (0x00, 0x02)],
+    [(0x0E, 0x19), (0x0E, 0x0E), (0x0E, 0x02)],
+)
 EXPECTED_STATE_FIELDS = [
     ("CombinedControllerButtons", 0x0021, 1, None),
     ("World1WeaponPoseTimer", 0x0063, 1, [0]),
@@ -41,6 +58,9 @@ EXPECTED_STATE_FIELDS = [
     ("World1PlayerDamageState", 0x0079, 1, [0]),
     ("World1PlayerAnimationCounter", 0x007A, 1, [0]),
     ("World1WeaponLevel", 0x007B, 1, [0]),
+    ("World1PlayerAirborne", 0x007C, 1, [0]),
+    ("World1PlayerYVelocity", 0x007D, 1, [0]),
+    ("World1PlayerXSubpixel", 0x007E, 1, [0]),
     ("World1PlayerDirection", 0x007F, 1, [0]),
     ("World1ProjectileMaxSlot", 0x0084, 1, [0]),
 ]
@@ -84,6 +104,15 @@ EXPECTED_ROUTINES = [
             0xD193,
         ],
     ),
+    (
+        "World1_UpdateUndergroundPlayer",
+        0xCF7A,
+        409,
+        [0xCE61, 0xD435, 0xD569, 0xD5BE, 0xD607],
+    ),
+    ("World1_CheckUndergroundGroundSupport", 0xD113, 37, [0xD001]),
+    ("World1_StartUndergroundJump", 0xD138, 13, [0xCFFB]),
+    ("World1_IntegrateUndergroundVerticalMotion", 0xD145, 126, [0xCFEF]),
 ]
 
 
@@ -173,6 +202,32 @@ def controls_layout(controls: dict[str, Any]) -> tuple[object, ...]:
     )
 
 
+def probe_offsets(values: list[list[str | int]]) -> list[tuple[int, int]]:
+    return [(number(x), number(y)) for x, y in values]
+
+
+def underground_controls_layout(
+    controls: dict[str, Any],
+) -> tuple[object, ...]:
+    return (
+        [str(value) for value in controls["horizontal_priority"]],
+        [number(value) for value in controls["horizontal_button_masks"]],
+        [int(value) for value in controls["direction_values"]],
+        number(controls["horizontal_subpixel_step"]),
+        number(controls["player_x_min"]),
+        number(controls["player_x_max"]),
+        number(controls["jump_button_mask"]),
+        int(controls["jump_velocity"]),
+        int(controls["gravity_per_update"]),
+        int(controls["terminal_fall_velocity"]),
+        int(controls["vertical_velocity_divisor"]),
+        probe_offsets(controls["floor_probe_offsets"]),
+        probe_offsets(controls["ceiling_probe_offsets"]),
+        probe_offsets(controls["left_wall_probe_offsets"]),
+        probe_offsets(controls["right_wall_probe_offsets"]),
+    )
+
+
 def validate_manifest(
     prg: bytes,
     manifest: dict[str, Any],
@@ -186,6 +241,9 @@ def validate_manifest(
     try:
         image = bank_bytes(prg, bank)
         actual_controls = controls_layout(manifest["controls"])
+        actual_underground = underground_controls_layout(
+            manifest["underground_controls"]
+        )
         state_fields = manifest["state_fields"]
         actual_state = [
             (
@@ -211,6 +269,8 @@ def validate_manifest(
     errors: list[str] = []
     if actual_controls != EXPECTED_CONTROLS:
         errors.append("World 1 player-controls constants differ")
+    if actual_underground != EXPECTED_UNDERGROUND_CONTROLS:
+        errors.append("World 1 underground-control constants differ")
     if actual_state != EXPECTED_STATE_FIELDS:
         errors.append("World 1 player-controls state layout differs")
     if actual_routines != EXPECTED_ROUTINES:
@@ -249,6 +309,11 @@ def validate_manifest(
             len(calls) for _name, _address, _size, calls in actual_routines
         ),
         "collision_probe_count": sum(actual_controls[12]),
+        "underground_collision_probe_count": len(next(
+            calls
+            for name, _address, _size, calls in actual_routines
+            if name == "World1_TestPlayerMapCollisionAtOffset"
+        )) - 1,
     }
 
 
@@ -273,7 +338,8 @@ def main() -> int:
         return 1
     print(
         f"[OK] World 1 player controls: {report['state_byte_count']} state bytes, "
-        f"{report['collision_probe_count']} collision probes, "
+        f"{report['collision_probe_count']} city collision probes, "
+        f"{report['underground_collision_probe_count']} underground probes, "
         f"{report['routine_count']} routines, "
         f"{report['routine_byte_count']} routine bytes, "
         f"{report['callsite_count']} direct callsites"

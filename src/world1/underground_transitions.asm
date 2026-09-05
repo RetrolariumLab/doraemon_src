@@ -20,7 +20,7 @@ Bank0_Label_D3BF:
     LDA #$01
     STA $51
     LDA #$06
-    JMP Bank0_Func_D2C3
+    JMP World1_ReturnFromUndergroundToCity
 
 Bank0_Label_D3CB:
     LDA #$00
@@ -36,11 +36,11 @@ Bank0_Label_D3CB:
     LDA #$22
     STA World1CameraTileY
     LDA #$22
-    STA $88
+    STA World1UndergroundAxisScrollLimit
     LDA #$22
-    STA $89
+    STA World1UndergroundAxisScrollCoarse
     LDA #$00
-    STA $8A
+    STA World1UndergroundAxisScrollFine
     STA World1PlayerAirborne
     STA World1PlayerYVelocity
     STA World1PlayerXSubpixel
@@ -73,10 +73,10 @@ Bank0_Label_D429:
     JSR Bank0_Func_8490
     JSR Bank0_Func_95CB
     JSR Bank0_Func_9B54
-    JSR Bank0_Func_CF7A
+    JSR World1_UpdateUndergroundPlayer
     JSR Bank0_Func_CA6D
     JSR Bank0_Func_9201
-    JSR Bank0_Func_D47C
+    JSR World1_TrackUndergroundVerticalCamera
     JSR World1_SpawnObjectsAtCameraEdges
     JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
@@ -107,7 +107,7 @@ Bank0_Label_D46F:
     JSR Bank0_Func_C92F
     JMP Bank0_Label_D3BF
 
-Bank0_Func_D47C:
+World1_TrackUndergroundVerticalCamera:
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
@@ -118,28 +118,28 @@ Bank0_Func_D47C:
     EOR #$FF
     SEC
     ADC #$00
-    STA $8C
+    STA World1UndergroundAxisScrollBudget
     CMP #$07
     BCC Bank0_Label_D498
     LDA #$06
-    STA $8C
+    STA World1UndergroundAxisScrollBudget
 
 Bank0_Label_D498:
-    LDA $89
-    ORA $8A
+    LDA World1UndergroundAxisScrollCoarse
+    ORA World1UndergroundAxisScrollFine
     BEQ Bank0_Label_D4E3
-    LDA $8A
+    LDA World1UndergroundAxisScrollFine
     SEC
     SBC #$01
     AND #$07
-    STA $8A
+    STA World1UndergroundAxisScrollFine
     CMP #$07
     BNE Bank0_Label_D4AD
-    DEC $89
+    DEC World1UndergroundAxisScrollCoarse
 
 Bank0_Label_D4AD:
     JSR World1_TryScrollCameraUp
-    DEC $8C
+    DEC World1UndergroundAxisScrollBudget
     BNE Bank0_Label_D498
     BEQ Bank0_Label_D4E3
 
@@ -148,30 +148,30 @@ Bank0_Label_D4B6:
     SEC
     SBC #$92
     BCC Bank0_Label_D4E3
-    STA $8C
+    STA World1UndergroundAxisScrollBudget
     CMP #$06
     BCC Bank0_Label_D4C7
     LDA #$05
-    STA $8C
+    STA World1UndergroundAxisScrollBudget
 
 Bank0_Label_D4C7:
-    INC $8C
+    INC World1UndergroundAxisScrollBudget
 
 Bank0_Label_D4C9:
-    LDA $89
-    CMP $88
+    LDA World1UndergroundAxisScrollCoarse
+    CMP World1UndergroundAxisScrollLimit
     BEQ Bank0_Label_D4E3
-    LDA $8A
+    LDA World1UndergroundAxisScrollFine
     CLC
     ADC #$01
     AND #$07
-    STA $8A
+    STA World1UndergroundAxisScrollFine
     BNE Bank0_Label_D4DC
-    INC $89
+    INC World1UndergroundAxisScrollCoarse
 
 Bank0_Label_D4DC:
     JSR World1_TryScrollCameraDown
-    DEC $8C
+    DEC World1UndergroundAxisScrollBudget
     BNE Bank0_Label_D4C9
 
 Bank0_Label_D4E3:
@@ -237,7 +237,7 @@ Bank0_Label_D560:
     JSR Bank0_Func_8490
     JSR Bank0_Func_95CB
     JSR Bank0_Func_9B54
-    JSR Bank0_Func_CF7A
+    JSR World1_UpdateUndergroundPlayer
     JSR Bank0_Func_CA6D
     JSR Bank0_Func_9201
     JSR World1_UpdateEntities
@@ -280,7 +280,7 @@ Bank0_Label_D5B2:
     JSR Bank0_Func_8490
     JSR Bank0_Func_95CB
     JSR Bank0_Func_9B54
-    JSR Bank0_Func_CF7A
+    JSR World1_UpdateUndergroundPlayer
     JSR Bank0_Func_CA6D
     JSR World1_UpdateEntities
     JSR Bank0_Func_9201
@@ -312,7 +312,7 @@ Bank0_Label_D5E5:
 Bank0_Label_D601:
     JSR Bank0_Func_94F1
     JSR Bank0_Func_8490
-    JSR Bank0_Func_CF7A
+    JSR World1_UpdateUndergroundPlayer
     LDA FrameCounter
     AND #$03
     BNE Bank0_Label_D619

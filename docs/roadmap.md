@@ -61,6 +61,15 @@ World 1's city player update, shared weapon firing path, collision rollback,
 and player-to-map collision sampler are exact across 589 routine bytes and 26
 direct calls. Direction priority, movement bounds, ten collision probes, hit
 recovery, animation cadence, and three input/weapon RAM fields are also pinned.
+The side-view update, grounded support test, jump initializer, and signed
+vertical integrator extend that proof to 1,174 routine bytes and 34 calls.
+Half-pixel horizontal motion, twelve wall/floor/ceiling probes, jump velocity,
+gravity, terminal fall speed, tile alignment, and airborne transitions are
+machine-validated.
+The nine side-view room profiles now join camera starts and limits, player
+starts, both axis city-return selectors, and the nine city-return camera and
+manhole profiles in one lossless 108-byte authoring
+format, including explicit no-exit sentinels and loader/selector signatures.
 Its three weapon sounds and twelve directional projectile spawn profiles are
 now losslessly editable across all 51 table bytes, with the biased lookup bases
 and loader code signatures enforced.
@@ -117,7 +126,10 @@ row/column map-streaming path is now exact: two packet families own 92 RAM
 bytes, six producer/consumer routines, 1,013 routine bytes, and a complete
 20-call graph. Its four bounded directional camera routines, 325 routine
 bytes, eight state bytes, pixel/coarse-coordinate rules, and complete 16-call
-graph are also exact. Player-threshold tracking, all 48 entity coordinate
+graph are also exact. The two underground room-orientation trackers add 228
+routine bytes, four axis-state bytes, two exhaustive calls, horizontal and
+vertical player bands, and their two- or six-pixel budgets. Player-threshold
+tracking, all 48 entity coordinate
 projections, packed high-bit carry handling, offscreen culling, and spawn-bit
 release are pinned across another 326 routine bytes and 13 direct calls. World
 2's nine palette

@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world1-underground-rooms",
+  "bank": 0,
+  "address": "0xD1EF",
+  "rooms": [
+    {
+      "room_id": 0,
+      "camera_tile_x": "0x40",
+      "camera_tile_y": "0x22",
+      "axis_scroll_limit": "0x20",
+      "axis_scroll_start": "0x00",
+      "player_x": "0x18",
+      "player_y": "0x10",
+      "negative_axis_city_return_id": 0,
+      "positive_axis_city_return_id": null
+    },
+    {
+      "room_id": 1,
+      "camera_tile_x": "0x80",
+      "camera_tile_y": "0x22",
+      "axis_scroll_limit": "0x20",
+      "axis_scroll_start": "0x00",
+      "player_x": "0x38",
+      "player_y": "0x10",
+      "negative_axis_city_return_id": 1,
+      "positive_axis_city_return_id": null
+    },
+    {
+      "room_id": 2,
+      "camera_tile_x": "0xCA",
+      "camera_tile_y": "0x22",
+      "axis_scroll_limit": "0x20",
+      "axis_scroll_start": "0x0A",
+      "player_x": "0x78",
+      "player_y": "0x10",
+      "negative_axis_city_return_id": 2,
+      "positive_axis_city_return_id": 2
+    },
+    {
+      "room_id": 3,
+      "camera_tile_x": "0x00",
+      "camera_tile_y": "0x42",
+      "axis_scroll_limit": "0x20",
+      "axis_scroll_start": "0x00",
+      "player_x": "0x38",
+      "player_y": "0x10",
+      "negative_axis_city_return_id": 3,
+      "positive_axis_city_return_id": null
+    },
+    {
+      "room_id": 4,
+      "camera_tile_x": "0x40",
+      "camera_tile_y": "0x42",
+      "axis_scroll_limit": "0x40",
+      "axis_scroll_start": "0x00",
+      "player_x": "0x18",
+      "player_y": "0x10",
+      "negative_axis_city_return_id": 4,
+      "positive_axis_city_return_id": null
+    },
+    {
+      "room_id": 5,
+      "camera_tile_x": "0x20",
+      "camera_tile_y": "0x02",
+      "axis_scroll_limit": "0xC0",
+      "axis_scroll_start": "0x00",
+      "player_x": "0x18",
+      "player_y": "0x10",
+      "negative_axis_city_return_id": 5,
+      "positive_axis_city_return_id": 6
+    },
+    {
+      "room_id": 6,
+      "camera_tile_x": "0xE0",
+      "camera_tile_y": "0x02",
+      "axis_scroll_limit": "0xC0",
+      "axis_scroll_start": "0xC0",
+      "player_x": "0xB8",
+      "player_y": "0x10",
+      "negative_axis_city_return_id": 5,
+      "positive_axis_city_return_id": 6
+    },
+    {
+      "room_id": 7,
+      "camera_tile_x": "0xA0",
+      "camera_tile_y": "0x42",
+      "axis_scroll_limit": "0x40",
+      "axis_scroll_start": "0x40",
+      "player_x": "0xD8",
+      "player_y": "0x10",
+      "negative_axis_city_return_id": 8,
+      "positive_axis_city_return_id": 7
+    },
+    {
+      "room_id": 8,
+      "camera_tile_x": "0x60",
+      "camera_tile_y": "0x42",
+      "axis_scroll_limit": "0x40",
+      "axis_scroll_start": "0x00",
+      "player_x": "0x18",
+      "player_y": "0x10",
+      "negative_axis_city_return_id": 8,
+      "positive_axis_city_return_id": 7
+    }
+  ],
+  "city_returns": [
+    {
+      "return_id": 0,
+      "camera_tile_x": "0xE0",
+      "camera_tile_y": "0xE0",
+      "manhole_x": "0x70",
+      "manhole_y": "0x90"
+    },
+    {
+      "return_id": 1,
+      "camera_tile_x": "0xB0",
+      "camera_tile_y": "0xD0",
+      "manhole_x": "0x70",
+      "manhole_y": "0x90"
+    },
+    {
+      "return_id": 2,
+      "camera_tile_x": "0x92",
+      "camera_tile_y": "0x66",
+      "manhole_x": "0x70",
+      "manhole_y": "0x90"
+    },
+    {
+      "return_id": 3,
+      "camera_tile_x": "0x3E",
+      "camera_tile_y": "0x68",
+      "manhole_x": "0x70",
+      "manhole_y": "0x90"
+    },
+    {
+      "return_id": 4,
+      "camera_tile_x": "0x3A",
+      "camera_tile_y": "0x9A",
+      "manhole_x": "0x70",
+      "manhole_y": "0x90"
+    },
+    {
+      "return_id": 5,
+      "camera_tile_x": "0x00",
+      "camera_tile_y": "0x5C",
+      "manhole_x": "0x30",
+      "manhole_y": "0x70"
+    },
+    {
+      "return_id": 6,
+      "camera_tile_x": "0xDE",
+      "camera_tile_y": "0x00",
+      "manhole_x": "0x70",
+      "manhole_y": "0x70"
+    },
+    {
+      "return_id": 7,
+      "camera_tile_x": "0x64",
+      "camera_tile_y": "0x34",
+      "manhole_x": "0x70",
+      "manhole_y": "0x90"
+    },
+    {
+      "return_id": 8,
+      "camera_tile_x": "0x10",
+      "camera_tile_y": "0x26",
+      "manhole_x": "0x70",
+      "manhole_y": "0x90"
+    }
+  ],
+  "covered_byte_count": 108,
+  "covered_crc32": "a95c7f84"
+}

@@ -86,6 +86,14 @@ World1PlayerDirection     = $007F
 World1EnemyFreezeActive   = $0082
 World1EnemyFreezeTimer    = $0083
 World1ProjectileMaxSlot   = $0084
+World1UndergroundRoomId   = $0085
+World1UndergroundNegativeAxisCityReturnId = $0086
+World1UndergroundPositiveAxisCityReturnId = $0087
+World1UndergroundAxisScrollLimit = $0088
+World1UndergroundAxisScrollCoarse = $0089
+World1UndergroundAxisScrollFine = $008A
+World1UndergroundVerticalPage = $008B
+World1UndergroundAxisScrollBudget = $008C
 World1InvulnerabilityTimer = $00B2
 
 ; World 3 punishment-room state

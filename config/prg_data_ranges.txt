@@ -7,6 +7,7 @@ table 0 AEEF B2EE World1BigBlocks
 map 0 B2EF C2EE World1CityMap
 map 0 C2EF C92E World1UndergroundMap
 table 0 E7F2 E83B World1AudioEffectPitchPeriods
+table 0 E931 E948 World1AudioEffectParameterData
 vectors 0 FFFA FFFF Bank0InterruptVectors
 table 1 8251 8260 Bank1ExtraLifeScoreThresholds
 table 1 87A1 8830 World2PaletteSets

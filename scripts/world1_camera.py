@@ -12,6 +12,7 @@ from typing import Any
 BANK_SIZE = 0x8000
 CPU_BASE = 0x8000
 EXPECTED_GEOMETRY = (8, 0xE0, 0xE2, 0xF0, 1, 2)
+EXPECTED_UNDERGROUND_TRACKING = (0x6E, 0x82, 2, 0x6E, 0x92, 6, 0x07)
 EXPECTED_STATE_FIELDS = [
     ("PpuScrollXShadow", 0x001B, 1, None),
     ("PpuScrollYShadow", 0x001C, 1, None),
@@ -21,6 +22,10 @@ EXPECTED_STATE_FIELDS = [
     ("World1ScreenDeltaX", 0x0061, 1, [0]),
     ("World1ScreenDeltaY", 0x0062, 1, [0]),
     ("World1EdgeUpdateQueue", 0x025F, 1, [0]),
+    ("World1UndergroundAxisScrollLimit", 0x0088, 1, [0]),
+    ("World1UndergroundAxisScrollCoarse", 0x0089, 1, [0]),
+    ("World1UndergroundAxisScrollFine", 0x008A, 1, [0]),
+    ("World1UndergroundAxisScrollBudget", 0x008C, 1, [0]),
 ]
 EXPECTED_ROUTINES = [
     (
@@ -50,6 +55,20 @@ EXPECTED_ROUTINES = [
         66,
         "up",
         [0x872B, 0x872E, 0xA80D, 0xA81F, 0xD4AD],
+    ),
+    (
+        "World1_TrackUndergroundHorizontalCamera",
+        0xCF08,
+        114,
+        "track-horizontal",
+        [0xCE6A],
+    ),
+    (
+        "World1_TrackUndergroundVerticalCamera",
+        0xD47C,
+        114,
+        "track-vertical",
+        [0xD43E],
     ),
 ]
 
@@ -140,6 +159,18 @@ def validate_manifest(
             int(geometry["column_queue_code"]),
             int(geometry["row_queue_code"]),
         )
+        underground = manifest["underground_tracking"]
+        horizontal_band = underground["horizontal_player_band"]
+        vertical_band = underground["vertical_player_band"]
+        actual_underground = (
+            number(horizontal_band[0]),
+            number(horizontal_band[1]),
+            int(underground["horizontal_max_pixels_per_update"]),
+            number(vertical_band[0]),
+            number(vertical_band[1]),
+            int(underground["vertical_max_pixels_per_update"]),
+            number(underground["axis_fine_mask"]),
+        )
         state_fields = manifest["state_fields"]
         actual_state = [
             (
@@ -166,6 +197,8 @@ def validate_manifest(
     errors: list[str] = []
     if actual_geometry != EXPECTED_GEOMETRY:
         errors.append("World 1 camera geometry differs")
+    if actual_underground != EXPECTED_UNDERGROUND_TRACKING:
+        errors.append("World 1 underground camera tracking differs")
     if actual_state != EXPECTED_STATE_FIELDS:
         errors.append("World 1 camera state layout differs")
     if actual_routines != EXPECTED_ROUTINES:

@@ -103,6 +103,7 @@ make object-pools       # validate chapter pool capacities, fields, and lifecycl
 make object-dispatch    # validate indirect object-handler tables and code seeds
 make object-placements  # validate and round-trip World 1 object data
 make world2-enemy-states # validate World 2 token/state/property domains
+make world1-underground-rooms # validate and round-trip underground room profiles
 make world2-enemy-handlers # validate all World 2 enemy handler edges and roles
 make world2-stage-sequence # validate and round-trip World 2 stage bytecode
 make world2-metatiles   # validate and round-trip exact World 2 metatiles

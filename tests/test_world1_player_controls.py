@@ -53,6 +53,28 @@ class World1PlayerControlTests(unittest.TestCase):
             "weapon_pose_frames": controls[14],
             "projectile_slot_capacity": controls[15],
         }
+        underground = copy.deepcopy(
+            world1_player_controls.EXPECTED_UNDERGROUND_CONTROLS
+        )
+        manifest_underground = {
+            "horizontal_priority": underground[0],
+            "horizontal_button_masks": [
+                f"0x{value:02X}" for value in underground[1]
+            ],
+            "direction_values": underground[2],
+            "horizontal_subpixel_step": f"0x{underground[3]:02X}",
+            "player_x_min": f"0x{underground[4]:02X}",
+            "player_x_max": f"0x{underground[5]:02X}",
+            "jump_button_mask": f"0x{underground[6]:02X}",
+            "jump_velocity": underground[7],
+            "gravity_per_update": underground[8],
+            "terminal_fall_velocity": underground[9],
+            "vertical_velocity_divisor": underground[10],
+            "floor_probe_offsets": underground[11],
+            "ceiling_probe_offsets": underground[12],
+            "left_wall_probe_offsets": underground[13],
+            "right_wall_probe_offsets": underground[14],
+        }
         state_fields = [
             {
                 "name": name,
@@ -86,6 +108,7 @@ class World1PlayerControlTests(unittest.TestCase):
             "schema_version": 1,
             "bank": 0,
             "controls": manifest_controls,
+            "underground_controls": manifest_underground,
             "state_fields": state_fields,
             "routines": routines,
         }
@@ -122,11 +145,12 @@ class World1PlayerControlTests(unittest.TestCase):
         prg, manifest, registry = self.fixture()
         errors, report = self.validate(prg, manifest, registry)
         self.assertEqual(errors, [])
-        self.assertEqual(report["state_byte_count"], 13)
+        self.assertEqual(report["state_byte_count"], 16)
         self.assertEqual(report["collision_probe_count"], 10)
-        self.assertEqual(report["routine_count"], 4)
-        self.assertEqual(report["routine_byte_count"], 589)
-        self.assertEqual(report["callsite_count"], 26)
+        self.assertEqual(report["underground_collision_probe_count"], 12)
+        self.assertEqual(report["routine_count"], 8)
+        self.assertEqual(report["routine_byte_count"], 1174)
+        self.assertEqual(report["callsite_count"], 34)
 
     def test_rejects_changed_routine_bytes(self) -> None:
         prg, manifest, registry = self.fixture()
@@ -155,6 +179,15 @@ class World1PlayerControlTests(unittest.TestCase):
         changed["controls"]["pixels_per_update"] = 1
         errors, _report = self.validate(prg, changed, registry)
         self.assertTrue(any("constants differ" in error for error in errors))
+
+    def test_rejects_changed_underground_constant(self) -> None:
+        prg, manifest, registry = self.fixture()
+        changed = copy.deepcopy(manifest)
+        changed["underground_controls"]["jump_velocity"] = -23
+        errors, _report = self.validate(prg, changed, registry)
+        self.assertTrue(
+            any("underground-control constants differ" in error for error in errors)
+        )
 
     def test_rejects_changed_state_ownership(self) -> None:
         prg, manifest, registry = self.fixture()

@@ -17,7 +17,7 @@ Bank0_Label_CDB7:
     LDA $81
     SEC
     SBC #$08
-    STA $85
+    STA World1UndergroundRoomId
     CLC
     ADC #$03
     STA $29
@@ -29,7 +29,7 @@ Bank0_Label_CDDD:
     JSR Bank0_Func_843B
 
 Bank0_Label_CDE3:
-    LDA $85
+    LDA World1UndergroundRoomId
     ASL A
     ASL A
     TAY
@@ -37,24 +37,24 @@ Bank0_Label_CDE3:
     STA $51
     LDA #$00
     STA World1PlayerDamageState
-    LDA a:$D213,Y
+    LDA a:World1_UndergroundRoomEntryProfiles,Y
     STA World1PlayerX
-    LDA a:$D214,Y
+    LDA a:World1_UndergroundRoomPlayerYField,Y
     STA World1PlayerY
-    LDA a:$D215,Y
-    STA $86
-    LDA a:$D216,Y
-    STA $87
-    LDA a:$D1EF,Y
+    LDA a:World1_UndergroundRoomNegativeAxisCityReturnIdField,Y
+    STA World1UndergroundNegativeAxisCityReturnId
+    LDA a:World1_UndergroundRoomPositiveAxisCityReturnIdField,Y
+    STA World1UndergroundPositiveAxisCityReturnId
+    LDA a:World1_UndergroundRoomCameraProfiles,Y
     STA World1CameraTileX
-    LDA a:$D1F0,Y
+    LDA a:World1_UndergroundRoomCameraTileYField,Y
     STA World1CameraTileY
-    LDA a:$D1F1,Y
-    STA $88
-    LDA a:$D1F2,Y
-    STA $89
+    LDA a:World1_UndergroundRoomAxisScrollLimitField,Y
+    STA World1UndergroundAxisScrollLimit
+    LDA a:World1_UndergroundRoomAxisScrollStartField,Y
+    STA World1UndergroundAxisScrollCoarse
     LDA #$00
-    STA $8A
+    STA World1UndergroundAxisScrollFine
     LDA #$01
     STA World1PlayerAirborne
     LDA #$00
@@ -62,7 +62,7 @@ Bank0_Label_CDE3:
     LDA #$00
     STA World1PlayerXSubpixel
     LDA #$00
-    STA $8B
+    STA World1UndergroundVerticalPage
     LDA #$00
     STA $9B
     JSR Bank0_Func_9614
@@ -87,10 +87,10 @@ Bank0_Label_CE55:
     JSR Bank0_Func_8490
     JSR Bank0_Func_95CB
     JSR Bank0_Func_9B54
-    JSR Bank0_Func_CF7A
+    JSR World1_UpdateUndergroundPlayer
     JSR Bank0_Func_CA6D
     JSR Bank0_Func_9201
-    JSR Bank0_Func_CF08
+    JSR World1_TrackUndergroundHorizontalCamera
     JSR World1_SpawnObjectsAtCameraEdges
     JSR World1_SpawnObjectsAtCameraEdges
     JSR World1_UpdateEntities
@@ -110,7 +110,7 @@ Bank0_Label_CE90:
     JSR Bank0_Func_884C
     DEC PlayerLives
     BMI Bank0_Label_CE9E
-    LDA $85
+    LDA World1UndergroundRoomId
     STA $81
     JMP Bank0_Label_CDDD
 
@@ -122,24 +122,24 @@ Bank0_Label_CE9E:
     JMP Bank0_Label_CDDD
 
 Bank0_Label_CEAB:
-    LDA $8B
+    LDA World1UndergroundVerticalPage
     BNE Bank0_Label_CEE5
-    LDA $86
+    LDA World1UndergroundNegativeAxisCityReturnId
     STA $00
-    LDA $89
+    LDA World1UndergroundAxisScrollCoarse
     BEQ Bank0_Label_CEBB
-    LDA $87
+    LDA World1UndergroundPositiveAxisCityReturnId
     STA $00
 
 Bank0_Label_CEBB:
     LDA $00
     BMI Bank0_Label_CE55
-    JMP Bank0_Func_D2C3
+    JMP World1_ReturnFromUndergroundToCity
 
 Bank0_Label_CEC2:
-    INC $8B
+    INC World1UndergroundVerticalPage
     LDA #$00
-    STA $8A
+    STA World1UndergroundAxisScrollFine
     LDA World1CameraTileY
     CLC
     ADC #$20
@@ -155,9 +155,9 @@ Bank0_Label_CEC2:
     JMP Bank0_Label_CE55
 
 Bank0_Label_CEE5:
-    DEC $8B
+    DEC World1UndergroundVerticalPage
     LDA #$00
-    STA $8A
+    STA World1UndergroundAxisScrollFine
     LDA World1CameraTileY
     SEC
     SBC #$20
@@ -172,7 +172,7 @@ Bank0_Label_CEE5:
     JSR Bank0_Func_95ED
     JMP Bank0_Label_CE55
 
-Bank0_Func_CF08:
+World1_TrackUndergroundHorizontalCamera:
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
@@ -183,28 +183,28 @@ Bank0_Func_CF08:
     EOR #$FF
     SEC
     ADC #$00
-    STA $8C
+    STA World1UndergroundAxisScrollBudget
     CMP #$03
     BCC Bank0_Label_CF24
     LDA #$02
-    STA $8C
+    STA World1UndergroundAxisScrollBudget
 
 Bank0_Label_CF24:
-    LDA $89
-    ORA $8A
+    LDA World1UndergroundAxisScrollCoarse
+    ORA World1UndergroundAxisScrollFine
     BEQ Bank0_Label_CF6F
-    LDA $8A
+    LDA World1UndergroundAxisScrollFine
     SEC
     SBC #$01
     AND #$07
-    STA $8A
+    STA World1UndergroundAxisScrollFine
     CMP #$07
     BNE Bank0_Label_CF39
-    DEC $89
+    DEC World1UndergroundAxisScrollCoarse
 
 Bank0_Label_CF39:
     JSR World1_TryScrollCameraLeft
-    DEC $8C
+    DEC World1UndergroundAxisScrollBudget
     BNE Bank0_Label_CF24
     BEQ Bank0_Label_CF6F
 
@@ -213,30 +213,30 @@ Bank0_Label_CF42:
     SEC
     SBC #$82
     BCC Bank0_Label_CF6F
-    STA $8C
+    STA World1UndergroundAxisScrollBudget
     CMP #$02
     BCC Bank0_Label_CF53
     LDA #$01
-    STA $8C
+    STA World1UndergroundAxisScrollBudget
 
 Bank0_Label_CF53:
-    INC $8C
+    INC World1UndergroundAxisScrollBudget
 
 Bank0_Label_CF55:
-    LDA $89
-    CMP $88
+    LDA World1UndergroundAxisScrollCoarse
+    CMP World1UndergroundAxisScrollLimit
     BEQ Bank0_Label_CF6F
-    LDA $8A
+    LDA World1UndergroundAxisScrollFine
     CLC
     ADC #$01
     AND #$07
-    STA $8A
+    STA World1UndergroundAxisScrollFine
     BNE Bank0_Label_CF68
-    INC $89
+    INC World1UndergroundAxisScrollCoarse
 
 Bank0_Label_CF68:
     JSR World1_TryScrollCameraRight
-    DEC $8C
+    DEC World1UndergroundAxisScrollBudget
     BNE Bank0_Label_CF55
 
 Bank0_Label_CF6F:
@@ -247,7 +247,7 @@ Bank0_Label_CF6F:
     JSR World1_ApplyCameraDeltaToEntities
     RTS
 
-Bank0_Func_CF7A:
+World1_UpdateUndergroundPlayer:
     JSR World1_UpdateWeaponAndTryFire
     LDA World1PlayerDamageState
     BEQ Bank0_Label_CFC0
@@ -323,18 +323,18 @@ Bank0_Label_CFDF:
     STA $07
     LDA World1PlayerAirborne
     BEQ Bank0_Label_CFF5
-    JSR Bank0_Func_D145
+    JSR World1_IntegrateUndergroundVerticalMotion
     JMP Bank0_Label_D004
 
 Bank0_Label_CFF5:
     LDA World1PressedButtons
     AND #$80
     BEQ Bank0_Label_D001
-    JSR Bank0_Func_D138
+    JSR World1_StartUndergroundJump
     JMP Bank0_Label_D004
 
 Bank0_Label_D001:
-    JSR Bank0_Func_D113
+    JSR World1_CheckUndergroundGroundSupport
 
 Bank0_Label_D004:
     LDA CombinedControllerButtons

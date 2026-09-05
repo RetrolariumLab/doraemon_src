@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "room_count": 9,
+  "record_size": 4,
+  "camera_profiles": {
+    "symbol": "World1_UndergroundRoomCameraProfiles",
+    "address": "0xD1EF",
+    "fields": [
+      "camera_tile_x",
+      "camera_tile_y",
+      "axis_scroll_limit",
+      "axis_scroll_start"
+    ],
+    "crc32": "de13ee13"
+  },
+  "entry_profiles": {
+    "symbol": "World1_UndergroundRoomEntryProfiles",
+    "address": "0xD213",
+    "fields": [
+      "player_x",
+      "player_y",
+      "negative_axis_city_return_id",
+      "positive_axis_city_return_id"
+    ],
+    "no_city_return_sentinel": "0xFF",
+    "crc32": "989a5bec"
+  },
+  "city_return_profiles": {
+    "symbol": "World1_CityReturnProfiles",
+    "address": "0xD37E",
+    "fields": [
+      "camera_tile_x",
+      "camera_tile_y",
+      "manhole_x",
+      "manhole_y"
+    ],
+    "crc32": "f02b2689"
+  },
+  "return_routine": {
+    "name": "World1_ReturnFromUndergroundToCity",
+    "address": "0xD2C3",
+    "size": 187,
+    "jump_callsites": [
+      "0xCEBF",
+      "0xD3C8"
+    ],
+    "bytes": "48 A9 00 8D AA 02 8D AB 02 85 82 85 83 85 B2 20 5F C9 20 6A C9 20 3E C9 20 49 C9 20 54 C9 68 0A 0A AA BD 7E D3 85 5B BD 7F D3 85 5C BD 80 D3 8D E6 04 18 69 04 85 75 BD 81 D3 8D 16 05 38 E9 14 85 76 A9 00 85 79 A9 00 85 77 A9 00 85 7F A9 00 85 78 A9 00 85 7A 20 14 96 A9 EF 85 66 A9 B2 85 67 A9 89 85 68 A9 D9 85 69 A9 00 85 29 A5 5C C9 40 B0 04 A9 01 85 29 A2 00 BD 80 06 9D A0 06 BD 90 06 9D 80 06 E8 E0 10 D0 EF 20 5F C9 20 6A C9 20 BD 83 20 35 95 20 DB A7 20 3B 84 20 ED 95 A2 00 20 F1 94 8A 4A 4A A8 B9 A2 D3 18 65 76 85 76 E8 E0 1C D0 EC A2 7F 9A 4C C1 82"
+  },
+  "signatures": [
+    {
+      "address": "0xCDE3",
+      "purpose": "room-id-times-four-and-profile-field-loads",
+      "bytes": "A5 85 0A 0A A8 A9 01 85 51 A9 00 85 79 B9 13 D2 85 75 B9 14 D2 85 76 B9 15 D2 85 86 B9 16 D2 85 87 B9 EF D1 85 5B B9 F0 D1 85 5C B9 F1 D1 85 88 B9 F2 D1 85 89"
+    },
+    {
+      "address": "0xCEAB",
+      "purpose": "axis-position-selects-negative-or-positive-exit",
+      "bytes": "A5 8B D0 36 A5 86 85 00 A5 89 F0 04 A5 87 85 00 A5 00 30 96 4C C3 D2"
+    }
+  ]
+}

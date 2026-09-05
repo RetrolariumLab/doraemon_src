@@ -36,10 +36,33 @@ data use corresponding vertical phases. A completed edge shifts the existing
 low nibble of `World1EdgeUpdateQueue` into the high nibble and appends code 1
 for a column or code 2 for a row.
 
+## Underground player tracking
+
+Two room-orientation entry points select the directional primitives above.
+`World1_TrackUndergroundHorizontalCamera` holds the player in X `$6E-$82`
+and can request at most two camera pixels per update. The vertical-room
+counterpart holds Y in `$6E-$92` and can request at most six pixels. Both
+reduce the distance outside the band to a per-update budget, stop at axis
+position zero or the room-specific limit, and then apply the accumulated
+screen delta to the player and all active entities.
+
+The two orientations deliberately overlay one four-byte axis workspace.
+`World1UndergroundAxisScrollCoarse` advances whenever the low-three-bit
+`World1UndergroundAxisScrollFine` phase wraps. The positive direction stops at
+`World1UndergroundAxisScrollLimit`; the fourth byte is the temporary pixel
+budget. Horizontal rooms call the left/right primitives, while the vertical
+room calls up/down.
+
+| Tracking routine | Address | Bytes | Direct calls | Player band | Max pixels |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `World1_TrackUndergroundHorizontalCamera` | `$CF08` | 114 | 1 | X `$6E-$82` | 2 |
+| `World1_TrackUndergroundVerticalCamera` | `$D47C` | 114 | 1 | Y `$6E-$92` | 6 |
+
 The normal player-camera path, initial viewport prefill, and scripted movement
-all call these same routines. `config/world1_camera.json` pins all 325 routine
-bytes, the eight state symbols and ownership scopes, the coordinate geometry,
-and all 16 direct callsites. Run the focused contract with:
+all call these same routines. `config/world1_camera.json` pins all 553 routine
+bytes, the twelve state symbols and ownership scopes, the coordinate geometry,
+the underground tracking bands, and all 18 direct callsites. Run the focused
+contract with:
 
 ```text
 make validate-world1-camera

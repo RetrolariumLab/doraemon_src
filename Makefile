@@ -49,6 +49,8 @@ WORLD1_CAMERA_ENTITIES := config/world1_camera_entities.json
 WORLD1_PLAYER_CONTROLS := config/world1_player_controls.json
 WORLD1_WEAPONS := config/world1_weapons.json
 WORLD1_WEAPON_AUTHORING := data/world1/weapons.json
+WORLD1_UNDERGROUND_ROOMS := config/world1_underground_rooms.json
+WORLD1_UNDERGROUND_ROOM_AUTHORING := data/world1/underground_rooms.json
 WORLD1_ENEMY_HANDLERS := config/world1_enemy_handlers.json
 WORLD1_ENEMY_IDENTITIES := config/world1_enemy_identities.json
 WORLD1_DESCRIPTOR_IDENTITIES := config/world1_descriptor_identities.json
@@ -106,6 +108,7 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	world1-camera-entities validate-world1-camera-entities \
 	world1-player-controls validate-world1-player-controls \
 	world1-weapons validate-world1-weapons \
+	world1-underground-rooms validate-world1-underground-rooms \
 	world1-enemy-handlers validate-world1-enemy-handlers \
 	world1-enemy-identities validate-world1-enemy-identities \
 	world1-descriptor-identities validate-world1-descriptor-identities \
@@ -312,6 +315,13 @@ world1-weapons validate-world1-weapons: $(PRG_ASSET)
 		--symbols "$(SYMBOLS)" \
 		--authoring "$(WORLD1_WEAPON_AUTHORING)"
 
+world1-underground-rooms validate-world1-underground-rooms: $(PRG_ASSET)
+	$(PYTHON) scripts/world1_underground_rooms.py validate \
+		--prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_UNDERGROUND_ROOMS)" \
+		--symbols "$(SYMBOLS)" \
+		--authoring "$(WORLD1_UNDERGROUND_ROOM_AUTHORING)"
+
 world1-enemy-handlers validate-world1-enemy-handlers: $(PRG_ASSET)
 	$(PYTHON) scripts/world1_enemy_handlers.py --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD1_ENEMY_HANDLERS)" \
@@ -493,6 +503,7 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-world1-camera-entities \
 	validate-world1-player-controls \
 	validate-world1-weapons \
+	validate-world1-underground-rooms \
 	validate-world1-enemy-handlers \
 	validate-world1-enemy-identities \
 	validate-world1-descriptor-identities \

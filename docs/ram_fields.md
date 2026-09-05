@@ -92,6 +92,24 @@ direct callsites. Their exact bounds, wrap behavior, packet phases, routine
 bodies, and call graph are documented in `docs/world1_camera.md` and enforced
 by the release gate.
 
+The underground room tracker adds a four-byte axis overlay:
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `World1UndergroundRoomId` | `$0085` | Zero-based selector for the nine room profile rows |
+| `World1UndergroundNegativeAxisCityReturnId` | `$0086` | City return selected at coarse-axis position zero |
+| `World1UndergroundPositiveAxisCityReturnId` | `$0087` | City return selected away from coarse-axis position zero |
+| `World1UndergroundAxisScrollLimit` | `$0088` | Room-specific positive coarse-axis limit |
+| `World1UndergroundAxisScrollCoarse` | `$0089` | Current coarse-axis position, changed on each eight-pixel wrap |
+| `World1UndergroundAxisScrollFine` | `$008A` | Low-three-bit fine-axis phase shared by horizontal and vertical rooms |
+| `World1UndergroundVerticalPage` | `$008B` | Zero/one page index for 32-row wraps in horizontal rooms |
+| `World1UndergroundAxisScrollBudget` | `$008C` | Temporary number of camera pixels requested during this player update |
+
+Horizontal rooms track X inside `$6E-$82` at up to two pixels per update; the
+vertical room tracks Y inside `$6E-$92` at up to six. Both stop at zero or
+`World1UndergroundAxisScrollLimit` and use the common directional camera
+primitives.
+
 `World1_UpdateCameraFromPlayer` applies the accumulated delta back to the
 player, then `World1_ApplyCameraDeltaToEntities` propagates it through all 48
 entity slots. `World1_CullOffscreenEntities` removes slots beyond the retained

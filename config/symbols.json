@@ -627,6 +627,132 @@
     },
     {
       "bank": 0,
+      "address": "0xCF7A",
+      "name": "World1_UpdateUndergroundPlayer",
+      "evidence": "side-view-weapon-damage-jump-horizontal-movement-and-animation-update"
+    },
+    {
+      "bank": 0,
+      "address": "0xD113",
+      "name": "World1_CheckUndergroundGroundSupport",
+      "evidence": "two-foot-probe-ground-support-test-entering-airborne-state"
+    },
+    {
+      "bank": 0,
+      "address": "0xD138",
+      "name": "World1_StartUndergroundJump",
+      "evidence": "pressed-A-jump-velocity-airborne-state-and-sound-initializer"
+    },
+    {
+      "bank": 0,
+      "address": "0xD145",
+      "name": "World1_IntegrateUndergroundVerticalMotion",
+      "evidence": "signed-quarter-velocity-gravity-terminal-speed-and-floor-ceiling-resolution"
+    },
+    {
+      "bank": 0,
+      "address": "0xCF08",
+      "name": "World1_TrackUndergroundHorizontalCamera",
+      "evidence": "horizontal-room-player-threshold-tracking-with-two-pixel-camera-budget"
+    },
+    {
+      "bank": 0,
+      "address": "0xD47C",
+      "name": "World1_TrackUndergroundVerticalCamera",
+      "evidence": "vertical-room-player-threshold-tracking-with-six-pixel-camera-budget"
+    },
+    {
+      "bank": 0,
+      "address": "0xD1EF",
+      "name": "World1_UndergroundRoomCameraProfiles",
+      "operand_symbol": true,
+      "evidence": "nine-four-byte-room-camera-start-limit-and-axis-scroll-profiles"
+    },
+    {
+      "bank": 0,
+      "address": "0xD1F0",
+      "name": "World1_UndergroundRoomCameraTileYField",
+      "operand_symbol": true,
+      "evidence": "second-byte-field-base-of-four-byte-underground-camera-profile"
+    },
+    {
+      "bank": 0,
+      "address": "0xD1F1",
+      "name": "World1_UndergroundRoomAxisScrollLimitField",
+      "operand_symbol": true,
+      "evidence": "third-byte-field-base-of-four-byte-underground-camera-profile"
+    },
+    {
+      "bank": 0,
+      "address": "0xD1F2",
+      "name": "World1_UndergroundRoomAxisScrollStartField",
+      "operand_symbol": true,
+      "evidence": "fourth-byte-field-base-of-four-byte-underground-camera-profile"
+    },
+    {
+      "bank": 0,
+      "address": "0xD213",
+      "name": "World1_UndergroundRoomEntryProfiles",
+      "operand_symbol": true,
+      "evidence": "nine-four-byte-player-start-and-two-axis-exit-room-profiles"
+    },
+    {
+      "bank": 0,
+      "address": "0xD214",
+      "name": "World1_UndergroundRoomPlayerYField",
+      "operand_symbol": true,
+      "evidence": "second-byte-field-base-of-four-byte-underground-entry-profile"
+    },
+    {
+      "bank": 0,
+      "address": "0xD215",
+      "name": "World1_UndergroundRoomNegativeAxisCityReturnIdField",
+      "operand_symbol": true,
+      "evidence": "third-byte-city-return-id-field-base-of-four-byte-underground-entry-profile"
+    },
+    {
+      "bank": 0,
+      "address": "0xD216",
+      "name": "World1_UndergroundRoomPositiveAxisCityReturnIdField",
+      "operand_symbol": true,
+      "evidence": "fourth-byte-city-return-id-field-base-of-four-byte-underground-entry-profile"
+    },
+    {
+      "bank": 0,
+      "address": "0xD2C3",
+      "name": "World1_ReturnFromUndergroundToCity",
+      "evidence": "city-return-profile-loader-persistence-swap-map-reload-and-rise-transition"
+    },
+    {
+      "bank": 0,
+      "address": "0xD37E",
+      "name": "World1_CityReturnProfiles",
+      "operand_symbol": true,
+      "evidence": "nine-four-byte-city-camera-and-manhole-coordinate-return-profiles"
+    },
+    {
+      "bank": 0,
+      "address": "0xD37F",
+      "name": "World1_CityReturnCameraTileYField",
+      "operand_symbol": true,
+      "evidence": "second-byte-field-base-of-four-byte-city-return-profile"
+    },
+    {
+      "bank": 0,
+      "address": "0xD380",
+      "name": "World1_CityReturnManholeXField",
+      "operand_symbol": true,
+      "evidence": "third-byte-field-base-of-four-byte-city-return-profile"
+    },
+    {
+      "bank": 0,
+      "address": "0xD381",
+      "name": "World1_CityReturnManholeYField",
+      "operand_symbol": true,
+      "evidence": "fourth-byte-field-base-of-four-byte-city-return-profile"
+    },
+    {
+      "bank": 0,
       "address": "0x8706",
       "name": "World1_UpdateCameraFromPlayer",
       "evidence": "two-pixel-camera-tracking-from-player-screen-thresholds"
@@ -4144,6 +4270,70 @@
         0
       ],
       "evidence": "incremented-by-rapid-fire-drink-and-used-as-inclusive-highest-player-projectile-slot"
+    },
+    {
+      "address": "0x0085",
+      "name": "World1UndergroundRoomId",
+      "banks": [
+        0
+      ],
+      "evidence": "zero-through-eight-index-selecting-four-byte-underground-room-profile-rows"
+    },
+    {
+      "address": "0x0086",
+      "name": "World1UndergroundNegativeAxisCityReturnId",
+      "banks": [
+        0
+      ],
+      "evidence": "city-return-profile-id-selected-when-underground-axis-scroll-position-is-zero"
+    },
+    {
+      "address": "0x0087",
+      "name": "World1UndergroundPositiveAxisCityReturnId",
+      "banks": [
+        0
+      ],
+      "evidence": "city-return-profile-id-selected-when-underground-axis-scroll-position-is-nonzero"
+    },
+    {
+      "address": "0x0088",
+      "name": "World1UndergroundAxisScrollLimit",
+      "banks": [
+        0
+      ],
+      "evidence": "room-table-axis-limit-compared-before-positive-underground-camera-motion"
+    },
+    {
+      "address": "0x0089",
+      "name": "World1UndergroundAxisScrollCoarse",
+      "banks": [
+        0
+      ],
+      "evidence": "coarse-underground-axis-position-incremented-or-decremented-on-eight-pixel-phase-wrap"
+    },
+    {
+      "address": "0x008A",
+      "name": "World1UndergroundAxisScrollFine",
+      "banks": [
+        0
+      ],
+      "evidence": "low-three-bit-underground-axis-scroll-phase-maintained-by-both-room-orientations"
+    },
+    {
+      "address": "0x008B",
+      "name": "World1UndergroundVerticalPage",
+      "banks": [
+        0
+      ],
+      "evidence": "zero-or-one-vertical-page-index-driving-0x20-map-row-wraps-in-horizontal-underground-rooms"
+    },
+    {
+      "address": "0x008C",
+      "name": "World1UndergroundAxisScrollBudget",
+      "banks": [
+        0
+      ],
+      "evidence": "per-update-camera-pixel-budget-derived-from-player-distance-outside-room-tracking-band"
     },
     {
       "address": "0x00B2",

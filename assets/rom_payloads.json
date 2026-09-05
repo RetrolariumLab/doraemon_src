@@ -90,14 +90,6 @@
       }
     },
     {
-      "path": "audio/sfx/prg3-pulse-steps.bin",
-      "size": 22,
-      "sha1": "c8758c07ae56406f13b247f7470151cb18fd4cc8",
-      "sources": {
-        "original": 106014
-      }
-    },
-    {
       "path": "audio/sfx/prg3-tone-low.bin",
       "size": 4,
       "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf",

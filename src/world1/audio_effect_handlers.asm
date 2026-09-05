@@ -324,9 +324,5 @@ Bank0_Label_E91F:
     .byte $A9, $08, $D0, $CE, $A9, $10, $D0, $CA, $4C, $FA, $E8, $4C, $24, $E9, $4C, $FA
     .byte $E8
     .incbin "assets/generated/audio/sfx/prg0-pulse-control.bin", $0, $2  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg0-pulse-steps.bin", $0, $5  ; rom-asset .byte
-    PHP
-    STA a:$FC80
-    ASL $85
-    BRK
-    .incbin "assets/generated/audio/sfx/prg3-pulse-steps.bin", $C, $A  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg0-pulse-steps.bin", $0, $D  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg0-pulse-steps.bin", $D, $9  ; rom-asset .byte

@@ -2,7 +2,7 @@
 ; World 1 underground collision tests and manhole return transition
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_D113:
+World1_CheckUndergroundGroundSupport:
     LDA $9B
     BEQ Bank0_Label_D11D
     LDA World1PlayerY
@@ -26,7 +26,7 @@ Bank0_Label_D11D:
 Bank0_Label_D137:
     RTS
 
-Bank0_Func_D138:
+World1_StartUndergroundJump:
     LDA #$E8
     STA World1PlayerYVelocity
     LDA #$01
@@ -34,7 +34,7 @@ Bank0_Func_D138:
     LDA #$12
     JSR World1_Audio_QueueEffect
 
-Bank0_Func_D145:
+World1_IntegrateUndergroundVerticalMotion:
     LDA World1PlayerYVelocity
     AND #$80
     STA $00
@@ -142,11 +142,34 @@ World1_TestPlayerMapCollisionAtOffset:
     JSR World1_LookupMapTile
     CPY #$42
     RTS
-    .byte $40, $22, $20, $00, $80, $22, $20, $00, $CA, $22, $20, $0A, $00, $42, $20, $00
-    .byte $40, $42, $40, $00, $20, $02, $C0, $00, $E0, $02, $C0, $C0, $A0, $42, $40, $40
-    .byte $60, $42, $40, $00, $18, $10, $00, $FF, $38, $10, $01, $FF, $78, $10, $02, $02
-    .byte $38, $10, $03, $FF, $18, $10, $04, $FF, $18, $10, $05, $06, $B8, $10, $05, $06
-    .byte $D8, $10, $08, $07, $18, $10, $08, $07
+
+World1_UndergroundRoomCameraProfiles:
+    .byte $40
+
+World1_UndergroundRoomCameraTileYField:
+    .byte $22
+
+World1_UndergroundRoomAxisScrollLimitField:
+    .byte $20
+
+World1_UndergroundRoomAxisScrollStartField:
+    .byte $00, $80, $22, $20, $00, $CA, $22, $20, $0A, $00, $42, $20, $00, $40, $42, $40
+    .byte $00, $20, $02, $C0, $00, $E0, $02, $C0, $C0, $A0, $42, $40, $40, $60, $42, $40
+    .byte $00
+
+World1_UndergroundRoomEntryProfiles:
+    .byte $18
+
+World1_UndergroundRoomPlayerYField:
+    .byte $10
+
+World1_UndergroundRoomNegativeAxisCityReturnIdField:
+    .byte $00
+
+World1_UndergroundRoomPositiveAxisCityReturnIdField:
+    .byte $FF, $38, $10, $01, $FF, $78, $10, $02, $02, $38, $10, $03, $FF, $18, $10, $04
+    .byte $FF, $18, $10, $05, $06, $B8, $10, $05, $06, $D8, $10, $08, $07, $18, $10, $08
+    .byte $07
 
 World1_TryEnterManhole:
     LDA CombinedControllerButtons
@@ -226,7 +249,7 @@ Bank0_Label_D2A4:
     LDX $81
     JMP Bank0_InitWorld1SideView
 
-Bank0_Func_D2C3:
+World1_ReturnFromUndergroundToCity:
     PHA
     LDA #$00
     STA a:AudioMusicState
@@ -243,16 +266,16 @@ Bank0_Func_D2C3:
     ASL A
     ASL A
     TAX
-    LDA a:$D37E,X
+    LDA a:World1_CityReturnProfiles,X
     STA World1CameraTileX
-    LDA a:$D37F,X
+    LDA a:World1_CityReturnCameraTileYField,X
     STA World1CameraTileY
-    LDA a:$D380,X
+    LDA a:World1_CityReturnManholeXField,X
     STA a:World1EntityX+$26
     CLC
     ADC #$04
     STA World1PlayerX
-    LDA a:$D381,X
+    LDA a:World1_CityReturnManholeYField,X
     STA a:World1EntityY+$26
     SEC
     SBC #$14
@@ -320,6 +343,17 @@ Bank0_Label_D364:
     LDX #$7F
     TXS
     JMP Bank0_Label_82C1
-    .byte $E0, $E0, $70, $90, $B0, $D0, $70, $90, $92, $66, $70, $90, $3E, $68, $70, $90
-    .byte $3A, $9A, $70, $90, $00, $5C, $30, $70, $DE, $00, $70, $70, $64, $34, $70, $90
-    .byte $10, $26, $70, $90, $FD, $FE, $FF, $00, $01, $02, $03
+
+World1_CityReturnProfiles:
+    .byte $E0
+
+World1_CityReturnCameraTileYField:
+    .byte $E0
+
+World1_CityReturnManholeXField:
+    .byte $70
+
+World1_CityReturnManholeYField:
+    .byte $90, $B0, $D0, $70, $90, $92, $66, $70, $90, $3E, $68, $70, $90, $3A, $9A, $70
+    .byte $90, $00, $5C, $30, $70, $DE, $00, $70, $70, $64, $34, $70, $90, $10, $26, $70
+    .byte $90, $FD, $FE, $FF, $00, $01, $02, $03

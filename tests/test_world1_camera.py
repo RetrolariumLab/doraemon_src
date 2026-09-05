@@ -33,6 +33,7 @@ class World1CameraTests(unittest.TestCase):
                     address >> 8,
                 ))
         geometry = world1_camera.EXPECTED_GEOMETRY
+        underground = world1_camera.EXPECTED_UNDERGROUND_TRACKING
         state_fields = [
             {
                 "name": name,
@@ -74,6 +75,19 @@ class World1CameraTests(unittest.TestCase):
                 "column_queue_code": geometry[4],
                 "row_queue_code": geometry[5],
             },
+            "underground_tracking": {
+                "horizontal_player_band": [
+                    f"0x{underground[0]:02X}",
+                    f"0x{underground[1]:02X}",
+                ],
+                "horizontal_max_pixels_per_update": underground[2],
+                "vertical_player_band": [
+                    f"0x{underground[3]:02X}",
+                    f"0x{underground[4]:02X}",
+                ],
+                "vertical_max_pixels_per_update": underground[5],
+                "axis_fine_mask": f"0x{underground[6]:02X}",
+            },
             "state_fields": state_fields,
             "routines": routines,
         }
@@ -108,10 +122,10 @@ class World1CameraTests(unittest.TestCase):
         prg, manifest, registry = self.fixture()
         errors, report = self.validate(prg, manifest, registry)
         self.assertEqual(errors, [])
-        self.assertEqual(report["state_byte_count"], 8)
-        self.assertEqual(report["routine_count"], 4)
-        self.assertEqual(report["routine_byte_count"], 325)
-        self.assertEqual(report["callsite_count"], 16)
+        self.assertEqual(report["state_byte_count"], 12)
+        self.assertEqual(report["routine_count"], 6)
+        self.assertEqual(report["routine_byte_count"], 553)
+        self.assertEqual(report["callsite_count"], 18)
 
     def test_rejects_changed_routine_bytes(self) -> None:
         prg, manifest, registry = self.fixture()
@@ -140,6 +154,17 @@ class World1CameraTests(unittest.TestCase):
         changed["geometry"]["max_tile_x"] = "0xDF"
         errors, _report = self.validate(prg, changed, registry)
         self.assertTrue(any("geometry differs" in error for error in errors))
+
+    def test_rejects_changed_underground_tracking(self) -> None:
+        prg, manifest, registry = self.fixture()
+        changed = copy.deepcopy(manifest)
+        changed["underground_tracking"][
+            "horizontal_max_pixels_per_update"
+        ] = 1
+        errors, _report = self.validate(prg, changed, registry)
+        self.assertTrue(
+            any("underground camera tracking differs" in error for error in errors)
+        )
 
     def test_rejects_changed_state_ownership(self) -> None:
         prg, manifest, registry = self.fixture()
