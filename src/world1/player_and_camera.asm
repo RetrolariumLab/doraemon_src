@@ -489,7 +489,7 @@ Bank0_Label_8880:
     JSR Bank0_Func_94F1
     DEC $97
     BNE Bank0_Label_8880
-    LDA $27
+    LDA DemoModeActive
     BEQ Bank0_Label_888E
     JMP Bank0_Func_8048
 

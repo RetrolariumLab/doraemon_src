@@ -11,6 +11,10 @@ Runtime traces establish `$8271` as the top-level chapter entry and show `$8274`
 and `$827A` called from NMI in every active bank. `$8277` is used both by the
 World 1 attract path and by short calls into bank-3 presentation code. The
 lower-level responsibilities behind the two NMI entries remain to be split.
+For gameplay banks, the title's attract loop selects PRG 0, 1, or 2 through
+`$8024/$802F/$803A`; the bank-local `$8277` gateways then enter
+`World1_DemoEntry`, `World2_DemoEntry`, or `World3_DemoEntry`. Bank 3's `$8277`
+remains a distinct callable presentation gateway.
 
 ## World 1 / bank 0
 

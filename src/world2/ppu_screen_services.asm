@@ -562,15 +562,15 @@ World2_ForwardScreenServiceRtsTable:
     .byte $64, $83, $DC, $83, $04, $84, $AA, $84, $C8, $86, $5F, $86, $EA, $86, $64, $83
     .byte $64, $83, $64, $83, $40, $86, $64, $83, $46, $87, $64, $83, $64, $83, $64, $83
 
-Bank1_Func_8891:
+World2_DemoEntry:
     LDX #$7F
     TXS
     LDX #$00
     STX World2InventoryState+$06
     INX
-    STX $27
+    STX DemoModeActive
     INX
-    STX $2A
+    STX PlayerLives
     LDA #$05
-    STA $2C
+    STA PlayerHealthCapacityIndex
     BNE Bank1_Label_88B1

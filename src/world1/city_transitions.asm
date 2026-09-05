@@ -42,7 +42,7 @@ Bank0_Label_CB88:
 Bank0_Label_CB93:
     JSR Bank0_Func_94F1
     LDA #$31
-    JSR Bank0_Func_81C9
+    JSR World1_AddEncodedScore
     LDA FrameCounter
     AND #$07
     BNE Bank0_Label_CBA6
@@ -67,7 +67,7 @@ Bank0_Label_CBB9:
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$31
-    JMP Bank0_Func_81C9
+    JMP World1_AddEncodedScore
 
 World1_CollectDiamond:
     LDA a:World1EntitySourceObjectId+$26,X
@@ -80,7 +80,7 @@ Bank0_Label_CBD0:
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$32
-    JMP Bank0_Func_81C9
+    JMP World1_AddEncodedScore
 
 World1_CollectInvulnerability:
     LDA a:World1EntitySourceObjectId+$26,X
@@ -91,7 +91,7 @@ World1_CollectInvulnerability:
 Bank0_Label_CBE7:
     JSR Bank0_Func_C982
     LDA #$FF
-    STA $B2
+    STA World1InvulnerabilityTimer
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     RTS
@@ -144,9 +144,9 @@ World1_EnterAnywhereDoor:
     LDA #$00
     STA a:AudioMusicState
     STA a:AudioMusicControl
-    STA $82
-    STA $83
-    STA $B2
+    STA World1EnemyFreezeActive
+    STA World1EnemyFreezeTimer
+    STA World1InvulnerabilityTimer
     LDA #$13
     JSR World1_Audio_QueueEffect
     JSR World1_ClearEntitySlots00_09

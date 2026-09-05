@@ -123,7 +123,7 @@ Bank3_Label_832E:
     STA NmiOamDmaRequest
     LDA #$00
     STA NmiBusy
-    STA $27
+    STA DemoModeActive
     LDA #$00
     STA a:$4011
     STA a:APU_STATUS
@@ -184,7 +184,7 @@ Bank3_Label_83BA:
     ORA Controller1ButtonsAlt
     AND #$10
     BNE Bank3_Label_83BA
-    JMP Bank3_Func_8415
+    JMP Shell_WaitForStartOrRunAttract
 
 Bank3_Func_83C5:
     JSR Bank3_Func_84D2
@@ -195,9 +195,9 @@ Bank3_Func_83C5:
 Bank3_Label_83CD:
     JSR Bank3_Func_80DA
     LDA #$00
-    STA $25
-    STA $26
-    STA $37
+    STA ExtraLifeScoreThresholdIndex
+    STA ExtraLifeSoundCounter
+    STA World1FlashLightCarryFlag
     STA $38
     LDX #$07
 
@@ -206,11 +206,11 @@ Bank3_Label_83DC:
     DEX
     BPL Bank3_Label_83DC
     LDA #$02
-    STA $2A
+    STA PlayerLives
     LDA #$08
-    STA $2B
+    STA PlayerHealth
     LDA #$06
-    STA $2C
+    STA PlayerHealthCapacityIndex
     LDA CombinedControllerButtons
     AND #$C0
     CMP #$C0
@@ -226,9 +226,9 @@ Bank3_Label_83F9:
 
 Bank3_Label_8404:
     LDA #$04
-    STA $2C
+    STA PlayerHealthCapacityIndex
     LDA #$02
-    STA $2A
+    STA PlayerLives
     DEX
     BNE Bank3_Label_8412
     JMP Bank3_Func_800B
@@ -236,7 +236,7 @@ Bank3_Label_8404:
 Bank3_Label_8412:
     JMP Bank3_Func_8016
 
-Bank3_Func_8415:
+Shell_WaitForStartOrRunAttract:
     LDA #$00
     STA a:$0400
 
@@ -309,7 +309,7 @@ Bank3_Label_8493:
     LDA a:AudioMusicState
     BNE Bank3_Label_8493
     LDA #$01
-    STA $27
+    STA DemoModeActive
     LDA $3B
     TAX
     INX
@@ -599,7 +599,7 @@ Bank3_Func_87CB:
     STA a:PPU_ADDR
     LDA #$14
     STA a:PPU_ADDR
-    LDA $2A
+    LDA PlayerLives
     ORA #$30
     STA a:PPU_DATA
     LDX #$00

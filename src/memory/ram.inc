@@ -14,6 +14,24 @@ Controller2ButtonsAlt  = $001E
 Controller1Buttons     = $001F
 Controller1ButtonsAlt  = $0020
 CombinedControllerButtons = $0021
+Controller2MicrophoneSample = $0023
+Controller2MicrophoneEdgeTimer = $0024
+
+; Shared player progression and health state
+ExtraLifeScoreThresholdIndex = $0025
+ExtraLifeSoundCounter    = $0026
+DemoModeActive           = $0027
+PlayerLives               = $002A
+PlayerHealth              = $002B
+PlayerHealthCapacityIndex = $002C
+World1FlashLightCarryFlag = $0037
+
+; World 1 item-derived combat state
+World1WeaponLevel         = $007B
+World1EnemyFreezeActive   = $0082
+World1EnemyFreezeTimer    = $0083
+World1ProjectileMaxSlot   = $0084
+World1InvulnerabilityTimer = $00B2
 
 ; World 3 punishment-room state
 World3TreasurePenaltyCounter = $004D

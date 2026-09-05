@@ -50,14 +50,6 @@
       }
     },
     {
-      "path": "audio/sfx/prg0-pitch-periods.bin",
-      "size": 74,
-      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8",
-      "sources": {
-        "original": 26626
-      }
-    },
-    {
       "path": "audio/sfx/prg0-pulse-control.bin",
       "size": 2,
       "sha1": "7df32e720763ca992447dbb8cf9c15196d6c093c",

@@ -181,7 +181,7 @@ Bank0_Func_E7C3:
     LDA #$DF
     LDX #$8C
     JSR World1_Apu_WritePulse2ControlSweep
-    LDA a:$E7F2,Y
+    LDA a:World1_AudioEffectPitchPeriods,Y
     TAX
     LDA a:$E7F3,Y
     ORA #$88
@@ -195,14 +195,13 @@ Bank0_Label_E7EE:
 
 Bank0_Label_E7EF:
     JMP World1_Audio_StopCurrentEffect
+
+World1_AudioEffectPitchPeriods:
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $10, $A  ; rom-asset .byte
-    AND $00,X
-    BIT a:$3303
-    ASL $2B
-    .incbin "assets/generated/audio/sfx/prg0-pitch-periods.bin", $21, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg0-pitch-periods.bin", $31, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg0-pitch-periods.bin", $41, $9  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $10, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $20, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $30, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $40, $A  ; rom-asset .byte
 
 Bank0_Func_E83C:
     LDA #$10

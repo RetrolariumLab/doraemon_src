@@ -220,16 +220,16 @@ Bank0_Label_8167:
     STA CombinedControllerButtons
     LDA a:JOYPAD1
     AND #$04
-    CMP $23
+    CMP Controller2MicrophoneSample
     BEQ Bank0_Label_8197
-    STA $23
+    STA Controller2MicrophoneSample
     LDA #$14
-    STA $24
+    STA Controller2MicrophoneEdgeTimer
 
 Bank0_Label_8197:
-    LDA $24
+    LDA Controller2MicrophoneEdgeTimer
     BEQ Bank0_Label_819D
-    DEC $24
+    DEC Controller2MicrophoneEdgeTimer
 
 Bank0_Label_819D:
     JSR Bank0_Func_827A
@@ -268,9 +268,9 @@ Bank0_WriteMapper:
     NOP
     RTS
 
-Bank0_Func_81C9:
+World1_AddEncodedScore:
     STA $07
-    LDA $27
+    LDA DemoModeActive
     BNE Bank0_Label_81E5
     TYA
     PHA
@@ -284,7 +284,7 @@ Bank0_Func_81C9:
     TAX
     LDA $07
     AND #$0F
-    JSR Bank0_Func_81E6
+    JSR World1_AddScoreDigitWithCarry
     PLA
     TAX
     PLA
@@ -293,7 +293,7 @@ Bank0_Func_81C9:
 Bank0_Label_81E5:
     RTS
 
-Bank0_Func_81E6:
+World1_AddScoreDigitWithCarry:
     CLC
     ADC a:ScoreDigitsWorking,X
     LDY #$00
@@ -314,7 +314,7 @@ Bank0_Label_81F6:
 
 Bank0_Label_81FD:
     DEX
-    BPL Bank0_Func_81E6
+    BPL World1_AddScoreDigitWithCarry
     LDA #$09
     LDX #$05
 
@@ -325,10 +325,10 @@ Bank0_Label_8204:
     BPL Bank0_Label_8204
     RTS
 
-Bank0_Func_820E:
-    LDA $27
+World1_CommitScoreAndCheckExtraLife:
+    LDA DemoModeActive
     BNE Bank0_Label_8244
-    LDA $25
+    LDA ExtraLifeScoreThresholdIndex
     CMP #$04
     BEQ Bank0_Label_8233
     ASL A
@@ -338,7 +338,7 @@ Bank0_Func_820E:
 
 Bank0_Label_821D:
     LDA a:ScoreDigitsWorking,X
-    CMP a:$8251,Y
+    CMP a:Bank0_ExtraLifeScoreThresholds,Y
     BCC Bank0_Label_8233
     BNE Bank0_Label_822D
     INX
@@ -347,9 +347,9 @@ Bank0_Label_821D:
     BNE Bank0_Label_821D
 
 Bank0_Label_822D:
-    INC $2A
-    INC $26
-    INC $25
+    INC PlayerLives
+    INC ExtraLifeSoundCounter
+    INC ExtraLifeScoreThresholdIndex
 
 Bank0_Label_8233:
     LDX #$00
@@ -373,6 +373,8 @@ Bank0_Label_8245:
     CPX #$06
     BNE Bank0_Label_8245
     RTS
+
+Bank0_ExtraLifeScoreThresholds:
     .byte $00, $00, $02, $00, $00, $00, $08, $00, $00, $02, $00, $00, $00, $05, $00, $00
 
 Bank0_MapperValueTable:
@@ -385,7 +387,7 @@ Bank0_Func_8274:
     JMP Bank0_Func_84D9
 
 Bank0_Func_8277:
-    JMP Bank0_Func_8451
+    JMP World1_DemoEntry
 
 Bank0_Func_827A:
     JMP Bank0_Func_827D

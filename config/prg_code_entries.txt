@@ -195,7 +195,7 @@ entry 1 B0C5 Bank1_MusicCommandEntry_B0C5
 entry 1 B0D5 Bank1_MusicCommandEntry_B0D5
 entry 1 B0E2 Bank1_MusicCommandEntry_B0E2
 entry 1 B0EA Bank1_MusicCommandEntry_B0EA
-entry 2 82AD Bank2_World3AlternateEntry
+entry 2 82AD World3_DemoEntry
 entry 2 82F6 Bank2_World3Main
 # These complete legal routines lie between reachable returns and the next
 # analyzed function. No direct or indirect caller is known, so their labels

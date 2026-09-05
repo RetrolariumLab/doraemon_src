@@ -166,9 +166,9 @@ World1_EnterManhole:
     LDA #$00
     STA a:AudioMusicState
     STA a:AudioMusicControl
-    STA $82
-    STA $83
-    STA $B2
+    STA World1EnemyFreezeActive
+    STA World1EnemyFreezeTimer
+    STA World1InvulnerabilityTimer
     JSR World1_ClearEntitySlots00_09
     JSR World1_ClearEntitySlots10_29
     JSR World1_ClearEntitySlots30_37
@@ -231,9 +231,9 @@ Bank0_Func_D2C3:
     LDA #$00
     STA a:AudioMusicState
     STA a:AudioMusicControl
-    STA $82
-    STA $83
-    STA $B2
+    STA World1EnemyFreezeActive
+    STA World1EnemyFreezeTimer
+    STA World1InvulnerabilityTimer
     JSR World1_ClearEntitySlots38_47
     JSR World1_RefreshObjectSpawnMask
     JSR World1_ClearEntitySlots00_09

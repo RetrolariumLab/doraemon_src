@@ -202,8 +202,8 @@ Bank2_Label_A1F7:
 Bank2_Func_A213:
     LDA #$08
     SEC
-    SBC $2C
+    SBC PlayerHealthCapacityIndex
     ASL A
     ASL A
-    STA $2B
+    STA PlayerHealth
     RTS

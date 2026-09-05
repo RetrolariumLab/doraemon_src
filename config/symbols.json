@@ -27,6 +27,31 @@
     },
     {
       "bank": 0,
+      "address": "0x81C9",
+      "name": "World1_AddEncodedScore",
+      "evidence": "splits-two-nibble-reward-code-and-adds-decimal-digits-to-working-score"
+    },
+    {
+      "bank": 0,
+      "address": "0x81E6",
+      "name": "World1_AddScoreDigitWithCarry",
+      "evidence": "normalizes-one-working-score-digit-base-ten-and-propagates-carry-left"
+    },
+    {
+      "bank": 0,
+      "address": "0x820E",
+      "name": "World1_CommitScoreAndCheckExtraLife",
+      "evidence": "compares-working-score-to-next-extra-life-threshold-and-copies-increased-digits-to-visible-score"
+    },
+    {
+      "bank": 0,
+      "address": "0x8251",
+      "name": "Bank0_ExtraLifeScoreThresholds",
+      "evidence": "four-four-digit-score-threshold-records-indexed-by-extra-life-score-threshold-index",
+      "operand_symbol": true
+    },
+    {
+      "bank": 0,
       "address": "0x8261",
       "name": "Bank0_MapperValueTable",
       "evidence": "mapper-write-index"
@@ -36,6 +61,12 @@
       "address": "0x828E",
       "name": "Bank0_World1Main",
       "evidence": "world1-city-runtime-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0x8451",
+      "name": "World1_DemoEntry",
+      "evidence": "bank-zero-8277-target-initializes-demo-mode-world-one-state"
     },
     {
       "bank": 0,
@@ -612,6 +643,13 @@
     },
     {
       "bank": 0,
+      "address": "0xE7F2",
+      "name": "World1_AudioEffectPitchPeriods",
+      "operand_symbol": true,
+      "evidence": "paired-low-high-period-table-indexed-by-world1-pulse-two-effect-handler"
+    },
+    {
+      "bank": 0,
       "address": "0xE949",
       "name": "World1_Apu_WritePulse1ControlSweep",
       "evidence": "writes-4000-and-4001"
@@ -810,6 +848,19 @@
     },
     {
       "bank": 1,
+      "address": "0x820E",
+      "name": "World2_CommitScoreAndCheckExtraLife",
+      "evidence": "compares-working-score-to-next-extra-life-threshold-and-copies-increased-digits-to-visible-score"
+    },
+    {
+      "bank": 1,
+      "address": "0x8251",
+      "name": "Bank1_ExtraLifeScoreThresholds",
+      "evidence": "four-four-digit-score-threshold-records-indexed-by-extra-life-score-threshold-index",
+      "operand_symbol": true
+    },
+    {
+      "bank": 1,
       "address": "0x8261",
       "name": "Bank1_MapperValueTable",
       "evidence": "mapper-write-index"
@@ -912,6 +963,12 @@
       "address": "0x8871",
       "name": "World2_ForwardScreenServiceRtsTable",
       "evidence": "16-slot-target-minus-one-table-used-while-scroll-position-increments"
+    },
+    {
+      "bank": 1,
+      "address": "0x8891",
+      "name": "World2_DemoEntry",
+      "evidence": "bank-one-8277-target-sets-demo-mode-and-enters-world-two-initialization"
     },
     {
       "bank": 1,
@@ -1746,6 +1803,31 @@
     },
     {
       "bank": 2,
+      "address": "0x81C9",
+      "name": "World3_AddEncodedScore",
+      "evidence": "splits-two-nibble-reward-code-and-adds-decimal-digits-to-working-score"
+    },
+    {
+      "bank": 2,
+      "address": "0x81E6",
+      "name": "World3_AddScoreDigitWithCarry",
+      "evidence": "normalizes-one-working-score-digit-base-ten-and-propagates-carry-left"
+    },
+    {
+      "bank": 2,
+      "address": "0x820E",
+      "name": "World3_CommitScoreAndCheckExtraLife",
+      "evidence": "compares-working-score-to-next-extra-life-threshold-and-copies-increased-digits-to-visible-score"
+    },
+    {
+      "bank": 2,
+      "address": "0x8251",
+      "name": "Bank2_ExtraLifeScoreThresholds",
+      "evidence": "four-four-digit-score-threshold-records-indexed-by-extra-life-score-threshold-index",
+      "operand_symbol": true
+    },
+    {
+      "bank": 2,
       "address": "0x8261",
       "name": "Bank2_MapperValueTable",
       "evidence": "mapper-write-index"
@@ -1759,8 +1841,8 @@
     {
       "bank": 2,
       "address": "0x82AD",
-      "name": "Bank2_World3AlternateEntry",
-      "evidence": "bank2-dispatch-8277-target"
+      "name": "World3_DemoEntry",
+      "evidence": "bank-two-8277-target-entered-by-title-attract-with-demo-mode-active"
     },
     {
       "bank": 2,
@@ -3071,6 +3153,31 @@
     },
     {
       "bank": 3,
+      "address": "0x81C9",
+      "name": "Bank3_AddEncodedScore",
+      "evidence": "splits-two-nibble-reward-code-and-adds-decimal-digits-to-working-score"
+    },
+    {
+      "bank": 3,
+      "address": "0x81E6",
+      "name": "Bank3_AddScoreDigitWithCarry",
+      "evidence": "normalizes-one-working-score-digit-base-ten-and-propagates-carry-left"
+    },
+    {
+      "bank": 3,
+      "address": "0x820E",
+      "name": "Bank3_CommitScoreAndCheckExtraLife",
+      "evidence": "compares-working-score-to-next-extra-life-threshold-and-copies-increased-digits-to-visible-score"
+    },
+    {
+      "bank": 3,
+      "address": "0x8251",
+      "name": "Bank3_ExtraLifeScoreThresholds",
+      "evidence": "four-four-digit-score-threshold-records-indexed-by-extra-life-score-threshold-index",
+      "operand_symbol": true
+    },
+    {
+      "bank": 3,
       "address": "0x8261",
       "name": "Bank3_MapperValueTable",
       "evidence": "mapper-write-index"
@@ -3098,6 +3205,12 @@
       "address": "0x8286",
       "name": "Bank3_World2TransitionDispatch",
       "evidence": "world2-completion-gateway-target"
+    },
+    {
+      "bank": 3,
+      "address": "0x8415",
+      "name": "Shell_WaitForStartOrRunAttract",
+      "evidence": "title-input-timeout-falls-through-attract-presentation-and-rotates-three-demo-gateways"
     },
     {
       "bank": 3,
@@ -3404,6 +3517,91 @@
       "address": "0x0021",
       "name": "CombinedControllerButtons",
       "evidence": "or-of-four-controller-shift-registers"
+    },
+    {
+      "address": "0x0023",
+      "name": "Controller2MicrophoneSample",
+      "evidence": "previous-joypad1-bit-two-sample-compared-by-every-bank-local-nmi"
+    },
+    {
+      "address": "0x0024",
+      "name": "Controller2MicrophoneEdgeTimer",
+      "evidence": "loaded-with-twenty-on-microphone-bit-transition-decremented-by-nmi-and-consumed-by-chapter-secrets"
+    },
+    {
+      "address": "0x0025",
+      "name": "ExtraLifeScoreThresholdIndex",
+      "evidence": "zero-through-four-index-selecting-four-score-threshold-records-and-incremented-after-each-award"
+    },
+    {
+      "address": "0x0026",
+      "name": "ExtraLifeSoundCounter",
+      "evidence": "incremented-with-score-awarded-extra-life-and-consumed-by-each-chapter-audio-update"
+    },
+    {
+      "address": "0x0027",
+      "name": "DemoModeActive",
+      "evidence": "set-by-title-timeout-demo-entry-cleared-by-normal-game-entry-and-gates-score-input-damage-and-exit-paths"
+    },
+    {
+      "address": "0x002A",
+      "name": "PlayerLives",
+      "evidence": "initialized-by-title-and-chapter-starts-decremented-on-player-death-incremented-by-one-up-and-score-thresholds"
+    },
+    {
+      "address": "0x002B",
+      "name": "PlayerHealth",
+      "evidence": "initialized-from-health-capacity-index-rendered-by-all-chapter-huds-and-reduced-by-player-damage"
+    },
+    {
+      "address": "0x002C",
+      "name": "PlayerHealthCapacityIndex",
+      "evidence": "lower-value-expands-health-meter-and-is-decremented-by-health-capacity-upgrades"
+    },
+    {
+      "address": "0x0037",
+      "name": "World1FlashLightCarryFlag",
+      "evidence": "set-by-world1-flash-light-pickup-consumed-into-world2-inventory-slot-two-then-cleared"
+    },
+    {
+      "address": "0x007B",
+      "name": "World1WeaponLevel",
+      "banks": [
+        0
+      ],
+      "evidence": "incremented-by-world1-weapon-upgrade-and-selects-projectile-type-and-upgrade-metasprite"
+    },
+    {
+      "address": "0x0082",
+      "name": "World1EnemyFreezeActive",
+      "banks": [
+        0
+      ],
+      "evidence": "set-by-stopwatch-cleared-when-freeze-timer-expires-and-gates-enemy-updates-and-contact-damage"
+    },
+    {
+      "address": "0x0083",
+      "name": "World1EnemyFreezeTimer",
+      "banks": [
+        0
+      ],
+      "evidence": "loaded-with-0xf0-by-stopwatch-and-decremented-until-enemy-freeze-active-is-cleared"
+    },
+    {
+      "address": "0x0084",
+      "name": "World1ProjectileMaxSlot",
+      "banks": [
+        0
+      ],
+      "evidence": "incremented-by-rapid-fire-drink-and-used-as-inclusive-highest-player-projectile-slot"
+    },
+    {
+      "address": "0x00B2",
+      "name": "World1InvulnerabilityTimer",
+      "banks": [
+        0
+      ],
+      "evidence": "loaded-with-0xff-by-invulnerability-reward-decremented-on-alternate-frames-and-gates-player-damage"
     },
     {
       "address": "0x004D",

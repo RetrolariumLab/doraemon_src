@@ -2,17 +2,17 @@
 ; World 3 initialization, frame loop, player state, and map position
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_World3AlternateEntry:
+World3_DemoEntry:
     LDX #$7F
     TXS
     JSR Bank2_Func_B1FE
     JSR Bank2_Func_8689
     JSR World3_InitializeRoomObjectRegistry
     LDA #$00
-    STA $37
+    STA World1FlashLightCarryFlag
     STA $38
     LDA #$03
-    STA $2A
+    STA PlayerLives
 
 Bank2_Label_82C3:
     LDA #$01
@@ -21,7 +21,7 @@ Bank2_Label_82C3:
     LDY #$02
     STX $DD
     STY $DE
-    LDA $2A
+    LDA PlayerLives
     AND #$03
     TAX
     LDA a:$82EA,X
@@ -31,7 +31,7 @@ Bank2_Label_82C3:
     LDA a:$82F2,X
     STA $8D
     LDA #$02
-    STA $2C
+    STA PlayerHealthCapacityIndex
     JMP Bank2_Label_8328
     .byte $28, $1F, $0B, $09, $40, $08, $80, $C0, $40, $70, $A0, $A0
 
@@ -149,7 +149,7 @@ Bank2_Label_83B5:
 
 Bank2_Label_83C2:
     JSR World3_RenderEntities
-    JSR Bank2_Func_820E
+    JSR World3_CommitScoreAndCheckExtraLife
     LDA $DF
     CMP #$3F
     BEQ Bank2_Label_83D1
@@ -163,10 +163,10 @@ Bank2_Label_83D1:
     JSR Bank2_Func_8487
     JSR Bank2_Func_859A
     JSR Bank2_Func_8581
-    LDA $26
+    LDA ExtraLifeSoundCounter
     BEQ Bank2_Label_83F3
     LDA #$00
-    STA $26
+    STA ExtraLifeSoundCounter
     LDA #$10
     JSR Bank2_Func_A5EB
 
@@ -214,7 +214,7 @@ Bank2_Func_8427:
     LDA $8D
     CMP #$BB
     BNE Bank2_Label_8486
-    LDA $24
+    LDA Controller2MicrophoneEdgeTimer
     BNE Bank2_Label_8443
     LDA #$00
     STA $CF
@@ -287,7 +287,7 @@ Bank2_Label_849E:
     LDA $DF
     CMP #$16
     BNE Bank2_Label_8502
-    LDA $24
+    LDA Controller2MicrophoneEdgeTimer
     BNE Bank2_Label_84B0
     LDA #$00
     STA $CF

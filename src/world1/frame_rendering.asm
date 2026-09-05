@@ -187,12 +187,12 @@ Bank0_Label_96DB:
     JSR Bank0_Func_9B35
     LDA #$F0
     STA $44
-    LDA $2A
+    LDA PlayerLives
     AND #$0F
     ORA #$30
     STA $42
     JSR Bank0_Func_9B35
-    LDA $2C
+    LDA PlayerHealthCapacityIndex
     ASL A
     ASL A
     CLC
@@ -204,7 +204,7 @@ Bank0_Label_96DB:
     STA $43
     LDA #$04
     STA $0A
-    LDA $2B
+    LDA PlayerHealth
     STA $42
     LDY #$07
 
@@ -234,7 +234,7 @@ Bank0_Label_974E:
     BPL Bank0_Label_974E
 
 Bank0_Label_9754:
-    LDY $2C
+    LDY PlayerHealthCapacityIndex
 
 Bank0_Label_9756:
     LDA a:$000A,Y
@@ -257,7 +257,7 @@ Bank0_Label_9756:
     LDA #$00
     STA $46
     STA $48
-    LDA $7B
+    LDA World1WeaponLevel
     BEQ Bank0_Label_978E
     CLC
     ADC #$29
@@ -270,7 +270,7 @@ Bank0_Label_978E:
     RTS
 
 World1_RenderEntitySlots00_09:
-    LDA $82
+    LDA World1EnemyFreezeActive
     BEQ Bank0_Label_979A
     LDA FrameCounter
     AND #$04
@@ -345,7 +345,7 @@ Bank0_Label_97E0:
     RTS
 
 World1_RenderEntitySlots10_29:
-    LDA $82
+    LDA World1EnemyFreezeActive
     BEQ Bank0_Label_980C
     LDA FrameCounter
     AND #$04

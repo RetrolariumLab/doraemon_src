@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank0_Func_C92F:
-    LDA $27
+    LDA DemoModeActive
     BNE Bank0_Label_C93D
     LDX #$07
     LDA #$00
@@ -163,7 +163,7 @@ Bank0_Func_C9E1:
     LDA a:World1EntityType+$26,Y
     CMP #$8A
     BNE Bank0_Label_C9F6
-    LDA $24
+    LDA Controller2MicrophoneEdgeTimer
     BEQ Bank0_Label_C9E0
 
 Bank0_Label_C9F6:
@@ -241,17 +241,17 @@ Bank0_Label_CA63:
     JMP Bank0_Label_9250
 
 Bank0_Func_CA6D:
-    LDA $82
+    LDA World1EnemyFreezeActive
     BEQ Bank0_Label_CA8A
-    DEC $83
+    DEC World1EnemyFreezeTimer
     BNE Bank0_Label_CA7F
     LDA #$00
-    STA $82
+    STA World1EnemyFreezeActive
     STA a:AudioMusicControl
     JMP Bank0_Label_CA8A
 
 Bank0_Label_CA7F:
-    LDA $83
+    LDA World1EnemyFreezeTimer
     AND #$07
     BNE Bank0_Label_CA8A
     LDA #$07
@@ -261,14 +261,14 @@ Bank0_Label_CA8A:
     LDA FrameCounter
     AND #$01
     BEQ Bank0_Label_CAA6
-    LDA $B2
+    LDA World1InvulnerabilityTimer
     BEQ Bank0_Label_CAA6
     LDA #$00
     STA $79
     LDA FrameCounter
     AND #$02
     STA $78
-    DEC $B2
+    DEC World1InvulnerabilityTimer
     BNE Bank0_Label_CAA6
     LDA #$00
     STA $78
@@ -277,7 +277,7 @@ Bank0_Label_CAA6:
     RTS
 
 World1_CollectGenkiCandy:
-    DEC $2C
+    DEC PlayerHealthCapacityIndex
     JSR Bank0_Func_8362
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CAB6
@@ -289,10 +289,10 @@ Bank0_Label_CAB6:
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$35
-    JMP Bank0_Func_81C9
+    JMP World1_AddEncodedScore
 
 World1_CollectOneUp:
-    INC $2A
+    INC PlayerLives
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CACF
     STA $00
@@ -301,9 +301,9 @@ World1_CollectOneUp:
 Bank0_Label_CACF:
     JSR Bank0_Func_C982
     LDA #$01
-    STA $26
+    STA ExtraLifeSoundCounter
     LDA #$31
-    JMP Bank0_Func_81C9
+    JMP World1_AddEncodedScore
 
 World1_CollectDorayaki:
     JSR Bank0_Func_8362
@@ -317,10 +317,10 @@ Bank0_Label_CAE8:
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$32
-    JMP Bank0_Func_81C9
+    JMP World1_AddEncodedScore
 
 World1_CollectWeaponUpgrade:
-    INC $7B
+    INC World1WeaponLevel
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB01
     STA $00
@@ -331,13 +331,13 @@ Bank0_Label_CB01:
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$31
-    JMP Bank0_Func_81C9
+    JMP World1_AddEncodedScore
 
 World1_CollectStopwatch:
     LDA #$01
-    STA $82
+    STA World1EnemyFreezeActive
     LDA #$F0
-    STA $83
+    STA World1EnemyFreezeTimer
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB20
     STA $00
@@ -350,10 +350,10 @@ Bank0_Label_CB20:
     LDA #$07
     JSR World1_Audio_QueueEffect
     LDA #$32
-    JMP Bank0_Func_81C9
+    JMP World1_AddEncodedScore
 
 World1_CollectRapidFireDrink:
-    INC $84
+    INC World1ProjectileMaxSlot
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB3E
     STA $00
@@ -364,11 +364,11 @@ Bank0_Label_CB3E:
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$32
-    JMP Bank0_Func_81C9
+    JMP World1_AddEncodedScore
 
 World1_CollectFlashLight:
     LDA #$01
-    STA $37
+    STA World1FlashLightCarryFlag
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB59
     STA $00

@@ -220,16 +220,16 @@ Bank1_Label_8167:
     STA CombinedControllerButtons
     LDA a:JOYPAD1
     AND #$04
-    CMP $23
+    CMP Controller2MicrophoneSample
     BEQ Bank1_Label_8197
-    STA $23
+    STA Controller2MicrophoneSample
     LDA #$14
-    STA $24
+    STA Controller2MicrophoneEdgeTimer
 
 Bank1_Label_8197:
-    LDA $24
+    LDA Controller2MicrophoneEdgeTimer
     BEQ Bank1_Label_819D
-    DEC $24
+    DEC Controller2MicrophoneEdgeTimer
 
 Bank1_Label_819D:
     JSR Bank1_Func_827A
@@ -270,7 +270,7 @@ Bank1_WriteMapper:
 
 World2_AddEncodedScore:
     STA $07
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_81E5
     TYA
     PHA
@@ -325,10 +325,10 @@ Bank1_Label_8204:
     BPL Bank1_Label_8204
     RTS
 
-Bank1_Func_820E:
-    LDA $27
+World2_CommitScoreAndCheckExtraLife:
+    LDA DemoModeActive
     BNE Bank1_Label_8244
-    LDA $25
+    LDA ExtraLifeScoreThresholdIndex
     CMP #$04
     BEQ Bank1_Label_8233
     ASL A
@@ -338,7 +338,7 @@ Bank1_Func_820E:
 
 Bank1_Label_821D:
     LDA a:ScoreDigitsWorking,X
-    CMP a:$8251,Y
+    CMP a:Bank1_ExtraLifeScoreThresholds,Y
     BCC Bank1_Label_8233
     BNE Bank1_Label_822D
     INX
@@ -347,9 +347,9 @@ Bank1_Label_821D:
     BNE Bank1_Label_821D
 
 Bank1_Label_822D:
-    INC $2A
-    INC $26
-    INC $25
+    INC PlayerLives
+    INC ExtraLifeSoundCounter
+    INC ExtraLifeScoreThresholdIndex
 
 Bank1_Label_8233:
     LDX #$00
@@ -373,6 +373,8 @@ Bank1_Label_8245:
     CPX #$06
     BNE Bank1_Label_8245
     RTS
+
+Bank1_ExtraLifeScoreThresholds:
     .byte $00, $00, $02, $00, $00, $00, $08, $00, $00, $02, $00, $00, $00, $05, $00, $00
 
 Bank1_MapperValueTable:
@@ -385,7 +387,7 @@ Bank1_Func_8274:
     JMP Bank1_Func_829F
 
 Bank1_Func_8277:
-    JMP Bank1_Func_8891
+    JMP World2_DemoEntry
 
 Bank1_Func_827A:
     JMP Bank1_Func_8704

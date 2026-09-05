@@ -9,7 +9,7 @@ Bank1_World2Main:
     STA World2InventoryState+$06
     STA $A3
     STA $BA
-    STA $27
+    STA DemoModeActive
 
 Bank1_Label_88B1:
     LDA #$00
@@ -65,17 +65,17 @@ Bank1_Label_88B7:
     LDA #$96
     STA $AD
     JSR Bank1_Func_8AD0
-    STA $2B
-    LDA $37
+    STA PlayerHealth
+    LDA World1FlashLightCarryFlag
     BEQ Bank1_Label_8923
     LDA #$03
     STA World2InventoryState+$02
 
 Bank1_Label_8923:
     LDA #$00
-    STA $37
+    STA World1FlashLightCarryFlag
     JSR Bank1_Func_8AAB
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_8940
     LDA #$01
     STA $28
@@ -119,7 +119,7 @@ Bank1_World2FrameLoop:
     BNE Bank1_Label_89D1
     LDA $B3
     BNE Bank1_Label_89CE
-    LDA $27
+    LDA DemoModeActive
     BEQ Bank1_Label_8991
     LDA #$20
 
@@ -129,7 +129,7 @@ Bank1_Label_8991:
     BNE Bank1_Label_89D7
     LDA $A2
     BEQ Bank1_World2FrameLoop
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_89DB
     LDA #$06
     STA a:AudioMusicState
@@ -142,7 +142,7 @@ Bank1_Label_89AC:
     JSR Bank1_Func_8A1A
     DEC $AD
     BNE Bank1_Label_89AC
-    DEC $2A
+    DEC PlayerLives
     BMI Bank1_Label_89BA
     JMP Bank1_Label_88B7
 
@@ -156,7 +156,7 @@ Bank1_Label_89C1:
     DEX
     BPL Bank1_Label_89C1
     LDA #$02
-    STA $2A
+    STA PlayerLives
     JMP Bank1_Label_88B7
 
 Bank1_Label_89CE:
@@ -167,7 +167,7 @@ Bank1_Label_89D1:
     JMP Bank1_Func_8A32
 
 Bank1_Label_89D7:
-    LDA $27
+    LDA DemoModeActive
     BEQ Bank1_Label_89DE
 
 Bank1_Label_89DB:
@@ -329,7 +329,7 @@ Bank1_Func_8AB6:
 
 Bank1_Func_8AD0:
     STX $76
-    LDX $2C
+    LDX PlayerHealthCapacityIndex
     LDA a:$8AD8,X
     LDX $76
     RTS
@@ -382,7 +382,7 @@ World2_StageSequenceStartOffsets:
     .byte $00, $25, $5C
 
 Bank1_Func_8B3B:
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_8B47
     LDA $AA
     BEQ Bank1_Label_8B4B
@@ -399,7 +399,7 @@ Bank1_Label_8B4B:
 Bank1_Func_8B4C:
     LDA $AD
     BEQ Bank1_Label_8B64
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_8B58
     DEC $AD
     BNE Bank1_Label_8B64
@@ -420,7 +420,7 @@ Bank1_Func_8B65:
     LDA World2InventoryState
     CMP #$03
     BNE Bank1_Label_8B92
-    LDA $24
+    LDA Controller2MicrophoneEdgeTimer
     BEQ Bank1_Label_8B90
     INC $B9
     LDA $B9
@@ -445,11 +445,11 @@ Bank1_Label_8B90:
     STA $B9
 
 Bank1_Label_8B92:
-    JSR Bank1_Func_820E
-    LDA $26
+    JSR World2_CommitScoreAndCheckExtraLife
+    LDA ExtraLifeSoundCounter
     BEQ Bank1_Label_8B64
     LDA #$00
-    STA $26
+    STA ExtraLifeSoundCounter
     LDA #$0D
     JMP World2_Audio_QueueEffect
     .byte $01, $02, $03, $01
@@ -475,7 +475,7 @@ World2_UpdatePlayerAndInventory:
     BNE Bank1_Label_8C3C
     LDA $A8
     BNE Bank1_Label_8C3B
-    LDA $27
+    LDA DemoModeActive
     BEQ Bank1_Label_8BDF
     LDA World2FrameCounter
     ROL A
@@ -506,7 +506,7 @@ Bank1_Label_8BDF:
 Bank1_Label_8C04:
     LDA #$00
     STA $A5
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_8C17
     LDX #$05
 
@@ -555,19 +555,19 @@ Bank1_Label_8C3C:
     BPL Bank1_Label_8C4E
     DEX
     BPL Bank1_Label_8C4C
-    DEC $2B
+    DEC PlayerHealth
 
 Bank1_Label_8C4C:
-    DEC $2B
+    DEC PlayerHealth
 
 Bank1_Label_8C4E:
-    DEC $2B
-    LDA $2B
+    DEC PlayerHealth
+    LDA PlayerHealth
     BPL Bank1_Label_8C5C
     LDA #$01
     STA $A2
     LDA #$00
-    STA $2B
+    STA PlayerHealth
 
 Bank1_Label_8C5C:
     RTS

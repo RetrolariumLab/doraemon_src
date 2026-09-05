@@ -96,7 +96,7 @@ Bank0_Label_CE55:
     JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
-    JSR Bank0_Func_820E
+    JSR World1_CommitScoreAndCheckExtraLife
     LDA $79
     BMI Bank0_Label_CE90
     LDA $76
@@ -108,7 +108,7 @@ Bank0_Label_CE55:
 
 Bank0_Label_CE90:
     JSR Bank0_Func_884C
-    DEC $2A
+    DEC PlayerLives
     BMI Bank0_Label_CE9E
     LDA $85
     STA $81
@@ -117,7 +117,7 @@ Bank0_Label_CE90:
 Bank0_Label_CE9E:
     JSR Bank0_Func_8065
     LDA #$02
-    STA $2A
+    STA PlayerLives
     JSR Bank0_Func_C92F
     JMP Bank0_Label_CDDD
 

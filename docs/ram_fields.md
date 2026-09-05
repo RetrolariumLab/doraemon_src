@@ -23,6 +23,41 @@ and ownership are proved.
 | `Controller1Buttons` | `$001F` | Primary controller-1 serial shift register |
 | `Controller1ButtonsAlt` | `$0020` | Secondary controller-1 serial shift register |
 | `CombinedControllerButtons` | `$0021` | OR of the four serial button bytes after polling |
+| `Controller2MicrophoneSample` | `$0023` | Previous `JOYPAD1` bit-2 sample used for microphone edge detection |
+| `Controller2MicrophoneEdgeTimer` | `$0024` | 20-frame window started by a microphone edge and read by chapter secrets |
+
+The Famicom controller-2 microphone is sampled through bit 2 of `JOYPAD1`.
+Every bank-local NMI compares that bit with the retained sample; either edge
+reloads the timer to `$14`, and NMI decrements it once per frame. World 1's
+programmer-face object and hidden interactions in Worlds 2 and 3 test the
+nonzero window rather than reading the hardware register directly.
+
+## Shared player progression and health
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `ExtraLifeScoreThresholdIndex` | `$0025` | Selects the next of four score thresholds; value 4 disables further score awards |
+| `ExtraLifeSoundCounter` | `$0026` | Pending extra-life sound event produced by score awards or 1UP and consumed by the active chapter |
+| `DemoModeActive` | `$0027` | Nonzero while the title-screen attract sequence drives a chapter demo |
+| `PlayerLives` | `$002A` | Remaining lives; initialized at game/chapter entry, decremented on death, and incremented by 1UP or score thresholds |
+| `PlayerHealth` | `$002B` | Current health in quarter-meter units, rendered and damaged by every chapter |
+| `PlayerHealthCapacityIndex` | `$002C` | Left edge of the eight-cell health meter; lowering it adds four health units |
+| `World1FlashLightCarryFlag` | `$0037` | Set by the World 1 Flash Light, converted to World 2 inventory slot 2 at chapter entry, then cleared |
+
+The health capacity field is an inverse index, not a direct maximum. The common
+calculation `(8 - PlayerHealthCapacityIndex) * 4` produces full health. World 1
+Genki Candy and the matching World 2/3 capacity upgrades decrement the index,
+then refill or extend the current health value through that calculation.
+
+Every PRG bank carries the same score implementation at `$81C9-$8250` and a
+bank-local copy of the four-record threshold table at `$8251-$8260`. The table
+compares the leading four decimal digits of `ScoreDigitsWorking`, in order, at
+20,000, 80,000, 200,000, and 500,000 points. Reaching a threshold increments
+`PlayerLives`, `ExtraLifeSoundCounter`, and `ExtraLifeScoreThresholdIndex`.
+Both score routines return without changing state while `DemoModeActive` is
+set. The title shell sets that flag before rotating through the three chapter
+entry gateways; normal World 1 and World 2 starts clear it, while demo-specific
+entry points set it. The same flag selects demo input, damage, and exit paths.
 
 ## Shared rendering and score state
 
@@ -95,6 +130,21 @@ loads the underground backing store into `$0680-$068F`; returning performs the
 inverse exchange. The active spawn mask is then refreshed from the selected
 persistent set. The adjacent 128-byte attribute cache spans `$06B0-$072F` and
 is updated bitwise as metatiles are streamed into either nametable.
+
+## World 1 item-derived combat state
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `World1WeaponLevel` | `$007B` | Weapon tier 0-3; selects the upgrade metasprite, projectile entity type, and shot pattern |
+| `World1EnemyFreezeActive` | `$0082` | Nonzero while the Stopwatch suppresses enemy updates and contact damage |
+| `World1EnemyFreezeTimer` | `$0083` | Stopwatch countdown initialized to `$F0`; also phases the warning sound |
+| `World1ProjectileMaxSlot` | `$0084` | Inclusive highest usable projectile slot; each Rapid-Fire Drink admits one additional simultaneous shot |
+| `World1InvulnerabilityTimer` | `$00B2` | Alternate-frame countdown initialized to `$FF`; blocks damage and drives player flashing |
+
+These aliases are limited to PRG bank 0 because the same zero-page addresses
+are chapter-local overlays elsewhere. The Flash Light carry flag is the
+exception: its producer in bank 0 and consumer in bank 1 prove a deliberate
+cross-bank lifetime.
 
 ## World 2 screen and palette state
 

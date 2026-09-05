@@ -92,7 +92,7 @@ World2_EnemyUpdateDispatchContinuation:
     LDA a:World2EnemyState,X
     CMP #$11
     BCS Bank1_Label_9991
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_9999
     LDA World2InventoryState+$02
     CMP #$03
@@ -104,7 +104,7 @@ Bank1_Label_9991:
     BCC Bank1_Label_99D8
 
 Bank1_Label_9999:
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_99A1
     LDA World2InventoryState+$02
     BEQ Bank1_Label_99A5
@@ -216,7 +216,7 @@ Bank1_Label_9A45:
 
 Bank1_Func_9A46:
     STX $9A
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_9A52
     LDA World2InventoryState+$02
     CMP #$03

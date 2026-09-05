@@ -46,7 +46,7 @@ Bank2_Label_B425:
     JSR World3_AppendOamEntry
     LDA #$F0
     STA $83
-    LDA $2A
+    LDA PlayerLives
     AND #$0F
     ORA #$30
     STA $81
@@ -54,7 +54,7 @@ Bank2_Label_B425:
     RTS
 
 Bank2_Func_B460:
-    LDA $2C
+    LDA PlayerHealthCapacityIndex
     ASL A
     ASL A
     CLC
@@ -66,7 +66,7 @@ Bank2_Func_B460:
     STA $82
     LDA #$04
     STA $0A
-    LDA $2B
+    LDA PlayerHealth
     STA $81
     LDY #$07
 
@@ -96,7 +96,7 @@ Bank2_Label_B499:
     BPL Bank2_Label_B499
 
 Bank2_Label_B49F:
-    LDY $2C
+    LDY PlayerHealthCapacityIndex
 
 Bank2_Label_B4A1:
     LDA a:$000A,Y

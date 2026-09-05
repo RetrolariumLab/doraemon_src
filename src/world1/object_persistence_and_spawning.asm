@@ -164,7 +164,7 @@ Bank0_Label_8E2F:
     LDA a:World1_ObjectDescriptorMetaspriteField,Y
     STA a:World1EntityMetasprite,X
     BNE Bank0_Label_8E4C
-    LDA $7B
+    LDA World1WeaponLevel
     CLC
     ADC #$2A
     STA a:World1EntityMetasprite,X
@@ -248,7 +248,7 @@ Bank0_Label_8EF5:
     RTS
 
 Bank0_Func_8EF6:
-    LDA $82
+    LDA World1EnemyFreezeActive
     BNE Bank0_Label_8F46
     LDX #$0A
 

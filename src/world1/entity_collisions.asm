@@ -245,9 +245,9 @@ Bank0_Label_93A3:
     BCS Bank0_Label_93D3
 
 Bank0_Label_93A7:
-    LDA $B2
+    LDA World1InvulnerabilityTimer
     BNE Bank0_Label_93CE
-    LDA $82
+    LDA World1EnemyFreezeActive
     BNE Bank0_Label_93D3
     LDA #$0F
     JSR World1_Audio_QueueEffectWithPriority
@@ -255,7 +255,7 @@ Bank0_Label_93A7:
     STA $79
     LDA a:World1EntitySecondaryBehavior+$0A,X
     STA $00
-    LDA $2B
+    LDA PlayerHealth
     SEC
     SBC $00
     BCS Bank0_Label_93CA
@@ -264,7 +264,7 @@ Bank0_Label_93A7:
     LDA #$00
 
 Bank0_Label_93CA:
-    STA $2B
+    STA PlayerHealth
     PLA
     PLA
 
@@ -308,23 +308,23 @@ Bank0_Label_9400:
     BCS Bank0_Label_942A
 
 Bank0_Label_9405:
-    LDA $B2
+    LDA World1InvulnerabilityTimer
     BNE Bank0_Label_942B
-    LDA $82
+    LDA World1EnemyFreezeActive
     BNE Bank0_Label_942A
     LDA #$0F
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$01
     STA $79
-    LDA $2B
+    LDA PlayerHealth
     CLC
     SBC a:World1EntityHealthOrVelocity,X
-    STA $2B
+    STA PlayerHealth
     BPL Bank0_Label_9428
     LDA #$80
     STA $79
     LDA #$00
-    STA $2B
+    STA PlayerHealth
 
 Bank0_Label_9428:
     PLA

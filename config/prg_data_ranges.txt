@@ -1,11 +1,14 @@
 # Doraemon typed PRG data v1
 # kind bank start end (inclusive CPU addresses) name
+table 0 8251 8260 Bank0ExtraLifeScoreThresholds
 table 0 A9EF AAEE World1BlockAttributes
 table 0 AAEF AEEE World1SmallBlocks
 table 0 AEEF B2EE World1BigBlocks
 map 0 B2EF C2EE World1CityMap
 map 0 C2EF C92E World1UndergroundMap
+table 0 E7F2 E83B World1AudioEffectPitchPeriods
 vectors 0 FFFA FFFF Bank0InterruptVectors
+table 1 8251 8260 Bank1ExtraLifeScoreThresholds
 table 1 87A1 8830 World2PaletteSets
 table 1 93AF 93B6 World2CollisionBitMasks
 table 1 A6B5 A6BB World2InventoryEligibleScreenIds
@@ -21,6 +24,7 @@ table 1 BEC4 BEDD World2MetatileCollisionBits
 table 1 BEDE BFCB World2ScreenPointerTable
 map 1 BFCC FFF9 World2CompressedScreenStreams
 vectors 1 FFFA FFFF Bank1InterruptVectors
+table 2 8251 8260 Bank2ExtraLifeScoreThresholds
 text 2 827D 82AC World3BuildString
 table 2 8FE8 9027 World3Type03RoomVariantFlags
 table 2 90F4 9103 World3Type0CFormation
@@ -39,4 +43,5 @@ table 2 DEF2 E2F1 World3SmallBlocks
 table 2 E2F2 E6F1 World3BigBlocks
 map 2 E6F2 F6F1 World3Map
 vectors 2 FFFA FFFF Bank2InterruptVectors
+table 3 8251 8260 Bank3ExtraLifeScoreThresholds
 vectors 3 FFFA FFFF Bank3InterruptVectors

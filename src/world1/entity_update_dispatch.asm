@@ -10,7 +10,7 @@ Bank0_Label_8891:
     BEQ Bank0_Label_88A1
     BMI Bank0_Label_88B8
     PHA
-    LDA $82
+    LDA World1EnemyFreezeActive
     BNE Bank0_Label_88B4
     PLA
     JSR World1_DispatchEntityUpdate
@@ -69,7 +69,7 @@ Bank0_Label_88EE:
     AND #$3F
     TAY
     LDA a:World1_EnemyScoreRewardCodes,Y
-    JSR Bank0_Func_81C9
+    JSR World1_AddEncodedScore
 
 World1_EntityUpdateHandlerRtsTable = * + 1  ; overlapping entry $88FB
     JMP Bank0_Label_88A1

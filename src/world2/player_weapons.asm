@@ -358,7 +358,7 @@ Bank1_Label_8E39:
     RTS
 
 Bank1_Func_8E3C:
-    LDA $27
+    LDA DemoModeActive
     BEQ Bank1_Label_8E4E
     LDA World2FrameCounter
     ROL A
@@ -494,7 +494,7 @@ Bank1_Label_8EF6:
 
 Bank1_Label_8F0C:
     JSR Bank1_Func_8F4B
-    LDA $27
+    LDA DemoModeActive
     BNE Bank1_Label_8F19
     LDA World2InventoryState+$02
     CMP #$03

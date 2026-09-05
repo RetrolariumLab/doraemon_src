@@ -505,14 +505,14 @@ Bank0_Label_9C10:
     RTS
 
 Bank0_Label_9C11:
-    LDA $7B
+    LDA World1WeaponLevel
     BEQ Bank0_Label_9C10
     LDX #$00
 
 Bank0_Label_9C17:
     LDA a:World1EntityType+$1E,X
     BEQ Bank0_Label_9C26
-    CPX $84
+    CPX World1ProjectileMaxSlot
     BEQ Bank0_Label_9C25
     INX
     CPX #$08
@@ -522,10 +522,10 @@ Bank0_Label_9C25:
     RTS
 
 Bank0_Label_9C26:
-    LDY $7B
+    LDY World1WeaponLevel
     LDA a:$9C82,Y
     JSR World1_Audio_QueueEffectWithPriority
-    LDA $7B
+    LDA World1WeaponLevel
     SEC
     SBC #$01
     ASL A
@@ -557,7 +557,7 @@ Bank0_Label_9C26:
     STA a:World1EntityRenderFlags+$1E,X
     LDA #$00
     STA a:World1EntityPositionHigh+$1E,X
-    LDA $7B
+    LDA World1WeaponLevel
     STA a:World1EntityType+$1E,X
     LDA $7F
     AND #$03

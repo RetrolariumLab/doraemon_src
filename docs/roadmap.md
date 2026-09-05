@@ -44,11 +44,14 @@ joined to their placements, selector slots, metasprites, dispatch targets, and
 code signatures, including the dynamic weapon sequence and both hidden
 rewards. World 1's ten ordinary enemies, two mode variants, dormant state, and
 scripted boss states now have evidence-backed identities and semantically named
-handlers. World 2's embedded screen-stream enemy tokens, overlapping
-screen views, lossless authoring data, token-to-state normalization, complete
-20-state runtime domain, three editable property tables, and dispatch graphs
-are proven. All 20 update/render edges are now structurally classified as 19
-unique update targets and 18 unique render targets, including deliberate
+handlers. Shared lives, current health, and inverse health-capacity state are
+named across all four banks. World 1's weapon tier, projectile limit, Stopwatch
+state, invulnerability countdown, and Flash Light handoff into World 2 are also
+named from their producer and consumer paths. World 2's embedded screen-stream
+enemy tokens, overlapping screen views, lossless authoring data, token-to-state
+normalization, complete 20-state runtime domain, three editable property tables,
+and dispatch graphs are proven. All 20 update/render edges are now structurally
+classified as 19 unique update targets and 18 unique render targets, including deliberate
   shared and no-op paths. All direct enemies, two Gangan variants, three bosses,
   and their internal helpers now have evidence-backed identities; boss tables,
   helper-spawn relationships, scores, and the four-Takkon item rule are enforced.

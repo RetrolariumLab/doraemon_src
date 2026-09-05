@@ -62,9 +62,9 @@ Bank2_Label_A26D:
     JSR World3_WaitFrames
     LDA #$00
     STA World3TreasurePenaltyCounter
-    LDA $2A
+    LDA PlayerLives
     BEQ Bank2_Label_A2BE
-    DEC $2A
+    DEC PlayerLives
     LDA $DC
     BEQ Bank2_Func_A285
     JMP Bank2_Label_82C3
@@ -130,9 +130,9 @@ Bank2_Label_A2D8:
     CPX #$08
     BNE Bank2_Label_A2D8
     LDA #$02
-    STA $2A
+    STA PlayerLives
     LDA #$02
-    STA $2C
+    STA PlayerHealthCapacityIndex
     RTS
 
 Bank2_Func_A2E9:

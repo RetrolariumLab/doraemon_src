@@ -46,9 +46,9 @@ Bank0_Label_D3CB:
     STA $7E
     STA $9B
     STA a:AudioMusicControl
-    STA $82
-    STA $83
-    STA $B2
+    STA World1EnemyFreezeActive
+    STA World1EnemyFreezeTimer
+    STA World1InvulnerabilityTimer
     JSR Bank0_Func_9614
     LDA #$EF
     STA $66
@@ -82,7 +82,7 @@ Bank0_Label_D429:
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
     JSR Bank0_Func_87F8
-    JSR Bank0_Func_820E
+    JSR World1_CommitScoreAndCheckExtraLife
     LDA PpuScrollYShadow
     AND #$07
     ORA $5C
@@ -96,14 +96,14 @@ Bank0_Label_D462:
 
 Bank0_Func_D465:
     JSR Bank0_Func_884C
-    DEC $2A
+    DEC PlayerLives
     BMI Bank0_Label_D46F
     JMP Bank0_Label_D3BF
 
 Bank0_Label_D46F:
     JSR Bank0_Func_8065
     LDA #$02
-    STA $2A
+    STA PlayerLives
     JSR Bank0_Func_C92F
     JMP Bank0_Label_D3BF
 
@@ -188,9 +188,9 @@ Bank0_Func_D4EE:
     STA a:AudioMusicState
     LDA #$00
     STA a:AudioMusicControl
-    STA $82
-    STA $83
-    STA $B2
+    STA World1EnemyFreezeActive
+    STA World1EnemyFreezeTimer
+    STA World1InvulnerabilityTimer
     LDA #$01
     STA $9B
     JSR World1_ClearEntitySlots10_29
@@ -244,7 +244,7 @@ Bank0_Label_D560:
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
     JSR Bank0_Func_87F8
-    JSR Bank0_Func_820E
+    JSR World1_CommitScoreAndCheckExtraLife
     LDA $79
     BMI Bank0_Label_D594
     DEC $9E
@@ -287,7 +287,7 @@ Bank0_Label_D5B2:
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
     JSR Bank0_Func_87F8
-    JSR Bank0_Func_820E
+    JSR World1_CommitScoreAndCheckExtraLife
     JSR Bank0_Func_D67A
     LDA a:World1EntityType
     BEQ Bank0_Label_D5E5
@@ -301,7 +301,7 @@ Bank0_Label_D5E5:
     LDA #$04
     JSR World1_Audio_QueueEffect
     LDA #$00
-    STA $26
+    STA ExtraLifeSoundCounter
     LDA #$0F
     STA a:World1EntityType
     LDA #$00

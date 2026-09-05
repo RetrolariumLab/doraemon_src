@@ -326,7 +326,7 @@ Bank2_Func_898C:
     STX $5D
     LDX $DC
     BNE Bank2_Label_8999
-    JSR Bank2_Func_81C9
+    JSR World3_AddEncodedScore
 
 Bank2_Label_8999:
     LDX $5D
@@ -405,9 +405,9 @@ Bank2_Label_8A1C:
     INC $57
 
 Bank2_Label_8A1E:
-    LDA $2C
+    LDA PlayerHealthCapacityIndex
     BEQ Bank2_Label_8A27
-    DEC $2C
+    DEC PlayerHealthCapacityIndex
     JSR Bank2_Func_A213
 
 Bank2_Label_8A27:
@@ -487,7 +487,7 @@ Bank2_Label_8A87:
     JSR Bank2_Func_A5EB
     LDA #$08
     SEC
-    SBC $2C
+    SBC PlayerHealthCapacityIndex
     ASL A
     ASL A
     STA $3E
@@ -495,10 +495,10 @@ Bank2_Label_8A87:
     STA $3F
 
 Bank2_Label_8AAA:
-    LDA $2B
+    LDA PlayerHealth
     CMP $3E
     BEQ Bank2_Label_8AB6
-    INC $2B
+    INC PlayerHealth
     DEC $3F
     BNE Bank2_Label_8AAA
 
@@ -542,15 +542,15 @@ Bank2_Label_8AEC:
     TAY
     CMP #$05
     BEQ Bank2_Label_8B67
-    LDA $2B
+    LDA PlayerHealth
     SEC
     SBC a:World3_EntityContactDamageByType,Y
     BCS Bank2_Label_8B08
     LDA #$00
 
 Bank2_Label_8B08:
-    STA $2B
-    LDA $2B
+    STA PlayerHealth
+    LDA PlayerHealth
     BNE Bank2_Label_8B4E
     LDA #$04
     STA $8E

@@ -23,9 +23,9 @@ incrementally without weakening byte identity.
   label.
 - Reset, NMI, the bus-conflict-safe mapper write, interrupt vectors, embedded
   build text, and the known world data have initial semantic names.
-- Shared frame, input, rendering, score, and audio RAM operands use an
-  evidence-backed, bank-aware symbol registry; unresolved chapter overlays
-  remain numeric.
+- Shared frame, input, demo mode, player lives/health, rendering, score, and audio RAM
+  operands use an evidence-backed, bank-aware symbol registry; unresolved
+  chapter overlays remain numeric.
 - Deterministic FCEUX traces prove the reset-to-title PRG 0 to PRG 3 switch,
   post-write mapping, title NMI path, bus-conflict values, controller shortcut,
   entry into all three gameplay PRG banks, and the World 1 city-to-underground

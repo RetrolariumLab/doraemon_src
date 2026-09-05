@@ -23,7 +23,7 @@ World2_UpdateInventorySpawns:
     LDA World2InventoryState+$03
     CMP #$03
     BNE Bank1_Label_A649
-    LDA $2B
+    LDA PlayerHealth
     CLC
     ADC #$10
     STA $67
@@ -33,7 +33,7 @@ World2_UpdateInventorySpawns:
     LDA $67
 
 Bank1_Label_A641:
-    STA $2B
+    STA PlayerHealth
     LDA #$00
     STA World2InventoryState+$03
     STA $A5
@@ -43,9 +43,9 @@ Bank1_Label_A649:
     CMP #$03
     BNE Bank1_Label_A65E
     INC $A3
-    DEC $2C
+    DEC PlayerHealthCapacityIndex
     JSR Bank1_Func_8AD0
-    STA $2B
+    STA PlayerHealth
     LDA #$00
     STA World2InventoryState+$05
     STA $A5
@@ -81,7 +81,7 @@ Bank1_Label_A677:
     BNE Bank1_Label_A69A
     JSR Bank1_Func_8AD0
     SEC
-    SBC $2B
+    SBC PlayerHealth
     CMP #$06
     BCS Bank1_Label_A6AA
     JMP Bank1_Label_A69A
@@ -196,7 +196,7 @@ World2_StageBranchReturnOverrides:
 Bank1_Func_A753:
     LDY #$00
     STY $96
-    LDA $2C
+    LDA PlayerHealthCapacityIndex
     ASL A
     ASL A
     CLC
@@ -206,7 +206,7 @@ Bank1_Func_A753:
     STA $97
     LDA #$04
     STA $0A
-    LDA $2B
+    LDA PlayerHealth
     STA $98
     LDX #$07
 
@@ -236,7 +236,7 @@ Bank1_Label_A78A:
     BPL Bank1_Label_A78A
 
 Bank1_Label_A78F:
-    LDX $2C
+    LDX PlayerHealthCapacityIndex
 
 Bank1_Label_A791:
     LDA $0A,X
@@ -260,7 +260,7 @@ Bank1_Label_A791:
     BEQ Bank1_Label_A7F9
     LDA #$F0
     STA $97
-    LDA $2A
+    LDA PlayerLives
     ORA #$F0
     STA $95
     JSR Bank1_Func_A7FA

@@ -20,10 +20,10 @@ and each handler's concrete state change.
 | `$09` | `$0A` | programmer's face | 1 hidden placement | microphone plus projectile gate |
 | `$0A` | `$0B` | Gold Bar | selector 1 | awards encoded score `$31` |
 | `$0B` | `$0C` | Diamond | 1 placement, selector 2 | awards encoded score `$32` |
-| `$0C` | `$0D` | invulnerability | secret selector 4 | sets countdown `$B2` to `$FF` |
+| `$0C` | `$0D` | invulnerability | secret selector 4 | sets `World1InvulnerabilityTimer` to `$FF` |
 
 Descriptor `$05` deliberately stores metasprite zero. Materialization replaces
-it with the current weapon level plus `$2A`, selecting metasprites `$2A-$2C`
+it with `World1WeaponLevel` plus `$2A`, selecting metasprites `$2A-$2C`
 for the Shock Gun, Air Gun, and Power Fan. It is therefore a single dynamic
 weapon-upgrade descriptor rather than three descriptor records.
 

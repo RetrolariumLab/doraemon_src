@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank0_Func_827D:
-    LDA $26
+    LDA ExtraLifeSoundCounter
 
 Bank0_Label_8280 = * + 1  ; overlapping entry $8280
     BEQ Bank0_Label_8288
@@ -13,7 +13,7 @@ Bank0_Label_8283:
     JSR World1_Audio_QueueEffect
 
 Bank0_Label_8286:
-    DEC $26
+    DEC ExtraLifeSoundCounter
 
 Bank0_Label_8288:
     JSR World1_Audio_UpdateEffects
@@ -57,33 +57,33 @@ Bank0_Label_82C1:
     JSR Bank0_Func_931B
     JSR World1_TryEnterAnywhereDoor
     JSR World1_TryEnterManhole
-    JSR Bank0_Func_820E
+    JSR World1_CommitScoreAndCheckExtraLife
     LDA $79
     BMI Bank0_Label_82F5
     JMP Bank0_Label_82C1
 
 Bank0_Label_82F5:
     JSR Bank0_Func_884C
-    DEC $2A
+    DEC PlayerLives
     BMI Bank0_Label_82FF
     JMP Bank0_Label_829F
 
 Bank0_Label_82FF:
     JSR Bank0_Func_8065
     LDA #$02
-    STA $2A
+    STA PlayerLives
     JSR Bank0_Func_C92F
     JMP Bank0_Label_829F
 
 Bank0_Func_830C:
     JSR Bank0_Func_C92F
     LDA #$00
-    STA $27
+    STA DemoModeActive
 
 Bank0_Func_8313:
     JSR World1_InitializeObjectSpawnMask
     LDA #$02
-    STA $2A
+    STA PlayerLives
     LDA #$E0
     STA $5B
     LDA #$D8
@@ -94,20 +94,20 @@ Bank0_Func_8313:
     STA $76
     LDA #$00
     STA $79
-    STA $25
-    STA $26
+    STA ExtraLifeScoreThresholdIndex
+    STA ExtraLifeSoundCounter
     STA $77
     STA $7F
     STA $78
     STA $78
-    STA $7B
+    STA World1WeaponLevel
     STA $63
-    STA $27
+    STA DemoModeActive
     STA $28
     STA $29
-    STA $24
+    STA Controller2MicrophoneEdgeTimer
     LDA #$06
-    STA $2C
+    STA PlayerHealthCapacityIndex
     JSR Bank0_Func_8362
     RTS
 
@@ -126,10 +126,10 @@ Bank0_Func_834E:
 Bank0_Func_8362:
     LDA #$08
     SEC
-    SBC $2C
+    SBC PlayerHealthCapacityIndex
     ASL A
     ASL A
-    STA $2B
+    STA PlayerHealth
     LDA #$00
     STA $79
     LDA #$00
@@ -223,7 +223,7 @@ Bank0_Func_83E8:
     JSR Bank0_Func_8131
     LDA #$5B
     STA FrameCounter
-    LDA $27
+    LDA DemoModeActive
     BNE Bank0_Label_841D
     JSR Bank0_Func_8053
     JSR Bank0_Func_95ED
@@ -256,7 +256,7 @@ Bank0_Func_843B:
     RTS
     .byte $01, $04, $05, $02, $02, $02, $02, $02, $03, $03, $02, $02
 
-Bank0_Func_8451:
+World1_DemoEntry:
     LDX #$7F
     TXS
     LDA #$00
@@ -265,7 +265,7 @@ Bank0_Func_8451:
     JSR Bank0_Func_837C
     JSR Bank0_Func_8313
     LDA #$01
-    STA $27
+    STA DemoModeActive
     LDA #$00
     STA a:$0180
     LDA #$00
@@ -284,11 +284,11 @@ Bank0_Func_8451:
     STA $A8
     STA $A9
     LDA #$02
-    STA $7B
+    STA World1WeaponLevel
     JMP Bank0_Label_829F
 
 Bank0_Func_8490:
-    LDA $27
+    LDA DemoModeActive
     BNE Bank0_Label_84A3
 
 Bank0_Label_8494:
