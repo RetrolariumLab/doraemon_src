@@ -43,6 +43,9 @@ WORLD1_METASPRITES := config/world1_metasprites.json
 WORLD1_METASPRITE_AUTHORING := data/world1/metasprites.json
 WORLD1_RANDOM := config/world1_random.json
 WORLD1_MAP_DECODER := config/world1_map_decoder.json
+WORLD1_PPU_STREAMING := config/world1_ppu_streaming.json
+WORLD1_CAMERA := config/world1_camera.json
+WORLD1_CAMERA_ENTITIES := config/world1_camera_entities.json
 WORLD1_ENEMY_HANDLERS := config/world1_enemy_handlers.json
 WORLD1_ENEMY_IDENTITIES := config/world1_enemy_identities.json
 WORLD1_DESCRIPTOR_IDENTITIES := config/world1_descriptor_identities.json
@@ -95,6 +98,9 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	validate-object-placements world1-metasprites validate-world1-metasprites \
 	world1-random validate-world1-random \
 	world1-map-decoder validate-world1-map-decoder \
+	world1-ppu-streaming validate-world1-ppu-streaming \
+	world1-camera validate-world1-camera \
+	world1-camera-entities validate-world1-camera-entities \
 	world1-enemy-handlers validate-world1-enemy-handlers \
 	world1-enemy-identities validate-world1-enemy-identities \
 	world1-descriptor-identities validate-world1-descriptor-identities \
@@ -275,6 +281,21 @@ world1-map-decoder validate-world1-map-decoder: $(PRG_ASSET)
 		--symbols "$(SYMBOLS)" \
 		--world-data "$(WORLD_DATA)"
 
+world1-ppu-streaming validate-world1-ppu-streaming: $(PRG_ASSET)
+	$(PYTHON) scripts/world1_ppu_streaming.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_PPU_STREAMING)" \
+		--symbols "$(SYMBOLS)"
+
+world1-camera validate-world1-camera: $(PRG_ASSET)
+	$(PYTHON) scripts/world1_camera.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_CAMERA)" \
+		--symbols "$(SYMBOLS)"
+
+world1-camera-entities validate-world1-camera-entities: $(PRG_ASSET)
+	$(PYTHON) scripts/world1_camera_entities.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_CAMERA_ENTITIES)" \
+		--symbols "$(SYMBOLS)"
+
 world1-enemy-handlers validate-world1-enemy-handlers: $(PRG_ASSET)
 	$(PYTHON) scripts/world1_enemy_handlers.py --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD1_ENEMY_HANDLERS)" \
@@ -451,6 +472,9 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-object-placements validate-world1-metasprites \
 	validate-world1-random \
 	validate-world1-map-decoder \
+	validate-world1-ppu-streaming \
+	validate-world1-camera \
+	validate-world1-camera-entities \
 	validate-world1-enemy-handlers \
 	validate-world1-enemy-identities \
 	validate-world1-descriptor-identities \

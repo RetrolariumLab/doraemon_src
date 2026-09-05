@@ -38,7 +38,7 @@ Bank0_Label_829F:
     JSR World1_ClearEntitySlots38_47
     JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_9535
-    JSR Bank0_Func_A7DB
+    JSR World1_PrefillMapViewport
     JSR Bank0_Func_843B
     JSR Bank0_Func_95ED
 
@@ -50,7 +50,7 @@ Bank0_Label_82C1:
     JSR Bank0_Func_856C
     JSR Bank0_Func_CA6D
     JSR Bank0_Func_9201
-    JSR Bank0_Func_8706
+    JSR World1_UpdateCameraFromPlayer
     JSR World1_SpawnObjectsAtCameraEdges
     JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
@@ -342,10 +342,10 @@ Bank0_Func_84D9:
     JMP Bank0_Label_856B
 
 Bank0_Label_84E0:
-    LDA a:$0260
-    ORA a:$0230
+    LDA a:World1RowUpdateFlags
+    ORA a:World1ColumnUpdateFlags
     BEQ Bank0_Label_84EE
-    JSR Bank0_Func_A87E
+    JSR World1_DrainMapPpuUpdates
     JMP Bank0_Label_8531
 
 Bank0_Label_84EE:

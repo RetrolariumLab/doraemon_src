@@ -2,7 +2,7 @@
 ; World 1 metatile decoding and incremental nametable streaming
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_A50A:
+World1_BuildColumnAttributeUpdate:
     PHA
     LDA #$00
     STA $74
@@ -53,7 +53,7 @@ Bank0_Label_A52F:
     AND #$C7
     STA $5D
     ORA #$C0
-    STA a:$0253
+    STA a:World1ColumnAttributePpuAddress
     LDA $73
     AND #$40
     LSR A
@@ -61,7 +61,7 @@ Bank0_Label_A52F:
     LSR A
     LSR A
     ORA #$23
-    STA a:$0254
+    STA a:World1ColumnAttributePpuAddress+$01
     JSR World1_LookupMapTile
     LDX $73
     LDA #$0F
@@ -111,7 +111,7 @@ Bank0_Label_A5AE:
 
 Bank0_Label_A5B6:
     LDA a:World1AttributeTableCache,X
-    STA a:$0255,Y
+    STA a:World1ColumnAttributeData,Y
     TXA
     CLC
     ADC #$08
@@ -119,44 +119,44 @@ Bank0_Label_A5B6:
     INY
     CPY #$08
     BNE Bank0_Label_A5B6
-    LDA a:$0230
+    LDA a:World1ColumnUpdateFlags
     ORA #$02
-    STA a:$0230
+    STA a:World1ColumnUpdateFlags
     RTS
 
-Bank0_Func_A5CF:
+World1_BuildRowTileUpdate:
     JSR World1_LookupMapTile
     LDX #$00
 
 Bank0_Label_A5D4:
     JSR World1_ReadMapTileAndStepRight
-    STA a:$0263,X
+    STA a:World1RowTileData,X
     INX
     CPX #$21
     BNE Bank0_Label_A5D4
     LDA PpuScrollYShadow
     AND #$F8
-    STA a:$0261
+    STA a:World1RowTilePpuAddress
     LDA World1NametableX
     AND #$01
-    ASL a:$0261
+    ASL a:World1RowTilePpuAddress
     ROL A
-    ASL a:$0261
+    ASL a:World1RowTilePpuAddress
     ROL A
     ORA #$20
-    STA a:$0262
+    STA a:World1RowTilePpuAddress+$01
     LDA PpuScrollXShadow
     LSR A
     LSR A
     LSR A
-    ORA a:$0261
-    STA a:$0261
-    LDA a:$0260
+    ORA a:World1RowTilePpuAddress
+    STA a:World1RowTilePpuAddress
+    LDA a:World1RowUpdateFlags
     ORA #$01
-    STA a:$0260
+    STA a:World1RowUpdateFlags
     RTS
 
-Bank0_Func_A60B:
+World1_BuildRowAttributeUpdate:
     TYA
     PHA
     LDA #$00
@@ -190,7 +190,7 @@ Bank0_Func_A60B:
     ORA $73
     STA $73
     ORA #$C0
-    STA a:$0284
+    STA a:World1RowAttributePpuAddress
     LDA $73
     AND #$40
     LSR A
@@ -198,7 +198,7 @@ Bank0_Func_A60B:
     LSR A
     LSR A
     ORA #$23
-    STA a:$0285
+    STA a:World1RowAttributePpuAddress+$01
     PLA
     TAY
     JSR World1_LookupMapTile
@@ -222,7 +222,7 @@ Bank0_Label_A65B:
     ORA $5F
     STA a:World1AttributeTableCache,X
     LDY $5D
-    STA a:$0286,Y
+    STA a:World1RowAttributeData,Y
     LDA $74
     EOR #$01
     STA $74
@@ -245,9 +245,9 @@ Bank0_Label_A694:
 Bank0_Label_A69A:
     DEC $5E
     BNE Bank0_Label_A65B
-    LDA a:$0260
+    LDA a:World1RowUpdateFlags
     ORA #$02
-    STA a:$0260
+    STA a:World1RowUpdateFlags
     RTS
 
 World1_LookupMapTile:
@@ -443,11 +443,11 @@ World1_SelectBigBlock:
     RTS
     .byte $00, $55, $AA, $FF, $03, $0C, $30, $C0
 
-Bank0_Func_A7DB:
+World1_PrefillMapViewport:
     LDA #$00
-    STA a:$025F
-    STA a:$0260
-    STA a:$0230
+    STA a:World1EdgeUpdateQueue
+    STA a:World1RowUpdateFlags
+    STA a:World1ColumnUpdateFlags
     LDA World1CameraTileX
     AND #$01
     ASL A
@@ -473,17 +473,17 @@ Bank0_Label_A807:
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
-    JSR Bank0_Func_A484
-    JSR Bank0_Func_A87E
+    JSR World1_TryScrollCameraUp
+    JSR World1_DrainMapPpuUpdates
     JSR World1_SpawnObjectsAtCameraEdges
-    JSR Bank0_Func_8750
+    JSR World1_ApplyCameraDeltaToEntities
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
-    JSR Bank0_Func_A484
-    JSR Bank0_Func_A87E
+    JSR World1_TryScrollCameraUp
+    JSR World1_DrainMapPpuUpdates
     JSR World1_SpawnObjectsAtCameraEdges
-    JSR Bank0_Func_8750
+    JSR World1_ApplyCameraDeltaToEntities
     DEC World1MapPrefillCounter
     BNE Bank0_Label_A807
 
@@ -514,17 +514,17 @@ Bank0_Label_A853:
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
-    JSR Bank0_Func_A42F
-    JSR Bank0_Func_A87E
+    JSR World1_TryScrollCameraDown
+    JSR World1_DrainMapPpuUpdates
     JSR World1_SpawnObjectsAtCameraEdges
-    JSR Bank0_Func_8750
+    JSR World1_ApplyCameraDeltaToEntities
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
-    JSR Bank0_Func_A42F
-    JSR Bank0_Func_A87E
+    JSR World1_TryScrollCameraDown
+    JSR World1_DrainMapPpuUpdates
     JSR World1_SpawnObjectsAtCameraEdges
-    JSR Bank0_Func_8750
+    JSR World1_ApplyCameraDeltaToEntities
     DEC World1MapPrefillCounter
     BNE Bank0_Label_A853
     JMP Bank0_Label_A82F

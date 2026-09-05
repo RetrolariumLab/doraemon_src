@@ -52,6 +52,8 @@ The holes at `$0068-$0069` are not part of this decoder contract.
 `config/world1_map_decoder.json` pins the exact routine bodies, all 34 direct
 `JSR` occurrences, RAM ownership, and the four map-pointer loads. Its validator
 also joins those facts to the lossless hierarchy in `config/world_data.json`.
+The downstream row/column packet builders and NMI consumer are documented in
+`docs/world1_ppu_streaming.md`.
 
 Run the focused contract with:
 

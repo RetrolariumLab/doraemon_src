@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "ram_fields": [
+    {
+      "name": "World1ColumnUpdateFlags",
+      "address": "0x0230",
+      "size": 1
+    },
+    {
+      "name": "World1ColumnTilePpuAddress",
+      "address": "0x0231",
+      "size": 2
+    },
+    {
+      "name": "World1ColumnTileData",
+      "address": "0x0233",
+      "size": 30
+    },
+    {
+      "name": "World1ColumnAttributePpuAddress",
+      "address": "0x0253",
+      "size": 2
+    },
+    {
+      "name": "World1ColumnAttributeData",
+      "address": "0x0255",
+      "size": 8
+    },
+    {
+      "name": "World1ColumnAddressScratch",
+      "address": "0x025E",
+      "size": 1
+    },
+    {
+      "name": "World1EdgeUpdateQueue",
+      "address": "0x025F",
+      "size": 1
+    },
+    {
+      "name": "World1RowUpdateFlags",
+      "address": "0x0260",
+      "size": 1
+    },
+    {
+      "name": "World1RowTilePpuAddress",
+      "address": "0x0261",
+      "size": 2
+    },
+    {
+      "name": "World1RowTileData",
+      "address": "0x0263",
+      "size": 33
+    },
+    {
+      "name": "World1RowAttributePpuAddress",
+      "address": "0x0284",
+      "size": 2
+    },
+    {
+      "name": "World1RowAttributeData",
+      "address": "0x0286",
+      "size": 9
+    }
+  ],
+  "packets": [
+    {
+      "axis": "column",
+      "queue_code": 1,
+      "flags_address": "0x0230",
+      "tile_flag": 1,
+      "tile_address": "0x0231",
+      "tile_data": "0x0233",
+      "tile_count": 30,
+      "tile_ppu_increment": 32,
+      "attribute_flag": 2,
+      "attribute_address": "0x0253",
+      "attribute_data": "0x0255",
+      "attribute_count": 8
+    },
+    {
+      "axis": "row",
+      "queue_code": 2,
+      "flags_address": "0x0260",
+      "tile_flag": 1,
+      "tile_address": "0x0261",
+      "tile_data": "0x0263",
+      "tile_count": 33,
+      "tile_ppu_increment": 1,
+      "attribute_flag": 2,
+      "attribute_address": "0x0284",
+      "attribute_data": "0x0286",
+      "attribute_count": 9
+    }
+  ],
+  "queue": {
+    "address": "0x025F",
+    "entry_bits": 4,
+    "capacity": 2
+  },
+  "routines": [
+    {
+      "name": "World1_BuildColumnTileUpdate",
+      "address": "0xA4C6",
+      "size": 68,
+      "callsites": [
+        "0xA3BA",
+        "0xA416"
+      ],
+      "bytes": "48 20 A7 A6 A2 00 20 19 A7 9D 33 02 E8 E0 1E D0 F5 A5 1C 18 69 04 C9 F0 90 03 18 69 10 29 F8 8D 31 02 68 0E 31 02 2A 0E 31 02 2A 09 20 8D 32 02 A5 1B 4A 4A 4A 0D 31 02 8D 31 02 AD 30 02 09 01 8D 30 02 60"
+    },
+    {
+      "name": "World1_BuildColumnAttributeUpdate",
+      "address": "0xA50A",
+      "size": 197,
+      "callsites": [
+        "0xA3D1",
+        "0xA429"
+      ],
+      "bytes": "48 A9 00 85 74 68 29 01 4A 6A 4A 85 73 A5 1C 29 08 F0 10 C8 A5 1C 18 69 08 C9 F0 90 08 18 69 10 4C 2F A5 A5 1C 29 F8 4A 4A 85 5D 4A 4A 4A 26 74 A5 5D 29 38 05 73 85 73 A5 1B 4A 4A 4A 4A 4A 26 74 05 73 85 73 29 C7 85 5D 09 C0 8D 53 02 A5 73 29 40 4A 4A 4A 4A 09 23 8D 54 02 20 A7 A6 A6 73 A9 0F 85 5E 20 72 A7 29 03 A8 B9 D3 A7 A4 74 39 D7 A7 85 5F B9 D7 A7 49 FF 3D B0 06 05 5F 9D B0 06 A5 74 49 02 85 74 29 02 F0 14 8A 29 38 C9 38 D0 12 8A 29 C7 AA A5 74 29 01 85 74 4C AE A5 8A 18 69 08 AA C6 5E D0 BC A6 5D A0 00 BD B0 06 99 55 02 8A 18 69 08 AA C8 C0 08 D0 F0 AD 30 02 09 02 8D 30 02 60"
+    },
+    {
+      "name": "World1_BuildRowTileUpdate",
+      "address": "0xA5CF",
+      "size": 60,
+      "callsites": [
+        "0xA45D",
+        "0xA4AE"
+      ],
+      "bytes": "20 A7 A6 A2 00 20 E8 A6 9D 63 02 E8 E0 21 D0 F5 A5 1C 29 F8 8D 61 02 A5 58 29 01 0E 61 02 2A 0E 61 02 2A 09 20 8D 62 02 A5 1B 4A 4A 4A 0D 61 02 8D 61 02 AD 60 02 09 01 8D 60 02 60"
+    },
+    {
+      "name": "World1_BuildRowAttributeUpdate",
+      "address": "0xA60B",
+      "size": 156,
+      "callsites": [
+        "0xA473",
+        "0xA4C0"
+      ],
+      "bytes": "98 48 A9 00 85 74 A5 58 29 01 4A 6A 4A 85 73 A5 1C 29 F8 4A 4A A8 4A 4A 4A 26 74 98 29 38 05 73 85 73 A5 1B 4A 4A 4A 4A 4A 26 74 05 73 85 73 09 C0 8D 84 02 A5 73 29 40 4A 4A 4A 4A 09 23 8D 85 02 68 A8 20 A7 A6 A6 73 A9 00 85 5D A9 11 85 5E 20 4E A7 29 03 A8 B9 D3 A7 A4 74 39 D7 A7 85 5F B9 D7 A7 49 FF 3D B0 06 05 5F 9D B0 06 A4 5D 99 86 02 A5 74 49 01 85 74 29 01 D0 13 E6 5D 8A 29 07 C9 07 F0 04 E8 4C 9A A6 8A 29 F8 49 40 AA C6 5E D0 BD AD 60 02 09 02 8D 60 02 60"
+    },
+    {
+      "name": "World1_PrefillMapViewport",
+      "address": "0xA7DB",
+      "size": 163,
+      "callsites": [
+        "0x82B8",
+        "0xCD72",
+        "0xCE49",
+        "0xCEDC",
+        "0xCEFF",
+        "0xD359",
+        "0xD41A"
+      ],
+      "bytes": "A9 00 8D 5F 02 8D 60 02 8D 30 02 A5 5B 29 01 0A 0A 0A 85 1B A5 5C 29 01 0A 0A 0A 85 1C A9 98 85 60 A5 5C 30 4C A5 5C 18 69 26 85 5C A9 00 85 61 85 62 20 84 A4 20 7E A8 20 DE 8B 20 50 87 A9 00 85 61 85 62 20 84 A4 20 7E A8 20 DE 8B 20 50 87 C6 60 D0 D8 A5 1B 85 59 A5 1C 85 5A A5 19 29 FE 85 5D A5 58 29 01 05 5D 85 19 A9 00 85 61 85 62 60 A5 5C 38 E9 26 85 5C A9 00 85 61 85 62 20 2F A4 20 7E A8 20 DE 8B 20 50 87 A9 00 85 61 85 62 20 2F A4 20 7E A8 20 DE 8B 20 50 87 C6 60 D0 D8 4C 2F A8"
+    },
+    {
+      "name": "World1_DrainMapPpuUpdates",
+      "address": "0xA87E",
+      "size": 369,
+      "callsites": [
+        "0x84E8",
+        "0xA810",
+        "0xA822",
+        "0xA85C",
+        "0xA86E"
+      ],
+      "bytes": "AD 5F 02 F0 29 C9 01 F0 15 C9 02 F0 19 A8 29 F0 AA 98 29 0F 8D 5F 02 E0 20 F0 14 4C 4C A9 A9 00 8D 5F 02 4C 4C A9 A9 00 8D 5F 02 4C AD A8 60 AD 60 02 29 01 F0 48 A5 19 29 FB 8D 00 20 AD 62 02 8D 06 20 AD 61 02 8D 06 20 29 1F 49 1F A8 C8 A2 00 BD 63 02 8D 07 20 E8 88 D0 F6 AD 62 02 49 04 8D 06 20 AD 61 02 29 E0 8D 06 20 BD 63 02 8D 07 20 E8 E0 21 D0 F5 AD 60 02 29 02 8D 60 02 AD 60 02 29 02 F0 48 A5 19 29 FB 8D 00 20 AD 85 02 8D 06 20 AD 84 02 8D 06 20 29 07 49 07 A8 C8 A2 00 BD 86 02 8D 07 20 E8 88 D0 F6 AD 85 02 49 04 8D 06 20 AD 84 02 29 F8 8D 06 20 BD 86 02 8D 07 20 E8 E0 09 D0 F5 AD 60 02 29 01 8D 60 02 60 AD 30 02 29 01 F0 63 A5 19 09 04 8D 00 20 AD 32 02 8D 06 20 AD 31 02 8D 06 20 8D 5E 02 AD 32 02 0E 5E 02 2A 0E 5E 02 2A 0E 5E 02 2A 8D 5E 02 29 1F 49 1F A8 88 A2 00 BD 33 02 8D 07 20 E8 E0 1E F0 1E 88 D0 F2 AD 32 02 29 FC 8D 06 20 AD 31 02 29 1F 8D 06 20 BD 33 02 8D 07 20 E8 E0 1E D0 F5 AD 30 02 29 02 8D 30 02 F0 38 AD 30 02 29 02 F0 31 A5 19 29 FB 8D 00 20 A2 00 AD 54 02 8D 06 20 AD 53 02 8D 06 20 BD 55 02 8D 07 20 AD 53 02 18 69 08 8D 53 02 E8 E0 08 D0 E0 AD 30 02 29 01 8D 30 02 60"
+    }
+  ]
+}

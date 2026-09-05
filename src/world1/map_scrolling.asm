@@ -2,7 +2,7 @@
 ; World 1 scroll advancement and nametable edge selection
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_A381:
+World1_TryScrollCameraRight:
     LDA World1CameraTileX
     CMP #$E0
     BNE Bank0_Label_A38E
@@ -42,7 +42,7 @@ Bank0_Label_A3B4:
     LDA World1NametableX
     EOR #$01
     AND #$01
-    JSR Bank0_Func_A4C6
+    JSR World1_BuildColumnTileUpdate
     LDA PpuScrollXShadow
     AND #$0F
     BNE Bank0_Label_A3D4
@@ -54,19 +54,19 @@ Bank0_Label_A3B4:
     LDA World1NametableX
     AND #$01
     EOR #$01
-    JSR Bank0_Func_A50A
+    JSR World1_BuildColumnAttributeUpdate
 
 Bank0_Label_A3D4:
-    LDA a:$025F
+    LDA a:World1EdgeUpdateQueue
     ASL A
     ASL A
     ASL A
     ASL A
     ORA #$01
-    STA a:$025F
+    STA a:World1EdgeUpdateQueue
     RTS
 
-Bank0_Func_A3E1:
+World1_TryScrollCameraLeft:
     LDA World1CameraTileX
     BNE Bank0_Label_A3EC
     LDA PpuScrollXShadow
@@ -103,7 +103,7 @@ Bank0_Label_A403:
 Bank0_Label_A412:
     LDA World1NametableX
     AND #$01
-    JSR Bank0_Func_A4C6
+    JSR World1_BuildColumnTileUpdate
     LDA PpuScrollXShadow
     AND #$0F
     CMP #$0F
@@ -112,10 +112,10 @@ Bank0_Label_A412:
     LDX World1CameraTileX
     LDA World1NametableX
     AND #$01
-    JSR Bank0_Func_A50A
+    JSR World1_BuildColumnAttributeUpdate
     JMP Bank0_Label_A3D4
 
-Bank0_Func_A42F:
+World1_TryScrollCameraDown:
     LDA World1CameraTileY
     CMP #$E2
     BNE Bank0_Label_A43C
@@ -149,7 +149,7 @@ Bank0_Label_A451:
     CLC
     ADC #$1E
     TAY
-    JSR Bank0_Func_A5CF
+    JSR World1_BuildRowTileUpdate
     JMP Bank0_Label_A476
 
 Bank0_Label_A463:
@@ -162,20 +162,20 @@ Bank0_Label_A463:
     CLC
     ADC #$1E
     TAY
-    JSR Bank0_Func_A60B
+    JSR World1_BuildRowAttributeUpdate
 
 Bank0_Label_A476:
-    LDA a:$025F
+    LDA a:World1EdgeUpdateQueue
     ASL A
     ASL A
     ASL A
     ASL A
     ORA #$02
-    STA a:$025F
+    STA a:World1EdgeUpdateQueue
     RTS
     .byte $60
 
-Bank0_Func_A484:
+World1_TryScrollCameraUp:
     LDA World1CameraTileY
     BNE Bank0_Label_A48F
     LDA PpuScrollYShadow
@@ -206,7 +206,7 @@ Bank0_Label_A4A6:
     BNE Bank0_Label_A4B4
     LDX World1CameraTileX
     LDY World1CameraTileY
-    JSR Bank0_Func_A5CF
+    JSR World1_BuildRowTileUpdate
     JMP Bank0_Label_A476
 
 Bank0_Label_A4B4:
@@ -216,17 +216,17 @@ Bank0_Label_A4B4:
     BNE Bank0_Label_A48E
     LDX World1CameraTileX
     LDY World1CameraTileY
-    JSR Bank0_Func_A60B
+    JSR World1_BuildRowAttributeUpdate
     JMP Bank0_Label_A476
 
-Bank0_Func_A4C6:
+World1_BuildColumnTileUpdate:
     PHA
     JSR World1_LookupMapTile
     LDX #$00
 
 Bank0_Label_A4CC:
     JSR World1_ReadMapTileAndStepDown
-    STA a:$0233,X
+    STA a:World1ColumnTileData,X
     INX
     CPX #$1E
     BNE Bank0_Label_A4CC
@@ -240,21 +240,21 @@ Bank0_Label_A4CC:
 
 Bank0_Label_A4E3:
     AND #$F8
-    STA a:$0231
+    STA a:World1ColumnTilePpuAddress
     PLA
-    ASL a:$0231
+    ASL a:World1ColumnTilePpuAddress
     ROL A
-    ASL a:$0231
+    ASL a:World1ColumnTilePpuAddress
     ROL A
     ORA #$20
-    STA a:$0232
+    STA a:World1ColumnTilePpuAddress+$01
     LDA PpuScrollXShadow
     LSR A
     LSR A
     LSR A
-    ORA a:$0231
-    STA a:$0231
-    LDA a:$0230
+    ORA a:World1ColumnTilePpuAddress
+    STA a:World1ColumnTilePpuAddress
+    LDA a:World1ColumnUpdateFlags
     ORA #$01
-    STA a:$0230
+    STA a:World1ColumnUpdateFlags
     RTS

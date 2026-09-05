@@ -109,6 +109,20 @@ World1PlacementScanPointer = $0091
 World1PlacementXCell = $0093
 World1PlacementYCell = $0094
 
+; World 1 map-streaming PPU packets
+World1ColumnUpdateFlags = $0230
+World1ColumnTilePpuAddress = $0231
+World1ColumnTileData = $0233
+World1ColumnAttributePpuAddress = $0253
+World1ColumnAttributeData = $0255
+World1ColumnAddressScratch = $025E
+World1EdgeUpdateQueue = $025F
+World1RowUpdateFlags = $0260
+World1RowTilePpuAddress = $0261
+World1RowTileData = $0263
+World1RowAttributePpuAddress = $0284
+World1RowAttributeData = $0286
+
 ScoreDigitsCurrent     = $0290
 ScoreDigitsWorking     = $0298
 

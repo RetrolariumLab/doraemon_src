@@ -61,7 +61,7 @@ Bank0_Label_D3CB:
     LDA #$02
     STA $29
     JSR Bank0_Func_83BD
-    JSR Bank0_Func_A7DB
+    JSR World1_PrefillMapViewport
     JSR Bank0_Func_9535
     JSR Bank0_Func_843B
     JSR Bank0_Func_95ED
@@ -81,7 +81,7 @@ Bank0_Label_D429:
     JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
-    JSR Bank0_Func_87F8
+    JSR World1_CullOffscreenEntities
     JSR World1_CommitScoreAndCheckExtraLife
     LDA PpuScrollYShadow
     AND #$07
@@ -138,7 +138,7 @@ Bank0_Label_D498:
     DEC $89
 
 Bank0_Label_D4AD:
-    JSR Bank0_Func_A484
+    JSR World1_TryScrollCameraUp
     DEC $8C
     BNE Bank0_Label_D498
     BEQ Bank0_Label_D4E3
@@ -170,7 +170,7 @@ Bank0_Label_D4C9:
     INC $89
 
 Bank0_Label_D4DC:
-    JSR Bank0_Func_A42F
+    JSR World1_TryScrollCameraDown
     DEC $8C
     BNE Bank0_Label_D4C9
 
@@ -179,7 +179,7 @@ Bank0_Label_D4E3:
     CLC
     ADC World1ScreenDeltaY
     STA World1PlayerY
-    JSR Bank0_Func_8750
+    JSR World1_ApplyCameraDeltaToEntities
     RTS
 
 Bank0_Func_D4EE:
@@ -243,7 +243,7 @@ Bank0_Label_D560:
     JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
-    JSR Bank0_Func_87F8
+    JSR World1_CullOffscreenEntities
     JSR World1_CommitScoreAndCheckExtraLife
     LDA World1PlayerDamageState
     BMI Bank0_Label_D594
@@ -286,7 +286,7 @@ Bank0_Label_D5B2:
     JSR Bank0_Func_9201
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
-    JSR Bank0_Func_87F8
+    JSR World1_CullOffscreenEntities
     JSR World1_CommitScoreAndCheckExtraLife
     JSR Bank0_Func_D67A
     LDA a:World1EntityType

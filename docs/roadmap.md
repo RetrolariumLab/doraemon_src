@@ -105,7 +105,15 @@ cross-references keep this milestone planned while RAM/object work is active.
 ### 7. Rendering, graphics, and text - Planned
 
 Recover PPU update paths, palettes, sprites/metasprites, CHR ownership, title,
-HUD, dialogue, item names, and ending presentation. World 2's nine palette
+HUD, dialogue, item names, and ending presentation. World 1's complete
+row/column map-streaming path is now exact: two packet families own 92 RAM
+bytes, six producer/consumer routines, 1,013 routine bytes, and a complete
+20-call graph. Its four bounded directional camera routines, 325 routine
+bytes, eight state bytes, pixel/coarse-coordinate rules, and complete 16-call
+graph are also exact. Player-threshold tracking, all 48 entity coordinate
+projections, packed high-bit carry handling, offscreen culling, and spawn-bit
+release are pinned across another 326 routine bytes and 13 direct calls. World
+2's nine palette
 sets, background and sprite upload paths, stage palette commands, three chapter
 selector pairs, and deliberate code/data overlap are now exact and losslessly
 editable. Its 58 fixed two-by-two metasprites, 36 OAM attribute values, CHR

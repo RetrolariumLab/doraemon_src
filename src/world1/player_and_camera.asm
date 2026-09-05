@@ -255,36 +255,36 @@ Bank0_Func_86F8:
 Bank0_Label_8705:
     RTS
 
-Bank0_Func_8706:
+World1_UpdateCameraFromPlayer:
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
     LDA World1PlayerX
     CMP #$50
     BCS Bank0_Label_871B
-    JSR Bank0_Func_A3E1
-    JSR Bank0_Func_A3E1
+    JSR World1_TryScrollCameraLeft
+    JSR World1_TryScrollCameraLeft
     JMP Bank0_Label_8725
 
 Bank0_Label_871B:
     CMP #$A0
     BCC Bank0_Label_8725
-    JSR Bank0_Func_A381
-    JSR Bank0_Func_A381
+    JSR World1_TryScrollCameraRight
+    JSR World1_TryScrollCameraRight
 
 Bank0_Label_8725:
     LDA World1PlayerY
     CMP #$48
     BCS Bank0_Label_8734
-    JSR Bank0_Func_A484
-    JSR Bank0_Func_A484
+    JSR World1_TryScrollCameraUp
+    JSR World1_TryScrollCameraUp
     JMP Bank0_Label_873E
 
 Bank0_Label_8734:
     CMP #$90
     BCC Bank0_Label_873E
-    JSR Bank0_Func_A42F
-    JSR Bank0_Func_A42F
+    JSR World1_TryScrollCameraDown
+    JSR World1_TryScrollCameraDown
 
 Bank0_Label_873E:
     LDA World1PlayerX
@@ -295,10 +295,10 @@ Bank0_Label_873E:
     CLC
     ADC World1ScreenDeltaY
     STA World1PlayerY
-    JSR Bank0_Func_8750
+    JSR World1_ApplyCameraDeltaToEntities
     RTS
 
-Bank0_Func_8750:
+World1_ApplyCameraDeltaToEntities:
     LDY #$2F
     LDA World1ScreenDeltaX
     BEQ Bank0_Label_87A2
@@ -352,7 +352,7 @@ Bank0_Label_879F:
 Bank0_Label_87A2:
     LDY #$2F
     LDA World1ScreenDeltaY
-    BEQ Bank0_Func_87F8
+    BEQ World1_CullOffscreenEntities
     BMI Bank0_Label_87D2
 
 Bank0_Label_87AA:
@@ -377,7 +377,7 @@ Bank0_Label_87AA:
 Bank0_Label_87CD:
     DEY
     BPL Bank0_Label_87AA
-    BMI Bank0_Func_87F8
+    BMI World1_CullOffscreenEntities
 
 Bank0_Label_87D2:
     LDA a:World1EntityType,Y
@@ -402,7 +402,7 @@ Bank0_Label_87F5:
     DEY
     BPL Bank0_Label_87D2
 
-Bank0_Func_87F8:
+World1_CullOffscreenEntities:
     LDY #$2F
 
 Bank0_Label_87FA:

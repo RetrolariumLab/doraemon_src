@@ -85,6 +85,20 @@ scroll shadows into the latch for the following frame. Horizontal byte wrap
 toggles `World1NametableX`, which supplies both `PpuCtrlShadow` bit 0 and the
 nametable selector used by the edge-streaming address builders.
 
+The four directional entry points are `World1_TryScrollCameraRight`,
+`World1_TryScrollCameraLeft`, `World1_TryScrollCameraDown`, and
+`World1_TryScrollCameraUp`. Together they own 325 bytes and have 16 exhaustive
+direct callsites. Their exact bounds, wrap behavior, packet phases, routine
+bodies, and call graph are documented in `docs/world1_camera.md` and enforced
+by the release gate.
+
+`World1_UpdateCameraFromPlayer` applies the accumulated delta back to the
+player, then `World1_ApplyCameraDeltaToEntities` propagates it through all 48
+entity slots. `World1_CullOffscreenEntities` removes slots beyond the retained
+viewport margins and releases their source-map spawn bits. The three routines,
+their 13 direct calls, and their full coordinate ABI are documented in
+`docs/world1_camera_entities.md`.
+
 ## World 1 pseudorandom state
 
 | Symbol | Address | Size | Role |
@@ -115,6 +129,29 @@ corresponding CHR tile. Horizontal and vertical iterator entries propagate
 cursor carries across the small-block, big-block, and map levels. The exact
 field geometry, eight entry points, 34 direct calls, and four city/underground
 map selections are machine-validated. See `docs/world1_map_decoder.md`.
+
+## World 1 map-streaming PPU packets
+
+| Symbol | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World1ColumnUpdateFlags` | `$0230` | 1 | Pending tile/attribute halves of the vertical-column packet |
+| `World1ColumnTilePpuAddress` | `$0231` | 2 | Little-endian tile destination |
+| `World1ColumnTileData` | `$0233` | 30 | Vertical edge CHR-tile indexes |
+| `World1ColumnAttributePpuAddress` | `$0253` | 2 | Little-endian attribute destination |
+| `World1ColumnAttributeData` | `$0255` | 8 | Vertical edge packed attributes |
+| `World1ColumnAddressScratch` | `$025E` | 1 | Intermediate for the vertical nametable wrap count |
+| `World1EdgeUpdateQueue` | `$025F` | 1 | Two 4-bit entries: column 1 or row 2 |
+| `World1RowUpdateFlags` | `$0260` | 1 | Pending tile/attribute halves of the horizontal-row packet |
+| `World1RowTilePpuAddress` | `$0261` | 2 | Little-endian tile destination |
+| `World1RowTileData` | `$0263` | 33 | Horizontal edge CHR-tile indexes |
+| `World1RowAttributePpuAddress` | `$0284` | 2 | Little-endian attribute destination |
+| `World1RowAttributeData` | `$0286` | 9 | Horizontal edge packed attributes |
+
+The map decoder populates these buffers as camera coordinates cross tile and
+attribute phases. NMI drains at most the selected edge packet while preserving
+an independently pending tile or attribute half. Exact routine bodies, packet
+sizes, flags, queue capacity, and all direct calls are documented in
+`docs/world1_ppu_streaming.md` and enforced by the release gate.
 
 ## Shared rendering and score state
 

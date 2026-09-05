@@ -174,7 +174,7 @@ Bank0_Label_CCC8:
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
-    JSR Bank0_Func_8706
+    JSR World1_UpdateCameraFromPlayer
     LDA World1ScreenDeltaX
     ORA World1ScreenDeltaY
     BNE Bank0_Label_CCC8
@@ -270,7 +270,7 @@ Bank0_Label_CD42:
     STA World1PlayerDirection
     JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_80DA
-    JSR Bank0_Func_A7DB
+    JSR World1_PrefillMapViewport
     JSR Bank0_Func_843B
     JSR Bank0_Func_95ED
     LDX #$0A

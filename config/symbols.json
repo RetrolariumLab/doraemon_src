@@ -589,6 +589,72 @@
     },
     {
       "bank": 0,
+      "address": "0x8706",
+      "name": "World1_UpdateCameraFromPlayer",
+      "evidence": "two-pixel-camera-tracking-from-player-screen-thresholds"
+    },
+    {
+      "bank": 0,
+      "address": "0x8750",
+      "name": "World1_ApplyCameraDeltaToEntities",
+      "evidence": "applies-signed-camera-delta-to-all-48-entity-coordinates"
+    },
+    {
+      "bank": 0,
+      "address": "0x87F8",
+      "name": "World1_CullOffscreenEntities",
+      "evidence": "culls-entities-outside-page-and-margin-window-and-releases-map-spawns"
+    },
+    {
+      "bank": 0,
+      "address": "0xA381",
+      "name": "World1_TryScrollCameraRight",
+      "evidence": "bounded-rightward-pixel-scroll-and-column-edge-stream-producer"
+    },
+    {
+      "bank": 0,
+      "address": "0xA3E1",
+      "name": "World1_TryScrollCameraLeft",
+      "evidence": "bounded-leftward-pixel-scroll-and-column-edge-stream-producer"
+    },
+    {
+      "bank": 0,
+      "address": "0xA42F",
+      "name": "World1_TryScrollCameraDown",
+      "evidence": "bounded-downward-pixel-scroll-and-row-edge-stream-producer"
+    },
+    {
+      "bank": 0,
+      "address": "0xA484",
+      "name": "World1_TryScrollCameraUp",
+      "evidence": "bounded-upward-pixel-scroll-and-row-edge-stream-producer"
+    },
+    {
+      "bank": 0,
+      "address": "0xA4C6",
+      "name": "World1_BuildColumnTileUpdate",
+      "evidence": "thirty-tile-vertical-nametable-edge-packet-producer"
+    },
+    {
+      "bank": 0,
+      "address": "0xA50A",
+      "name": "World1_BuildColumnAttributeUpdate",
+      "evidence": "eight-byte-vertical-attribute-edge-packet-producer"
+    },
+    {
+      "bank": 0,
+      "address": "0xA5CF",
+      "name": "World1_BuildRowTileUpdate",
+      "evidence": "thirty-three-tile-horizontal-nametable-edge-packet-producer"
+    },
+    {
+      "bank": 0,
+      "address": "0xA60B",
+      "name": "World1_BuildRowAttributeUpdate",
+      "evidence": "nine-byte-horizontal-attribute-edge-packet-producer"
+    },
+    {
+      "bank": 0,
       "address": "0xA6A7",
       "name": "World1_LookupMapTile",
       "evidence": "xy-world-cell-to-map-big-block-small-block-and-chr-tile-hierarchy-lookup"
@@ -634,6 +700,18 @@
       "address": "0xA7B7",
       "name": "World1_SelectBigBlock",
       "evidence": "multiplies-big-block-id-by-four-and-builds-pointer-from-aeef-table-base"
+    },
+    {
+      "bank": 0,
+      "address": "0xA7DB",
+      "name": "World1_PrefillMapViewport",
+      "evidence": "152-iteration-two-pixel-prefill-that-builds-and-drains-map-edge-packets"
+    },
+    {
+      "bank": 0,
+      "address": "0xA87E",
+      "name": "World1_DrainMapPpuUpdates",
+      "evidence": "two-nibble-edge-queue-consumer-that-writes-row-and-column-packets-to-ppu"
     },
     {
       "bank": 0,
@@ -4440,6 +4518,110 @@
         0
       ],
       "evidence": "placement-record-byte-one-retained-for-materialization"
+    },
+    {
+      "address": "0x0230",
+      "name": "World1ColumnUpdateFlags",
+      "banks": [
+        0
+      ],
+      "evidence": "bit-zero-marks-thirty-tile-column-and-bit-one-marks-eight-byte-attribute-column"
+    },
+    {
+      "address": "0x0231",
+      "name": "World1ColumnTilePpuAddress",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "little-endian-start-address-for-vertical-thirty-tile-ppu-write"
+    },
+    {
+      "address": "0x0233",
+      "name": "World1ColumnTileData",
+      "size": 30,
+      "banks": [
+        0
+      ],
+      "evidence": "thirty-map-decoder-tiles-consumed-with-ppu-increment-thirty-two"
+    },
+    {
+      "address": "0x0253",
+      "name": "World1ColumnAttributePpuAddress",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "little-endian-base-address-for-eight-attribute-column-writes"
+    },
+    {
+      "address": "0x0255",
+      "name": "World1ColumnAttributeData",
+      "size": 8,
+      "banks": [
+        0
+      ],
+      "evidence": "eight-cached-attribute-bytes-written-at-ppu-address-stride-eight"
+    },
+    {
+      "address": "0x025E",
+      "name": "World1ColumnAddressScratch",
+      "banks": [
+        0
+      ],
+      "evidence": "rotated-column-nametable-address-intermediate-used-by-wrap-count-calculation"
+    },
+    {
+      "address": "0x025F",
+      "name": "World1EdgeUpdateQueue",
+      "banks": [
+        0
+      ],
+      "evidence": "two-four-bit-entries-encoding-column-as-one-and-row-as-two"
+    },
+    {
+      "address": "0x0260",
+      "name": "World1RowUpdateFlags",
+      "banks": [
+        0
+      ],
+      "evidence": "bit-zero-marks-thirty-three-tile-row-and-bit-one-marks-nine-byte-attribute-row"
+    },
+    {
+      "address": "0x0261",
+      "name": "World1RowTilePpuAddress",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "little-endian-start-address-for-horizontal-thirty-three-tile-ppu-write"
+    },
+    {
+      "address": "0x0263",
+      "name": "World1RowTileData",
+      "size": 33,
+      "banks": [
+        0
+      ],
+      "evidence": "thirty-three-map-decoder-tiles-consumed-with-ppu-increment-one"
+    },
+    {
+      "address": "0x0284",
+      "name": "World1RowAttributePpuAddress",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "little-endian-start-address-for-horizontal-nine-byte-attribute-write"
+    },
+    {
+      "address": "0x0286",
+      "name": "World1RowAttributeData",
+      "size": 9,
+      "banks": [
+        0
+      ],
+      "evidence": "nine-cached-attribute-bytes-consumed-across-horizontal-nametable-boundary"
     },
     {
       "address": "0x0290",

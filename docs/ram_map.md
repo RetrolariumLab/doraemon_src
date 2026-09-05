@@ -28,6 +28,7 @@
 | `$0075-$007F` | 11 | World 1 player state | X/Y, metasprite, render flags, damage/death state, animation divider, weapon tier, side-view airborne/velocity/subpixel state, and direction |
 | `$00A8` | 1 | World 3 punishment dorayaki remaining | starts at 20 and controls early exit |
 | `$00AB-$00C7` | 29 | World 3 transient scheduler | four type/count/delay/completion channels, prescaler phases, reload values, and scratch state |
+| `$0230-$028E` | 92 of 95 | World 1 map-streaming packets | column and row tile/attribute buffers, pending flags, wrap scratch, and two-entry nibble queue |
 | `$0290-$0295` | 6 | current score digits | decimal compare/copy loop |
 | `$0298-$029D` | 6 | working score digits | decimal carry loop |
 | `$0400-$066F` | 624 | World 1 entity storage | complete 13-column, 48-slot structure-of-arrays grid with class-specific behavior overlays |

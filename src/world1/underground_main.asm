@@ -76,7 +76,7 @@ Bank0_Label_CDE3:
     STA World1ObjectPlacementList+$01
     JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_83BD
-    JSR Bank0_Func_A7DB
+    JSR World1_PrefillMapViewport
     JSR Bank0_Func_9535
     JSR Bank0_Func_95ED
     LDX #$7F
@@ -150,7 +150,7 @@ Bank0_Label_CEC2:
     STA World1PlayerY
     JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_9614
-    JSR Bank0_Func_A7DB
+    JSR World1_PrefillMapViewport
     JSR Bank0_Func_95ED
     JMP Bank0_Label_CE55
 
@@ -168,7 +168,7 @@ Bank0_Label_CEE5:
     STA World1PlayerY
     JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_9614
-    JSR Bank0_Func_A7DB
+    JSR World1_PrefillMapViewport
     JSR Bank0_Func_95ED
     JMP Bank0_Label_CE55
 
@@ -203,7 +203,7 @@ Bank0_Label_CF24:
     DEC $89
 
 Bank0_Label_CF39:
-    JSR Bank0_Func_A3E1
+    JSR World1_TryScrollCameraLeft
     DEC $8C
     BNE Bank0_Label_CF24
     BEQ Bank0_Label_CF6F
@@ -235,7 +235,7 @@ Bank0_Label_CF55:
     INC $89
 
 Bank0_Label_CF68:
-    JSR Bank0_Func_A381
+    JSR World1_TryScrollCameraRight
     DEC $8C
     BNE Bank0_Label_CF55
 
@@ -244,7 +244,7 @@ Bank0_Label_CF6F:
     CLC
     ADC World1ScreenDeltaX
     STA World1PlayerX
-    JSR Bank0_Func_8750
+    JSR World1_ApplyCameraDeltaToEntities
     RTS
 
 Bank0_Func_CF7A:
