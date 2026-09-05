@@ -56,10 +56,10 @@ World1_Audio_ResetChannels:
 
 Bank0_Label_E9EE:
     LDX #$00
-    JSR Bank0_Func_EAC0
+    JSR World1_Music_UpdateVolumeEnvelope
     INX
-    JSR Bank0_Func_EAC0
+    JSR World1_Music_UpdateVolumeEnvelope
     INX
     INX
-    JMP Bank0_Func_EAC0
+    JMP World1_Music_UpdateVolumeEnvelope
     .byte $60

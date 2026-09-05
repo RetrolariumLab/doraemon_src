@@ -14,7 +14,7 @@ Bank2_Func_C01E:
     LDX #$05
 
 Bank2_Label_C024:
-    STY a:$02A4
+    STY a:AudioEffectTimers+$01
     STA a:$02A7
     STX a:$02A9
     LDA #$01
@@ -24,7 +24,7 @@ Bank2_Label_C024:
 
 Bank2_Func_C038:
     LDA #$08
-    STA a:$02A6
+    STA a:AudioEffectTimers+$03
     LDA #$01
     STA a:APU_NOISE_VOL
     LDA #$0A
@@ -38,9 +38,9 @@ Bank2_Label_C04C:
 Bank2_Func_C04D:
     LDA #$48
     STA a:AudioEffectTimers
-    STA a:$02A4
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$01
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     LDA #$01
     STA a:$02A7
     LDA #$04
@@ -162,7 +162,7 @@ Bank2_Func_C10E:
 
 Bank2_Func_C126:
     LDA #$0A
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     STA a:$02A7
     LDA #$42
     LDX #$00
@@ -173,7 +173,7 @@ Bank2_Func_C126:
 
 Bank2_Func_C13C:
     LDA #$04
-    STA a:$02A5
+    STA a:AudioEffectTimers+$02
     STA a:$02A7
     STA a:$02A2
     LDA #$84
@@ -185,7 +185,7 @@ Bank2_Func_C13C:
 
 Bank2_Func_C155:
     LDA #$10
-    STA a:$02A6
+    STA a:AudioEffectTimers+$03
     STA a:$02A8
     LDA #$0C
     STA a:$02A7
@@ -229,9 +229,9 @@ Bank2_Func_C192:
     BEQ Bank2_Label_C181
     STA a:$02A7
     STA a:AudioEffectTimers
-    STA a:$02A4
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$01
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     JSR Bank2_Func_C0EE
     LDX #$00
     JSR Bank2_Func_C1B9
@@ -272,7 +272,7 @@ Bank2_Label_C1E4:
 
 Bank2_Func_C1EB:
     LDA #$18
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$10
     STA a:$02A7
     STA a:$02A2
@@ -285,7 +285,7 @@ Bank2_Func_C1EB:
 
 Bank2_Func_C206:
     LDA #$08
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     STA a:$02A7
     LDA #$C0
     LDX #$83
@@ -296,7 +296,7 @@ Bank2_Func_C206:
 
 Bank2_Func_C21C:
     LDA #$18
-    STA a:$02A6
+    STA a:AudioEffectTimers+$03
     LDA #$04
     STA a:APU_NOISE_LO
     LDA #$0F
@@ -338,7 +338,7 @@ Bank2_Func_C264:
     LDA #$03
     STA a:$02A8
     LDA #$FF
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$00
     STA a:$02A7
 
@@ -348,7 +348,7 @@ Bank2_Func_C273:
     LDA a:$02A8
     BNE Bank2_Label_C285
     LDA #$00
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     JMP World3_Audio_StopCurrentEffect
 
 Bank2_Label_C285:
@@ -374,7 +374,7 @@ Bank2_Func_C2A7:
     LDX #$03
 
 Bank2_Label_C2AD:
-    STY a:$02A4
+    STY a:AudioEffectTimers+$01
     STA a:$02A7
     STX a:$02A9
     LDA #$01
@@ -414,7 +414,7 @@ Bank2_Label_C2E7:
 
 Bank2_Func_C334:
     LDA #$10
-    STA a:$02A5
+    STA a:AudioEffectTimers+$02
     LDA #$40
     STA a:$02A7
     LDA #$01
@@ -440,7 +440,7 @@ Bank2_Label_C364:
 
 Bank2_Func_C365:
     LDA #$0E
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$06
     STA a:$02A7
     STA a:$02A8
@@ -481,7 +481,7 @@ Bank2_Func_C3A6:
 
 Bank2_Func_C3AF:
     LDA #$20
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$1F
     LDX #$85
     JSR World3_Apu_WritePulse2ControlSweep

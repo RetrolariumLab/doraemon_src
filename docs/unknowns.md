@@ -122,8 +122,12 @@
 - Known: all four banks carry independently validated local drivers. Their
   request limits, effect RTS tables, 17-command dispatch tables, and accepted
   track counts are recorded in `config/audio_dispatch.json`.
-- Unknown: semantic names for individual effects, music commands, track headers,
-  and stream fields beyond their proven control-flow roles.
+- Known: all seventeen music commands now have structural semantics, operand
+  widths, 68 exact bank-local targets, and a shared 92-byte channel/loop/call/
+  envelope RAM ABI; see `config/audio_music.json`.
+- Unknown: semantic identities for individual effects, complete track-header
+  and reachable-stream boundaries, lossless stream authoring, and exact effect
+  versus music APU arbitration.
 
 ## Out-of-scope reference: Revision A
 

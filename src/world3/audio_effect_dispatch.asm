@@ -85,9 +85,9 @@ Bank2_Label_BEF5:
     TAX
     LDA #$00
     STA a:AudioEffectTimers
-    STA a:$02A4
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$01
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     BEQ Bank2_Label_BF11
 
 Bank2_Label_BF0C:
@@ -121,9 +121,9 @@ World3_Audio_ResetEffects:
     STA a:$02A2
     STA a:$4011
     STA a:AudioEffectTimers
-    STA a:$02A4
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$01
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     STA a:APU_TRI_LINEAR
     STA a:APU_NOISE_VOL
     LDA #$18
@@ -137,7 +137,7 @@ World3_Audio_ResetEffects:
 
 Bank2_Func_BF59:
     LDA #$18
-    STA a:$02A6
+    STA a:AudioEffectTimers+$03
     LDA #$00
     STA a:APU_NOISE_VOL
     LDA #$0C
@@ -215,8 +215,8 @@ Bank2_Label_BFCF:
 
 Bank2_Func_BFF4:
     LDA #$04
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     STA a:$02A7
     LDA #$1F
     STA a:APU_NOISE_VOL

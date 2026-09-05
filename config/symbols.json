@@ -1001,6 +1001,12 @@
     },
     {
       "bank": 0,
+      "address": "0xEAC0",
+      "name": "World1_Music_UpdateVolumeEnvelope",
+      "evidence": "signed-per-frame-envelope-step-and-apu-volume-shadow-update"
+    },
+    {
+      "bank": 0,
       "address": "0xEB0C",
       "name": "World1_Music_UpdateChannelStream",
       "evidence": "per-channel-stream-byte-dispatch"
@@ -1014,103 +1020,115 @@
     {
       "bank": 0,
       "address": "0xEB65",
-      "name": "World1_MusicCommand_F0",
+      "name": "World1_MusicCommand_LoadExtendedNote",
       "evidence": "music-command-rts-slot-15"
     },
     {
       "bank": 0,
+      "address": "0xEC05",
+      "name": "World1_Music_HandleNoteOrRest",
+      "evidence": "tonal-noise-note-rest-and-duration-event-handler"
+    },
+    {
+      "bank": 0,
       "address": "0xEC9E",
-      "name": "World1_MusicCommand_FF",
+      "name": "World1_MusicCommand_EndChannel",
       "evidence": "music-command-rts-slot-0"
     },
     {
       "bank": 0,
       "address": "0xECB5",
-      "name": "World1_MusicCommand_FD",
+      "name": "World1_MusicCommand_BeginCountedLoop",
       "evidence": "music-command-rts-slot-2"
     },
     {
       "bank": 0,
       "address": "0xECD3",
-      "name": "World1_MusicCommand_FB",
+      "name": "World1_MusicCommand_SelectLoopExit",
       "evidence": "music-command-rts-slot-4"
     },
     {
       "bank": 0,
       "address": "0xECEE",
-      "name": "World1_MusicCommand_FC",
+      "name": "World1_MusicCommand_RepeatCountedLoop",
       "evidence": "music-command-rts-slot-3"
     },
     {
       "bank": 0,
       "address": "0xED16",
-      "name": "World1_MusicCommand_FA",
+      "name": "World1_MusicCommand_EnableFixedPitch",
       "evidence": "music-command-rts-slot-5"
     },
     {
       "bank": 0,
       "address": "0xED2C",
-      "name": "World1_MusicCommand_F9",
+      "name": "World1_MusicCommand_DisableFixedPitch",
       "evidence": "music-command-rts-slot-6"
     },
     {
       "bank": 0,
       "address": "0xED3F",
-      "name": "World1_MusicCommand_F8",
+      "name": "World1_MusicCommand_SetDutyCycle",
       "evidence": "music-command-rts-slot-7"
     },
     {
       "bank": 0,
       "address": "0xED64",
-      "name": "World1_MusicCommand_F7",
+      "name": "World1_MusicCommand_SaveStreamPosition",
       "evidence": "music-command-rts-slot-8"
     },
     {
       "bank": 0,
+      "address": "0xED6A",
+      "name": "World1_Music_SaveStreamPosition",
+      "evidence": "copies-active-channel-stream-cursor-to-header-pointer-slot"
+    },
+    {
+      "bank": 0,
       "address": "0xED7A",
-      "name": "World1_MusicCommand_FE",
+      "name": "World1_MusicCommand_RestoreStreamPosition",
       "evidence": "music-command-rts-slot-1"
     },
     {
       "bank": 0,
       "address": "0xED8C",
-      "name": "World1_MusicCommand_F1",
+      "name": "World1_MusicCommand_SelectTrackChannelStream",
       "evidence": "music-command-rts-slot-14"
     },
     {
       "bank": 0,
       "address": "0xEDAC",
-      "name": "World1_MusicCommand_F6",
+      "name": "World1_MusicCommand_CallStream",
       "evidence": "music-command-rts-slot-9"
     },
     {
       "bank": 0,
       "address": "0xEDCC",
-      "name": "World1_MusicCommand_F3",
+      "name": "World1_MusicCommand_ReturnFromStream",
       "evidence": "music-command-rts-slot-12"
     },
     {
       "bank": 0,
       "address": "0xEDDE",
-      "name": "World1_MusicCommand_F4",
+      "name": "World1_MusicCommand_SetChannelPitchOffset",
       "evidence": "music-command-rts-slot-11"
     },
     {
       "bank": 0,
       "address": "0xEDEE",
-      "name": "World1_MusicCommand_F5",
+      "name": "World1_MusicCommand_SetGlobalPitchOffset",
       "evidence": "music-command-rts-slot-10"
     },
     {
       "bank": 0,
       "address": "0xEDFB",
-      "name": "World1_MusicCommand_F2",
+      "name": "World1_MusicCommand_ResetLengthBits",
       "evidence": "music-command-rts-slot-13"
     },
     {
       "bank": 0,
       "address": "0xEE03",
-      "name": "World1_MusicCommand_EF",
+      "name": "World1_MusicCommand_SetEnvelopeVolume",
       "evidence": "music-command-rts-slot-16"
     },
     {
@@ -1895,6 +1913,12 @@
     },
     {
       "bank": 1,
+      "address": "0xADA7",
+      "name": "World2_Music_UpdateVolumeEnvelope",
+      "evidence": "signed-per-frame-envelope-step-and-apu-volume-shadow-update"
+    },
+    {
+      "bank": 1,
       "address": "0xADF3",
       "name": "World2_Music_UpdateChannelStream",
       "evidence": "music-stream-command-interpreter"
@@ -1908,103 +1932,115 @@
     {
       "bank": 1,
       "address": "0xAE4C",
-      "name": "World2_MusicCommand_F0",
+      "name": "World2_MusicCommand_LoadExtendedNote",
       "evidence": "music-command-rts-slot-15"
     },
     {
       "bank": 1,
+      "address": "0xAEEC",
+      "name": "World2_Music_HandleNoteOrRest",
+      "evidence": "tonal-noise-note-rest-and-duration-event-handler"
+    },
+    {
+      "bank": 1,
       "address": "0xAF85",
-      "name": "World2_MusicCommand_FF",
+      "name": "World2_MusicCommand_EndChannel",
       "evidence": "music-command-rts-slot-0"
     },
     {
       "bank": 1,
       "address": "0xAF9C",
-      "name": "World2_MusicCommand_FD",
+      "name": "World2_MusicCommand_BeginCountedLoop",
       "evidence": "music-command-rts-slot-2"
     },
     {
       "bank": 1,
       "address": "0xAFBA",
-      "name": "World2_MusicCommand_FB",
+      "name": "World2_MusicCommand_SelectLoopExit",
       "evidence": "music-command-rts-slot-4"
     },
     {
       "bank": 1,
       "address": "0xAFD5",
-      "name": "World2_MusicCommand_FC",
+      "name": "World2_MusicCommand_RepeatCountedLoop",
       "evidence": "music-command-rts-slot-3"
     },
     {
       "bank": 1,
       "address": "0xAFFD",
-      "name": "World2_MusicCommand_FA",
+      "name": "World2_MusicCommand_EnableFixedPitch",
       "evidence": "music-command-rts-slot-5"
     },
     {
       "bank": 1,
       "address": "0xB013",
-      "name": "World2_MusicCommand_F9",
+      "name": "World2_MusicCommand_DisableFixedPitch",
       "evidence": "music-command-rts-slot-6"
     },
     {
       "bank": 1,
       "address": "0xB026",
-      "name": "World2_MusicCommand_F8",
+      "name": "World2_MusicCommand_SetDutyCycle",
       "evidence": "music-command-rts-slot-7"
     },
     {
       "bank": 1,
       "address": "0xB04B",
-      "name": "World2_MusicCommand_F7",
+      "name": "World2_MusicCommand_SaveStreamPosition",
       "evidence": "music-command-rts-slot-8"
     },
     {
       "bank": 1,
+      "address": "0xB051",
+      "name": "World2_Music_SaveStreamPosition",
+      "evidence": "copies-active-channel-stream-cursor-to-header-pointer-slot"
+    },
+    {
+      "bank": 1,
       "address": "0xB061",
-      "name": "World2_MusicCommand_FE",
+      "name": "World2_MusicCommand_RestoreStreamPosition",
       "evidence": "music-command-rts-slot-1"
     },
     {
       "bank": 1,
       "address": "0xB073",
-      "name": "World2_MusicCommand_F1",
+      "name": "World2_MusicCommand_SelectTrackChannelStream",
       "evidence": "music-command-rts-slot-14"
     },
     {
       "bank": 1,
       "address": "0xB093",
-      "name": "World2_MusicCommand_F6",
+      "name": "World2_MusicCommand_CallStream",
       "evidence": "music-command-rts-slot-9"
     },
     {
       "bank": 1,
       "address": "0xB0B3",
-      "name": "World2_MusicCommand_F3",
+      "name": "World2_MusicCommand_ReturnFromStream",
       "evidence": "music-command-rts-slot-12"
     },
     {
       "bank": 1,
       "address": "0xB0C5",
-      "name": "World2_MusicCommand_F4",
+      "name": "World2_MusicCommand_SetChannelPitchOffset",
       "evidence": "music-command-rts-slot-11"
     },
     {
       "bank": 1,
       "address": "0xB0D5",
-      "name": "World2_MusicCommand_F5",
+      "name": "World2_MusicCommand_SetGlobalPitchOffset",
       "evidence": "music-command-rts-slot-10"
     },
     {
       "bank": 1,
       "address": "0xB0E2",
-      "name": "World2_MusicCommand_F2",
+      "name": "World2_MusicCommand_ResetLengthBits",
       "evidence": "music-command-rts-slot-13"
     },
     {
       "bank": 1,
       "address": "0xB0EA",
-      "name": "World2_MusicCommand_EF",
+      "name": "World2_MusicCommand_SetEnvelopeVolume",
       "evidence": "music-command-rts-slot-16"
     },
     {
@@ -3192,6 +3228,12 @@
     },
     {
       "bank": 2,
+      "address": "0xC5B8",
+      "name": "World3_Music_UpdateVolumeEnvelope",
+      "evidence": "signed-per-frame-envelope-step-and-apu-volume-shadow-update"
+    },
+    {
+      "bank": 2,
       "address": "0xC604",
       "name": "World3_Music_UpdateChannelStream",
       "evidence": "per-channel-stream-byte-dispatch"
@@ -3205,103 +3247,115 @@
     {
       "bank": 2,
       "address": "0xC65D",
-      "name": "World3_MusicCommand_F0",
+      "name": "World3_MusicCommand_LoadExtendedNote",
       "evidence": "music-command-rts-slot-15"
     },
     {
       "bank": 2,
+      "address": "0xC6FD",
+      "name": "World3_Music_HandleNoteOrRest",
+      "evidence": "tonal-noise-note-rest-and-duration-event-handler"
+    },
+    {
+      "bank": 2,
       "address": "0xC796",
-      "name": "World3_MusicCommand_FF",
+      "name": "World3_MusicCommand_EndChannel",
       "evidence": "music-command-rts-slot-0"
     },
     {
       "bank": 2,
       "address": "0xC7AD",
-      "name": "World3_MusicCommand_FD",
+      "name": "World3_MusicCommand_BeginCountedLoop",
       "evidence": "music-command-rts-slot-2"
     },
     {
       "bank": 2,
       "address": "0xC7CB",
-      "name": "World3_MusicCommand_FB",
+      "name": "World3_MusicCommand_SelectLoopExit",
       "evidence": "music-command-rts-slot-4"
     },
     {
       "bank": 2,
       "address": "0xC7E6",
-      "name": "World3_MusicCommand_FC",
+      "name": "World3_MusicCommand_RepeatCountedLoop",
       "evidence": "music-command-rts-slot-3"
     },
     {
       "bank": 2,
       "address": "0xC80E",
-      "name": "World3_MusicCommand_FA",
+      "name": "World3_MusicCommand_EnableFixedPitch",
       "evidence": "music-command-rts-slot-5"
     },
     {
       "bank": 2,
       "address": "0xC824",
-      "name": "World3_MusicCommand_F9",
+      "name": "World3_MusicCommand_DisableFixedPitch",
       "evidence": "music-command-rts-slot-6"
     },
     {
       "bank": 2,
       "address": "0xC837",
-      "name": "World3_MusicCommand_F8",
+      "name": "World3_MusicCommand_SetDutyCycle",
       "evidence": "music-command-rts-slot-7"
     },
     {
       "bank": 2,
       "address": "0xC85C",
-      "name": "World3_MusicCommand_F7",
+      "name": "World3_MusicCommand_SaveStreamPosition",
       "evidence": "music-command-rts-slot-8"
     },
     {
       "bank": 2,
+      "address": "0xC862",
+      "name": "World3_Music_SaveStreamPosition",
+      "evidence": "copies-active-channel-stream-cursor-to-header-pointer-slot"
+    },
+    {
+      "bank": 2,
       "address": "0xC872",
-      "name": "World3_MusicCommand_FE",
+      "name": "World3_MusicCommand_RestoreStreamPosition",
       "evidence": "music-command-rts-slot-1"
     },
     {
       "bank": 2,
       "address": "0xC884",
-      "name": "World3_MusicCommand_F1",
+      "name": "World3_MusicCommand_SelectTrackChannelStream",
       "evidence": "music-command-rts-slot-14"
     },
     {
       "bank": 2,
       "address": "0xC8A4",
-      "name": "World3_MusicCommand_F6",
+      "name": "World3_MusicCommand_CallStream",
       "evidence": "music-command-rts-slot-9"
     },
     {
       "bank": 2,
       "address": "0xC8C4",
-      "name": "World3_MusicCommand_F3",
+      "name": "World3_MusicCommand_ReturnFromStream",
       "evidence": "music-command-rts-slot-12"
     },
     {
       "bank": 2,
       "address": "0xC8D6",
-      "name": "World3_MusicCommand_F4",
+      "name": "World3_MusicCommand_SetChannelPitchOffset",
       "evidence": "music-command-rts-slot-11"
     },
     {
       "bank": 2,
       "address": "0xC8E6",
-      "name": "World3_MusicCommand_F5",
+      "name": "World3_MusicCommand_SetGlobalPitchOffset",
       "evidence": "music-command-rts-slot-10"
     },
     {
       "bank": 2,
       "address": "0xC8F3",
-      "name": "World3_MusicCommand_F2",
+      "name": "World3_MusicCommand_ResetLengthBits",
       "evidence": "music-command-rts-slot-13"
     },
     {
       "bank": 2,
       "address": "0xC8FB",
-      "name": "World3_MusicCommand_EF",
+      "name": "World3_MusicCommand_SetEnvelopeVolume",
       "evidence": "music-command-rts-slot-16"
     },
     {
@@ -3631,6 +3685,12 @@
     },
     {
       "bank": 3,
+      "address": "0x9F9B",
+      "name": "Music_UpdateVolumeEnvelope",
+      "evidence": "signed-per-frame-envelope-step-and-apu-volume-shadow-update"
+    },
+    {
+      "bank": 3,
       "address": "0x9FE7",
       "name": "Music_UpdateChannelStream",
       "evidence": "per-channel-stream-byte-dispatch"
@@ -3644,103 +3704,115 @@
     {
       "bank": 3,
       "address": "0xA040",
-      "name": "MusicCommand_F0",
+      "name": "MusicCommand_LoadExtendedNote",
       "evidence": "music-command-rts-slot-15"
     },
     {
       "bank": 3,
+      "address": "0xA0E0",
+      "name": "Music_HandleNoteOrRest",
+      "evidence": "tonal-noise-note-rest-and-duration-event-handler"
+    },
+    {
+      "bank": 3,
       "address": "0xA179",
-      "name": "MusicCommand_FF",
+      "name": "MusicCommand_EndChannel",
       "evidence": "music-command-rts-slot-0"
     },
     {
       "bank": 3,
       "address": "0xA190",
-      "name": "MusicCommand_FD",
+      "name": "MusicCommand_BeginCountedLoop",
       "evidence": "music-command-rts-slot-2"
     },
     {
       "bank": 3,
       "address": "0xA1AE",
-      "name": "MusicCommand_FB",
+      "name": "MusicCommand_SelectLoopExit",
       "evidence": "music-command-rts-slot-4"
     },
     {
       "bank": 3,
       "address": "0xA1C9",
-      "name": "MusicCommand_FC",
+      "name": "MusicCommand_RepeatCountedLoop",
       "evidence": "music-command-rts-slot-3"
     },
     {
       "bank": 3,
       "address": "0xA1F1",
-      "name": "MusicCommand_FA",
+      "name": "MusicCommand_EnableFixedPitch",
       "evidence": "music-command-rts-slot-5"
     },
     {
       "bank": 3,
       "address": "0xA207",
-      "name": "MusicCommand_F9",
+      "name": "MusicCommand_DisableFixedPitch",
       "evidence": "music-command-rts-slot-6"
     },
     {
       "bank": 3,
       "address": "0xA21A",
-      "name": "MusicCommand_F8",
+      "name": "MusicCommand_SetDutyCycle",
       "evidence": "music-command-rts-slot-7"
     },
     {
       "bank": 3,
       "address": "0xA23F",
-      "name": "MusicCommand_F7",
+      "name": "MusicCommand_SaveStreamPosition",
       "evidence": "music-command-rts-slot-8"
     },
     {
       "bank": 3,
+      "address": "0xA245",
+      "name": "Music_SaveStreamPosition",
+      "evidence": "copies-active-channel-stream-cursor-to-header-pointer-slot"
+    },
+    {
+      "bank": 3,
       "address": "0xA255",
-      "name": "MusicCommand_FE",
+      "name": "MusicCommand_RestoreStreamPosition",
       "evidence": "music-command-rts-slot-1"
     },
     {
       "bank": 3,
       "address": "0xA267",
-      "name": "MusicCommand_F1",
+      "name": "MusicCommand_SelectTrackChannelStream",
       "evidence": "music-command-rts-slot-14"
     },
     {
       "bank": 3,
       "address": "0xA287",
-      "name": "MusicCommand_F6",
+      "name": "MusicCommand_CallStream",
       "evidence": "music-command-rts-slot-9"
     },
     {
       "bank": 3,
       "address": "0xA2A7",
-      "name": "MusicCommand_F3",
+      "name": "MusicCommand_ReturnFromStream",
       "evidence": "music-command-rts-slot-12"
     },
     {
       "bank": 3,
       "address": "0xA2B9",
-      "name": "MusicCommand_F4",
+      "name": "MusicCommand_SetChannelPitchOffset",
       "evidence": "music-command-rts-slot-11"
     },
     {
       "bank": 3,
       "address": "0xA2C9",
-      "name": "MusicCommand_F5",
+      "name": "MusicCommand_SetGlobalPitchOffset",
       "evidence": "music-command-rts-slot-10"
     },
     {
       "bank": 3,
       "address": "0xA2D6",
-      "name": "MusicCommand_F2",
+      "name": "MusicCommand_ResetLengthBits",
       "evidence": "music-command-rts-slot-13"
     },
     {
       "bank": 3,
       "address": "0xA2DE",
-      "name": "MusicCommand_EF",
+      "name": "MusicCommand_SetEnvelopeVolume",
       "evidence": "music-command-rts-slot-16"
     },
     {
@@ -3866,6 +3938,12 @@
       "address": "0x002C",
       "name": "PlayerHealthCapacityIndex",
       "evidence": "lower-value-expands-health-meter-and-is-decremented-by-health-capacity-upgrades"
+    },
+    {
+      "address": "0x002F",
+      "name": "AudioStreamPointers",
+      "size": 8,
+      "evidence": "four-little-endian-channel-stream-cursors-advanced-by-all-four-music-drivers"
     },
     {
       "address": "0x0037",
@@ -4898,6 +4976,7 @@
     {
       "address": "0x02A3",
       "name": "AudioEffectTimers",
+      "size": 4,
       "evidence": "four-byte-effect-timer-array"
     },
     {
@@ -4913,17 +4992,113 @@
     {
       "address": "0x02AC",
       "name": "AudioChannelNotes",
+      "size": 4,
       "evidence": "four-channel-current-note-array"
     },
     {
       "address": "0x02B0",
       "name": "AudioChannelDurations",
+      "size": 4,
       "evidence": "four-channel-note-duration-array"
+    },
+    {
+      "address": "0x02B4",
+      "name": "AudioChannelBaseVolumes",
+      "size": 4,
+      "evidence": "four-channel-envelope-base-values-loaded-by-command-ef"
+    },
+    {
+      "address": "0x02B8",
+      "name": "AudioChannelEnvelopeVolumes",
+      "size": 4,
+      "evidence": "four-channel-current-envelope-accumulators-copied-from-base-volume-on-each-note"
+    },
+    {
+      "address": "0x02BC",
+      "name": "AudioChannelEnvelopeSteps",
+      "size": 4,
+      "evidence": "signed-envelope-step-values-applied-each-non-triangle-frame"
+    },
+    {
+      "address": "0x02C0",
+      "name": "AudioChannelFixedPitches",
+      "size": 4,
+      "evidence": "four-channel-pitch-values-used-while-command-fa-mode-is-active"
+    },
+    {
+      "address": "0x02C4",
+      "name": "AudioLoopStartPointers",
+      "size": 8,
+      "evidence": "four-little-endian-stream-cursors-saved-by-command-fd-and-restored-by-fc"
+    },
+    {
+      "address": "0x02CC",
+      "name": "AudioLoopExitPointers",
+      "size": 8,
+      "evidence": "four-little-endian-post-loop-cursors-saved-by-fc-and-selected-by-fb"
+    },
+    {
+      "address": "0x02D4",
+      "name": "AudioLoopRepeatLimits",
+      "size": 4,
+      "evidence": "four-channel-command-fd-repeat-limit-operands"
+    },
+    {
+      "address": "0x02D8",
+      "name": "AudioLoopIterationCounts",
+      "size": 4,
+      "evidence": "four-channel-command-fc-loop-iteration-counters"
     },
     {
       "address": "0x02DC",
       "name": "AudioStreamHeaderPointers",
+      "size": 8,
       "evidence": "eight-byte-track-header-copy"
+    },
+    {
+      "address": "0x02E4",
+      "name": "AudioStreamCallReturnPointers",
+      "size": 8,
+      "evidence": "four-little-endian-return-cursors-saved-by-command-f6-and-restored-by-f3"
+    },
+    {
+      "address": "0x02EC",
+      "name": "AudioChannelPitchOffsets",
+      "size": 3,
+      "evidence": "pulse-and-triangle-per-channel-pitch-offsets-written-by-command-f4"
+    },
+    {
+      "address": "0x02EF",
+      "name": "AudioChannelFixedPitchFlags",
+      "size": 4,
+      "evidence": "four-channel-command-fa-fixed-pitch-mode-flags-cleared-by-f9"
+    },
+    {
+      "address": "0x02F3",
+      "name": "AudioChannelControl",
+      "size": 3,
+      "evidence": "pulse-and-triangle-control-shadows-containing-duty-envelope-and-volume-bits"
+    },
+    {
+      "address": "0x02F6",
+      "name": "AudioNoiseControl",
+      "evidence": "noise-channel-control-shadow-consumed-by-note-events"
+    },
+    {
+      "address": "0x02F7",
+      "name": "AudioChannelLengthBits",
+      "size": 4,
+      "evidence": "four-channel-high-timer-length-bit-shadows"
+    },
+    {
+      "address": "0x02FB",
+      "name": "AudioNoisePeriodIndex",
+      "evidence": "high-nibble-noise-note-index-selecting-four-byte-apu-record"
+    },
+    {
+      "address": "0x02FC",
+      "name": "AudioNoiseDuration",
+      "evidence": "low-nibble-noise-note-duration-countdown"
     },
     {
       "address": "0x02FD",

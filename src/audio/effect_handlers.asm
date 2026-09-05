@@ -8,7 +8,7 @@ Bank3_Func_9C1D:
     LDX #$03
 
 Bank3_Label_9C23:
-    STY a:$02A4
+    STY a:AudioEffectTimers+$01
     STA a:$02A7
     STX a:$02A9
     LDA #$01
@@ -48,7 +48,7 @@ Bank3_Label_9C5D:
 
 Bank3_Func_9CAA:
     LDA #$10
-    STA a:$02A5
+    STA a:AudioEffectTimers+$02
     LDA #$40
     STA a:$02A7
     LDA #$01
@@ -74,7 +74,7 @@ Bank3_Label_9CDA:
 
 Bank3_Func_9CDB:
     LDA #$0E
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$06
     STA a:$02A7
     STA a:$02A8
@@ -115,7 +115,7 @@ Bank3_Func_9D1C:
 
 Bank3_Func_9D25:
     LDA #$20
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$1F
     LDX #$85
     JSR Apu_WritePulse2ControlSweep
@@ -298,10 +298,10 @@ Audio_ResetChannels:
 
 Bank3_Label_9EC9:
     LDX #$00
-    JSR Bank3_Func_9F9B
+    JSR Music_UpdateVolumeEnvelope
     INX
-    JSR Bank3_Func_9F9B
+    JSR Music_UpdateVolumeEnvelope
     INX
     INX
-    JMP Bank3_Func_9F9B
+    JMP Music_UpdateVolumeEnvelope
     .byte $60

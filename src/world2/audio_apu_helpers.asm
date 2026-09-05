@@ -54,10 +54,10 @@ World2_Audio_ResetChannels:
 
 Bank1_Label_ACD5:
     LDX #$00
-    JSR Bank1_Func_ADA7
+    JSR World2_Music_UpdateVolumeEnvelope
     INX
-    JSR Bank1_Func_ADA7
+    JSR World2_Music_UpdateVolumeEnvelope
     INX
     INX
-    JMP Bank1_Func_ADA7
+    JMP World2_Music_UpdateVolumeEnvelope
     .byte $60

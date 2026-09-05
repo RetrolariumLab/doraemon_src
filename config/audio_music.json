@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "channel_count": 4,
+  "shared_ram": [
+    {
+      "address": "0x002F",
+      "size": 8,
+      "symbol": "AudioStreamPointers"
+    },
+    {
+      "address": "0x02AC",
+      "size": 4,
+      "symbol": "AudioChannelNotes"
+    },
+    {
+      "address": "0x02B0",
+      "size": 4,
+      "symbol": "AudioChannelDurations"
+    },
+    {
+      "address": "0x02B4",
+      "size": 4,
+      "symbol": "AudioChannelBaseVolumes"
+    },
+    {
+      "address": "0x02B8",
+      "size": 4,
+      "symbol": "AudioChannelEnvelopeVolumes"
+    },
+    {
+      "address": "0x02BC",
+      "size": 4,
+      "symbol": "AudioChannelEnvelopeSteps"
+    },
+    {
+      "address": "0x02C0",
+      "size": 4,
+      "symbol": "AudioChannelFixedPitches"
+    },
+    {
+      "address": "0x02C4",
+      "size": 8,
+      "symbol": "AudioLoopStartPointers"
+    },
+    {
+      "address": "0x02CC",
+      "size": 8,
+      "symbol": "AudioLoopExitPointers"
+    },
+    {
+      "address": "0x02D4",
+      "size": 4,
+      "symbol": "AudioLoopRepeatLimits"
+    },
+    {
+      "address": "0x02D8",
+      "size": 4,
+      "symbol": "AudioLoopIterationCounts"
+    },
+    {
+      "address": "0x02DC",
+      "size": 8,
+      "symbol": "AudioStreamHeaderPointers"
+    },
+    {
+      "address": "0x02E4",
+      "size": 8,
+      "symbol": "AudioStreamCallReturnPointers"
+    },
+    {
+      "address": "0x02EC",
+      "size": 3,
+      "symbol": "AudioChannelPitchOffsets"
+    },
+    {
+      "address": "0x02EF",
+      "size": 4,
+      "symbol": "AudioChannelFixedPitchFlags"
+    },
+    {
+      "address": "0x02F3",
+      "size": 3,
+      "symbol": "AudioChannelControl"
+    },
+    {
+      "address": "0x02F6",
+      "size": 1,
+      "symbol": "AudioNoiseControl"
+    },
+    {
+      "address": "0x02F7",
+      "size": 4,
+      "symbol": "AudioChannelLengthBits"
+    },
+    {
+      "address": "0x02FB",
+      "size": 1,
+      "symbol": "AudioNoisePeriodIndex"
+    },
+    {
+      "address": "0x02FC",
+      "size": 1,
+      "symbol": "AudioNoiseDuration"
+    },
+    {
+      "address": "0x02FD",
+      "size": 1,
+      "symbol": "AudioChannelIndex"
+    },
+    {
+      "address": "0x02FE",
+      "size": 1,
+      "symbol": "AudioEndedChannelCount"
+    },
+    {
+      "address": "0x02FF",
+      "size": 1,
+      "symbol": "AudioWorkByte"
+    }
+  ],
+  "overlaid_ram": [
+    {
+      "address": "0x0046",
+      "size": 3,
+      "role": "global-tonal-channel-pitch-offsets",
+      "reason": "reused-by-chapter-rendering-and-streaming-outside-audio-update"
+    }
+  ],
+  "commands": [
+    {
+      "opcode": "0xFF",
+      "operand_bytes": 0,
+      "name": "EndChannel"
+    },
+    {
+      "opcode": "0xFE",
+      "operand_bytes": 0,
+      "name": "RestoreStreamPosition"
+    },
+    {
+      "opcode": "0xFD",
+      "operand_bytes": 1,
+      "name": "BeginCountedLoop"
+    },
+    {
+      "opcode": "0xFC",
+      "operand_bytes": 0,
+      "name": "RepeatCountedLoop"
+    },
+    {
+      "opcode": "0xFB",
+      "operand_bytes": 1,
+      "name": "SelectLoopExit"
+    },
+    {
+      "opcode": "0xFA",
+      "operand_bytes": 1,
+      "name": "EnableFixedPitch"
+    },
+    {
+      "opcode": "0xF9",
+      "operand_bytes": 0,
+      "name": "DisableFixedPitch"
+    },
+    {
+      "opcode": "0xF8",
+      "operand_bytes": 1,
+      "name": "SetDutyCycle"
+    },
+    {
+      "opcode": "0xF7",
+      "operand_bytes": 0,
+      "name": "SaveStreamPosition"
+    },
+    {
+      "opcode": "0xF6",
+      "operand_bytes": 2,
+      "name": "CallStream"
+    },
+    {
+      "opcode": "0xF5",
+      "operand_bytes": 1,
+      "name": "SetGlobalPitchOffset"
+    },
+    {
+      "opcode": "0xF4",
+      "operand_bytes": 1,
+      "name": "SetChannelPitchOffset"
+    },
+    {
+      "opcode": "0xF3",
+      "operand_bytes": 0,
+      "name": "ReturnFromStream"
+    },
+    {
+      "opcode": "0xF2",
+      "operand_bytes": 0,
+      "name": "ResetLengthBits"
+    },
+    {
+      "opcode": "0xF1",
+      "operand_bytes": 0,
+      "name": "SelectTrackChannelStream"
+    },
+    {
+      "opcode": "0xF0",
+      "operand_bytes": 1,
+      "name": "LoadExtendedNote"
+    },
+    {
+      "opcode": "0xEF",
+      "operand_bytes": 1,
+      "name": "SetEnvelopeVolume"
+    }
+  ],
+  "drivers": [
+    {
+      "bank": 0,
+      "name": "world1-audio",
+      "symbol_prefix": "World1_",
+      "track_count": 9,
+      "music_update": "0xE9FD",
+      "routines": [
+        {
+          "address": "0xEAC0",
+          "size": 76,
+          "crc32": "8438415e",
+          "symbol": "World1_Music_UpdateVolumeEnvelope"
+        },
+        {
+          "address": "0xEC05",
+          "size": 153,
+          "crc32": "6c2db4af",
+          "symbol": "World1_Music_HandleNoteOrRest"
+        },
+        {
+          "address": "0xED6A",
+          "size": 16,
+          "crc32": "60b2c263",
+          "symbol": "World1_Music_SaveStreamPosition"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "name": "world2-audio",
+      "symbol_prefix": "World2_",
+      "track_count": 7,
+      "music_update": "0xACE4",
+      "routines": [
+        {
+          "address": "0xADA7",
+          "size": 76,
+          "crc32": "8438415e",
+          "symbol": "World2_Music_UpdateVolumeEnvelope"
+        },
+        {
+          "address": "0xAEEC",
+          "size": 153,
+          "crc32": "318ff2eb",
+          "symbol": "World2_Music_HandleNoteOrRest"
+        },
+        {
+          "address": "0xB051",
+          "size": 16,
+          "crc32": "60b2c263",
+          "symbol": "World2_Music_SaveStreamPosition"
+        }
+      ]
+    },
+    {
+      "bank": 2,
+      "name": "world3-audio",
+      "symbol_prefix": "World3_",
+      "track_count": 9,
+      "music_update": "0xC4F5",
+      "routines": [
+        {
+          "address": "0xC5B8",
+          "size": 76,
+          "crc32": "8438415e",
+          "symbol": "World3_Music_UpdateVolumeEnvelope"
+        },
+        {
+          "address": "0xC6FD",
+          "size": 153,
+          "crc32": "85233df2",
+          "symbol": "World3_Music_HandleNoteOrRest"
+        },
+        {
+          "address": "0xC862",
+          "size": 16,
+          "crc32": "60b2c263",
+          "symbol": "World3_Music_SaveStreamPosition"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "name": "shell-audio",
+      "symbol_prefix": "",
+      "track_count": 5,
+      "music_update": "0x9ED8",
+      "routines": [
+        {
+          "address": "0x9F9B",
+          "size": 76,
+          "crc32": "8438415e",
+          "symbol": "Music_UpdateVolumeEnvelope"
+        },
+        {
+          "address": "0xA0E0",
+          "size": 153,
+          "crc32": "2cf7abe6",
+          "symbol": "Music_HandleNoteOrRest"
+        },
+        {
+          "address": "0xA245",
+          "size": 16,
+          "crc32": "60b2c263",
+          "symbol": "Music_SaveStreamPosition"
+        }
+      ]
+    }
+  ]
+}

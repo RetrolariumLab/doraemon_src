@@ -27,46 +27,46 @@ Bank2_Label_C50E:
 
 Bank2_Label_C519:
     LDA a:$CAF2,Y
-    STA $2F,X
+    STA AudioStreamPointers,X
     STA a:AudioStreamHeaderPointers,X
     DEY
     DEX
     BPL Bank2_Label_C519
-    STX a:$02B4
-    STX a:$02B5
-    STX a:$02B6
-    STX a:$02B7
+    STX a:AudioChannelBaseVolumes
+    STX a:AudioChannelBaseVolumes+$01
+    STX a:AudioChannelBaseVolumes+$02
+    STX a:AudioChannelBaseVolumes+$03
     INX
     STX $D3
     STX $D4
     STX $D5
-    STX a:$02EC
-    STX a:$02ED
-    STX a:$02EE
-    STX a:$02EF
-    STX a:$02F0
-    STX a:$02F1
-    STX a:$02F2
-    STX a:$02FC
-    STX a:$02F6
+    STX a:AudioChannelPitchOffsets
+    STX a:AudioChannelPitchOffsets+$01
+    STX a:AudioChannelPitchOffsets+$02
+    STX a:AudioChannelFixedPitchFlags
+    STX a:AudioChannelFixedPitchFlags+$01
+    STX a:AudioChannelFixedPitchFlags+$02
+    STX a:AudioChannelFixedPitchFlags+$03
+    STX a:AudioNoiseDuration
+    STX a:AudioNoiseControl
     INX
     STX a:AudioChannelDurations
-    STX a:$02B1
-    STX a:$02B2
-    STX a:$02B3
+    STX a:AudioChannelDurations+$01
+    STX a:AudioChannelDurations+$02
+    STX a:AudioChannelDurations+$03
     STX a:AudioChannelNotes
-    STX a:$02AD
-    STX a:$02AE
-    STX a:$02AF
+    STX a:AudioChannelNotes+$01
+    STX a:AudioChannelNotes+$02
+    STX a:AudioChannelNotes+$03
     LDA #$08
-    STA a:$02F7
-    STA a:$02F8
-    STA a:$02F9
-    STA a:$02FA
+    STA a:AudioChannelLengthBits
+    STA a:AudioChannelLengthBits+$01
+    STA a:AudioChannelLengthBits+$02
+    STA a:AudioChannelLengthBits+$03
     LDA #$80
-    STA a:$02F3
-    STA a:$02F4
-    STA a:$02F5
+    STA a:AudioChannelControl
+    STA a:AudioChannelControl+$01
+    STA a:AudioChannelControl+$02
     JSR World3_Audio_ResetChannels
 
 Bank2_Label_C588:
@@ -78,7 +78,7 @@ Bank2_Label_C590:
     LDX a:AudioChannelIndex
     DEC a:AudioChannelDurations,X
     BEQ Bank2_Label_C59E
-    JSR Bank2_Func_C5B8
+    JSR World3_Music_UpdateVolumeEnvelope
     JMP Bank2_Label_C5A1
 
 Bank2_Label_C59E:
@@ -100,24 +100,24 @@ Bank2_Label_C5B2:
 Bank2_Label_C5B7:
     RTS
 
-Bank2_Func_C5B8:
+World3_Music_UpdateVolumeEnvelope:
     CPX #$02
     BEQ Bank2_Label_C603
-    LDA a:$02F3,X
+    LDA a:AudioChannelControl,X
     AND #$10
     BEQ Bank2_Label_C603
-    LDA a:$02BC,X
+    LDA a:AudioChannelEnvelopeSteps,X
     ASL A
     STA a:AudioWorkByte
     BCC Bank2_Label_C5D7
-    LDA a:$02B8,X
+    LDA a:AudioChannelEnvelopeVolumes,X
     SEC
     SBC a:AudioWorkByte
     BCS Bank2_Label_C5E2
     BCC Bank2_Label_C5E0
 
 Bank2_Label_C5D7:
-    LDA a:$02B8,X
+    LDA a:AudioChannelEnvelopeVolumes,X
     CLC
     ADC a:AudioWorkByte
     BCC Bank2_Label_C5E2
@@ -126,7 +126,7 @@ Bank2_Label_C5E0:
     LDA #$00
 
 Bank2_Label_C5E2:
-    STA a:$02B8,X
+    STA a:AudioChannelEnvelopeVolumes,X
     LDY a:AudioEffectTimers,X
     BNE Bank2_Label_C603
     LSR A
@@ -138,10 +138,10 @@ Bank2_Label_C5E2:
     ASL A
     ASL A
     TAY
-    LDA a:$02F3,X
+    LDA a:AudioChannelControl,X
     AND #$D0
     ORA a:AudioWorkByte
-    STA a:$02F3,X
+    STA a:AudioChannelControl,X
     STA a:APU_PL1_VOL,Y
 
 Bank2_Label_C603:
@@ -151,7 +151,7 @@ World3_Music_UpdateChannelStream:
     LDX a:AudioChannelIndex
     CPX #$03
     BNE Bank2_Label_C613
-    LDA a:$02FC
+    LDA a:AudioNoiseDuration
     BEQ Bank2_Label_C613
     JMP Bank2_Label_C719
 
@@ -160,7 +160,7 @@ Bank2_Label_C613:
     STA a:AudioWorkByte
     TAY
     BMI Bank2_Label_C61F
-    JMP Bank2_Func_C6FD
+    JMP World3_Music_HandleNoteOrRest
 
 Bank2_Label_C61F:
     CMP #$EF

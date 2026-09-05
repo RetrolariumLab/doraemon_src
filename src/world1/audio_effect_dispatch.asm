@@ -85,9 +85,9 @@ Bank0_Label_E3FD:
     TAX
     LDA #$00
     STA a:AudioEffectTimers
-    STA a:$02A4
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$01
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     BEQ Bank0_Label_E419
 
 Bank0_Label_E414:
@@ -121,9 +121,9 @@ World1_Audio_ResetEffects:
     STA a:$02A2
     STA a:$4011
     STA a:AudioEffectTimers
-    STA a:$02A4
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$01
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     STA a:APU_TRI_LINEAR
     STA a:APU_NOISE_VOL
     LDA #$18
@@ -137,7 +137,7 @@ World1_Audio_ResetEffects:
 
 Bank0_Func_E461:
     LDA #$18
-    STA a:$02A6
+    STA a:AudioEffectTimers+$03
     LDA #$00
     STA a:APU_NOISE_VOL
     LDA #$0C
@@ -215,8 +215,8 @@ Bank0_Label_E4D7:
 
 Bank0_Func_E4FC:
     LDA #$04
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     STA a:$02A7
     LDA #$1F
     STA a:APU_NOISE_VOL
@@ -241,7 +241,7 @@ Bank0_Func_E526:
     LDX #$05
 
 Bank0_Label_E52C:
-    STY a:$02A4
+    STY a:AudioEffectTimers+$01
     STA a:$02A7
     STX a:$02A9
     LDA #$01
@@ -251,7 +251,7 @@ Bank0_Label_E52C:
 
 Bank0_Func_E540:
     LDA #$08
-    STA a:$02A6
+    STA a:AudioEffectTimers+$03
     LDA #$01
     STA a:APU_NOISE_VOL
     LDA #$0A
@@ -265,9 +265,9 @@ Bank0_Label_E554:
 Bank0_Func_E555:
     LDA #$48
     STA a:AudioEffectTimers
-    STA a:$02A4
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$01
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     LDA #$01
     STA a:$02A7
     LDA #$04
@@ -389,7 +389,7 @@ Bank0_Func_E616:
 
 Bank0_Func_E62E:
     LDA #$0A
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     STA a:$02A7
     LDA #$42
     LDX #$00
@@ -400,7 +400,7 @@ Bank0_Func_E62E:
 
 Bank0_Func_E644:
     LDA #$04
-    STA a:$02A5
+    STA a:AudioEffectTimers+$02
     STA a:$02A7
     STA a:$02A2
     LDA #$84
@@ -412,7 +412,7 @@ Bank0_Func_E644:
 
 Bank0_Func_E65D:
     LDA #$10
-    STA a:$02A6
+    STA a:AudioEffectTimers+$03
     STA a:$02A8
     LDA #$0C
     STA a:$02A7

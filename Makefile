@@ -35,6 +35,7 @@ RUNTIME_TRACE_DIR := build/runtime/traces
 RUNTIME_SCREENSHOT_DIR := build/runtime/screens
 BANK_GATEWAYS := config/bank_gateways.json
 AUDIO_DISPATCH := config/audio_dispatch.json
+AUDIO_MUSIC := config/audio_music.json
 OBJECT_POOLS := config/object_pools.json
 OBJECT_DISPATCH := config/object_dispatch.json
 OBJECT_PLACEMENTS := config/object_placements.json
@@ -101,6 +102,7 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	reconstruction-inventory validate-reconstruction-inventory \
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
 	audio-dispatch validate-audio-dispatch object-pools validate-object-pools \
+	audio-music validate-audio-music \
 	object-dispatch validate-object-dispatch object-placements \
 	validate-object-placements world1-metasprites validate-world1-metasprites \
 	world1-random validate-world1-random \
@@ -261,6 +263,11 @@ audio-dispatch validate-audio-dispatch: $(PRG_ASSET)
 	$(PYTHON) scripts/audio_dispatch.py --prg "$(PRG_ASSET)" \
 		--manifest "$(AUDIO_DISPATCH)" \
 		--code-entries config/prg_code_entries.txt
+
+audio-music validate-audio-music: $(PRG_ASSET)
+	$(PYTHON) scripts/audio_music.py --prg "$(PRG_ASSET)" \
+		--manifest "$(AUDIO_MUSIC)" --dispatch "$(AUDIO_DISPATCH)" \
+		--symbols "$(SYMBOLS)"
 
 object-pools validate-object-pools:
 	$(PYTHON) scripts/object_pools.py --manifest "$(OBJECT_POOLS)" \
@@ -501,7 +508,8 @@ validate-maps: $(ROM)
 
 release-check: quality-check disassembly-check verify validate-maps \
 	validate-reconstruction-inventory \
-	validate-audio-dispatch validate-object-pools validate-object-dispatch \
+	validate-audio-dispatch validate-audio-music \
+	validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world1-metasprites \
 	validate-world1-random \
 	validate-world1-map-decoder \

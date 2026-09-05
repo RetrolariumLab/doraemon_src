@@ -529,10 +529,32 @@ All four PRG banks carry their own driver code but use the same RAM layout.
 | `AudioMusicControl` | `$02AB` | Music reset/control state shared with transition code |
 | `AudioChannelNotes` | `$02AC` | Four current note values |
 | `AudioChannelDurations` | `$02B0` | Four channel countdown values |
+| `AudioChannelBaseVolumes` | `$02B4` | Four envelope base values loaded by command `$EF` |
+| `AudioChannelEnvelopeVolumes` | `$02B8` | Four current envelope accumulators |
+| `AudioChannelEnvelopeSteps` | `$02BC` | Four signed envelope steps |
+| `AudioChannelFixedPitches` | `$02C0` | Four fixed-pitch values used by command `$FA` mode |
+| `AudioLoopStartPointers` | `$02C4` | Four little-endian counted-loop start pointers |
+| `AudioLoopExitPointers` | `$02CC` | Four little-endian post-loop pointers |
+| `AudioLoopRepeatLimits` | `$02D4` | Four counted-loop repeat limits |
+| `AudioLoopIterationCounts` | `$02D8` | Four counted-loop iteration counters |
 | `AudioStreamHeaderPointers` | `$02DC` | Eight-byte copy of the selected track header pointers |
+| `AudioStreamCallReturnPointers` | `$02E4` | Four little-endian command `$F6` return pointers |
+| `AudioChannelPitchOffsets` | `$02EC` | Three tonal-channel pitch offsets |
+| `AudioChannelFixedPitchFlags` | `$02EF` | Four command `$FA/$F9` mode flags |
+| `AudioChannelControl` | `$02F3` | Three tonal-channel duty/envelope/volume shadows |
+| `AudioNoiseControl` | `$02F6` | Noise-channel control shadow |
+| `AudioChannelLengthBits` | `$02F7` | Four high-timer length-bit shadows |
+| `AudioNoisePeriodIndex` | `$02FB` | Noise-note period record index |
+| `AudioNoiseDuration` | `$02FC` | Noise-note duration countdown |
 | `AudioChannelIndex` | `$02FD` | Current channel index, 0 through 3 |
 | `AudioEndedChannelCount` | `$02FE` | Count used to stop music after all four channels end |
 | `AudioWorkByte` | `$02FF` | Music interpreter temporary byte |
+
+The active four little-endian stream cursors occupy zero page `$002F-$0036` as
+`AudioStreamPointers`. Three global tonal-channel pitch offsets reuse
+`$0046-$0048`; those bytes also have chapter renderer/streaming roles outside
+the audio update and therefore remain an explicitly documented overlay rather
+than a single misleading global alias.
 
 The semantic operand mapping is machine-readable in `config/symbols.json`.
 `src/memory/ram.inc` supplies the ca65 definitions used by generated source.

@@ -12,13 +12,13 @@ Bank2_Label_C656:
     AND #$7F
     BPL Bank2_Label_C660
 
-World3_MusicCommand_F0:
+World3_MusicCommand_LoadExtendedNote:
     JSR World3_Audio_ReadStreamByte
 
 Bank2_Label_C660:
     LDX a:AudioChannelIndex
     STA a:AudioChannelNotes,X
-    LDA a:$02EF,X
+    LDA a:AudioChannelFixedPitchFlags,X
     BNE Bank2_Label_C6E7
 
 Bank2_Label_C66B:
@@ -30,12 +30,12 @@ Bank2_Label_C671:
     LDX a:AudioChannelIndex
     CPX #$02
     BEQ Bank2_Label_C6EA
-    LDA a:$02F3,X
+    LDA a:AudioChannelControl,X
     AND #$10
     BNE Bank2_Label_C69D
-    LDA a:$02F3,X
+    LDA a:AudioChannelControl,X
     AND #$D0
-    STA a:$02F3,X
+    STA a:AudioChannelControl,X
     LDA a:AudioWorkByte
     LSR A
     CMP #$10
@@ -43,15 +43,15 @@ Bank2_Label_C671:
     LDA #$0F
 
 Bank2_Label_C694:
-    ORA a:$02F3,X
-    STA a:$02F3,X
+    ORA a:AudioChannelControl,X
+    STA a:AudioChannelControl,X
     JMP Bank2_Label_C6A8
 
 Bank2_Label_C69D:
     LDY a:AudioWorkByte
     LDA a:$C9F3,Y
     ORA #$80
-    STA a:$02BC,X
+    STA a:AudioChannelEnvelopeSteps,X
 
 Bank2_Label_C6A8:
     LDA a:AudioWorkByte
@@ -70,11 +70,11 @@ Bank2_Label_C6A8:
     ASL A
     ASL A
     ORA #$08
-    STA a:$02F7,X
-    LDA a:$02F3,X
+    STA a:AudioChannelLengthBits,X
+    LDA a:AudioChannelControl,X
     AND #$10
     BEQ Bank2_Label_C6E7
-    LDA a:$02F7,X
+    LDA a:AudioChannelLengthBits,X
     CMP #$08
     BNE Bank2_Label_C6E7
     LDA #$18
@@ -94,7 +94,7 @@ Bank2_Label_C6E1:
     LDA a:$C9C4,Y
 
 Bank2_Label_C6E4:
-    STA a:$02F7,X
+    STA a:AudioChannelLengthBits,X
 
 Bank2_Label_C6E7:
     JMP World3_Music_UpdateChannelStream
@@ -110,10 +110,10 @@ Bank2_Label_C6F5:
     LDA #$7F
 
 Bank2_Label_C6F7:
-    STA a:$02F5
+    STA a:AudioChannelControl+$02
     JMP Bank2_Label_C6E7
 
-Bank2_Func_C6FD:
+World3_Music_HandleNoteOrRest:
     CMP #$00
     BNE Bank2_Label_C704
     JMP Bank2_Label_C78C
@@ -124,19 +124,19 @@ Bank2_Label_C704:
     BNE Bank2_Label_C748
     PHA
     AND #$0F
-    STA a:$02FC
+    STA a:AudioNoiseDuration
     PLA
     LSR A
     LSR A
     LSR A
     LSR A
-    STA a:$02FB
+    STA a:AudioNoisePeriodIndex
 
 Bank2_Label_C719:
-    DEC a:$02FC
-    LDA a:$02A6
+    DEC a:AudioNoiseDuration
+    LDA a:AudioEffectTimers+$03
     BNE Bank2_Label_C78C
-    LDA a:$02FB
+    LDA a:AudioNoisePeriodIndex
     BEQ Bank2_Label_C78C
     ASL A
     ASL A
@@ -150,10 +150,10 @@ Bank2_Label_C72B:
     INY
     CPY #$04
     BCC Bank2_Label_C72B
-    LDA a:$02F6
+    LDA a:AudioNoiseControl
     AND #$10
     BEQ Bank2_Label_C77E
-    LDA a:$02F6
+    LDA a:AudioNoiseControl
     AND #$1F
     STA a:APU_NOISE_VOL
     BPL Bank2_Label_C77E
@@ -165,7 +165,7 @@ Bank2_Label_C748:
     ASL A
     ASL A
     TAY
-    LDA a:$02F3,X
+    LDA a:AudioChannelControl,X
     STA a:APU_PL1_VOL,Y
     LDA #$00
     STA a:APU_PL1_SWEEP,Y
@@ -175,22 +175,22 @@ Bank2_Label_C748:
     CLC
     ADC $D3,X
     CLC
-    ADC a:$02EC,X
+    ADC a:AudioChannelPitchOffsets,X
     ASL A
     TAX
     LDA a:$C92C,X
     STA a:APU_PL1_LO,Y
     LDA a:$C92D,X
     LDX a:AudioChannelIndex
-    ORA a:$02F7,X
+    ORA a:AudioChannelLengthBits,X
     STA a:APU_PL1_HI,Y
 
 Bank2_Label_C77E:
     LDX a:AudioChannelIndex
-    LDA a:$02EF,X
+    LDA a:AudioChannelFixedPitchFlags,X
     BNE Bank2_Label_C78C
-    LDA a:$02B4,X
-    STA a:$02B8,X
+    LDA a:AudioChannelBaseVolumes,X
+    STA a:AudioChannelEnvelopeVolumes,X
 
 Bank2_Label_C78C:
     LDX a:AudioChannelIndex
@@ -198,138 +198,138 @@ Bank2_Label_C78C:
     STA a:AudioChannelDurations,X
     RTS
 
-World3_MusicCommand_FF:
+World3_MusicCommand_EndChannel:
     LDX a:AudioChannelIndex
     LDA #$01
     STA a:AudioChannelDurations,X
     TXA
     ASL A
     TAX
-    LDA $2F,X
+    LDA AudioStreamPointers,X
     BNE Bank2_Label_C7A7
-    DEC $30,X
+    DEC AudioStreamPointers+$01,X
 
 Bank2_Label_C7A7:
-    DEC $2F,X
+    DEC AudioStreamPointers,X
     INC a:AudioEndedChannelCount
     RTS
 
-World3_MusicCommand_FD:
+World3_MusicCommand_BeginCountedLoop:
     JSR World3_Audio_ReadStreamByte
     LDX a:AudioChannelIndex
-    STA a:$02D4,X
+    STA a:AudioLoopRepeatLimits,X
     LDA #$01
-    STA a:$02D8,X
+    STA a:AudioLoopIterationCounts,X
     TXA
     ASL A
     TAX
-    LDA $2F,X
-    STA a:$02C4,X
-    LDA $30,X
-    STA a:$02C5,X
+    LDA AudioStreamPointers,X
+    STA a:AudioLoopStartPointers,X
+    LDA AudioStreamPointers+$01,X
+    STA a:AudioLoopStartPointers+$01,X
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_FB:
+World3_MusicCommand_SelectLoopExit:
     JSR World3_Audio_ReadStreamByte
     LDX a:AudioChannelIndex
-    CMP a:$02D8,X
+    CMP a:AudioLoopIterationCounts,X
     BCS Bank2_Label_C7E3
     TXA
     ASL A
     TAX
-    LDA a:$02CC,X
-    STA $2F,X
-    LDA a:$02CD,X
-    STA $30,X
+    LDA a:AudioLoopExitPointers,X
+    STA AudioStreamPointers,X
+    LDA a:AudioLoopExitPointers+$01,X
+    STA AudioStreamPointers+$01,X
 
 Bank2_Label_C7E3:
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_FC:
+World3_MusicCommand_RepeatCountedLoop:
     LDX a:AudioChannelIndex
-    LDA a:$02D8,X
-    CMP a:$02D4,X
+    LDA a:AudioLoopIterationCounts,X
+    CMP a:AudioLoopRepeatLimits,X
     BCS Bank2_Label_C80B
-    INC a:$02D8,X
+    INC a:AudioLoopIterationCounts,X
     TXA
     ASL A
     TAX
-    LDA $2F,X
-    STA a:$02CC,X
-    LDA $30,X
-    STA a:$02CD,X
-    LDA a:$02C4,X
-    STA $2F,X
-    LDA a:$02C5,X
-    STA $30,X
+    LDA AudioStreamPointers,X
+    STA a:AudioLoopExitPointers,X
+    LDA AudioStreamPointers+$01,X
+    STA a:AudioLoopExitPointers+$01,X
+    LDA a:AudioLoopStartPointers,X
+    STA AudioStreamPointers,X
+    LDA a:AudioLoopStartPointers+$01,X
+    STA AudioStreamPointers+$01,X
 
 Bank2_Label_C80B:
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_FA:
+World3_MusicCommand_EnableFixedPitch:
     JSR World3_Audio_ReadStreamByte
     LDX a:AudioChannelIndex
-    STA a:$02C0,X
-    LDA a:$02B4,X
-    STA a:$02B8,X
+    STA a:AudioChannelFixedPitches,X
+    LDA a:AudioChannelBaseVolumes,X
+    STA a:AudioChannelEnvelopeVolumes,X
     LDA #$FF
-    STA a:$02EF,X
+    STA a:AudioChannelFixedPitchFlags,X
     BNE Bank2_Label_C856
 
-World3_MusicCommand_F9:
+World3_MusicCommand_DisableFixedPitch:
     LDX a:AudioChannelIndex
     LDA #$00
-    STA a:$02EF,X
-    LDA a:$02F3,X
+    STA a:AudioChannelFixedPitchFlags,X
+    LDA a:AudioChannelControl,X
     AND #$CF
-    STA a:$02F3,X
+    STA a:AudioChannelControl,X
 
 Bank2_Label_C834:
     JMP Bank2_Label_C66B
 
-World3_MusicCommand_F8:
+World3_MusicCommand_SetDutyCycle:
     JSR World3_Audio_ReadStreamByte
     LDX a:AudioChannelIndex
     CPX #$02
     BEQ Bank2_Label_C7E3
     AND #$C0
     STA a:AudioWorkByte
-    LDA a:$02F3,X
+    LDA a:AudioChannelControl,X
     AND #$10
     ORA a:AudioWorkByte
-    STA a:$02F3,X
-    LDA a:$02EF,X
+    STA a:AudioChannelControl,X
+    LDA a:AudioChannelFixedPitchFlags,X
     BEQ Bank2_Label_C834
 
 Bank2_Label_C856:
-    LDA a:$02C0,X
+    LDA a:AudioChannelFixedPitches,X
     JMP Bank2_Label_C671
 
-World3_MusicCommand_F7:
-    JSR Bank2_Func_C862
+World3_MusicCommand_SaveStreamPosition:
+    JSR World3_Music_SaveStreamPosition
     JMP World3_Music_UpdateChannelStream
 
-Bank2_Func_C862:
+World3_Music_SaveStreamPosition:
     LDA a:AudioChannelIndex
     ASL A
     TAX
-    LDA $2F,X
+    LDA AudioStreamPointers,X
     STA a:AudioStreamHeaderPointers,X
-    LDA $30,X
-    STA a:$02DD,X
+    LDA AudioStreamPointers+$01,X
+    STA a:AudioStreamHeaderPointers+$01,X
     RTS
 
-World3_MusicCommand_FE:
+World3_MusicCommand_RestoreStreamPosition:
     LDA a:AudioChannelIndex
     ASL A
     TAX
     LDA a:AudioStreamHeaderPointers,X
-    STA $2F,X
-    LDA a:$02DD,X
-    STA $30,X
+    STA AudioStreamPointers,X
+    LDA a:AudioStreamHeaderPointers+$01,X
+    STA AudioStreamPointers+$01,X
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_F1:
+World3_MusicCommand_SelectTrackChannelStream:
     LDA a:AudioMusicState
     ASL A
     ASL A
@@ -343,12 +343,12 @@ World3_MusicCommand_F1:
     ASL A
     TAX
     LDA a:$CAF3,Y
-    STA $2F,X
+    STA AudioStreamPointers,X
     LDA a:$CAF4,Y
-    STA $30,X
+    STA AudioStreamPointers+$01,X
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_F6:
+World3_MusicCommand_CallStream:
     JSR World3_Audio_ReadStreamByte
     PHA
     JSR World3_Audio_ReadStreamByte
@@ -356,37 +356,37 @@ World3_MusicCommand_F6:
     LDA a:AudioChannelIndex
     ASL A
     TAX
-    LDA $2F,X
-    STA a:$02E4,X
-    LDA $30,X
-    STA a:$02E5,X
+    LDA AudioStreamPointers,X
+    STA a:AudioStreamCallReturnPointers,X
+    LDA AudioStreamPointers+$01,X
+    STA a:AudioStreamCallReturnPointers+$01,X
     PLA
-    STA $30,X
+    STA AudioStreamPointers+$01,X
     PLA
-    STA $2F,X
+    STA AudioStreamPointers,X
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_F3:
+World3_MusicCommand_ReturnFromStream:
     LDA a:AudioChannelIndex
     ASL A
     TAX
-    LDA a:$02E4,X
-    STA $2F,X
-    LDA a:$02E5,X
-    STA $30,X
+    LDA a:AudioStreamCallReturnPointers,X
+    STA AudioStreamPointers,X
+    LDA a:AudioStreamCallReturnPointers+$01,X
+    STA AudioStreamPointers+$01,X
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_F4:
+World3_MusicCommand_SetChannelPitchOffset:
     JSR World3_Audio_ReadStreamByte
     LDX a:AudioChannelIndex
     CPX #$03
     BEQ Bank2_Label_C8E3
-    STA a:$02EC,X
+    STA a:AudioChannelPitchOffsets,X
 
 Bank2_Label_C8E3:
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_F5:
+World3_MusicCommand_SetGlobalPitchOffset:
     JSR World3_Audio_ReadStreamByte
     LDX #$02
 
@@ -396,36 +396,36 @@ Bank2_Label_C8EB:
     BPL Bank2_Label_C8EB
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_F2:
+World3_MusicCommand_ResetLengthBits:
     LDX a:AudioChannelIndex
     LDA #$08
     JMP Bank2_Label_C6E4
 
-World3_MusicCommand_EF:
+World3_MusicCommand_SetEnvelopeVolume:
     JSR World3_Audio_ReadStreamByte
     LDX a:AudioChannelIndex
-    STA a:$02B4,X
-    STA a:$02B8,X
+    STA a:AudioChannelBaseVolumes,X
+    STA a:AudioChannelEnvelopeVolumes,X
     LSR A
     LSR A
     LSR A
     LSR A
     STA a:AudioWorkByte
-    LDA a:$02F3,X
+    LDA a:AudioChannelControl,X
     AND #$C0
     ORA #$10
     ORA a:AudioWorkByte
-    STA a:$02F3,X
+    STA a:AudioChannelControl,X
     JMP World3_Music_UpdateChannelStream
 
 World3_Audio_ReadStreamByte:
     LDA a:AudioChannelIndex
     ASL A
     TAX
-    LDA ($2F,X)
-    INC $2F,X
+    LDA (AudioStreamPointers,X)
+    INC AudioStreamPointers,X
     BNE Bank2_Label_C92B
-    INC $30,X
+    INC AudioStreamPointers+$01,X
 
 Bank2_Label_C92B:
     RTS

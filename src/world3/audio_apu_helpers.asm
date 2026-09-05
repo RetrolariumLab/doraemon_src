@@ -56,10 +56,10 @@ World3_Audio_ResetChannels:
 
 Bank2_Label_C4E6:
     LDX #$00
-    JSR Bank2_Func_C5B8
+    JSR World3_Music_UpdateVolumeEnvelope
     INX
-    JSR Bank2_Func_C5B8
+    JSR World3_Music_UpdateVolumeEnvelope
     INX
     INX
-    JMP Bank2_Func_C5B8
+    JMP World3_Music_UpdateVolumeEnvelope
     .byte $60

@@ -85,9 +85,10 @@ registers. Music state is separate at `$02AA-$02FF`: `$9EAB` resets channel
 registers, `$9ED8` advances the music driver, and `$A301` reads stream bytes.
 The per-channel interpreter at `$9FE7` treats `$EF-$FF` as commands. It indexes
 the 17-entry table at `$A017` with `2 * ($FF - command)` and uses the same
-target-minus-one RTS dispatch as the effect driver. All command targets are now
-explicit code entries; their format-level names remain the command byte until
-each state field they manipulate is semantically proved.
+target-minus-one RTS dispatch as the effect driver. All 17 commands now have
+structural names and explicit operand widths derived from their state changes
+and control flow. The shared four-channel ABI covers 92 bytes of note,
+duration, envelope, fixed-pitch, loop, call, and stream-pointer state.
 
 World 3 carries a relocated, non-identical copy at `$BE90-$CAxx` in bank 2.
 It preserves the same 26-value priority table, 52-slot effect dispatch, and 17
@@ -111,7 +112,9 @@ service.
 
 `config/audio_dispatch.json` records the complete indirect edge set, while
 `make validate-audio-dispatch` proves the ROM tables and Ghidra seed registry
-remain synchronized.
+remain synchronized. `config/audio_music.json` and `docs/audio_music.md` record
+the shared command grammar and RAM ABI; `make validate-audio-music` verifies
+all 68 bank-local command targets and the common helper contracts.
 
 ## Object storage and lifecycle
 

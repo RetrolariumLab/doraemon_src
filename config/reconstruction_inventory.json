@@ -5,57 +5,57 @@
       "module_count": 115,
       "total": {
         "global_labels": 3329,
-        "semantic_labels": 618,
-        "neutral_routine_labels": 577,
+        "semantic_labels": 630,
+        "neutral_routine_labels": 565,
         "neutral_local_labels": 2134
       },
       "by_bank": {
         "0": {
           "global_labels": 1009,
-          "semantic_labels": 183,
-          "neutral_routine_labels": 137,
+          "semantic_labels": 186,
+          "neutral_routine_labels": 134,
           "neutral_local_labels": 689
         },
         "1": {
           "global_labels": 877,
-          "semantic_labels": 158,
-          "neutral_routine_labels": 160,
+          "semantic_labels": 161,
+          "neutral_routine_labels": 157,
           "neutral_local_labels": 559
         },
         "2": {
           "global_labels": 1088,
-          "semantic_labels": 221,
-          "neutral_routine_labels": 184,
+          "semantic_labels": 224,
+          "neutral_routine_labels": 181,
           "neutral_local_labels": 683
         },
         "3": {
           "global_labels": 355,
-          "semantic_labels": 56,
-          "neutral_routine_labels": 96,
+          "semantic_labels": 59,
+          "neutral_routine_labels": 93,
           "neutral_local_labels": 203
         }
       }
     },
     "evidence_backed_prg_symbols": {
       "total": {
-        "semantic_code_symbols": 502,
+        "semantic_code_symbols": 514,
         "operand_symbols": 106
       },
       "by_bank": {
         "0": {
-          "semantic_code_symbols": 149,
+          "semantic_code_symbols": 152,
           "operand_symbols": 32
         },
         "1": {
-          "semantic_code_symbols": 125,
+          "semantic_code_symbols": 128,
           "operand_symbols": 31
         },
         "2": {
-          "semantic_code_symbols": 176,
+          "semantic_code_symbols": 179,
           "operand_symbols": 42
         },
         "3": {
-          "semantic_code_symbols": 52,
+          "semantic_code_symbols": 55,
           "operand_symbols": 1
         }
       }
@@ -85,10 +85,10 @@
       }
     },
     "ram_aliases": {
-      "unique_symbols": 259,
+      "unique_symbols": 276,
       "shared": {
-        "symbols": 62,
-        "bytes": 62
+        "symbols": 79,
+        "bytes": 151
       },
       "bank_scoped": {
         "0": {
@@ -110,20 +110,20 @@
       },
       "effective_by_bank": {
         "0": {
-          "symbols": 155,
-          "bytes": 1044
+          "symbols": 172,
+          "bytes": 1133
         },
         "1": {
-          "symbols": 101,
-          "bytes": 476
+          "symbols": 118,
+          "bytes": 565
         },
         "2": {
-          "symbols": 127,
-          "bytes": 802
+          "symbols": 144,
+          "bytes": 891
         },
         "3": {
-          "symbols": 62,
-          "bytes": 62
+          "symbols": 79,
+          "bytes": 151
         }
       }
     },

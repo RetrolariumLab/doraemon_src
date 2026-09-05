@@ -10,22 +10,22 @@ evidence manifests. Any change requires an intentional snapshot update.
 
 | Bank | Global labels | Semantic labels | Neutral routines | Neutral locals | Semantic indirect entries |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 1,009 | 183 | 137 | 689 | 48 / 84 |
-| 1 | 877 | 158 | 160 | 559 | 60 / 97 |
-| 2 | 1,088 | 221 | 184 | 683 | 65 / 106 |
-| 3 | 355 | 56 | 96 | 203 | 25 / 67 |
-| Total | 3,329 | 618 | 577 | 2,134 | 198 / 354 |
+| 0 | 1,009 | 186 | 134 | 689 | 48 / 84 |
+| 1 | 877 | 161 | 157 | 559 | 60 / 97 |
+| 2 | 1,088 | 224 | 181 | 683 | 65 / 106 |
+| 3 | 355 | 59 | 93 | 203 | 25 / 67 |
+| Total | 3,329 | 630 | 565 | 2,134 | 198 / 354 |
 
 The previous aggregate observation of roughly 82% neutral definitions mixed
-577 probable routine entries with 2,134 local branch labels. Source 1.0 gives
+565 probable routine entries with 2,134 local branch labels. Source 1.0 gives
 priority to the former and to the 156 indirect entries that still lack an
 evidence-backed semantic symbol. Local labels are renamed only when that
 materially clarifies a routine contract.
 
-The symbol registry currently contains 502 evidence-backed code symbols and
-106 operand/table symbols. RAM coverage contains 259 unique aliases: 62 shared
-symbols plus 93 Bank 0, 39 Bank 1, and 65 Bank 2 scoped symbols. Bank 3 still
-has only the shared 62-symbol view, making its shell/audio state a visible gap.
+The symbol registry currently contains 514 evidence-backed code symbols and
+106 operand/table symbols. RAM coverage contains 276 unique aliases: 79 shared
+symbols plus 93 Bank 0, 39 Bank 1, and 65 Bank 2 scoped symbols. Bank 3 has the
+shared 79-symbol view; chapter-specific shell state remains a visible gap.
 
 Typed PRG ranges cover 35,792 bytes in 46 non-overlapping regions:
 

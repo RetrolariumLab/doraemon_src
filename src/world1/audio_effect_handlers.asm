@@ -19,9 +19,9 @@ Bank0_Func_E69A:
     BEQ Bank0_Label_E689
     STA a:$02A7
     STA a:AudioEffectTimers
-    STA a:$02A4
-    STA a:$02A5
-    STA a:$02A6
+    STA a:AudioEffectTimers+$01
+    STA a:AudioEffectTimers+$02
+    STA a:AudioEffectTimers+$03
     JSR Bank0_Func_E5F6
     LDX #$00
     .byte $20, $C1
@@ -61,7 +61,7 @@ Bank0_Label_E6EC:
 
 Bank0_Func_E6F3:
     LDA #$18
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$10
     STA a:$02A7
     STA a:$02A2
@@ -74,7 +74,7 @@ Bank0_Func_E6F3:
 
 Bank0_Func_E70E:
     LDA #$08
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     STA a:$02A7
     LDA #$C0
     LDX #$83
@@ -85,7 +85,7 @@ Bank0_Func_E70E:
 
 Bank0_Func_E724:
     LDA #$18
-    STA a:$02A6
+    STA a:AudioEffectTimers+$03
     LDA #$04
     STA a:APU_NOISE_LO
     LDA #$0F
@@ -127,7 +127,7 @@ Bank0_Func_E76C:
     LDA #$03
     STA a:$02A8
     LDA #$FF
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$00
     STA a:$02A7
 
@@ -137,7 +137,7 @@ Bank0_Func_E77B:
     LDA a:$02A8
     BNE Bank0_Label_E78D
     LDA #$00
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     JMP World1_Audio_StopCurrentEffect
 
 Bank0_Label_E78D:
@@ -163,7 +163,7 @@ Bank0_Func_E7AF:
     LDX #$03
 
 Bank0_Label_E7B5:
-    STY a:$02A4
+    STY a:AudioEffectTimers+$01
     STA a:$02A7
     STX a:$02A9
     LDA #$01
@@ -205,7 +205,7 @@ World1_AudioEffectPitchPeriods:
 
 Bank0_Func_E83C:
     LDA #$10
-    STA a:$02A5
+    STA a:AudioEffectTimers+$02
     LDA #$40
     STA a:$02A7
     LDA #$01
@@ -231,7 +231,7 @@ Bank0_Label_E86C:
 
 Bank0_Func_E86D:
     LDA #$0E
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$06
     STA a:$02A7
     STA a:$02A8
@@ -272,7 +272,7 @@ Bank0_Func_E8AE:
 
 Bank0_Func_E8B7:
     LDA #$20
-    STA a:$02A4
+    STA a:AudioEffectTimers+$01
     LDA #$1F
     LDX #$85
     JSR World1_Apu_WritePulse2ControlSweep
