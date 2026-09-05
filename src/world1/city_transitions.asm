@@ -11,14 +11,14 @@ Bank0_Func_CB61:
     JSR World1_ClearEntitySlots30_37
     PLA
     TAX
-    JSR World1_CityItemHandler_Type0A
+    JSR World1_CollectProgrammerFaceBonus
     PLA
     TAY
     PLA
     TAX
     RTS
 
-World1_CityItemHandler_Type0A:
+World1_CollectProgrammerFaceBonus:
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB7D
     STA $00
@@ -56,7 +56,7 @@ Bank0_Label_CBA6:
     TAX
     JMP Bank0_Func_C982
 
-World1_CityItemHandler_Type0B:
+World1_CollectGoldBar:
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CBB9
     STA $00
@@ -69,7 +69,7 @@ Bank0_Label_CBB9:
     LDA #$31
     JMP Bank0_Func_81C9
 
-World1_CityItemHandler_Type0C:
+World1_CollectDiamond:
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CBD0
     STA $00
@@ -82,7 +82,7 @@ Bank0_Label_CBD0:
     LDA #$32
     JMP Bank0_Func_81C9
 
-World1_CityItemHandler_Type0D:
+World1_CollectInvulnerability:
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CBE7
     STA $00
@@ -96,7 +96,7 @@ Bank0_Label_CBE7:
     JSR World1_Audio_QueueEffectWithPriority
     RTS
 
-World1_CityItemHandlerTable:
+World1_DescriptorInteractionHandlerTable:
     .byte $0E, $CB, $A7, $CA, $C3, $CA, $F5, $CA, $DB, $CA, $32, $CB, $4B, $CB, $73, $CB
     .byte $AF, $CB, $C6, $CB, $DD, $CB
 
@@ -129,18 +129,18 @@ World1_ObjectInteractionHitboxYNegativeByTypeMinusOne:
 World1_ObjectInteractionHitboxYPositiveByTypeMinusOne:
     .byte $00, $18, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
 
-Bank0_TryEnterWorld1Door:
+World1_TryEnterAnywhereDoor:
     LDA CombinedControllerButtons
     AND #$80
     BEQ Bank0_Label_CC8B
     LDA $81
     CMP #$02
-    BEQ Bank0_EnterWorld1Door
+    BEQ World1_EnterAnywhereDoor
 
 Bank0_Label_CC8B:
     RTS
 
-Bank0_EnterWorld1Door:
+World1_EnterAnywhereDoor:
     LDA #$00
     STA a:AudioMusicState
     STA a:AudioMusicControl

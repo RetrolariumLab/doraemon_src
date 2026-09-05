@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "descriptor_count": 13,
+  "identity_sources": [
+    {
+      "id": "local_rom",
+      "url": null,
+      "role": "descriptor fields, placement counts, metasprites, dispatch targets, state writes, score calls, and secret selectors"
+    },
+    {
+      "id": "strategywiki_items",
+      "url": "https://strategywiki.org/wiki/Doraemon/Items",
+      "role": "World 1 item images, names, and effects"
+    },
+    {
+      "id": "strategywiki_world1",
+      "url": "https://strategywiki.org/wiki/Doraemon/World_1",
+      "role": "World 1 manhole, hidden entrance, weapon, item, and Flash Light progression"
+    },
+    {
+      "id": "gamefaqs_guide",
+      "url": "https://gamefaqs.gamespot.com/nes/578343-doraemon/faqs/48568",
+      "role": "independent item effects, scores, placements, and progression order"
+    },
+    {
+      "id": "gamefaqs_secrets",
+      "url": "https://gamefaqs.gamespot.com/nes/578343-doraemon/cheats/",
+      "role": "six-defeat invulnerability reward and microphone-triggered programmer-face secret"
+    }
+  ],
+  "identities": [
+    {
+      "descriptor_index": 0,
+      "runtime_type": "0x01",
+      "symbol": "manhole",
+      "display_name": "Manhole",
+      "japanese_name": "マンホール",
+      "category": "portal",
+      "confidence": "confirmed",
+      "metasprite_base": "0x29",
+      "render_flags": "0x01",
+      "primary_behavior": "0x03",
+      "placement_count": 9,
+      "selector_slots": [],
+      "handler_address": "0xD237",
+      "handler_symbol": "World1_TryEnterManhole",
+      "effect": "accept A-button entry when the interaction code records portal type 1",
+      "effect_signature": {
+        "address": "0xD237",
+        "bytes": "A5 21 29 80 F0 06 A5 81 C9 01 F0 01 60"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_world1",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 1,
+      "runtime_type": "0x02",
+      "symbol": "anywhere_door",
+      "display_name": "Anywhere Door",
+      "japanese_name": "どこでもドア",
+      "category": "portal",
+      "confidence": "confirmed",
+      "metasprite_base": "0x25",
+      "render_flags": "0x01",
+      "primary_behavior": "0x03",
+      "placement_count": 8,
+      "selector_slots": [],
+      "handler_address": "0xCC7F",
+      "handler_symbol": "World1_TryEnterAnywhereDoor",
+      "effect": "accept A-button entry when the interaction code records portal type 2",
+      "effect_signature": {
+        "address": "0xCC7F",
+        "bytes": "A5 21 29 80 F0 06 A5 81 C9 02 F0 01 60"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_world1",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 2,
+      "runtime_type": "0x03",
+      "symbol": "stopwatch",
+      "display_name": "Stopwatch",
+      "japanese_name": "タンマウォッチ",
+      "category": "random_item",
+      "confidence": "confirmed",
+      "metasprite_base": "0x2E",
+      "render_flags": "0x01",
+      "primary_behavior": "0x03",
+      "placement_count": 0,
+      "selector_slots": [
+        3
+      ],
+      "handler_address": "0xCB0E",
+      "handler_symbol": "World1_CollectStopwatch",
+      "effect": "set the enemy-freeze active flag and its 240-frame timer",
+      "effect_signature": {
+        "address": "0xCB0E",
+        "bytes": "A9 01 85 82 A9 F0 85 83"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 3,
+      "runtime_type": "0x04",
+      "symbol": "genki_candy",
+      "display_name": "Genki Candy",
+      "japanese_name": "元気キャンディー",
+      "category": "persistent_item",
+      "confidence": "confirmed",
+      "metasprite_base": "0x2D",
+      "render_flags": "0x00",
+      "primary_behavior": "0x03",
+      "placement_count": 2,
+      "selector_slots": [],
+      "handler_address": "0xCAA7",
+      "handler_symbol": "World1_CollectGenkiCandy",
+      "effect": "expand the health meter by decrementing its left-bound index",
+      "effect_signature": {
+        "address": "0xCAA7",
+        "bytes": "C6 2C 20 62 83"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 4,
+      "runtime_type": "0x05",
+      "symbol": "one_up",
+      "display_name": "1UP",
+      "japanese_name": null,
+      "category": "persistent_item",
+      "confidence": "confirmed",
+      "metasprite_base": "0x2F",
+      "render_flags": "0x01",
+      "primary_behavior": "0x10",
+      "placement_count": 1,
+      "selector_slots": [],
+      "handler_address": "0xCAC3",
+      "handler_symbol": "World1_CollectOneUp",
+      "effect": "increment the life counter",
+      "effect_signature": {
+        "address": "0xCAC3",
+        "bytes": "E6 2A"
+      },
+      "evidence": [
+        "local_rom",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 5,
+      "runtime_type": "0x06",
+      "symbol": "weapon_upgrade",
+      "display_name": "Weapon upgrade",
+      "japanese_name": "武器アップグレード",
+      "category": "persistent_item",
+      "confidence": "confirmed",
+      "metasprite_base": "0x00",
+      "dynamic_metasprites": [
+        "0x2A",
+        "0x2B",
+        "0x2C"
+      ],
+      "render_flags": "0x01",
+      "primary_behavior": "0x02",
+      "placement_count": 3,
+      "selector_slots": [],
+      "handler_address": "0xCAF5",
+      "handler_symbol": "World1_CollectWeaponUpgrade",
+      "effect": "increment weapon level; render Shock Gun, Air Gun, or Power Fan from the current level",
+      "effect_signature": {
+        "address": "0xCAF5",
+        "bytes": "E6 7B"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "strategywiki_world1",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 6,
+      "runtime_type": "0x07",
+      "symbol": "dorayaki",
+      "display_name": "Dorayaki",
+      "japanese_name": "どら焼き",
+      "category": "persistent_and_random_item",
+      "confidence": "confirmed",
+      "metasprite_base": "0x30",
+      "render_flags": "0x01",
+      "primary_behavior": "0x02",
+      "placement_count": 4,
+      "selector_slots": [
+        0
+      ],
+      "handler_address": "0xCADB",
+      "handler_symbol": "World1_CollectDorayaki",
+      "effect": "refill health through the common health-reset helper",
+      "effect_signature": {
+        "address": "0xCADB",
+        "bytes": "20 62 83"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "strategywiki_world1",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 7,
+      "runtime_type": "0x08",
+      "symbol": "rapid_fire_drink",
+      "display_name": "Rapid-Fire Drink",
+      "japanese_name": "連射ドリンク",
+      "category": "persistent_item",
+      "confidence": "confirmed",
+      "metasprite_base": "0x34",
+      "render_flags": "0x01",
+      "primary_behavior": "0x02",
+      "placement_count": 3,
+      "selector_slots": [],
+      "handler_address": "0xCB32",
+      "handler_symbol": "World1_CollectRapidFireDrink",
+      "effect": "increment the simultaneous player-projectile limit",
+      "effect_signature": {
+        "address": "0xCB32",
+        "bytes": "E6 84"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 8,
+      "runtime_type": "0x09",
+      "symbol": "flash_light",
+      "display_name": "Flash Light / Small Light",
+      "japanese_name": "スモールライト",
+      "category": "progression_item",
+      "confidence": "confirmed",
+      "metasprite_base": "0x16",
+      "render_flags": "0x01",
+      "primary_behavior": "0x04",
+      "placement_count": 1,
+      "selector_slots": [],
+      "handler_address": "0xCB4B",
+      "handler_symbol": "World1_CollectFlashLight",
+      "effect": "set the carry-forward flag that upgrades the World 2 weapon",
+      "effect_signature": {
+        "address": "0xCB4B",
+        "bytes": "A9 01 85 37"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "strategywiki_world1",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 9,
+      "runtime_type": "0x0A",
+      "symbol": "programmer_face",
+      "display_name": "Programmer's face",
+      "japanese_name": "プログラマーの顔",
+      "category": "hidden_bonus",
+      "confidence": "confirmed",
+      "metasprite_base": "0x14",
+      "render_flags": "0x01",
+      "primary_behavior": "0x20",
+      "placement_count": 1,
+      "selector_slots": [],
+      "handler_address": "0xCB73",
+      "handler_symbol": "World1_CollectProgrammerFaceBonus",
+      "effect": "require microphone activity while shooting the hidden type-0A placement, then run the bonus sequence",
+      "effect_signature": {
+        "address": "0xC9E1",
+        "bytes": "29 7F AA B9 B6 04 29 0F D0 F5 B9 26 04 C9 8A D0 04 A5 24 F0 EA"
+      },
+      "evidence": [
+        "local_rom",
+        "gamefaqs_secrets"
+      ]
+    },
+    {
+      "descriptor_index": 10,
+      "runtime_type": "0x0B",
+      "symbol": "gold_bar",
+      "display_name": "Gold Bar",
+      "japanese_name": "金塊",
+      "category": "random_item",
+      "confidence": "confirmed",
+      "metasprite_base": "0x28",
+      "render_flags": "0x01",
+      "primary_behavior": "0x02",
+      "placement_count": 0,
+      "selector_slots": [
+        1
+      ],
+      "handler_address": "0xCBAF",
+      "handler_symbol": "World1_CollectGoldBar",
+      "effect": "award the score encoded by $31",
+      "effect_signature": {
+        "address": "0xCBB9",
+        "bytes": "20 82 C9 A9 0E 20 98 E3 A9 31 4C C9 81"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 11,
+      "runtime_type": "0x0C",
+      "symbol": "diamond",
+      "display_name": "Diamond",
+      "japanese_name": "ダイヤモンド",
+      "category": "persistent_and_random_item",
+      "confidence": "confirmed",
+      "metasprite_base": "0x17",
+      "render_flags": "0x00",
+      "primary_behavior": "0x02",
+      "placement_count": 1,
+      "selector_slots": [
+        2
+      ],
+      "handler_address": "0xCBC6",
+      "handler_symbol": "World1_CollectDiamond",
+      "effect": "award the score encoded by $32",
+      "effect_signature": {
+        "address": "0xCBD0",
+        "bytes": "20 82 C9 A9 0E 20 98 E3 A9 32 4C C9 81"
+      },
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "strategywiki_world1",
+        "gamefaqs_guide"
+      ]
+    },
+    {
+      "descriptor_index": 12,
+      "runtime_type": "0x0D",
+      "symbol": "invulnerability",
+      "display_name": "Invulnerability",
+      "japanese_name": "無敵",
+      "category": "secret_reward",
+      "confidence": "confirmed",
+      "metasprite_base": "0x35",
+      "render_flags": "0x03",
+      "primary_behavior": "0x02",
+      "placement_count": 0,
+      "selector_slots": [
+        4
+      ],
+      "handler_address": "0xCBDD",
+      "handler_symbol": "World1_CollectInvulnerability",
+      "effect": "set the invulnerability countdown to $FF",
+      "effect_signature": {
+        "address": "0xCBE7",
+        "bytes": "20 82 C9 A9 FF 85 B2 A9 0E 20 98 E3 60"
+      },
+      "evidence": [
+        "local_rom",
+        "gamefaqs_secrets"
+      ]
+    }
+  ]
+}

@@ -43,6 +43,7 @@ WORLD1_METASPRITES := config/world1_metasprites.json
 WORLD1_METASPRITE_AUTHORING := data/world1/metasprites.json
 WORLD1_ENEMY_HANDLERS := config/world1_enemy_handlers.json
 WORLD1_ENEMY_IDENTITIES := config/world1_enemy_identities.json
+WORLD1_DESCRIPTOR_IDENTITIES := config/world1_descriptor_identities.json
 WORLD2_STREAMING := config/world2_streaming.json
 WORLD2_SCREEN_AUTHORING := data/world2/compressed_screens.json
 WORLD2_ENEMY_STATES := config/world2_enemy_states.json
@@ -92,6 +93,7 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	validate-object-placements world1-metasprites validate-world1-metasprites \
 	world1-enemy-handlers validate-world1-enemy-handlers \
 	world1-enemy-identities validate-world1-enemy-identities \
+	world1-descriptor-identities validate-world1-descriptor-identities \
 	world2-streaming validate-world2-streaming \
 	world2-enemy-states validate-world2-enemy-states \
 	world2-enemy-handlers validate-world2-enemy-handlers \
@@ -271,6 +273,15 @@ world1-enemy-identities validate-world1-enemy-identities: $(PRG_ASSET)
 		--handlers "$(WORLD1_ENEMY_HANDLERS)" \
 		--metasprites "$(WORLD1_METASPRITE_AUTHORING)"
 
+world1-descriptor-identities validate-world1-descriptor-identities: $(PRG_ASSET)
+	$(PYTHON) scripts/world1_descriptor_identities.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_DESCRIPTOR_IDENTITIES)" \
+		--objects "$(OBJECT_PLACEMENTS)" \
+		--authoring "$(OBJECT_PLACEMENTS_AUTHORING)" \
+		--dispatch "$(OBJECT_DISPATCH)" \
+		--metasprites "$(WORLD1_METASPRITE_AUTHORING)" \
+		--symbols "$(SYMBOLS)"
+
 world2-streaming validate-world2-streaming: $(PRG_ASSET)
 	$(PYTHON) scripts/world2_streaming.py validate --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD2_STREAMING)" \
@@ -424,6 +435,7 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-object-placements validate-world1-metasprites \
 	validate-world1-enemy-handlers \
 	validate-world1-enemy-identities \
+	validate-world1-descriptor-identities \
 	validate-world2-streaming \
 	validate-world2-enemy-states \
 	validate-world2-enemy-handlers \

@@ -114,6 +114,7 @@ class World1EnemyIdentityTests(unittest.TestCase):
             for state in range(1, 16)
         ]
         secret = bytes((6, 6, 5, 4, 1, 6))
+        prg[0x14D8] = 0x0C
         prg[0x14D9:0x14DF] = secret
         signature = bytes.fromhex("8A 48 98 48")
         prg[0x1462:0x1466] = signature
@@ -128,7 +129,9 @@ class World1EnemyIdentityTests(unittest.TestCase):
             "secret_sequence": {
                 "address": "0x94D9",
                 "runtime_states": list(secret),
-                "reward_descriptor_index": 4,
+                "reward_selector_index": 4,
+                "reward_selector_address": "0x94D8",
+                "reward_descriptor_index": "0x0C",
             },
             "identities": identities,
             "signatures": [
@@ -166,6 +169,14 @@ class World1EnemyIdentityTests(unittest.TestCase):
         values[0] = bytes(changed)
         errors, _report = world1_enemy_identities.validate(*values)
         self.assertTrue(any("secret sequence bytes differ" in error for error in errors))
+
+    def test_rejects_changed_reward_descriptor(self) -> None:
+        values = list(self.fixture())
+        changed = bytearray(values[0])
+        changed[0x14D8] = 0x04
+        values[0] = bytes(changed)
+        errors, _report = world1_enemy_identities.validate(*values)
+        self.assertTrue(any("reward descriptor" in error for error in errors))
 
     def test_rejects_confirmed_identity_without_external_source(self) -> None:
         values = list(self.fixture())

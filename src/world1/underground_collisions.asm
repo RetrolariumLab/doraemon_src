@@ -148,18 +148,18 @@ Bank0_Func_D1C3:
     .byte $38, $10, $03, $FF, $18, $10, $04, $FF, $18, $10, $05, $06, $B8, $10, $05, $06
     .byte $D8, $10, $08, $07, $18, $10, $08, $07
 
-Bank0_TryEnterWorld1Manhole:
+World1_TryEnterManhole:
     LDA CombinedControllerButtons
     AND #$80
     BEQ Bank0_Label_D243
     LDA $81
     CMP #$01
-    BEQ Bank0_EnterWorld1Manhole
+    BEQ World1_EnterManhole
 
 Bank0_Label_D243:
     RTS
 
-Bank0_EnterWorld1Manhole:
+World1_EnterManhole:
     LDA a:World1SavedUndergroundObjectBits
     AND #$FE
     STA a:World1SavedUndergroundObjectBits

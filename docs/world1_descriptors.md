@@ -53,9 +53,10 @@ set bit 6. Their combined descriptor-index frequencies are:
 
 Indexes `$02`, `$0A`, and `$0C` do not occur in the two persistent placement
 lists. A separate transient spawn path selects descriptor indexes
-`$06,$0A,$0B,$02` through the four-byte table at `$94D4`, accounting for two
-of those otherwise unused definitions. No known placement or transient
-selector currently chooses index `$0C`.
+`$06,$0A,$0B,$02` through the first four bytes of the table at `$94D4`.
+Completing the six-defeat secret uses selector slot `$04`, the adjacent byte at
+`$94D8`, which contains descriptor index `$0C`. This accounts for all three
+definitions absent from persistent placement lists.
 
 ## Collision extents
 
@@ -83,5 +84,6 @@ collision tables, placement encoding, usage counts, and CRCs with the canonical
 PRG and to round-trip the editable representation in
 `data/world1/object_data.json`. The tool also supports `decode` and `encode`;
 encoding applies the sparse object regions to a supplied base PRG so unrelated
-bank bytes remain intact. Character and item identities remain unnamed until
-supported by stronger runtime or presentation evidence.
+bank bytes remain intact. The evidence-backed identity and effect join is
+documented in `world1_descriptor_identities.md` and enforced by a separate
+release gate.

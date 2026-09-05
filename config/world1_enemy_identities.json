@@ -34,7 +34,9 @@
       "0x01",
       "0x06"
     ],
-    "reward_descriptor_index": "0x04"
+    "reward_selector_index": "0x04",
+    "reward_selector_address": "0x94D8",
+    "reward_descriptor_index": "0x0C"
   },
   "identities": [
     {

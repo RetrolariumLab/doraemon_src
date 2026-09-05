@@ -102,8 +102,12 @@
   name is claimed. The three shared behavior IDs with alternate forms, bosses
   and parts, chest contents, puzzle items, drops, and companions are recorded
   in `config/world3_entity_types.json`.
-- Unknown: character/item identities for World 1 descriptors and deeper
-  handler-specific meanings that remain below World 2's resolved enemy roster.
+- Known: all thirteen World 1 descriptor identities are joined to their
+  placement counts, selector roles, metasprites, interaction handlers, and
+  concrete effects. This includes the dynamic three-weapon descriptor,
+  microphone-triggered programmer face, and descriptor `$0C` invulnerability
+  reward. Deeper helper-specific meanings remain below World 2's resolved
+  enemy roster.
   The World 3 behavior
   bytecode, structural type catalog, room placement scheduler, formation
   layouts, metasprites, and palettes are fully decoded and validated.

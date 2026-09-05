@@ -37,8 +37,10 @@ shots” without also accounting for the comparison order in the damage path.
 
 The six bytes at `$94D9` are `$06,$06,$05,$04,$01,$06`. The defeat routine at
 `$9462` compares the low six bits of the defeated runtime state against this
-table and resets progress on a mismatch. Completing the sequence selects
-descriptor `$04`. After joining state identities, the exact sequence is:
+table and resets progress on a mismatch. Completing the sequence sets selector
+index `$04`; the adjacent fifth selector byte at `$94D8` is `$0C`, so the
+spawned reward is descriptor `$0C`, whose handler enables invulnerability.
+After joining state identities, the exact sequence is:
 
 `Kobuun, Kobuun, Naame, Gozura, Yuubou, Kobuun`.
 

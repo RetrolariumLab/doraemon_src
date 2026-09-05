@@ -22,9 +22,9 @@ The runtime-backed source path is now named:
 
 ```text
 Bank0_World1Main
-  -> Bank0_TryEnterWorld1Door
-  -> Bank0_TryEnterWorld1Manhole
-       -> Bank0_EnterWorld1Manhole
+  -> World1_TryEnterAnywhereDoor
+  -> World1_TryEnterManhole
+       -> World1_EnterManhole
             -> Bank0_InitWorld1SideView
 ```
 

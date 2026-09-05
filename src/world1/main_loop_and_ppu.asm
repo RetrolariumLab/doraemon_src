@@ -55,8 +55,8 @@ Bank0_Label_82C1:
     JSR World1_UpdateEntities
     JSR Bank0_Func_8EF6
     JSR Bank0_Func_931B
-    JSR Bank0_TryEnterWorld1Door
-    JSR Bank0_TryEnterWorld1Manhole
+    JSR World1_TryEnterAnywhereDoor
+    JSR World1_TryEnterManhole
     JSR Bank0_Func_820E
     LDA $79
     BMI Bank0_Label_82F5

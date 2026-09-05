@@ -248,85 +248,85 @@
     {
       "bank": 0,
       "address": "0xCAA7",
-      "name": "World1_CityItemHandler_Type04",
+      "name": "World1_CollectGenkiCandy",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-04"
     },
     {
       "bank": 0,
       "address": "0xCAC3",
-      "name": "World1_CityItemHandler_Type05",
+      "name": "World1_CollectOneUp",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-05"
     },
     {
       "bank": 0,
       "address": "0xCADB",
-      "name": "World1_CityItemHandler_Type07",
+      "name": "World1_CollectDorayaki",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-07"
     },
     {
       "bank": 0,
       "address": "0xCAF5",
-      "name": "World1_CityItemHandler_Type06",
+      "name": "World1_CollectWeaponUpgrade",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-06"
     },
     {
       "bank": 0,
       "address": "0xCB0E",
-      "name": "World1_CityItemHandler_Type03",
+      "name": "World1_CollectStopwatch",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-03"
     },
     {
       "bank": 0,
       "address": "0xCB32",
-      "name": "World1_CityItemHandler_Type08",
+      "name": "World1_CollectRapidFireDrink",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-08"
     },
     {
       "bank": 0,
       "address": "0xCB4B",
-      "name": "World1_CityItemHandler_Type09",
+      "name": "World1_CollectFlashLight",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-09"
     },
     {
       "bank": 0,
       "address": "0xCB73",
-      "name": "World1_CityItemHandler_Type0A",
+      "name": "World1_CollectProgrammerFaceBonus",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-0a"
     },
     {
       "bank": 0,
       "address": "0xCBAF",
-      "name": "World1_CityItemHandler_Type0B",
+      "name": "World1_CollectGoldBar",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-0b"
     },
     {
       "bank": 0,
       "address": "0xCBC6",
-      "name": "World1_CityItemHandler_Type0C",
+      "name": "World1_CollectDiamond",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-0c"
     },
     {
       "bank": 0,
       "address": "0xCBDD",
-      "name": "World1_CityItemHandler_Type0D",
+      "name": "World1_CollectInvulnerability",
       "evidence": "cbf4-pointer-table-slot-for-city-entity-type-0d"
     },
     {
       "bank": 0,
       "address": "0xCBF4",
-      "name": "World1_CityItemHandlerTable",
+      "name": "World1_DescriptorInteractionHandlerTable",
       "evidence": "11-slot-city-entity-type-pointer-table"
     },
     {
       "bank": 0,
       "address": "0xCC7F",
-      "name": "Bank0_TryEnterWorld1Door",
+      "name": "World1_TryEnterAnywhereDoor",
       "evidence": "portal-type-2-and-button-a"
     },
     {
       "bank": 0,
       "address": "0xCC8C",
-      "name": "Bank0_EnterWorld1Door",
+      "name": "World1_EnterAnywhereDoor",
       "evidence": "portal-type-2-accepted-branch"
     },
     {
@@ -338,13 +338,13 @@
     {
       "bank": 0,
       "address": "0xD237",
-      "name": "Bank0_TryEnterWorld1Manhole",
+      "name": "World1_TryEnterManhole",
       "evidence": "manhole-type-1-and-button-a"
     },
     {
       "bank": 0,
       "address": "0xD244",
-      "name": "Bank0_EnterWorld1Manhole",
+      "name": "World1_EnterManhole",
       "evidence": "world1-underground-runtime-probe"
     },
     {
@@ -460,7 +460,13 @@
       "address": "0x94D4",
       "name": "World1_TransientDescriptorSelectorTable",
       "operand_symbol": true,
-      "evidence": "four descriptor indexes selected by collision-spawn random value"
+      "evidence": "four random descriptor indexes followed by the six-defeat-secret reward selector"
+    },
+    {
+      "bank": 0,
+      "address": "0x94D8",
+      "name": "World1_InvincibilityDescriptorSelector",
+      "evidence": "selector slot 04 reached only after the six-defeat sequence"
     },
     {
       "bank": 0,

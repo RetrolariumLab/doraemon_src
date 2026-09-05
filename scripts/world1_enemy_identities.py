@@ -132,7 +132,14 @@ def validate(
         "kobuun", "kobuun", "naame", "gozura", "yuubou", "kobuun"
     ]:
         errors.append("World 1 secret identity sequence differs")
-    if number(secret["reward_descriptor_index"]) != 4:
+    if number(secret["reward_selector_index"]) != 4:
+        errors.append("World 1 secret reward selector index differs")
+    reward_descriptor = bank_slice(
+        prg, bank, number(secret["reward_selector_address"]), 1
+    )[0]
+    if reward_descriptor != number(secret["reward_descriptor_index"]):
+        errors.append("World 1 secret reward descriptor byte differs")
+    if reward_descriptor != 0x0C:
         errors.append("World 1 secret reward descriptor differs")
     for signature in manifest.get("signatures", []):
         raw = bytes.fromhex(str(signature["bytes"]))

@@ -39,7 +39,12 @@ doors, manholes, bosses, triggers, and persistent progression state. The World
 1 entity grid, persistence masks, dispatch graphs, three-byte city and
 underground placement lists, thirteen descriptor definitions, transient
 selectors, and five collision-extent tables are now machine-validated and
-losslessly editable. World 2's embedded screen-stream enemy tokens, overlapping
+losslessly editable. All thirteen descriptor identities and effects are also
+joined to their placements, selector slots, metasprites, dispatch targets, and
+code signatures, including the dynamic weapon sequence and both hidden
+rewards. World 1's ten ordinary enemies, two mode variants, dormant state, and
+scripted boss states now have evidence-backed identities and semantically named
+handlers. World 2's embedded screen-stream enemy tokens, overlapping
 screen views, lossless authoring data, token-to-state normalization, complete
 20-state runtime domain, three editable property tables, and dispatch graphs
 are proven. All 20 update/render edges are now structurally classified as 19

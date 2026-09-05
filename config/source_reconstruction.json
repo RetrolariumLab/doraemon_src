@@ -69,6 +69,7 @@
         "config/object_pools.json",
         "config/world1_enemy_handlers.json",
         "config/world1_enemy_identities.json",
+        "config/world1_descriptor_identities.json",
         "config/world2_enemy_handlers.json",
         "config/world2_enemy_identities.json",
         "config/world2_enemy_states.json",
@@ -92,6 +93,7 @@
         "docs/world1_descriptors.md",
         "docs/world1_enemy_handlers.md",
         "docs/world1_enemy_identities.md",
+        "docs/world1_descriptor_identities.md",
         "docs/world2_enemy_handlers.md",
         "docs/world2_enemy_identities.md",
         "docs/world2_enemy_states.md",
@@ -106,6 +108,7 @@
         "scripts/object_pools.py",
         "scripts/world1_enemy_handlers.py",
         "scripts/world1_enemy_identities.py",
+        "scripts/world1_descriptor_identities.py",
         "scripts/world2_enemy_handlers.py",
         "scripts/world2_enemy_identities.py",
         "scripts/world2_enemy_states.py",
@@ -119,6 +122,7 @@
         "scripts/world3_update_handlers.py",
         "tests/test_world1_enemy_handlers.py",
         "tests/test_world1_enemy_identities.py",
+        "tests/test_world1_descriptor_identities.py",
         "tests/test_world2_enemy_handlers.py",
         "tests/test_world2_enemy_identities.py"
       ]

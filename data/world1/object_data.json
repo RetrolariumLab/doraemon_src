@@ -993,7 +993,8 @@
       6,
       10,
       11,
-      2
+      2,
+      12
     ]
   },
   "collision_tables": [
@@ -1100,6 +1101,6 @@
       ]
     }
   ],
-  "covered_byte_count": 558,
-  "covered_crc32": "2683494b"
+  "covered_byte_count": 559,
+  "covered_crc32": "b8184d2f"
 }

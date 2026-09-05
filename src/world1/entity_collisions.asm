@@ -412,7 +412,10 @@ Bank0_Label_94CF:
     RTS
 
 World1_TransientDescriptorSelectorTable:
-    .byte $06, $0A, $0B, $02, $0C
+    .byte $06, $0A, $0B, $02
+
+World1_InvincibilityDescriptorSelector:
+    .byte $0C
 
 World1_InvincibilityDefeatSequence:
     .byte $06, $06, $05, $04, $01, $06, $06, $A2, $15, $CA, $D0, $FD, $EA, $EA, $88, $D0

@@ -276,7 +276,7 @@ Bank0_Label_CA8A:
 Bank0_Label_CAA6:
     RTS
 
-World1_CityItemHandler_Type04:
+World1_CollectGenkiCandy:
     DEC $2C
     JSR Bank0_Func_8362
     LDA a:World1EntitySourceObjectId+$26,X
@@ -291,7 +291,7 @@ Bank0_Label_CAB6:
     LDA #$35
     JMP Bank0_Func_81C9
 
-World1_CityItemHandler_Type05:
+World1_CollectOneUp:
     INC $2A
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CACF
@@ -305,7 +305,7 @@ Bank0_Label_CACF:
     LDA #$31
     JMP Bank0_Func_81C9
 
-World1_CityItemHandler_Type07:
+World1_CollectDorayaki:
     JSR Bank0_Func_8362
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CAE8
@@ -319,7 +319,7 @@ Bank0_Label_CAE8:
     LDA #$32
     JMP Bank0_Func_81C9
 
-World1_CityItemHandler_Type06:
+World1_CollectWeaponUpgrade:
     INC $7B
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB01
@@ -333,7 +333,7 @@ Bank0_Label_CB01:
     LDA #$31
     JMP Bank0_Func_81C9
 
-World1_CityItemHandler_Type03:
+World1_CollectStopwatch:
     LDA #$01
     STA $82
     LDA #$F0
@@ -352,7 +352,7 @@ Bank0_Label_CB20:
     LDA #$32
     JMP Bank0_Func_81C9
 
-World1_CityItemHandler_Type08:
+World1_CollectRapidFireDrink:
     INC $84
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CB3E
@@ -366,7 +366,7 @@ Bank0_Label_CB3E:
     LDA #$32
     JMP Bank0_Func_81C9
 
-World1_CityItemHandler_Type09:
+World1_CollectFlashLight:
     LDA #$01
     STA $37
     LDA a:World1EntitySourceObjectId+$26,X
