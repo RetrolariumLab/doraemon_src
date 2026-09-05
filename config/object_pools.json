@@ -107,6 +107,36 @@
       ]
     },
     {
+      "id": "world2_inventory",
+      "bank": 1,
+      "capacity": 7,
+      "key_field": "World2InventoryState",
+      "fields": [
+        {
+          "symbol": "World2InventoryState",
+          "role": "fixed companion or carried-item state"
+        },
+        {
+          "symbol": "World2InventoryX",
+          "role": "entering, homing, active, or detached X coordinate"
+        },
+        {
+          "symbol": "World2InventoryY",
+          "role": "entering, homing, active, or detached Y coordinate"
+        }
+      ],
+      "layout": {
+        "start": "0x007C",
+        "field_stride": 7,
+        "field_count": 3,
+        "unclassified_bases": []
+      },
+      "lifecycle": [
+        "World2_UpdatePlayerAndInventory",
+        "World2_UpdateInventorySpawns"
+      ]
+    },
+    {
       "id": "world2_enemies",
       "bank": 1,
       "capacity": 7,

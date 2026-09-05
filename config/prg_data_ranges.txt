@@ -8,6 +8,11 @@ map 0 C2EF C92E World1UndergroundMap
 vectors 0 FFFA FFFF Bank0InterruptVectors
 table 1 87A1 8830 World2PaletteSets
 table 1 93AF 93B6 World2CollisionBitMasks
+table 1 A6B5 A6BB World2InventoryEligibleScreenIds
+table 1 A70F A71F World2StageBranchTriggerScreens
+table 1 A720 A730 World2StageBranchDestinationOffsets
+table 1 A731 A741 World2StageBranchConditionCodes
+table 1 A742 A752 World2StageBranchReturnOverrides
 table 1 B9CE B9CE World2UnindexedAttributePrefix
 table 1 B9CF BA9E World2MetatilePaletteSelectors
 table 1 BA9F BDDE World2MetatileTileQuads

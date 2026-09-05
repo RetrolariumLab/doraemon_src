@@ -106,10 +106,16 @@ is updated bitwise as metatiles are streamed into either nametable.
 | `World2ScreenRowIndex` | `$0056` | Row counter used to advance after sixteen rows |
 | `World2ScreenRunLength` | `$0057` | Low-nibble-derived RLE counter |
 | `World2CurrentScreenId` | `$0058` | Masked screen selector |
+| `World2PlayerX` | `$005C` | Player horizontal coordinate and branch-zone input |
+| `World2PlayerY` | `$005D` | Player vertical coordinate and branch-zone input |
 | `World2FrameCounter` | `$0073` | Bank-1 NMI counter and animation phase |
 | `World2EnemySpawnState` | `$0074` | Current `$D0-$EE` spawn token |
+| `World2InventoryState` | `$007C-$0082` | Seven fixed companion/item runtime states |
+| `World2InventoryX` | `$0083-$0089` | Seven companion/item X coordinates |
+| `World2InventoryY` | `$008A-$0090` | Seven companion/item Y coordinates |
 | `World2PendingBackgroundPalette` | `$009D` | Palette ID consumed and cleared by `$8747` |
 | `World2SavedStageSequenceOffset` | `$009E` | Branch return restored by stage token `$F7` |
+| `World2StageBranchCooldown` | `$00AE` | 255-frame lockout after a conditional stage branch |
 | `World2SavedBackgroundPalette` | `$00B4` | Palette ID restored after a transition |
 | `World2ScreenMetatiles` | `$0400-$04FF` | Expanded 16x16 screen used by rendering and collision |
 

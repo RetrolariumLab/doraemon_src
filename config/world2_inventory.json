@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "bank": 1,
+  "capacity": 7,
+  "pool_id": "world2_inventory",
+  "fields": {
+    "state": "World2InventoryState",
+    "x": "World2InventoryX",
+    "y": "World2InventoryY"
+  },
+  "states": [
+    {
+      "value": 0,
+      "name": "absent"
+    },
+    {
+      "value": 1,
+      "name": "entering"
+    },
+    {
+      "value": 2,
+      "name": "homing_to_player"
+    },
+    {
+      "value": 3,
+      "name": "active"
+    },
+    {
+      "value": 4,
+      "name": "knocked_loose"
+    }
+  ],
+  "eligible_screen_table": {
+    "address": "0xA6B5",
+    "count": 7,
+    "crc32": "b9a9c96d"
+  },
+  "signatures": [
+    {
+      "address": "0xA65E",
+      "purpose": "reverse-search eligible screen IDs",
+      "bytes": "A0 06 B9 B5 A6 C5 58 F0 04 88 10 F6 60 A5"
+    },
+    {
+      "address": "0xA6AA",
+      "purpose": "activate inventory slot at fixed entry coordinates",
+      "bytes": "F6 7C A9 78 95 83 A9 F0 95 8A 60"
+    },
+    {
+      "address": "0x8A74",
+      "purpose": "preserve active slots or restore homing state",
+      "bytes": "B5 7C C9 03 F0 04 A9 02 95 7C 60"
+    },
+    {
+      "address": "0x8BAC",
+      "purpose": "update all seven fixed inventory slots",
+      "bytes": "20 3C 8E 20 0F 8E 20 01 8D 20 88 8D 20 84 8C 20 74 8C 20 78 8C 20 7C 8C 20 5D 8C 20 80 8C"
+    },
+    {
+      "address": "0x8C04",
+      "purpose": "drop active inventory slot after damage threshold",
+      "bytes": "A9 00 85 A5 A5 27 D0 0B A2 05 B5 7C C9 03 F0 11 CA 10 F7 60 E6 A5 A5 A5 C9 06 B0 E4 A9 01 85 A8 60 A9 04 95"
+    }
+  ]
+}

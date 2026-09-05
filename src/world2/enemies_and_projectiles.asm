@@ -3,17 +3,17 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank1_Func_8F4B:
-    LDA $7C
+    LDA World2InventoryState
     CMP #$03
     BNE Bank1_Label_8F7F
     LDA $6F
     BNE Bank1_Label_8F7F
     INC $6F
-    LDA $83
+    LDA World2InventoryX
     CLC
     ADC #$04
     STA $70
-    LDA $8A
+    LDA World2InventoryY
     CLC
     ADC #$0A
     STA $71
@@ -45,14 +45,14 @@ Bank1_Func_8F80:
     LDA #$0A
     JSR World2_Audio_QueueEffectWithPriority
     INC $6A
-    LDA $5C
+    LDA World2PlayerX
     CLC
     ADC #$04
-    STA $85
-    LDA $5D
+    STA World2InventoryX+$02
+    LDA World2PlayerY
     CLC
     ADC #$08
-    STA $8C
+    STA World2InventoryY+$02
     LDA #$00
     STA $6B
     LDA $42
@@ -66,11 +66,11 @@ Bank1_Func_8FA2:
     STA $9C
     LDA $A0
     BNE Bank1_Label_8FA1
-    LDA $5C
+    LDA World2PlayerX
     CLC
     ADC #$04
     STA $67
-    LDA $5D
+    LDA World2PlayerY
     CLC
     ADC #$08
     STA $68
@@ -99,7 +99,7 @@ Bank1_Label_8FD8:
     CLC
     ADC #$08
     SEC
-    SBC $5D
+    SBC World2PlayerY
     BCC Bank1_Label_9006
     CMP #$18
     BCS Bank1_Label_9006
@@ -107,7 +107,7 @@ Bank1_Label_8FD8:
     CLC
     ADC #$08
     SEC
-    SBC $5C
+    SBC World2PlayerX
     BCC Bank1_Label_9006
     CMP #$10
     BCS Bank1_Label_9006
@@ -132,7 +132,7 @@ Bank1_Label_900B:
     CLC
     ADC #$02
     SEC
-    SBC $5D
+    SBC World2PlayerY
     BCC Bank1_Label_9032
     CMP #$16
     BCS Bank1_Label_9032
@@ -140,7 +140,7 @@ Bank1_Label_900B:
     CLC
     ADC #$02
     SEC
-    SBC $5C
+    SBC World2PlayerX
     BCC Bank1_Label_9032
     CMP #$0E
     BCS Bank1_Label_9032
@@ -362,9 +362,9 @@ Bank1_Func_9177:
     LDA $6A
     BEQ Bank1_Label_91A3
     JSR Bank1_Func_9190
-    LDA $85
+    LDA World2InventoryX+$02
     STA $67
-    LDA $8C
+    LDA World2InventoryY+$02
     STA $68
     JSR World2_TestMetatileCollision
     BEQ Bank1_Label_918F
@@ -378,13 +378,13 @@ Bank1_Func_9190:
     LDA $6E
     BNE Bank1_Label_91A4
     INC $6B
-    LDA $85
+    LDA World2InventoryX+$02
     CMP #$F8
     BCS Bank1_Label_91C8
-    LDA $85
+    LDA World2InventoryX+$02
     CLC
     ADC #$08
-    STA $85
+    STA World2InventoryX+$02
 
 Bank1_Label_91A3:
     RTS
@@ -393,24 +393,24 @@ Bank1_Label_91A4:
     CMP #$02
     BNE Bank1_Label_91B8
     INC $6B
-    LDA $8C
+    LDA World2InventoryY+$02
     CMP #$F9
     BCS Bank1_Label_91C8
-    LDA $8C
+    LDA World2InventoryY+$02
     CLC
     ADC #$07
-    STA $8C
+    STA World2InventoryY+$02
     RTS
 
 Bank1_Label_91B8:
     INC $6B
-    LDA $8C
+    LDA World2InventoryY+$02
     CMP #$10
     BCC Bank1_Label_91C8
-    LDA $8C
+    LDA World2InventoryY+$02
     SEC
     SBC #$07
-    STA $8C
+    STA World2InventoryY+$02
     RTS
 
 Bank1_Label_91C8:
@@ -501,7 +501,7 @@ Bank1_Label_922D:
     JMP Bank1_Label_9295
 
 Bank1_Label_9242:
-    LDA $85
+    LDA World2InventoryX+$02
     STA $60
     LDA #$20
     STA $6D
@@ -511,7 +511,7 @@ Bank1_Label_9242:
 Bank1_Label_924E:
     LDA a:$9326,X
     BEQ Bank1_Label_9261
-    LDA $8C
+    LDA World2InventoryY+$02
     SEC
     SBC $6D
     BCC Bank1_Label_9261
@@ -535,7 +535,7 @@ Bank1_Label_9261:
 Bank1_Label_9275:
     LDA a:$9326,X
     BEQ Bank1_Label_9288
-    LDA $8C
+    LDA World2InventoryY+$02
     CLC
     ADC $6D
     BCS Bank1_Label_9288
@@ -554,7 +554,7 @@ Bank1_Label_9288:
     RTS
 
 Bank1_Label_9295:
-    LDA $85
+    LDA World2InventoryX+$02
     STA $60
     LDA #$20
     STA $6D
@@ -589,7 +589,7 @@ Bank1_Label_92B6:
 Bank1_Label_92CA:
     LDA a:$9326,X
     BEQ Bank1_Label_92DF
-    LDA $85
+    LDA World2InventoryX+$02
     CLC
     ADC $6D
     BCS Bank1_Label_92DF

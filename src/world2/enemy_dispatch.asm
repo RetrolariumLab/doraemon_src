@@ -94,7 +94,7 @@ World2_EnemyUpdateDispatchContinuation:
     BCS Bank1_Label_9991
     LDA $27
     BNE Bank1_Label_9999
-    LDA $7E
+    LDA World2InventoryState+$02
     CMP #$03
     BEQ Bank1_Label_9999
 
@@ -106,7 +106,7 @@ Bank1_Label_9991:
 Bank1_Label_9999:
     LDA $27
     BNE Bank1_Label_99A1
-    LDA $7E
+    LDA World2InventoryState+$02
     BEQ Bank1_Label_99A5
 
 Bank1_Label_99A1:
@@ -127,9 +127,9 @@ Bank1_Label_99A7:
     CMP #$04
     BNE Bank1_Label_99C4
     LDA #$02
-    STA $7F
-    STA $86
-    STA $8D
+    STA World2InventoryState+$03
+    STA World2InventoryX+$03
+    STA World2InventoryY+$03
 
 Bank1_Label_99C0:
     LDA #$00
@@ -218,7 +218,7 @@ Bank1_Func_9A46:
     STX $9A
     LDA $27
     BNE Bank1_Label_9A52
-    LDA $7E
+    LDA World2InventoryState+$02
     CMP #$03
     BNE Bank1_Label_9A5A
 
@@ -321,7 +321,7 @@ Bank1_Func_9ABE:
     BEQ Bank1_Label_9AF8
     LDA $99
     SEC
-    SBC $8C
+    SBC World2InventoryY+$02
     BCC Bank1_Label_9AD3
     CMP #$11
     BCC Bank1_Label_9AD7
@@ -343,7 +343,7 @@ Bank1_Label_9AD7:
 Bank1_Label_9ADF:
     ASL A
     STA $9B
-    LDA $85
+    LDA World2InventoryX+$02
     SEC
     SBC $9B
     SBC #$10
@@ -359,7 +359,7 @@ Bank1_Label_9ADF:
 Bank1_Label_9AF8:
     LDA $98
     SEC
-    SBC $85
+    SBC World2InventoryX+$02
     BCC Bank1_Label_9B05
     CMP #$11
     BCC Bank1_Label_9B09
@@ -381,7 +381,7 @@ Bank1_Label_9B09:
 Bank1_Label_9B11:
     ASL A
     STA $9B
-    LDA $8C
+    LDA World2InventoryY+$02
     SEC
     SBC $9B
     SBC #$10

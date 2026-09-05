@@ -24,7 +24,7 @@ Bank1_Label_9302:
     JMP Bank1_Func_96BA
 
 Bank1_Func_9309:
-    LDA $8C
+    LDA World2InventoryY+$02
     STA $94
     LDA a:$9326,X
     PHA
@@ -138,9 +138,9 @@ Bank1_Func_93EC:
     DEX
     BEQ Bank1_Label_9408
     TAX
-    LDA $5C
+    LDA World2PlayerX
     STA $67
-    LDA $5D
+    LDA World2PlayerY
     CLC
     ADC #$18
     STA $68
@@ -150,9 +150,9 @@ Bank1_Label_9408:
     CLC
     ADC #$02
     TAX
-    LDA $5C
+    LDA World2PlayerX
     STA $67
-    LDA $5D
+    LDA World2PlayerY
     SEC
     SBC #$10
     STA $68
@@ -162,11 +162,11 @@ Bank1_Label_941A:
     CLC
     ADC #$04
     TAX
-    LDA $5D
+    LDA World2PlayerY
     CLC
     ADC #$09
     STA $68
-    LDA $5C
+    LDA World2PlayerX
     CLC
     ADC #$10
     STA $67
@@ -196,7 +196,7 @@ Bank1_Label_9446:
 
 Bank1_Func_9450:
     LDX #$04
-    LDA $7C,X
+    LDA World2InventoryState,X
     BEQ Bank1_Label_9498
     CMP #$03
     BEQ Bank1_Label_9498
@@ -204,9 +204,9 @@ Bank1_Func_9450:
     BCS Bank1_Label_9498
     LDA #$00
     STA $62
-    LDA $83,X
+    LDA World2InventoryX,X
     STA $60
-    LDA $8A,X
+    LDA World2InventoryY,X
     STA $61
     LDA #$00
     STA $67
@@ -264,15 +264,15 @@ Bank1_Label_94B2:
     RTS
 
 Bank1_Func_94BB:
-    LDA $82
+    LDA World2InventoryState+$06
     BEQ Bank1_Label_94FD
     CMP #$03
     BEQ Bank1_Label_94FD
     JSR Bank1_Func_93E3
     BCS Bank1_Label_94FD
-    LDA $89
+    LDA World2InventoryX+$06
     STA $97
-    LDA $90
+    LDA World2InventoryY+$06
     STA $94
     LDA #$3E
     STA $95
@@ -304,15 +304,15 @@ Bank1_Label_94FD:
 
 Bank1_Func_94FE:
     LDX #$03
-    LDA $7C,X
+    LDA World2InventoryState,X
     BEQ Bank1_Label_956E
     CMP #$03
     BEQ Bank1_Label_956E
     JSR Bank1_Func_93E3
     BCS Bank1_Label_956E
-    LDA $83,X
+    LDA World2InventoryX,X
     STA $97
-    LDA $8A,X
+    LDA World2InventoryY,X
     STA $94
     LDA #$01
     STA $96
@@ -336,7 +336,7 @@ Bank1_Func_9534:
     LDX #$02
 
 Bank1_Label_9536:
-    LDA $7C,X
+    LDA World2InventoryState,X
     BEQ Bank1_Label_956E
     CMP #$03
     BEQ Bank1_Label_956E
@@ -344,9 +344,9 @@ Bank1_Label_9536:
     BCS Bank1_Label_956E
     LDA a:$956D,X
     STA $62
-    LDA $83,X
+    LDA World2InventoryX,X
     STA $60
-    LDA $8A,X
+    LDA World2InventoryY,X
     STA $61
     TXA
     ASL A
@@ -375,7 +375,7 @@ Bank1_Label_956E:
     .byte $01, $01, $00, $00
 
 Bank1_Func_9573:
-    LDA $7C
+    LDA World2InventoryState
     BEQ Bank1_Label_956E
     LDY #$30
     CMP #$03
@@ -387,9 +387,9 @@ Bank1_Func_9573:
     INX
 
 Bank1_Label_9586:
-    LDA $83
+    LDA World2InventoryX
     STA $60
-    LDA $8A
+    LDA World2InventoryY
     STA $61
     JMP Bank1_Label_95F8
 
@@ -404,10 +404,10 @@ Bank1_Label_959A:
     TAX
     LDA a:$0200,X
     STA $60
-    STA $83
+    STA World2InventoryX
     LDA a:$0230,X
     STA $61
-    STA $8A
+    STA World2InventoryY
     LDA $42
     ASL A
     CLC
@@ -419,7 +419,7 @@ Bank1_Label_95B3:
     RTS
 
 Bank1_Func_95B4:
-    LDA $7D
+    LDA World2InventoryState+$01
     BEQ Bank1_Label_95B3
     LDY #$18
     CMP #$03
@@ -431,9 +431,9 @@ Bank1_Func_95B4:
     INX
 
 Bank1_Label_95C7:
-    LDA $84
+    LDA World2InventoryX+$01
     STA $60
-    LDA $8B
+    LDA World2InventoryY+$01
     STA $61
     JMP Bank1_Label_95F8
 
@@ -448,10 +448,10 @@ Bank1_Label_95DB:
     TAX
     LDA a:$0200,X
     STA $60
-    STA $84
+    STA World2InventoryX+$01
     LDA a:$0230,X
     STA $61
-    STA $8B
+    STA World2InventoryY+$01
     LDA $42
     ASL A
     CLC
@@ -532,9 +532,9 @@ Bank1_Label_964C:
     ADC $98
     ASL A
     TAX
-    LDA $5C
+    LDA World2PlayerX
     STA $60
-    LDA $5D
+    LDA World2PlayerY
     STA $61
 
 Bank1_Label_965B:

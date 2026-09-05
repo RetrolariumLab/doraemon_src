@@ -45,6 +45,10 @@ WORLD2_ENEMY_STATES := config/world2_enemy_states.json
 WORLD2_ENEMY_AUTHORING := data/world2/enemy_states.json
 WORLD2_STAGE_SEQUENCE := config/world2_stage_sequence.json
 WORLD2_STAGE_AUTHORING := data/world2/stage_sequence.json
+WORLD2_STAGE_BRANCHES := config/world2_stage_branches.json
+WORLD2_STAGE_BRANCH_AUTHORING := data/world2/stage_branches.json
+WORLD2_INVENTORY := config/world2_inventory.json
+WORLD2_INVENTORY_AUTHORING := data/world2/inventory_spawn_screens.json
 WORLD2_METATILES := config/world2_metatiles.json
 WORLD2_METATILE_AUTHORING := data/world2/metatiles.json
 WORLD2_PALETTES := config/world2_palettes.json
@@ -71,6 +75,8 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	validate-object-placements world2-streaming validate-world2-streaming \
 	world2-enemy-states validate-world2-enemy-states \
 	world2-stage-sequence validate-world2-stage-sequence \
+	world2-stage-branches validate-world2-stage-branches \
+	world2-inventory validate-world2-inventory \
 	world2-metatiles validate-world2-metatiles \
 	world2-palettes validate-world2-palettes \
 	world3-object-data validate-world3-object-data world3-behavior \
@@ -234,6 +240,18 @@ world2-stage-sequence validate-world2-stage-sequence: $(PRG_ASSET)
 		--manifest "$(WORLD2_STAGE_SEQUENCE)" \
 		--authoring "$(WORLD2_STAGE_AUTHORING)"
 
+world2-stage-branches validate-world2-stage-branches: $(PRG_ASSET)
+	$(PYTHON) scripts/world2_stage_branches.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_STAGE_BRANCHES)" \
+		--stage-authoring "$(WORLD2_STAGE_AUTHORING)" \
+		--authoring "$(WORLD2_STAGE_BRANCH_AUTHORING)"
+
+world2-inventory validate-world2-inventory: $(PRG_ASSET)
+	$(PYTHON) scripts/world2_inventory.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_INVENTORY)" \
+		--object-pools "$(OBJECT_POOLS)" \
+		--authoring "$(WORLD2_INVENTORY_AUTHORING)"
+
 world2-metatiles validate-world2-metatiles: $(PRG_ASSET)
 	$(PYTHON) scripts/world2_metatiles.py validate --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD2_METATILES)" \
@@ -302,6 +320,8 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-object-placements validate-world2-streaming \
 	validate-world2-enemy-states \
 	validate-world2-stage-sequence \
+	validate-world2-stage-branches \
+	validate-world2-inventory \
 	validate-world2-metatiles \
 	validate-world2-palettes \
 	validate-world3-object-data validate-world3-behavior \

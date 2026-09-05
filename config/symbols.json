@@ -883,6 +883,12 @@
     },
     {
       "bank": 1,
+      "address": "0x8BAC",
+      "name": "World2_UpdatePlayerAndInventory",
+      "evidence": "frame-service-calls-player-motion-history-and-all-seven-fixed-inventory-slot-handlers"
+    },
+    {
+      "bank": 1,
       "address": "0x9036",
       "name": "World2_UpdatePlayerProjectiles",
       "evidence": "seven-slot-player-projectile-motion-collision-and-despawn-loop"
@@ -974,6 +980,53 @@
       "name": "World2_EnemyScoreRewardCodeByState",
       "operand_symbol": true,
       "evidence": "21-byte reward-code table indexed by defeated runtime enemy state"
+    },
+    {
+      "bank": 1,
+      "address": "0xA62B",
+      "name": "World2_UpdateInventorySpawns",
+      "evidence": "updates-special-slot-events-and-activates-free-inventory-slot-on-seven-eligible-screens"
+    },
+    {
+      "bank": 1,
+      "address": "0xA6B5",
+      "name": "World2_InventoryEligibleScreenIds",
+      "operand_symbol": true,
+      "evidence": "seven-screen-membership-table-used-before-inventory-slot-activation"
+    },
+    {
+      "bank": 1,
+      "address": "0xA6BC",
+      "name": "World2_CheckStageBranch",
+      "evidence": "matches-current-screen-on-row-13-applies-coordinate-condition-and-redirects-stage-offset"
+    },
+    {
+      "bank": 1,
+      "address": "0xA70F",
+      "name": "World2_StageBranchTriggerScreens",
+      "operand_symbol": true,
+      "evidence": "17-screen-key-first-column-of-world2-conditional-stage-branch-table"
+    },
+    {
+      "bank": 1,
+      "address": "0xA720",
+      "name": "World2_StageBranchDestinationOffsets",
+      "operand_symbol": true,
+      "evidence": "17-stage-sequence-destinations-stored-minus-one-before-decoder-increment"
+    },
+    {
+      "bank": 1,
+      "address": "0xA731",
+      "name": "World2_StageBranchConditionCodes",
+      "operand_symbol": true,
+      "evidence": "17-condition-codes-selecting-unconditional-or-player-coordinate-zones"
+    },
+    {
+      "bank": 1,
+      "address": "0xA742",
+      "name": "World2_StageBranchReturnOverrides",
+      "operand_symbol": true,
+      "evidence": "zero-keeps-current-stage-offset-nonzero-selects-fixed-f7-return-offset"
     },
     {
       "bank": 1,
@@ -2225,6 +2278,22 @@
       "evidence": "masked-stage-token-used-to-index-world2-screen-pointer-table"
     },
     {
+      "address": "0x005C",
+      "name": "World2PlayerX",
+      "banks": [
+        1
+      ],
+      "evidence": "initialized-to-0x3c-and-updated-by-horizontal-input-with-flight-bounds"
+    },
+    {
+      "address": "0x005D",
+      "name": "World2PlayerY",
+      "banks": [
+        1
+      ],
+      "evidence": "initialized-to-0x78-and-updated-by-vertical-input-with-flight-bounds"
+    },
+    {
       "address": "0x0073",
       "name": "World2FrameCounter",
       "banks": [
@@ -2241,6 +2310,33 @@
       "evidence": "d0-through-ee-compressed-screen-token-passed-to-world2-enemy-spawn"
     },
     {
+      "address": "0x007C",
+      "name": "World2InventoryState",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-fixed-companion-or-item-slots-with-absent-entering-homing-active-and-detached-states"
+    },
+    {
+      "address": "0x0083",
+      "name": "World2InventoryX",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-x-array-used-by-inventory-motion-collision-and-rendering"
+    },
+    {
+      "address": "0x008A",
+      "name": "World2InventoryY",
+      "size": 7,
+      "banks": [
+        1
+      ],
+      "evidence": "seven-slot-y-array-used-by-inventory-motion-collision-and-rendering"
+    },
+    {
       "address": "0x009D",
       "name": "World2PendingBackgroundPalette",
       "banks": [
@@ -2255,6 +2351,14 @@
         1
       ],
       "evidence": "saved-by-special-screen-branching-and-restored-by-f7-stage-command"
+    },
+    {
+      "address": "0x00AE",
+      "name": "World2StageBranchCooldown",
+      "banks": [
+        1
+      ],
+      "evidence": "successful-stage-branch-wraps-zero-to-0xff-then-decrements-on-each-frame-call"
     },
     {
       "address": "0x00B4",

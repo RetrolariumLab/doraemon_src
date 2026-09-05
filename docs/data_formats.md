@@ -17,6 +17,8 @@ header and the physical 32 KiB bank base.
 | world 2 palette sets | `$87B1` | 1:`$87A1` | 9x16 exact |
 | world 2 CadEditor screen region | `$BDFC` | 1:`$BDEC` | 60x16x15 editor view |
 | world 2 stage sequence | `$BDEF` | 1:`$BDDF` | 229 bytes |
+| world 2 conditional stage branches | `$A71F` | 1:`$A70F` | 4x17 bytes |
+| world 2 inventory-eligible screens | `$A6C5` | 1:`$A6B5` | 7 bytes |
 | world 2 metatile collision bits | `$BED4` | 1:`$BEC4` | 26 bytes |
 | world 2 screen pointers | `$BEEE` | 1:`$BEDE` | 119 standard entries |
 | world 2 compressed streams | `$BFDC` | 1:`$BFCC` | through `$FFFA` |
@@ -88,3 +90,11 @@ World 2's nine background/sprite palette sets and three chapter selector pairs
 round-trip through `data/world2/palettes.json`. Their lookup bases, stage
 commands, and code/data overlap are fixed by `config/world2_palettes.json`; see
 `docs/world2_palettes.md`.
+
+World 2 also has 17 conditional route changes stored as four parallel tables.
+They connect screen IDs and player-coordinate zones to stage-sequence offsets;
+see `docs/world2_stage_branches.md`.
+
+Seven screen IDs gate the appearance of World 2 companions and carried items.
+Their editable table and the associated three-array zero-page inventory model
+are documented in `docs/world2_inventory.md`.

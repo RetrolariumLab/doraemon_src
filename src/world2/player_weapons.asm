@@ -38,7 +38,7 @@ Bank1_Func_8C84:
     LDX #$02
 
 Bank1_Label_8C86:
-    LDA $7C,X
+    LDA World2InventoryState,X
     CMP #$01
     BEQ Bank1_Label_8CC3
     CMP #$04
@@ -46,27 +46,27 @@ Bank1_Label_8C86:
     CMP #$02
     BNE Bank1_Label_8CC2
     LDY #$00
-    LDA $5C
-    CMP $83,X
+    LDA World2PlayerX
+    CMP World2InventoryX,X
     BEQ Bank1_Label_8CA5
     BCS Bank1_Label_8CA2
-    DEC $83,X
-    DEC $83,X
+    DEC World2InventoryX,X
+    DEC World2InventoryX,X
 
 Bank1_Label_8CA2:
-    INC $83,X
+    INC World2InventoryX,X
     INY
 
 Bank1_Label_8CA5:
-    LDA $5D
-    CMP $8A,X
+    LDA World2PlayerY
+    CMP World2InventoryY,X
     BEQ Bank1_Label_8CB4
     BCS Bank1_Label_8CB1
-    DEC $8A,X
-    DEC $8A,X
+    DEC World2InventoryY,X
+    DEC World2InventoryY,X
 
 Bank1_Label_8CB1:
-    INC $8A,X
+    INC World2InventoryY,X
     INY
 
 Bank1_Label_8CB4:
@@ -76,24 +76,24 @@ Bank1_Label_8CB4:
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$00
     STA $A5
-    INC $7C,X
+    INC World2InventoryState,X
 
 Bank1_Label_8CC2:
     RTS
 
 Bank1_Label_8CC3:
     JSR Bank1_Func_8CD9
-    LDA $7C,X
+    LDA World2InventoryState,X
     CMP #$01
     BNE Bank1_Label_8CC2
-    LDA $8A,X
+    LDA World2InventoryY,X
     CMP #$67
     BEQ Bank1_Label_8CD6
     CMP #$79
     BNE Bank1_Label_8CC2
 
 Bank1_Label_8CD6:
-    INC $7C,X
+    INC World2InventoryState,X
     RTS
 
 Bank1_Func_8CD9:
@@ -101,13 +101,13 @@ Bank1_Func_8CD9:
     BEQ Bank1_Label_8CEE
     DEY
     BEQ Bank1_Label_8CE5
-    DEC $8A,X
+    DEC World2InventoryY,X
     BEQ Bank1_Label_8CF6
     RTS
 
 Bank1_Label_8CE5:
-    INC $8A,X
-    LDA $8A,X
+    INC World2InventoryY,X
+    LDA World2InventoryY,X
     CMP #$E0
     BCS Bank1_Label_8CF6
     RTS
@@ -115,22 +115,22 @@ Bank1_Label_8CE5:
 Bank1_Label_8CEE:
     LDA $45
     BNE Bank1_Label_8D00
-    DEC $83,X
+    DEC World2InventoryX,X
     BNE Bank1_Label_8D00
 
 Bank1_Label_8CF6:
-    LDA $7C,X
+    LDA World2InventoryState,X
     CMP #$01
     BEQ Bank1_Label_8D00
     LDA #$00
-    STA $7C,X
+    STA World2InventoryState,X
 
 Bank1_Label_8D00:
     RTS
 
 Bank1_Func_8D01:
     LDY #$00
-    LDA $7D
+    LDA World2InventoryState+$01
     CMP #$01
     BEQ Bank1_Label_8D4A
     CMP #$04
@@ -146,32 +146,32 @@ Bank1_Func_8D01:
 Bank1_Label_8D1A:
     TAX
     LDA a:$0200,X
-    CMP $84
+    CMP World2InventoryX+$01
     BEQ Bank1_Label_8D2B
     BCS Bank1_Label_8D28
-    DEC $84
-    DEC $84
+    DEC World2InventoryX+$01
+    DEC World2InventoryX+$01
 
 Bank1_Label_8D28:
-    INC $84
+    INC World2InventoryX+$01
     INY
 
 Bank1_Label_8D2B:
     LDA a:$0230,X
-    CMP $8B
+    CMP World2InventoryY+$01
     BEQ Bank1_Label_8D3B
     BCS Bank1_Label_8D38
-    DEC $8B
-    DEC $8B
+    DEC World2InventoryY+$01
+    DEC World2InventoryY+$01
 
 Bank1_Label_8D38:
-    INC $8B
+    INC World2InventoryY+$01
     INY
 
 Bank1_Label_8D3B:
     TYA
     BNE Bank1_Label_8D49
-    INC $7D
+    INC World2InventoryState+$01
     LDA #$09
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$00
@@ -182,17 +182,17 @@ Bank1_Label_8D49:
 
 Bank1_Label_8D4A:
     JSR Bank1_Func_8D60
-    LDA $7D
+    LDA World2InventoryState+$01
     CMP #$01
     BNE Bank1_Label_8D49
-    LDA $8B
+    LDA World2InventoryY+$01
     CMP #$67
     BEQ Bank1_Label_8D5D
     CMP #$79
     BNE Bank1_Label_8D49
 
 Bank1_Label_8D5D:
-    INC $7D
+    INC World2InventoryState+$01
     RTS
 
 Bank1_Func_8D60:
@@ -200,13 +200,13 @@ Bank1_Func_8D60:
     BEQ Bank1_Label_8D75
     DEY
     BEQ Bank1_Label_8D6C
-    DEC $8B
+    DEC World2InventoryY+$01
     BEQ Bank1_Label_8D7D
     RTS
 
 Bank1_Label_8D6C:
-    INC $8B
-    LDA $8B
+    INC World2InventoryY+$01
+    LDA World2InventoryY+$01
     CMP #$E0
     BCS Bank1_Label_8D7D
     RTS
@@ -214,22 +214,22 @@ Bank1_Label_8D6C:
 Bank1_Label_8D75:
     LDA $45
     BNE Bank1_Label_8D87
-    DEC $84
+    DEC World2InventoryX+$01
     BNE Bank1_Label_8D87
 
 Bank1_Label_8D7D:
-    LDA $7D
+    LDA World2InventoryState+$01
     CMP #$01
     BEQ Bank1_Label_8D87
     LDA #$00
-    STA $7D
+    STA World2InventoryState+$01
 
 Bank1_Label_8D87:
     RTS
 
 Bank1_Func_8D88:
     LDY #$00
-    LDA $7C
+    LDA World2InventoryState
     CMP #$01
     BEQ Bank1_Label_8DD1
     CMP #$04
@@ -245,26 +245,26 @@ Bank1_Func_8D88:
 Bank1_Label_8DA1:
     TAX
     LDA a:$0200,X
-    CMP $83
+    CMP World2InventoryX
     BEQ Bank1_Label_8DB2
     BCS Bank1_Label_8DAF
-    DEC $83
-    DEC $83
+    DEC World2InventoryX
+    DEC World2InventoryX
 
 Bank1_Label_8DAF:
-    INC $83
+    INC World2InventoryX
     INY
 
 Bank1_Label_8DB2:
     LDA a:$0230,X
-    CMP $8A
+    CMP World2InventoryY
     BEQ Bank1_Label_8DC2
     BCS Bank1_Label_8DBF
-    DEC $8A
-    DEC $8A
+    DEC World2InventoryY
+    DEC World2InventoryY
 
 Bank1_Label_8DBF:
-    INC $8A
+    INC World2InventoryY
     INY
 
 Bank1_Label_8DC2:
@@ -274,24 +274,24 @@ Bank1_Label_8DC2:
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$00
     STA $A5
-    INC $7C
+    INC World2InventoryState
 
 Bank1_Label_8DD0:
     RTS
 
 Bank1_Label_8DD1:
     JSR Bank1_Func_8DE7
-    LDA $7C
+    LDA World2InventoryState
     CMP #$01
     BNE Bank1_Label_8DD0
-    LDA $8A
+    LDA World2InventoryY
     CMP #$67
     BEQ Bank1_Label_8DE4
     CMP #$79
     BNE Bank1_Label_8DD0
 
 Bank1_Label_8DE4:
-    INC $7C
+    INC World2InventoryState
     RTS
 
 Bank1_Func_8DE7:
@@ -299,13 +299,13 @@ Bank1_Func_8DE7:
     BEQ Bank1_Label_8DFC
     DEY
     BEQ Bank1_Label_8DF3
-    DEC $8A
+    DEC World2InventoryY
     BEQ Bank1_Label_8E04
     RTS
 
 Bank1_Label_8DF3:
-    INC $8A
-    LDA $8A
+    INC World2InventoryY
+    LDA World2InventoryY
     CMP #$E0
     BCS Bank1_Label_8E04
     RTS
@@ -313,15 +313,15 @@ Bank1_Label_8DF3:
 Bank1_Label_8DFC:
     LDA $45
     BNE Bank1_Label_8E0E
-    DEC $83
+    DEC World2InventoryX
     BNE Bank1_Label_8E0E
 
 Bank1_Label_8E04:
-    LDA $7C
+    LDA World2InventoryState
     CMP #$01
     BEQ Bank1_Label_8E0E
     LDA #$00
-    STA $7C
+    STA World2InventoryState
 
 Bank1_Label_8E0E:
     RTS
@@ -333,19 +333,19 @@ Bank1_Func_8E0F:
     LDX #$30
 
 Bank1_Label_8E16:
-    LDA $5C
+    LDA World2PlayerX
     CMP a:$0200,X
     BNE Bank1_Label_8E25
-    LDA $5D
+    LDA World2PlayerY
     CMP a:$0230,X
     BNE Bank1_Label_8E25
     RTS
 
 Bank1_Label_8E25:
     LDX $5F
-    LDA $5C
+    LDA World2PlayerX
     STA a:$0200,X
-    LDA $5D
+    LDA World2PlayerY
     STA a:$0230,X
     INX
     TXA
@@ -377,45 +377,45 @@ Bank1_Label_8E50:
     TAX
     AND #$01
     BEQ Bank1_Label_8E63
-    LDA $5C
+    LDA World2PlayerX
     CMP #$D0
     BCS Bank1_Label_8E73
     LDA $5E
-    ADC $5C
-    STA $5C
+    ADC World2PlayerX
+    STA World2PlayerX
     BNE Bank1_Label_8E73
 
 Bank1_Label_8E63:
     TXA
     AND #$02
     BEQ Bank1_Label_8E73
-    LDA $5C
+    LDA World2PlayerX
     SEC
     SBC $5E
     CMP #$20
     BCC Bank1_Label_8E73
-    STA $5C
+    STA World2PlayerX
 
 Bank1_Label_8E73:
     TXA
     AND #$04
     BEQ Bank1_Label_8E84
-    LDA $5D
+    LDA World2PlayerY
     CMP #$D0
     BCS Bank1_Label_8E93
     ADC $5E
-    STA $5D
+    STA World2PlayerY
     BNE Bank1_Label_8E93
 
 Bank1_Label_8E84:
     TXA
     AND #$08
     BEQ Bank1_Label_8E93
-    LDA $5D
+    LDA World2PlayerY
     SBC $5E
     CMP #$20
     BCC Bank1_Label_8E93
-    STA $5D
+    STA World2PlayerY
 
 Bank1_Label_8E93:
     TXA
@@ -444,7 +444,7 @@ Bank1_Label_8EB3:
     INC $7A
     LDA #$00
     STA $91
-    LDA $7D
+    LDA World2InventoryState+$01
     CMP #$03
     BNE Bank1_Label_8F0C
     LDA $7B
@@ -496,7 +496,7 @@ Bank1_Label_8F0C:
     JSR Bank1_Func_8F4B
     LDA $27
     BNE Bank1_Label_8F19
-    LDA $7E
+    LDA World2InventoryState+$02
     CMP #$03
     BNE Bank1_Label_8F1C
 
@@ -518,11 +518,11 @@ Bank1_Label_8F1E:
 Bank1_Label_8F2B:
     LDA #$01
     JSR World2_Audio_QueueEffectWithPriority
-    LDA $5C
+    LDA World2PlayerX
     CLC
     ADC #$04
     STA a:World2PlayerProjectileX,X
-    LDA $5D
+    LDA World2PlayerY
     CLC
     ADC #$08
     STA a:World2PlayerProjectileY,X

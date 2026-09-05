@@ -566,7 +566,7 @@ Bank1_Func_8891:
     LDX #$7F
     TXS
     LDX #$00
-    STX $82
+    STX World2InventoryState+$06
     INX
     STX $27
     INX

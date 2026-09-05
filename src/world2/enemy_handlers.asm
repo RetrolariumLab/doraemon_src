@@ -76,11 +76,11 @@ World2_SpawnEnemyProjectile:
     LDA $A0
     BNE Bank1_Label_A13F
     STX $79
-    LDA $5C
+    LDA World2PlayerX
     CLC
     ADC #$04
     STA $A6
-    LDA $5D
+    LDA World2PlayerY
     ADC #$08
     STA $A7
     LDA $41
@@ -89,14 +89,14 @@ World2_SpawnEnemyProjectile:
     BEQ Bank1_Label_A173
     CMP #$01
     BEQ Bank1_Label_A169
-    LDA $5D
+    LDA World2PlayerY
     CLC
     ADC #$1F
     STA $A7
     JMP Bank1_Label_A170
 
 Bank1_Label_A169:
-    LDA $5D
+    LDA World2PlayerY
     SEC
     SBC #$1F
     STA $A7
@@ -105,7 +105,7 @@ Bank1_Label_A170:
     JMP Bank1_Label_A17E
 
 Bank1_Label_A173:
-    LDA $5C
+    LDA World2PlayerX
     CLC
     ADC #$40
     BCC Bank1_Label_A17C

@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world2-stage-branches",
+  "bank": 1,
+  "trigger_row": 13,
+  "branches": [
+    {
+      "index": 0,
+      "trigger_screen_id": "0x07",
+      "destination_offset": "0x86",
+      "condition": "player_y_at_least_0xA0",
+      "return_offset_override": null
+    },
+    {
+      "index": 1,
+      "trigger_screen_id": "0x0C",
+      "destination_offset": "0x90",
+      "condition": "player_y_below_0x50",
+      "return_offset_override": null
+    },
+    {
+      "index": 2,
+      "trigger_screen_id": "0x10",
+      "destination_offset": "0x9A",
+      "condition": "player_y_at_least_0xA0",
+      "return_offset_override": null
+    },
+    {
+      "index": 3,
+      "trigger_screen_id": "0x25",
+      "destination_offset": "0xA2",
+      "condition": "player_y_at_least_0xA0",
+      "return_offset_override": "0x3C"
+    },
+    {
+      "index": 4,
+      "trigger_screen_id": "0x2B",
+      "destination_offset": "0xB4",
+      "condition": "player_y_at_least_0xA0",
+      "return_offset_override": "0x32"
+    },
+    {
+      "index": 5,
+      "trigger_screen_id": "0x33",
+      "destination_offset": "0xC0",
+      "condition": "player_y_at_least_0xA0",
+      "return_offset_override": "0x44"
+    },
+    {
+      "index": 6,
+      "trigger_screen_id": "0x3E",
+      "destination_offset": "0xCA",
+      "condition": "player_y_at_least_0xA0",
+      "return_offset_override": "0x50"
+    },
+    {
+      "index": 7,
+      "trigger_screen_id": "0x2F",
+      "destination_offset": "0xD4",
+      "condition": "player_x_at_least_0xA0",
+      "return_offset_override": "0x42"
+    },
+    {
+      "index": 8,
+      "trigger_screen_id": "0x6B",
+      "destination_offset": "0x45",
+      "condition": "always",
+      "return_offset_override": null
+    },
+    {
+      "index": 9,
+      "trigger_screen_id": "0x6A",
+      "destination_offset": "0x48",
+      "condition": "player_y_below_0x50",
+      "return_offset_override": null
+    },
+    {
+      "index": 10,
+      "trigger_screen_id": "0x5A",
+      "destination_offset": "0xD7",
+      "condition": "player_y_below_0x50",
+      "return_offset_override": null
+    },
+    {
+      "index": 11,
+      "trigger_screen_id": "0x75",
+      "destination_offset": "0x66",
+      "condition": "always",
+      "return_offset_override": null
+    },
+    {
+      "index": 12,
+      "trigger_screen_id": "0x73",
+      "destination_offset": "0x6A",
+      "condition": "player_y_below_0x50",
+      "return_offset_override": null
+    },
+    {
+      "index": 13,
+      "trigger_screen_id": "0x76",
+      "destination_offset": "0x7A",
+      "condition": "always",
+      "return_offset_override": null
+    },
+    {
+      "index": 14,
+      "trigger_screen_id": "0x72",
+      "destination_offset": "0x7E",
+      "condition": "player_y_below_0x50",
+      "return_offset_override": null
+    },
+    {
+      "index": 15,
+      "trigger_screen_id": "0x57",
+      "destination_offset": "0x62",
+      "condition": "always",
+      "return_offset_override": null
+    },
+    {
+      "index": 16,
+      "trigger_screen_id": "0x6F",
+      "destination_offset": "0xDF",
+      "condition": "player_y_at_least_0xA0",
+      "return_offset_override": null
+    }
+  ],
+  "covered_byte_count": 68,
+  "covered_crc32": "bc4122c7"
+}

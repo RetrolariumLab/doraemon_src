@@ -6,10 +6,10 @@ Bank1_Func_A612:
     LDA World2CurrentScreenId
     CMP #$7F
     BNE Bank1_Label_A62A
-    LDA $5C
+    LDA World2PlayerX
     CMP #$C8
     BCC Bank1_Label_A62A
-    LDA $5D
+    LDA World2PlayerY
     CMP #$28
     BCS Bank1_Label_A62A
     LDA $41
@@ -19,8 +19,8 @@ Bank1_Func_A612:
 Bank1_Label_A62A:
     RTS
 
-Bank1_Func_A62B:
-    LDA $7F
+World2_UpdateInventorySpawns:
+    LDA World2InventoryState+$03
     CMP #$03
     BNE Bank1_Label_A649
     LDA $2B
@@ -35,11 +35,11 @@ Bank1_Func_A62B:
 Bank1_Label_A641:
     STA $2B
     LDA #$00
-    STA $7F
+    STA World2InventoryState+$03
     STA $A5
 
 Bank1_Label_A649:
-    LDA $81
+    LDA World2InventoryState+$05
     CMP #$03
     BNE Bank1_Label_A65E
     INC $A3
@@ -47,14 +47,14 @@ Bank1_Label_A649:
     JSR Bank1_Func_8AD0
     STA $2B
     LDA #$00
-    STA $81
+    STA World2InventoryState+$05
     STA $A5
 
 Bank1_Label_A65E:
     LDY #$06
 
 Bank1_Label_A660:
-    LDA a:$A6B5,Y
+    LDA a:World2_InventoryEligibleScreenIds,Y
     CMP World2CurrentScreenId
     BEQ Bank1_Label_A66B
     DEY
@@ -77,7 +77,7 @@ Bank1_Label_A677:
     BEQ Bank1_Label_A690
     CPX #$03
     BNE Bank1_Label_A696
-    LDA $7C,X
+    LDA World2InventoryState,X
     BNE Bank1_Label_A69A
     JSR Bank1_Func_8AD0
     SEC
@@ -92,7 +92,7 @@ Bank1_Label_A690:
     BEQ Bank1_Label_A69A
 
 Bank1_Label_A696:
-    LDA $7C,X
+    LDA World2InventoryState,X
     BEQ Bank1_Label_A6AA
 
 Bank1_Label_A69A:
@@ -106,16 +106,18 @@ Bank1_Label_A69A:
     RTS
 
 Bank1_Label_A6AA:
-    INC $7C,X
+    INC World2InventoryState,X
     LDA #$78
-    STA $83,X
+    STA World2InventoryX,X
     LDA #$F0
-    STA $8A,X
+    STA World2InventoryY,X
     RTS
+
+World2_InventoryEligibleScreenIds:
     .byte $14, $1A, $1F, $47, $45, $6D, $74
 
-Bank1_Func_A6BC:
-    LDA $AE
+World2_CheckStageBranch:
+    LDA World2StageBranchCooldown
     BNE Bank1_Label_A6D5
     LDA World2ScreenRowIndex
     CMP #$0D
@@ -123,7 +125,7 @@ Bank1_Func_A6BC:
     LDY #$00
 
 Bank1_Label_A6C8:
-    LDA a:$A70F,Y
+    LDA a:World2_StageBranchTriggerScreens,Y
     CMP World2CurrentScreenId
     BEQ Bank1_Label_A6D8
     INY
@@ -134,29 +136,29 @@ Bank1_Label_A6D4:
     RTS
 
 Bank1_Label_A6D5:
-    DEC $AE
+    DEC World2StageBranchCooldown
     RTS
 
 Bank1_Label_A6D8:
-    LDA a:$A731,Y
+    LDA a:World2_StageBranchConditionCodes,Y
     BEQ Bank1_Label_A6FA
     CMP #$01
     BEQ Bank1_Label_A6F3
     CMP #$02
     BEQ Bank1_Label_A6EC
-    LDA $5D
+    LDA World2PlayerY
     CMP #$A0
     BCS Bank1_Label_A6FA
     RTS
 
 Bank1_Label_A6EC:
-    LDA $5C
+    LDA World2PlayerX
     CMP #$A0
     BCS Bank1_Label_A6FA
     RTS
 
 Bank1_Label_A6F3:
-    LDA $5D
+    LDA World2PlayerY
     CMP #$50
     BCC Bank1_Label_A6FA
     RTS
@@ -164,21 +166,32 @@ Bank1_Label_A6F3:
 Bank1_Label_A6FA:
     LDA World2StageSequenceOffset
     STA World2SavedStageSequenceOffset
-    LDA a:$A742,Y
+    LDA a:World2_StageBranchReturnOverrides,Y
     BEQ Bank1_Label_A705
     STA World2SavedStageSequenceOffset
 
 Bank1_Label_A705:
-    LDA a:$A720,Y
+    LDA a:World2_StageBranchDestinationOffsets,Y
     STA World2StageSequenceOffset
     DEC World2StageSequenceOffset
-    DEC $AE
+    DEC World2StageBranchCooldown
     RTS
+
+World2_StageBranchTriggerScreens:
     .byte $07, $0C, $10, $25, $2B, $33, $3E, $2F, $6B, $6A, $5A, $75, $73, $76, $72, $57
-    .byte $6F, $86, $90, $9A, $A2, $B4, $C0, $CA, $D4, $45, $48, $D7, $66, $6A, $7A, $7E
-    .byte $62, $DF, $03, $01, $03, $03, $03, $03, $03, $02, $00, $01, $01, $00, $01, $00
-    .byte $01, $00, $03, $00, $00, $00, $3C, $32, $44, $50, $42, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00
+    .byte $6F
+
+World2_StageBranchDestinationOffsets:
+    .byte $86, $90, $9A, $A2, $B4, $C0, $CA, $D4, $45, $48, $D7, $66, $6A, $7A, $7E, $62
+    .byte $DF
+
+World2_StageBranchConditionCodes:
+    .byte $03, $01, $03, $03, $03, $03, $03, $02, $00, $01, $01, $00, $01, $00, $01, $00
+    .byte $03
+
+World2_StageBranchReturnOverrides:
+    .byte $00, $00, $00, $3C, $32, $44, $50, $42, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $00
 
 Bank1_Func_A753:
     LDY #$00

@@ -23,7 +23,7 @@ Bank1_Func_9B58:
     INC $98
 
 Bank1_Label_9B64:
-    LDA $5C
+    LDA World2PlayerX
     CMP a:World2EnemyX,X
     LDA #$00
     ROL A
@@ -40,7 +40,7 @@ Bank1_Func_9B73:
     BCS Bank1_Label_9B94
     LDA a:World2EnemyY,X
     SEC
-    SBC $5D
+    SBC World2PlayerY
     BCS Bank1_Label_9B8E
     CMP #$FA
     BCS Bank1_Label_9B94
@@ -51,7 +51,7 @@ Bank1_Label_9B8E:
     BCS Bank1_Label_9BC4
 
 Bank1_Label_9B94:
-    LDA $5C
+    LDA World2PlayerX
     CLC
     ADC #$04
     SEC
@@ -89,13 +89,13 @@ Bank1_Label_9BC7:
     BCS Bank1_Label_9BDD
     LDA a:World2EnemyX,X
     SEC
-    SBC $5C
+    SBC World2PlayerX
     CMP #$05
     BCC Bank1_Label_9BDD
     BCS Bank1_Label_9BC4
 
 Bank1_Label_9BDD:
-    LDA $5D
+    LDA World2PlayerY
     CLC
     ADC #$08
     SEC

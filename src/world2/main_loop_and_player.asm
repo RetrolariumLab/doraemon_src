@@ -6,7 +6,7 @@ Bank1_World2Main:
     LDX #$7F
     TXS
     LDA #$00
-    STA $82
+    STA World2InventoryState+$06
     STA $A3
     STA $BA
     STA $27
@@ -24,16 +24,16 @@ Bank1_Label_88B7:
     LDA #$02
     STA $5E
     LDA #$3C
-    STA $5C
+    STA World2PlayerX
     LDA #$78
-    STA $5D
+    STA World2PlayerY
     LDA #$00
     STA $B9
     STA $40
     STA $44
     STA $3F
     STA $B8
-    STA $AE
+    STA World2StageBranchCooldown
     STA $5F
     STA $A4
     STA World2PendingBackgroundPalette
@@ -49,13 +49,13 @@ Bank1_Label_88B7:
     STA $9C
     STA $A5
     STA $A1
-    STA $7C
-    STA $7D
+    STA World2InventoryState
+    STA World2InventoryState+$01
     STA $41
-    STA $7E
-    STA $80
-    STA $81
-    STA $7F
+    STA World2InventoryState+$02
+    STA World2InventoryState+$04
+    STA World2InventoryState+$05
+    STA World2InventoryState+$03
     STA $A8
     STA $B3
     STA $A0
@@ -69,7 +69,7 @@ Bank1_Label_88B7:
     LDA $37
     BEQ Bank1_Label_8923
     LDA #$03
-    STA $7E
+    STA World2InventoryState+$02
 
 Bank1_Label_8923:
     LDA #$00
@@ -104,14 +104,14 @@ Bank1_World2FrameLoop:
     JSR Bank1_Func_8A39
     JSR Bank1_Func_8B3B
     JSR Bank1_Func_8B4C
-    JSR Bank1_Func_8BAC
+    JSR World2_UpdatePlayerAndInventory
     JSR World2_UpdatePlayerProjectiles
     JSR World2_UpdateEnemies
     JSR World2_UpdateEnemyProjectiles
     JSR Bank1_Func_97C5
     JSR Bank1_Func_8FA2
-    JSR Bank1_Func_A6BC
-    JSR Bank1_Func_A62B
+    JSR World2_CheckStageBranch
+    JSR World2_UpdateInventorySpawns
     JSR Bank1_Func_8A1D
     JSR Bank1_Func_8B65
     JSR Bank1_Func_A612
@@ -221,7 +221,7 @@ Bank1_Func_8A1D:
     JMP Bank1_Func_A753
 
 Bank1_Func_8A32:
-    LDA $82
+    LDA World2InventoryState+$06
     STA $38
     JMP Bank1_Func_808D
 
@@ -264,11 +264,11 @@ Bank1_Label_8A71:
     JMP Bank1_World2FrameLoop
 
 Bank1_Func_8A74:
-    LDA $7C,X
+    LDA World2InventoryState,X
     CMP #$03
     BEQ Bank1_Label_8A7E
     LDA #$02
-    STA $7C,X
+    STA World2InventoryState,X
 
 Bank1_Label_8A7E:
     RTS
@@ -417,7 +417,7 @@ Bank1_Label_8B64:
 Bank1_Func_8B65:
     LDA $BA
     BNE Bank1_Label_8B92
-    LDA $7C
+    LDA World2InventoryState
     CMP #$03
     BNE Bank1_Label_8B92
     LDA $24
@@ -460,7 +460,7 @@ World2_InitialBackgroundPaletteIds:
 World2_InitialSpritePaletteOffsets:
     .byte $10, $20, $30
 
-Bank1_Func_8BAC:
+World2_UpdatePlayerAndInventory:
     JSR Bank1_Func_8E3C
     JSR Bank1_Func_8E0F
     JSR Bank1_Func_8D01
@@ -489,7 +489,7 @@ Bank1_Label_8BDF:
     STA $B0
     LDA #$00
     STA $9C
-    LDA $80
+    LDA World2InventoryState+$04
     CMP #$03
     BEQ Bank1_Label_8C18
     LDA #$00
@@ -511,7 +511,7 @@ Bank1_Label_8C04:
     LDX #$05
 
 Bank1_Label_8C0E:
-    LDA $7C,X
+    LDA World2InventoryState,X
     CMP #$03
     BEQ Bank1_Label_8C25
     DEX
@@ -531,17 +531,17 @@ Bank1_Label_8C18:
 
 Bank1_Label_8C25:
     LDA #$04
-    STA $7C,X
+    STA World2InventoryState,X
     CPX #$02
     BCC Bank1_Label_8C3B
-    LDA $5C
+    LDA World2PlayerX
     CLC
     ADC #$04
-    STA $83,X
-    LDA $5D
+    STA World2InventoryX,X
+    LDA World2PlayerY
     CLC
     ADC #$04
-    STA $8A,X
+    STA World2InventoryY,X
 
 Bank1_Label_8C3B:
     RTS

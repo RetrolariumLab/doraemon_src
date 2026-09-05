@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world2-inventory-spawn-screens",
+  "bank": 1,
+  "address": "0xA6B5",
+  "eligible_screens": [
+    {
+      "index": 0,
+      "screen_id": "0x14"
+    },
+    {
+      "index": 1,
+      "screen_id": "0x1A"
+    },
+    {
+      "index": 2,
+      "screen_id": "0x1F"
+    },
+    {
+      "index": 3,
+      "screen_id": "0x47"
+    },
+    {
+      "index": 4,
+      "screen_id": "0x45"
+    },
+    {
+      "index": 5,
+      "screen_id": "0x6D"
+    },
+    {
+      "index": 6,
+      "screen_id": "0x74"
+    }
+  ],
+  "covered_byte_count": 7,
+  "covered_crc32": "b9a9c96d"
+}

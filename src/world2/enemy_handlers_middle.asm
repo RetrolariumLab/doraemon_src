@@ -144,7 +144,7 @@ Bank1_Label_9E37:
     LDA a:World2EnemyPhaseCounter,X
     CMP #$3C
     BCS Bank1_Label_9E65
-    LDA $5C
+    LDA World2PlayerX
     CLC
     ADC #$04
     SEC
@@ -170,7 +170,7 @@ Bank1_Label_9E5F:
 
 Bank1_Label_9E65:
     LDA a:World2EnemyY,X
-    CMP $5D
+    CMP World2PlayerY
     BCS Bank1_Label_9E6E
     ADC #$09
 
@@ -190,7 +190,7 @@ Bank1_Label_9E82:
     LDA a:World2EnemyPhaseCounter,X
     CMP #$3C
     BCS Bank1_Label_9EA2
-    LDA $5D
+    LDA World2PlayerY
     CLC
     ADC #$08
     SEC
@@ -207,7 +207,7 @@ Bank1_Label_9E9B:
 
 Bank1_Label_9EA2:
     LDA a:World2EnemyX,X
-    CMP $5C
+    CMP World2PlayerX
     BCS Bank1_Label_9EAB
     ADC #$09
 

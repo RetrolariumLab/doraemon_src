@@ -66,10 +66,16 @@ World2StageSequenceOffset = $0055
 World2ScreenRowIndex      = $0056
 World2ScreenRunLength     = $0057
 World2CurrentScreenId     = $0058
+World2PlayerX             = $005C
+World2PlayerY             = $005D
 World2FrameCounter        = $0073
 World2EnemySpawnState     = $0074
+World2InventoryState      = $007C
+World2InventoryX          = $0083
+World2InventoryY          = $008A
 World2PendingBackgroundPalette = $009D
 World2SavedStageSequenceOffset = $009E
+World2StageBranchCooldown = $00AE
 World2SavedBackgroundPalette = $00B4
 World2ScreenMetatiles     = $0400
 
