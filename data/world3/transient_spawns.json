@@ -1,0 +1,1865 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world3-transient-spawns",
+  "bank": 2,
+  "rooms": [
+    {
+      "room_id": "0x00",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 1,
+          "delay": 15
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x01",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 3,
+          "delay": 15
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x02",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 3,
+          "delay": 15
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x03",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 3,
+          "delay": 15
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x04",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 5,
+          "delay": 15
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x05",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 5,
+          "delay": 15
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x06",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 5,
+          "delay": 15
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x07",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 0,
+          "delay": 15
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x08",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x04",
+          "count": 1,
+          "delay": 10
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 2,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x09",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 5,
+          "delay": 10
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x0A",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 5,
+          "delay": 10
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 2,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x0B",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 5,
+          "delay": 10
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x0C",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 5,
+          "delay": 10
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 2,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x0D",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 5,
+          "delay": 10
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x0E",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 5,
+          "delay": 10
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 2,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x0F",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 5,
+          "delay": 10
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 10
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 100
+        }
+      ]
+    },
+    {
+      "room_id": "0x10",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x03",
+          "count": 5,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x11",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 4,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x12",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x06",
+          "count": 250,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x13",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 7,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 4,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x14",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 7,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x15",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 7,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 4,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x16",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x17",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 4,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x18",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 9,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 4,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x19",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 9,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x1A",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 9,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 4,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x1B",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 9,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x1C",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 9,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 4,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x1D",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x1E",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x03",
+          "count": 9,
+          "delay": 7
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 4,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x1F",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x02",
+          "count": 100,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 7
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x20",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 9,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x21",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x03",
+          "count": 9,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 6,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x22",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x23",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x04",
+          "count": 4,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 6,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x24",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 9,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x25",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 6,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x26",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 9,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x07",
+          "count": 1,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x27",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x08",
+          "count": 1,
+          "delay": 0
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 6,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x28",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x08",
+          "count": 1,
+          "delay": 0
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 6,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x29",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x03",
+          "count": 11,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x2A",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x04",
+          "count": 4,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 6,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x2B",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 11,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x2C",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 11,
+          "delay": 5
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 6,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x2D",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x04",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x03",
+          "count": 0,
+          "delay": 4
+        },
+        {
+          "channel": 2,
+          "type": "0x01",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x2E",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x04",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x03",
+          "count": 0,
+          "delay": 4
+        },
+        {
+          "channel": 2,
+          "type": "0x01",
+          "count": 8,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x2F",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x0A",
+          "count": 1,
+          "delay": 1
+        },
+        {
+          "channel": 1,
+          "type": "0x04",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x01",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x30",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x31",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 8,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x32",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x01",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x33",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 8,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x34",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x08",
+          "count": 1,
+          "delay": 0
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x35",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x04",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x03",
+          "count": 11,
+          "delay": 4
+        },
+        {
+          "channel": 2,
+          "type": "0x01",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x36",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x0A",
+          "count": 1,
+          "delay": 1
+        },
+        {
+          "channel": 1,
+          "type": "0x04",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x01",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x37",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x0A",
+          "count": 1,
+          "delay": 1
+        },
+        {
+          "channel": 1,
+          "type": "0x04",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x01",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x38",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x03",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 8,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x39",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x02",
+          "count": 100,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x3A",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x02",
+          "count": 100,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 8,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x3B",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x07",
+          "count": 1,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x3C",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x04",
+          "count": 8,
+          "delay": 3
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 1,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x3D",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x04",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x03",
+          "count": 11,
+          "delay": 4
+        },
+        {
+          "channel": 2,
+          "type": "0x01",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x3E",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x04",
+          "count": 11,
+          "delay": 3
+        },
+        {
+          "channel": 1,
+          "type": "0x03",
+          "count": 11,
+          "delay": 4
+        },
+        {
+          "channel": 2,
+          "type": "0x01",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    },
+    {
+      "room_id": "0x3F",
+      "channels": [
+        {
+          "channel": 0,
+          "type": "0x0C",
+          "count": 1,
+          "delay": 1
+        },
+        {
+          "channel": 1,
+          "type": "0x00",
+          "count": 0,
+          "delay": 3
+        },
+        {
+          "channel": 2,
+          "type": "0x00",
+          "count": 0,
+          "delay": 5
+        },
+        {
+          "channel": 3,
+          "type": "0x05",
+          "count": 0,
+          "delay": 80
+        }
+      ]
+    }
+  ],
+  "covered_byte_count": 768,
+  "covered_crc32": "019b7efd"
+}

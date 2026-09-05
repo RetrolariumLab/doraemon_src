@@ -133,7 +133,7 @@ Bank2_Label_839E:
     JSR Bank2_Func_AF30
 
 Bank2_Label_83A5:
-    JSR Bank2_Func_8DC4
+    JSR World3_UpdateTransientSpawns
     JSR Bank2_Func_879B
     LDA $4F
     BNE Bank2_Label_83B5
@@ -469,10 +469,10 @@ Bank2_Func_85C8:
     BNE Bank2_Label_85FC
     LDA $A8
     BEQ Bank2_Label_85EC
-    LDA $AC
+    LDA World3TransientSpawnType
     CMP #$06
     BNE Bank2_Label_85FC
-    LDA $B0
+    LDA World3TransientSpawnRemaining
     BNE Bank2_Label_85FC
     LDY #$00
 

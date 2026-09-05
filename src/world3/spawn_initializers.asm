@@ -5,10 +5,10 @@
 World3_InitializeSpawnedEntity:
     LDA #$00
     STA a:World3EntityBehaviorSelector,X
-    LDA $C4
+    LDA World3TransientSpawnWorkType
     ASL A
     TAY
-    LDA a:$8F6C,Y
+    LDA a:World3_SpawnInitializerTable,Y
     STA $40
     LDA a:$8F6D,Y
     STA $41
@@ -19,7 +19,7 @@ World3_SpawnInitializerTable:
     .byte $8C, $8F, $A3, $8F, $BF, $8F, $DB, $8F, $28, $90, $2E, $90, $2F, $90, $44, $90
     .byte $71, $90, $AA, $90, $AB, $90, $AE, $90, $AF, $90, $B2, $90, $B2, $90, $B2, $90
 
-Bank2_Func_8F8C:
+World3_InitTransientType00:
     LDA $DF
     CMP #$10
     BCC Bank2_Label_8FA2
@@ -36,7 +36,7 @@ Bank2_Label_8F9D:
 Bank2_Label_8FA2:
     RTS
 
-Bank2_Func_8FA3:
+World3_InitTransientType01:
     LDA $DF
     CMP #$18
     BCC Bank2_Label_8FBE
@@ -55,7 +55,7 @@ Bank2_Label_8FB4:
 Bank2_Label_8FBE:
     RTS
 
-Bank2_Func_8FBF:
+World3_InitTransientType02:
     LDA #$80
     STA a:World3EntityX,X
     LDA #$98
@@ -71,29 +71,31 @@ Bank2_Func_8FBF:
 Bank2_Label_8FDA:
     RTS
 
-Bank2_Func_8FDB:
+World3_InitTransientType03:
     LDY $DF
-    LDA a:$8FE8,Y
+    LDA a:World3_Type03AlternateMetaspriteByRoom,Y
     BEQ Bank2_Label_8FE7
     LDA #$B4
     STA a:World3EntityMetasprite,X
 
 Bank2_Label_8FE7:
     RTS
+
+World3_Type03AlternateMetaspriteByRoom:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $01
     .byte $00, $00, $00, $00, $00, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $01
 
-Bank2_Func_9028:
+World3_InitTransientType04:
     LDA #$01
     STA a:World3EntityBehaviorSelector,X
     RTS
 
-Bank2_Func_902E:
+World3_InitTransientType05:
     RTS
 
-Bank2_Func_902F:
+World3_InitTransientType06:
     JSR Bank2_Func_B153
     CMP #$64
     BCS Bank2_Label_9043
@@ -106,7 +108,7 @@ Bank2_Func_902F:
 Bank2_Label_9043:
     RTS
 
-Bank2_Func_9044:
+World3_InitTransientType07:
     LDA $DF
     CMP #$26
     BNE Bank2_Label_9051
@@ -137,7 +139,7 @@ Bank2_Label_906B:
 Bank2_Label_9070:
     RTS
 
-Bank2_Func_9071:
+World3_InitTransientType08:
     LDA $DF
     CMP #$27
     BEQ Bank2_Label_9084
@@ -164,7 +166,7 @@ Bank2_Label_9092:
     JMP Bank2_Label_90A4
 
 Bank2_Label_9099:
-    JSR Bank2_Func_AC8C
+    JSR World3_CreateType08EncounterFormation
     BCC Bank2_Label_90A4
     LDA #$03
     STA a:AudioMusicState
@@ -175,22 +177,22 @@ Bank2_Label_90A4:
     STA a:World3EntityState,X
     RTS
 
-Bank2_Func_90AA:
+World3_InitTransientType09:
     RTS
 
-Bank2_Func_90AB:
-    JSR Bank2_Func_AC15
+World3_InitTransientType0A:
+    JSR World3_CreateType0AEncounterFormation
 
-Bank2_Func_90AE:
+World3_InitTransientType0B:
     RTS
 
-Bank2_Func_90AF:
-    JSR Bank2_Func_90B3
+World3_InitTransientType0C:
+    JSR World3_CreateType0CTo0FFormation
 
-Bank2_Func_90B2:
+World3_InitTransientTypes0DTo0F:
     RTS
 
-Bank2_Func_90B3:
+World3_CreateType0CTo0FFormation:
     LDY #$00
     JMP Bank2_Label_90BD
 
@@ -200,13 +202,13 @@ Bank2_Label_90B8:
 
 Bank2_Label_90BD:
     JSR World3_ClearEntitySlot
-    LDA a:$90F4,Y
+    LDA a:World3_Type0CFormationState,Y
     STA a:World3EntityState,X
-    LDA a:$90F8,Y
+    LDA a:World3_Type0CFormationX,Y
     STA a:World3EntityX,X
-    LDA a:$90FC,Y
+    LDA a:World3_Type0CFormationY,Y
     STA a:World3EntityY,X
-    LDA a:$9100,Y
+    LDA a:World3_Type0CFormationType,Y
     STA a:World3EntityType,X
     STY $42
     TAY
@@ -223,7 +225,18 @@ Bank2_Label_90BD:
 
 Bank2_Label_90F3:
     RTS
-    .byte $03, $03, $03, $03, $28, $D8, $28, $D8, $30, $30, $C0, $C0, $0C, $0D, $0E, $0F
+
+World3_Type0CFormationState:
+    .byte $03, $03, $03, $03
+
+World3_Type0CFormationX:
+    .byte $28, $D8, $28, $D8
+
+World3_Type0CFormationY:
+    .byte $30, $30, $C0, $C0
+
+World3_Type0CFormationType:
+    .byte $0C, $0D, $0E, $0F
 
 World3_FindFreeEntitySlot:
     LDX #$00

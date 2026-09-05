@@ -1,0 +1,437 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world3-spawn-initializer-data",
+  "bank": 2,
+  "regions": [
+    {
+      "name": "type03_room_variants",
+      "address": "0x8FE8",
+      "records": [
+        {
+          "index": 0,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 1,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 2,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 3,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 4,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 5,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 6,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 7,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 8,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 9,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 10,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 11,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 12,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 13,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 14,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 15,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 16,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 17,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 18,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 19,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 20,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 21,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 22,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 23,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 24,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 25,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 26,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 27,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 28,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 29,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 30,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 31,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 32,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 33,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 34,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 35,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 36,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 37,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 38,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 39,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 40,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 41,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 42,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 43,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 44,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 45,
+          "alternate_metasprite": "0x01"
+        },
+        {
+          "index": 46,
+          "alternate_metasprite": "0x01"
+        },
+        {
+          "index": 47,
+          "alternate_metasprite": "0x01"
+        },
+        {
+          "index": 48,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 49,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 50,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 51,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 52,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 53,
+          "alternate_metasprite": "0x01"
+        },
+        {
+          "index": 54,
+          "alternate_metasprite": "0x01"
+        },
+        {
+          "index": 55,
+          "alternate_metasprite": "0x01"
+        },
+        {
+          "index": 56,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 57,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 58,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 59,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 60,
+          "alternate_metasprite": "0x00"
+        },
+        {
+          "index": 61,
+          "alternate_metasprite": "0x01"
+        },
+        {
+          "index": 62,
+          "alternate_metasprite": "0x01"
+        },
+        {
+          "index": 63,
+          "alternate_metasprite": "0x01"
+        }
+      ]
+    },
+    {
+      "name": "type0c_formation",
+      "address": "0x90F4",
+      "records": [
+        {
+          "index": 0,
+          "state": "0x03",
+          "x": "0x28",
+          "y": "0x30",
+          "type": "0x0C"
+        },
+        {
+          "index": 1,
+          "state": "0x03",
+          "x": "0xD8",
+          "y": "0x30",
+          "type": "0x0D"
+        },
+        {
+          "index": 2,
+          "state": "0x03",
+          "x": "0x28",
+          "y": "0xC0",
+          "type": "0x0E"
+        },
+        {
+          "index": 3,
+          "state": "0x03",
+          "x": "0xD8",
+          "y": "0xC0",
+          "type": "0x0F"
+        }
+      ]
+    },
+    {
+      "name": "type0a_formation",
+      "address": "0xAC6C",
+      "records": [
+        {
+          "index": 0,
+          "state": "0x03",
+          "x": "0x68",
+          "y": "0x88",
+          "type": "0x0A"
+        },
+        {
+          "index": 1,
+          "state": "0x03",
+          "x": "0x62",
+          "y": "0x7C",
+          "type": "0x0B"
+        },
+        {
+          "index": 2,
+          "state": "0x03",
+          "x": "0x68",
+          "y": "0x70",
+          "type": "0x0B"
+        },
+        {
+          "index": 3,
+          "state": "0x03",
+          "x": "0x72",
+          "y": "0x68",
+          "type": "0x0B"
+        },
+        {
+          "index": 4,
+          "state": "0x03",
+          "x": "0x7E",
+          "y": "0x68",
+          "type": "0x0B"
+        },
+        {
+          "index": 5,
+          "state": "0x03",
+          "x": "0x88",
+          "y": "0x70",
+          "type": "0x0B"
+        },
+        {
+          "index": 6,
+          "state": "0x03",
+          "x": "0x8E",
+          "y": "0x7C",
+          "type": "0x0B"
+        },
+        {
+          "index": 7,
+          "state": "0x03",
+          "x": "0x88",
+          "y": "0x88",
+          "type": "0x0B"
+        }
+      ]
+    },
+    {
+      "name": "type08_formation",
+      "address": "0xACF9",
+      "records": [
+        {
+          "index": 0,
+          "state": "0x01",
+          "x": "0x68",
+          "y": "0x88",
+          "type": "0x08",
+          "frame_counter": "0x01"
+        },
+        {
+          "index": 1,
+          "state": "0x01",
+          "x": "0x62",
+          "y": "0x7C",
+          "type": "0x09",
+          "frame_counter": "0x01"
+        },
+        {
+          "index": 2,
+          "state": "0x01",
+          "x": "0x68",
+          "y": "0x70",
+          "type": "0x09",
+          "frame_counter": "0x02"
+        },
+        {
+          "index": 3,
+          "state": "0x01",
+          "x": "0x72",
+          "y": "0x68",
+          "type": "0x09",
+          "frame_counter": "0x02"
+        },
+        {
+          "index": 4,
+          "state": "0x01",
+          "x": "0x64",
+          "y": "0x92",
+          "type": "0x08",
+          "frame_counter": "0x02"
+        },
+        {
+          "index": 5,
+          "state": "0x01",
+          "x": "0x6C",
+          "y": "0x88",
+          "type": "0x09",
+          "frame_counter": "0x02"
+        },
+        {
+          "index": 6,
+          "state": "0x01",
+          "x": "0x74",
+          "y": "0x80",
+          "type": "0x09",
+          "frame_counter": "0x03"
+        },
+        {
+          "index": 7,
+          "state": "0x01",
+          "x": "0x74",
+          "y": "0x80",
+          "type": "0x09",
+          "frame_counter": "0x03"
+        }
+      ]
+    }
+  ],
+  "covered_byte_count": 152,
+  "covered_crc32": "f8157287"
+}

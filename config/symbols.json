@@ -1403,6 +1403,18 @@
     },
     {
       "bank": 2,
+      "address": "0x8DC4",
+      "name": "World3_UpdateTransientSpawns",
+      "evidence": "loads-room-indexed-four-channel-schedule-and-updates-each-channel"
+    },
+    {
+      "bank": 2,
+      "address": "0x8E67",
+      "name": "World3_UpdateTransientSpawnChannel",
+      "evidence": "counts-down-one-channel-allocates-entity-and-decrements-spawn-budget"
+    },
+    {
+      "bank": 2,
       "address": "0x8EB5",
       "name": "World3_EntityHitPointsByType",
       "operand_symbol": true,
@@ -1446,7 +1458,133 @@
       "bank": 2,
       "address": "0x8F6C",
       "name": "World3_SpawnInitializerTable",
+      "operand_symbol": true,
       "evidence": "16-slot-random-spawn-type-pointer-table"
+    },
+    {
+      "bank": 2,
+      "address": "0x8F8C",
+      "name": "World3_InitTransientType00",
+      "evidence": "initializer-slot-00-room-range-and-random-metasprite-variant"
+    },
+    {
+      "bank": 2,
+      "address": "0x8FA3",
+      "name": "World3_InitTransientType01",
+      "evidence": "initializer-slot-01-room-range-random-metasprite-and-render-flags"
+    },
+    {
+      "bank": 2,
+      "address": "0x8FBF",
+      "name": "World3_InitTransientType02",
+      "evidence": "initializer-slot-02-fixed-position-state-and-optional-sound"
+    },
+    {
+      "bank": 2,
+      "address": "0x8FDB",
+      "name": "World3_InitTransientType03",
+      "evidence": "initializer-slot-03-room-indexed-metasprite-variant"
+    },
+    {
+      "bank": 2,
+      "address": "0x8FE8",
+      "name": "World3_Type03AlternateMetaspriteByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-boolean-metasprite-variant-column-for-transient-type-03"
+    },
+    {
+      "bank": 2,
+      "address": "0x9028",
+      "name": "World3_InitTransientType04",
+      "evidence": "initializer-slot-04-sets-one-unit-clone-budget"
+    },
+    {
+      "bank": 2,
+      "address": "0x902E",
+      "name": "World3_InitTransientType05",
+      "evidence": "initializer-slot-05-no-op-return"
+    },
+    {
+      "bank": 2,
+      "address": "0x902F",
+      "name": "World3_InitTransientType06",
+      "evidence": "initializer-slot-06-randomized-metasprite-and-variant"
+    },
+    {
+      "bank": 2,
+      "address": "0x9044",
+      "name": "World3_InitTransientType07",
+      "evidence": "initializer-slot-07-room-flag-gated-fixed-position"
+    },
+    {
+      "bank": 2,
+      "address": "0x9071",
+      "name": "World3_InitTransientType08",
+      "evidence": "initializer-slot-08-room-flag-gated-type-08-09-group"
+    },
+    {
+      "bank": 2,
+      "address": "0x90AA",
+      "name": "World3_InitTransientType09",
+      "evidence": "initializer-slot-09-no-op-return"
+    },
+    {
+      "bank": 2,
+      "address": "0x90AB",
+      "name": "World3_InitTransientType0A",
+      "evidence": "initializer-slot-0a-materializes-type-0a-0b-encounter-group"
+    },
+    {
+      "bank": 2,
+      "address": "0x90AE",
+      "name": "World3_InitTransientType0B",
+      "evidence": "initializer-slot-0b-no-op-return-and-type-0a-tail"
+    },
+    {
+      "bank": 2,
+      "address": "0x90AF",
+      "name": "World3_InitTransientType0C",
+      "evidence": "initializer-slot-0c-materializes-four-object-type-0c-0f-formation"
+    },
+    {
+      "bank": 2,
+      "address": "0x90B2",
+      "name": "World3_InitTransientTypes0DTo0F",
+      "evidence": "shared-no-op-initializer-target-for-slots-0d-through-0f"
+    },
+    {
+      "bank": 2,
+      "address": "0x90B3",
+      "name": "World3_CreateType0CTo0FFormation",
+      "evidence": "materializes-up-to-four-fixed-position-types-0c-through-0f"
+    },
+    {
+      "bank": 2,
+      "address": "0x90F4",
+      "name": "World3_Type0CFormationState",
+      "operand_symbol": true,
+      "evidence": "four-object-type-0c-formation-state-column"
+    },
+    {
+      "bank": 2,
+      "address": "0x90F8",
+      "name": "World3_Type0CFormationX",
+      "operand_symbol": true,
+      "evidence": "four-object-type-0c-formation-x-column"
+    },
+    {
+      "bank": 2,
+      "address": "0x90FC",
+      "name": "World3_Type0CFormationY",
+      "operand_symbol": true,
+      "evidence": "four-object-type-0c-formation-y-column"
+    },
+    {
+      "bank": 2,
+      "address": "0x9100",
+      "name": "World3_Type0CFormationType",
+      "operand_symbol": true,
+      "evidence": "four-object-type-0c-formation-type-column"
     },
     {
       "bank": 2,
@@ -1464,6 +1602,7 @@
       "bank": 2,
       "address": "0x92DF",
       "name": "World3_EntityUpdateHandlerTable",
+      "operand_symbol": true,
       "evidence": "32-slot-entity-type-pointer-table"
     },
     {
@@ -1471,6 +1610,172 @@
       "address": "0x931F",
       "name": "World3_CallIndirect",
       "evidence": "shared-jmp-through-0040-pointer-trampoline"
+    },
+    {
+      "bank": 2,
+      "address": "0x9322",
+      "name": "World3_UpdateTypes00To03",
+      "evidence": "types-00-through-03-state-4-follow-type-05-otherwise-script-only"
+    },
+    {
+      "bank": 2,
+      "address": "0x932D",
+      "name": "World3_UpdateType04",
+      "evidence": "type-04-room-enabled-player-tracking"
+    },
+    {
+      "bank": 2,
+      "address": "0x936C",
+      "name": "World3_Type04TrackingEnabledByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-boolean-table-gating-type-04-player-tracking"
+    },
+    {
+      "bank": 2,
+      "address": "0x93AC",
+      "name": "World3_UpdateType05",
+      "evidence": "type-05-captures-state-1-objects-and-relocates-persistent-targets"
+    },
+    {
+      "bank": 2,
+      "address": "0x93E7",
+      "name": "World3_Type05HeldMotionDeltaX",
+      "operand_symbol": true,
+      "evidence": "four-direction-signed-x-motion-while-holding-state-4-object"
+    },
+    {
+      "bank": 2,
+      "address": "0x93EB",
+      "name": "World3_Type05HeldMotionDeltaY",
+      "operand_symbol": true,
+      "evidence": "four-direction-signed-y-motion-while-holding-state-4-object"
+    },
+    {
+      "bank": 2,
+      "address": "0x9550",
+      "name": "World3_Type05RelocationBlockedByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-boolean-mask-excluding-persistent-object-relocation-destinations"
+    },
+    {
+      "bank": 2,
+      "address": "0x9590",
+      "name": "World3_UpdateTypes06To07",
+      "evidence": "shared-no-op-update-target-for-script-driven-types-06-and-07"
+    },
+    {
+      "bank": 2,
+      "address": "0x9591",
+      "name": "World3_UpdateType08",
+      "evidence": "type-08-formation-chain-update"
+    },
+    {
+      "bank": 2,
+      "address": "0x9594",
+      "name": "World3_UpdateType09",
+      "evidence": "type-09-script-only-no-op-update-target"
+    },
+    {
+      "bank": 2,
+      "address": "0x9595",
+      "name": "World3_UpdateType0A",
+      "evidence": "type-0a-encounter-chain-motion-update"
+    },
+    {
+      "bank": 2,
+      "address": "0x95A4",
+      "name": "World3_UpdateType0B",
+      "evidence": "type-0b-script-only-no-op-update-target"
+    },
+    {
+      "bank": 2,
+      "address": "0x95A5",
+      "name": "World3_UpdateType0C",
+      "evidence": "type-0c-anchor-follow-motion-and-type-02-child-creation"
+    },
+    {
+      "bank": 2,
+      "address": "0x95F3",
+      "name": "World3_TrySpawnType02FromType0C",
+      "evidence": "requires-two-free-slots-and-creates-type-02-below-type-0c"
+    },
+    {
+      "bank": 2,
+      "address": "0x9643",
+      "name": "World3_UpdateType0D",
+      "evidence": "type-0d-follows-active-type-0c-at-positive-x-offset"
+    },
+    {
+      "bank": 2,
+      "address": "0x965B",
+      "name": "World3_UpdateType0E",
+      "evidence": "type-0e-follows-active-type-0c-at-positive-y-offset-with-animation"
+    },
+    {
+      "bank": 2,
+      "address": "0x968C",
+      "name": "World3_UpdateType0F",
+      "evidence": "type-0f-follows-active-type-0c-at-positive-x-y-offset-with-animation"
+    },
+    {
+      "bank": 2,
+      "address": "0x96C0",
+      "name": "World3_FindActiveType0C",
+      "evidence": "scans-eight-active-slots-for-state-1-type-0c-anchor"
+    },
+    {
+      "bank": 2,
+      "address": "0x96D6",
+      "name": "World3_UpdateTypes10To16",
+      "evidence": "shared-static-update-target-for-post-defeat-types-10-through-16"
+    },
+    {
+      "bank": 2,
+      "address": "0x96D7",
+      "name": "World3_UpdateType17",
+      "evidence": "type-17-persistent-static-update-target"
+    },
+    {
+      "bank": 2,
+      "address": "0x96D8",
+      "name": "World3_UpdateType18",
+      "evidence": "type-18-completes-type-0a-0b-encounter-and-awards-reward"
+    },
+    {
+      "bank": 2,
+      "address": "0x9759",
+      "name": "World3_UpdateType19",
+      "evidence": "type-19-tests-terrain-trigger-and-updates-room-column"
+    },
+    {
+      "bank": 2,
+      "address": "0x9813",
+      "name": "World3_UpdateType1A",
+      "evidence": "type-1a-converts-persistent-types-14-through-16-or-seeds-encounter"
+    },
+    {
+      "bank": 2,
+      "address": "0x98E3",
+      "name": "World3_UpdateType1B",
+      "evidence": "type-1b-pushes-nearby-persistent-objects-while-enabled"
+    },
+    {
+      "bank": 2,
+      "address": "0x9963",
+      "name": "World3_PositionEnabledPersistentEntity",
+      "evidence": "positions-enabled-persistent-entity-relative-to-player"
+    },
+    {
+      "bank": 2,
+      "address": "0x9999",
+      "name": "World3_UpdateTypes1CTo1F",
+      "evidence": "types-1c-through-1f-face-and-follow-player-while-persistent-state-set"
+    },
+    {
+      "bank": 2,
+      "address": "0x9A05",
+      "name": "World3_FollowActiveType05",
+      "evidence": "state-4-entity-follows-active-type-05-with-animated-x-offset"
     },
     {
       "bank": 2,
@@ -1621,6 +1926,87 @@
       "address": "0xAA0F",
       "name": "World3_AdvancePackedRateCounter",
       "evidence": "increments-high-nibble-and-signals-when-it-matches-low-nibble"
+    },
+    {
+      "bank": 2,
+      "address": "0xAC15",
+      "name": "World3_CreateType0AEncounterFormation",
+      "evidence": "fills-remaining-active-slots-from-fixed-type-0a-0b-formation"
+    },
+    {
+      "bank": 2,
+      "address": "0xAC6C",
+      "name": "World3_Type0AFormationState",
+      "operand_symbol": true,
+      "evidence": "eight-object-type-0a-encounter-state-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xAC74",
+      "name": "World3_Type0AFormationX",
+      "operand_symbol": true,
+      "evidence": "eight-object-type-0a-encounter-x-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xAC7C",
+      "name": "World3_Type0AFormationY",
+      "operand_symbol": true,
+      "evidence": "eight-object-type-0a-encounter-y-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xAC84",
+      "name": "World3_Type0AFormationType",
+      "operand_symbol": true,
+      "evidence": "eight-object-type-0a-encounter-type-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xAC8C",
+      "name": "World3_CreateType08EncounterFormation",
+      "evidence": "materializes-one-or-two-four-object-type-08-09-groups"
+    },
+    {
+      "bank": 2,
+      "address": "0xACAE",
+      "name": "World3_CreateType08EncounterGroup",
+      "evidence": "materializes-up-to-four-entries-from-type-08-09-formation"
+    },
+    {
+      "bank": 2,
+      "address": "0xACF9",
+      "name": "World3_Type08FormationState",
+      "operand_symbol": true,
+      "evidence": "eight-object-type-08-encounter-state-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xAD01",
+      "name": "World3_Type08FormationX",
+      "operand_symbol": true,
+      "evidence": "eight-object-type-08-encounter-x-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xAD09",
+      "name": "World3_Type08FormationY",
+      "operand_symbol": true,
+      "evidence": "eight-object-type-08-encounter-y-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xAD11",
+      "name": "World3_Type08FormationType",
+      "operand_symbol": true,
+      "evidence": "eight-object-type-08-encounter-type-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xAD19",
+      "name": "World3_Type08FormationFrameCounter",
+      "operand_symbol": true,
+      "evidence": "eight-object-type-08-encounter-initial-frame-counter-column"
     },
     {
       "bank": 2,
@@ -1825,6 +2211,90 @@
       "address": "0xC91E",
       "name": "World3_Audio_ReadStreamByte",
       "evidence": "indirect-stream-read-and-pointer-advance"
+    },
+    {
+      "bank": 2,
+      "address": "0xD66B",
+      "name": "World3_TransientSpawnType0ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-zero-type-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD6AB",
+      "name": "World3_TransientSpawnType1ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-one-type-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD6EB",
+      "name": "World3_TransientSpawnType2ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-two-type-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD72B",
+      "name": "World3_TransientSpawnType3ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-three-type-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD76B",
+      "name": "World3_TransientSpawnCount0ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-zero-budget-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD7AB",
+      "name": "World3_TransientSpawnCount1ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-one-budget-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD7EB",
+      "name": "World3_TransientSpawnCount2ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-two-budget-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD82B",
+      "name": "World3_TransientSpawnCount3ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-three-budget-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD86B",
+      "name": "World3_TransientSpawnDelay0ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-zero-delay-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD8AB",
+      "name": "World3_TransientSpawnDelay1ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-one-delay-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD8EB",
+      "name": "World3_TransientSpawnDelay2ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-two-delay-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xD92B",
+      "name": "World3_TransientSpawnDelay3ByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-transient-spawn-channel-three-delay-column"
     },
     {
       "bank": 2,
@@ -2367,6 +2837,100 @@
         1
       ],
       "evidence": "stage-command-palette-id-restored-after-world2-transition"
+    },
+    {
+      "address": "0x00AB",
+      "name": "World3TransientSpawnScheduleLoaded",
+      "banks": [
+        2
+      ],
+      "evidence": "cleared-on-room-load-and-set-after-copying-room-indexed-spawn-columns"
+    },
+    {
+      "address": "0x00AC",
+      "name": "World3TransientSpawnType",
+      "size": 4,
+      "banks": [
+        2
+      ],
+      "evidence": "four-channel-room-loaded-transient-entity-type-array"
+    },
+    {
+      "address": "0x00B0",
+      "name": "World3TransientSpawnRemaining",
+      "size": 4,
+      "banks": [
+        2
+      ],
+      "evidence": "four-channel-remaining-spawn-budget-array"
+    },
+    {
+      "address": "0x00B4",
+      "name": "World3TransientSpawnDelay",
+      "size": 4,
+      "banks": [
+        2
+      ],
+      "evidence": "four-channel-current-delay-countdown-array"
+    },
+    {
+      "address": "0x00B8",
+      "name": "World3TransientSpawnComplete",
+      "size": 4,
+      "banks": [
+        2
+      ],
+      "evidence": "four-channel-budget-exhausted-flag-array"
+    },
+    {
+      "address": "0x00BC",
+      "name": "World3TransientSpawnPhase",
+      "size": 4,
+      "banks": [
+        2
+      ],
+      "evidence": "four-channel-modulo-four-delay-prescaler-preserved-across-room-load"
+    },
+    {
+      "address": "0x00C0",
+      "name": "World3TransientSpawnDelayReload",
+      "size": 4,
+      "banks": [
+        2
+      ],
+      "evidence": "four-channel-original-delay-reloaded-after-each-spawn"
+    },
+    {
+      "address": "0x00C4",
+      "name": "World3TransientSpawnWorkType",
+      "banks": [
+        2
+      ],
+      "evidence": "current-channel-type-copied-before-transient-spawn-update"
+    },
+    {
+      "address": "0x00C5",
+      "name": "World3TransientSpawnWorkRemaining",
+      "banks": [
+        2
+      ],
+      "evidence": "current-channel-budget-copied-before-and-after-update"
+    },
+    {
+      "address": "0x00C6",
+      "name": "World3TransientSpawnWorkDelay",
+      "banks": [
+        2
+      ],
+      "evidence": "current-channel-delay-copied-before-and-after-update"
+    },
+    {
+      "address": "0x00C7",
+      "name": "World3TransientSpawnWorkComplete",
+      "banks": [
+        2
+      ],
+      "evidence": "current-channel-complete-flag-copied-before-and-after-update"
     },
     {
       "address": "0x0068",

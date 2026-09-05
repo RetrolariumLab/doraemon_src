@@ -1,0 +1,559 @@
+{
+  "schema_version": 1,
+  "format": "doraemon-world3-update-handler-data",
+  "bank": 2,
+  "regions": [
+    {
+      "name": "type04_tracking_enabled_by_room",
+      "address": "0x936C",
+      "records": [
+        {
+          "index": 0,
+          "enabled": "0x00"
+        },
+        {
+          "index": 1,
+          "enabled": "0x00"
+        },
+        {
+          "index": 2,
+          "enabled": "0x00"
+        },
+        {
+          "index": 3,
+          "enabled": "0x00"
+        },
+        {
+          "index": 4,
+          "enabled": "0x00"
+        },
+        {
+          "index": 5,
+          "enabled": "0x00"
+        },
+        {
+          "index": 6,
+          "enabled": "0x00"
+        },
+        {
+          "index": 7,
+          "enabled": "0x00"
+        },
+        {
+          "index": 8,
+          "enabled": "0x00"
+        },
+        {
+          "index": 9,
+          "enabled": "0x00"
+        },
+        {
+          "index": 10,
+          "enabled": "0x00"
+        },
+        {
+          "index": 11,
+          "enabled": "0x00"
+        },
+        {
+          "index": 12,
+          "enabled": "0x00"
+        },
+        {
+          "index": 13,
+          "enabled": "0x00"
+        },
+        {
+          "index": 14,
+          "enabled": "0x00"
+        },
+        {
+          "index": 15,
+          "enabled": "0x00"
+        },
+        {
+          "index": 16,
+          "enabled": "0x00"
+        },
+        {
+          "index": 17,
+          "enabled": "0x00"
+        },
+        {
+          "index": 18,
+          "enabled": "0x00"
+        },
+        {
+          "index": 19,
+          "enabled": "0x00"
+        },
+        {
+          "index": 20,
+          "enabled": "0x00"
+        },
+        {
+          "index": 21,
+          "enabled": "0x00"
+        },
+        {
+          "index": 22,
+          "enabled": "0x00"
+        },
+        {
+          "index": 23,
+          "enabled": "0x00"
+        },
+        {
+          "index": 24,
+          "enabled": "0x00"
+        },
+        {
+          "index": 25,
+          "enabled": "0x00"
+        },
+        {
+          "index": 26,
+          "enabled": "0x00"
+        },
+        {
+          "index": 27,
+          "enabled": "0x00"
+        },
+        {
+          "index": 28,
+          "enabled": "0x00"
+        },
+        {
+          "index": 29,
+          "enabled": "0x00"
+        },
+        {
+          "index": 30,
+          "enabled": "0x00"
+        },
+        {
+          "index": 31,
+          "enabled": "0x00"
+        },
+        {
+          "index": 32,
+          "enabled": "0x00"
+        },
+        {
+          "index": 33,
+          "enabled": "0x00"
+        },
+        {
+          "index": 34,
+          "enabled": "0x00"
+        },
+        {
+          "index": 35,
+          "enabled": "0x00"
+        },
+        {
+          "index": 36,
+          "enabled": "0x00"
+        },
+        {
+          "index": 37,
+          "enabled": "0x00"
+        },
+        {
+          "index": 38,
+          "enabled": "0x00"
+        },
+        {
+          "index": 39,
+          "enabled": "0x00"
+        },
+        {
+          "index": 40,
+          "enabled": "0x00"
+        },
+        {
+          "index": 41,
+          "enabled": "0x00"
+        },
+        {
+          "index": 42,
+          "enabled": "0x00"
+        },
+        {
+          "index": 43,
+          "enabled": "0x00"
+        },
+        {
+          "index": 44,
+          "enabled": "0x00"
+        },
+        {
+          "index": 45,
+          "enabled": "0x01"
+        },
+        {
+          "index": 46,
+          "enabled": "0x01"
+        },
+        {
+          "index": 47,
+          "enabled": "0x01"
+        },
+        {
+          "index": 48,
+          "enabled": "0x00"
+        },
+        {
+          "index": 49,
+          "enabled": "0x00"
+        },
+        {
+          "index": 50,
+          "enabled": "0x00"
+        },
+        {
+          "index": 51,
+          "enabled": "0x00"
+        },
+        {
+          "index": 52,
+          "enabled": "0x00"
+        },
+        {
+          "index": 53,
+          "enabled": "0x01"
+        },
+        {
+          "index": 54,
+          "enabled": "0x01"
+        },
+        {
+          "index": 55,
+          "enabled": "0x01"
+        },
+        {
+          "index": 56,
+          "enabled": "0x00"
+        },
+        {
+          "index": 57,
+          "enabled": "0x00"
+        },
+        {
+          "index": 58,
+          "enabled": "0x00"
+        },
+        {
+          "index": 59,
+          "enabled": "0x00"
+        },
+        {
+          "index": 60,
+          "enabled": "0x00"
+        },
+        {
+          "index": 61,
+          "enabled": "0x01"
+        },
+        {
+          "index": 62,
+          "enabled": "0x01"
+        },
+        {
+          "index": 63,
+          "enabled": "0x00"
+        }
+      ]
+    },
+    {
+      "name": "type05_held_motion",
+      "address": "0x93E7",
+      "records": [
+        {
+          "index": 0,
+          "delta_x": "0x02",
+          "delta_y": "0x02"
+        },
+        {
+          "index": 1,
+          "delta_x": "0xFE",
+          "delta_y": "0x02"
+        },
+        {
+          "index": 2,
+          "delta_x": "0x02",
+          "delta_y": "0xFE"
+        },
+        {
+          "index": 3,
+          "delta_x": "0xFE",
+          "delta_y": "0xFE"
+        }
+      ]
+    },
+    {
+      "name": "type05_relocation_blocked_by_room",
+      "address": "0x9550",
+      "records": [
+        {
+          "index": 0,
+          "blocked": "0x00"
+        },
+        {
+          "index": 1,
+          "blocked": "0x00"
+        },
+        {
+          "index": 2,
+          "blocked": "0x00"
+        },
+        {
+          "index": 3,
+          "blocked": "0x00"
+        },
+        {
+          "index": 4,
+          "blocked": "0x00"
+        },
+        {
+          "index": 5,
+          "blocked": "0x00"
+        },
+        {
+          "index": 6,
+          "blocked": "0x00"
+        },
+        {
+          "index": 7,
+          "blocked": "0x00"
+        },
+        {
+          "index": 8,
+          "blocked": "0x00"
+        },
+        {
+          "index": 9,
+          "blocked": "0x00"
+        },
+        {
+          "index": 10,
+          "blocked": "0x00"
+        },
+        {
+          "index": 11,
+          "blocked": "0x00"
+        },
+        {
+          "index": 12,
+          "blocked": "0x00"
+        },
+        {
+          "index": 13,
+          "blocked": "0x00"
+        },
+        {
+          "index": 14,
+          "blocked": "0x00"
+        },
+        {
+          "index": 15,
+          "blocked": "0x00"
+        },
+        {
+          "index": 16,
+          "blocked": "0x00"
+        },
+        {
+          "index": 17,
+          "blocked": "0x01"
+        },
+        {
+          "index": 18,
+          "blocked": "0x01"
+        },
+        {
+          "index": 19,
+          "blocked": "0x00"
+        },
+        {
+          "index": 20,
+          "blocked": "0x00"
+        },
+        {
+          "index": 21,
+          "blocked": "0x00"
+        },
+        {
+          "index": 22,
+          "blocked": "0x00"
+        },
+        {
+          "index": 23,
+          "blocked": "0x01"
+        },
+        {
+          "index": 24,
+          "blocked": "0x00"
+        },
+        {
+          "index": 25,
+          "blocked": "0x00"
+        },
+        {
+          "index": 26,
+          "blocked": "0x00"
+        },
+        {
+          "index": 27,
+          "blocked": "0x00"
+        },
+        {
+          "index": 28,
+          "blocked": "0x00"
+        },
+        {
+          "index": 29,
+          "blocked": "0x00"
+        },
+        {
+          "index": 30,
+          "blocked": "0x01"
+        },
+        {
+          "index": 31,
+          "blocked": "0x01"
+        },
+        {
+          "index": 32,
+          "blocked": "0x00"
+        },
+        {
+          "index": 33,
+          "blocked": "0x01"
+        },
+        {
+          "index": 34,
+          "blocked": "0x01"
+        },
+        {
+          "index": 35,
+          "blocked": "0x01"
+        },
+        {
+          "index": 36,
+          "blocked": "0x00"
+        },
+        {
+          "index": 37,
+          "blocked": "0x00"
+        },
+        {
+          "index": 38,
+          "blocked": "0x01"
+        },
+        {
+          "index": 39,
+          "blocked": "0x01"
+        },
+        {
+          "index": 40,
+          "blocked": "0x01"
+        },
+        {
+          "index": 41,
+          "blocked": "0x01"
+        },
+        {
+          "index": 42,
+          "blocked": "0x01"
+        },
+        {
+          "index": 43,
+          "blocked": "0x00"
+        },
+        {
+          "index": 44,
+          "blocked": "0x00"
+        },
+        {
+          "index": 45,
+          "blocked": "0x01"
+        },
+        {
+          "index": 46,
+          "blocked": "0x01"
+        },
+        {
+          "index": 47,
+          "blocked": "0x01"
+        },
+        {
+          "index": 48,
+          "blocked": "0x00"
+        },
+        {
+          "index": 49,
+          "blocked": "0x00"
+        },
+        {
+          "index": 50,
+          "blocked": "0x00"
+        },
+        {
+          "index": 51,
+          "blocked": "0x00"
+        },
+        {
+          "index": 52,
+          "blocked": "0x01"
+        },
+        {
+          "index": 53,
+          "blocked": "0x01"
+        },
+        {
+          "index": 54,
+          "blocked": "0x01"
+        },
+        {
+          "index": 55,
+          "blocked": "0x01"
+        },
+        {
+          "index": 56,
+          "blocked": "0x00"
+        },
+        {
+          "index": 57,
+          "blocked": "0x00"
+        },
+        {
+          "index": 58,
+          "blocked": "0x00"
+        },
+        {
+          "index": 59,
+          "blocked": "0x00"
+        },
+        {
+          "index": 60,
+          "blocked": "0x00"
+        },
+        {
+          "index": 61,
+          "blocked": "0x01"
+        },
+        {
+          "index": 62,
+          "blocked": "0x01"
+        },
+        {
+          "index": 63,
+          "blocked": "0x01"
+        }
+      ]
+    }
+  ],
+  "covered_byte_count": 136,
+  "covered_crc32": "14de971d"
+}

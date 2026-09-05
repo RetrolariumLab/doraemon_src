@@ -2,10 +2,10 @@
 ; World 3 later entity-type collision, reward, and interaction handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_968C:
+World3_UpdateType0F:
     LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_96BF
-    JSR Bank2_Func_96C0
+    JSR World3_FindActiveType0C
     LDA a:World3EntityX,Y
     CLC
     ADC #$10
@@ -31,7 +31,7 @@ Bank2_Func_968C:
 Bank2_Label_96BF:
     RTS
 
-Bank2_Func_96C0:
+World3_FindActiveType0C:
     LDY #$00
 
 Bank2_Label_96C2:
@@ -50,21 +50,21 @@ Bank2_Label_96D0:
 Bank2_Label_96D5:
     RTS
 
-Bank2_Func_96D6:
+World3_UpdateTypes10To16:
     RTS
 
-Bank2_Func_96D7:
+World3_UpdateType17:
     RTS
 
-Bank2_Func_96D8:
+World3_UpdateType18:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_96E3
-    JSR Bank2_Func_9A05
+    JSR World3_FollowActiveType05
     RTS
 
 Bank2_Label_96E3:
-    JSR Bank2_Func_9963
+    JSR World3_PositionEnabledPersistentEntity
     LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_9700
     LDY #$00
@@ -134,15 +134,15 @@ Bank2_Label_973A:
     JSR Bank2_Func_898C
     RTS
 
-Bank2_Func_9759:
+World3_UpdateType19:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_9764
-    JSR Bank2_Func_9A05
+    JSR World3_FollowActiveType05
     RTS
 
 Bank2_Label_9764:
-    JSR Bank2_Func_9963
+    JSR World3_PositionEnabledPersistentEntity
     LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_97AE
     LDA $9F
@@ -244,15 +244,15 @@ Bank2_Label_97F4:
     RTS
     .byte $00, $00, $00, $00
 
-Bank2_Func_9813:
+World3_UpdateType1A:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_981E
-    JSR Bank2_Func_9A05
+    JSR World3_FollowActiveType05
     RTS
 
 Bank2_Label_981E:
-    JSR Bank2_Func_9963
+    JSR World3_PositionEnabledPersistentEntity
     LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_985B
     LDY #$00
@@ -368,15 +368,15 @@ Bank2_Label_98C5:
 Bank2_Label_98E2:
     RTS
 
-Bank2_Func_98E3:
+World3_UpdateType1B:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_98EE
-    JSR Bank2_Func_9A05
+    JSR World3_FollowActiveType05
     RTS
 
 Bank2_Label_98EE:
-    JSR Bank2_Func_9963
+    JSR World3_PositionEnabledPersistentEntity
     LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_9962
     LDA a:World3EntityY,X
@@ -440,7 +440,7 @@ Bank2_Label_995D:
 Bank2_Label_9962:
     RTS
 
-Bank2_Func_9963:
+World3_PositionEnabledPersistentEntity:
     LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_9998
     LDA $95
@@ -475,11 +475,11 @@ Bank2_Label_9986:
 Bank2_Label_9998:
     RTS
 
-Bank2_Func_9999:
+World3_UpdateTypes1CTo1F:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_99A4
-    JSR Bank2_Func_9A05
+    JSR World3_FollowActiveType05
     RTS
 
 Bank2_Label_99A4:
@@ -538,7 +538,7 @@ Bank2_Label_9A02:
     LDX $3E
     RTS
 
-Bank2_Func_9A05:
+World3_FollowActiveType05:
     LDY #$00
 
 Bank2_Label_9A07:

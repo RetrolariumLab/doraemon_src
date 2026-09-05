@@ -24,6 +24,7 @@ header and the physical 32 KiB bank base.
 | world 2 compressed streams | `$BFDC` | 1:`$BFCC` | through `$FFFA` |
 | world 3 attributes | `$15E02` | 2:`$DDF2` | 256 |
 | world 3 initial room objects | `$1597B` | 2:`$D96B` | 5x13 bytes |
+| world 3 transient spawn schedules | `$1567B` | 2:`$D66B` | 3x4x64 bytes |
 | world 3 behavior pointers | `$159BC` | 2:`$D9AC` | 16 pointers |
 | world 3 behavior streams | `$159DC` | 2:`$D9CC` | 1,062 bytes |
 | world 3 small blocks | `$15F02` | 2:`$DEF2` | 1,024 |
@@ -85,6 +86,26 @@ pointers for entity types `$00-$0F`; their targets cover `$D9CC-$DDF1`.
 `config/world3_behavior.json` additionally proves that all 1,062 behavior bytes
 decode without gaps or invalid control-flow targets and validates the lossless
 editable representation in `data/world3/behavior_streams.json`.
+
+The 768 bytes immediately before the persistent registry are twelve parallel
+World 3 transient-spawn columns: type, count, and delay for four channels in
+each of 64 rooms. `data/world3/transient_spawns.json` presents them as one
+room-oriented schedule without changing their physical column order. The exact
+timing and initializer relationship are documented in
+`docs/world3_transient_spawns.md`.
+
+Four smaller World 3 initializer-owned regions are also losslessly editable:
+64 room flags for type `$03` at `$8FE8`, a four-record type `$0C-$0F`
+formation at `$90F4`, an eight-record type `$0A/$0B` formation at `$AC6C`, and
+an eight-record type `$08/$09` formation at `$ACF9`. Together they account for
+152 bytes in `data/world3/spawn_initializer_data.json`; see
+`docs/world3_spawn_initializers.md`.
+
+The World 3 update handlers own another 136 editable bytes: 64 type-`$04`
+tracking flags at `$936C`, four signed type-`$05` held-motion vectors at
+`$93E7`, and 64 persistent-relocation exclusion flags at `$9550`. They
+round-trip through `data/world3/update_handler_data.json`; see
+`docs/world3_update_handlers.md`.
 
 World 2's nine background/sprite palette sets and three chapter selector pairs
 round-trip through `data/world2/palettes.json`. Their lookup bases, stage

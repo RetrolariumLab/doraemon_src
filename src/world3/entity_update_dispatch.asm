@@ -127,7 +127,7 @@ Bank2_Label_9265:
     LDA a:World3EntityType,X
     ASL A
     TAY
-    LDA a:$92DF,Y
+    LDA a:World3_EntityUpdateHandlerTable,Y
     STA $40
     LDA a:$92E0,Y
     STA $41

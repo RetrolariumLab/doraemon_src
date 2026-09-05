@@ -79,6 +79,19 @@ World2StageBranchCooldown = $00AE
 World2SavedBackgroundPalette = $00B4
 World2ScreenMetatiles     = $0400
 
+; World 3 room-indexed transient spawn scheduler
+World3TransientSpawnScheduleLoaded = $00AB
+World3TransientSpawnType = $00AC
+World3TransientSpawnRemaining = $00B0
+World3TransientSpawnDelay = $00B4
+World3TransientSpawnComplete = $00B8
+World3TransientSpawnPhase = $00BC
+World3TransientSpawnDelayReload = $00C0
+World3TransientSpawnWorkType = $00C4
+World3TransientSpawnWorkRemaining = $00C5
+World3TransientSpawnWorkDelay = $00C6
+World3TransientSpawnWorkComplete = $00C7
+
 ; World 2 bank-local parallel pools
 World2EnemyState                 = $0558
 World2EnemyX                     = $055F

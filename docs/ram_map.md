@@ -10,6 +10,7 @@
 | `$001A` | 1 | PPUMASK shadow | written to `$2001` |
 | `$001B-$001C` | 2 | scroll shadows | written to `$2005` in X/Y order |
 | `$001D-$0020` | 4 | controller shift state | populated from `$4016/$4017` |
+| `$00AB-$00C7` | 29 | World 3 transient scheduler | four type/count/delay/completion channels, prescaler phases, reload values, and scratch state |
 | `$0290-$0295` | 6 | current score digits | decimal compare/copy loop |
 | `$0298-$029D` | 6 | working score digits | decimal carry loop |
 | `$0400-$066F` | 624 | World 1 entity storage | complete 13-column, 48-slot structure-of-arrays grid with class-specific behavior overlays |
@@ -17,7 +18,8 @@
 | `$0600-$06AF` | 176 | World 3 active objects | bank-2 overlay containing eight parallel runtime entity slots |
 | `$06B0-$06F0` | 65 | World 3 persistent objects | thirteen room records with room, type, coordinates, and saved state |
 
-Only aliases used by a proven access pattern are named. Chapter-specific object,
-collision, camera, and transition state remains the main runtime-tracing task.
+Only aliases used by a proven access pattern are named. Chapter-specific
+collision, camera, transition state, and remaining object semantics continue to
+be recovered incrementally.
 The field-level registry and its bank ownership are documented in
 `docs/ram_fields.md`.

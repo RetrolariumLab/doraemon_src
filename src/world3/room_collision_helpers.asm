@@ -124,7 +124,7 @@ Bank2_Label_AC0C:
     JSR World3_FindFreeEntitySlot
     BCC Bank2_Label_AC6B
 
-Bank2_Func_AC15:
+World3_CreateType0AEncounterFormation:
     LDA #$00
     STA $51
     LDA #$00
@@ -143,17 +143,17 @@ Bank2_Func_AC1F:
 
 Bank2_Label_AC2F:
     JSR World3_ClearEntitySlot
-    LDA a:$AC6C,Y
+    LDA a:World3_Type0AFormationState,Y
     STA a:World3EntityState,X
-    LDA a:$AC74,Y
+    LDA a:World3_Type0AFormationX,Y
     CLC
     ADC $C9
     STA a:World3EntityX,X
-    LDA a:$AC7C,Y
+    LDA a:World3_Type0AFormationY,Y
     CLC
     ADC $CA
     STA a:World3EntityY,X
-    LDA a:$AC84,Y
+    LDA a:World3_Type0AFormationType,Y
     STA a:World3EntityType,X
     STY $42
     TAY
@@ -171,21 +171,31 @@ Bank2_Label_AC2F:
 
 Bank2_Label_AC6B:
     RTS
-    .byte $03, $03, $03, $03, $03, $03, $03, $03, $68, $62, $68, $72, $7E, $88, $8E, $88
-    .byte $88, $7C, $70, $68, $68, $70, $7C, $88, $0A, $0B, $0B, $0B, $0B, $0B, $0B, $0B
 
-Bank2_Func_AC8C:
+World3_Type0AFormationState:
+    .byte $03, $03, $03, $03, $03, $03, $03, $03
+
+World3_Type0AFormationX:
+    .byte $68, $62, $68, $72, $7E, $88, $8E, $88
+
+World3_Type0AFormationY:
+    .byte $88, $7C, $70, $68, $68, $70, $7C, $88
+
+World3_Type0AFormationType:
+    .byte $0A, $0B, $0B, $0B, $0B, $0B, $0B, $0B
+
+World3_CreateType08EncounterFormation:
     LDA #$00
     STA $3F
     CPX #$06
     BCS Bank2_Label_ACAC
-    JSR Bank2_Func_ACAE
+    JSR World3_CreateType08EncounterGroup
     LDY $40
     TXA
     STA a:World3EntityCollisionScanLimit,Y
     CPX #$06
     BCS Bank2_Label_ACAA
-    JSR Bank2_Func_ACAE
+    JSR World3_CreateType08EncounterGroup
     LDY $40
     TXA
     STA a:World3EntityCollisionScanLimit,Y
@@ -198,7 +208,7 @@ Bank2_Label_ACAC:
     CLC
     RTS
 
-Bank2_Func_ACAE:
+World3_CreateType08EncounterGroup:
     STX $40
     LDA #$04
     STA $41
@@ -206,13 +216,13 @@ Bank2_Func_ACAE:
 Bank2_Label_ACB4:
     JSR World3_ClearEntitySlot
     LDY $3F
-    LDA a:$ACF9,Y
+    LDA a:World3_Type08FormationState,Y
     STA a:World3EntityState,X
-    LDA a:$AD01,Y
+    LDA a:World3_Type08FormationX,Y
     STA a:World3EntityX,X
-    LDA a:$AD09,Y
+    LDA a:World3_Type08FormationY,Y
     STA a:World3EntityY,X
-    LDA a:$AD11,Y
+    LDA a:World3_Type08FormationType,Y
     STA a:World3EntityType,X
     STY $42
     TAY
@@ -221,7 +231,7 @@ Bank2_Label_ACB4:
     LDY $42
     LDA a:$8EBD
     STA a:World3EntityHitPoints,X
-    LDA a:$AD19,Y
+    LDA a:World3_Type08FormationFrameCounter,Y
     STA a:World3EntityFrameCounter,X
     LDA #$1E
     STA a:World3EntityActivationTimer,X
@@ -234,8 +244,20 @@ Bank2_Label_ACB4:
 
 Bank2_Label_ACF8:
     RTS
-    .byte $01, $01, $01, $01, $01, $01, $01, $01, $68, $62, $68, $72, $64, $6C, $74, $74
-    .byte $88, $7C, $70, $68, $92, $88, $80, $80, $08, $09, $09, $09, $08, $09, $09, $09
+
+World3_Type08FormationState:
+    .byte $01, $01, $01, $01, $01, $01, $01, $01
+
+World3_Type08FormationX:
+    .byte $68, $62, $68, $72, $64, $6C, $74, $74
+
+World3_Type08FormationY:
+    .byte $88, $7C, $70, $68, $92, $88, $80, $80
+
+World3_Type08FormationType:
+    .byte $08, $09, $09, $09, $08, $09, $09, $09
+
+World3_Type08FormationFrameCounter:
     .byte $01, $01, $02, $02, $02, $02, $03, $03
 
 Bank2_Func_AD21:

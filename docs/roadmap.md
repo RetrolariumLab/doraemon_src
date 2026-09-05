@@ -48,8 +48,14 @@ and low-type behavior pointers are now exact. All sixteen low-type behavior
 streams are decoded into a lossless editable format. Its full 32-type catalog,
 five property columns, four lifecycle domains, and two encoded transformations
 are now exact. The registry and property columns also round-trip through one
-row-oriented lossless object catalog; character identities and remaining
-transient placement semantics remain active work.
+row-oriented lossless object catalog. The four-channel transient scheduler is
+also exact for all 64 rooms: twelve type/count/delay columns, RAM state, timing,
+spawn budgets, and initializer dispatch round-trip through a 768-byte editable
+format. All sixteen initializer slots are structurally classified, including
+their room gates, fixed positions, and type `$08/$09`, `$0A/$0B`, and
+`$0C-$0F` formation layouts. The full 32-slot update dispatch is classified
+into structural roles with its room gates, relocation masks, and movement
+vectors losslessly editable. Character and item identities remain active work.
 
 ### 6. World data formats - Planned
 

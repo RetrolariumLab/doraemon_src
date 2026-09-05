@@ -634,9 +634,16 @@
     {
       "bank": 2,
       "start": "0xC92C",
-      "end": "0xD96A",
+      "end": "0xD66A",
       "path": "world3/music_data.asm",
       "responsibility": "World 3 APU period tables, track headers, and music streams"
+    },
+    {
+      "bank": 2,
+      "start": "0xD66B",
+      "end": "0xD96A",
+      "path": "world3/data/transient_spawn_schedules.asm",
+      "responsibility": "World 3 four-channel room-indexed transient entity type count and delay tables"
     },
     {
       "bank": 2,

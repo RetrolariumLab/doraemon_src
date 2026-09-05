@@ -117,3 +117,38 @@ and `$1C-$1E` persistent transformations. See
 `data/world3/object_catalog.json` losslessly transposes both the thirteen
 persistent records and all 32 five-property type records back into their ROM
 structure-of-arrays layouts.
+
+## World 3 transient room schedules
+
+World 3's non-persistent room entities use four scheduling channels. Twelve
+64-byte columns at `$D66B-$D96A` provide type, successful-spawn count, and
+delay for every channel in each room. A zero count disables the corresponding
+channel; type zero remains a valid initializer index.
+
+Nonzero delays are decremented through a modulo-four frame prescaler. Delay
+zero retries allocation every frame. Successful allocation consumes one count,
+initializes an active entity through the 16-entry table at `$8F6C`, and marks
+the channel complete after its last scheduled entity. The phase counters are
+not reset when a new room schedule is loaded.
+
+`config/world3_transient_spawns.json` pins the scheduler code, all table CRCs
+and domains, initializer bounds, timing, and aggregate spawn budgets.
+`data/world3/transient_spawns.json` losslessly transposes the full 768-byte
+column layout into 64 editable room records. See
+`docs/world3_transient_spawns.md`.
+
+The 16 initializer slots are independently classified and tied back to the
+schedule's per-type record counts and spawn budgets. Initializers `$07` and
+`$08` are room/progression gated; `$0A` expands a type `$0A/$0B` encounter;
+and `$0C` expands a four-corner type `$0C-$0F` formation. Their four data
+regions transpose losslessly through
+`data/world3/spawn_initializer_data.json`; see
+`docs/world3_spawn_initializers.md`.
+
+The 32-entry update dispatch is classified separately in
+`config/world3_update_handlers.json`. It covers script-only low types,
+formation members, encounter and persistence transitions, object relocation,
+terrain-trigger behavior, pushing, and player-following derived types. Its
+three handler-owned table regions are losslessly editable in
+`data/world3/update_handler_data.json`; see
+`docs/world3_update_handlers.md`.

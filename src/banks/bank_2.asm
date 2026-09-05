@@ -54,8 +54,10 @@
 .include "../world3/music_engine.asm"
 ; $C634-$C92B: World 3 music RTS table, command handlers, and stream reader
 .include "../world3/music_commands.asm"
-; $C92C-$D96A: World 3 APU period tables, track headers, and music streams
+; $C92C-$D66A: World 3 APU period tables, track headers, and music streams
 .include "../world3/music_data.asm"
+; $D66B-$D96A: World 3 four-channel room-indexed transient entity type count and delay tables
+.include "../world3/data/transient_spawn_schedules.asm"
 ; $D96B-$D9AB: World 3 five-field initial registry for thirteen persistent room objects
 .include "../world3/data/initial_room_objects.asm"
 ; $D9AC-$D9CB: World 3 sixteen-entry entity behavior-stream pointer table

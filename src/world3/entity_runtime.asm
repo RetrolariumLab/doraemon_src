@@ -330,7 +330,7 @@ Bank2_Label_8DAB:
 
 World3_ClearEntityStorage:
     LDA #$00
-    STA $AB
+    STA World3TransientSpawnScheduleLoaded
     LDX #$00
     TXA
 
@@ -343,50 +343,50 @@ Bank2_Label_8DBB:
 Bank2_Label_8DC3:
     RTS
 
-Bank2_Func_8DC4:
+World3_UpdateTransientSpawns:
     LDA $8E
     CMP #$04
     BEQ Bank2_Label_8DC3
     LDA $CB
     BNE Bank2_Label_8DC3
-    LDA $AB
+    LDA World3TransientSpawnScheduleLoaded
     BNE Bank2_Label_8E26
     LDA #$01
-    STA $AB
+    STA World3TransientSpawnScheduleLoaded
     LDX $DF
-    LDA a:$D66B,X
-    STA $AC
-    LDA a:$D6AB,X
-    STA $AD
-    LDA a:$D6EB,X
-    STA $AE
-    LDA a:$D72B,X
-    STA $AF
-    LDA a:$D76B,X
-    STA $B0
-    LDA a:$D7AB,X
-    STA $B1
-    LDA a:$D7EB,X
-    STA $B2
-    LDA a:$D82B,X
-    STA $B3
-    LDA a:$D86B,X
-    STA $B4
-    STA $C0
-    LDA a:$D8AB,X
-    STA $B5
-    STA $C1
-    LDA a:$D8EB,X
-    STA $B6
-    STA $C2
-    LDA a:$D92B,X
-    STA $B7
-    STA $C3
+    LDA a:World3_TransientSpawnType0ByRoom,X
+    STA World3TransientSpawnType
+    LDA a:World3_TransientSpawnType1ByRoom,X
+    STA World3TransientSpawnType+$01
+    LDA a:World3_TransientSpawnType2ByRoom,X
+    STA World3TransientSpawnType+$02
+    LDA a:World3_TransientSpawnType3ByRoom,X
+    STA World3TransientSpawnType+$03
+    LDA a:World3_TransientSpawnCount0ByRoom,X
+    STA World3TransientSpawnRemaining
+    LDA a:World3_TransientSpawnCount1ByRoom,X
+    STA World3TransientSpawnRemaining+$01
+    LDA a:World3_TransientSpawnCount2ByRoom,X
+    STA World3TransientSpawnRemaining+$02
+    LDA a:World3_TransientSpawnCount3ByRoom,X
+    STA World3TransientSpawnRemaining+$03
+    LDA a:World3_TransientSpawnDelay0ByRoom,X
+    STA World3TransientSpawnDelay
+    STA World3TransientSpawnDelayReload
+    LDA a:World3_TransientSpawnDelay1ByRoom,X
+    STA World3TransientSpawnDelay+$01
+    STA World3TransientSpawnDelayReload+$01
+    LDA a:World3_TransientSpawnDelay2ByRoom,X
+    STA World3TransientSpawnDelay+$02
+    STA World3TransientSpawnDelayReload+$02
+    LDA a:World3_TransientSpawnDelay3ByRoom,X
+    STA World3TransientSpawnDelay+$03
+    STA World3TransientSpawnDelayReload+$03
     LDA #$00
-    STA $B8
-    STA $B9
-    STA $BA
-    STA $BB
+    STA World3TransientSpawnComplete
+    STA World3TransientSpawnComplete+$01
+    STA World3TransientSpawnComplete+$02
+    STA World3TransientSpawnComplete+$03
 
 Bank2_Label_8E26:
     LDA #$00
@@ -396,32 +396,32 @@ Bank2_Label_8E26:
 
 Bank2_Label_8E2E:
     LDX $00
-    LDA $B4,X
+    LDA World3TransientSpawnDelay,X
     BEQ Bank2_Label_8E3F
-    LDA $BC,X
+    LDA World3TransientSpawnPhase,X
     CLC
     ADC #$01
     AND #$03
-    STA $BC,X
+    STA World3TransientSpawnPhase,X
     BNE Bank2_Label_8E60
 
 Bank2_Label_8E3F:
-    LDA $AC,X
-    STA $C4
-    LDA $B0,X
-    STA $C5
-    LDA $B4,X
-    STA $C6
-    LDA $B8,X
-    STA $C7
-    JSR Bank2_Func_8E67
+    LDA World3TransientSpawnType,X
+    STA World3TransientSpawnWorkType
+    LDA World3TransientSpawnRemaining,X
+    STA World3TransientSpawnWorkRemaining
+    LDA World3TransientSpawnDelay,X
+    STA World3TransientSpawnWorkDelay
+    LDA World3TransientSpawnComplete,X
+    STA World3TransientSpawnWorkComplete
+    JSR World3_UpdateTransientSpawnChannel
     LDX $00
-    LDA $C5
-    STA $B0,X
-    LDA $C6
-    STA $B4,X
-    LDA $C7
-    STA $B8,X
+    LDA World3TransientSpawnWorkRemaining
+    STA World3TransientSpawnRemaining,X
+    LDA World3TransientSpawnWorkDelay
+    STA World3TransientSpawnDelay,X
+    LDA World3TransientSpawnWorkComplete
+    STA World3TransientSpawnComplete,X
 
 Bank2_Label_8E60:
     INC $00
@@ -429,18 +429,18 @@ Bank2_Label_8E60:
     BNE Bank2_Label_8E2E
     RTS
 
-Bank2_Func_8E67:
-    LDA $C7
+World3_UpdateTransientSpawnChannel:
+    LDA World3TransientSpawnWorkComplete
     BNE Bank2_Label_8EB4
-    LDA $C5
+    LDA World3TransientSpawnWorkRemaining
     BEQ Bank2_Label_8EB4
-    LDA $C6
+    LDA World3TransientSpawnWorkDelay
     BEQ Bank2_Label_8E7D
-    DEC $C6
+    DEC World3TransientSpawnWorkDelay
     BNE Bank2_Label_8EB4
     LDX $00
-    LDA $C0,X
-    STA $C6
+    LDA World3TransientSpawnDelayReload,X
+    STA World3TransientSpawnWorkDelay
 
 Bank2_Label_8E7D:
     JSR World3_FindFreeEntitySlot
@@ -448,7 +448,7 @@ Bank2_Label_8E7D:
     JSR World3_ClearEntitySlot
     LDA #$1E
     STA a:World3EntityActivationTimer,X
-    LDA $C4
+    LDA World3TransientSpawnWorkType
     STA a:World3EntityType,X
     TAY
     LDA a:World3_EntityHitPointsByType,Y
@@ -461,10 +461,10 @@ Bank2_Label_8E7D:
     LDA #$02
     STA a:World3EntityState,X
     JSR World3_InitializeSpawnedEntity
-    DEC $C5
+    DEC World3TransientSpawnWorkRemaining
     BNE Bank2_Label_8EB4
     LDA #$01
-    STA $C7
+    STA World3TransientSpawnWorkComplete
 
 Bank2_Label_8EB4:
     RTS

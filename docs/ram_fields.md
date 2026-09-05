@@ -169,6 +169,28 @@ Bank 2 separates the eight objects currently simulated in a room from a
 record's room number, allocates an active slot, and copies type and coordinates
 into it. Room exit performs the reverse copy for matching objects.
 
+The room-indexed transient scheduler uses a four-channel zero-page overlay.
+
+| Transient scheduler field | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World3TransientSpawnScheduleLoaded` | `$00AB` | 1 | Zero reloads all room columns; one preserves the active schedule |
+| `World3TransientSpawnType` | `$00AC` | 4 | Entity type for each channel |
+| `World3TransientSpawnRemaining` | `$00B0` | 4 | Remaining successful spawns in each channel |
+| `World3TransientSpawnDelay` | `$00B4` | 4 | Current delay countdown |
+| `World3TransientSpawnComplete` | `$00B8` | 4 | Set after the last successful spawn |
+| `World3TransientSpawnPhase` | `$00BC` | 4 | Modulo-four prescaler phase; retained across room reloads |
+| `World3TransientSpawnDelayReload` | `$00C0` | 4 | Original room delay restored after each expiry |
+| `World3TransientSpawnWorkType` | `$00C4` | 1 | Current channel type scratch byte |
+| `World3TransientSpawnWorkRemaining` | `$00C5` | 1 | Current channel budget scratch byte |
+| `World3TransientSpawnWorkDelay` | `$00C6` | 1 | Current channel delay scratch byte |
+| `World3TransientSpawnWorkComplete` | `$00C7` | 1 | Current channel completion scratch byte |
+
+`World3_ClearEntityStorage` clears the schedule-loaded flag when a room is
+materialized, but does not clear the four phase bytes. The next frame therefore
+loads the new room's type/count/delay columns while retaining each channel's
+position in the global modulo-four cadence. See
+`docs/world3_transient_spawns.md`.
+
 | Active entity field | Address | Size | Role |
 | --- | ---: | ---: | --- |
 | `World3EntityState` | `$0600` | 8 | Zero means free; nonzero states select update phases |

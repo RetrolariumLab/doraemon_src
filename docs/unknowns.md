@@ -70,11 +70,25 @@
   their five property tables, three dispatch views, and the `$10-$13` and
   `$1C-$1E` type transformations are validated by
   `config/world3_entity_types.json`.
+- Known: World 3 transient entities use four independent channels per room.
+  All twelve 64-byte type/count/delay columns, the delay scheduler, spawn
+  budgets, initializer dispatch, and the complete 768-byte lossless authoring
+  representation are validated by `config/world3_transient_spawns.json`.
+- Known: all sixteen World 3 transient initializer slots are classified by
+  structural role. Their room flag, fixed-position, and three formation data
+  layouts are losslessly editable and cross-checked against scheduled type
+  frequencies and budgets by `config/world3_spawn_initializers.json`.
+- Known: all 32 World 3 update-dispatch slots are classified into 17
+  structural roles. Type `$04/$05` room flags, held-motion vectors, persistent
+  relocation, formation followers, encounter completion, conversion, pushing,
+  and player-following paths are validated by
+  `config/world3_update_handlers.json`.
 - Unknown: character/item identities for World 1 descriptors, individual World
   2 enemy identities and handler-specific meanings, character identities for
-  World 3 types, and remaining
-  transient World 3 enemy/projectile placement rules. The World 3 behavior
-  bytecode and structural type catalog are fully decoded and validated.
+  World 3 types, and character-level identities behind the now-exact World 3
+  initializer modes. The World 3 behavior bytecode, structural type catalog,
+  room placement scheduler, and formation layouts are fully decoded and
+  validated.
 
 ## AUDIO-002 - command and stream semantics
 

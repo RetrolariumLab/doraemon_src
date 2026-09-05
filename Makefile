@@ -58,6 +58,12 @@ WORLD3_BEHAVIOR := config/world3_behavior.json
 WORLD3_BEHAVIOR_AUTHORING := data/world3/behavior_streams.json
 WORLD3_ENTITY_TYPES := config/world3_entity_types.json
 WORLD3_OBJECT_AUTHORING := data/world3/object_catalog.json
+WORLD3_SPAWN_INITIALIZERS := config/world3_spawn_initializers.json
+WORLD3_SPAWN_INITIALIZER_AUTHORING := data/world3/spawn_initializer_data.json
+WORLD3_TRANSIENT_SPAWNS := config/world3_transient_spawns.json
+WORLD3_TRANSIENT_SPAWN_AUTHORING := data/world3/transient_spawns.json
+WORLD3_UPDATE_HANDLERS := config/world3_update_handlers.json
+WORLD3_UPDATE_HANDLER_AUTHORING := data/world3/update_handler_data.json
 WORLD_DATA := config/world_data.json
 WORLD1_DATA_AUTHORING := data/world1/hierarchical_world.json
 WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
@@ -82,6 +88,9 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	world3-object-data validate-world3-object-data world3-behavior \
 	validate-world3-behavior world3-entity-types validate-world3-entity-types \
 	world3-object-catalog validate-world3-object-catalog \
+	world3-spawn-initializers validate-world3-spawn-initializers \
+	world3-transient-spawns validate-world3-transient-spawns \
+	world3-update-handlers validate-world3-update-handlers \
 	world-data validate-world-data
 
 all: verify
@@ -285,6 +294,26 @@ world3-object-catalog validate-world3-object-catalog: $(PRG_ASSET)
 		--entity-types "$(WORLD3_ENTITY_TYPES)" \
 		--authoring "$(WORLD3_OBJECT_AUTHORING)"
 
+world3-spawn-initializers validate-world3-spawn-initializers: $(PRG_ASSET)
+	$(PYTHON) scripts/world3_spawn_initializers.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD3_SPAWN_INITIALIZERS)" \
+		--object-dispatch "$(OBJECT_DISPATCH)" \
+		--transient-authoring "$(WORLD3_TRANSIENT_SPAWN_AUTHORING)" \
+		--authoring "$(WORLD3_SPAWN_INITIALIZER_AUTHORING)"
+
+world3-transient-spawns validate-world3-transient-spawns: $(PRG_ASSET)
+	$(PYTHON) scripts/world3_transient_spawns.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD3_TRANSIENT_SPAWNS)" \
+		--object-dispatch "$(OBJECT_DISPATCH)" \
+		--authoring "$(WORLD3_TRANSIENT_SPAWN_AUTHORING)"
+
+world3-update-handlers validate-world3-update-handlers: $(PRG_ASSET)
+	$(PYTHON) scripts/world3_update_handlers.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD3_UPDATE_HANDLERS)" \
+		--object-dispatch "$(OBJECT_DISPATCH)" \
+		--entity-types "$(WORLD3_ENTITY_TYPES)" \
+		--authoring "$(WORLD3_UPDATE_HANDLER_AUTHORING)"
+
 world-data validate-world-data: $(PRG_ASSET)
 	$(PYTHON) scripts/world_data.py validate --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD_DATA)" \
@@ -326,6 +355,9 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-world2-palettes \
 	validate-world3-object-data validate-world3-behavior \
 	validate-world3-entity-types validate-world3-object-catalog \
+	validate-world3-spawn-initializers \
+	validate-world3-transient-spawns \
+	validate-world3-update-handlers \
 	validate-world-data
 
 check: release-check

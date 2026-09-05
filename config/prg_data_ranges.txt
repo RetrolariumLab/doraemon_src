@@ -22,6 +22,14 @@ table 1 BEDE BFCB World2ScreenPointerTable
 map 1 BFCC FFF9 World2CompressedScreenStreams
 vectors 1 FFFA FFFF Bank1InterruptVectors
 text 2 827D 82AC World3BuildString
+table 2 8FE8 9027 World3Type03RoomVariantFlags
+table 2 90F4 9103 World3Type0CFormation
+table 2 936C 93AB World3Type04TrackingRoomFlags
+table 2 93E7 93EE World3Type05HeldMotionVectors
+table 2 9550 958F World3Type05RelocationRoomFlags
+table 2 AC6C AC8B World3Type0AFormation
+table 2 ACF9 AD20 World3Type08Formation
+table 2 D66B D96A World3TransientSpawnSchedules
 table 2 DDF2 DEF1 World3BlockAttributes
 table 2 DEF2 E2F1 World3SmallBlocks
 table 2 E2F2 E6F1 World3BigBlocks

@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "bank": 2,
+  "initializer_count": 16,
+  "dispatch_name": "world3_spawn_initializers",
+  "initializers": [
+    {
+      "type": 0,
+      "target": "0x8F8C",
+      "mode": "room_range_random_metasprite_variant",
+      "schedule_records": 20,
+      "spawn_budget": 140
+    },
+    {
+      "type": 1,
+      "target": "0x8FA3",
+      "mode": "room_range_random_metasprite_and_flags",
+      "schedule_records": 13,
+      "spawn_budget": 98
+    },
+    {
+      "type": 2,
+      "target": "0x8FBF",
+      "mode": "fixed_position_state_and_optional_sound",
+      "schedule_records": 3,
+      "spawn_budget": 300
+    },
+    {
+      "type": 3,
+      "target": "0x8FDB",
+      "mode": "room_table_metasprite_variant",
+      "schedule_records": 8,
+      "spawn_budget": 78
+    },
+    {
+      "type": 4,
+      "target": "0x9028",
+      "mode": "set_clone_budget",
+      "schedule_records": 33,
+      "spawn_budget": 197
+    },
+    {
+      "type": 5,
+      "target": "0x902E",
+      "mode": "no_op",
+      "schedule_records": 45,
+      "spawn_budget": 45
+    },
+    {
+      "type": 6,
+      "target": "0x902F",
+      "mode": "randomized_metasprite_variant",
+      "schedule_records": 1,
+      "spawn_budget": 250
+    },
+    {
+      "type": 7,
+      "target": "0x9044",
+      "mode": "room_flag_gated_fixed_position",
+      "schedule_records": 2,
+      "spawn_budget": 2
+    },
+    {
+      "type": 8,
+      "target": "0x9071",
+      "mode": "room_flag_gated_type08_09_group",
+      "schedule_records": 3,
+      "spawn_budget": 3
+    },
+    {
+      "type": 9,
+      "target": "0x90AA",
+      "mode": "no_op",
+      "schedule_records": 0,
+      "spawn_budget": 0
+    },
+    {
+      "type": 10,
+      "target": "0x90AB",
+      "mode": "type0a_0b_encounter_group",
+      "schedule_records": 3,
+      "spawn_budget": 3
+    },
+    {
+      "type": 11,
+      "target": "0x90AE",
+      "mode": "no_op",
+      "schedule_records": 0,
+      "spawn_budget": 0
+    },
+    {
+      "type": 12,
+      "target": "0x90AF",
+      "mode": "type0c_0f_four_object_formation",
+      "schedule_records": 1,
+      "spawn_budget": 1
+    },
+    {
+      "type": 13,
+      "target": "0x90B2",
+      "mode": "no_op",
+      "schedule_records": 0,
+      "spawn_budget": 0
+    },
+    {
+      "type": 14,
+      "target": "0x90B2",
+      "mode": "no_op",
+      "schedule_records": 0,
+      "spawn_budget": 0
+    },
+    {
+      "type": 15,
+      "target": "0x90B2",
+      "mode": "no_op",
+      "schedule_records": 0,
+      "spawn_budget": 0
+    }
+  ],
+  "data_regions": [
+    {
+      "name": "type03_room_variants",
+      "address": "0x8FE8",
+      "count": 64,
+      "fields": [
+        "alternate_metasprite"
+      ],
+      "crc32": "9c725591"
+    },
+    {
+      "name": "type0c_formation",
+      "address": "0x90F4",
+      "count": 4,
+      "fields": [
+        "state",
+        "x",
+        "y",
+        "type"
+      ],
+      "crc32": "d430c482"
+    },
+    {
+      "name": "type0a_formation",
+      "address": "0xAC6C",
+      "count": 8,
+      "fields": [
+        "state",
+        "x",
+        "y",
+        "type"
+      ],
+      "crc32": "3fef39a0"
+    },
+    {
+      "name": "type08_formation",
+      "address": "0xACF9",
+      "count": 8,
+      "fields": [
+        "state",
+        "x",
+        "y",
+        "type",
+        "frame_counter"
+      ],
+      "crc32": "e32e8cfd"
+    }
+  ],
+  "covered_byte_count": 152,
+  "covered_crc32": "f8157287",
+  "signatures": [
+    {
+      "address": "0x8F55",
+      "purpose": "type-indexed initializer dispatch",
+      "bytes": "A9 00 9D 70 06 A5 C4 0A A8 B9 6C 8F 85 40 B9 6D 8F 85 41 20 1F 93 60"
+    },
+    {
+      "address": "0x9044",
+      "purpose": "type 07 room and progression gates",
+      "bytes": "A5 DF C9 26 D0 07 A5 56 D0 1D 4C 5B 90 A5 DF C9 3B D0 19 A5 57 D0 10 A9 B0 9D 08 06 A9 A8 9D 10 06 A9 01 9D 00 06 60 A9 00 9D 00 06 60"
+    },
+    {
+      "address": "0x9071",
+      "purpose": "type 08 room and progression gates",
+      "bytes": "A5 DF C9 27 F0 0D C9 28 F0 10 C9 34 F0 13 A9 03 4C 51 AF A5 58 F0 11 4C A4 90 A5 59 F0 0A 4C A4 90 A5 5A F0 03 4C A4 90 20 8C AC 90 06 A9 03 8D AA 02 60 A9 00 9D 00 06 60"
+    },
+    {
+      "address": "0x90AF",
+      "purpose": "type 0C through 0F four-object formation",
+      "bytes": "20 B3 90 60 A0 00 4C BD 90 20 04 91 90 36 20 68 8B B9 F4 90 9D 00 06 B9 F8 90 9D 08 06 B9 FC 90 9D 10 06 B9 00 91 9D 38 06 84 42 A8 B9 D5 8E 9D 28 06 A4 42 A9 1E 9D 68 06 AD C1 8E 9D 98 06 C8 C0 04 D0 C5 60"
+    },
+    {
+      "address": "0xAC15",
+      "purpose": "type 0A and 0B encounter formation",
+      "bytes": "A9 00 85 51 A9 00 85 C9 85 CA A9 00 85 51 E0 06 B0 44 86 C8 A9 01 85 51 A0 00 20 68 8B B9 6C AC 9D 00 06 B9 74 AC 18 65 C9 9D 08 06 B9 7C AC 18 65 CA 9D 10 06 B9 84 AC 9D 38 06 84 42 A8 B9 D5 8E 9D 28 06 A4 42 A9 1E 9D 68 06 C8 E8 E0 08 D0 C9 A9 03 8D AA 02 60"
+    },
+    {
+      "address": "0xAC8C",
+      "purpose": "type 08 and 09 encounter groups",
+      "bytes": "A9 00 85 3F E0 06 B0 18 20 AE AC A4 40 8A 99 20 06 E0 06 B0 09 20 AE AC A4 40 8A 99 20 06 38 60 18 60 86 40 A9 04 85 41 20 68 8B A4 3F B9 F9 AC 9D 00 06 B9 01 AD 9D 08 06 B9 09 AD 9D 10 06 B9 11 AD 9D 38 06 84 42 A8 B9 D5 8E 9D 28 06 A4 42 AD BD 8E 9D 98 06 B9 19 AD 9D 18 06 A9 1E 9D 68 06 E6 3F E8 E0 08 F0 04 C6 41 D0 BC 60"
+    }
+  ]
+}
