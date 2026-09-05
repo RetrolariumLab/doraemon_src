@@ -182,6 +182,18 @@
     },
     {
       "bank": 0,
+      "address": "0x962F",
+      "name": "World1_FrameRandomByte",
+      "evidence": "two-byte-state-update-mixed-with-frame-counter-and-seven-direct-callers"
+    },
+    {
+      "bank": 0,
+      "address": "0x964A",
+      "name": "World1_RandomByte",
+      "evidence": "four-byte-state-only-pseudorandom-update-with-eighteen-direct-callers"
+    },
+    {
+      "bank": 0,
       "address": "0x978F",
       "name": "World1_RenderEntitySlots00_09",
       "evidence": "ten-slot-00-09-traversal-into-common-metasprite-composer"
@@ -577,8 +589,57 @@
     },
     {
       "bank": 0,
+      "address": "0xA6A7",
+      "name": "World1_LookupMapTile",
+      "evidence": "xy-world-cell-to-map-big-block-small-block-and-chr-tile-hierarchy-lookup"
+    },
+    {
+      "bank": 0,
+      "address": "0xA6E2",
+      "name": "World1_ReadCurrentMapTile",
+      "evidence": "reads-current-four-entry-small-block-quadrant-and-returns-chr-tile-index"
+    },
+    {
+      "bank": 0,
+      "address": "0xA6E8",
+      "name": "World1_ReadMapTileAndStepRight",
+      "evidence": "returns-current-chr-tile-and-carries-horizontal-cursor-through-three-hierarchy-levels"
+    },
+    {
+      "bank": 0,
+      "address": "0xA719",
+      "name": "World1_ReadMapTileAndStepDown",
+      "evidence": "returns-current-chr-tile-and-carries-vertical-cursor-through-three-hierarchy-levels"
+    },
+    {
+      "bank": 0,
+      "address": "0xA74E",
+      "name": "World1_ReadBlockAttributeAndStepRight",
+      "evidence": "maps-current-small-block-through-attribute-table-and-advances-horizontal-block-cursor"
+    },
+    {
+      "bank": 0,
+      "address": "0xA772",
+      "name": "World1_ReadBlockAttributeAndStepDown",
+      "evidence": "maps-current-small-block-through-attribute-table-and-advances-vertical-block-cursor"
+    },
+    {
+      "bank": 0,
+      "address": "0xA79B",
+      "name": "World1_SelectSmallBlock",
+      "evidence": "multiplies-small-block-id-by-four-and-builds-pointer-from-aaef-table-base"
+    },
+    {
+      "bank": 0,
+      "address": "0xA7B7",
+      "name": "World1_SelectBigBlock",
+      "evidence": "multiplies-big-block-id-by-four-and-builds-pointer-from-aeef-table-base"
+    },
+    {
+      "bank": 0,
       "address": "0xA9EF",
       "name": "World1_BlockAttributes",
+      "operand_symbol": true,
       "evidence": "cadeditor"
     },
     {
@@ -3691,6 +3752,24 @@
       "evidence": "even-valued-oam-entry-index-doubled-into-byte-offset-and-saturated-when-bit-seven-is-set"
     },
     {
+      "address": "0x0052",
+      "name": "World1FrameRandomState",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "two-byte-pseudorandom-state-updated-with-frame-counter-mixing-by-world1-frame-random-byte"
+    },
+    {
+      "address": "0x0054",
+      "name": "World1RandomState",
+      "size": 4,
+      "banks": [
+        0
+      ],
+      "evidence": "four-byte-state-only-pseudorandom-generator-state-used-by-eighteen-direct-callers"
+    },
+    {
       "address": "0x0058",
       "name": "World1NametableX",
       "banks": [
@@ -3753,6 +3832,66 @@
         0
       ],
       "evidence": "signed-per-frame-screen-space-y-compensation-accumulated-by-camera-scroll-and-applied-to-player-and-entities"
+    },
+    {
+      "address": "0x0066",
+      "name": "World1MapDataPointer",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "loaded-with-b2ef-for-city-or-c2ef-for-underground-before-hierarchical-map-lookups"
+    },
+    {
+      "address": "0x006A",
+      "name": "World1CurrentSmallBlockPointer",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "computed-as-aaef-plus-four-times-current-small-block-id"
+    },
+    {
+      "address": "0x006C",
+      "name": "World1CurrentBigBlockPointer",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "computed-as-aeef-plus-four-times-current-big-block-id"
+    },
+    {
+      "address": "0x006E",
+      "name": "World1MapRowPointer",
+      "size": 2,
+      "banks": [
+        0
+      ],
+      "evidence": "active-map-base-plus-sixty-four-times-world-cell-y-divided-by-four"
+    },
+    {
+      "address": "0x0070",
+      "name": "World1TileQuadrantIndex",
+      "banks": [
+        0
+      ],
+      "evidence": "row-major-two-by-two-chr-tile-index-built-from-world-cell-low-bits"
+    },
+    {
+      "address": "0x0071",
+      "name": "World1SmallBlockQuadrantIndex",
+      "banks": [
+        0
+      ],
+      "evidence": "row-major-two-by-two-small-block-index-built-from-world-cell-bit-one"
+    },
+    {
+      "address": "0x0072",
+      "name": "World1MapColumnIndex",
+      "banks": [
+        0
+      ],
+      "evidence": "six-bit-map-column-index-built-from-world-cell-x-divided-by-four"
     },
     {
       "address": "0x0075",

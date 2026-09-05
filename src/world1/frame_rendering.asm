@@ -57,53 +57,53 @@ Bank0_Func_9614:
     STA NmiOamDmaRequest
     RTS
 
-Bank0_Func_962F:
-    INC $53
-    DEC $52
+World1_FrameRandomByte:
+    INC World1FrameRandomState+$01
+    DEC World1FrameRandomState
     LDA FrameCounter
     EOR #$F0
-    EOR $52
-    STA $52
+    EOR World1FrameRandomState
+    STA World1FrameRandomState
     LDA FrameCounter
     EOR #$AA
     ROR A
     ROR A
     ROR A
-    EOR $53
-    STA $53
+    EOR World1FrameRandomState+$01
+    STA World1FrameRandomState+$01
     ROR A
-    EOR $52
+    EOR World1FrameRandomState
     RTS
 
-Bank0_Func_964A:
-    LDA $54
+World1_RandomByte:
+    LDA World1RandomState
     ROL A
     ROL A
     EOR #$41
     ROL A
     ROL A
     EOR #$93
-    ADC $55
-    STA $54
+    ADC World1RandomState+$01
+    STA World1RandomState
     ROL A
     ROL A
     EOR #$12
     ROL A
     ROL A
-    ADC $56
-    STA $55
-    ADC $54
-    INC $56
+    ADC World1RandomState+$02
+    STA World1RandomState+$01
+    ADC World1RandomState
+    INC World1RandomState+$02
     BNE Bank0_Label_9671
     PHA
-    LDA $57
+    LDA World1RandomState+$03
     CLC
     ADC #$1D
-    STA $57
+    STA World1RandomState+$03
     PLA
 
 Bank0_Label_9671:
-    EOR $57
+    EOR World1RandomState+$03
     RTS
 
 Bank0_Func_9674:

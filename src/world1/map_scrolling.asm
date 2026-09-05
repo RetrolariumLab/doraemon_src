@@ -221,11 +221,11 @@ Bank0_Label_A4B4:
 
 Bank0_Func_A4C6:
     PHA
-    JSR Bank0_Func_A6A7
+    JSR World1_LookupMapTile
     LDX #$00
 
 Bank0_Label_A4CC:
-    JSR Bank0_Func_A719
+    JSR World1_ReadMapTileAndStepDown
     STA a:$0233,X
     INX
     CPX #$1E

@@ -85,6 +85,37 @@ scroll shadows into the latch for the following frame. Horizontal byte wrap
 toggles `World1NametableX`, which supplies both `PpuCtrlShadow` bit 0 and the
 nametable selector used by the edge-streaming address builders.
 
+## World 1 pseudorandom state
+
+| Symbol | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World1FrameRandomState` | `$0052` | 2 | State updated by `World1_FrameRandomByte`, which mixes both bytes with `FrameCounter` |
+| `World1RandomState` | `$0054` | 4 | Independent state updated by `World1_RandomByte` without reading the frame counter |
+
+Both sequences are zero-initialized with the chapter RAM and cleared again on
+the World 1 demo path. They are separate generators rather than one six-byte
+state: the routines access disjoint fields and have disjoint direct-call
+graphs. The bank-wide validator pins the complete seven-call and eighteen-call
+sets as well as both machine-code bodies.
+
+## World 1 hierarchical map decoder
+
+| Symbol | Address | Size | Role |
+| --- | ---: | ---: | --- |
+| `World1MapDataPointer` | `$0066` | 2 | Selects the city map at `$B2EF` or underground map at `$C2EF` |
+| `World1CurrentSmallBlockPointer` | `$006A` | 2 | Points to the current four-byte record in `World1_SmallBlocks` |
+| `World1CurrentBigBlockPointer` | `$006C` | 2 | Points to the current four-byte record in `World1_BigBlocks` |
+| `World1MapRowPointer` | `$006E` | 2 | Points to the current 64-byte map row |
+| `World1TileQuadrantIndex` | `$0070` | 1 | Row-major CHR-tile quadrant within the current small block |
+| `World1SmallBlockQuadrantIndex` | `$0071` | 1 | Row-major small-block quadrant within the current big block |
+| `World1MapColumnIndex` | `$0072` | 1 | Current six-bit column in the active map |
+
+The lookup at `$A6A7` consumes 8-pixel world-tile coordinates and returns the
+corresponding CHR tile. Horizontal and vertical iterator entries propagate
+cursor carries across the small-block, big-block, and map levels. The exact
+field geometry, eight entry points, 34 direct calls, and four city/underground
+map selections are machine-validated. See `docs/world1_map_decoder.md`.
+
 ## Shared rendering and score state
 
 | Symbol | Address | Role |

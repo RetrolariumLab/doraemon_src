@@ -123,7 +123,7 @@ World1_UpdateKobuun:
     JSR Bank0_Func_8987
     AND #$06
     STA $01
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     CMP #$40
     BCS Bank0_Label_DF94
     LDA $01
@@ -145,7 +145,7 @@ Bank0_Label_DFA3:
     AND #$08
     ORA $01
     STA a:World1EntitySecondaryBehavior,X
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     CMP #$40
     BCS Bank0_Label_DFBC
     LDA a:World1EntitySecondaryBehavior,X
@@ -173,7 +173,7 @@ Bank0_Label_DFBC:
 Bank0_Label_DFE3:
     LDA a:World1EntityActionCooldown,X
     BNE Bank0_Label_DFFB
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$1F
     ADC #$60
     STA a:World1EntityActionCooldown,X
@@ -359,6 +359,6 @@ Bank0_Func_E127:
     RTS
 
 World1_InitializeEntityRandomPrimaryBehavior:
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     STA a:World1EntityPrimaryBehavior,X
     JMP World1_InitializeEntityPosition

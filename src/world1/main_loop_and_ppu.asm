@@ -114,9 +114,9 @@ Bank0_Func_8313:
 Bank0_Func_834E:
     JSR Bank0_Func_83BD
     LDA #$EF
-    STA $66
+    STA World1MapDataPointer
     LDA #$B2
-    STA $67
+    STA World1MapDataPointer+$01
     LDA #$89
     STA World1ObjectPlacementList
     LDA #$D9
@@ -270,12 +270,12 @@ World1_DemoEntry:
     STA a:$0180
     LDA #$00
     STA FrameCounter
-    STA $52
-    STA $53
-    STA $54
-    STA $55
-    STA $56
-    STA $57
+    STA World1FrameRandomState
+    STA World1FrameRandomState+$01
+    STA World1RandomState
+    STA World1RandomState+$01
+    STA World1RandomState+$02
+    STA World1RandomState+$03
     LDA #$BF
     STA $A6
     LDA #$FC

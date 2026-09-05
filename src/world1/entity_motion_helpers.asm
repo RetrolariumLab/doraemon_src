@@ -89,7 +89,7 @@ Bank0_Func_9004:
     STX $A4
     LDX $A0
     LDY $A2
-    JSR Bank0_Func_A6A7
+    JSR World1_LookupMapTile
     LDX $A4
     LDA a:$DADA,Y
     RTS
@@ -100,7 +100,7 @@ Bank0_Func_9065:
     JSR Bank0_Func_91E3
     LDA a:World1EntityType+$0A,X
     BNE Bank0_Label_90AF
-    JSR Bank0_Func_962F
+    JSR World1_FrameRandomByte
     CMP #$08
     BCS Bank0_Label_90AF
     LDA #$01
@@ -163,12 +163,12 @@ Bank0_Label_90BE:
     STA a:World1EntitySourceObjectId+$0A,Y
     TXA
     PHA
-    JSR Bank0_Func_962F
+    JSR World1_FrameRandomByte
     AND #$0F
     TAX
     LDA a:$9116,X
     STA a:World1EntityPrimaryBehavior+$0A,Y
-    JSR Bank0_Func_962F
+    JSR World1_FrameRandomByte
     LSR A
     LSR A
     AND #$07

@@ -139,7 +139,7 @@ Bank0_Func_D1C3:
     CLC
     ADC World1CameraTileY
     TAY
-    JSR Bank0_Func_A6A7
+    JSR World1_LookupMapTile
     CPY #$42
     RTS
     .byte $40, $22, $20, $00, $80, $22, $20, $00, $CA, $22, $20, $0A, $00, $42, $20, $00
@@ -269,9 +269,9 @@ Bank0_Func_D2C3:
     STA World1PlayerAnimationCounter
     JSR Bank0_Func_9614
     LDA #$EF
-    STA $66
+    STA World1MapDataPointer
     LDA #$B2
-    STA $67
+    STA World1MapDataPointer+$01
     LDA #$89
     STA World1ObjectPlacementList
     LDA #$D9

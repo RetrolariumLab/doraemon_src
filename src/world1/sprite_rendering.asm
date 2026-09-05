@@ -480,7 +480,7 @@ Bank0_Func_9BCB:
     STX $A4
     LDX $A0
     LDY $A2
-    JSR Bank0_Func_A6A7
+    JSR World1_LookupMapTile
     LDX $A4
     LDA a:$DADA,Y
     RTS

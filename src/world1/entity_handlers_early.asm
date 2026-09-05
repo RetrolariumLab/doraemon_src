@@ -16,7 +16,7 @@ World1_UpdateYuubouOrDormantState0D:
 Bank0_Label_DBEF:
     LDA a:World1EntityPrimaryBehavior,X
     BNE Bank0_Label_DC12
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$89
     CMP #$89
     BEQ Bank0_Label_DC04
@@ -28,7 +28,7 @@ Bank0_Label_DC04:
     STA a:World1EntitySecondaryBehavior,X
 
 Bank0_Label_DC07:
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$1F
     CLC
     ADC #$10
@@ -44,7 +44,7 @@ Bank0_Label_DC1A:
     LDA a:World1EntityActionCooldown,X
     BNE Bank0_Label_DC2F
     JSR Bank0_Func_9130
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$1F
     ADC #$20
     STA a:World1EntityActionCooldown,X
@@ -70,7 +70,7 @@ World1_InitializeEntityDirection:
 World1_UpdateSuneraa:
     LDA a:World1EntityPrimaryBehavior,X
     BNE Bank0_Label_DC75
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$07
     CLC
     ADC #$10
@@ -116,7 +116,7 @@ Bank0_Label_DC8E:
     LDA a:World1EntityActionCooldown,X
     BNE Bank0_Label_DCAE
     JSR Bank0_Func_9130
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$1F
     ADC #$50
     STA a:World1EntityActionCooldown,X
@@ -168,7 +168,7 @@ Bank0_Label_DCEA:
     JSR Bank0_Func_8962
     LDA #$00
     STA a:World1EntityPrimaryBehavior,X
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     CMP #$80
     BCC Bank0_Label_DD16
     AND #$07
@@ -234,13 +234,13 @@ Bank0_Label_DD40:
     LDA a:$DDCB,Y
     STA $A2
     JSR Bank0_Func_DE12
-    JSR Bank0_Func_A6E8
+    JSR World1_ReadMapTileAndStepRight
     CMP #$42
     BCS Bank0_Label_DDA0
-    JSR Bank0_Func_A6E8
+    JSR World1_ReadMapTileAndStepRight
     CMP #$42
     BCS Bank0_Label_DDA0
-    JSR Bank0_Func_A6E2
+    JSR World1_ReadCurrentMapTile
     CMP #$42
     BCC Bank0_Label_DDA5
 
@@ -290,7 +290,7 @@ World1_UpdateGozuraUnderground:
     STA a:World1EntityPrimaryBehavior,X
 
 Bank0_Label_DE04:
-    JSR Bank0_Func_962F
+    JSR World1_FrameRandomByte
     CMP #$10
     BCS Bank0_Label_DE11
     JSR Bank0_Func_90B0
@@ -367,7 +367,7 @@ Bank0_Label_DE6D:
     STX $A4
     LDX $A0
     LDY $A2
-    JSR Bank0_Func_A6A7
+    JSR World1_LookupMapTile
     LDX $A4
     CMP #$42
     RTS

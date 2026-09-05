@@ -31,7 +31,7 @@ Bank0_Label_E175:
     STA a:World1EntitySecondaryBehavior,X
 
 Bank0_Label_E17A:
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     STA a:World1EntityPrimaryBehavior,X
 
 Bank0_Label_E180:
@@ -129,7 +129,7 @@ Bank0_Label_E1FB:
     LDA a:World1EntityActionCooldown,X
     BNE Bank0_Label_E22A
     JSR Bank0_Func_9130
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$1F
     ADC #$50
     STA a:World1EntityActionCooldown,X
@@ -160,7 +160,7 @@ Bank0_Label_E25B:
     AND #$1F
     BNE Bank0_Label_E2DB
     JSR Bank0_Func_8934
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     CMP #$20
     BCS Bank0_Label_E2DB
     JMP Bank0_Label_E2DB

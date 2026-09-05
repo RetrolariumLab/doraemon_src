@@ -43,6 +43,10 @@ World1MetaspriteYMirrorExtent = $004E
 World1MetaspritePiecesRemaining = $004F
 World1OamWriteIndex        = $0050
 
+; World 1 pseudorandom state
+World1FrameRandomState     = $0052
+World1RandomState          = $0054
+
 ; World 1 camera state
 World1NametableX           = $0058
 World1PpuScrollXLatched    = $0059
@@ -52,6 +56,15 @@ World1CameraTileY          = $005C
 World1MapPrefillCounter    = $0060
 World1ScreenDeltaX         = $0061
 World1ScreenDeltaY         = $0062
+
+; World 1 hierarchical map decoder workspace
+World1MapDataPointer       = $0066
+World1CurrentSmallBlockPointer = $006A
+World1CurrentBigBlockPointer = $006C
+World1MapRowPointer        = $006E
+World1TileQuadrantIndex    = $0070
+World1SmallBlockQuadrantIndex = $0071
+World1MapColumnIndex       = $0072
 
 ; World 1 item-derived combat state
 World1PlayerX              = $0075

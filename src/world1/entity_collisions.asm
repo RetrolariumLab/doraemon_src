@@ -375,7 +375,7 @@ Bank0_Label_9483:
     BCC Bank0_Label_94CF
     LDA #$00
     STA $98
-    JSR Bank0_Func_962F
+    JSR World1_FrameRandomByte
     AND #$03
 
 Bank0_Label_9494:

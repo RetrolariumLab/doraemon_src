@@ -62,13 +62,13 @@ Bank0_Label_A52F:
     LSR A
     ORA #$23
     STA a:$0254
-    JSR Bank0_Func_A6A7
+    JSR World1_LookupMapTile
     LDX $73
     LDA #$0F
     STA $5E
 
 Bank0_Label_A56E:
-    JSR Bank0_Func_A772
+    JSR World1_ReadBlockAttributeAndStepDown
     AND #$03
     TAY
     LDA a:$A7D3,Y
@@ -125,11 +125,11 @@ Bank0_Label_A5B6:
     RTS
 
 Bank0_Func_A5CF:
-    JSR Bank0_Func_A6A7
+    JSR World1_LookupMapTile
     LDX #$00
 
 Bank0_Label_A5D4:
-    JSR Bank0_Func_A6E8
+    JSR World1_ReadMapTileAndStepRight
     STA a:$0263,X
     INX
     CPX #$21
@@ -201,7 +201,7 @@ Bank0_Func_A60B:
     STA a:$0285
     PLA
     TAY
-    JSR Bank0_Func_A6A7
+    JSR World1_LookupMapTile
     LDX $73
     LDA #$00
     STA $5D
@@ -209,7 +209,7 @@ Bank0_Func_A60B:
     STA $5E
 
 Bank0_Label_A65B:
-    JSR Bank0_Func_A74E
+    JSR World1_ReadBlockAttributeAndStepRight
     AND #$03
     TAY
     LDA a:$A7D3,Y
@@ -250,196 +250,196 @@ Bank0_Label_A69A:
     STA a:$0260
     RTS
 
-Bank0_Func_A6A7:
+World1_LookupMapTile:
     LDA #$00
-    STA $70
-    STA $71
-    STA $6E
+    STA World1TileQuadrantIndex
+    STA World1SmallBlockQuadrantIndex
+    STA World1MapRowPointer
     TYA
     LSR A
-    ROL $70
+    ROL World1TileQuadrantIndex
     LSR A
-    ROL $71
+    ROL World1SmallBlockQuadrantIndex
     LSR A
-    ROR $6E
+    ROR World1MapRowPointer
     LSR A
-    ROR $6E
-    STA $6F
-    LDA $6E
+    ROR World1MapRowPointer
+    STA World1MapRowPointer+$01
+    LDA World1MapRowPointer
     CLC
-    ADC $66
-    STA $6E
-    LDA $6F
-    ADC $67
-    STA $6F
+    ADC World1MapDataPointer
+    STA World1MapRowPointer
+    LDA World1MapRowPointer+$01
+    ADC World1MapDataPointer+$01
+    STA World1MapRowPointer+$01
     TXA
     LSR A
-    ROL $70
+    ROL World1TileQuadrantIndex
     LSR A
-    ROL $71
-    STA $72
-    LDY $72
-    LDA ($6E),Y
-    JSR Bank0_Func_A7B7
-    LDY $71
-    LDA ($6C),Y
-    JSR Bank0_Func_A79B
+    ROL World1SmallBlockQuadrantIndex
+    STA World1MapColumnIndex
+    LDY World1MapColumnIndex
+    LDA (World1MapRowPointer),Y
+    JSR World1_SelectBigBlock
+    LDY World1SmallBlockQuadrantIndex
+    LDA (World1CurrentBigBlockPointer),Y
+    JSR World1_SelectSmallBlock
 
-Bank0_Func_A6E2:
-    LDY $70
-    LDA ($6A),Y
+World1_ReadCurrentMapTile:
+    LDY World1TileQuadrantIndex
+    LDA (World1CurrentSmallBlockPointer),Y
     TAY
     RTS
 
-Bank0_Func_A6E8:
-    LDY $70
-    LDA ($6A),Y
+World1_ReadMapTileAndStepRight:
+    LDY World1TileQuadrantIndex
+    LDA (World1CurrentSmallBlockPointer),Y
     PHA
     TYA
     EOR #$01
-    STA $70
+    STA World1TileQuadrantIndex
     AND #$01
     BNE Bank0_Label_A716
-    LDA $71
+    LDA World1SmallBlockQuadrantIndex
     EOR #$01
-    STA $71
+    STA World1SmallBlockQuadrantIndex
     AND #$01
     BNE Bank0_Label_A70F
-    INC $72
-    LDA $72
+    INC World1MapColumnIndex
+    LDA World1MapColumnIndex
     AND #$3F
-    STA $72
-    LDY $72
-    LDA ($6E),Y
-    JSR Bank0_Func_A7B7
+    STA World1MapColumnIndex
+    LDY World1MapColumnIndex
+    LDA (World1MapRowPointer),Y
+    JSR World1_SelectBigBlock
 
 Bank0_Label_A70F:
-    LDY $71
-    LDA ($6C),Y
-    JSR Bank0_Func_A79B
+    LDY World1SmallBlockQuadrantIndex
+    LDA (World1CurrentBigBlockPointer),Y
+    JSR World1_SelectSmallBlock
 
 Bank0_Label_A716:
     PLA
     TAY
     RTS
 
-Bank0_Func_A719:
-    LDY $70
-    LDA ($6A),Y
+World1_ReadMapTileAndStepDown:
+    LDY World1TileQuadrantIndex
+    LDA (World1CurrentSmallBlockPointer),Y
     PHA
     TYA
     EOR #$02
-    STA $70
+    STA World1TileQuadrantIndex
     AND #$02
     BNE Bank0_Label_A74C
-    LDA $71
+    LDA World1SmallBlockQuadrantIndex
     EOR #$02
-    STA $71
+    STA World1SmallBlockQuadrantIndex
     AND #$02
     BNE Bank0_Label_A745
-    LDA $6E
+    LDA World1MapRowPointer
     CLC
     ADC #$40
-    STA $6E
-    LDA $6F
+    STA World1MapRowPointer
+    LDA World1MapRowPointer+$01
     ADC #$00
-    STA $6F
-    LDY $72
-    LDA ($6E),Y
-    JSR Bank0_Func_A7B7
+    STA World1MapRowPointer+$01
+    LDY World1MapColumnIndex
+    LDA (World1MapRowPointer),Y
+    JSR World1_SelectBigBlock
 
 Bank0_Label_A745:
-    LDY $71
-    LDA ($6C),Y
-    JSR Bank0_Func_A79B
+    LDY World1SmallBlockQuadrantIndex
+    LDA (World1CurrentBigBlockPointer),Y
+    JSR World1_SelectSmallBlock
 
 Bank0_Label_A74C:
     PLA
     RTS
 
-Bank0_Func_A74E:
-    LDY $71
-    LDA ($6C),Y
+World1_ReadBlockAttributeAndStepRight:
+    LDY World1SmallBlockQuadrantIndex
+    LDA (World1CurrentBigBlockPointer),Y
     TAY
-    LDA a:$A9EF,Y
+    LDA a:World1_BlockAttributes,Y
     PHA
-    LDA $71
+    LDA World1SmallBlockQuadrantIndex
     EOR #$01
-    STA $71
+    STA World1SmallBlockQuadrantIndex
     AND #$01
     BNE Bank0_Label_A770
-    INC $72
-    LDA $72
+    INC World1MapColumnIndex
+    LDA World1MapColumnIndex
     AND #$3F
-    STA $72
-    LDY $72
-    LDA ($6E),Y
-    JSR Bank0_Func_A7B7
+    STA World1MapColumnIndex
+    LDY World1MapColumnIndex
+    LDA (World1MapRowPointer),Y
+    JSR World1_SelectBigBlock
 
 Bank0_Label_A770:
     PLA
     RTS
 
-Bank0_Func_A772:
-    LDY $71
-    LDA ($6C),Y
+World1_ReadBlockAttributeAndStepDown:
+    LDY World1SmallBlockQuadrantIndex
+    LDA (World1CurrentBigBlockPointer),Y
     TAY
-    LDA a:$A9EF,Y
+    LDA a:World1_BlockAttributes,Y
     PHA
-    LDA $71
+    LDA World1SmallBlockQuadrantIndex
     EOR #$02
-    STA $71
+    STA World1SmallBlockQuadrantIndex
     AND #$02
     BNE Bank0_Label_A799
-    LDA $6E
+    LDA World1MapRowPointer
     CLC
     ADC #$40
-    STA $6E
-    LDA $6F
+    STA World1MapRowPointer
+    LDA World1MapRowPointer+$01
     ADC #$00
-    STA $6F
-    LDY $72
-    LDA ($6E),Y
-    JSR Bank0_Func_A7B7
+    STA World1MapRowPointer+$01
+    LDY World1MapColumnIndex
+    LDA (World1MapRowPointer),Y
+    JSR World1_SelectBigBlock
 
 Bank0_Label_A799:
     PLA
     RTS
 
-Bank0_Func_A79B:
+World1_SelectSmallBlock:
     ASL A
-    ROL $6B
+    ROL World1CurrentSmallBlockPointer+$01
     ASL A
-    ROL $6B
-    STA $6A
-    LDA $6B
+    ROL World1CurrentSmallBlockPointer+$01
+    STA World1CurrentSmallBlockPointer
+    LDA World1CurrentSmallBlockPointer+$01
     AND #$03
-    STA $6B
+    STA World1CurrentSmallBlockPointer+$01
     LDA #$EF
     CLC
-    ADC $6A
-    STA $6A
+    ADC World1CurrentSmallBlockPointer
+    STA World1CurrentSmallBlockPointer
     LDA #$AA
-    ADC $6B
-    STA $6B
+    ADC World1CurrentSmallBlockPointer+$01
+    STA World1CurrentSmallBlockPointer+$01
     RTS
 
-Bank0_Func_A7B7:
+World1_SelectBigBlock:
     ASL A
-    ROL $6D
+    ROL World1CurrentBigBlockPointer+$01
     ASL A
-    ROL $6D
-    STA $6C
-    LDA $6D
+    ROL World1CurrentBigBlockPointer+$01
+    STA World1CurrentBigBlockPointer
+    LDA World1CurrentBigBlockPointer+$01
     AND #$03
-    STA $6D
+    STA World1CurrentBigBlockPointer+$01
     LDA #$EF
     CLC
-    ADC $6C
-    STA $6C
+    ADC World1CurrentBigBlockPointer
+    STA World1CurrentBigBlockPointer
     LDA #$AE
-    ADC $6D
-    STA $6D
+    ADC World1CurrentBigBlockPointer+$01
+    STA World1CurrentBigBlockPointer+$01
     RTS
     .byte $00, $55, $AA, $FF, $03, $0C, $30, $C0
 

@@ -20,12 +20,12 @@ Bank0_Label_D77D:
     STA a:World1EntityPositionHigh+$1E,X
     LDA #$FF
     STA a:World1EntitySourceObjectId+$1E,X
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$1F
     CLC
     ADC a:World1EntityX
     STA a:World1EntityX+$1E,X
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$1F
     CLC
     ADC a:World1EntityY

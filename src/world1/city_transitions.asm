@@ -237,7 +237,7 @@ Bank0_Label_CD1F:
     JMP Bank0_Func_D3A9
 
 Bank0_Label_CD35:
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$03
     TAY
     LDA a:$CDB1,Y

@@ -54,7 +54,9 @@ projectile limit, Stopwatch state, invulnerability countdown, and Flash Light
 handoff into World 2 are also named from their producer and consumer paths.
 The complete 16-byte World 1 metasprite renderer workspace and OAM emitter are
 now symbol-owned and machine-validated alongside the lossless 115-index sprite
-catalog.
+catalog. Its two independent pseudorandom state machines are also named and
+machine-validated: the two-byte frame-mixed generator has all seven direct
+callsites pinned, while the four-byte state-only generator has all eighteen.
 World 2's embedded screen-stream
 enemy tokens, overlapping screen views, lossless authoring data, token-to-state
 normalization, complete 20-state runtime domain, three editable property tables,
@@ -90,7 +92,9 @@ representative consumer/producer bytes are enforced by the release gate.
 Complete maps, metatiles, screen sequences, collision properties, object
 placements, transitions, and their cross-references for all three worlds.
 The exact World 1 and World 3 map/metatile hierarchies are now validated and
-losslessly editable. World 2's runtime screen sequence is also losslessly
+losslessly editable. World 1's eight-entry runtime hierarchy decoder, eleven-byte
+RAM ABI, complete 34-call graph, and all four city/underground map-pointer loads
+are joined to that authoring model and machine-validated. World 2's runtime screen sequence is also losslessly
 editable, including all five stage-sequence command classes and three entry
 offsets. Its exact 208-entry metatile catalog, palette selectors, renderer
 addressing, all standard-stream cross-references, and the 208 solid flags are

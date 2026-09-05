@@ -28,6 +28,11 @@ the city and underground maps. The whole range is contiguous in PRG bank 0:
 
 The combined 8,000-byte payload has CRC32 `fe76a8f2`.
 
+The runtime decoder for this payload is documented in
+`docs/world1_map_decoder.md`. Its active pointer switches between the two map
+bases while retaining the shared tables, and its cursor walks all three levels
+without rebuilding the lookup for every adjacent tile.
+
 World 3 has an independent hierarchy and one underwater map in PRG bank 2:
 
 | Component | CPU range | Records or dimensions |

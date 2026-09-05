@@ -132,7 +132,7 @@ Bank0_Func_8B31:
     TXA
     PHA
     LDX $02
-    JSR Bank0_Func_A6A7
+    JSR World1_LookupMapTile
     PLA
     TAX
     RTS
@@ -164,13 +164,13 @@ Bank0_Func_8B65:
     LDA #$00
     LDY $9A
     JSR Bank0_Func_8B31
-    JSR Bank0_Func_A6E8
+    JSR World1_ReadMapTileAndStepRight
     CMP #$42
     BCS Bank0_Label_8B7F
-    JSR Bank0_Func_A6E8
+    JSR World1_ReadMapTileAndStepRight
     CMP #$42
     BCS Bank0_Label_8B7F
-    JSR Bank0_Func_A6E2
+    JSR World1_ReadCurrentMapTile
     CMP #$42
 
 Bank0_Label_8B7F:
@@ -180,10 +180,10 @@ Bank0_Func_8B80:
     LDA $99
     LDY #$01
     JSR Bank0_Func_8B31
-    JSR Bank0_Func_A719
+    JSR World1_ReadMapTileAndStepDown
     CMP #$42
     BCS Bank0_Label_8B93
-    JSR Bank0_Func_A6E2
+    JSR World1_ReadCurrentMapTile
     CMP #$42
 
 Bank0_Label_8B93:
@@ -193,13 +193,13 @@ Bank0_Func_8B94:
     LDA #$00
     LDY #$01
     JSR Bank0_Func_8B31
-    JSR Bank0_Func_A6E8
+    JSR World1_ReadMapTileAndStepRight
     CMP #$42
     BCS Bank0_Label_8BAE
-    JSR Bank0_Func_A6E8
+    JSR World1_ReadMapTileAndStepRight
     CMP #$42
     BCS Bank0_Label_8BAE
-    JSR Bank0_Func_A6E2
+    JSR World1_ReadCurrentMapTile
     CMP #$42
 
 Bank0_Label_8BAE:
@@ -209,10 +209,10 @@ Bank0_Func_8BAF:
     LDA #$00
     LDY #$01
     JSR Bank0_Func_8B31
-    JSR Bank0_Func_A719
+    JSR World1_ReadMapTileAndStepDown
     CMP #$42
     BCS Bank0_Label_8BC2
-    JSR Bank0_Func_A6E2
+    JSR World1_ReadCurrentMapTile
     CMP #$42
 
 Bank0_Label_8BC2:

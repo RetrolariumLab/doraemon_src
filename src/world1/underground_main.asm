@@ -67,9 +67,9 @@ Bank0_Label_CDE3:
     STA $9B
     JSR Bank0_Func_9614
     LDA #$EF
-    STA $66
+    STA World1MapDataPointer
     LDA #$C2
-    STA $67
+    STA World1MapDataPointer+$01
     LDA #$25
     STA World1ObjectPlacementList
     LDA #$D9

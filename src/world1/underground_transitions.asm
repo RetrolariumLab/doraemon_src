@@ -51,9 +51,9 @@ Bank0_Label_D3CB:
     STA World1InvulnerabilityTimer
     JSR Bank0_Func_9614
     LDA #$EF
-    STA $66
+    STA World1MapDataPointer
     LDA #$C2
-    STA $67
+    STA World1MapDataPointer+$01
     LDA #$25
     STA World1ObjectPlacementList
     LDA #$D9
@@ -269,7 +269,7 @@ Bank0_Label_D598:
     STA $98
     LDA #$38
     STA a:World1EntityMetasprite
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$3F
     CLC
     ADC #$20
@@ -409,7 +409,7 @@ Bank0_Label_D6BD:
     STA a:World1EntityPrimaryBehavior
     LDA #$38
     STA a:World1EntityMetasprite
-    JSR Bank0_Func_964A
+    JSR World1_RandomByte
     AND #$3F
     CLC
     ADC #$40
@@ -480,12 +480,12 @@ Bank0_Label_D725:
     STA a:World1EntityRenderFlags+$0A,Y
     LDA #$FF
     STA a:World1EntitySourceObjectId+$0A,Y
-    JSR Bank0_Func_962F
+    JSR World1_FrameRandomByte
     AND #$03
     CLC
     ADC #$01
     STA a:World1EntityPrimaryBehavior+$0A,Y
-    JSR Bank0_Func_962F
+    JSR World1_FrameRandomByte
     AND #$07
     TAX
     LDA a:$9126,X
