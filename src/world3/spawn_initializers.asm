@@ -19,7 +19,7 @@ World3_SpawnInitializerTable:
     .byte $8C, $8F, $A3, $8F, $BF, $8F, $DB, $8F, $28, $90, $2E, $90, $2F, $90, $44, $90
     .byte $71, $90, $AA, $90, $AB, $90, $AE, $90, $AF, $90, $B2, $90, $B2, $90, $B2, $90
 
-World3_InitTransientType00:
+World3_InitTransientType00TurtleOrBattleFish:
     LDA $DF
     CMP #$10
     BCC Bank2_Label_8FA2
@@ -36,7 +36,7 @@ Bank2_Label_8F9D:
 Bank2_Label_8FA2:
     RTS
 
-World3_InitTransientType01:
+World3_InitTransientType01CrabOrSeahorse:
     LDA $DF
     CMP #$18
     BCC Bank2_Label_8FBE
@@ -55,7 +55,7 @@ Bank2_Label_8FB4:
 Bank2_Label_8FBE:
     RTS
 
-World3_InitTransientType02:
+World3_InitTransientType02VolcanicRock:
     LDA #$80
     STA a:World3EntityX,X
     LDA #$98
@@ -71,9 +71,9 @@ World3_InitTransientType02:
 Bank2_Label_8FDA:
     RTS
 
-World3_InitTransientType03:
+World3_InitTransientType03GyokkunOrGansuke:
     LDY $DF
-    LDA a:World3_Type03AlternateMetaspriteByRoom,Y
+    LDA a:World3_Type03GansukeMetaspriteByRoom,Y
     BEQ Bank2_Label_8FE7
     LDA #$B4
     STA a:World3EntityMetasprite,X
@@ -81,21 +81,21 @@ World3_InitTransientType03:
 Bank2_Label_8FE7:
     RTS
 
-World3_Type03AlternateMetaspriteByRoom:
+World3_Type03GansukeMetaspriteByRoom:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $01
     .byte $00, $00, $00, $00, $00, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $01
 
-World3_InitTransientType04:
+World3_InitTransientType04Skull:
     LDA #$01
     STA a:World3EntityBehaviorSelector,X
     RTS
 
-World3_InitTransientType05:
+World3_InitTransientType05Ghost:
     RTS
 
-World3_InitTransientType06:
+World3_InitTransientType06Room12Hazard:
     JSR Bank2_Func_B153
     CMP #$64
     BCS Bank2_Label_9043
@@ -108,7 +108,7 @@ World3_InitTransientType06:
 Bank2_Label_9043:
     RTS
 
-World3_InitTransientType07:
+World3_InitTransientType07GenkiCandy:
     LDA $DF
     CMP #$26
     BNE Bank2_Label_9051
@@ -139,7 +139,7 @@ Bank2_Label_906B:
 Bank2_Label_9070:
     RTS
 
-World3_InitTransientType08:
+World3_InitTransientType08GiantOctopus:
     LDA $DF
     CMP #$27
     BEQ Bank2_Label_9084
@@ -166,7 +166,7 @@ Bank2_Label_9092:
     JMP Bank2_Label_90A4
 
 Bank2_Label_9099:
-    JSR World3_CreateType08EncounterFormation
+    JSR World3_CreateGiantOctopusFormationTypes08To09
     BCC Bank2_Label_90A4
     LDA #$03
     STA a:AudioMusicState
@@ -177,22 +177,22 @@ Bank2_Label_90A4:
     STA a:World3EntityState,X
     RTS
 
-World3_InitTransientType09:
+World3_InitTransientType09OctopusSegment:
     RTS
 
-World3_InitTransientType0A:
-    JSR World3_CreateType0AEncounterFormation
+World3_InitTransientType0ADragon:
+    JSR World3_CreateDragonFormationTypes0ATo0B
 
-World3_InitTransientType0B:
+World3_InitTransientType0BDragonSegment:
     RTS
 
-World3_InitTransientType0C:
-    JSR World3_CreateType0CTo0FFormation
+World3_InitTransientType0CPoseidon:
+    JSR World3_CreatePoseidonFormationTypes0CTo0F
 
 World3_InitTransientTypes0DTo0F:
     RTS
 
-World3_CreateType0CTo0FFormation:
+World3_CreatePoseidonFormationTypes0CTo0F:
     LDY #$00
     JMP Bank2_Label_90BD
 
@@ -202,13 +202,13 @@ Bank2_Label_90B8:
 
 Bank2_Label_90BD:
     JSR World3_ClearEntitySlot
-    LDA a:World3_Type0CFormationState,Y
+    LDA a:World3_PoseidonFormationState,Y
     STA a:World3EntityState,X
-    LDA a:World3_Type0CFormationX,Y
+    LDA a:World3_PoseidonFormationX,Y
     STA a:World3EntityX,X
-    LDA a:World3_Type0CFormationY,Y
+    LDA a:World3_PoseidonFormationY,Y
     STA a:World3EntityY,X
-    LDA a:World3_Type0CFormationType,Y
+    LDA a:World3_PoseidonFormationType,Y
     STA a:World3EntityType,X
     STY $42
     TAY
@@ -226,16 +226,16 @@ Bank2_Label_90BD:
 Bank2_Label_90F3:
     RTS
 
-World3_Type0CFormationState:
+World3_PoseidonFormationState:
     .byte $03, $03, $03, $03
 
-World3_Type0CFormationX:
+World3_PoseidonFormationX:
     .byte $28, $D8, $28, $D8
 
-World3_Type0CFormationY:
+World3_PoseidonFormationY:
     .byte $30, $30, $C0, $C0
 
-World3_Type0CFormationType:
+World3_PoseidonFormationType:
     .byte $0C, $0D, $0E, $0F
 
 World3_FindFreeEntitySlot:

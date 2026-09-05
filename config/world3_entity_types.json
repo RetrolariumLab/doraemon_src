@@ -2,6 +2,33 @@
   "schema_version": 1,
   "bank": 2,
   "type_count": 32,
+  "identity_sources": [
+    {
+      "id": "local_rom",
+      "url": null,
+      "role": "metasprite graphics, dispatch behavior, formations, transformations, and room schedules"
+    },
+    {
+      "id": "strategywiki_enemies",
+      "url": "https://strategywiki.org/wiki/Doraemon/Enemies",
+      "role": "ordered reference sprites and gameplay descriptions for World 3 enemies"
+    },
+    {
+      "id": "strategywiki_items",
+      "url": "https://strategywiki.org/wiki/Doraemon/Items",
+      "role": "reference sprites and gameplay descriptions for common and underwater items"
+    },
+    {
+      "id": "famicom攻略_wiki",
+      "url": "https://wikiwiki.jp/neskouryaku1/%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93",
+      "role": "Japanese enemy and character names"
+    },
+    {
+      "id": "kouryaku_world3",
+      "url": "https://fc-doraemon.kouryaku.red/entry8.html",
+      "role": "World 3 chest, companion, item, octopus, dragon, and Poseidon progression"
+    }
+  ],
   "property_tables": [
     {
       "name": "hit_points",
@@ -312,6 +339,7 @@
     },
     {
       "name": "persistent_14_16_to_1c_1e",
+      "identity_transform": true,
       "address": "0x987E",
       "bytes": "18 69 08 9D BD 06 99 38 06",
       "source_types": [
@@ -323,6 +351,694 @@
         "0x1C",
         "0x1D",
         "0x1E"
+      ]
+    }
+  ],
+  "identities": [
+    {
+      "type": 0,
+      "symbol": "turtle_or_battle_fish",
+      "name": "turtle / Battle Fish",
+      "japanese_name": "カメ / バトルフィッシュ",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "base_metasprite": "0x10",
+      "forms": [
+        {
+          "metasprite": "0x10",
+          "name": "turtle",
+          "japanese_name": "カメ"
+        },
+        {
+          "metasprite": "0xA4",
+          "name": "Battle Fish",
+          "japanese_name": "バトルフィッシュ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_enemies",
+        "famicom攻略_wiki"
+      ]
+    },
+    {
+      "type": 1,
+      "symbol": "crab_or_seahorse",
+      "name": "crab / seahorse",
+      "japanese_name": "カニ / オトシゴ",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "base_metasprite": "0x14",
+      "forms": [
+        {
+          "metasprite": "0x14",
+          "name": "crab",
+          "japanese_name": "カニ"
+        },
+        {
+          "metasprite": "0xA8",
+          "name": "seahorse",
+          "japanese_name": "オトシゴ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_enemies",
+        "famicom攻略_wiki"
+      ]
+    },
+    {
+      "type": 2,
+      "symbol": "volcanic_rock",
+      "name": "volcanic rock",
+      "japanese_name": "火山弾",
+      "category": "hazard",
+      "confidence": "confirmed",
+      "base_metasprite": "0x18",
+      "forms": [
+        {
+          "metasprite": "0x18",
+          "name": "volcanic rock",
+          "japanese_name": "火山弾"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_enemies",
+        "famicom攻略_wiki"
+      ]
+    },
+    {
+      "type": 3,
+      "symbol": "gyokkun_or_gansuke",
+      "name": "Gyokkun / Gansuke",
+      "japanese_name": "ギョックン / ガンスケ",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "base_metasprite": "0x1C",
+      "forms": [
+        {
+          "metasprite": "0x1C",
+          "name": "Gyokkun",
+          "japanese_name": "ギョックン"
+        },
+        {
+          "metasprite": "0xB4",
+          "name": "Gansuke",
+          "japanese_name": "ガンスケ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_enemies",
+        "famicom攻略_wiki"
+      ]
+    },
+    {
+      "type": 4,
+      "symbol": "skull",
+      "name": "skull",
+      "japanese_name": "ガイコツ",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "base_metasprite": "0x20",
+      "forms": [
+        {
+          "metasprite": "0x20",
+          "name": "skull",
+          "japanese_name": "ガイコツ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_enemies",
+        "famicom攻略_wiki"
+      ]
+    },
+    {
+      "type": 5,
+      "symbol": "ghost",
+      "name": "ghost",
+      "japanese_name": "ユーレイ",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "base_metasprite": "0x24",
+      "forms": [
+        {
+          "metasprite": "0x24",
+          "name": "ghost",
+          "japanese_name": "ユーレイ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_enemies",
+        "famicom攻略_wiki"
+      ]
+    },
+    {
+      "type": 6,
+      "symbol": "room12_dorayaki_skull_hazard",
+      "name": "room $12 dorayaki/skull hazard",
+      "japanese_name": null,
+      "category": "hazard",
+      "confidence": "structural",
+      "base_metasprite": "0x40",
+      "forms": [
+        {
+          "metasprite": "0x40",
+          "name": "dorayaki form",
+          "japanese_name": null
+        },
+        {
+          "metasprite": "0x20",
+          "name": "skull form",
+          "japanese_name": null
+        }
+      ],
+      "evidence": [
+        "local_rom"
+      ]
+    },
+    {
+      "type": 7,
+      "symbol": "genki_candy",
+      "name": "Genki Candy",
+      "japanese_name": "元気キャンディ",
+      "category": "item",
+      "confidence": "confirmed",
+      "base_metasprite": "0xB0",
+      "forms": [
+        {
+          "metasprite": "0xB0",
+          "name": "Genki Candy",
+          "japanese_name": "元気キャンディ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 8,
+      "symbol": "giant_octopus_tentacle_tip",
+      "name": "giant octopus tentacle tip",
+      "japanese_name": "大ダコの足先",
+      "category": "boss_part",
+      "confidence": "confirmed",
+      "base_metasprite": "0x30",
+      "forms": [
+        {
+          "metasprite": "0x30",
+          "name": "tentacle tip",
+          "japanese_name": "足先"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 9,
+      "symbol": "giant_octopus_tentacle_segment",
+      "name": "giant octopus tentacle segment",
+      "japanese_name": "大ダコの足",
+      "category": "boss_part",
+      "confidence": "confirmed",
+      "base_metasprite": "0x34",
+      "forms": [
+        {
+          "metasprite": "0x34",
+          "name": "tentacle segment",
+          "japanese_name": "足"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 10,
+      "symbol": "dragon_head",
+      "name": "dragon head",
+      "japanese_name": "ドラゴンの頭",
+      "category": "boss_part",
+      "confidence": "confirmed",
+      "base_metasprite": "0x28",
+      "forms": [
+        {
+          "metasprite": "0x28",
+          "name": "dragon head",
+          "japanese_name": "ドラゴンの頭"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 11,
+      "symbol": "dragon_body_segment",
+      "name": "dragon body segment",
+      "japanese_name": "ドラゴンの胴体",
+      "category": "boss_part",
+      "confidence": "confirmed",
+      "base_metasprite": "0x2C",
+      "forms": [
+        {
+          "metasprite": "0x2C",
+          "name": "dragon segment",
+          "japanese_name": "ドラゴンの胴体"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 12,
+      "symbol": "poseidon_upper_left",
+      "name": "Poseidon upper-left part",
+      "japanese_name": "ポセイドン左上",
+      "category": "boss_part",
+      "confidence": "confirmed",
+      "base_metasprite": "0x80",
+      "forms": [
+        {
+          "metasprite": "0x80",
+          "name": "upper-left part",
+          "japanese_name": "左上"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 13,
+      "symbol": "poseidon_upper_right",
+      "name": "Poseidon upper-right part",
+      "japanese_name": "ポセイドン右上",
+      "category": "boss_part",
+      "confidence": "confirmed",
+      "base_metasprite": "0x84",
+      "forms": [
+        {
+          "metasprite": "0x84",
+          "name": "upper-right part",
+          "japanese_name": "右上"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 14,
+      "symbol": "poseidon_lower_left",
+      "name": "Poseidon lower-left part",
+      "japanese_name": "ポセイドン左下",
+      "category": "boss_part",
+      "confidence": "confirmed",
+      "base_metasprite": "0x88",
+      "forms": [
+        {
+          "metasprite": "0x88",
+          "name": "lower-left part",
+          "japanese_name": "左下"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 15,
+      "symbol": "poseidon_lower_right",
+      "name": "Poseidon lower-right part",
+      "japanese_name": "ポセイドン右下",
+      "category": "boss_part",
+      "confidence": "confirmed",
+      "base_metasprite": "0x8C",
+      "forms": [
+        {
+          "metasprite": "0x8C",
+          "name": "lower-right part",
+          "japanese_name": "右下"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 16,
+      "symbol": "stopwatch",
+      "name": "stopwatch",
+      "japanese_name": "ストップウォッチ",
+      "category": "item",
+      "confidence": "confirmed",
+      "base_metasprite": "0x64",
+      "forms": [
+        {
+          "metasprite": "0x64",
+          "name": "stopwatch",
+          "japanese_name": "ストップウォッチ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_items"
+      ]
+    },
+    {
+      "type": 17,
+      "symbol": "dorayaki",
+      "name": "dorayaki",
+      "japanese_name": "どら焼き",
+      "category": "item",
+      "confidence": "confirmed",
+      "base_metasprite": "0x40",
+      "forms": [
+        {
+          "metasprite": "0x40",
+          "name": "dorayaki",
+          "japanese_name": "どら焼き"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_items"
+      ]
+    },
+    {
+      "type": 18,
+      "symbol": "diamond",
+      "name": "diamond",
+      "japanese_name": "ダイヤ",
+      "category": "item",
+      "confidence": "confirmed",
+      "base_metasprite": "0x70",
+      "forms": [
+        {
+          "metasprite": "0x70",
+          "name": "diamond",
+          "japanese_name": "ダイヤ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_items"
+      ]
+    },
+    {
+      "type": 19,
+      "symbol": "gold_bar",
+      "name": "gold bar",
+      "japanese_name": "金塊",
+      "category": "item",
+      "confidence": "confirmed",
+      "base_metasprite": "0x74",
+      "forms": [
+        {
+          "metasprite": "0x74",
+          "name": "gold bar",
+          "japanese_name": "金塊"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_items"
+      ]
+    },
+    {
+      "type": 20,
+      "symbol": "suneo_chest",
+      "name": "treasure chest containing Suneo",
+      "japanese_name": "スネ夫の宝箱",
+      "category": "chest",
+      "confidence": "confirmed",
+      "base_metasprite": "0x50",
+      "transforms_to": 28,
+      "forms": [
+        {
+          "metasprite": "0x50",
+          "name": "treasure chest",
+          "japanese_name": "宝箱"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 21,
+      "symbol": "nobita_chest",
+      "name": "treasure chest containing Nobita",
+      "japanese_name": "のび太の宝箱",
+      "category": "chest",
+      "confidence": "confirmed",
+      "base_metasprite": "0x54",
+      "transforms_to": 29,
+      "forms": [
+        {
+          "metasprite": "0x54",
+          "name": "treasure chest",
+          "japanese_name": "宝箱"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 22,
+      "symbol": "gian_chest",
+      "name": "treasure chest containing Gian",
+      "japanese_name": "ジャイアンの宝箱",
+      "category": "chest",
+      "confidence": "confirmed",
+      "base_metasprite": "0x58",
+      "transforms_to": 30,
+      "forms": [
+        {
+          "metasprite": "0x58",
+          "name": "treasure chest",
+          "japanese_name": "宝箱"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 23,
+      "symbol": "dragon_chest",
+      "name": "treasure chest containing a dragon",
+      "japanese_name": "ドラゴンの宝箱",
+      "category": "chest",
+      "confidence": "confirmed",
+      "base_metasprite": "0x5C",
+      "forms": [
+        {
+          "metasprite": "0x5C",
+          "name": "treasure chest",
+          "japanese_name": "宝箱"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 24,
+      "symbol": "talisman",
+      "name": "talisman",
+      "japanese_name": "お守り",
+      "category": "puzzle_item",
+      "confidence": "confirmed",
+      "base_metasprite": "0x44",
+      "forms": [
+        {
+          "metasprite": "0x44",
+          "name": "talisman",
+          "japanese_name": "お守り"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 25,
+      "symbol": "passing_hoop",
+      "name": "Passing Hoop",
+      "japanese_name": "通りぬけフープ",
+      "category": "puzzle_item",
+      "confidence": "confirmed",
+      "base_metasprite": "0x60",
+      "forms": [
+        {
+          "metasprite": "0x60",
+          "name": "Passing Hoop",
+          "japanese_name": "通りぬけフープ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 26,
+      "symbol": "key",
+      "name": "key",
+      "japanese_name": "鍵",
+      "category": "puzzle_item",
+      "confidence": "confirmed",
+      "base_metasprite": "0x4C",
+      "forms": [
+        {
+          "metasprite": "0x4C",
+          "name": "key",
+          "japanese_name": "鍵"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 27,
+      "symbol": "holding_bag",
+      "name": "Holding Bag",
+      "japanese_name": "取り寄せバッグ",
+      "category": "puzzle_item",
+      "confidence": "confirmed",
+      "base_metasprite": "0x48",
+      "forms": [
+        {
+          "metasprite": "0x48",
+          "name": "Holding Bag",
+          "japanese_name": "取り寄せバッグ"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "strategywiki_items",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 28,
+      "symbol": "suneo",
+      "name": "Suneo",
+      "japanese_name": "スネ夫",
+      "category": "companion",
+      "confidence": "confirmed",
+      "base_metasprite": "0x90",
+      "forms": [
+        {
+          "metasprite": "0x90",
+          "name": "Suneo",
+          "japanese_name": "スネ夫"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 29,
+      "symbol": "nobita",
+      "name": "Nobita",
+      "japanese_name": "のび太",
+      "category": "companion",
+      "confidence": "confirmed",
+      "base_metasprite": "0x94",
+      "forms": [
+        {
+          "metasprite": "0x94",
+          "name": "Nobita",
+          "japanese_name": "のび太"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 30,
+      "symbol": "gian",
+      "name": "Gian",
+      "japanese_name": "ジャイアン",
+      "category": "companion",
+      "confidence": "confirmed",
+      "base_metasprite": "0x98",
+      "forms": [
+        {
+          "metasprite": "0x98",
+          "name": "Gian",
+          "japanese_name": "ジャイアン"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
+      ]
+    },
+    {
+      "type": 31,
+      "symbol": "shizuka",
+      "name": "Shizuka",
+      "japanese_name": "しずかちゃん",
+      "category": "companion",
+      "confidence": "confirmed",
+      "base_metasprite": "0x9C",
+      "forms": [
+        {
+          "metasprite": "0x9C",
+          "name": "Shizuka",
+          "japanese_name": "しずかちゃん"
+        }
+      ],
+      "evidence": [
+        "local_rom",
+        "famicom攻略_wiki",
+        "kouryaku_world3"
       ]
     }
   ]

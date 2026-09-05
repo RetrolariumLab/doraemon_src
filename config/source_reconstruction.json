@@ -138,10 +138,15 @@
       "status": "planned",
       "evidence": [
         "config/world2_palettes.json",
+        "config/world3_metasprites.json",
         "data/world2/palettes.json",
+        "data/world3/metasprites.json",
         "docs/world2_palettes.md",
+        "docs/world3_metasprites.md",
         "scripts/world2_palettes.py",
-        "tests/test_world2_palettes.py"
+        "scripts/world3_metasprites.py",
+        "tests/test_world2_palettes.py",
+        "tests/test_world3_metasprites.py"
       ]
     },
     {
@@ -164,6 +169,7 @@
         "data/world3/spawn_initializer_data.json",
         "data/world3/transient_spawns.json",
         "data/world3/update_handler_data.json",
+        "data/world3/metasprites.json",
         "data/world1/hierarchical_world.json",
         "data/world3/hierarchical_world.json",
         "docs/world2_streaming.md",
@@ -173,6 +179,7 @@
         "docs/world3_spawn_initializers.md",
         "docs/world3_transient_spawns.md",
         "docs/world3_update_handlers.md",
+        "docs/world3_metasprites.md",
         "docs/world_data.md",
         "scripts/world2_streaming.py",
         "scripts/world2_metatiles.py",
@@ -181,6 +188,7 @@
         "scripts/world3_spawn_initializers.py",
         "scripts/world3_transient_spawns.py",
         "scripts/world3_update_handlers.py",
+        "scripts/world3_metasprites.py",
         "scripts/world_data.py",
         "tests/test_world2_streaming.py",
         "tests/test_world2_metatiles.py",
@@ -189,6 +197,7 @@
         "tests/test_world3_spawn_initializers.py",
         "tests/test_world3_transient_spawns.py",
         "tests/test_world3_update_handlers.py",
+        "tests/test_world3_metasprites.py",
         "tests/test_world_data.py"
       ]
     },

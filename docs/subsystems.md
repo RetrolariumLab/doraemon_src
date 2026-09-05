@@ -191,3 +191,10 @@ points, base metasprite, render flags, contact damage, and score reward code.
 dispatch views and proves a complete four-domain partition of `$00-$1F`.
 The catalog and its encoded type transformations are documented in
 `docs/world3_entity_types.md`.
+
+Those type bases feed a 188-entry metasprite index at `$B6D7`. Direct entries
+point into 65 contiguous variable-length records, while a high byte below four
+encodes an alias and reflection mode. The same renderer serves the player,
+projectiles, and all entity domains. Eleven 32-byte palette sets and their
+64-room selectors complete the World 3 sprite presentation contract; see
+`docs/world3_metasprites.md`.

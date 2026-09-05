@@ -152,3 +152,9 @@ terrain-trigger behavior, pushing, and player-following derived types. Its
 three handler-owned table regions are losslessly editable in
 `data/world3/update_handler_data.json`; see
 `docs/world3_update_handlers.md`.
+
+The entity catalog's base metasprite column is cross-checked against the full
+188-entry sprite index at `$B6D7`. Every type base resolves directly to one of
+65 variable-length records; animation variants may select direct frames or
+one-level horizontal aliases. The exact relationship and editable sprite and
+palette data are documented in `docs/world3_metasprites.md`.

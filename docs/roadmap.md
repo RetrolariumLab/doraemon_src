@@ -76,7 +76,9 @@ Recover PPU update paths, palettes, sprites/metasprites, CHR ownership, title,
 HUD, dialogue, item names, and ending presentation. World 2's nine palette
 sets, background and sprite upload paths, stage palette commands, three chapter
 selector pairs, and deliberate code/data overlap are now exact and losslessly
-editable.
+editable. World 3's 188-entry direct/alias sprite index, 65 variable-length
+metasprites, eleven complete palette sets, and 64 room selectors are also exact
+and losslessly editable.
 
 ### 8. Audio - Planned
 

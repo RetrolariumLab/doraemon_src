@@ -373,9 +373,9 @@
         "World3_UpdateTransientSpawns",
         "World3_UpdateTransientSpawnChannel",
         "World3_InitializeSpawnedEntity",
-        "World3_CreateType0CTo0FFormation",
-        "World3_CreateType0AEncounterFormation",
-        "World3_CreateType08EncounterFormation",
+        "World3_CreatePoseidonFormationTypes0CTo0F",
+        "World3_CreateDragonFormationTypes0ATo0B",
+        "World3_CreateGiantOctopusFormationTypes08To09",
         "World3_UpdateEntities",
         "World3_RunEntityBehaviorScript",
         "World3_RenderEntities"

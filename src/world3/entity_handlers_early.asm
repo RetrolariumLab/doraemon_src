@@ -9,21 +9,21 @@ World3_UpdateTypes00To03:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_932C
-    JSR World3_FollowActiveType05
+    JSR World3_FollowActiveGhost
 
 Bank2_Label_932C:
     RTS
 
-World3_UpdateType04:
+World3_UpdateType04Skull:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_9338
-    JSR World3_FollowActiveType05
+    JSR World3_FollowActiveGhost
     RTS
 
 Bank2_Label_9338:
     LDY $DF
-    LDA a:World3_Type04TrackingEnabledByRoom,Y
+    LDA a:World3_Type04SkullTrackingEnabledByRoom,Y
     BEQ Bank2_Label_936B
     INC a:World3EntityFrameCounter,X
     LDA a:World3EntityFrameCounter,X
@@ -47,13 +47,13 @@ Bank2_Label_9338:
 Bank2_Label_936B:
     RTS
 
-World3_Type04TrackingEnabledByRoom:
+World3_Type04SkullTrackingEnabledByRoom:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $01
     .byte $00, $00, $00, $00, $00, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $00
 
-World3_UpdateType05:
+World3_UpdateType05Ghost:
     LDA a:World3EntityX,X
     CMP #$F0
     BCS Bank2_Label_93EF
@@ -77,18 +77,18 @@ Bank2_Label_93CB:
     TAY
     LDA a:World3EntityX,X
     CLC
-    ADC a:World3_Type05HeldMotionDeltaX,Y
+    ADC a:World3_GhostHeldMotionDeltaX,Y
     STA a:World3EntityX,X
     LDA a:World3EntityY,X
     CLC
-    ADC a:World3_Type05HeldMotionDeltaY,Y
+    ADC a:World3_GhostHeldMotionDeltaY,Y
     STA a:World3EntityY,X
     JMP Bank2_Label_94EC
 
-World3_Type05HeldMotionDeltaX:
+World3_GhostHeldMotionDeltaX:
     .byte $02, $FE, $02, $FE
 
-World3_Type05HeldMotionDeltaY:
+World3_GhostHeldMotionDeltaY:
     .byte $02, $02, $FE, $FE
 
 Bank2_Label_93EF:
@@ -168,7 +168,7 @@ Bank2_Label_945D:
 Bank2_Label_946A:
     STX $3E
     LDX $40
-    LDA a:World3_Type05RelocationBlockedByRoom,X
+    LDA a:World3_GhostRelocationBlockedByRoom,X
     BEQ Bank2_Label_94B8
     LDX $3E
 
@@ -179,35 +179,35 @@ Bank2_Label_9475:
     SBC #$01
     AND #$3F
     TAX
-    LDA a:World3_Type05RelocationBlockedByRoom,X
+    LDA a:World3_GhostRelocationBlockedByRoom,X
     BEQ Bank2_Label_94B6
     LDA $DF
     CLC
     ADC #$01
     AND #$3F
     TAX
-    LDA a:World3_Type05RelocationBlockedByRoom,X
+    LDA a:World3_GhostRelocationBlockedByRoom,X
     BEQ Bank2_Label_94B6
     LDA $DF
     SEC
     SBC #$08
     AND #$3F
     TAX
-    LDA a:World3_Type05RelocationBlockedByRoom,X
+    LDA a:World3_GhostRelocationBlockedByRoom,X
     BEQ Bank2_Label_94B6
     LDA $DF
     CLC
     ADC #$08
     AND #$3F
     TAX
-    LDA a:World3_Type05RelocationBlockedByRoom,X
+    LDA a:World3_GhostRelocationBlockedByRoom,X
     BEQ Bank2_Label_94B6
 
 Bank2_Label_94AB:
     JSR Bank2_Func_B153
     AND #$3F
     TAX
-    LDA a:World3_Type05RelocationBlockedByRoom,X
+    LDA a:World3_GhostRelocationBlockedByRoom,X
     BNE Bank2_Label_94AB
 
 Bank2_Label_94B6:
@@ -301,22 +301,22 @@ Bank2_Label_954A:
 Bank2_Label_954F:
     RTS
 
-World3_Type05RelocationBlockedByRoom:
+World3_GhostRelocationBlockedByRoom:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $01, $01, $00, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $01, $01
     .byte $00, $01, $01, $01, $00, $00, $01, $01, $01, $01, $01, $00, $00, $01, $01, $01
     .byte $00, $00, $00, $00, $01, $01, $01, $01, $00, $00, $00, $00, $00, $01, $01, $01
 
-World3_UpdateTypes06To07:
+World3_UpdateTypes06HazardAnd07Candy:
     RTS
 
-World3_UpdateType08:
+World3_UpdateType08OctopusTip:
     JSR Bank2_Func_AA2A
 
-World3_UpdateType09:
+World3_UpdateType09OctopusSegment:
     RTS
 
-World3_UpdateType0A:
+World3_UpdateType0ADragonHead:
     JSR Bank2_Func_B153
     AND #$1F
     BNE Bank2_Label_95A1
@@ -326,10 +326,10 @@ World3_UpdateType0A:
 Bank2_Label_95A1:
     JSR Bank2_Func_AD21
 
-World3_UpdateType0B:
+World3_UpdateType0BDragonSegment:
     RTS
 
-World3_UpdateType0C:
+World3_UpdateType0CPoseidonUpperLeft:
     JSR Bank2_Func_B153
     AND #$1F
     BNE Bank2_Label_95B1
@@ -339,7 +339,7 @@ World3_UpdateType0C:
 Bank2_Label_95B1:
     LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_95B9
-    JSR World3_TrySpawnType02FromType0C
+    JSR World3_TrySpawnVolcanicRockFromPoseidon
 
 Bank2_Label_95B9:
     STX $3E
@@ -372,7 +372,7 @@ Bank2_Label_95B9:
 Bank2_Label_95F2:
     RTS
 
-World3_TrySpawnType02FromType0C:
+World3_TrySpawnVolcanicRockFromPoseidon:
     STX $3E
     LDX #$00
     LDY #$00
@@ -416,10 +416,10 @@ Bank2_Label_9640:
     LDX $3E
     RTS
 
-World3_UpdateType0D:
+World3_UpdateType0DPoseidonUpperRight:
     LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_965A
-    JSR World3_FindActiveType0C
+    JSR World3_FindActivePoseidonAnchor
     LDA a:World3EntityX,Y
     CLC
     ADC #$10
@@ -430,10 +430,10 @@ World3_UpdateType0D:
 Bank2_Label_965A:
     RTS
 
-World3_UpdateType0E:
+World3_UpdateType0EPoseidonLowerLeft:
     LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_968B
-    JSR World3_FindActiveType0C
+    JSR World3_FindActivePoseidonAnchor
     LDA a:World3EntityX,Y
     STA a:World3EntityX,X
     LDA a:World3EntityY,Y

@@ -27,7 +27,7 @@ Bank2_Label_B425:
     AND #$0F
     ORA #$30
     STA $81
-    JSR Bank2_Func_B6BA
+    JSR World3_AppendOamEntry
     LDA $83
     CLC
     ADC #$08
@@ -43,14 +43,14 @@ Bank2_Label_B425:
     STA $82
     LDA #$3A
     STA $81
-    JSR Bank2_Func_B6BA
+    JSR World3_AppendOamEntry
     LDA #$F0
     STA $83
     LDA $2A
     AND #$0F
     ORA #$30
     STA $81
-    JSR Bank2_Func_B6BA
+    JSR World3_AppendOamEntry
     RTS
 
 Bank2_Func_B460:
@@ -101,7 +101,7 @@ Bank2_Label_B49F:
 Bank2_Label_B4A1:
     LDA a:$000A,Y
     STA $81
-    JSR Bank2_Func_B6BA
+    JSR World3_AppendOamEntry
     LDA $80
     CLC
     ADC #$08
@@ -111,7 +111,7 @@ Bank2_Label_B4A1:
     BNE Bank2_Label_B4A1
     RTS
 
-Bank2_Func_B4B6:
+World3_ComposeMetasprite:
     LDA $7A
     AND #$40
     BEQ Bank2_Label_B4C4
@@ -249,7 +249,7 @@ Bank2_Label_B544:
     AND #$23
     ORA $82
     STA $82
-    JSR Bank2_Func_B6BA
+    JSR World3_AppendOamEntry
     JMP Bank2_Label_B592
 
 Bank2_Label_B590:
@@ -311,7 +311,7 @@ Bank2_Label_B598:
     ORA $82
     EOR #$80
     STA $82
-    JSR Bank2_Func_B6BA
+    JSR World3_AppendOamEntry
     JMP Bank2_Label_B5F0
 
 Bank2_Label_B5EE:
@@ -373,7 +373,7 @@ Bank2_Label_B5F6:
     ORA $82
     EOR #$40
     STA $82
-    JSR Bank2_Func_B6BA
+    JSR World3_AppendOamEntry
     JMP Bank2_Label_B64E
 
 Bank2_Label_B64C:
@@ -440,7 +440,7 @@ Bank2_Label_B654:
     ORA $82
     EOR #$C0
     STA $82
-    JSR Bank2_Func_B6BA
+    JSR World3_AppendOamEntry
     JMP Bank2_Label_B6B4
 
 Bank2_Label_B6B2:

@@ -27,6 +27,10 @@ header and the physical 32 KiB bank base.
 | world 3 transient spawn schedules | `$1567B` | 2:`$D66B` | 3x4x64 bytes |
 | world 3 behavior pointers | `$159BC` | 2:`$D9AC` | 16 pointers |
 | world 3 behavior streams | `$159DC` | 2:`$D9CC` | 1,062 bytes |
+| world 3 room palette selectors | `$12DE2` | 2:`$ADD2` | 64 bytes |
+| world 3 metasprite index | `$136E7` | 2:`$B6D7` | 188x2 bytes |
+| world 3 metasprite records | `$1385F` | 2:`$B84F` | 1,119 bytes |
+| world 3 palette sets | `$13CBE` | 2:`$BCAE` | 11x32 bytes |
 | world 3 small blocks | `$15F02` | 2:`$DEF2` | 1,024 |
 | world 3 big blocks | `$16302` | 2:`$E2F2` | 1,024 |
 | underwater map | `$16702` | 2:`$E6F2` | 64x64 |
@@ -106,6 +110,12 @@ tracking flags at `$936C`, four signed type-`$05` held-motion vectors at
 `$93E7`, and 64 persistent-relocation exclusion flags at `$9550`. They
 round-trip through `data/world3/update_handler_data.json`; see
 `docs/world3_update_handlers.md`.
+
+World 3's shared sprite catalog has 188 direct-or-alias index entries and 65
+variable-length metasprite records. Eleven complete PPU palettes are selected
+by a 64-room table. All index, piece, tile, color, and room-selector bytes
+round-trip through `data/world3/metasprites.json`; see
+`docs/world3_metasprites.md`.
 
 World 2's nine background/sprite palette sets and three chapter selector pairs
 round-trip through `data/world2/palettes.json`. Their lookup bases, stage

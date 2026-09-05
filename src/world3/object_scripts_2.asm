@@ -107,7 +107,7 @@ Bank2_Label_9DAE:
     JSR Bank2_Func_A71A
 
 Bank2_Label_9DC9:
-    JSR Bank2_Func_B4B6
+    JSR World3_ComposeMetasprite
 
 Bank2_Label_9DCC:
     RTS

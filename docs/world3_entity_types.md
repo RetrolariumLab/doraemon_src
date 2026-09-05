@@ -45,8 +45,39 @@ The persistent conversion at `$987E` adds eight to a nearby type in the
 active entity. Thus the three paired transitions are `$14->$1C`, `$15->$1D`,
 and `$16->$1E`.
 
-These names describe storage and control-flow roles, not character identities.
-Assigning names from sprites or external game guides remains separate work.
+## Recovered identities
+
+The type byte is a behavior class, not always a single visual identity. Three
+low types select a stronger or region-specific form while preserving the same
+type: `$00` is either Kame or Battle Fish, `$01` is Kani or Otoshigo, and `$03`
+is Gyokkun or the castle-only Gansuke. The initializer's alternate metasprite
+indexes `$A4`, `$A8`, and `$B4` establish those pairings.
+
+| Type | Identity | Structural evidence |
+| --- | --- | --- |
+| `$00` | Kame / Battle Fish (`カメ / バトルフィッシュ`) | base `$10`, initializer alternate `$A4` |
+| `$01` | Kani / Otoshigo (`カニ / オトシゴ`) | base `$14`, initializer alternate `$A8` |
+| `$02` | volcanic rock (`火山弾`) | fixed spawn and metasprite `$18` |
+| `$03` | Gyokkun / Gansuke (`ギョックン / ガンスケ`) | base `$1C`, castle-room alternate `$B4` |
+| `$04` | skull (`ガイコツ`) | metasprite `$20`, castle tracking path |
+| `$05` | ghost (`ユーレイ`) | metasprite `$24`, delayed capture/relocation path |
+| `$06` | room `$12` dorayaki/skull hazard | 250-spawn schedule, damage 4, randomized `$40/$20` graphics |
+| `$07` | Genki Candy (`元気キャンディ`) | candy graphic, two flag-gated fixed placements |
+| `$08-$09` | giant-octopus tentacle tip and segment (`大ダコ`) | two four-part formations; only `$08` has hit points |
+| `$0A-$0B` | dragon head and body (`ドラゴン`) | one head plus seven circular body segments |
+| `$0C-$0F` | four Poseidon quadrants (`ポセイドン`) | corner formation, linked movement, four matching graphics |
+| `$10-$13` | stopwatch, dorayaki, diamond, gold bar | exact item graphics and post-defeat result domain |
+| `$14-$16` | Suneo, Nobita, and Gian chests | key path transforms them to `$1C-$1E` by adding eight |
+| `$17` | dragon chest | key path removes it and seeds the `$0A/$0B` formation |
+| `$18-$1B` | talisman, Passing Hoop, key, Holding Bag | graphics match roles: reward, terrain, chest conversion, carrying |
+| `$1C-$1F` | Suneo, Nobita, Gian, Shizuka | character graphics and persistent follow-player path |
+
+All rows except `$06` converge between local graphics/control flow and at least
+one published guide. Type `$06` is deliberately given a descriptive structural
+name: its room, schedule, damage, and disguises are exact, but no published
+canonical character name has been found. The machine-readable catalog records
+the evidence sources, forms, Japanese names, confidence, and chest-to-companion
+links for every type.
 
 ## Validation
 
@@ -58,9 +89,24 @@ make validate-world3-entity-types
 
 It proves five property columns, 16 initializer pointers, 16 behavior pointers,
 32 update pointers, four nonoverlapping lifecycle domains, the exact initial
-persistent type multiset, and both encoded type transformations.
+persistent type multiset, both encoded type transformations, and 32 contiguous
+identity records. Confirmed names must cite both local-ROM evidence and an
+external source; base graphics and named chest transformations are checked
+against the binary catalogs.
 
 For editing, `data/world3/object_catalog.json` joins each type's five property
 values into one record and also joins the five persistent registry columns into
 thirteen object records. `make validate-world3-object-catalog` transposes that
 representation back to the original ROM layout and requires a byte-exact match.
+
+The optional Pillow-backed research renderer reproduces the type contact sheet
+from the private CHR input and decoded metasprites without tracking the image:
+
+```text
+python -B scripts/world3_metasprites.py render-types \
+  --prg assets/generated/prg/doraemon.prg \
+  --chr assets/generated/chr/doraemon.chr \
+  --manifest config/world3_metasprites.json \
+  --entity-types config/world3_entity_types.json \
+  --output build/research/world3_entity_types.png
+```

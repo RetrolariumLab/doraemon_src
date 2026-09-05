@@ -42,6 +42,24 @@ The published control description is used only to choose deterministic input.
 The semantic claims come from the exact ROM: the trace observes the game's
 controller byte, accepted manhole branch, and side-view initializer.
 
+## World 3 identity evidence
+
+- StrategyWiki enemy sprites and descriptions:
+  <https://strategywiki.org/wiki/Doraemon/Enemies>
+- StrategyWiki item sprites and descriptions:
+  <https://strategywiki.org/wiki/Doraemon/Items>
+- Japanese enemy and character names:
+  <https://wikiwiki.jp/neskouryaku1/%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93>
+- Japanese World 3 progression and boss guide:
+  <https://fc-doraemon.kouryaku.red/entry8.html>
+
+These sources supply names and independent sprite/gameplay descriptions. They
+are not used to infer binary layouts. Each identity in
+`config/world3_entity_types.json` must also agree with locally rendered CHR,
+metasprite selection, dispatch behavior, formation data, or type conversion.
+The `$06` room-`$12` hazard lacks an externally attested name and remains
+explicitly structural.
+
 ## Toolchain evidence
 
 `tools/disassembly.lock.json` pins Ghidra and GhidraNes archives by version,

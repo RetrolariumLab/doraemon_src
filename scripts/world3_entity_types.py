@@ -41,6 +41,110 @@ def pointer_bytes(targets: list[str | int]) -> bytes:
     return b"".join(number(target).to_bytes(2, "little") for target in targets)
 
 
+def validate_identities(
+    manifest: dict[str, Any],
+    type_count: int,
+    property_tables: list[dict[str, Any]],
+) -> tuple[list[str], dict[str, int]]:
+    errors: list[str] = []
+    sources = manifest.get("identity_sources")
+    if not isinstance(sources, list) or not sources:
+        return ["World 3 identity-source list must be non-empty"], {}
+    source_ids = [str(source.get("id", "")) for source in sources]
+    if any(not source_id for source_id in source_ids) or len(
+        set(source_ids)
+    ) != len(source_ids):
+        errors.append("World 3 identity-source ids must be unique and non-empty")
+
+    identities = manifest.get("identities")
+    if not isinstance(identities, list) or len(identities) != type_count:
+        return [f"World 3 identities must contain {type_count} records"], {}
+    if [int(identity.get("type", -1)) for identity in identities] != list(
+        range(type_count)
+    ):
+        errors.append("World 3 identity type ids are not contiguous")
+    symbols = [str(identity.get("symbol", "")) for identity in identities]
+    if any(not symbol for symbol in symbols) or len(set(symbols)) != len(
+        symbols
+    ):
+        errors.append("World 3 identity symbols must be unique and non-empty")
+
+    bases_table = named_entry(property_tables, "metasprite_base", "property table")
+    bases = [number(value) for value in bases_table["values"]]
+    allowed_confidence = {"confirmed", "structural", "unresolved"}
+    allowed_categories = {
+        "enemy",
+        "hazard",
+        "item",
+        "boss_part",
+        "chest",
+        "puzzle_item",
+        "companion",
+    }
+    external_sources = set(source_ids) - {"local_rom"}
+    confirmed_count = 0
+    for type_id, identity in enumerate(identities):
+        confidence = str(identity.get("confidence", ""))
+        category = str(identity.get("category", ""))
+        if confidence not in allowed_confidence:
+            errors.append(f"type {type_id:02X}: unknown identity confidence")
+        if category not in allowed_categories:
+            errors.append(f"type {type_id:02X}: unknown identity category")
+        if number(identity.get("base_metasprite", -1)) != bases[type_id]:
+            errors.append(f"type {type_id:02X}: identity base metasprite differs")
+        forms = identity.get("forms")
+        if not isinstance(forms, list) or not forms:
+            errors.append(f"type {type_id:02X}: identity forms must be non-empty")
+        else:
+            form_indexes = [number(form.get("metasprite", -1)) for form in forms]
+            if bases[type_id] not in form_indexes:
+                errors.append(f"type {type_id:02X}: forms omit the base metasprite")
+            if any(not 0 <= index <= 0xFF for index in form_indexes):
+                errors.append(
+                    f"type {type_id:02X}: form metasprite is outside byte range"
+                )
+        evidence = identity.get("evidence")
+        if not isinstance(evidence, list) or not evidence:
+            errors.append(f"type {type_id:02X}: identity evidence must be non-empty")
+            continue
+        evidence_ids = {str(value) for value in evidence}
+        if not evidence_ids <= set(source_ids):
+            errors.append(f"type {type_id:02X}: identity cites an unknown source")
+        if "local_rom" not in evidence_ids:
+            errors.append(f"type {type_id:02X}: identity lacks local-ROM evidence")
+        if confidence == "confirmed":
+            confirmed_count += 1
+            if not evidence_ids & external_sources:
+                errors.append(
+                    f"type {type_id:02X}: confirmed identity lacks external evidence"
+                )
+
+    named_transformations = {
+        number(identity["type"]): number(identity["transforms_to"])
+        for identity in identities
+        if "transforms_to" in identity
+    }
+    encoded_transformations: dict[int, int] = {}
+    for relationship in manifest["code_relationships"]:
+        if not relationship.get("identity_transform", False):
+            continue
+        sources = [number(value) for value in relationship["source_types"]]
+        results = [number(value) for value in relationship["result_types"]]
+        if len(sources) != len(results):
+            errors.append("named identity transformation is not one-to-one")
+            continue
+        encoded_transformations.update(zip(sources, results))
+    if named_transformations != encoded_transformations:
+        errors.append(
+            "World 3 named chest transformations differ from code relationships"
+        )
+    return errors, {
+        "identity_count": len(identities),
+        "identity_source_count": len(sources),
+        "confirmed_identity_count": confirmed_count,
+    }
+
+
 def validate(
     prg: bytes,
     manifest: dict[str, Any],
@@ -82,6 +186,11 @@ def validate(
             errors.append(f"{name}: property table differs from PRG")
         if crc32(expected) != str(table["crc32"]).lower():
             errors.append(f"{name}: property-table CRC32 differs")
+
+    identity_errors, identity_report = validate_identities(
+        manifest, type_count, property_tables
+    )
+    errors.extend(identity_errors)
 
     dispatch_tables = object_dispatch.get("tables", [])
     behavior_pointer = object_data["behavior_pointer_table"]
@@ -178,6 +287,7 @@ def validate(
         "domain_count": len(domains),
         "relationship_count": relationship_count,
         "initial_registry_type_count": sum(actual_multiset.values()),
+        **identity_report,
     }
 
 
@@ -209,7 +319,9 @@ def main() -> int:
         f"{report['property_table_count']} property tables, "
         f"{report['dispatch_contract_count']} dispatch domains, "
         f"{report['domain_count']} lifecycle domains, "
-        f"{report['relationship_count']} encoded type transformations"
+        f"{report['relationship_count']} encoded type transformations, "
+        f"{report['confirmed_identity_count']}/{report['identity_count']} "
+        "confirmed identities"
     )
     return 0
 

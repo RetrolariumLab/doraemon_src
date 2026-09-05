@@ -83,12 +83,22 @@
   relocation, formation followers, encounter completion, conversion, pushing,
   and player-following paths are validated by
   `config/world3_update_handlers.json`.
+- Known: all 32 type bases are joined to the complete 188-entry metasprite
+  index. Its 130 direct entries, 58 flip aliases, 65 variable-length records,
+  eleven palettes, and 64 room selectors are losslessly editable through
+  `config/world3_metasprites.json`.
+- Known: all World 3 types except `$06` now have names independently supported
+  by locally rendered graphics/control flow and published enemy, item, or
+  progression references. The three shared behavior IDs with alternate forms,
+  bosses and parts, chest contents, puzzle items, drops, and companions are
+  recorded in `config/world3_entity_types.json`.
+- Unknown: the published canonical name, if any, of World 3 type `$06`. Its
+  room-`$12` schedule, 250-spawn budget, damage, and randomized dorayaki/skull
+  graphics are exact.
 - Unknown: character/item identities for World 1 descriptors, individual World
-  2 enemy identities and handler-specific meanings, character identities for
-  World 3 types, and character-level identities behind the now-exact World 3
-  initializer modes. The World 3 behavior bytecode, structural type catalog,
-  room placement scheduler, and formation layouts are fully decoded and
-  validated.
+  2 enemy identities and handler-specific meanings. The World 3 behavior
+  bytecode, structural type catalog, room placement scheduler, formation
+  layouts, metasprites, and palettes are fully decoded and validated.
 
 ## AUDIO-002 - command and stream semantics
 

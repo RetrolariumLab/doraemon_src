@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "bank": 2,
+  "index_table": {
+    "address": "0xB6D7",
+    "count": 188,
+    "entry_size": 2,
+    "direct_pointer_high_minimum": 4,
+    "crc32": "1f6ccaa3"
+  },
+  "metasprites": {
+    "address": "0xB84F",
+    "end_address": "0xBCAE",
+    "count": 65,
+    "header_fields": [
+      "sprite_count",
+      "x_mirror_extent",
+      "y_mirror_extent"
+    ],
+    "piece_fields": [
+      "y_offset",
+      "x_offset",
+      "tile"
+    ],
+    "crc32": "bf273a4c"
+  },
+  "palettes": {
+    "address": "0xBCAE",
+    "count": 11,
+    "bytes_per_palette": 32,
+    "crc32": "81e21c09"
+  },
+  "room_palette_selectors": {
+    "address": "0xADD2",
+    "count": 64,
+    "crc32": "c0335e41"
+  },
+  "next_region_address": "0xBE0E",
+  "expected_metrics": {
+    "direct_index_entries": 130,
+    "alias_index_entries": 58,
+    "unique_direct_targets": 64,
+    "nested_alias_ids": [
+      "0x07"
+    ],
+    "unreferenced_records": [
+      "0xB8CD"
+    ],
+    "sprite_count_histogram": {
+      "2": 1,
+      "4": 39,
+      "6": 25
+    },
+    "unique_tile_count": 235,
+    "room_palette_histogram": [
+      10,
+      7,
+      7,
+      7,
+      8,
+      2,
+      9,
+      3,
+      5,
+      2,
+      4
+    ]
+  },
+  "signatures": [
+    {
+      "address": "0xB4DA",
+      "purpose": "two-byte index lookup and one-level alias resolution",
+      "bytes": "A6 79 8A 0A A8 A9 00 69 B6 85 7C A9 D7 85 7B C8 B1 7B C9 04 B0 42 48 88 B1 7B AA 0A A8 A9 00 69 B6 85 7C A9 D7 85 7B B1 7B 48 C8 B1 7B 85 7C 68 85 7B"
+    },
+    {
+      "address": "0xB6BA",
+      "purpose": "four-byte OAM append",
+      "bytes": "A5 74 0A AA A5 80 9D 00 03 A5 81 9D 01 03 A5 82 9D 02 03 A5 83 9D 03 03 E6 74 E6 74 60"
+    },
+    {
+      "address": "0xA835",
+      "purpose": "room selector times 32 palette addressing",
+      "bytes": "A9 00 85 40 A6 DF BD D2 AD 4A 66 40 4A 66 40 4A 66 40 85 41 A5 40 18 69 AE 85 40 A5 41 69 BC 85 41 A0 00 B1 40 99 05 07 C8 C0 20 D0 F6 60"
+    }
+  ],
+  "covered_byte_count": 1911,
+  "covered_crc32": "5d1903b6"
+}

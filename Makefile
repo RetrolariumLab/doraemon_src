@@ -64,6 +64,8 @@ WORLD3_TRANSIENT_SPAWNS := config/world3_transient_spawns.json
 WORLD3_TRANSIENT_SPAWN_AUTHORING := data/world3/transient_spawns.json
 WORLD3_UPDATE_HANDLERS := config/world3_update_handlers.json
 WORLD3_UPDATE_HANDLER_AUTHORING := data/world3/update_handler_data.json
+WORLD3_METASPRITES := config/world3_metasprites.json
+WORLD3_METASPRITE_AUTHORING := data/world3/metasprites.json
 WORLD_DATA := config/world_data.json
 WORLD1_DATA_AUTHORING := data/world1/hierarchical_world.json
 WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
@@ -91,6 +93,7 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	world3-spawn-initializers validate-world3-spawn-initializers \
 	world3-transient-spawns validate-world3-transient-spawns \
 	world3-update-handlers validate-world3-update-handlers \
+	world3-metasprites validate-world3-metasprites \
 	world-data validate-world-data
 
 all: verify
@@ -314,6 +317,12 @@ world3-update-handlers validate-world3-update-handlers: $(PRG_ASSET)
 		--entity-types "$(WORLD3_ENTITY_TYPES)" \
 		--authoring "$(WORLD3_UPDATE_HANDLER_AUTHORING)"
 
+world3-metasprites validate-world3-metasprites: $(PRG_ASSET)
+	$(PYTHON) scripts/world3_metasprites.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD3_METASPRITES)" \
+		--entity-types "$(WORLD3_ENTITY_TYPES)" \
+		--authoring "$(WORLD3_METASPRITE_AUTHORING)"
+
 world-data validate-world-data: $(PRG_ASSET)
 	$(PYTHON) scripts/world_data.py validate --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD_DATA)" \
@@ -358,6 +367,7 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-world3-spawn-initializers \
 	validate-world3-transient-spawns \
 	validate-world3-update-handlers \
+	validate-world3-metasprites \
 	validate-world-data
 
 check: release-check

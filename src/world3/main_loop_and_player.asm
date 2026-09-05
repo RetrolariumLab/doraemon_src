@@ -278,7 +278,7 @@ Bank2_Func_8487:
     STA $7A
     LDA #$B8
     STA $79
-    JSR Bank2_Func_B4B6
+    JSR World3_ComposeMetasprite
     RTS
 
 Bank2_Label_849E:

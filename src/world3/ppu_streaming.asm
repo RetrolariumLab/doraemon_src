@@ -39,7 +39,7 @@ Bank2_Func_A601:
     STA $79
     LDA #$00
     STA $7A
-    JSR Bank2_Func_B4B6
+    JSR World3_ComposeMetasprite
     RTS
 
 Bank2_Func_A619:
@@ -230,7 +230,7 @@ Bank2_Func_A733:
     LDA #$90
     STA PpuCtrlShadow
     JSR Bank2_Func_A8EB
-    JSR Bank2_Func_A835
+    JSR World3_LoadRoomPalette
     JSR World3_ClearPlayerProjectiles
     JSR World3_ClearEntityStorage
     JSR Bank2_Func_8C25
@@ -334,11 +334,11 @@ Bank2_Func_A7E5:
     .byte $01, $01, $01, $01, $01, $02, $02, $02, $01, $01, $01, $01, $01, $02, $02, $03
     .byte $01, $02, $05, $06
 
-Bank2_Func_A835:
+World3_LoadRoomPalette:
     LDA #$00
     STA $40
     LDX $DF
-    LDA a:$ADD2,X
+    LDA a:World3_RoomPaletteSelector,X
     LSR A
     ROR $40
     LSR A

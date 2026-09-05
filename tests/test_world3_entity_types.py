@@ -37,9 +37,17 @@ class World3EntityTypeTests(unittest.TestCase):
             "schema_version": 1,
             "bank": 2,
             "type_count": 4,
+            "identity_sources": [
+                {"id": "local_rom", "url": None, "role": "fixture bytes"},
+                {
+                    "id": "guide",
+                    "url": "https://example.com",
+                    "role": "fixture names",
+                },
+            ],
             "property_tables": [
                 {
-                    "name": "property",
+                    "name": "metasprite_base",
                     "address": "0x9000",
                     "crc32": world3_entity_types.crc32(properties),
                     "values": [1, 2, 3, 4],
@@ -77,11 +85,33 @@ class World3EntityTypeTests(unittest.TestCase):
             "code_relationships": [
                 {
                     "name": "fixture_conversion",
+                    "identity_transform": True,
                     "address": "0x9040",
                     "bytes": "18 69 02",
                     "source_types": [0],
                     "result_types": [2],
                 }
+            ],
+            "identities": [
+                {
+                    "type": type_id,
+                    "symbol": f"fixture_{type_id}",
+                    "name": f"fixture {type_id}",
+                    "japanese_name": None,
+                    "category": "enemy",
+                    "confidence": "confirmed",
+                    "base_metasprite": type_id + 1,
+                    **({"transforms_to": 2} if type_id == 0 else {}),
+                    "forms": [
+                        {
+                            "metasprite": type_id + 1,
+                            "name": f"fixture {type_id}",
+                            "japanese_name": None,
+                        }
+                    ],
+                    "evidence": ["local_rom", "guide"],
+                }
+                for type_id in range(4)
             ],
         }
         dispatch: dict[str, object] = {
@@ -124,6 +154,7 @@ class World3EntityTypeTests(unittest.TestCase):
         self.assertEqual(errors, [])
         self.assertEqual(report["type_count"], 4)
         self.assertEqual(report["property_table_count"], 1)
+        self.assertEqual(report["confirmed_identity_count"], 4)
 
     def test_rejects_changed_property_byte(self) -> None:
         prg, manifest, dispatch, object_data = self.fixture()
@@ -160,6 +191,24 @@ class World3EntityTypeTests(unittest.TestCase):
             bytes(changed), manifest, dispatch, object_data
         )
         self.assertTrue(any("code signature differs" in error for error in errors))
+
+    def test_rejects_identity_base_mismatch(self) -> None:
+        prg, manifest, dispatch, object_data = self.fixture()
+        changed = copy.deepcopy(manifest)
+        changed["identities"][1]["base_metasprite"] = 0xFF
+        errors, _report = world3_entity_types.validate(
+            prg, changed, dispatch, object_data
+        )
+        self.assertTrue(any("base metasprite differs" in error for error in errors))
+
+    def test_rejects_unproved_confirmed_identity(self) -> None:
+        prg, manifest, dispatch, object_data = self.fixture()
+        changed = copy.deepcopy(manifest)
+        changed["identities"][1]["evidence"] = ["local_rom"]
+        errors, _report = world3_entity_types.validate(
+            prg, changed, dispatch, object_data
+        )
+        self.assertTrue(any("lacks external evidence" in error for error in errors))
 
 
 if __name__ == "__main__":

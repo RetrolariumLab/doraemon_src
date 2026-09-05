@@ -29,6 +29,10 @@ table 2 93E7 93EE World3Type05HeldMotionVectors
 table 2 9550 958F World3Type05RelocationRoomFlags
 table 2 AC6C AC8B World3Type0AFormation
 table 2 ACF9 AD20 World3Type08Formation
+table 2 ADD2 AE11 World3RoomPaletteSelectors
+table 2 B6D7 B84E World3MetaspriteIndex
+table 2 B84F BCAD World3MetaspriteRecords
+table 2 BCAE BE0D World3PaletteSets
 table 2 D66B D96A World3TransientSpawnSchedules
 table 2 DDF2 DEF1 World3BlockAttributes
 table 2 DEF2 E2F1 World3SmallBlocks

@@ -2,10 +2,10 @@
 ; World 3 later entity-type collision, reward, and interaction handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-World3_UpdateType0F:
+World3_UpdateType0FPoseidonLowerRight:
     LDA a:World3EntityFollowAnchorFlag,X
     BEQ Bank2_Label_96BF
-    JSR World3_FindActiveType0C
+    JSR World3_FindActivePoseidonAnchor
     LDA a:World3EntityX,Y
     CLC
     ADC #$10
@@ -31,7 +31,7 @@ World3_UpdateType0F:
 Bank2_Label_96BF:
     RTS
 
-World3_FindActiveType0C:
+World3_FindActivePoseidonAnchor:
     LDY #$00
 
 Bank2_Label_96C2:
@@ -53,14 +53,14 @@ Bank2_Label_96D5:
 World3_UpdateTypes10To16:
     RTS
 
-World3_UpdateType17:
+World3_UpdateType17DragonChest:
     RTS
 
-World3_UpdateType18:
+World3_UpdateType18Talisman:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_96E3
-    JSR World3_FollowActiveType05
+    JSR World3_FollowActiveGhost
     RTS
 
 Bank2_Label_96E3:
@@ -134,11 +134,11 @@ Bank2_Label_973A:
     JSR Bank2_Func_898C
     RTS
 
-World3_UpdateType19:
+World3_UpdateType19PassingHoop:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_9764
-    JSR World3_FollowActiveType05
+    JSR World3_FollowActiveGhost
     RTS
 
 Bank2_Label_9764:
@@ -244,11 +244,11 @@ Bank2_Label_97F4:
     RTS
     .byte $00, $00, $00, $00
 
-World3_UpdateType1A:
+World3_UpdateType1AKey:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_981E
-    JSR World3_FollowActiveType05
+    JSR World3_FollowActiveGhost
     RTS
 
 Bank2_Label_981E:
@@ -368,11 +368,11 @@ Bank2_Label_98C5:
 Bank2_Label_98E2:
     RTS
 
-World3_UpdateType1B:
+World3_UpdateType1BHoldingBag:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_98EE
-    JSR World3_FollowActiveType05
+    JSR World3_FollowActiveGhost
     RTS
 
 Bank2_Label_98EE:
@@ -475,11 +475,11 @@ Bank2_Label_9986:
 Bank2_Label_9998:
     RTS
 
-World3_UpdateTypes1CTo1F:
+World3_UpdateTypes1CTo1FCompanions:
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_99A4
-    JSR World3_FollowActiveType05
+    JSR World3_FollowActiveGhost
     RTS
 
 Bank2_Label_99A4:
@@ -538,7 +538,7 @@ Bank2_Label_9A02:
     LDX $3E
     RTS
 
-World3_FollowActiveType05:
+World3_FollowActiveGhost:
     LDY #$00
 
 Bank2_Label_9A07:

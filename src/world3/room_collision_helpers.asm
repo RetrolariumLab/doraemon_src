@@ -124,7 +124,7 @@ Bank2_Label_AC0C:
     JSR World3_FindFreeEntitySlot
     BCC Bank2_Label_AC6B
 
-World3_CreateType0AEncounterFormation:
+World3_CreateDragonFormationTypes0ATo0B:
     LDA #$00
     STA $51
     LDA #$00
@@ -143,17 +143,17 @@ Bank2_Func_AC1F:
 
 Bank2_Label_AC2F:
     JSR World3_ClearEntitySlot
-    LDA a:World3_Type0AFormationState,Y
+    LDA a:World3_DragonFormationState,Y
     STA a:World3EntityState,X
-    LDA a:World3_Type0AFormationX,Y
+    LDA a:World3_DragonFormationX,Y
     CLC
     ADC $C9
     STA a:World3EntityX,X
-    LDA a:World3_Type0AFormationY,Y
+    LDA a:World3_DragonFormationY,Y
     CLC
     ADC $CA
     STA a:World3EntityY,X
-    LDA a:World3_Type0AFormationType,Y
+    LDA a:World3_DragonFormationType,Y
     STA a:World3EntityType,X
     STY $42
     TAY
@@ -172,30 +172,30 @@ Bank2_Label_AC2F:
 Bank2_Label_AC6B:
     RTS
 
-World3_Type0AFormationState:
+World3_DragonFormationState:
     .byte $03, $03, $03, $03, $03, $03, $03, $03
 
-World3_Type0AFormationX:
+World3_DragonFormationX:
     .byte $68, $62, $68, $72, $7E, $88, $8E, $88
 
-World3_Type0AFormationY:
+World3_DragonFormationY:
     .byte $88, $7C, $70, $68, $68, $70, $7C, $88
 
-World3_Type0AFormationType:
+World3_DragonFormationType:
     .byte $0A, $0B, $0B, $0B, $0B, $0B, $0B, $0B
 
-World3_CreateType08EncounterFormation:
+World3_CreateGiantOctopusFormationTypes08To09:
     LDA #$00
     STA $3F
     CPX #$06
     BCS Bank2_Label_ACAC
-    JSR World3_CreateType08EncounterGroup
+    JSR World3_CreateGiantOctopusTentacle
     LDY $40
     TXA
     STA a:World3EntityCollisionScanLimit,Y
     CPX #$06
     BCS Bank2_Label_ACAA
-    JSR World3_CreateType08EncounterGroup
+    JSR World3_CreateGiantOctopusTentacle
     LDY $40
     TXA
     STA a:World3EntityCollisionScanLimit,Y
@@ -208,7 +208,7 @@ Bank2_Label_ACAC:
     CLC
     RTS
 
-World3_CreateType08EncounterGroup:
+World3_CreateGiantOctopusTentacle:
     STX $40
     LDA #$04
     STA $41
@@ -216,13 +216,13 @@ World3_CreateType08EncounterGroup:
 Bank2_Label_ACB4:
     JSR World3_ClearEntitySlot
     LDY $3F
-    LDA a:World3_Type08FormationState,Y
+    LDA a:World3_GiantOctopusFormationState,Y
     STA a:World3EntityState,X
-    LDA a:World3_Type08FormationX,Y
+    LDA a:World3_GiantOctopusFormationX,Y
     STA a:World3EntityX,X
-    LDA a:World3_Type08FormationY,Y
+    LDA a:World3_GiantOctopusFormationY,Y
     STA a:World3EntityY,X
-    LDA a:World3_Type08FormationType,Y
+    LDA a:World3_GiantOctopusFormationType,Y
     STA a:World3EntityType,X
     STY $42
     TAY
@@ -231,7 +231,7 @@ Bank2_Label_ACB4:
     LDY $42
     LDA a:$8EBD
     STA a:World3EntityHitPoints,X
-    LDA a:World3_Type08FormationFrameCounter,Y
+    LDA a:World3_GiantOctopusFormationFrameCounter,Y
     STA a:World3EntityFrameCounter,X
     LDA #$1E
     STA a:World3EntityActivationTimer,X
@@ -245,19 +245,19 @@ Bank2_Label_ACB4:
 Bank2_Label_ACF8:
     RTS
 
-World3_Type08FormationState:
+World3_GiantOctopusFormationState:
     .byte $01, $01, $01, $01, $01, $01, $01, $01
 
-World3_Type08FormationX:
+World3_GiantOctopusFormationX:
     .byte $68, $62, $68, $72, $64, $6C, $74, $74
 
-World3_Type08FormationY:
+World3_GiantOctopusFormationY:
     .byte $88, $7C, $70, $68, $92, $88, $80, $80
 
-World3_Type08FormationType:
+World3_GiantOctopusFormationType:
     .byte $08, $09, $09, $09, $08, $09, $09, $09
 
-World3_Type08FormationFrameCounter:
+World3_GiantOctopusFormationFrameCounter:
     .byte $01, $01, $02, $02, $02, $02, $03, $03
 
 Bank2_Func_AD21:
@@ -354,6 +354,8 @@ Bank2_Label_ADBD:
     CMP #$07
     BNE Bank2_Label_AD8D
     RTS
+
+World3_RoomPaletteSelector:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $01, $01, $01, $00, $01, $01, $01, $00
     .byte $02, $02, $0A, $02, $01, $02, $02, $02, $03, $03, $03, $02, $03, $03, $03, $03
     .byte $04, $04, $04, $04, $04, $04, $05, $05, $06, $04, $04, $06, $06, $07, $06, $06
