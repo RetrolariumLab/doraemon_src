@@ -7,9 +7,41 @@ Bank2_Func_B1BB:
     LDA $68
     BNE Bank2_Func_B1BB
     RTS
-    .byte $A2, $00, $20, $D1, $B1, $85, $65, $A2, $01, $20, $D1, $B1, $85, $66, $60, $B5
-    .byte $1F, $D0, $03, $95, $5F, $60, $B5, $5F, $D0, $07, $A9, $08, $95, $5F, $B5, $1F
-    .byte $60, $D6, $5F, $F0, $03, $A9, $00, $60, $A9, $04, $95, $5F, $B5, $1F, $60
+
+World3_DormantUpdateControllerRepeat:
+    LDX #$00
+    JSR World3_DormantUpdateControllerRepeatLane
+    STA $65
+    LDX #$01
+    JSR World3_DormantUpdateControllerRepeatLane
+    STA $66
+    RTS
+
+World3_DormantUpdateControllerRepeatLane:
+    LDA Controller1Buttons,X
+    BNE Bank2_Label_B1D8
+    STA $5F,X
+    RTS
+
+Bank2_Label_B1D8:
+    LDA $5F,X
+    BNE Bank2_Label_B1E3
+    LDA #$08
+    STA $5F,X
+    LDA Controller1Buttons,X
+    RTS
+
+Bank2_Label_B1E3:
+    DEC $5F,X
+    BEQ Bank2_Label_B1EA
+    LDA #$00
+    RTS
+
+Bank2_Label_B1EA:
+    LDA #$04
+    STA $5F,X
+    LDA Controller1Buttons,X
+    RTS
 
 Bank2_Func_B1F1:
     LDY #$00
@@ -172,7 +204,7 @@ Bank2_Label_B2E4:
 Bank2_Func_B2FD:
     LDA $00
     TAX
-    LDA a:$B3F3,X
+    LDA a:World3_AttributePaletteFillValues,X
     LDX #$00
 
 Bank2_Label_B305:
@@ -198,7 +230,14 @@ Bank2_Label_B311:
     CMP #$40
     BNE Bank2_Label_B311
     RTS
-    .byte $A6, $00, $A4, $01, $20, $BA, $B0, $A6, $02, $A4, $03, $A5, $04
+
+World3_DormantQueuePpuBlockFromParameters:
+    LDX $00
+    LDY $01
+    JSR Bank2_Func_B0BA
+    LDX $02
+    LDY $03
+    LDA $04
 
 Bank2_Func_B33A:
     JSR Bank2_Func_B06B
@@ -233,15 +272,84 @@ Bank2_Label_B360:
     STX $6C
     JSR Bank2_Func_B05A
     RTS
-    .byte $A6, $00, $A4, $01, $20, $BA, $B0, $A5, $02, $20, $6B, $B0, $48, $A6, $6C, $A5
-    .byte $6A, $9D, $00, $05, $E8, $A5, $69, $9D, $00, $05, $E8, $A9, $01, $9D, $00, $05
-    .byte $E8, $68, $9D, $00, $05, $E8, $86, $6C, $20, $5A, $B0, $60, $A6, $00, $A4, $01
-    .byte $A5, $02, $85, $3C, $86, $3D, $84, $3E, $20, $6B, $B0, $20, $F8, $B0, $8A, $4A
-    .byte $29, $01, $85, $3D, $98, $29, $02, $18, $65, $3D, $AA, $A4, $3C, $B9, $F3, $B3
-    .byte $3D, $FB, $B3, $85, $3C, $A4, $41, $B9, $00, $04, $3D, $F7, $B3, $05, $3C, $99
-    .byte $00, $04, $48, $A6, $6C, $A5, $6A, $9D, $00, $05, $E8, $A5, $69, $9D, $00, $05
-    .byte $E8, $A9, $01, $9D, $00, $05, $E8, $68, $9D, $00, $05, $E8, $86, $6C, $20, $5A
-    .byte $B0, $60, $00, $55, $AA, $FF, $FC, $F3, $CF, $3F, $03, $0C, $30, $C0
+
+World3_DormantQueuePpuByteFromParameters:
+    LDX $00
+    LDY $01
+    JSR Bank2_Func_B0BA
+    LDA $02
+    JSR Bank2_Func_B06B
+    PHA
+    LDX $6C
+    LDA $6A
+    STA a:$0500,X
+    INX
+    LDA $69
+    STA a:$0500,X
+    INX
+    LDA #$01
+    STA a:$0500,X
+    INX
+    PLA
+    STA a:$0500,X
+    INX
+    STX $6C
+    JSR Bank2_Func_B05A
+    RTS
+
+World3_DormantQueueAttributeFromParameters:
+    LDX $00
+    LDY $01
+    LDA $02
+    STA $3C
+    STX $3D
+    STY $3E
+    JSR Bank2_Func_B06B
+    JSR Bank2_Func_B0F8
+    TXA
+    LSR A
+    AND #$01
+    STA $3D
+    TYA
+    AND #$02
+    CLC
+    ADC $3D
+    TAX
+    LDY $3C
+    LDA a:World3_AttributePaletteFillValues,Y
+    AND a:World3_AttributeQuadrantSelectMasks,X
+    STA $3C
+    LDY $41
+    LDA a:$0400,Y
+    AND a:World3_AttributeQuadrantClearMasks,X
+    ORA $3C
+    STA a:$0400,Y
+    PHA
+    LDX $6C
+    LDA $6A
+    STA a:$0500,X
+    INX
+    LDA $69
+    STA a:$0500,X
+    INX
+    LDA #$01
+    STA a:$0500,X
+    INX
+    PLA
+    STA a:$0500,X
+    INX
+    STX $6C
+    JSR Bank2_Func_B05A
+    RTS
+
+World3_AttributePaletteFillValues:
+    .byte $00, $55, $AA, $FF
+
+World3_AttributeQuadrantClearMasks:
+    .byte $FC, $F3, $CF, $3F
+
+World3_AttributeQuadrantSelectMasks:
+    .byte $03, $0C, $30, $C0
 
 Bank2_Func_B3FF:
     JSR Bank2_Func_B406

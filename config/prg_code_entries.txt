@@ -197,6 +197,10 @@ entry 1 B0E2 Bank1_MusicCommandEntry_B0E2
 entry 1 B0EA Bank1_MusicCommandEntry_B0EA
 entry 2 82AD Bank2_World3AlternateEntry
 entry 2 82F6 Bank2_World3Main
+# These complete legal routines lie between reachable returns and the next
+# analyzed function. No direct or indirect caller is known, so their labels
+# deliberately retain the Dormant qualifier.
+entry 2 864D Bank2_World3DormantUpdateState55ForRoomBands
 # Bank 2 uses ordinary pointer tables and a shared JMP ($0040) trampoline for
 # spawn initialization, per-type entity updates, and the player state machine.
 entry 2 8F8C Bank2_World3SpawnInitializer_8F8C
@@ -232,11 +236,20 @@ entry 2 9759 Bank2_World3EntityUpdateHandler_9759
 entry 2 9813 Bank2_World3EntityUpdateHandler_9813
 entry 2 98E3 Bank2_World3EntityUpdateHandler_98E3
 entry 2 9999 Bank2_World3EntityUpdateHandler_9999
+entry 2 9A35 Bank2_World3DormantDeactivateEntity
+entry 2 9DCE Bank2_World3DormantFaceType03TowardPlayer
+entry 2 9F9F Bank2_World3DormantProbeEntityLowerEdge
 entry 2 A239 Bank2_World3PlayerStateHandler_A239
 entry 2 A23A Bank2_World3PlayerStateHandler_A23A
 entry 2 A2E9 Bank2_World3PlayerStateHandler_A2E9
 entry 2 A335 Bank2_World3PlayerStateHandler_A335
 entry 2 A33C Bank2_World3PlayerStateHandler_A33C
+# Orphaned but internally coherent controller-repeat and PPU queue helpers.
+# B1C2 directly calls its B1D1 lane helper; B32D falls through into B33A.
+entry 2 B1C2 Bank2_World3DormantUpdateControllerRepeat
+entry 2 B32D Bank2_World3DormantQueuePpuBlockFromParameters
+entry 2 B371 Bank2_World3DormantQueuePpuByteFromParameters
+entry 2 B39D Bank2_World3DormantQueueAttributeFromParameters
 # Bank 2's $BE28 audio-effect RTS dispatch table has 52 slots and the
 # following unique target addresses.
 entry 2 BF1E Bank2_AudioEffectEntry_BF1E

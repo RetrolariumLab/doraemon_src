@@ -535,8 +535,28 @@ Bank2_Label_8630:
 
 Bank2_Label_864C:
     RTS
-    .byte $A5, $DF, $C9, $2D, $90, $14, $C9, $30, $90, $14, $C9, $35, $90, $0C, $C9, $38
-    .byte $90, $0C, $C9, $3D, $90, $04, $C9, $40, $90, $04, $A9, $14, $85, $55, $60
+
+World3_DormantUpdateState55ForRoomBands:
+    LDA $DF
+    CMP #$2D
+    BCC Bank2_Label_8667
+    CMP #$30
+    BCC Bank2_Label_866B
+    CMP #$35
+    BCC Bank2_Label_8667
+    CMP #$38
+    BCC Bank2_Label_866B
+    CMP #$3D
+    BCC Bank2_Label_8667
+    CMP #$40
+    BCC Bank2_Label_866B
+
+Bank2_Label_8667:
+    LDA #$14
+    STA $55
+
+Bank2_Label_866B:
+    RTS
 
 Bank2_Func_866C:
     LDY #$00

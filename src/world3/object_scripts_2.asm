@@ -114,8 +114,23 @@ Bank2_Label_9DCC:
 
 Bank2_Func_9DCD:
     RTS
-    .byte $BD, $38, $06, $C9, $03, $D0, $0F, $A0, $00, $BD, $08, $06, $C5, $8C, $B0, $02
-    .byte $A0, $02, $98, $9D, $A0, $06, $60
+
+World3_DormantFaceType03TowardPlayer:
+    LDA a:World3EntityType,X
+    CMP #$03
+    BNE Bank2_Label_9DE4
+    LDY #$00
+    LDA a:World3EntityX,X
+    CMP $8C
+    BCS Bank2_Label_9DE0
+    LDY #$02
+
+Bank2_Label_9DE0:
+    TYA
+    STA a:World3EntityMetaspriteVariantBit1,X
+
+Bank2_Label_9DE4:
+    RTS
 
 Bank2_Func_9DE5:
     LDA $8D
@@ -392,10 +407,38 @@ Bank2_Label_9F82:
     BNE Bank2_Label_9F82
     LDX $44
     JMP Bank2_Func_A035
-    .byte $BD, $08, $06, $85, $46, $BD, $10, $06, $85, $47, $86, $44, $A5, $46, $85, $00
-    .byte $A9, $02, $85, $01, $A5, $00, $18, $69, $04, $85, $00, $A5, $47, $18, $69, $08
-    .byte $A8, $A6, $00, $20, $09, $A0, $90, $10, $A5, $00, $18, $69, $08, $85, $00, $C6
-    .byte $01, $D0, $E8, $A6, $44, $4C, $35, $A0
+
+World3_DormantProbeEntityLowerEdge:
+    LDA a:World3EntityX,X
+    STA $46
+    LDA a:World3EntityY,X
+    STA $47
+    STX $44
+    LDA $46
+    STA $00
+    LDA #$02
+    STA $01
+    LDA $00
+    CLC
+    ADC #$04
+    STA $00
+
+Bank2_Label_9FBA:
+    LDA $47
+    CLC
+    ADC #$08
+    TAY
+    LDX $00
+    JSR Bank2_Func_A009
+    BCC Bank2_Label_9FD7
+    LDA $00
+    CLC
+    ADC #$08
+    STA $00
+    DEC $01
+    BNE Bank2_Label_9FBA
+    LDX $44
+    JMP Bank2_Func_A035
 
 Bank2_Label_9FD7:
     LDX $44

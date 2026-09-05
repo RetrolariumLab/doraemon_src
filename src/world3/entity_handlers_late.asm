@@ -568,7 +568,10 @@ Bank2_Label_9A1B:
     ADC a:World3EntityY,Y
     STA a:World3EntityY,X
     RTS
-    .byte $A9, $00, $9D, $00, $06
+
+World3_DormantDeactivateEntity:
+    LDA #$00
+    STA a:World3EntityState,X
 
 Bank2_Label_9A3A:
     RTS

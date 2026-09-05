@@ -144,6 +144,7 @@ config/symbols.json         bank-qualified semantic symbol registry
 config/debugger_*.json      initial Mesen watches and breakpoints
 docs/                       architecture, formats, evidence, and roadmap
 docs/ram_fields.md          proved shared RAM layout and ownership notes
+docs/world3_dormant_code.md statically recovered but unreferenced code islands
 scripts/project.py          identity, split, bank report, and source policy
 scripts/run_ghidra.py       deterministic per-bank headless analysis
 scripts/generate_disassembly.py  Ghidra facts to canonical ca65 source

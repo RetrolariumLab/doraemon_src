@@ -1361,6 +1361,12 @@
     },
     {
       "bank": 2,
+      "address": "0x864D",
+      "name": "World3_DormantUpdateState55ForRoomBands",
+      "evidence": "complete-unreferenced-routine-selectively-writes-14-to-0055-from-room-number-bands"
+    },
+    {
+      "bank": 2,
       "address": "0x8B68",
       "name": "World3_ClearEntitySlot",
       "evidence": "clears-one-index-across-eight-slot-parallel-runtime-fields"
@@ -1779,6 +1785,12 @@
     },
     {
       "bank": 2,
+      "address": "0x9A35",
+      "name": "World3_DormantDeactivateEntity",
+      "evidence": "complete-unreferenced-routine-clears-current-entity-state-and-returns"
+    },
+    {
+      "bank": 2,
       "address": "0x9A3B",
       "name": "World3_RunEntityBehaviorScript",
       "evidence": "type-selected-d9ac-stream-and-high-nibble-opcode-interpreter"
@@ -1890,6 +1902,18 @@
       "address": "0x9D19",
       "name": "World3_RenderEntities",
       "evidence": "eight-slot-forward-or-reverse-render-traversal"
+    },
+    {
+      "bank": 2,
+      "address": "0x9DCE",
+      "name": "World3_DormantFaceType03TowardPlayer",
+      "evidence": "complete-unreferenced-routine-selects-type-03-metasprite-variant-bit1-from-player-relative-x"
+    },
+    {
+      "bank": 2,
+      "address": "0x9F9F",
+      "name": "World3_DormantProbeEntityLowerEdge",
+      "evidence": "complete-unreferenced-two-column-terrain-probe-at-entity-y-plus-08"
     },
     {
       "bank": 2,
@@ -2013,6 +2037,57 @@
       "name": "World3_GiantOctopusFormationFrameCounter",
       "operand_symbol": true,
       "evidence": "eight-object-type-08-encounter-initial-frame-counter-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xB1C2",
+      "name": "World3_DormantUpdateControllerRepeat",
+      "evidence": "complete-unreferenced-two-lane-controller-autorepeat-wrapper-with-internal-b1d1-call"
+    },
+    {
+      "bank": 2,
+      "address": "0xB1D1",
+      "name": "World3_DormantUpdateControllerRepeatLane",
+      "evidence": "controller-byte-indexed-eight-frame-initial-and-four-frame-repeat-timer"
+    },
+    {
+      "bank": 2,
+      "address": "0xB32D",
+      "name": "World3_DormantQueuePpuBlockFromParameters",
+      "evidence": "complete-unreferenced-parameter-wrapper-computes-ppu-address-and-falls-through-to-block-queue-writer"
+    },
+    {
+      "bank": 2,
+      "address": "0xB371",
+      "name": "World3_DormantQueuePpuByteFromParameters",
+      "evidence": "complete-unreferenced-parameter-wrapper-appends-one-byte-ppu-queue-record"
+    },
+    {
+      "bank": 2,
+      "address": "0xB39D",
+      "name": "World3_DormantQueueAttributeFromParameters",
+      "evidence": "complete-unreferenced-parameter-wrapper-replaces-one-attribute-quadrant-and-queues-result"
+    },
+    {
+      "bank": 2,
+      "address": "0xB3F3",
+      "name": "World3_AttributePaletteFillValues",
+      "operand_symbol": true,
+      "evidence": "four-expanded-two-bit-palette-values-indexed-by-live-b2fd-fill-and-dormant-attribute-helper"
+    },
+    {
+      "bank": 2,
+      "address": "0xB3F7",
+      "name": "World3_AttributeQuadrantClearMasks",
+      "operand_symbol": true,
+      "evidence": "four-quadrant-two-bit-clear-masks-indexed-by-dormant-attribute-helper"
+    },
+    {
+      "bank": 2,
+      "address": "0xB3FB",
+      "name": "World3_AttributeQuadrantSelectMasks",
+      "operand_symbol": true,
+      "evidence": "four-quadrant-two-bit-select-masks-indexed-by-dormant-attribute-helper"
     },
     {
       "bank": 2,

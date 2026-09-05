@@ -99,6 +99,11 @@
   2 enemy identities and handler-specific meanings. The World 3 behavior
   bytecode, structural type catalog, room placement scheduler, formation
   layouts, metasprites, and palettes are fully decoded and validated.
+- Known: eight instruction-aligned World 3 code islands previously emitted as
+  raw bytes are now reconstructed. Their internal control flow and helper/RAM
+  conventions are coherent, but no top-level caller is present in the static
+  PRG graph, so they remain explicitly classified as dormant; see
+  `docs/world3_dormant_code.md`.
 
 ## AUDIO-002 - command and stream semantics
 
