@@ -356,7 +356,7 @@
       "start": "0xA0DC",
       "end": "0xA611",
       "path": "world2/enemy_handlers.asm",
-      "responsibility": "World 2 later enemy handlers and movement tables"
+      "responsibility": "World 2 later enemy handlers, metasprites, and movement tables"
     },
     {
       "bank": 1,

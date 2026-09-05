@@ -61,7 +61,13 @@
 - Known: World 2 enemy spawns are embedded in compressed screen streams; 685
   physical `$D0-$DE` bytes appear as 738 selector-view occurrences and map
   exactly to runtime states `$01-$0F`. States `$10-$14`, three property tables,
-  and both dispatch domains are structurally validated.
+  and both dispatch domains are structurally validated. All 20 states now have
+  structurally classified update and render handlers, including shared and
+  no-op targets. Their exact metasprite index sets, 58-record fixed sprite
+  catalog, OAM attributes, and CHR ownership are validated. All 15 direct
+  states, three bosses, Robo Ship helper, and Ororon's derived Jura-like
+  projectile are joined to an evidence-backed identity catalog. Gangan's
+  straight and spiral forms deliberately occupy two states.
 - Known: World 3 begins with thirteen persistent objects stored as five
   parallel ROM arrays; the exact initial fields, two randomized type groups,
   fixed type slot, and sixteen low-type behavior pointers are validated by
@@ -96,8 +102,9 @@
   name is claimed. The three shared behavior IDs with alternate forms, bosses
   and parts, chest contents, puzzle items, drops, and companions are recorded
   in `config/world3_entity_types.json`.
-- Unknown: character/item identities for World 1 descriptors, individual World
-  2 enemy identities and handler-specific meanings. The World 3 behavior
+- Unknown: character/item identities for World 1 descriptors and deeper
+  handler-specific meanings that remain below World 2's resolved enemy roster.
+  The World 3 behavior
   bytecode, structural type catalog, room placement scheduler, formation
   layouts, metasprites, and palettes are fully decoded and validated.
 - Known: eleven instruction-aligned World 3 code islands previously emitted as

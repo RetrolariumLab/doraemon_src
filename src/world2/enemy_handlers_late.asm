@@ -2,23 +2,23 @@
 ; World 2 late indirect enemy-state handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank1_Func_9F84:
+World2_RenderPotta:
     LDA a:World2EnemyPhaseCounter,X
     CMP #$28
     BCC Bank1_Label_9F99
     CMP #$30
     BCC Bank1_Label_9F94
     LDA #$1F
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
 
 Bank1_Label_9F94:
     LDA #$1E
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
 
 Bank1_Label_9F99:
     RTS
 
-Bank1_Func_9F9A:
+World2_UpdateJura:
     LDY a:World2EnemyPhaseCounter,X
     LDA World2FrameCounter
     AND #$03
@@ -37,10 +37,10 @@ Bank1_Func_9F9A:
     STA a:World2EnemyPhaseCounter,X
 
 Bank1_Label_9FC2:
-    JMP Bank1_Func_A0DC
+    JMP World2_ApplyScrollingToEnemy
 
-Bank1_Func_9FC5:
-    JSR Bank1_Func_A0DC
+World2_UpdateGanganSpiral:
+    JSR World2_ApplyScrollingToEnemy
     INC a:World2EnemyY,X
     INC a:World2EnemyY,X
     INC a:World2EnemyY,X
@@ -59,7 +59,7 @@ Bank1_Func_9FC5:
     STA a:World2EnemyPhaseCounter,X
     RTS
 
-Bank1_Func_9FF4:
+World2_UpdateOroronJuraProjectile:
     DEC a:World2EnemyX,X
     DEC a:World2EnemyX,X
     DEC a:World2EnemyX,X
@@ -75,7 +75,7 @@ Bank1_Func_9FF4:
 Bank1_Label_A00F:
     JSR World2_TestMetatileCollision
     BEQ Bank1_Label_A017
-    JSR Bank1_Func_9B40
+    JSR World2_DeactivateEnemy
 
 Bank1_Label_A017:
     LDA World2FrameCounter
@@ -86,7 +86,7 @@ Bank1_Label_A017:
 Bank1_Label_A020:
     RTS
 
-Bank1_Func_A021:
+World2_RenderJuraAndOroronProjectile:
     LDA a:World2EnemyPhaseCounter,X
     PHA
     AND #$01
@@ -101,24 +101,24 @@ Bank1_Func_A021:
 
 Bank1_Label_A033:
     LDA a:$A039,X
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
     .byte $17, $18, $19, $18
 
-Bank1_Func_A03D:
+World2_OroronIwaStateNoOp:
     RTS
 
-Bank1_Func_A03E:
-    JSR Bank1_Func_A0C4
+World2_UpdateBigRoboShip:
+    JSR World2_ApplyEnemyOrbitStep
     LDA World2FrameCounter
     AND #$03
     BEQ Bank1_Label_A057
     RTS
 
-Bank1_Func_A048:
+World2_UpdateCentaurus:
     LDA World2FrameCounter
     AND #$01
     BNE Bank1_Label_A062
-    JSR Bank1_Func_A0C4
+    JSR World2_ApplyEnemyOrbitStep
     LDA World2FrameCounter
     AND #$02
     BNE Bank1_Label_A062
@@ -132,7 +132,7 @@ Bank1_Label_A057:
 Bank1_Label_A062:
     RTS
 
-Bank1_Func_A063:
+World2_RenderCentaurus:
     LDA World2FrameCounter
     AND #$10
     ROR A
@@ -140,15 +140,15 @@ Bank1_Func_A063:
     ADC #$30
     BNE Bank1_Label_A073
 
-Bank1_Func_A06D:
+World2_RenderBigRoboShip:
     LDA World2FrameCounter
     AND #$04
     ADC #$28
 
 Bank1_Label_A073:
     STA $67
-    JSR Bank1_Func_A08C
-    JSR Bank1_Func_A08C
+    JSR World2_RenderEnemyCompositePart
+    JSR World2_RenderEnemyCompositePart
     LDA $60
     CLC
     ADC #$10
@@ -157,11 +157,11 @@ Bank1_Label_A073:
     SEC
     SBC #$20
     STA $61
-    JSR Bank1_Func_A08C
+    JSR World2_RenderEnemyCompositePart
 
-Bank1_Func_A08C:
+World2_RenderEnemyCompositePart:
     LDA $67
-    JSR Bank1_Func_A35B
+    JSR World2_RenderEnemyMetaspriteIndex
     LDA $60
     SEC
     SBC #$10
@@ -173,7 +173,7 @@ Bank1_Func_A08C:
     INC $67
     RTS
 
-Bank1_Func_A0A2:
+World2_UpdateRoboShip:
     INC a:World2EnemyY,X
     DEC a:World2EnemyX,X
     DEC a:World2EnemyX,X
@@ -181,20 +181,20 @@ Bank1_Func_A0A2:
     LDA a:World2EnemyX,X
     CMP #$F0
     BCC Bank1_Label_A0B8
-    JMP Bank1_Func_9B40
+    JMP World2_DeactivateEnemy
 
 Bank1_Label_A0B8:
     RTS
 
-Bank1_Func_A0B9:
+World2_RenderRoboShip:
     LDA World2FrameCounter
     AND #$04
     ROR A
     ROR A
     ADC #$38
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
 
-Bank1_Func_A0C4:
+World2_ApplyEnemyOrbitStep:
     LDY a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyY,X
     CLC

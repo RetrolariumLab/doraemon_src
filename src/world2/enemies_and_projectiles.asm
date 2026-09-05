@@ -76,7 +76,7 @@ Bank1_Func_8FA2:
     STA $68
     JSR World2_TestMetatileCollision
     BEQ Bank1_Label_8FC3
-    LDA $A9
+    LDA World2StageIndex
     ORA #$80
     STA $9C
 

@@ -1,8 +1,8 @@
 ; Doraemon PRG bank 1 $A0DC-$A611
-; World 2 later enemy handlers and movement tables
+; World 2 later enemy handlers, metasprites, and movement tables
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank1_Func_A0DC:
+World2_ApplyScrollingToEnemy:
     LDA $41
     BEQ Bank1_Label_A114
     LDY $42
@@ -36,7 +36,7 @@ Bank1_Label_A103:
     BCC Bank1_Label_A114
 
 Bank1_Label_A111:
-    JSR Bank1_Func_9B40
+    JSR World2_DeactivateEnemy
 
 Bank1_Label_A114:
     RTS
@@ -374,7 +374,7 @@ Bank1_Label_A308:
     AND #$0F
     CLC
     ADC #$13
-    JSR Bank1_Func_A35B
+    JSR World2_RenderEnemyMetaspriteIndex
     JMP World2_EnemyRenderDispatchContinuation
 
 Bank1_Label_A330:
@@ -408,10 +408,10 @@ Bank1_Label_A357:
     BPL Bank1_Label_A308
     RTS
 
-Bank1_Func_A35B:
+World2_RenderEnemyMetaspriteIndex:
     STX $64
     TAX
-    LDA a:$A4C4,X
+    LDA a:World2_MetaspriteDescriptors,X
     PHA
     AND #$03
     STA $62
@@ -447,19 +447,19 @@ Bank1_Func_A38C:
     EOR $63
     TAX
     PHA
-    LDA a:$A3DC,X
+    LDA a:World2_MetaspriteTileQuads,X
     STA $66
     LDA $65
     EOR $63
     TAX
     LDA $63
     BEQ Bank1_Label_A3A7
-    LDA a:$A526,X
+    LDA a:World2_MetaspriteOamAttributes,X
     EOR #$40
     JMP Bank1_Label_A3AA
 
 Bank1_Label_A3A7:
-    LDA a:$A526,X
+    LDA a:World2_MetaspriteOamAttributes,X
 
 Bank1_Label_A3AA:
     ORA $62
@@ -492,6 +492,8 @@ Bank1_Label_A3D3:
     ADC $60
     STA $60
     RTS
+
+World2_MetaspriteTileQuads:
     .byte $80, $81, $90, $91, $82, $83, $92, $93, $60, $61, $70, $71, $62, $63, $72, $73
     .byte $B4, $B4, $B4, $B4, $B5, $B5, $B5, $B5, $B6, $B6, $B6, $B6, $46, $46, $56, $56
     .byte $47, $47, $57, $57, $64, $65, $74, $75, $66, $67, $76, $77, $00, $00, $66, $67
@@ -506,11 +508,13 @@ Bank1_Label_A3D3:
     .byte $E2, $E3, $CC, $CD, $DC, $DD, $EC, $ED, $EB, $BF, $CE, $8E, $DE, $8F, $EE, $9E
     .byte $42, $43, $52, $53, $44, $45, $54, $55, $43, $42, $53, $52, $45, $44, $55, $54
     .byte $42, $43, $4C, $B7, $44, $45, $B8, $B9, $43, $42, $B7, $4C, $45, $44, $B9, $B8
-    .byte $48, $49, $58, $59, $5A, $5B, $58, $5C, $01, $01, $01, $01, $12, $12, $12, $05
-    .byte $05, $02, $02, $02, $0E, $0E, $03, $03, $03, $01, $09, $10, $10, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $16, $1A, $1F, $1F, $0F, $0F, $01, $01, $0D, $0D
-    .byte $01, $01, $01, $01, $01, $01, $01, $01, $03, $03, $23, $23, $03, $03, $23, $23
-    .byte $01
+    .byte $48, $49, $58, $59, $5A, $5B, $58, $5C
+
+World2_MetaspriteDescriptors:
+    .byte $01, $01, $01, $01, $12, $12, $12, $05, $05, $02, $02, $02, $0E, $0E, $03, $03
+    .byte $03, $01, $09, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $16, $1A
+    .byte $1F, $1F, $0F, $0F, $01, $01, $0D, $0D, $01, $01, $01, $01, $01, $01, $01, $01
+    .byte $03, $03, $23, $23, $03, $03, $23, $23, $01
 
 World2_EnemyAttackPeriodByState:
     .byte $01, $40, $30, $80, $30, $20, $40, $FF, $FF, $35, $FF, $FF, $20, $FF, $FF, $FF
@@ -518,9 +522,12 @@ World2_EnemyAttackPeriodByState:
 
 World2_EnemyDamageThresholdByState:
     .byte $04, $01, $01, $01, $01, $01, $01, $08, $02, $20, $03, $08, $04, $02, $20, $08
-    .byte $01, $20, $20, $20, $01, $00, $00, $00, $00, $00, $40, $00, $40, $80, $80, $80
-    .byte $80, $00, $00, $80, $80, $00, $40, $80, $C0, $20, $60, $20, $60, $A0, $E0, $A0
-    .byte $E0, $40, $40, $C0, $C0, $40, $40
+    .byte $01, $20, $20, $20, $01
+
+World2_MetaspriteOamAttributes:
+    .byte $00, $00, $00, $00, $00, $40, $00, $40, $80, $80, $80, $80, $00, $00, $80, $80
+    .byte $00, $40, $80, $C0, $20, $60, $20, $60, $A0, $E0, $A0, $E0, $40, $40, $C0, $C0
+    .byte $40, $40
 
 World2_EnemyRenderHandlerRtsTable:
     .byte $40, $40, $45, $9B, $57, $9B, $17, $9C, $84, $9C, $DD, $9C, $35, $9D, $C8, $9D

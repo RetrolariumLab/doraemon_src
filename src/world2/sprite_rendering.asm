@@ -103,14 +103,14 @@ Bank1_Func_96C8:
     .byte $03, $03, $02, $01, $00, $FF, $FE, $FD, $FD, $FD, $FE, $FF, $C1, $C1, $C2, $C1
     .byte $C2, $C2, $C1, $C2
 
-Bank1_Func_97C5:
-    LDX $A9
-    LDA $A4
+World2_UpdateBossEncounter:
+    LDX World2StageIndex
+    LDA World2BossEncounterState
     BNE Bank1_Label_97D5
     LDA World2CurrentScreenId
-    CMP a:$98BB,X
+    CMP a:World2_BossTriggerScreenByArea,X
     BNE Bank1_Label_97D4
-    INC $A4
+    INC World2BossEncounterState
 
 Bank1_Label_97D4:
     RTS
@@ -121,27 +121,27 @@ Bank1_Label_97D5:
     LDA $3F
     CMP #$F0
     BNE Bank1_Label_97D4
-    INC $A4
+    INC World2BossEncounterState
     LDA #$04
     STA a:AudioMusicState
-    LDA a:$98BE,X
+    LDA a:World2_BossStateByArea,X
     STA a:World2EnemyState
-    LDA a:$98C1,X
+    LDA a:World2_BossInitialXByArea,X
     STA a:World2EnemyX
-    LDA a:$98C4,X
+    LDA a:World2_BossInitialYByArea,X
     STA a:World2EnemyY
     LDX #$00
-    BEQ Bank1_Func_9858
+    BEQ World2_ResetSpawnedEnemyCombatState
 
 Bank1_Label_97FC:
     LDA a:World2EnemyState
     BNE Bank1_Label_9809
     LDA #$04
     JSR World2_Audio_QueueEffect
-    JMP Bank1_Func_98A3
+    JMP World2_CompleteBossEncounter
 
 Bank1_Label_9809:
-    LDX $A9
+    LDX World2StageIndex
     BEQ Bank1_Label_9864
     DEX
     BEQ Bank1_Label_9834
@@ -167,7 +167,7 @@ Bank1_Label_9823:
     STA a:World2EnemyY,X
     LDA #$C8
     STA a:World2EnemyX,X
-    BNE Bank1_Func_9858
+    BNE World2_ResetSpawnedEnemyCombatState
 
 Bank1_Label_9834:
     LDA World2FrameCounter
@@ -191,10 +191,10 @@ Bank1_Label_9847:
     LDA a:World2EnemyX
     STA a:World2EnemyX,X
 
-Bank1_Func_9858:
-    JSR Bank1_Func_9CD8
+World2_ResetSpawnedEnemyCombatState:
+    JSR World2_ResetEnemyPhaseCounter
 
-Bank1_Func_985B:
+World2_ClearEnemyCombatCounters:
     LDA #$00
     STA a:World2EnemyDamageCounter,X
     STA a:World2EnemyAttackTimer,X
@@ -227,7 +227,7 @@ Bank1_Label_9875:
     CLC
     ADC #$CE
     STA a:World2EnemyX,X
-    JSR Bank1_Func_9858
+    JSR World2_ResetSpawnedEnemyCombatState
     LDA World2FrameCounter
     LSR A
     LSR A
@@ -235,19 +235,32 @@ Bank1_Label_9875:
     LSR A
     AND #$0F
     TAY
-    LDA a:$98AB,Y
+    LDA a:World2_OroronProjectilePhaseSequence,Y
     STA a:World2EnemyBehaviorParameter,X
 
 Bank1_Label_98A2:
     RTS
 
-Bank1_Func_98A3:
+World2_CompleteBossEncounter:
     LDA #$05
     STA a:AudioMusicState
     INC $B3
     RTS
+
+World2_OroronProjectilePhaseSequence:
     .byte $02, $03, $04, $05, $06, $07, $08, $09, $0A, $09, $08, $07, $06, $05, $04, $03
-    .byte $11, $40, $67, $11, $12, $13, $DC, $78, $B4, $98, $50, $64
+
+World2_BossTriggerScreenByArea:
+    .byte $11, $40, $67
+
+World2_BossStateByArea:
+    .byte $11, $12, $13
+
+World2_BossInitialXByArea:
+    .byte $DC, $78, $B4
+
+World2_BossInitialYByArea:
+    .byte $98, $50, $64
 
 World2_SpawnEnemy:
     STX $75
@@ -278,6 +291,6 @@ Bank1_Label_98E0:
     STA a:World2EnemyX,X
     LDA $42
     STA a:World2EnemyBehaviorParameter,X
-    JSR Bank1_Func_985B
+    JSR World2_ClearEnemyCombatCounters
     LDX $75
     RTS

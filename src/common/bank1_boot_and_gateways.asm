@@ -268,7 +268,7 @@ Bank1_WriteMapper:
     NOP
     RTS
 
-Bank1_Func_81C9:
+World2_AddEncodedScore:
     STA $07
     LDA $27
     BNE Bank1_Label_81E5
@@ -284,7 +284,7 @@ Bank1_Func_81C9:
     TAX
     LDA $07
     AND #$0F
-    JSR Bank1_Func_81E6
+    JSR World2_AddScoreDigitWithCarry
     PLA
     TAX
     PLA
@@ -293,7 +293,7 @@ Bank1_Func_81C9:
 Bank1_Label_81E5:
     RTS
 
-Bank1_Func_81E6:
+World2_AddScoreDigitWithCarry:
     CLC
     ADC a:ScoreDigitsWorking,X
     LDY #$00
@@ -314,7 +314,7 @@ Bank1_Label_81F6:
 
 Bank1_Label_81FD:
     DEX
-    BPL Bank1_Func_81E6
+    BPL World2_AddScoreDigitWithCarry
     LDA #$09
     LDX #$05
 

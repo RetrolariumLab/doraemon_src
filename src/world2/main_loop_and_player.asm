@@ -14,7 +14,7 @@ Bank1_World2Main:
 Bank1_Label_88B1:
     LDA #$00
     STA World2FrameCounter
-    STA $A9
+    STA World2StageIndex
 
 Bank1_Label_88B7:
     LDX #$7F
@@ -32,10 +32,10 @@ Bank1_Label_88B7:
     STA $40
     STA $44
     STA $3F
-    STA $B8
+    STA World2TakkonDefeatStreak
     STA World2StageBranchCooldown
     STA $5F
-    STA $A4
+    STA World2BossEncounterState
     STA World2PendingBackgroundPalette
     STA $93
     STA $92
@@ -108,7 +108,7 @@ Bank1_World2FrameLoop:
     JSR World2_UpdatePlayerProjectiles
     JSR World2_UpdateEnemies
     JSR World2_UpdateEnemyProjectiles
-    JSR Bank1_Func_97C5
+    JSR World2_UpdateBossEncounter
     JSR Bank1_Func_8FA2
     JSR World2_CheckStageBranch
     JSR World2_UpdateInventorySpawns
@@ -243,15 +243,15 @@ Bank1_Func_8A46:
     STA $41
     LDA #$00
     STA $B3
-    STA $A4
+    STA World2BossEncounterState
     LDA #$64
     STA $AD
     LDA World2SavedBackgroundPalette
     STA World2PendingBackgroundPalette
-    LDA $A9
+    LDA World2StageIndex
     CMP #$02
     BEQ Bank1_Label_8A66
-    INC $A9
+    INC World2StageIndex
 
 Bank1_Label_8A66:
     BNE Bank1_Label_8A71
@@ -337,13 +337,13 @@ Bank1_Func_8AD0:
 
 Bank1_Func_8ADF:
     JSR Bank1_WaitForVblank
-    LDY $A9
+    LDY World2StageIndex
     LDX a:World2_StageSequenceStartOffsets,Y
     DEX
     STX World2StageSequenceOffset
     LDX a:World2_InitialSpritePaletteOffsets,Y
     JSR World2_UploadSpritePalette
-    LDX $A9
+    LDX World2StageIndex
     LDA a:World2_InitialBackgroundPaletteIds,X
     JSR World2_UploadBackgroundPalette
     LDA #$0F
@@ -405,7 +405,7 @@ Bank1_Func_8B4C:
     BNE Bank1_Label_8B64
 
 Bank1_Label_8B58:
-    LDX $A9
+    LDX World2StageIndex
     LDA a:$8BA2,X
     STA a:AudioMusicState
     LDA #$00

@@ -28,7 +28,7 @@
 .include "../world2/enemy_handlers_middle.asm"
 ; $9F84-$A0DB: World 2 late indirect enemy-state handlers
 .include "../world2/enemy_handlers_late.asm"
-; $A0DC-$A611: World 2 later enemy handlers and movement tables
+; $A0DC-$A611: World 2 later enemy handlers, metasprites, and movement tables
 .include "../world2/enemy_handlers.asm"
 ; $A612-$A80A: World 2 scrolling, stage progress, and boss-state services
 .include "../world2/stage_progress.asm"

@@ -115,8 +115,11 @@ is updated bitwise as metatiles are streamed into either nametable.
 | `World2InventoryY` | `$008A-$0090` | Seven companion/item Y coordinates |
 | `World2PendingBackgroundPalette` | `$009D` | Palette ID consumed and cleared by `$8747` |
 | `World2SavedStageSequenceOffset` | `$009E` | Branch return restored by stage token `$F7` |
+| `World2BossEncounterState` | `$00A4` | Waiting, boss-entry, or active encounter phase |
+| `World2StageIndex` | `$00A9` | Area index 0-2 for stage, palette, music, and boss tables |
 | `World2StageBranchCooldown` | `$00AE` | 255-frame lockout after a conditional stage branch |
 | `World2SavedBackgroundPalette` | `$00B4` | Palette ID restored after a transition |
+| `World2TakkonDefeatStreak` | `$00B8` | Consecutive state-02 defeats; creates an item at four |
 | `World2ScreenMetatiles` | `$0400-$04FF` | Expanded 16x16 screen used by rendering and collision |
 
 Stage tokens `$F9-$FF` write the same ID to the pending and saved palette

@@ -42,7 +42,11 @@ selectors, and five collision-extent tables are now machine-validated and
 losslessly editable. World 2's embedded screen-stream enemy tokens, overlapping
 screen views, lossless authoring data, token-to-state normalization, complete
 20-state runtime domain, three editable property tables, and dispatch graphs
-are proven;
+are proven. All 20 update/render edges are now structurally classified as 19
+unique update targets and 18 unique render targets, including deliberate
+  shared and no-op paths. All direct enemies, two Gangan variants, three bosses,
+  and their internal helpers now have evidence-backed identities; boss tables,
+  helper-spawn relationships, scores, and the four-Takkon item rule are enforced.
 World 3's initial thirteen-record persistent registry, randomized type groups,
 and low-type behavior pointers are now exact. All sixteen low-type behavior
 streams are decoded into a lossless editable format. Its full 32-type catalog,
@@ -84,7 +88,9 @@ Recover PPU update paths, palettes, sprites/metasprites, CHR ownership, title,
 HUD, dialogue, item names, and ending presentation. World 2's nine palette
 sets, background and sprite upload paths, stage palette commands, three chapter
 selector pairs, and deliberate code/data overlap are now exact and losslessly
-editable. World 3's 188-entry direct/alias sprite index, 65 variable-length
+editable. Its 58 fixed two-by-two metasprites, 36 OAM attribute values, CHR
+ownership, all 20 enemy-state index sets, and two shared-storage boundaries are
+also exact and losslessly editable. World 3's 188-entry direct/alias sprite index, 65 variable-length
 metasprites, eleven complete palette sets, and 64 room selectors are also exact
 and losslessly editable. Its NMI/disabled-rendering queue ownership, ring
 indexes, record flags, address calculators, and palette/attribute shadows are

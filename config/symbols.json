@@ -745,6 +745,18 @@
     },
     {
       "bank": 1,
+      "address": "0x81C9",
+      "name": "World2_AddEncodedScore",
+      "evidence": "high-nibble-selects-decimal-score-digit-and-low-nibble-is-added"
+    },
+    {
+      "bank": 1,
+      "address": "0x81E6",
+      "name": "World2_AddScoreDigitWithCarry",
+      "evidence": "adds-one-decimal-digit-and-propagates-base-ten-carry-toward-index-zero"
+    },
+    {
+      "bank": 1,
       "address": "0x8261",
       "name": "Bank1_MapperValueTable",
       "evidence": "mapper-write-index"
@@ -908,6 +920,65 @@
     },
     {
       "bank": 1,
+      "address": "0x97C5",
+      "name": "World2_UpdateBossEncounter",
+      "evidence": "area-indexed-trigger-screen-boss-state-position-and-helper-spawn-controller"
+    },
+    {
+      "bank": 1,
+      "address": "0x9858",
+      "name": "World2_ResetSpawnedEnemyCombatState",
+      "evidence": "resets-phase-damage-and-attack-timer-after-boss-helper-spawn"
+    },
+    {
+      "bank": 1,
+      "address": "0x985B",
+      "name": "World2_ClearEnemyCombatCounters",
+      "evidence": "clears-current-enemy-damage-counter-and-attack-timer"
+    },
+    {
+      "bank": 1,
+      "address": "0x98A3",
+      "name": "World2_CompleteBossEncounter",
+      "evidence": "restores-stage-music-state-and-advances-boss-completion-counter"
+    },
+    {
+      "bank": 1,
+      "address": "0x98AB",
+      "name": "World2_OroronProjectilePhaseSequence",
+      "operand_symbol": true,
+      "evidence": "sixteen-phase-parameter-sequence-assigned-to-state-10-ororon-projectiles"
+    },
+    {
+      "bank": 1,
+      "address": "0x98BB",
+      "name": "World2_BossTriggerScreenByArea",
+      "operand_symbol": true,
+      "evidence": "three-area-screen-id-table-indexed-by-world2-stage-index"
+    },
+    {
+      "bank": 1,
+      "address": "0x98BE",
+      "name": "World2_BossStateByArea",
+      "operand_symbol": true,
+      "evidence": "three-area-state-table-selecting-ororon-big-robo-ship-and-centaurus"
+    },
+    {
+      "bank": 1,
+      "address": "0x98C1",
+      "name": "World2_BossInitialXByArea",
+      "operand_symbol": true,
+      "evidence": "three-area-boss-initial-x-coordinate-table"
+    },
+    {
+      "bank": 1,
+      "address": "0x98C4",
+      "name": "World2_BossInitialYByArea",
+      "operand_symbol": true,
+      "evidence": "three-area-boss-initial-y-coordinate-table"
+    },
+    {
+      "bank": 1,
       "address": "0x98C7",
       "name": "World2_SpawnEnemy",
       "evidence": "finds-free-seven-slot-enemy-record-and-initializes-state-x-y"
@@ -932,6 +1003,270 @@
     },
     {
       "bank": 1,
+      "address": "0x99A7",
+      "name": "World2_ResolveDefeatedEnemy",
+      "evidence": "handles-state-02-four-defeat-item-rule-score-reward-and-defeat-animation"
+    },
+    {
+      "bank": 1,
+      "address": "0x99C4",
+      "name": "World2_AwardEnemyScore",
+      "evidence": "looks-up-state-indexed-encoded-score-reward-and-calls-decimal-adder"
+    },
+    {
+      "bank": 1,
+      "address": "0x9B2F",
+      "name": "World2_UpdateAnkodori",
+      "evidence": "state-01-phase-left-motion-scroll-and-left-edge-deactivation"
+    },
+    {
+      "bank": 1,
+      "address": "0x9B40",
+      "name": "World2_DeactivateEnemy",
+      "evidence": "clears-current-enemy-state-byte"
+    },
+    {
+      "bank": 1,
+      "address": "0x9B46",
+      "name": "World2_RenderAnkodori",
+      "evidence": "state-01-phase-bit-selects-two-metasprite-indexes"
+    },
+    {
+      "bank": 1,
+      "address": "0x9B58",
+      "name": "World2_RenderTakkon",
+      "evidence": "state-02-two-frame-render-reflected-toward-player"
+    },
+    {
+      "bank": 1,
+      "address": "0x9B73",
+      "name": "World2_UpdateMidronAndJoki",
+      "evidence": "states-03-and-0c-share-axis-selected-player-chase-and-collision-path"
+    },
+    {
+      "bank": 1,
+      "address": "0x9C18",
+      "name": "World2_RenderMidron",
+      "evidence": "state-03-four-frame-global-animation-sequence"
+    },
+    {
+      "bank": 1,
+      "address": "0x9C2C",
+      "name": "World2_UpdateTenkoumori",
+      "evidence": "state-04-left-motion-with-cyclic-vertical-displacement"
+    },
+    {
+      "bank": 1,
+      "address": "0x9C85",
+      "name": "World2_RenderTenkoumori",
+      "evidence": "state-04-two-frame-global-animation-sequence"
+    },
+    {
+      "bank": 1,
+      "address": "0x9C96",
+      "name": "World2_UpdateZenmaiuo",
+      "evidence": "state-05-right-then-left-motion-with-cyclic-vertical-displacement"
+    },
+    {
+      "bank": 1,
+      "address": "0x9CD8",
+      "name": "World2_ResetEnemyPhaseCounter",
+      "evidence": "clears-current-enemy-phase-counter"
+    },
+    {
+      "bank": 1,
+      "address": "0x9CDE",
+      "name": "World2_RenderZenmaiuo",
+      "evidence": "state-05-phase-selects-static-or-two-frame-animation"
+    },
+    {
+      "bank": 1,
+      "address": "0x9D05",
+      "name": "World2_UpdateGurinko",
+      "evidence": "state-06-phase-gated-vertical-wave-and-collision-probes"
+    },
+    {
+      "bank": 1,
+      "address": "0x9D2B",
+      "name": "World2_CommitEnemyCandidatePosition",
+      "evidence": "copies-candidate-x-y-into-current-enemy-record"
+    },
+    {
+      "bank": 1,
+      "address": "0x9D36",
+      "name": "World2_RenderGurinko",
+      "evidence": "state-06-active-half-phase-two-frame-animation"
+    },
+    {
+      "bank": 1,
+      "address": "0x9D4E",
+      "name": "World2_UpdateBorukka",
+      "evidence": "state-07-arming-delay-and-randomized-radial-projectile-emission"
+    },
+    {
+      "bank": 1,
+      "address": "0x9DC9",
+      "name": "World2_RenderBorukka",
+      "evidence": "state-07-visible-two-frame-animation-after-arming"
+    },
+    {
+      "bank": 1,
+      "address": "0x9DE1",
+      "name": "World2_UpdateGanganStraight",
+      "evidence": "state-08-applies-common-scroll-motion-twice"
+    },
+    {
+      "bank": 1,
+      "address": "0x9DE7",
+      "name": "World2_UpdateTakkon",
+      "evidence": "state-02-applies-common-scroll-motion-once"
+    },
+    {
+      "bank": 1,
+      "address": "0x9DEA",
+      "name": "World2_RenderGangan",
+      "evidence": "states-08-and-0f-share-reflected-four-frame-animation"
+    },
+    {
+      "bank": 1,
+      "address": "0x9E06",
+      "name": "World2_UpdateBuran",
+      "evidence": "state-09-one-time-left-shift-then-common-scroll-motion"
+    },
+    {
+      "bank": 1,
+      "address": "0x9E1A",
+      "name": "World2_RenderBuranInvisible",
+      "evidence": "state-09-render-slot-is-a-single-rts"
+    },
+    {
+      "bank": 1,
+      "address": "0x9E1B",
+      "name": "World2_UpdateTosshin",
+      "evidence": "state-0a-alternates-timed-player-directed-axis-motion"
+    },
+    {
+      "bank": 1,
+      "address": "0x9EB2",
+      "name": "World2_RenderTosshin",
+      "evidence": "state-0a-two-frame-global-animation-sequence"
+    },
+    {
+      "bank": 1,
+      "address": "0x9EBE",
+      "name": "World2_UpdateKyon",
+      "evidence": "state-0b-sixteen-step-axis-selected-motion-and-collision-path"
+    },
+    {
+      "bank": 1,
+      "address": "0x9EFB",
+      "name": "World2_RenderKyon",
+      "evidence": "state-0b-four-frame-phase-and-global-counter-animation"
+    },
+    {
+      "bank": 1,
+      "address": "0x9F2E",
+      "name": "World2_RenderJoki",
+      "evidence": "state-0c-two-frame-global-animation-sequence"
+    },
+    {
+      "bank": 1,
+      "address": "0x9F3A",
+      "name": "World2_UpdatePotta",
+      "evidence": "state-0d-delay-downward-shift-then-cyclic-vertical-wave"
+    },
+    {
+      "bank": 1,
+      "address": "0x9F84",
+      "name": "World2_RenderPotta",
+      "evidence": "state-0d-hidden-delay-then-phase-selected-two-frame-animation"
+    },
+    {
+      "bank": 1,
+      "address": "0x9F9A",
+      "name": "World2_UpdateJura",
+      "evidence": "state-0e-sixteen-step-two-axis-orbit-every-four-frames"
+    },
+    {
+      "bank": 1,
+      "address": "0x9FC5",
+      "name": "World2_UpdateGanganSpiral",
+      "evidence": "state-0f-combines-downward-motion-with-sixteen-step-orbit"
+    },
+    {
+      "bank": 1,
+      "address": "0x9FF4",
+      "name": "World2_UpdateOroronJuraProjectile",
+      "evidence": "state-10-left-three-pixel-motion-with-decaying-vertical-arc"
+    },
+    {
+      "bank": 1,
+      "address": "0xA021",
+      "name": "World2_RenderJuraAndOroronProjectile",
+      "evidence": "states-0e-and-10-share-four-phase-selected-metasprite-indexes"
+    },
+    {
+      "bank": 1,
+      "address": "0xA03D",
+      "name": "World2_OroronIwaStateNoOp",
+      "evidence": "state-11-update-and-render-slots-share-a-single-rts"
+    },
+    {
+      "bank": 1,
+      "address": "0xA03E",
+      "name": "World2_UpdateBigRoboShip",
+      "evidence": "state-12-sixteen-step-orbit-every-four-frames"
+    },
+    {
+      "bank": 1,
+      "address": "0xA048",
+      "name": "World2_UpdateCentaurus",
+      "evidence": "state-13-sixteen-step-orbit-every-two-frames"
+    },
+    {
+      "bank": 1,
+      "address": "0xA063",
+      "name": "World2_RenderCentaurus",
+      "evidence": "state-13-three-part-composite-with-slower-two-frame-base"
+    },
+    {
+      "bank": 1,
+      "address": "0xA06D",
+      "name": "World2_RenderBigRoboShip",
+      "evidence": "state-12-three-part-composite-metasprite"
+    },
+    {
+      "bank": 1,
+      "address": "0xA08C",
+      "name": "World2_RenderEnemyCompositePart",
+      "evidence": "positions-and-renders-one-offset-composite-enemy-part"
+    },
+    {
+      "bank": 1,
+      "address": "0xA0A2",
+      "name": "World2_UpdateRoboShip",
+      "evidence": "state-14-down-one-left-three-motion-until-offscreen"
+    },
+    {
+      "bank": 1,
+      "address": "0xA0B9",
+      "name": "World2_RenderRoboShip",
+      "evidence": "state-14-two-frame-animation-and-inactive-update-table-storage-target"
+    },
+    {
+      "bank": 1,
+      "address": "0xA0C4",
+      "name": "World2_ApplyEnemyOrbitStep",
+      "evidence": "applies-indexed-two-axis-orbit-delta-to-current-enemy"
+    },
+    {
+      "bank": 1,
+      "address": "0xA0DC",
+      "name": "World2_ApplyScrollingToEnemy",
+      "evidence": "applies-world2-scroll-delta-and-despawns-at-horizontal-boundaries"
+    },
+    {
+      "bank": 1,
       "address": "0xA140",
       "name": "World2_SpawnEnemyProjectile",
       "evidence": "finds-free-six-slot-projectile-and-derives-motion-from-enemy-to-player"
@@ -950,6 +1285,26 @@
     },
     {
       "bank": 1,
+      "address": "0xA35B",
+      "name": "World2_RenderEnemyMetaspriteIndex",
+      "evidence": "renders-current-enemy-from-indexed-world2-metasprite-pointer"
+    },
+    {
+      "bank": 1,
+      "address": "0xA3DC",
+      "name": "World2_MetaspriteTileQuads",
+      "operand_symbol": true,
+      "evidence": "58-four-tile-fixed-two-by-two-metasprite-records"
+    },
+    {
+      "bank": 1,
+      "address": "0xA4C4",
+      "name": "World2_MetaspriteDescriptors",
+      "operand_symbol": true,
+      "evidence": "58-palette-and-oam-attribute-base-descriptors"
+    },
+    {
+      "bank": 1,
       "address": "0xA4FD",
       "name": "World2_EnemyAttackPeriodByState",
       "operand_symbol": true,
@@ -964,9 +1319,16 @@
     },
     {
       "bank": 1,
+      "address": "0xA526",
+      "name": "World2_MetaspriteOamAttributes",
+      "operand_symbol": true,
+      "evidence": "36-piece-priority-and-flip-values-selected-by-metasprite-descriptor"
+    },
+    {
+      "bank": 1,
       "address": "0xA548",
       "name": "World2_EnemyRenderHandlerRtsTable",
-      "evidence": "enemy-state-target-minus-one-render-rts-dispatch-base"
+      "evidence": "unused-state-zero-prefix-followed-by-20-active-target-minus-one-render-slots"
     },
     {
       "bank": 1,
@@ -3249,6 +3611,30 @@
         1
       ],
       "evidence": "stage-command-palette-id-restored-after-world2-transition"
+    },
+    {
+      "address": "0x00A4",
+      "name": "World2BossEncounterState",
+      "banks": [
+        1
+      ],
+      "evidence": "zero-waits-for-trigger-one-scrolls-boss-into-view-and-two-runs-active-encounter"
+    },
+    {
+      "address": "0x00A9",
+      "name": "World2StageIndex",
+      "banks": [
+        1
+      ],
+      "evidence": "zero-through-two-selects-stage-sequence-palettes-boss-tables-and-stage-music"
+    },
+    {
+      "address": "0x00B8",
+      "name": "World2TakkonDefeatStreak",
+      "banks": [
+        1
+      ],
+      "evidence": "increments-only-for-defeated-state-02-spawns-item-at-four-and-resets-for-other-states"
     },
     {
       "address": "0x00A8",

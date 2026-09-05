@@ -42,7 +42,7 @@ Bank1_Label_9922:
     STX $76
     CMP #$70
     BCC Bank1_Label_9946
-    JSR Bank1_Func_A0DC
+    JSR World2_ApplyScrollingToEnemy
     LDA World2FrameCounter
     AND #$07
     BNE Bank1_Label_991A
@@ -111,21 +111,21 @@ Bank1_Label_9999:
 
 Bank1_Label_99A1:
     LDA #$78
-    BNE Bank1_Label_99A7
+    BNE World2_ResolveDefeatedEnemy
 
 Bank1_Label_99A5:
     LDA #$70
 
-Bank1_Label_99A7:
+World2_ResolveDefeatedEnemy:
     PHA
     LDA a:World2EnemyState,X
     TAY
     CMP #$02
     BNE Bank1_Label_99C0
-    INC $B8
-    LDA $B8
+    INC World2TakkonDefeatStreak
+    LDA World2TakkonDefeatStreak
     CMP #$04
-    BNE Bank1_Label_99C4
+    BNE World2_AwardEnemyScore
     LDA #$02
     STA World2InventoryState+$03
     STA World2InventoryX+$03
@@ -133,12 +133,12 @@ Bank1_Label_99A7:
 
 Bank1_Label_99C0:
     LDA #$00
-    STA $B8
+    STA World2TakkonDefeatStreak
 
-Bank1_Label_99C4:
+World2_AwardEnemyScore:
     LDA a:World2_EnemyScoreRewardCodeByState,Y
     BEQ Bank1_Label_99CC
-    JSR Bank1_Func_81C9
+    JSR World2_AddEncodedScore
 
 Bank1_Label_99CC:
     LDA #$05
@@ -399,18 +399,18 @@ Bank1_Label_9B2A:
     STA $6A
     RTS
 
-Bank1_Func_9B2F:
+World2_UpdateAnkodori:
     INC a:World2EnemyPhaseCounter,X
-    JSR Bank1_Func_A0DC
+    JSR World2_ApplyScrollingToEnemy
     LDA a:World2EnemyState,X
     BEQ Bank1_Label_9B3F
     DEC a:World2EnemyX,X
-    BEQ Bank1_Func_9B40
+    BEQ World2_DeactivateEnemy
 
 Bank1_Label_9B3F:
     RTS
 
-Bank1_Func_9B40:
+World2_DeactivateEnemy:
     LDA #$00
     STA a:World2EnemyState,X
     RTS

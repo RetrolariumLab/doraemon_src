@@ -102,9 +102,11 @@ make object-pools       # validate chapter pool capacities, fields, and lifecycl
 make object-dispatch    # validate indirect object-handler tables and code seeds
 make object-placements  # validate and round-trip World 1 object data
 make world2-enemy-states # validate World 2 token/state/property domains
+make world2-enemy-handlers # validate all World 2 enemy handler edges and roles
 make world2-stage-sequence # validate and round-trip World 2 stage bytecode
 make world2-metatiles   # validate and round-trip exact World 2 metatiles
 make world2-palettes    # validate and round-trip World 2 palette sets
+make world2-metasprites # validate and round-trip World 2 fixed metasprites
 make world3-object-catalog # validate and round-trip World 3 object/type data
 make world3-entity-types # validate all World 3 type properties and identities
 make maps               # describe all CadEditor-backed regions as JSON
@@ -129,9 +131,12 @@ config/object_pools.json machine-checked chapter entity storage contract
 config/object_dispatch.json indirect chapter object-handler tables
 config/object_placements.json World 1 placement and descriptor contract
 config/world2_enemy_states.json World 2 enemy token/state property contract
+config/world2_enemy_handlers.json World 2 state handler graph and roles
+config/world2_enemy_identities.json evidence-backed World 2 enemy roster
 config/world2_stage_sequence.json World 2 stage bytecode contract
 config/world2_metatiles.json exact World 2 metatile/render/collision contract
 config/world2_palettes.json World 2 palette lookup and upload contract
+config/world2_metasprites.json World 2 fixed metasprite and CHR contract
 config/world3_ppu_queue.json World 3 PPU ring, RAM, and code contract
 config/world3_metasprites.json World 3 metasprite and palette contract
 data/world1/object_data.json lossless editable World 1 object representation
@@ -139,6 +144,7 @@ data/world2/enemy_states.json lossless editable World 2 state properties
 data/world2/stage_sequence.json lossless editable World 2 stage sequence
 data/world2/metatiles.json lossless editable World 2 metatile catalog
 data/world2/palettes.json lossless editable World 2 palette catalog
+data/world2/metasprites.json lossless editable World 2 metasprite catalog
 data/world3/object_catalog.json lossless editable World 3 object/type catalog
 data/world3/metasprites.json lossless editable World 3 sprite/palette catalog
 config/symbols.json         bank-qualified semantic symbol registry
@@ -147,10 +153,16 @@ docs/                       architecture, formats, evidence, and roadmap
 docs/ram_fields.md          proved shared RAM layout and ownership notes
 docs/world3_dormant_code.md statically recovered but unreferenced code islands
 docs/world3_ppu_queue.md    World 3 NMI queue record and synchronization model
+docs/world2_enemy_handlers.md World 2 enemy handler graph and behavior roles
+docs/world2_enemy_identities.md World 2 canonical enemy/state identities
+docs/world2_metasprites.md  World 2 fixed sprite format and shared storage
 scripts/project.py          identity, split, bank report, and source policy
 scripts/run_ghidra.py       deterministic per-bank headless analysis
 scripts/generate_disassembly.py  Ghidra facts to canonical ca65 source
 scripts/map_data.py         CadEditor region validator
+scripts/world2_enemy_handlers.py World 2 enemy handler graph validator
+scripts/world2_enemy_identities.py World 2 enemy identity and boss validator
+scripts/world2_metasprites.py World 2 sprite validator/editor/renderer
 scripts/world3_ppu_queue.py World 3 PPU queue and symbol validator
 scripts/verify_rom.py       focused byte-difference diagnostics
 src/banks/bank_0.asm        generated bank 0 semantic include map

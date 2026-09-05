@@ -1,0 +1,566 @@
+{
+  "schema_version": 1,
+  "bank": 1,
+  "state_count": 20,
+  "identity_sources": [
+    {
+      "id": "local_rom",
+      "url": null,
+      "role": "state properties, handlers, metasprites, boss tables, helper spawns, and special rules"
+    },
+    {
+      "id": "wikiwiki_enemy_roster",
+      "url": "https://wikiwiki.jp/neskouryaku1/%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93",
+      "role": "Japanese World 2 enemy and boss names with behavior descriptions"
+    },
+    {
+      "id": "gamefaqs_enemy_values",
+      "url": "https://gamefaqs.gamespot.com/nes/578343-doraemon/faqs/48568",
+      "role": "independent World 2 score, durability, and boss-order list"
+    },
+    {
+      "id": "note_enemy_roster",
+      "url": "https://note.com/dandy_chimp6035/n/nf40eba9843d5",
+      "role": "independent Japanese World 2 enemy and boss roster"
+    }
+  ],
+  "score_encoding": {
+    "routine_address": "0x81C9",
+    "digit_count": 7,
+    "digit_index_field": "high_nibble",
+    "digit_addend_field": "low_nibble",
+    "points_formula": "low_nibble * 10 ** (6 - high_nibble)",
+    "signature": "85 07 A5 27 D0 16 98 48 8A 48 A5 07 4A 4A 4A 4A AA A5 07 29 0F 20 E6 81 68 AA 68 A8 60"
+  },
+  "boss_controller": {
+    "routine_address": "0x97C5",
+    "trigger_screen_table": {
+      "address": "0x98BB",
+      "values": [
+        "0x11",
+        "0x40",
+        "0x67"
+      ]
+    },
+    "boss_state_table": {
+      "address": "0x98BE",
+      "values": [
+        "0x11",
+        "0x12",
+        "0x13"
+      ]
+    },
+    "initial_x_table": {
+      "address": "0x98C1",
+      "values": [
+        "0xDC",
+        "0x78",
+        "0xB4"
+      ]
+    },
+    "initial_y_table": {
+      "address": "0x98C4",
+      "values": [
+        "0x98",
+        "0x50",
+        "0x64"
+      ]
+    }
+  },
+  "state_relationships": [
+    {
+      "name": "centaurus_spawns_tenkoumori",
+      "address": "0x9823",
+      "bytes": "A9 04 9D 58 05 A9 30 9D 66 05 A9 C8 9D 5F 05",
+      "source_states": [
+        "0x13"
+      ],
+      "result_states": [
+        "0x04"
+      ]
+    },
+    {
+      "name": "big_robo_ship_spawns_robo_ship",
+      "address": "0x9847",
+      "bytes": "A9 14 9D 58 05 AD 66 05 9D 66 05 AD 5F 05 9D 5F 05",
+      "source_states": [
+        "0x12"
+      ],
+      "result_states": [
+        "0x14"
+      ]
+    },
+    {
+      "name": "ororon_iwa_spawns_jura_projectile",
+      "address": "0x9875",
+      "bytes": "A9 08 20 56 A8 A9 10 9D 58 05 A9 80 9D 66 05",
+      "source_states": [
+        "0x11"
+      ],
+      "result_states": [
+        "0x10"
+      ]
+    }
+  ],
+  "special_rules": [
+    {
+      "name": "four_consecutive_takkon_defeats_spawn_item",
+      "address": "0x99A7",
+      "bytes": "48 BD 58 05 A8 C9 02 D0 10 E6 B8 A5 B8 C9 04 D0 0C A9 02 85 7F 85 86 85 8D A9 00 85 B8",
+      "state": "0x02",
+      "required_count": 4
+    }
+  ],
+  "identities": [
+    {
+      "state": 1,
+      "symbol": "ankodori",
+      "japanese_name": "アンコドリ",
+      "romanized_name": "Ankodori",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0x40",
+      "damage_threshold": 1,
+      "score_reward_code": "0x51",
+      "score_points": 10,
+      "metasprite_indexes": [
+        0,
+        1
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 2,
+      "symbol": "takkon",
+      "japanese_name": "タッコン",
+      "romanized_name": "Takkon",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0x30",
+      "damage_threshold": 1,
+      "score_reward_code": "0x52",
+      "score_points": 20,
+      "metasprite_indexes": [
+        2,
+        3
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 3,
+      "symbol": "midron",
+      "japanese_name": "ミドロン",
+      "romanized_name": "Midron",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0x80",
+      "damage_threshold": 1,
+      "score_reward_code": "0x53",
+      "score_points": 30,
+      "metasprite_indexes": [
+        4,
+        5,
+        6
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 4,
+      "symbol": "tenkoumori",
+      "japanese_name": "テンコウモリ",
+      "romanized_name": "Tenkoumori",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0x30",
+      "damage_threshold": 1,
+      "score_reward_code": "0x41",
+      "score_points": 100,
+      "metasprite_indexes": [
+        7,
+        8
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "note_enemy_roster"
+      ]
+    },
+    {
+      "state": 5,
+      "symbol": "zenmaiuo",
+      "japanese_name": "ゼンマイウオ",
+      "romanized_name": "Zenmaiuo",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0x20",
+      "damage_threshold": 1,
+      "score_reward_code": "0x31",
+      "score_points": 1000,
+      "metasprite_indexes": [
+        9,
+        10,
+        11
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "note_enemy_roster"
+      ]
+    },
+    {
+      "state": 6,
+      "symbol": "gurinko",
+      "japanese_name": "グリンコ",
+      "romanized_name": "Gurinko",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0x40",
+      "damage_threshold": 1,
+      "score_reward_code": "0x55",
+      "score_points": 50,
+      "metasprite_indexes": [
+        12,
+        13
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "note_enemy_roster"
+      ]
+    },
+    {
+      "state": 7,
+      "symbol": "borukka",
+      "japanese_name": "ボルッカ",
+      "romanized_name": "Borukka",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0xFF",
+      "damage_threshold": 8,
+      "score_reward_code": "0x43",
+      "score_points": 300,
+      "metasprite_indexes": [
+        14,
+        15
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 8,
+      "symbol": "gangan_straight",
+      "japanese_name": "ガンガン",
+      "romanized_name": "Gangan",
+      "variant": "straight",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0xFF",
+      "damage_threshold": 2,
+      "score_reward_code": "0x45",
+      "score_points": 500,
+      "metasprite_indexes": [
+        17,
+        18
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 9,
+      "symbol": "buran",
+      "japanese_name": "ブラン",
+      "romanized_name": "Buran",
+      "category": "background_enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0x35",
+      "damage_threshold": 32,
+      "score_reward_code": "0x32",
+      "score_points": 2000,
+      "metasprite_indexes": [],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 10,
+      "symbol": "tosshin",
+      "japanese_name": "トッシン",
+      "romanized_name": "Tosshin",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0xFF",
+      "damage_threshold": 3,
+      "score_reward_code": "0x45",
+      "score_points": 500,
+      "metasprite_indexes": [
+        36,
+        37
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "note_enemy_roster"
+      ]
+    },
+    {
+      "state": 11,
+      "symbol": "kyon",
+      "japanese_name": "キョン",
+      "romanized_name": "Kyon",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0xFF",
+      "damage_threshold": 8,
+      "score_reward_code": "0x45",
+      "score_points": 500,
+      "metasprite_indexes": [
+        32,
+        33,
+        34,
+        35
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "note_enemy_roster"
+      ]
+    },
+    {
+      "state": 12,
+      "symbol": "joki",
+      "japanese_name": "ジョキ",
+      "romanized_name": "Joki",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0x20",
+      "damage_threshold": 4,
+      "score_reward_code": "0x31",
+      "score_points": 1000,
+      "metasprite_indexes": [
+        38,
+        39
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 13,
+      "symbol": "potta",
+      "japanese_name": "ポッタ",
+      "romanized_name": "Potta",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0xFF",
+      "damage_threshold": 2,
+      "score_reward_code": "0x41",
+      "score_points": 100,
+      "metasprite_indexes": [
+        30,
+        31
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "note_enemy_roster"
+      ]
+    },
+    {
+      "state": 14,
+      "symbol": "jura",
+      "japanese_name": "ジュラ",
+      "romanized_name": "Jura",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0xFF",
+      "damage_threshold": 32,
+      "score_reward_code": "0x41",
+      "score_points": 100,
+      "metasprite_indexes": [
+        23,
+        24,
+        25
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "note_enemy_roster"
+      ]
+    },
+    {
+      "state": 15,
+      "symbol": "gangan_spiral",
+      "japanese_name": "ガンガン",
+      "romanized_name": "Gangan",
+      "variant": "spiral",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_spawn",
+      "attack_period": "0xFF",
+      "damage_threshold": 8,
+      "score_reward_code": "0x31",
+      "score_points": 1000,
+      "metasprite_indexes": [
+        17,
+        18
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 16,
+      "symbol": "ororon_jura_projectile",
+      "japanese_name": null,
+      "romanized_name": "Ororon Jura projectile",
+      "variant": "jura_like_projectile",
+      "category": "boss_projectile",
+      "confidence": "structural",
+      "lifecycle": "internal",
+      "attack_period": "0xFF",
+      "damage_threshold": 1,
+      "score_reward_code": "0x00",
+      "score_points": 0,
+      "metasprite_indexes": [
+        23,
+        24,
+        25
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster"
+      ]
+    },
+    {
+      "state": 17,
+      "symbol": "ororon_iwa",
+      "japanese_name": "オロロン岩",
+      "romanized_name": "Ororon Iwa",
+      "category": "boss",
+      "confidence": "confirmed",
+      "lifecycle": "internal",
+      "attack_period": "0xFF",
+      "damage_threshold": 32,
+      "score_reward_code": "0x21",
+      "score_points": 10000,
+      "metasprite_indexes": [],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 18,
+      "symbol": "big_robo_ship",
+      "japanese_name": "ビッグロボシップ",
+      "romanized_name": "Big Robo Ship",
+      "category": "boss",
+      "confidence": "confirmed",
+      "lifecycle": "internal",
+      "attack_period": "0xFF",
+      "damage_threshold": 32,
+      "score_reward_code": "0x21",
+      "score_points": 10000,
+      "metasprite_indexes": [
+        40,
+        41,
+        42,
+        44,
+        45,
+        46
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 19,
+      "symbol": "centaurus",
+      "japanese_name": "ケンタウルス",
+      "romanized_name": "Centaurus",
+      "category": "boss",
+      "confidence": "confirmed",
+      "lifecycle": "internal",
+      "attack_period": "0xFF",
+      "damage_threshold": 32,
+      "score_reward_code": "0x21",
+      "score_points": 10000,
+      "metasprite_indexes": [
+        48,
+        49,
+        50,
+        52,
+        53,
+        54
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    },
+    {
+      "state": 20,
+      "symbol": "robo_ship",
+      "japanese_name": "ロボシップ",
+      "romanized_name": "Robo Ship",
+      "category": "boss_helper",
+      "confidence": "confirmed",
+      "lifecycle": "internal",
+      "attack_period": "0x04",
+      "damage_threshold": 1,
+      "score_reward_code": "0x45",
+      "score_points": 500,
+      "metasprite_indexes": [
+        56,
+        57
+      ],
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values"
+      ]
+    }
+  ]
+}

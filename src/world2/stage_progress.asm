@@ -102,7 +102,7 @@ Bank1_Label_A69A:
     LDA #$09
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$11
-    JSR Bank1_Func_81C9
+    JSR World2_AddEncodedScore
     RTS
 
 Bank1_Label_A6AA:

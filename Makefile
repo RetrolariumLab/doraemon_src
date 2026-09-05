@@ -42,6 +42,8 @@ OBJECT_PLACEMENTS_AUTHORING := data/world1/object_data.json
 WORLD2_STREAMING := config/world2_streaming.json
 WORLD2_SCREEN_AUTHORING := data/world2/compressed_screens.json
 WORLD2_ENEMY_STATES := config/world2_enemy_states.json
+WORLD2_ENEMY_HANDLERS := config/world2_enemy_handlers.json
+WORLD2_ENEMY_IDENTITIES := config/world2_enemy_identities.json
 WORLD2_ENEMY_AUTHORING := data/world2/enemy_states.json
 WORLD2_STAGE_SEQUENCE := config/world2_stage_sequence.json
 WORLD2_STAGE_AUTHORING := data/world2/stage_sequence.json
@@ -53,6 +55,8 @@ WORLD2_METATILES := config/world2_metatiles.json
 WORLD2_METATILE_AUTHORING := data/world2/metatiles.json
 WORLD2_PALETTES := config/world2_palettes.json
 WORLD2_PALETTE_AUTHORING := data/world2/palettes.json
+WORLD2_METASPRITES := config/world2_metasprites.json
+WORLD2_METASPRITE_AUTHORING := data/world2/metasprites.json
 WORLD3_OBJECT_DATA := config/world3_object_data.json
 WORLD3_BEHAVIOR := config/world3_behavior.json
 WORLD3_BEHAVIOR_AUTHORING := data/world3/behavior_streams.json
@@ -83,11 +87,14 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	object-dispatch validate-object-dispatch object-placements \
 	validate-object-placements world2-streaming validate-world2-streaming \
 	world2-enemy-states validate-world2-enemy-states \
+	world2-enemy-handlers validate-world2-enemy-handlers \
+	world2-enemy-identities validate-world2-enemy-identities \
 	world2-stage-sequence validate-world2-stage-sequence \
 	world2-stage-branches validate-world2-stage-branches \
 	world2-inventory validate-world2-inventory \
 	world2-metatiles validate-world2-metatiles \
 	world2-palettes validate-world2-palettes \
+	world2-metasprites validate-world2-metasprites \
 	world3-object-data validate-world3-object-data world3-behavior \
 	validate-world3-behavior world3-entity-types validate-world3-entity-types \
 	world3-object-catalog validate-world3-object-catalog \
@@ -249,6 +256,20 @@ world2-enemy-states validate-world2-enemy-states: $(PRG_ASSET)
 		--screen-authoring "$(WORLD2_SCREEN_AUTHORING)" \
 		--authoring "$(WORLD2_ENEMY_AUTHORING)"
 
+world2-enemy-handlers validate-world2-enemy-handlers: $(PRG_ASSET)
+	$(PYTHON) scripts/world2_enemy_handlers.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_ENEMY_HANDLERS)" \
+		--object-dispatch "$(OBJECT_DISPATCH)" \
+		--enemy-states "$(WORLD2_ENEMY_STATES)" \
+		--symbols "$(SYMBOLS)"
+
+world2-enemy-identities validate-world2-enemy-identities: $(PRG_ASSET)
+	$(PYTHON) scripts/world2_enemy_identities.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_ENEMY_IDENTITIES)" \
+		--enemy-states "$(WORLD2_ENEMY_STATES)" \
+		--enemy-handlers "$(WORLD2_ENEMY_HANDLERS)" \
+		--metasprites "$(WORLD2_METASPRITES)"
+
 world2-stage-sequence validate-world2-stage-sequence: $(PRG_ASSET)
 	$(PYTHON) scripts/world2_stage_sequence.py validate --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD2_STAGE_SEQUENCE)" \
@@ -277,6 +298,16 @@ world2-palettes validate-world2-palettes: $(PRG_ASSET)
 		--manifest "$(WORLD2_PALETTES)" \
 		--stage-authoring "$(WORLD2_STAGE_AUTHORING)" \
 		--authoring "$(WORLD2_PALETTE_AUTHORING)"
+
+world2-metasprites validate-world2-metasprites: $(PRG_ASSET) $(CHR_ASSET)
+	$(PYTHON) scripts/world2_metasprites.py validate --prg "$(PRG_ASSET)" \
+		--chr "$(CHR_ASSET)" \
+		--manifest "$(WORLD2_METASPRITES)" \
+		--enemy-states "$(WORLD2_ENEMY_STATES)" \
+		--enemy-handlers "$(WORLD2_ENEMY_HANDLERS)" \
+		--object-dispatch "$(OBJECT_DISPATCH)" \
+		--palette-manifest "$(WORLD2_PALETTES)" \
+		--authoring "$(WORLD2_METASPRITE_AUTHORING)"
 
 world3-object-data validate-world3-object-data: $(PRG_ASSET)
 	$(PYTHON) scripts/world3_object_data.py --prg "$(PRG_ASSET)" \
@@ -364,11 +395,14 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-audio-dispatch validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world2-streaming \
 	validate-world2-enemy-states \
+	validate-world2-enemy-handlers \
+	validate-world2-enemy-identities \
 	validate-world2-stage-sequence \
 	validate-world2-stage-branches \
 	validate-world2-inventory \
 	validate-world2-metatiles \
 	validate-world2-palettes \
+	validate-world2-metasprites \
 	validate-world3-object-data validate-world3-behavior \
 	validate-world3-entity-types validate-world3-object-catalog \
 	validate-world3-spawn-initializers \

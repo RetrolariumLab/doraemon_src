@@ -2,7 +2,7 @@
 ; World 2 early indirect enemy-state handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank1_Func_9B46:
+World2_RenderAnkodori:
     LDA #$00
     STA $98
     LDA a:World2EnemyPhaseCounter,X
@@ -12,9 +12,9 @@ Bank1_Func_9B46:
 
 Bank1_Label_9B53:
     LDA $98
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
 
-Bank1_Func_9B58:
+World2_RenderTakkon:
     LDA #$02
     STA $98
     LDA World2FrameCounter
@@ -29,9 +29,9 @@ Bank1_Label_9B64:
     ROL A
     STA $63
     LDA $98
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
 
-Bank1_Func_9B73:
+World2_UpdateMidronAndJoki:
     LDA a:World2EnemyBehaviorParameter,X
     BEQ Bank1_Label_9BC7
     INC a:World2EnemyPhaseCounter,X
@@ -77,10 +77,10 @@ Bank1_Label_9BBA:
     STA $67
     JSR World2_TestMetatileCollision
     BNE Bank1_Label_9BC4
-    JSR Bank1_Func_9D2B
+    JSR World2_CommitEnemyCandidatePosition
 
 Bank1_Label_9BC4:
-    JMP Bank1_Func_A0DC
+    JMP World2_ApplyScrollingToEnemy
 
 Bank1_Label_9BC7:
     INC a:World2EnemyPhaseCounter,X
@@ -127,13 +127,13 @@ Bank1_Label_9C03:
     STA a:World2EnemyY,X
 
 Bank1_Label_9C0F:
-    JMP Bank1_Func_A0DC
+    JMP World2_ApplyScrollingToEnemy
 
 Bank1_Label_9C12:
-    JSR Bank1_Func_9CD8
-    JMP Bank1_Func_A0DC
+    JSR World2_ResetEnemyPhaseCounter
+    JMP World2_ApplyScrollingToEnemy
 
-Bank1_Func_9C18:
+World2_RenderMidron:
     LDA World2FrameCounter
     AND #$18
     LSR A
@@ -142,11 +142,11 @@ Bank1_Func_9C18:
     TAX
     LDA a:$9C28,X
     LDX $76
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
     .byte $04, $05, $06, $05
 
-Bank1_Func_9C2C:
-    JSR Bank1_Func_A0DC
+World2_UpdateTenkoumori:
+    JSR World2_ApplyScrollingToEnemy
     LDA World2FrameCounter
     AND #$01
     BNE Bank1_Label_9C38
@@ -181,7 +181,7 @@ Bank1_Label_9C65:
     STA $67
     JSR World2_TestMetatileCollision
     BNE Bank1_Label_9C72
-    JSR Bank1_Func_9D2B
+    JSR World2_CommitEnemyCandidatePosition
     JMP Bank1_Label_9C78
 
 Bank1_Label_9C72:
@@ -192,12 +192,12 @@ Bank1_Label_9C78:
     LDA a:World2EnemyPhaseCounter,X
     CMP #$40
     BCC Bank1_Label_9CA4
-    JMP Bank1_Func_9CD8
+    JMP World2_ResetEnemyPhaseCounter
 
 Bank1_Label_9C82:
-    JMP Bank1_Func_9B40
+    JMP World2_DeactivateEnemy
 
-Bank1_Func_9C85:
+World2_RenderTenkoumori:
     LDA #$08
     STA $98
     LDA World2FrameCounter
@@ -207,10 +207,10 @@ Bank1_Func_9C85:
 
 Bank1_Label_9C91:
     LDA $98
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
 
-Bank1_Func_9C96:
-    JSR Bank1_Func_A0DC
+World2_UpdateZenmaiuo:
+    JSR World2_ApplyScrollingToEnemy
     INC a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyPhaseCounter,X
     SEC
@@ -244,21 +244,21 @@ Bank1_Label_9CC7:
     STA $67
     JSR World2_TestMetatileCollision
     BNE Bank1_Label_9CD1
-    JSR Bank1_Func_9D2B
+    JSR World2_CommitEnemyCandidatePosition
 
 Bank1_Label_9CD1:
     LDA a:World2EnemyPhaseCounter,X
     CMP #$72
     BNE Bank1_Label_9CDD
 
-Bank1_Func_9CD8:
+World2_ResetEnemyPhaseCounter:
     LDA #$00
     STA a:World2EnemyPhaseCounter,X
 
 Bank1_Label_9CDD:
     RTS
 
-Bank1_Func_9CDE:
+World2_RenderZenmaiuo:
     LDA a:World2EnemyPhaseCounter,X
     CMP #$32
     BCS Bank1_Label_9CEB
@@ -282,9 +282,9 @@ Bank1_Label_9CF7:
 
 Bank1_Label_9D00:
     LDA $98
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
 
-Bank1_Func_9D05:
+World2_UpdateGurinko:
     JSR Bank1_Func_9DE4
     LDA a:World2EnemyState,X
     BEQ Bank1_Label_9D35
@@ -302,7 +302,7 @@ Bank1_Func_9D05:
     JSR World2_TestMetatileCollision
     BNE Bank1_Label_9D35
 
-Bank1_Func_9D2B:
+World2_CommitEnemyCandidatePosition:
     LDA $67
     STA a:World2EnemyX,X
     LDA $68
@@ -311,7 +311,7 @@ Bank1_Func_9D2B:
 Bank1_Label_9D35:
     RTS
 
-Bank1_Func_9D36:
+World2_RenderGurinko:
     LDA #$0C
     STA $98
     LDA a:World2EnemyPhaseCounter,X
@@ -324,4 +324,4 @@ Bank1_Func_9D36:
 
 Bank1_Label_9D49:
     LDA $98
-    JMP Bank1_Func_A35B
+    JMP World2_RenderEnemyMetaspriteIndex
