@@ -355,7 +355,7 @@ Bank0_Func_9462:
     LDX $B3
     LDA a:World1EntityType,Y
     AND #$3F
-    CMP a:$94D9,X
+    CMP a:World1_InvincibilityDefeatSequence,X
     BNE Bank0_Label_947F
     INC $B3
     LDA $B3
@@ -412,8 +412,11 @@ Bank0_Label_94CF:
     RTS
 
 World1_TransientDescriptorSelectorTable:
-    .byte $06, $0A, $0B, $02, $0C, $06, $06, $05, $04, $01, $06, $06, $A2, $15, $CA, $D0
-    .byte $FD, $EA, $EA, $88, $D0, $F6, $60
+    .byte $06, $0A, $0B, $02, $0C
+
+World1_InvincibilityDefeatSequence:
+    .byte $06, $06, $05, $04, $01, $06, $06, $A2, $15, $CA, $D0, $FD, $EA, $EA, $88, $D0
+    .byte $F6, $60
 
 Bank0_Func_94EB:
     LDA a:$0180

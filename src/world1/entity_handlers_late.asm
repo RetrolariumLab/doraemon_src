@@ -2,7 +2,7 @@
 ; World 1 low-state entity handlers at E14B through E315
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-World1_EntityHandler_State08:
+World1_UpdateDobakku:
     LDA #$02
     STA $99
     STA $9A
@@ -99,7 +99,7 @@ Bank0_Label_E1D1:
 Bank0_Label_E1DF:
     RTS
 
-World1_EntityHandler_State09:
+World1_UpdateHerimeda:
     LDA a:World1EntityPrimaryBehavior,X
     LSR A
     LSR A
@@ -141,7 +141,7 @@ Bank0_Label_E22A:
     .byte $03, $02, $01, $00, $00, $FF, $FE, $FD, $FD, $FE, $FF, $00, $00, $01, $02, $03
     .byte $A9, $80, $9D, $50, $05, $4C, $A0, $8E
 
-World1_EntityHandler_State0A:
+World1_UpdateGiraamin:
     LDA #$02
     STA $99
     LDA #$03

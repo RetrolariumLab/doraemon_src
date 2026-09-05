@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "state_count": 15,
+  "identity_sources": [
+    {
+      "id": "local_rom",
+      "url": null,
+      "role": "runtime states, property tables, handlers, metasprites, placement context, and secret sequence"
+    },
+    {
+      "id": "wikiwiki_enemy_roster",
+      "url": "https://wikiwiki.jp/neskouryaku1/%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93",
+      "role": "Japanese World 1 enemy and boss names with behavior descriptions"
+    },
+    {
+      "id": "gamefaqs_enemy_values",
+      "url": "https://gamefaqs.gamespot.com/nes/578343-doraemon/faqs/48568",
+      "role": "independent English visual labels, score values, durability, and six-enemy secret order"
+    },
+    {
+      "id": "strategywiki_reference_sprites",
+      "url": "https://strategywiki.org/wiki/Category:Doraemon_images",
+      "role": "independent World 1 reference sprite images and visual ordering"
+    }
+  ],
+  "secret_sequence": {
+    "address": "0x94D9",
+    "runtime_states": [
+      "0x06",
+      "0x06",
+      "0x05",
+      "0x04",
+      "0x01",
+      "0x06"
+    ],
+    "reward_descriptor_index": "0x04"
+  },
+  "identities": [
+    {
+      "state": 1,
+      "symbol": "yuubou",
+      "japanese_name": "ユーボウ",
+      "romanized_name": "Yuubou",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x64",
+      "initial_health": 2,
+      "score_reward_code": "0x42",
+      "score_points": 200,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 2,
+      "symbol": "suneraa",
+      "japanese_name": "スネラー",
+      "romanized_name": "Suneraa",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x5C",
+      "initial_health": 1,
+      "score_reward_code": "0x42",
+      "score_points": 200,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 3,
+      "symbol": "mekanosso",
+      "japanese_name": "メカノッソ",
+      "romanized_name": "Mekanosso",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x56",
+      "initial_health": 2,
+      "score_reward_code": "0x45",
+      "score_points": 500,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 4,
+      "symbol": "gozura",
+      "japanese_name": "ゴズラ",
+      "romanized_name": "Gozura",
+      "variant": "city",
+      "category": "enemy_mode_variant",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x60",
+      "initial_health": 4,
+      "score_reward_code": "0x41",
+      "score_points": 100,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 5,
+      "symbol": "naame",
+      "japanese_name": "ナーメ",
+      "romanized_name": "Naame",
+      "variant": "city",
+      "category": "enemy_mode_variant",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x58",
+      "initial_health": 1,
+      "score_reward_code": "0x42",
+      "score_points": 200,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 6,
+      "symbol": "kobuun",
+      "japanese_name": "コブーン",
+      "romanized_name": "Kobuun",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x4C",
+      "initial_health": 1,
+      "score_reward_code": "0x55",
+      "score_points": 50,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 7,
+      "symbol": "nezumi",
+      "japanese_name": "ネズミ",
+      "romanized_name": "Nezumi",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x54",
+      "initial_health": 2,
+      "score_reward_code": "0x48",
+      "score_points": 800,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 8,
+      "symbol": "dobakku",
+      "japanese_name": "ドバック",
+      "romanized_name": "Dobakku",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x70",
+      "initial_health": 1,
+      "score_reward_code": "0x55",
+      "score_points": 50,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 9,
+      "symbol": "herimeda",
+      "japanese_name": "ヘリメダ",
+      "romanized_name": "Herimeda",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x6C",
+      "initial_health": 2,
+      "score_reward_code": "0x31",
+      "score_points": 1000,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 10,
+      "symbol": "giraamin",
+      "japanese_name": "ギラーミン",
+      "romanized_name": "Giraamin",
+      "category": "enemy",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x3E",
+      "initial_health": 4,
+      "score_reward_code": "0x55",
+      "score_points": 50,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 11,
+      "symbol": "gozura",
+      "japanese_name": "ゴズラ",
+      "romanized_name": "Gozura",
+      "variant": "underground",
+      "category": "enemy_mode_variant",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x60",
+      "initial_health": 4,
+      "score_reward_code": "0x55",
+      "score_points": 50,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 12,
+      "symbol": "naame",
+      "japanese_name": "ナーメ",
+      "romanized_name": "Naame",
+      "variant": "underground",
+      "category": "enemy_mode_variant",
+      "confidence": "confirmed",
+      "lifecycle": "direct_placement",
+      "metasprite_base": "0x58",
+      "initial_health": 1,
+      "score_reward_code": "0x55",
+      "score_points": 50,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 13,
+      "symbol": "dormant_state_0d",
+      "japanese_name": null,
+      "romanized_name": "Dormant state 0D",
+      "category": "dormant",
+      "confidence": "structural",
+      "lifecycle": "dormant_dispatch_state",
+      "score_reward_code": "0x21",
+      "score_points": 10000,
+      "evidence": [
+        "local_rom"
+      ]
+    },
+    {
+      "state": 14,
+      "symbol": "bull_robo",
+      "japanese_name": "ブルロボ",
+      "romanized_name": "Bull Robo",
+      "variant": "scripted_state_0e",
+      "category": "boss",
+      "confidence": "confirmed",
+      "lifecycle": "scripted_boss_state",
+      "score_reward_code": "0x55",
+      "score_points": 50,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    },
+    {
+      "state": 15,
+      "symbol": "bull_robo",
+      "japanese_name": "ブルロボ",
+      "romanized_name": "Bull Robo",
+      "variant": "scripted_state_0f",
+      "category": "boss",
+      "confidence": "confirmed",
+      "lifecycle": "scripted_boss_state",
+      "score_reward_code": "0x55",
+      "score_points": 50,
+      "evidence": [
+        "local_rom",
+        "wikiwiki_enemy_roster",
+        "gamefaqs_enemy_values",
+        "strategywiki_reference_sprites"
+      ]
+    }
+  ],
+  "signatures": [
+    {
+      "name": "six_defeat_sequence_checker",
+      "address": "0x9462",
+      "bytes": "8A 48 98 48 A6 B3 B9 00 04 29 3F DD D9 94 D0 0D E6 B3 A5 B3 C9 06 D0 09 A9 04 4C 94 94 A9 00 85 B3"
+    }
+  ]
+}

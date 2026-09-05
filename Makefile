@@ -39,6 +39,10 @@ OBJECT_POOLS := config/object_pools.json
 OBJECT_DISPATCH := config/object_dispatch.json
 OBJECT_PLACEMENTS := config/object_placements.json
 OBJECT_PLACEMENTS_AUTHORING := data/world1/object_data.json
+WORLD1_METASPRITES := config/world1_metasprites.json
+WORLD1_METASPRITE_AUTHORING := data/world1/metasprites.json
+WORLD1_ENEMY_HANDLERS := config/world1_enemy_handlers.json
+WORLD1_ENEMY_IDENTITIES := config/world1_enemy_identities.json
 WORLD2_STREAMING := config/world2_streaming.json
 WORLD2_SCREEN_AUTHORING := data/world2/compressed_screens.json
 WORLD2_ENEMY_STATES := config/world2_enemy_states.json
@@ -85,7 +89,10 @@ WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
 	audio-dispatch validate-audio-dispatch object-pools validate-object-pools \
 	object-dispatch validate-object-dispatch object-placements \
-	validate-object-placements world2-streaming validate-world2-streaming \
+	validate-object-placements world1-metasprites validate-world1-metasprites \
+	world1-enemy-handlers validate-world1-enemy-handlers \
+	world1-enemy-identities validate-world1-enemy-identities \
+	world2-streaming validate-world2-streaming \
 	world2-enemy-states validate-world2-enemy-states \
 	world2-enemy-handlers validate-world2-enemy-handlers \
 	world2-enemy-identities validate-world2-enemy-identities \
@@ -243,6 +250,27 @@ object-placements validate-object-placements: $(PRG_ASSET)
 		--manifest "$(OBJECT_PLACEMENTS)" \
 		--authoring "$(OBJECT_PLACEMENTS_AUTHORING)"
 
+world1-metasprites validate-world1-metasprites: $(PRG_ASSET) $(CHR_ASSET)
+	$(PYTHON) scripts/world1_metasprites.py validate --prg "$(PRG_ASSET)" \
+		--chr "$(CHR_ASSET)" \
+		--manifest "$(WORLD1_METASPRITES)" \
+		--objects "$(OBJECT_PLACEMENTS)" \
+		--authoring "$(WORLD1_METASPRITE_AUTHORING)"
+
+world1-enemy-handlers validate-world1-enemy-handlers: $(PRG_ASSET)
+	$(PYTHON) scripts/world1_enemy_handlers.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_ENEMY_HANDLERS)" \
+		--object-dispatch "$(OBJECT_DISPATCH)" \
+		--placements "$(OBJECT_PLACEMENTS_AUTHORING)" \
+		--metasprites "$(WORLD1_METASPRITE_AUTHORING)" \
+		--symbols "$(SYMBOLS)"
+
+world1-enemy-identities validate-world1-enemy-identities: $(PRG_ASSET)
+	$(PYTHON) scripts/world1_enemy_identities.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_ENEMY_IDENTITIES)" \
+		--handlers "$(WORLD1_ENEMY_HANDLERS)" \
+		--metasprites "$(WORLD1_METASPRITE_AUTHORING)"
+
 world2-streaming validate-world2-streaming: $(PRG_ASSET)
 	$(PYTHON) scripts/world2_streaming.py validate --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD2_STREAMING)" \
@@ -393,7 +421,10 @@ validate-maps: $(ROM)
 
 release-check: quality-check disassembly-check verify validate-maps \
 	validate-audio-dispatch validate-object-pools validate-object-dispatch \
-	validate-object-placements validate-world2-streaming \
+	validate-object-placements validate-world1-metasprites \
+	validate-world1-enemy-handlers \
+	validate-world1-enemy-identities \
+	validate-world2-streaming \
 	validate-world2-enemy-states \
 	validate-world2-enemy-handlers \
 	validate-world2-enemy-identities \

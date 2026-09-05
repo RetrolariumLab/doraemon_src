@@ -2,7 +2,7 @@
 ; World 1 low-state entity handlers at DEBB through E14A
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-World1_EntityHandler_State05:
+World1_UpdateNaameCity:
     LDA #$02
     STA $99
     STA $9A
@@ -48,7 +48,7 @@ Bank0_Label_DF03:
     JSR Bank0_Func_9065
     RTS
 
-World1_EntityHandler_State0C:
+World1_UpdateNaameUnderground:
     INC a:World1EntityPrimaryBehavior,X
     LDA a:World1EntityPrimaryBehavior,X
     LSR A
@@ -112,7 +112,7 @@ Bank0_Label_DF5E:
     JSR Bank0_Func_9065
     RTS
 
-World1_EntityHandler_State06:
+World1_UpdateKobuun:
     LDA #$02
     STA $99
     STA $9A
@@ -204,7 +204,7 @@ World1_InitializeEntityPrimaryBehavior3C:
     STA a:World1EntityPrimaryBehavior,X
     JMP World1_InitializeEntityPosition
 
-World1_EntityHandler_State07:
+World1_UpdateNezumi:
     LDA #$02
     STA $99
     STA $9A

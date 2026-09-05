@@ -63,6 +63,13 @@
     },
     {
       "bank": 0,
+      "address": "0x891B",
+      "name": "World1_EnemyScoreRewardCodes",
+      "operand_symbol": true,
+      "evidence": "runtime-state-indexed-encoded-score-reward-table"
+    },
+    {
+      "bank": 0,
       "address": "0x8A6C",
       "name": "World1_MoveEntityXByA",
       "evidence": "signed-a-add-to-entity-x-with-packed-high-bit-carry"
@@ -117,6 +124,27 @@
     },
     {
       "bank": 0,
+      "address": "0x8E70",
+      "name": "World1_EnemyInitialMetasprites",
+      "operand_symbol": true,
+      "evidence": "normal-placement-type-indexed-initial-metasprite-table"
+    },
+    {
+      "bank": 0,
+      "address": "0x8E80",
+      "name": "World1_EnemyInitialRenderFlags",
+      "operand_symbol": true,
+      "evidence": "normal-placement-type-indexed-initial-render-flags-table"
+    },
+    {
+      "bank": 0,
+      "address": "0x8E90",
+      "name": "World1_EnemyInitialHealth",
+      "operand_symbol": true,
+      "evidence": "normal-placement-type-indexed-initial-health-table"
+    },
+    {
+      "bank": 0,
       "address": "0x8EA0",
       "name": "World1_InitializeEntityPosition",
       "evidence": "common-placement-coordinate-to-camera-relative-entity-position-initializer"
@@ -150,6 +178,18 @@
       "address": "0x992A",
       "name": "World1_ComposeMetasprite",
       "evidence": "metasprite-table-lookup-and-four-byte-oam-record-writes"
+    },
+    {
+      "bank": 0,
+      "address": "0x9CB6",
+      "name": "World1_MetaspriteIndex",
+      "evidence": "115-two-byte-direct-pointer-or-alias-entries"
+    },
+    {
+      "bank": 0,
+      "address": "0x9D9C",
+      "name": "World1_MetaspriteRecords",
+      "evidence": "73-contiguous-variable-length-metasprite-records"
     },
     {
       "bank": 0,
@@ -310,7 +350,7 @@
     {
       "bank": 0,
       "address": "0xD597",
-      "name": "World1_EntityHandler_States0E_0F",
+      "name": "World1_NoOpBullRoboScriptedState",
       "evidence": "88fb-rts-table-slots-0e-and-0f"
     },
     {
@@ -328,7 +368,7 @@
     {
       "bank": 0,
       "address": "0xDBDA",
-      "name": "World1_EntityHandler_States01_0D",
+      "name": "World1_UpdateYuubouOrDormantState0D",
       "evidence": "88fb-rts-table-slots-01-and-0d"
     },
     {
@@ -340,43 +380,43 @@
     {
       "bank": 0,
       "address": "0xDC49",
-      "name": "World1_EntityHandler_State02",
+      "name": "World1_UpdateSuneraa",
       "evidence": "88fb-rts-table-slot-02"
     },
     {
       "bank": 0,
       "address": "0xDCB2",
-      "name": "World1_EntityHandler_State03",
+      "name": "World1_UpdateMekanosso",
       "evidence": "88fb-rts-table-slot-03"
     },
     {
       "bank": 0,
       "address": "0xDD29",
-      "name": "World1_EntityHandler_State04",
+      "name": "World1_UpdateGozuraCity",
       "evidence": "88fb-rts-table-slot-04"
     },
     {
       "bank": 0,
       "address": "0xDDD3",
-      "name": "World1_EntityHandler_State0B",
+      "name": "World1_UpdateGozuraUnderground",
       "evidence": "88fb-rts-table-slot-0b"
     },
     {
       "bank": 0,
       "address": "0xDEBB",
-      "name": "World1_EntityHandler_State05",
+      "name": "World1_UpdateNaameCity",
       "evidence": "88fb-rts-table-slot-05"
     },
     {
       "bank": 0,
       "address": "0xDF08",
-      "name": "World1_EntityHandler_State0C",
+      "name": "World1_UpdateNaameUnderground",
       "evidence": "88fb-rts-table-slot-0c"
     },
     {
       "bank": 0,
       "address": "0xDF70",
-      "name": "World1_EntityHandler_State06",
+      "name": "World1_UpdateKobuun",
       "evidence": "88fb-rts-table-slot-06"
     },
     {
@@ -388,7 +428,7 @@
     {
       "bank": 0,
       "address": "0xE01F",
-      "name": "World1_EntityHandler_State07",
+      "name": "World1_UpdateNezumi",
       "evidence": "88fb-rts-table-slot-07"
     },
     {
@@ -400,19 +440,19 @@
     {
       "bank": 0,
       "address": "0xE14B",
-      "name": "World1_EntityHandler_State08",
+      "name": "World1_UpdateDobakku",
       "evidence": "88fb-rts-table-slot-08"
     },
     {
       "bank": 0,
       "address": "0xE1E0",
-      "name": "World1_EntityHandler_State09",
+      "name": "World1_UpdateHerimeda",
       "evidence": "88fb-rts-table-slot-09"
     },
     {
       "bank": 0,
       "address": "0xE249",
-      "name": "World1_EntityHandler_State0A",
+      "name": "World1_UpdateGiraamin",
       "evidence": "88fb-rts-table-slot-0a"
     },
     {
@@ -421,6 +461,13 @@
       "name": "World1_TransientDescriptorSelectorTable",
       "operand_symbol": true,
       "evidence": "four descriptor indexes selected by collision-spawn random value"
+    },
+    {
+      "bank": 0,
+      "address": "0x94D9",
+      "name": "World1_InvincibilityDefeatSequence",
+      "operand_symbol": true,
+      "evidence": "six runtime states matched in order before descriptor-04 reward"
     },
     {
       "bank": 0,

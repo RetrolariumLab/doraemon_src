@@ -120,11 +120,11 @@ Bank0_Label_8DE2:
     TYA
     STA a:World1EntityType,X
     INC a:World1EntityType,X
-    LDA a:$8E70,Y
+    LDA a:World1_EnemyInitialMetasprites,Y
     STA a:World1EntityMetasprite,X
-    LDA a:$8E80,Y
+    LDA a:World1_EnemyInitialRenderFlags,Y
     STA a:World1EntityRenderFlags,X
-    LDA a:$8E90,Y
+    LDA a:World1_EnemyInitialHealth,Y
     STA a:World1EntityHealthOrVelocity,X
     LDA #$00
     STA a:World1EntityPrimaryBehavior,X
@@ -186,8 +186,14 @@ Bank0_Label_8E5F:
     LDA a:World1_ObjectDescriptorPrimaryBehaviorField,Y
     STA a:World1EntityPrimaryBehavior,X
     JMP World1_InitializeEntityPosition
+
+World1_EnemyInitialMetasprites:
     .byte $64, $5C, $56, $60, $58, $4C, $54, $70, $6C, $3E, $60, $58, $00, $00, $00, $00
+
+World1_EnemyInitialRenderFlags:
     .byte $01, $01, $01, $02, $02, $02, $01, $02, $01, $01, $02, $02, $00, $00, $00, $00
+
+World1_EnemyInitialHealth:
     .byte $02, $01, $02, $04, $01, $01, $02, $01, $02, $04, $04, $01, $00, $00, $00, $00
 
 World1_InitializeEntityPosition:

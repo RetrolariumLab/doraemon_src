@@ -2,7 +2,7 @@
 ; World 1 low-state entity handlers at DBDA through DEBA
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-World1_EntityHandler_States01_0D:
+World1_UpdateYuubouOrDormantState0D:
     LDA FrameCounter
     AND #$03
     BNE Bank0_Label_DBEF
@@ -67,7 +67,7 @@ World1_InitializeEntityDirection:
     STA $00
     RTS
 
-World1_EntityHandler_State02:
+World1_UpdateSuneraa:
     LDA a:World1EntityPrimaryBehavior,X
     BNE Bank0_Label_DC75
     JSR Bank0_Func_964A
@@ -125,7 +125,7 @@ Bank0_Label_DCAE:
     DEC a:World1EntityDamageTimerOrAcceleration,X
     RTS
 
-World1_EntityHandler_State03:
+World1_UpdateMekanosso:
     LDA #$02
     STA $99
     STA $9A
@@ -188,7 +188,7 @@ Bank0_Label_DD16:
 Bank0_Label_DD28:
     RTS
 
-World1_EntityHandler_State04:
+World1_UpdateGozuraCity:
     LDA a:World1EntitySecondaryBehavior,X
     LSR A
     TAY
@@ -264,7 +264,7 @@ Bank0_Label_DDBA:
     .byte $FD, $FE, $FF, $00, $00, $01, $02, $03, $00, $10, $10, $10, $00, $F0, $F0, $F0
     .byte $1C, $1C, $0C, $FC, $FC, $FC, $0C, $1C
 
-World1_EntityHandler_State0B:
+World1_UpdateGozuraUnderground:
     LDA a:World1EntitySecondaryBehavior,X
     LSR A
     LSR A

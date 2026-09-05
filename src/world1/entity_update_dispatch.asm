@@ -68,15 +68,17 @@ Bank0_Label_88EE:
     LDA a:World1EntityType,X
     AND #$3F
     TAY
-    LDA a:$891B,Y
+    LDA a:World1_EnemyScoreRewardCodes,Y
     JSR Bank0_Func_81C9
 
 World1_EntityUpdateHandlerRtsTable = * + 1  ; overlapping entry $88FB
     JMP Bank0_Label_88A1
     .byte $D9, $DB, $48, $DC, $B1, $DC, $28, $DD, $BA, $DE, $6F, $DF, $1E, $E0, $4A, $E1
-    .byte $DF, $E1, $48, $E2, $D2, $DD, $07, $DF, $D9, $DB, $96, $D5, $96, $D5, $41, $42
-    .byte $42, $45, $41, $42, $55, $48, $55, $31, $55, $55, $55, $21, $55, $55, $20, $D4
-    .byte $8A, $BD, $80, $05, $4C, $45, $8B
+    .byte $DF, $E1, $48, $E2, $D2, $DD, $07, $DF, $D9, $DB, $96, $D5, $96, $D5
+
+World1_EnemyScoreRewardCodes:
+    .byte $41, $42, $42, $45, $41, $42, $55, $48, $55, $31, $55, $55, $55, $21, $55, $55
+    .byte $20, $D4, $8A, $BD, $80, $05, $4C, $45, $8B
 
 Bank0_Func_8934:
     SEC

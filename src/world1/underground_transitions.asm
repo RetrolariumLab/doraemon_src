@@ -258,7 +258,7 @@ Bank0_Label_D560:
 Bank0_Label_D594:
     JMP Bank0_Func_D465
 
-World1_EntityHandler_States0E_0F:
+World1_NoOpBullRoboScriptedState:
     RTS
 
 Bank0_Label_D598:
