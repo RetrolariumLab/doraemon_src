@@ -218,14 +218,14 @@ Bank2_Label_9B98:
     JMP World3_ExecuteBehaviorCommand
 
 Bank2_Label_9BA3:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$01
     STA a:World3EntityHorizontalDirection,X
     INC a:World3EntityScriptOffset,X
     JMP World3_ExecuteBehaviorCommand
 
 Bank2_Label_9BB1:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$01
     STA a:World3EntityVerticalDirection,X
     INC a:World3EntityScriptOffset,X
@@ -346,7 +346,7 @@ World3_BehaviorConditionalBranch:
     INC a:World3EntityScriptOffset,X
     LDA a:World3EntityScriptOffset,X
     TAY
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     CMP ($40),Y
     BCS Bank2_Label_9C94
     INC a:World3EntityScriptOffset,X

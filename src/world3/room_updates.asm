@@ -7,7 +7,7 @@ Bank2_Func_A8B0:
     STX $02
 
 Bank2_Label_A8B4:
-    LDA a:$0480,X
+    LDA a:World3PaletteShadow,X
     CMP a:$0705,X
     BEQ Bank2_Label_A8D3
     INC $02
@@ -18,12 +18,12 @@ Bank2_Label_A8B4:
     JMP Bank2_Label_A8D0
 
 Bank2_Label_A8CA:
-    LDA a:$0480,X
+    LDA a:World3PaletteShadow,X
     CLC
     ADC #$10
 
 Bank2_Label_A8D0:
-    STA a:$0480,X
+    STA a:World3PaletteShadow,X
 
 Bank2_Label_A8D3:
     INX
@@ -31,10 +31,10 @@ Bank2_Label_A8D3:
     BNE Bank2_Label_A8B4
     LDX #$80
     LDY #$04
-    JSR Bank2_Func_B2A3
+    JSR World3_QueuePalette
     LDA #$03
-    STA $68
-    JSR Bank2_Func_B1BB
+    STA World3FrameWaitCounter
+    JSR World3_WaitFrames
     LDA $02
     BNE Bank2_Func_A8B0
     RTS
@@ -80,18 +80,18 @@ Bank2_Func_A922:
     JSR Bank2_Func_A946
     LDX #$00
     LDY $88
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDX #$A0
     LDY #$04
     LDA #$20
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     LDX #$00
     LDY $88
-    JSR Bank2_Func_B0F8
+    JSR World3_CalculateAttributeAddress
     LDX #$C0
     LDY #$04
     LDA #$08
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     RTS
 
 Bank2_Func_A946:
@@ -200,18 +200,18 @@ Bank2_Func_A9C5:
     LDA $88
     AND #$02
     BNE Bank2_Label_A9FD
-    LDA a:$0400,Y
+    LDA a:World3AttributeShadow,Y
     AND #$F0
     ORA $3C
     JMP Bank2_Label_AA04
 
 Bank2_Label_A9FD:
-    LDA a:$0400,Y
+    LDA a:World3AttributeShadow,Y
     AND #$0F
     ORA $3D
 
 Bank2_Label_AA04:
-    STA a:$0400,Y
+    STA a:World3AttributeShadow,Y
     LDY $01
     STA a:$04C0,Y
     LDX $3E
@@ -338,12 +338,12 @@ Bank2_Func_AAB6:
     LDA $3C
     SEC
     SBC $3E
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     STA $40
     LDA $3D
     SEC
     SBC $3F
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     STA $41
     LDA $3C
     STA a:World3EntityX,X
@@ -357,12 +357,12 @@ Bank2_Func_AAF1:
     LDA $3C
     SEC
     SBC $08
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     STA $40
     LDA $3C
     SEC
     SBC $3E
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP $40
     BCS Bank2_Label_AB0F
     LDX $08
@@ -377,12 +377,12 @@ Bank2_Label_AB14:
     LDA $3D
     SEC
     SBC $09
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     STA $40
     LDA $3D
     SEC
     SBC $3F
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP $40
     BCS Bank2_Label_AB32
     LDY $09

@@ -14,6 +14,9 @@ routine.
 | `$9A35-$9A3A` | `World3_DormantDeactivateEntity` | Clears the current slot's state at `$0600,X` and returns. |
 | `$9DCE-$9DE4` | `World3_DormantFaceType03TowardPlayer` | For type `$03`, selects metasprite offset zero or two from relative player X, then returns. The live renderer calls the one-byte RTS stub immediately before it at `$9DCD`. |
 | `$9F9F-$9FD6` | `World3_DormantProbeEntityLowerEdge` | Two-column terrain probe using the neighboring collision helpers, with the same saved-X and carry-result convention as the live probes around it. |
+| `$B137-$B148` | `World3_DormantAbsoluteValue16` | Returns the absolute value of the signed 16-bit `A:X` input. |
+| `$B189-$B1B6` | `World3_DormantRandomByte` | Duplicates the live three-byte pseudorandom-state update with an otherwise unused `$D9-$DB` state. |
+| `$B1B7-$B1BA` | `World3_DormantWaitFramesFromParameter` | Copies zero-page `$00` to the frame wait counter and falls through into the live wait loop. |
 | `$B1C2-$B1F0` | `World3_DormantUpdateControllerRepeat` | Calls its internal `$B1D1` lane helper for both controller-1 serial bytes; held input repeats after eight frames and then every four frames. |
 | `$B32D-$B339` | `World3_DormantQueuePpuBlockFromParameters` | Converts X/Y parameters to a PPU address, restores source-pointer and length parameters, and falls through into the live block queue writer at `$B33A`. |
 | `$B371-$B39C` | `World3_DormantQueuePpuByteFromParameters` | Converts X/Y parameters and appends one address/length/data record to the PPU queue. |

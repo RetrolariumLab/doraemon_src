@@ -54,7 +54,7 @@ Bank2_Label_91DB:
 Bank2_Label_91E7:
     LDA #$01
     STA a:World3EntityState,X
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$03
     CLC
     ADC #$10
@@ -149,7 +149,7 @@ Bank2_Label_928C:
     RTS
 
 Bank2_Func_928D:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     CMP #$20
     BCC Bank2_Func_928D
     CMP #$D0
@@ -157,7 +157,7 @@ Bank2_Func_928D:
     RTS
 
 Bank2_Func_9299:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     CMP #$30
     BCC Bank2_Func_9299
     CMP #$B0
@@ -180,13 +180,13 @@ Bank2_Func_92A5:
     LDA $46
     SEC
     SBC $8C
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$18
     BCS Bank2_Label_92DE
     LDA $47
     SEC
     SBC $8D
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$18
     BCS Bank2_Label_92DE
     JMP Bank2_Func_92A5

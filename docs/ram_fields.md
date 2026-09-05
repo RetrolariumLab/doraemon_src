@@ -124,6 +124,29 @@ fields. The uploader clears only the pending byte. The transition path copies
 the saved byte back, proving that `$00B4` is persistent palette state rather
 than a second event channel.
 
+## World 3 frame and PPU state
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `World3RenderingDisabled` | `$0067` | Bypasses NMI PPU/OAM services and enables synchronous producer-side draining |
+| `World3FrameWaitCounter` | `$0068` | Decremented by NMI and polled by `World3_WaitFrames` |
+| `World3PpuAddressLow` | `$0069` | Low-byte output of the nametable and attribute address helpers |
+| `World3PpuAddressHigh` | `$006A` | High-byte output of the nametable and attribute address helpers |
+| `World3PpuQueueReadIndex` | `$006B` | Consumer cursor in the wrapping queue |
+| `World3PpuQueueWriteIndex` | `$006C` | Producer cursor in the wrapping queue |
+| `World3PpuQueueRecordBudget` | `$006D` | One-record budget initialized by each drain pass |
+| `World3PpuQueueByteCount` | `$006E` | Payload-byte accumulator retained by the drain loop |
+| `World3ScrollX` | `$006F` | First World 3 `PPU_SCROLL` value |
+| `World3ScrollY` | `$0070` | Second World 3 `PPU_SCROLL` value |
+| `World3NametableSelect` | `$0071` | Low two `PPU_CTRL` nametable bits |
+| `World3PpuQueueVerticalIncrement` | `$0072` | Nonzero encodes PPU increment 32 in a queued record |
+| `World3AttributeShadow` | `$0400-$047F` | Attribute bytes filled and updated before upload |
+| `World3PaletteShadow` | `$0480-$049F` | Last complete 32-byte palette queued at `$3F00` |
+| `World3PpuQueue` | `$0500-$05FF` | 256-byte address/length/payload ring buffer |
+
+The queue record layout, NMI/disabled-rendering ownership split, capacity
+guard, and address calculations are described in `docs/world3_ppu_queue.md`.
+
 ## World 2 entity pools
 
 Bank 1 uses compact parallel arrays whose stride is the pool capacity, rather

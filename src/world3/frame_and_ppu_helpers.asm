@@ -2,10 +2,10 @@
 ; World 3 frame synchronization, PPU buffers, and metatile update helpers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_B1BB:
+World3_WaitFrames:
     INC $D6
-    LDA $68
-    BNE Bank2_Func_B1BB
+    LDA World3FrameWaitCounter
+    BNE World3_WaitFrames
     RTS
 
 World3_DormantUpdateControllerRepeat:
@@ -61,7 +61,7 @@ Bank2_Func_B1FE:
     STA PpuCtrlShadow
     LDA #$00
     STA a:PPU_MASK
-    JSR Bank2_Func_B0AF
+    JSR World3_WaitForVblankEdge
     LDX #$00
     TXA
 
@@ -104,7 +104,7 @@ Bank2_Label_B227:
     STA a:AudioMusicControl
     RTS
 
-Bank2_Func_B25B:
+World3_HideAllSprites:
     LDX #$00
     LDY #$10
 
@@ -122,60 +122,60 @@ Bank2_Label_B25F:
     BNE Bank2_Label_B25F
     RTS
 
-Bank2_Func_B276:
-    JSR Bank2_Func_B25B
-    JSR Bank2_Func_B0AF
+World3_DisableRendering:
+    JSR World3_HideAllSprites
+    JSR World3_WaitForVblankEdge
     LDA #$01
-    STA $67
+    STA World3RenderingDisabled
     LDA #$00
     STA a:PPU_MASK
     RTS
 
-Bank2_Func_B286:
-    JSR Bank2_Func_B062
-    JSR Bank2_Func_B0AF
-    JSR Bank2_Func_B0A4
-    JSR Bank2_Func_B07D
-    JSR Bank2_Func_B08E
+World3_EnableRendering:
+    JSR World3_WaitForPpuQueueEmpty
+    JSR World3_WaitForVblankEdge
+    JSR World3_RunOamDma
+    JSR World3_ResetPpuAddressAfterUpdates
+    JSR World3_ApplyScroll
     LDA #$00
-    STA $67
+    STA World3RenderingDisabled
     LDA #$1E
     STA a:PPU_MASK
     RTS
 
-Bank2_Func_B29F:
+World3_QueuePaletteFromParameters:
     LDX $00
     LDY $01
 
-Bank2_Func_B2A3:
-    JSR Bank2_Func_B06B
+World3_QueuePalette:
+    JSR World3_WaitForPpuQueueSpace
     STX $3C
     STY $3D
-    LDX $6C
+    LDX World3PpuQueueWriteIndex
     LDY #$00
     LDA #$3F
-    STA a:$0500,X
+    STA a:World3PpuQueue,X
     INX
     LDA #$00
-    STA a:$0500,X
+    STA a:World3PpuQueue,X
     INX
     LDA #$20
-    STA a:$0500,X
+    STA a:World3PpuQueue,X
     INX
 
 Bank2_Label_B2C0:
     LDA ($3C),Y
-    STA a:$0500,X
-    STA a:$0480,Y
+    STA a:World3PpuQueue,X
+    STA a:World3PaletteShadow,Y
     INX
     INY
     CPY #$20
     BNE Bank2_Label_B2C0
-    STX $6C
-    JSR Bank2_Func_B05A
+    STX World3PpuQueueWriteIndex
+    JSR World3_DrainPpuQueueIfRenderingDisabled
     RTS
 
-Bank2_Func_B2D4:
+World3_FillNametables:
     LDA $00
     LDX #$00
 
@@ -190,25 +190,25 @@ Bank2_Label_B2D8:
 Bank2_Label_B2E4:
     LDX #$00
     LDY $41
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDX #$A0
     LDY #$04
     LDA #$20
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     INC $41
     LDA $41
     CMP #$3C
     BNE Bank2_Label_B2E4
     RTS
 
-Bank2_Func_B2FD:
+World3_FillAttributeTables:
     LDA $00
     TAX
     LDA a:World3_AttributePaletteFillValues,X
     LDX #$00
 
 Bank2_Label_B305:
-    STA a:$0400,X
+    STA a:World3AttributeShadow,X
     INX
     CPX #$80
     BNE Bank2_Label_B305
@@ -218,11 +218,11 @@ Bank2_Label_B305:
 Bank2_Label_B311:
     LDX #$00
     LDY $3F
-    JSR Bank2_Func_B0F8
+    JSR World3_CalculateAttributeAddress
     LDX #$00
     LDY #$04
     LDA #$20
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     LDA $3F
     CLC
     ADC #$10
@@ -234,67 +234,67 @@ Bank2_Label_B311:
 World3_DormantQueuePpuBlockFromParameters:
     LDX $00
     LDY $01
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDX $02
     LDY $03
     LDA $04
 
-Bank2_Func_B33A:
-    JSR Bank2_Func_B06B
+World3_QueuePpuBlock:
+    JSR World3_WaitForPpuQueueSpace
     STX $3C
     STY $3D
     STA $3E
-    LDX $6C
-    LDY $72
+    LDX World3PpuQueueWriteIndex
+    LDY World3PpuQueueVerticalIncrement
     BEQ Bank2_Label_B34B
     LDY #$80
 
 Bank2_Label_B34B:
     TYA
-    ORA $6A
-    STA a:$0500,X
+    ORA World3PpuAddressHigh
+    STA a:World3PpuQueue,X
     INX
-    LDA $69
-    STA a:$0500,X
+    LDA World3PpuAddressLow
+    STA a:World3PpuQueue,X
     INX
     LDA $3E
-    STA a:$0500,X
+    STA a:World3PpuQueue,X
     INX
     LDY #$00
 
 Bank2_Label_B360:
     LDA ($3C),Y
-    STA a:$0500,X
+    STA a:World3PpuQueue,X
     INX
     INY
     DEC $3E
     BNE Bank2_Label_B360
-    STX $6C
-    JSR Bank2_Func_B05A
+    STX World3PpuQueueWriteIndex
+    JSR World3_DrainPpuQueueIfRenderingDisabled
     RTS
 
 World3_DormantQueuePpuByteFromParameters:
     LDX $00
     LDY $01
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDA $02
-    JSR Bank2_Func_B06B
+    JSR World3_WaitForPpuQueueSpace
     PHA
-    LDX $6C
-    LDA $6A
-    STA a:$0500,X
+    LDX World3PpuQueueWriteIndex
+    LDA World3PpuAddressHigh
+    STA a:World3PpuQueue,X
     INX
-    LDA $69
-    STA a:$0500,X
+    LDA World3PpuAddressLow
+    STA a:World3PpuQueue,X
     INX
     LDA #$01
-    STA a:$0500,X
+    STA a:World3PpuQueue,X
     INX
     PLA
-    STA a:$0500,X
+    STA a:World3PpuQueue,X
     INX
-    STX $6C
-    JSR Bank2_Func_B05A
+    STX World3PpuQueueWriteIndex
+    JSR World3_DrainPpuQueueIfRenderingDisabled
     RTS
 
 World3_DormantQueueAttributeFromParameters:
@@ -304,8 +304,8 @@ World3_DormantQueueAttributeFromParameters:
     STA $3C
     STX $3D
     STY $3E
-    JSR Bank2_Func_B06B
-    JSR Bank2_Func_B0F8
+    JSR World3_WaitForPpuQueueSpace
+    JSR World3_CalculateAttributeAddress
     TXA
     LSR A
     AND #$01
@@ -320,26 +320,26 @@ World3_DormantQueueAttributeFromParameters:
     AND a:World3_AttributeQuadrantSelectMasks,X
     STA $3C
     LDY $41
-    LDA a:$0400,Y
+    LDA a:World3AttributeShadow,Y
     AND a:World3_AttributeQuadrantClearMasks,X
     ORA $3C
-    STA a:$0400,Y
+    STA a:World3AttributeShadow,Y
     PHA
-    LDX $6C
-    LDA $6A
-    STA a:$0500,X
+    LDX World3PpuQueueWriteIndex
+    LDA World3PpuAddressHigh
+    STA a:World3PpuQueue,X
     INX
-    LDA $69
-    STA a:$0500,X
+    LDA World3PpuAddressLow
+    STA a:World3PpuQueue,X
     INX
     LDA #$01
-    STA a:$0500,X
+    STA a:World3PpuQueue,X
     INX
     PLA
-    STA a:$0500,X
+    STA a:World3PpuQueue,X
     INX
-    STX $6C
-    JSR Bank2_Func_B05A
+    STX World3PpuQueueWriteIndex
+    JSR World3_DrainPpuQueueIfRenderingDisabled
     RTS
 
 World3_AttributePaletteFillValues:

@@ -13,13 +13,13 @@ Bank2_Func_875C:
 Bank2_Label_8768:
     LDX #$0C
     LDY $47
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDA #$00
-    STA $72
+    STA World3PpuQueueVerticalIncrement
     LDX #$87
     LDY #$87
     LDA #$12
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     INC $47
     DEC $48
     BNE Bank2_Label_8768
@@ -120,13 +120,13 @@ Bank2_Func_8817:
 Bank2_Label_8829:
     LDX #$14
     LDY $47
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDA #$00
-    STA $72
+    STA World3PpuQueueVerticalIncrement
     LDX #$0F
     LDY #$98
     LDA #$04
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     INC $47
     DEC $48
     BNE Bank2_Label_8829
@@ -169,13 +169,13 @@ Bank2_Func_886F:
     LDA a:World3EntityX,X
     SEC
     SBC $3C
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCS Bank2_Label_886E
     LDA a:World3EntityY,X
     SEC
     SBC $3D
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCS Bank2_Label_886E
     LDA a:World3EntityType,X
@@ -344,7 +344,7 @@ Bank2_Func_89A1:
     LDA a:World3EntityX,X
     SEC
     SBC $8C
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCS Bank2_Label_89A0
     LDA a:World3EntityY,X
@@ -352,7 +352,7 @@ Bank2_Func_89A1:
     SBC #$04
     SEC
     SBC $8D
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$11
     BCS Bank2_Label_89A0
     LDA a:World3EntityType,X

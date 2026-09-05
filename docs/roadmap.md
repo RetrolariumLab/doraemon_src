@@ -56,9 +56,12 @@ their room gates, fixed positions, and type `$08/$09`, `$0A/$0B`, and
 `$0C-$0F` formation layouts. The full 32-slot update dispatch is classified
 into structural roles with its room gates, relocation masks, and movement
 vectors losslessly editable. All World 3 identities except the unresolved
-type `$06` are now evidence-backed. Eight formerly raw, instruction-aligned
+type `$06` are now evidence-backed. Eleven formerly raw, instruction-aligned
 World 3 helper islands are also reconstructed and explicitly marked dormant
-until runtime reachability is demonstrated.
+until runtime reachability is demonstrated. The active World 3 PPU queue now
+has named RAM ownership and a documented address/flags/length/payload record.
+Its record geometry, capacity invariant, RAM ownership, routine addresses, and
+representative consumer/producer bytes are enforced by the release gate.
 
 ### 6. World data formats - Planned
 
@@ -81,7 +84,9 @@ sets, background and sprite upload paths, stage palette commands, three chapter
 selector pairs, and deliberate code/data overlap are now exact and losslessly
 editable. World 3's 188-entry direct/alias sprite index, 65 variable-length
 metasprites, eleven complete palette sets, and 64 room selectors are also exact
-and losslessly editable.
+and losslessly editable. Its NMI/disabled-rendering queue ownership, ring
+indexes, record flags, address calculators, and palette/attribute shadows are
+also documented.
 
 ### 8. Audio - Planned
 

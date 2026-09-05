@@ -29,7 +29,7 @@ Bank2_Label_AB52:
     RTS
 
 Bank2_Func_AB53:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$07
     TAX
     LDA a:World3EncounterRoomList,X
@@ -264,16 +264,16 @@ Bank2_Func_AD21:
     LDX $C8
     LDA a:World3EntityBehaviorTimer,X
     BNE Bank2_Label_AD58
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$20
     ORA #$10
     STA a:World3EntityBehaviorTimer,X
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$01
     STA a:World3EntityBehaviorSelector,X
 
 Bank2_Label_AD3A:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$C0
     ORA #$10
     CMP a:World3EntityHorizontalDirection,X
@@ -281,7 +281,7 @@ Bank2_Label_AD3A:
     STA a:World3EntityHorizontalDirection,X
 
 Bank2_Label_AD49:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$C0
     ORA #$10
     CMP a:World3EntityVerticalDirection,X
@@ -329,7 +329,7 @@ Bank2_Label_AD8D:
     TXA
     SEC
     SBC $3C
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$06
     BCC Bank2_Label_ADAF
     JSR Bank2_Func_AB3B
@@ -338,7 +338,7 @@ Bank2_Label_ADAF:
     TYA
     SEC
     SBC $3D
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$06
     BCC Bank2_Label_ADBD
     JSR Bank2_Func_AB47

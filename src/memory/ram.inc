@@ -15,6 +15,20 @@ Controller1Buttons     = $001F
 Controller1ButtonsAlt  = $0020
 CombinedControllerButtons = $0021
 
+; World 3 frame synchronization and PPU update queue
+World3RenderingDisabled = $0067
+World3FrameWaitCounter = $0068
+World3PpuAddressLow = $0069
+World3PpuAddressHigh = $006A
+World3PpuQueueReadIndex = $006B
+World3PpuQueueWriteIndex = $006C
+World3PpuQueueRecordBudget = $006D
+World3PpuQueueByteCount = $006E
+World3ScrollX = $006F
+World3ScrollY = $0070
+World3NametableSelect = $0071
+World3PpuQueueVerticalIncrement = $0072
+
 World1ObjectPlacementList = $0068
 World1CurrentPlacementId = $0090
 World1PlacementScanPointer = $0091
@@ -37,6 +51,10 @@ AudioEndedChannelCount       = $02FE
 AudioWorkByte                = $02FF
 
 OamBuffer              = $0300
+
+World3AttributeShadow   = $0400
+World3PaletteShadow     = $0480
+World3PpuQueue          = $0500
 
 ; World 1 parallel entity arrays, 48 slots each
 World1EntityType          = $0400

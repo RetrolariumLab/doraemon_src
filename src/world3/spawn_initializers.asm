@@ -25,7 +25,7 @@ World3_InitTransientType00TurtleOrBattleFish:
     BCC Bank2_Label_8FA2
     CMP #$28
     BCS Bank2_Label_8F9D
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$01
     BNE Bank2_Label_8FA2
 
@@ -42,7 +42,7 @@ World3_InitTransientType01CrabOrSeahorse:
     BCC Bank2_Label_8FBE
     CMP #$30
     BCS Bank2_Label_8FB4
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$01
     BNE Bank2_Label_8FBE
 
@@ -62,7 +62,7 @@ World3_InitTransientType02VolcanicRock:
     STA a:World3EntityY,X
     LDA #$01
     STA a:World3EntityState,X
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$40
     BEQ Bank2_Label_8FDA
     LDA #$09
@@ -96,12 +96,12 @@ World3_InitTransientType05Ghost:
     RTS
 
 World3_InitTransientType06Room12Hazard:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     CMP #$64
     BCS Bank2_Label_9043
     LDA #$20
     STA a:World3EntityMetasprite,X
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$02
     STA a:World3EntityMetaspriteVariantBit1,X
 
@@ -275,14 +275,14 @@ Bank2_Label_911F:
     STA a:World3EntityBehaviorSelector,X
     LDA #$01
     STA a:World3EntityState,Y
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$08
     SEC
     SBC #$04
     CLC
     ADC a:World3EntityX,X
     STA a:World3EntityX,Y
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$08
     SEC
     SBC #$04

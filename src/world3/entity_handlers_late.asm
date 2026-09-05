@@ -89,13 +89,13 @@ Bank2_Label_9701:
     LDA a:World3EntityX,X
     SEC
     SBC a:World3EntityX,Y
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCS Bank2_Label_9700
     LDA a:World3EntityY,X
     SEC
     SBC a:World3EntityY,Y
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCS Bank2_Label_9700
 
@@ -231,13 +231,13 @@ Bank2_Func_97E2:
 Bank2_Label_97F4:
     LDX $46
     LDY $47
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDA #$00
-    STA $72
+    STA World3PpuQueueVerticalIncrement
     LDX #$0F
     LDY #$98
     LDA #$04
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     INC $47
     DEC $48
     BNE Bank2_Label_97F4
@@ -269,13 +269,13 @@ Bank2_Label_9828:
     LDA a:World3EntityX,X
     SEC
     SBC a:World3EntityX,Y
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCS Bank2_Label_9856
     LDA a:World3EntityY,X
     SEC
     SBC a:World3EntityY,Y
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCC Bank2_Label_985C
 
@@ -410,7 +410,7 @@ Bank2_Label_98FF:
     LDA $3C
     SEC
     SBC $40
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0F
     BCC Bank2_Label_9940
     JSR Bank2_Func_AB3B
@@ -419,7 +419,7 @@ Bank2_Label_9940:
     LDA $3D
     SEC
     SBC $41
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0F
     BCC Bank2_Label_994F
     JSR Bank2_Func_AB47
@@ -513,7 +513,7 @@ Bank2_Label_99C5:
     TXA
     SEC
     SBC $3C
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCC Bank2_Label_99E8
     JSR Bank2_Func_AB3B
@@ -522,7 +522,7 @@ Bank2_Label_99E8:
     TYA
     SEC
     SBC $3D
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCC Bank2_Label_99F6
     JSR Bank2_Func_AB47

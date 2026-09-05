@@ -58,8 +58,8 @@ Bank2_Label_A268:
 
 Bank2_Label_A26D:
     LDA #$3C
-    STA $68
-    JSR Bank2_Func_B1BB
+    STA World3FrameWaitCounter
+    JSR World3_WaitFrames
     LDA #$00
     STA $4D
     LDA $2A

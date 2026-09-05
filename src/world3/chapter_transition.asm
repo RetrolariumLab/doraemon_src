@@ -19,7 +19,7 @@ Bank2_Label_AE2B:
     LDX #$7F
     TXS
     LDA #$00
-    STA $68
+    STA World3FrameWaitCounter
     LDA #$00
     STA $74
     JSR Bank2_Func_A601
@@ -28,8 +28,8 @@ Bank2_Label_AE2B:
     LDA #$01
     STA NmiOamDmaRequest
     LDA #$01
-    STA $68
-    JSR Bank2_Func_B1BB
+    STA World3FrameWaitCounter
+    JSR World3_WaitFrames
     LDA $02
     BNE Bank2_Label_AE2B
 
@@ -37,8 +37,8 @@ Bank2_Label_AE4E:
     LDA a:AudioMusicState
     BMI Bank2_Label_AE4E
     LDA #$5A
-    STA $68
-    JSR Bank2_Func_B1BB
+    STA World3FrameWaitCounter
+    JSR World3_WaitFrames
     JMP Bank2_Func_8077
 
 Bank2_Func_AE5D:
@@ -46,46 +46,46 @@ Bank2_Func_AE5D:
     BEQ Bank2_Label_AEBF
     LDX #$00
     LDY $01
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDA #$00
-    STA $72
+    STA World3PpuQueueVerticalIncrement
     LDX #$F2
     LDY #$AE
     LDA #$20
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     LDX #$00
     LDA #$1D
     SEC
     SBC $01
     TAY
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDA #$00
-    STA $72
+    STA World3PpuQueueVerticalIncrement
     LDX #$F2
     LDY #$AE
     LDA #$20
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     LDX $00
     LDY #$00
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDA #$01
-    STA $72
+    STA World3PpuQueueVerticalIncrement
     LDX #$12
     LDY #$AF
     LDA #$1E
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     LDA #$1F
     SEC
     SBC $00
     TAX
     LDY #$00
-    JSR Bank2_Func_B0BA
+    JSR World3_CalculateNametableAddress
     LDA #$01
-    STA $72
+    STA World3PpuQueueVerticalIncrement
     LDX #$12
     LDY #$AF
     LDA #$1E
-    JSR Bank2_Func_B33A
+    JSR World3_QueuePpuBlock
     INC $00
     INC $01
     DEC $02
@@ -148,7 +148,7 @@ Bank2_Label_AF50:
 
 Bank2_Func_AF51:
     PHA
-    JSR Bank2_Func_B25B
+    JSR World3_HideAllSprites
     PLA
     ORA #$30
     STA a:$0301
@@ -169,21 +169,21 @@ Bank2_Func_AF6F:
     STA PpuCtrlShadow
     LDA #$02
     JSR Bank2_Func_81AA
-    JSR Bank2_Func_B276
+    JSR World3_DisableRendering
     LDX #$EE
     LDY #$BD
     STX $00
     STY $01
-    JSR Bank2_Func_B29F
+    JSR World3_QueuePaletteFromParameters
     LDA #$00
     STA $00
-    JSR Bank2_Func_B2D4
+    JSR World3_FillNametables
     LDA #$00
     STA $00
-    JSR Bank2_Func_B2FD
-    JSR Bank2_Func_B25B
+    JSR World3_FillAttributeTables
+    JSR World3_HideAllSprites
     JSR Bank2_Func_80FD
-    JSR Bank2_Func_B286
+    JSR World3_EnableRendering
     LDX #$C6
     LDY #$AF
     STX $00
@@ -210,36 +210,36 @@ Bank2_Func_AFE6:
     JSR World3_Audio_UpdateMusic
     RTS
 
-Bank2_Func_AFED:
-    LDA $67
+World3_NmiFrameServices:
+    LDA World3RenderingDisabled
     BNE Bank2_Label_B008
-    JSR Bank2_Func_B00D
-    JSR Bank2_Func_B07D
-    JSR Bank2_Func_B08E
+    JSR World3_DrainOnePpuQueueRecord
+    JSR World3_ResetPpuAddressAfterUpdates
+    JSR World3_ApplyScroll
     LDA NmiOamDmaRequest
     BEQ Bank2_Label_B008
     LDA #$00
     STA NmiOamDmaRequest
-    JSR Bank2_Func_B25B
+    JSR World3_HideAllSprites
     JSR Bank2_Func_86BB
 
 Bank2_Label_B008:
-    DEC $68
+    DEC World3FrameWaitCounter
     INC $E1
     RTS
 
-Bank2_Func_B00D:
-    LDX $6B
+World3_DrainOnePpuQueueRecord:
+    LDX World3PpuQueueReadIndex
     LDA #$01
-    STA $6D
+    STA World3PpuQueueRecordBudget
     LDA #$00
-    STA $6E
+    STA World3PpuQueueByteCount
 
 Bank2_Label_B017:
-    CPX $6C
+    CPX World3PpuQueueWriteIndex
     BEQ Bank2_Label_B057
     LDY #$00
-    LDA a:$0500,X
+    LDA a:World3PpuQueue,X
     BPL Bank2_Label_B024
     LDY #$04
 
@@ -247,64 +247,64 @@ Bank2_Label_B024:
     AND #$7F
     STA a:PPU_ADDR
     INX
-    LDA a:$0500,X
+    LDA a:World3PpuQueue,X
     STA a:PPU_ADDR
     INX
     TYA
     ORA PpuCtrlShadow
-    ORA $71
+    ORA World3NametableSelect
     STA a:PPU_CTRL
-    LDA a:$0500,X
+    LDA a:World3PpuQueue,X
     TAY
     INX
     CLC
-    ADC $6E
-    STA $6E
+    ADC World3PpuQueueByteCount
+    STA World3PpuQueueByteCount
 
 Bank2_Label_B043:
-    LDA a:$0500,X
+    LDA a:World3PpuQueue,X
     STA a:PPU_DATA
     INX
     DEY
     BNE Bank2_Label_B043
-    DEC $6D
+    DEC World3PpuQueueRecordBudget
     BEQ Bank2_Label_B057
-    LDA $6E
+    LDA World3PpuQueueByteCount
     CMP #$30
     BCC Bank2_Label_B017
 
 Bank2_Label_B057:
-    STX $6B
+    STX World3PpuQueueReadIndex
     RTS
 
-Bank2_Func_B05A:
-    LDA $67
+World3_DrainPpuQueueIfRenderingDisabled:
+    LDA World3RenderingDisabled
     BEQ Bank2_Label_B061
-    JSR Bank2_Func_B00D
+    JSR World3_DrainOnePpuQueueRecord
 
 Bank2_Label_B061:
     RTS
 
-Bank2_Func_B062:
+World3_WaitForPpuQueueEmpty:
     PHA
 
 Bank2_Label_B063:
-    LDA $6C
-    CMP $6B
+    LDA World3PpuQueueWriteIndex
+    CMP World3PpuQueueReadIndex
     BNE Bank2_Label_B063
     PLA
     RTS
 
-Bank2_Func_B06B:
+World3_WaitForPpuQueueSpace:
     PHA
 
 Bank2_Label_B06C:
-    LDA $6C
-    CMP $6B
+    LDA World3PpuQueueWriteIndex
+    CMP World3PpuQueueReadIndex
     BEQ Bank2_Label_B07B
-    LDA $6B
+    LDA World3PpuQueueReadIndex
     SEC
-    SBC $6C
+    SBC World3PpuQueueWriteIndex
     CMP #$24
     BCC Bank2_Label_B06C
 
@@ -312,7 +312,7 @@ Bank2_Label_B07B:
     PLA
     RTS
 
-Bank2_Func_B07D:
+World3_ResetPpuAddressAfterUpdates:
     LDA #$3F
     STA a:PPU_ADDR
     LDA #$00
@@ -321,37 +321,37 @@ Bank2_Func_B07D:
     STA a:PPU_ADDR
     RTS
 
-Bank2_Func_B08E:
-    LDA $6F
+World3_ApplyScroll:
+    LDA World3ScrollX
     STA a:PPU_SCROLL
-    LDA $70
+    LDA World3ScrollY
     STA a:PPU_SCROLL
     LDA PpuCtrlShadow
     AND #$FC
-    ORA $71
+    ORA World3NametableSelect
     STA PpuCtrlShadow
     STA a:PPU_CTRL
     RTS
 
-Bank2_Func_B0A4:
+World3_RunOamDma:
     LDA #$00
     STA a:OAM_ADDR
     LDA #$03
     STA a:OAM_DMA
     RTS
 
-Bank2_Func_B0AF:
+World3_WaitForVblankEdge:
     LDA a:PPU_STATUS
-    BMI Bank2_Func_B0AF
+    BMI World3_WaitForVblankEdge
 
 Bank2_Label_B0B4:
     LDA a:PPU_STATUS
     BPL Bank2_Label_B0B4
     RTS
 
-Bank2_Func_B0BA:
+World3_CalculateNametableAddress:
     LDA #$20
-    STA $6A
+    STA World3PpuAddressHigh
     CPX #$20
     BCC Bank2_Label_B0CB
     TXA
@@ -359,7 +359,7 @@ Bank2_Func_B0BA:
     SBC #$20
     TAX
     LDA #$24
-    STA $6A
+    STA World3PpuAddressHigh
 
 Bank2_Label_B0CB:
     CPY #$1E
@@ -369,33 +369,33 @@ Bank2_Label_B0CB:
     SBC #$1E
     TAY
     LDA #$24
-    STA $6A
+    STA World3PpuAddressHigh
 
 Bank2_Label_B0D8:
     LDA #$00
-    STA $69
+    STA World3PpuAddressLow
     TYA
     LSR A
-    ROR $69
+    ROR World3PpuAddressLow
     LSR A
-    ROR $69
+    ROR World3PpuAddressLow
     LSR A
-    ROR $69
+    ROR World3PpuAddressLow
     CLC
-    ADC $6A
-    STA $6A
+    ADC World3PpuAddressHigh
+    STA World3PpuAddressHigh
     TXA
     CLC
-    ADC $69
-    STA $69
-    LDA $6A
+    ADC World3PpuAddressLow
+    STA World3PpuAddressLow
+    LDA World3PpuAddressHigh
     ADC #$00
-    STA $6A
+    STA World3PpuAddressHigh
     RTS
 
-Bank2_Func_B0F8:
+World3_CalculateAttributeAddress:
     LDA #$23
-    STA $6A
+    STA World3PpuAddressHigh
     LDA #$00
     STA $41
     CPX #$20
@@ -405,7 +405,7 @@ Bank2_Func_B0F8:
     SBC #$20
     TAX
     LDA #$27
-    STA $6A
+    STA World3PpuAddressHigh
     LDA #$40
     STA $41
 
@@ -417,7 +417,7 @@ Bank2_Label_B111:
     SBC #$1E
     TAY
     LDA #$27
-    STA $6A
+    STA World3PpuAddressHigh
     LDA #$40
     STA $41
 
@@ -434,12 +434,26 @@ Bank2_Label_B122:
     ORA $41
     STA $41
     ORA #$C0
-    STA $69
+    STA World3PpuAddressLow
     RTS
-    .byte $C9, $80, $90, $0D, $48, $8A, $49, $FF, $18, $69, $01, $AA, $68, $49, $FF, $69
-    .byte $00, $60
 
-Bank2_Func_B149:
+World3_DormantAbsoluteValue16:
+    CMP #$80
+    BCC Bank2_Label_B148
+    PHA
+    TXA
+    EOR #$FF
+    CLC
+    ADC #$01
+    TAX
+    PLA
+    EOR #$FF
+    ADC #$00
+
+Bank2_Label_B148:
+    RTS
+
+World3_AbsoluteValue8:
     CMP #$80
     BCC Bank2_Label_B152
     EOR #$FF
@@ -449,7 +463,7 @@ Bank2_Func_B149:
 Bank2_Label_B152:
     RTS
 
-Bank2_Func_B153:
+World3_RandomByte:
     INC $D6
     DEC $D7
     BNE Bank2_Label_B15D
@@ -488,7 +502,43 @@ Bank2_Label_B167:
     EOR $00,X
     LDX $E2
     RTS
-    .byte $E6, $D9, $C6, $DA, $D0, $04, $A9, $75, $85, $DA, $A5, $D9, $C9, $77, $D0, $04
-    .byte $A9, $01, $85, $D9, $45, $DA, $0A, $08, $4A, $28, $2A, $0A, $08, $4A, $28, $2A
-    .byte $45, $DB, $38, $E5, $DA, $18, $65, $D9, $18, $65, $D9, $85, $DB, $60, $A5, $00
-    .byte $85, $68
+
+World3_DormantRandomByte:
+    INC $D9
+    DEC $DA
+    BNE Bank2_Label_B193
+    LDA #$75
+    STA $DA
+
+Bank2_Label_B193:
+    LDA $D9
+    CMP #$77
+    BNE Bank2_Label_B19D
+    LDA #$01
+    STA $D9
+
+Bank2_Label_B19D:
+    EOR $DA
+    ASL A
+    PHP
+    LSR A
+    PLP
+    ROL A
+    ASL A
+    PHP
+    LSR A
+    PLP
+    ROL A
+    EOR $DB
+    SEC
+    SBC $DA
+    CLC
+    ADC $D9
+    CLC
+    ADC $D9
+    STA $DB
+    RTS
+
+World3_DormantWaitFramesFromParameter:
+    LDA $00
+    STA World3FrameWaitCounter

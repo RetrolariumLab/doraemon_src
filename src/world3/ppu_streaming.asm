@@ -224,7 +224,7 @@ Bank2_Label_A72E:
 
 Bank2_Func_A733:
     JSR Bank2_Func_A863
-    JSR Bank2_Func_B276
+    JSR World3_DisableRendering
     LDA #$02
     JSR Bank2_Func_81AA
     LDA #$90
@@ -291,7 +291,7 @@ Bank2_Label_A79C:
 
 Bank2_Label_A7AB:
     JSR Bank2_Func_B3FF
-    JSR Bank2_Func_B286
+    JSR World3_EnableRendering
     JSR Bank2_Func_A8B0
     LDA #$00
     STA $73
@@ -381,7 +381,7 @@ Bank2_Label_A87A:
     STX $02
 
 Bank2_Label_A87E:
-    LDA a:$0480,X
+    LDA a:World3PaletteShadow,X
     CMP #$0F
     BEQ Bank2_Label_A898
     INC $02
@@ -397,7 +397,7 @@ Bank2_Label_A891:
     SBC #$10
 
 Bank2_Label_A895:
-    STA a:$0480,X
+    STA a:World3PaletteShadow,X
 
 Bank2_Label_A898:
     INX
@@ -405,10 +405,10 @@ Bank2_Label_A898:
     BNE Bank2_Label_A87E
     LDX #$80
     LDY #$04
-    JSR Bank2_Func_B2A3
+    JSR World3_QueuePalette
     LDA #$03
-    STA $68
-    JSR Bank2_Func_B1BB
+    STA World3FrameWaitCounter
+    JSR World3_WaitFrames
     LDA $02
     BNE Bank2_Label_A87A
     RTS

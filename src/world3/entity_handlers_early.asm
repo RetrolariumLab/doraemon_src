@@ -121,12 +121,12 @@ Bank2_Label_9415:
     LDA $8C
     SEC
     SBC #$78
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     STA $41
     LDA $8D
     SEC
     SBC #$78
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP $41
     BCS Bank2_Label_9449
     LDA $8C
@@ -204,7 +204,7 @@ Bank2_Label_9475:
     BEQ Bank2_Label_94B6
 
 Bank2_Label_94AB:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$3F
     TAX
     LDA a:World3_GhostRelocationBlockedByRoom,X
@@ -271,13 +271,13 @@ Bank2_Label_9512:
     LDA a:World3EntityX,X
     SEC
     SBC a:World3EntityX,Y
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCS Bank2_Label_954A
     LDA a:World3EntityY,X
     SEC
     SBC a:World3EntityY,Y
-    JSR Bank2_Func_B149
+    JSR World3_AbsoluteValue8
     CMP #$0D
     BCS Bank2_Label_954A
     LDA a:World3EntityFollowAnchorFlag,X
@@ -317,7 +317,7 @@ World3_UpdateType09OctopusSegment:
     RTS
 
 World3_UpdateType0ADragonHead:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$1F
     BNE Bank2_Label_95A1
     LDA #$11
@@ -330,7 +330,7 @@ World3_UpdateType0BDragonSegment:
     RTS
 
 World3_UpdateType0CPoseidonUpperLeft:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$1F
     BNE Bank2_Label_95B1
     LDA #$11

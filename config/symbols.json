@@ -2040,6 +2040,108 @@
     },
     {
       "bank": 2,
+      "address": "0xAFED",
+      "name": "World3_NmiFrameServices",
+      "evidence": "bank2-nmi-tail-drains-ppu-queue-applies-scroll-finalizes-requested-oam-buffer-rollover-and-advances-frame-wait"
+    },
+    {
+      "bank": 2,
+      "address": "0xB00D",
+      "name": "World3_DrainOnePpuQueueRecord",
+      "evidence": "decodes-address-increment-length-and-payload-from-0500-ring-and-writes-ppu-data"
+    },
+    {
+      "bank": 2,
+      "address": "0xB05A",
+      "name": "World3_DrainPpuQueueIfRenderingDisabled",
+      "evidence": "synchronously-drains-queue-only-while-nmi-ppu-services-are-bypassed"
+    },
+    {
+      "bank": 2,
+      "address": "0xB062",
+      "name": "World3_WaitForPpuQueueEmpty",
+      "evidence": "waits-until-read-and-write-ring-indexes-match-while-preserving-accumulator"
+    },
+    {
+      "bank": 2,
+      "address": "0xB06B",
+      "name": "World3_WaitForPpuQueueSpace",
+      "evidence": "waits-for-empty-ring-or-at-least-24-hex-bytes-before-largest-record-write"
+    },
+    {
+      "bank": 2,
+      "address": "0xB07D",
+      "name": "World3_ResetPpuAddressAfterUpdates",
+      "evidence": "sets-ppu-address-to-3f00-then-0000-after-update-writes"
+    },
+    {
+      "bank": 2,
+      "address": "0xB08E",
+      "name": "World3_ApplyScroll",
+      "evidence": "writes-world3-scroll-pair-and-merges-nametable-select-into-ppu-control-shadow"
+    },
+    {
+      "bank": 2,
+      "address": "0xB0A4",
+      "name": "World3_RunOamDma",
+      "evidence": "starts-dma-from-cpu-page-03"
+    },
+    {
+      "bank": 2,
+      "address": "0xB0AF",
+      "name": "World3_WaitForVblankEdge",
+      "evidence": "waits-for-ppu-status-vblank-clear-then-set"
+    },
+    {
+      "bank": 2,
+      "address": "0xB0BA",
+      "name": "World3_CalculateNametableAddress",
+      "evidence": "converts-tile-x-y-with-32-by-30-wrapping-to-nametable-address-in-006a-0069"
+    },
+    {
+      "bank": 2,
+      "address": "0xB0F8",
+      "name": "World3_CalculateAttributeAddress",
+      "evidence": "converts-tile-x-y-with-32-by-30-wrapping-to-attribute-address-and-shadow-offset"
+    },
+    {
+      "bank": 2,
+      "address": "0xB137",
+      "name": "World3_DormantAbsoluteValue16",
+      "evidence": "complete-unreferenced-signed-16-bit-a-x-absolute-value-routine"
+    },
+    {
+      "bank": 2,
+      "address": "0xB149",
+      "name": "World3_AbsoluteValue8",
+      "evidence": "returns-two-complement-absolute-value-of-signed-accumulator"
+    },
+    {
+      "bank": 2,
+      "address": "0xB153",
+      "name": "World3_RandomByte",
+      "evidence": "widely-called-three-byte-state-pseudorandom-update-mixed-with-nmi-frame-byte"
+    },
+    {
+      "bank": 2,
+      "address": "0xB189",
+      "name": "World3_DormantRandomByte",
+      "evidence": "complete-unreferenced-copy-of-pseudorandom-state-update-using-d9-through-db"
+    },
+    {
+      "bank": 2,
+      "address": "0xB1B7",
+      "name": "World3_DormantWaitFramesFromParameter",
+      "evidence": "complete-unreferenced-wrapper-loads-zero-page-00-parameter-into-frame-wait-counter-and-falls-through"
+    },
+    {
+      "bank": 2,
+      "address": "0xB1BB",
+      "name": "World3_WaitFrames",
+      "evidence": "callers-set-0068-and-spin-until-bank2-nmi-decrements-it-to-zero"
+    },
+    {
+      "bank": 2,
       "address": "0xB1C2",
       "name": "World3_DormantUpdateControllerRepeat",
       "evidence": "complete-unreferenced-two-lane-controller-autorepeat-wrapper-with-internal-b1d1-call"
@@ -2052,9 +2154,57 @@
     },
     {
       "bank": 2,
+      "address": "0xB25B",
+      "name": "World3_HideAllSprites",
+      "evidence": "writes-offscreen-y-f4-to-all-sixty-four-oam-records"
+    },
+    {
+      "bank": 2,
+      "address": "0xB276",
+      "name": "World3_DisableRendering",
+      "evidence": "hides-sprites-waits-vblank-sets-rendering-disabled-state-and-clears-ppu-mask"
+    },
+    {
+      "bank": 2,
+      "address": "0xB286",
+      "name": "World3_EnableRendering",
+      "evidence": "waits-queue-empty-and-vblank-applies-oam-scroll-state-clears-disabled-state-and-enables-ppu-mask"
+    },
+    {
+      "bank": 2,
+      "address": "0xB29F",
+      "name": "World3_QueuePaletteFromParameters",
+      "evidence": "loads-16-bit-source-pointer-parameters-and-falls-through-to-full-palette-queue-writer"
+    },
+    {
+      "bank": 2,
+      "address": "0xB2A3",
+      "name": "World3_QueuePalette",
+      "evidence": "queues-3f00-length-20-ppu-record-and-updates-0480-palette-shadow"
+    },
+    {
+      "bank": 2,
+      "address": "0xB2D4",
+      "name": "World3_FillNametables",
+      "evidence": "fills-32-byte-row-buffer-and-queues-sixty-nametable-rows"
+    },
+    {
+      "bank": 2,
+      "address": "0xB2FD",
+      "name": "World3_FillAttributeTables",
+      "evidence": "expands-palette-id-to-attribute-byte-fills-shadow-and-queues-four-32-byte-regions"
+    },
+    {
+      "bank": 2,
       "address": "0xB32D",
       "name": "World3_DormantQueuePpuBlockFromParameters",
       "evidence": "complete-unreferenced-parameter-wrapper-computes-ppu-address-and-falls-through-to-block-queue-writer"
+    },
+    {
+      "bank": 2,
+      "address": "0xB33A",
+      "name": "World3_QueuePpuBlock",
+      "evidence": "appends-address-increment-length-and-pointer-sourced-payload-to-0500-ring"
     },
     {
       "bank": 2,
@@ -2888,6 +3038,102 @@
       "evidence": "initialized-to-0x78-and-updated-by-vertical-input-with-flight-bounds"
     },
     {
+      "address": "0x0067",
+      "name": "World3RenderingDisabled",
+      "banks": [
+        2
+      ],
+      "evidence": "one-bypasses-bank2-nmi-ppu-services-and-allows-producers-to-drain-queue-synchronously"
+    },
+    {
+      "address": "0x0068",
+      "name": "World3FrameWaitCounter",
+      "banks": [
+        2
+      ],
+      "evidence": "decremented-by-bank2-nmi-and-polled-by-world3-wait-frames"
+    },
+    {
+      "address": "0x0069",
+      "name": "World3PpuAddressLow",
+      "banks": [
+        2
+      ],
+      "evidence": "low-byte-output-of-world3-nametable-and-attribute-address-calculators"
+    },
+    {
+      "address": "0x006A",
+      "name": "World3PpuAddressHigh",
+      "banks": [
+        2
+      ],
+      "evidence": "high-byte-output-of-world3-nametable-and-attribute-address-calculators"
+    },
+    {
+      "address": "0x006B",
+      "name": "World3PpuQueueReadIndex",
+      "banks": [
+        2
+      ],
+      "evidence": "consumer-index-advanced-after-decoding-0500-ring-record"
+    },
+    {
+      "address": "0x006C",
+      "name": "World3PpuQueueWriteIndex",
+      "banks": [
+        2
+      ],
+      "evidence": "producer-index-advanced-after-appending-0500-ring-record"
+    },
+    {
+      "address": "0x006D",
+      "name": "World3PpuQueueRecordBudget",
+      "banks": [
+        2
+      ],
+      "evidence": "set-to-one-at-drain-entry-and-decremented-after-each-ppu-record"
+    },
+    {
+      "address": "0x006E",
+      "name": "World3PpuQueueByteCount",
+      "banks": [
+        2
+      ],
+      "evidence": "accumulates-drained-payload-length-for-30-hex-threshold-check"
+    },
+    {
+      "address": "0x006F",
+      "name": "World3ScrollX",
+      "banks": [
+        2
+      ],
+      "evidence": "first-world3-ppu-scroll-write"
+    },
+    {
+      "address": "0x0070",
+      "name": "World3ScrollY",
+      "banks": [
+        2
+      ],
+      "evidence": "second-world3-ppu-scroll-write"
+    },
+    {
+      "address": "0x0071",
+      "name": "World3NametableSelect",
+      "banks": [
+        2
+      ],
+      "evidence": "low-ppu-control-nametable-bits-merged-by-bank2-scroll-and-queue-drain"
+    },
+    {
+      "address": "0x0072",
+      "name": "World3PpuQueueVerticalIncrement",
+      "banks": [
+        2
+      ],
+      "evidence": "nonzero-encodes-ppu-increment-32-in-queued-address-high-bit"
+    },
+    {
       "address": "0x0073",
       "name": "World2FrameCounter",
       "banks": [
@@ -3167,6 +3413,33 @@
       "address": "0x0300",
       "name": "OamBuffer",
       "evidence": "oam-dma-page-03-and-four-byte-sprite-writes"
+    },
+    {
+      "address": "0x0400",
+      "name": "World3AttributeShadow",
+      "size": 128,
+      "banks": [
+        2
+      ],
+      "evidence": "attribute-fill-and-quadrant-update-shadow-consumed-by-ppu-queue-writers"
+    },
+    {
+      "address": "0x0480",
+      "name": "World3PaletteShadow",
+      "size": 32,
+      "banks": [
+        2
+      ],
+      "evidence": "32-byte-palette-copy-updated-with-every-3f00-queue-record"
+    },
+    {
+      "address": "0x0500",
+      "name": "World3PpuQueue",
+      "size": 256,
+      "banks": [
+        2
+      ],
+      "evidence": "256-byte-wrapping-address-length-payload-ring-consumed-by-bank2-nmi"
     },
     {
       "address": "0x0400",

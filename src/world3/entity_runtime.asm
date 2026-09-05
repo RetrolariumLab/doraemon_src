@@ -41,7 +41,7 @@ Bank2_Label_8B8A:
     LDX #$00
 
 Bank2_Label_8B9C:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$03
     TAY
     LDA a:$04A4,Y
@@ -66,7 +66,7 @@ Bank2_Label_8BB9:
     LDX #$00
 
 Bank2_Label_8BCB:
-    JSR Bank2_Func_B153
+    JSR World3_RandomByte
     AND #$07
     TAY
     LDA a:$04A8,Y

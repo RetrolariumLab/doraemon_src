@@ -96,8 +96,8 @@ Bank2_Reset:
     TXA
 
 Bank2_Label_80AC:
-    STA a:$0400,X
-    STA a:$0500,X
+    STA a:World3AttributeShadow,X
+    STA a:World3PpuQueue,X
     STA a:World3EntityState,X
     STA a:World3PlayerProjectileDirection+$01,X
     INX
@@ -382,7 +382,7 @@ Bank2_Func_8271:
     JMP Bank2_World3Main
 
 Bank2_Func_8274:
-    JMP Bank2_Func_AFED
+    JMP World3_NmiFrameServices
 
 Bank2_Func_8277:
     JMP Bank2_World3AlternateEntry

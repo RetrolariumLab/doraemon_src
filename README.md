@@ -132,6 +132,7 @@ config/world2_enemy_states.json World 2 enemy token/state property contract
 config/world2_stage_sequence.json World 2 stage bytecode contract
 config/world2_metatiles.json exact World 2 metatile/render/collision contract
 config/world2_palettes.json World 2 palette lookup and upload contract
+config/world3_ppu_queue.json World 3 PPU ring, RAM, and code contract
 config/world3_metasprites.json World 3 metasprite and palette contract
 data/world1/object_data.json lossless editable World 1 object representation
 data/world2/enemy_states.json lossless editable World 2 state properties
@@ -145,10 +146,12 @@ config/debugger_*.json      initial Mesen watches and breakpoints
 docs/                       architecture, formats, evidence, and roadmap
 docs/ram_fields.md          proved shared RAM layout and ownership notes
 docs/world3_dormant_code.md statically recovered but unreferenced code islands
+docs/world3_ppu_queue.md    World 3 NMI queue record and synchronization model
 scripts/project.py          identity, split, bank report, and source policy
 scripts/run_ghidra.py       deterministic per-bank headless analysis
 scripts/generate_disassembly.py  Ghidra facts to canonical ca65 source
 scripts/map_data.py         CadEditor region validator
+scripts/world3_ppu_queue.py World 3 PPU queue and symbol validator
 scripts/verify_rom.py       focused byte-difference diagnostics
 src/banks/bank_0.asm        generated bank 0 semantic include map
 src/banks/bank_1.asm        generated bank 1 semantic include map

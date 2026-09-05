@@ -246,6 +246,10 @@ entry 2 A335 Bank2_World3PlayerStateHandler_A335
 entry 2 A33C Bank2_World3PlayerStateHandler_A33C
 # Orphaned but internally coherent controller-repeat and PPU queue helpers.
 # B1C2 directly calls its B1D1 lane helper; B32D falls through into B33A.
+# Three additional orphaned helpers adjoin the active PPU support code.
+entry 2 B137 Bank2_World3DormantAbsoluteValue16
+entry 2 B189 Bank2_World3DormantRandomByte
+entry 2 B1B7 Bank2_World3DormantWaitFramesFromParameter
 entry 2 B1C2 Bank2_World3DormantUpdateControllerRepeat
 entry 2 B32D Bank2_World3DormantQueuePpuBlockFromParameters
 entry 2 B371 Bank2_World3DormantQueuePpuByteFromParameters

@@ -94,8 +94,8 @@ Bank2_Label_834C:
     STA PpuCtrlShadow
     JSR Bank2_Func_80FD
     LDA #$5A
-    STA $68
-    JSR Bank2_Func_B1BB
+    STA World3FrameWaitCounter
+    JSR World3_WaitFrames
 
 Bank2_Label_836B:
     JSR Bank2_Func_80DA
@@ -121,7 +121,7 @@ Bank2_World3FrameLoop:
     LDX #$7F
     TXS
     LDA #$00
-    STA $68
+    STA World3FrameWaitCounter
     LDA $DF
     CMP #$3F
     BNE Bank2_Label_839E
@@ -175,8 +175,8 @@ Bank2_Label_83F3:
     LDA #$01
     STA NmiOamDmaRequest
     LDA #$01
-    STA $68
-    JSR Bank2_Func_B1BB
+    STA World3FrameWaitCounter
+    JSR World3_WaitFrames
     LDA $DC
     BEQ Bank2_Label_8419
     DEC $DD
@@ -585,21 +585,21 @@ Bank2_Func_8689:
     STA PpuCtrlShadow
     LDA #$02
     JSR Bank2_Func_81AA
-    JSR Bank2_Func_B276
+    JSR World3_DisableRendering
     LDX #$AE
     LDY #$BC
     STX $00
     STY $01
-    JSR Bank2_Func_B29F
+    JSR World3_QueuePaletteFromParameters
     LDA #$00
     STA $00
-    JSR Bank2_Func_B2D4
+    JSR World3_FillNametables
     LDA #$00
     STA $00
-    JSR Bank2_Func_B2FD
-    JSR Bank2_Func_B25B
+    JSR World3_FillAttributeTables
+    JSR World3_HideAllSprites
     JSR Bank2_Func_80FD
-    JSR Bank2_Func_B286
+    JSR World3_EnableRendering
     RTS
 
 Bank2_Func_86BB:
@@ -614,9 +614,9 @@ Bank2_Func_86C4:
     STY $45
     LDA #$0C
     STA $46
-    LDA a:$0480
+    LDA a:World3PaletteShadow
     STA $47
-    LDA a:$0487
+    LDA a:World3PaletteShadow+$07
     STA $48
 
 Bank2_Label_86D6:
@@ -627,14 +627,14 @@ Bank2_Label_86D6:
     TAX
     JSR Bank2_Func_8700
     LDA #$04
-    STA $68
-    JSR Bank2_Func_B1BB
+    STA World3FrameWaitCounter
+    JSR World3_WaitFrames
     LDA $47
     LDX $48
     JSR Bank2_Func_8700
     LDA #$04
-    STA $68
-    JSR Bank2_Func_B1BB
+    STA World3FrameWaitCounter
+    JSR World3_WaitFrames
     DEC $46
     BNE Bank2_Label_86D6
     LDX $44
@@ -642,18 +642,18 @@ Bank2_Label_86D6:
     RTS
 
 Bank2_Func_8700:
-    STA a:$0480
-    STA a:$0484
-    STA a:$0488
-    STA a:$048C
-    STA a:$0490
-    STA a:$0494
-    STA a:$0498
-    STA a:$049C
-    STX a:$0487
+    STA a:World3PaletteShadow
+    STA a:World3PaletteShadow+$04
+    STA a:World3PaletteShadow+$08
+    STA a:World3PaletteShadow+$0C
+    STA a:World3PaletteShadow+$10
+    STA a:World3PaletteShadow+$14
+    STA a:World3PaletteShadow+$18
+    STA a:World3PaletteShadow+$1C
+    STX a:World3PaletteShadow+$07
     LDX #$80
     LDY #$04
-    JSR Bank2_Func_B2A3
+    JSR World3_QueuePalette
     RTS
     .byte $30, $25, $30, $30, $30, $30, $30, $30, $30, $30, $30, $30, $26, $30, $30, $27
 
