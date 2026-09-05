@@ -10,6 +10,9 @@
 | `$001A` | 1 | PPUMASK shadow | written to `$2001` |
 | `$001B-$001C` | 2 | scroll shadows | written to `$2005` in X/Y order |
 | `$001D-$0020` | 4 | controller shift state | populated from `$4016/$4017` |
+| `$004D` | 1 | World 3 treasure penalty counter | 20 diamond/gold pickups force punishment room `$12` |
+| `$0053-$0054` | 2 | World 3 punishment room state | active flag and saved return room |
+| `$00A8` | 1 | World 3 punishment dorayaki remaining | starts at 20 and controls early exit |
 | `$00AB-$00C7` | 29 | World 3 transient scheduler | four type/count/delay/completion channels, prescaler phases, reload values, and scratch state |
 | `$0290-$0295` | 6 | current score digits | decimal compare/copy loop |
 | `$0298-$029D` | 6 | working score digits | decimal carry loop |
@@ -17,6 +20,7 @@
 | `$0558-$05CE` | 119 | World 2 entity pools | bank-1 overlay containing 7 enemies, 6 enemy projectiles, and 7 player projectiles |
 | `$0600-$06AF` | 176 | World 3 active objects | bank-2 overlay containing eight parallel runtime entity slots |
 | `$06B0-$06F0` | 65 | World 3 persistent objects | thirteen room records with room, type, coordinates, and saved state |
+| `$0725-$0736` | 18 | World 3 punishment player snapshot | saves `$008C-$009D` across the forced room |
 
 Only aliases used by a proven access pattern are named. Chapter-specific
 collision, camera, transition state, and remaining object semantics continue to

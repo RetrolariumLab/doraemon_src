@@ -61,7 +61,7 @@ indexes `$A4`, `$A8`, and `$B4` establish those pairings.
 | `$03` | Gyokkun / Gansuke (`ギョックン / ガンスケ`) | base `$1C`, castle-room alternate `$B4` |
 | `$04` | skull (`ガイコツ`) | metasprite `$20`, castle tracking path |
 | `$05` | ghost (`ユーレイ`) | metasprite `$24`, delayed capture/relocation path |
-| `$06` | room `$12` dorayaki/skull hazard | 250-spawn schedule, damage 4, randomized `$40/$20` graphics |
+| `$06` | punishment-room dorayaki/skull swarm (`おしおき部屋`) | 20-treasure warp to room `$12`, 250-spawn schedule, damaging `$20` skulls, collectible `$40` dorayaki, 20-dorayaki exit |
 | `$07` | Genki Candy (`元気キャンディ`) | candy graphic, two flag-gated fixed placements |
 | `$08-$09` | giant-octopus tentacle tip and segment (`大ダコ`) | two four-part formations; only `$08` has hit points |
 | `$0A-$0B` | dragon head and body (`ドラゴン`) | one head plus seven circular body segments |
@@ -72,12 +72,15 @@ indexes `$A4`, `$A8`, and `$B4` establish those pairings.
 | `$18-$1B` | talisman, Passing Hoop, key, Holding Bag | graphics match roles: reward, terrain, chest conversion, carrying |
 | `$1C-$1F` | Suneo, Nobita, Gian, Shizuka | character graphics and persistent follow-player path |
 
-All rows except `$06` converge between local graphics/control flow and at least
-one published guide. Type `$06` is deliberately given a descriptive structural
-name: its room, schedule, damage, and disguises are exact, but no published
-canonical character name has been found. The machine-readable catalog records
-the evidence sources, forms, Japanese names, confidence, and chest-to-companion
-links for every type.
+All rows converge between local graphics/control flow and at least one
+published guide. Type `$06` deliberately keeps a descriptive name rather than
+inventing a standalone character name. Two guides describe the same forced
+punishment-room event, and the ROM proves the complete chain: diamond/gold
+types `$12/$13` increment a counter, 20 pickups force room `$12`, its only
+active schedule emits type `$06`, `$20` is the damaging skull branch, `$40` is
+the collectible dorayaki branch, and collecting 20 dorayaki exits. The
+machine-readable catalog records the evidence sources, forms, Japanese names,
+confidence, and chest-to-companion links for every type.
 
 ## Validation
 
@@ -90,9 +93,11 @@ make validate-world3-entity-types
 It proves five property columns, 16 initializer pointers, 16 behavior pointers,
 32 update pointers, four nonoverlapping lifecycle domains, the exact initial
 persistent type multiset, both encoded type transformations, and 32 contiguous
-identity records. Confirmed names must cite both local-ROM evidence and an
-external source; base graphics and named chest transformations are checked
-against the binary catalogs.
+identity records. Three additional code relationships pin the punishment-room
+entry, type `$06` collision split, and exit conditions. Confirmed identities
+must cite both local-ROM evidence and an external source; base graphics, named
+chest transformations, and punishment behavior are checked against the binary
+catalogs and code signatures.
 
 For editing, `data/world3/object_catalog.json` joins each type's five property
 values into one record and also joins the five persistent registry columns into

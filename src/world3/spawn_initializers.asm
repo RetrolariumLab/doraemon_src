@@ -95,7 +95,7 @@ World3_InitTransientType04Skull:
 World3_InitTransientType05Ghost:
     RTS
 
-World3_InitTransientType06Room12Hazard:
+World3_InitTransientType06PunishmentRoomSwarm:
     JSR World3_RandomByte
     CMP #$64
     BCS Bank2_Label_9043

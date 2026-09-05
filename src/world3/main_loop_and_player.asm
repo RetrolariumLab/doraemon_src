@@ -158,8 +158,8 @@ Bank2_Label_83C2:
 Bank2_Label_83D1:
     JSR Bank2_Func_B460
     JSR Bank2_Func_9192
-    JSR Bank2_Func_85FD
-    JSR Bank2_Func_85C8
+    JSR World3_CheckPunishmentRoomEntry
+    JSR World3_CheckPunishmentRoomExit
     JSR Bank2_Func_8487
     JSR Bank2_Func_859A
     JSR Bank2_Func_8581
@@ -461,13 +461,13 @@ Bank2_Label_85BB:
     STA a:AudioMusicControl
     RTS
 
-Bank2_Func_85C8:
-    LDA $53
+World3_CheckPunishmentRoomExit:
+    LDA World3PunishmentRoomActive
     BEQ Bank2_Label_85FC
     LDA $DF
     CMP #$12
     BNE Bank2_Label_85FC
-    LDA $A8
+    LDA World3PunishmentDorayakiRemaining
     BEQ Bank2_Label_85EC
     LDA World3TransientSpawnType
     CMP #$06
@@ -489,21 +489,21 @@ Bank2_Label_85EC:
     LDA #$01
     STA a:AudioMusicControl
     JSR Bank2_Func_86C4
-    JSR Bank2_Func_A28D
+    JSR World3_ExitPunishmentRoom
 
 Bank2_Label_85FC:
     RTS
 
-Bank2_Func_85FD:
-    LDA $53
+World3_CheckPunishmentRoomEntry:
+    LDA World3PunishmentRoomActive
     BNE Bank2_Label_864C
-    LDA $4D
+    LDA World3TreasurePenaltyCounter
     CMP #$14
     BCC Bank2_Label_864C
     LDA #$00
-    STA $4D
+    STA World3TreasurePenaltyCounter
     LDA #$01
-    STA $53
+    STA World3PunishmentRoomActive
     LDA #$0A
     JSR Bank2_Func_A5EB
     JSR Bank2_Func_86C4
@@ -511,7 +511,7 @@ Bank2_Func_85FD:
     JSR World3_SaveRoomObjectsState0
     JSR World3_SaveRoomObjectsState1
     LDA $DF
-    STA $54
+    STA World3PunishmentReturnRoom
     LDA #$12
     STA $DF
     JSR Bank2_Func_A213
@@ -520,7 +520,7 @@ Bank2_Func_85FD:
 
 Bank2_Label_8630:
     LDA a:$008C,Y
-    STA a:$0725,Y
+    STA a:World3PunishmentSavedPlayerState,Y
     INY
     CPY #$12
     BNE Bank2_Label_8630
@@ -529,7 +529,7 @@ Bank2_Label_8630:
     LDA #$A8
     STA $8D
     LDA #$14
-    STA $A8
+    STA World3PunishmentDorayakiRemaining
     LDA #$03
     STA a:AudioMusicState
 

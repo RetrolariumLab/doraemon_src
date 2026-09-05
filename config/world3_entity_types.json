@@ -27,6 +27,16 @@
       "id": "kouryaku_world3",
       "url": "https://fc-doraemon.kouryaku.red/entry8.html",
       "role": "World 3 chest, companion, item, octopus, dragon, and Poseidon progression"
+    },
+    {
+      "id": "famicomall_punishment_room",
+      "url": "https://w.atwiki.jp/famicomall/pages/176.html",
+      "role": "documents the World 3 punishment-room trigger and dorayaki escape condition"
+    },
+    {
+      "id": "game_catalog_punishment_room",
+      "url": "https://w.atwiki.jp/gcmatome/pages/3438.html",
+      "role": "documents the forced warp, twenty-dorayaki goal, and skull swarm"
     }
   ],
   "property_tables": [
@@ -352,6 +362,40 @@
         "0x1D",
         "0x1E"
       ]
+    },
+    {
+      "name": "treasure_12_13_triggers_punishment_type_06",
+      "address": "0x85FD",
+      "bytes": "A5 53 D0 4B A5 4D C9 14 90 45 A9 00 85 4D A9 01 85 53",
+      "source_types": [
+        "0x12",
+        "0x13"
+      ],
+      "result_types": [
+        "0x06"
+      ]
+    },
+    {
+      "name": "punishment_type_06_dorayaki_or_skull_collision",
+      "address": "0x89C5",
+      "bytes": "BD 38 06 C9 06 D0 1E BD 28 06 C9 20 F0 14 20 7C 89 BD 38 06 A8 B9 35 8F",
+      "source_types": [
+        "0x06"
+      ],
+      "result_types": [
+        "0x06"
+      ]
+    },
+    {
+      "name": "punishment_room_exit_after_type_06_schedule",
+      "address": "0x85C8",
+      "bytes": "A5 53 F0 30 A5 DF C9 12 D0 2A A5 A8 F0 16 A5 AC C9 06 D0 20 A5 B0 D0 1C",
+      "source_types": [
+        "0x06"
+      ],
+      "result_types": [
+        "0x06"
+      ]
     }
   ],
   "identities": [
@@ -498,26 +542,28 @@
     },
     {
       "type": 6,
-      "symbol": "room12_dorayaki_skull_hazard",
-      "name": "room $12 dorayaki/skull hazard",
-      "japanese_name": null,
+      "symbol": "punishment_room_dorayaki_skull_swarm",
+      "name": "punishment-room dorayaki/skull swarm",
+      "japanese_name": "おしおき部屋のドラ焼き／ガイコツ",
       "category": "hazard",
-      "confidence": "structural",
+      "confidence": "confirmed",
       "base_metasprite": "0x40",
       "forms": [
         {
           "metasprite": "0x40",
-          "name": "dorayaki form",
-          "japanese_name": null
+          "name": "collectible dorayaki",
+          "japanese_name": "ドラ焼き"
         },
         {
           "metasprite": "0x20",
-          "name": "skull form",
-          "japanese_name": null
+          "name": "damaging skull",
+          "japanese_name": "ガイコツ"
         }
       ],
       "evidence": [
-        "local_rom"
+        "local_rom",
+        "famicomall_punishment_room",
+        "game_catalog_punishment_room"
       ]
     },
     {

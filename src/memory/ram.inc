@@ -15,6 +15,12 @@ Controller1Buttons     = $001F
 Controller1ButtonsAlt  = $0020
 CombinedControllerButtons = $0021
 
+; World 3 punishment-room state
+World3TreasurePenaltyCounter = $004D
+World3PunishmentRoomActive = $0053
+World3PunishmentReturnRoom = $0054
+World3PunishmentDorayakiRemaining = $00A8
+
 ; World 3 frame synchronization and PPU update queue
 World3RenderingDisabled = $0067
 World3FrameWaitCounter = $0068
@@ -168,3 +174,4 @@ World3PlayerProjectileY = $06FD
 World3PlayerProjectileDirection = $06FF
 World3PlayerProjectileMetasprite = $0701
 World3PlayerProjectileAnimationCounter = $0703
+World3PunishmentSavedPlayerState = $0725

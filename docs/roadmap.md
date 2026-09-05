@@ -55,11 +55,13 @@ format. All sixteen initializer slots are structurally classified, including
 their room gates, fixed positions, and type `$08/$09`, `$0A/$0B`, and
 `$0C-$0F` formation layouts. The full 32-slot update dispatch is classified
 into structural roles with its room gates, relocation masks, and movement
-vectors losslessly editable. All World 3 identities except the unresolved
-type `$06` are now evidence-backed. Eleven formerly raw, instruction-aligned
-World 3 helper islands are also reconstructed and explicitly marked dormant
-until runtime reachability is demonstrated. The active World 3 PPU queue now
-has named RAM ownership and a documented address/flags/length/payload record.
+vectors losslessly editable. All 32 World 3 identities are now evidence-backed;
+type `$06` is confirmed as the punishment-room dorayaki/skull swarm by the
+20-treasure entry and 20-dorayaki exit paths. Eleven formerly raw,
+instruction-aligned World 3 helper islands are also reconstructed and
+explicitly marked dormant until runtime reachability is demonstrated. The
+active World 3 PPU queue now has named RAM ownership and a documented
+address/flags/length/payload record.
 Its record geometry, capacity invariant, RAM ownership, routine addresses, and
 representative consumer/producer bytes are enforced by the release gate.
 

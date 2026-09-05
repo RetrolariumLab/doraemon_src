@@ -12,7 +12,7 @@ structural roles.
 | `$00-$03` | ordinary enemies/hazard; state 4 follows the active ghost |
 | `$04` | skull movement toward the player in enabled rooms every fourth update |
 | `$05` | ghost captures an eligible object and can relocate persistent targets between rooms |
-| `$06-$07` | room-`$12` hazard and Genki Candy behavior scripts only |
+| `$06-$07` | punishment-room dorayaki/skull swarm and Genki Candy behavior scripts only |
 | `$08` | updates the linked giant-octopus tentacle chain |
 | `$09` | octopus segment behavior script only |
 | `$0A` | updates the dragon head/body encounter chain |

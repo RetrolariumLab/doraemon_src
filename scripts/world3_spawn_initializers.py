@@ -20,7 +20,7 @@ ALLOWED_MODES = {
     "room_table_metasprite_variant",
     "set_clone_budget",
     "no_op",
-    "randomized_metasprite_variant",
+    "punishment_room_dorayaki_or_skull",
     "room_flag_gated_fixed_position",
     "room_flag_gated_type08_09_group",
     "type0a_0b_encounter_group",

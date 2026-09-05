@@ -315,7 +315,7 @@ Bank2_Label_987E:
     LDA a:World3_EntityMetaspriteByType,X
     STA a:World3EntityMetasprite,Y
     LDA #$00
-    STA $4D
+    STA World3TreasurePenaltyCounter
     LDX $3E
     RTS
 

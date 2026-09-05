@@ -61,7 +61,7 @@ Bank2_Label_A26D:
     STA World3FrameWaitCounter
     JSR World3_WaitFrames
     LDA #$00
-    STA $4D
+    STA World3TreasurePenaltyCounter
     LDA $2A
     BEQ Bank2_Label_A2BE
     DEC $2A
@@ -70,19 +70,19 @@ Bank2_Label_A26D:
     JMP Bank2_Label_82C3
 
 Bank2_Func_A285:
-    LDA $53
-    BNE Bank2_Func_A28D
+    LDA World3PunishmentRoomActive
+    BNE World3_ExitPunishmentRoom
     JMP Bank2_Label_834C
 
 Bank2_Label_A28C:
     RTS
 
-Bank2_Func_A28D:
+World3_ExitPunishmentRoom:
     LDA #$00
-    STA $53
+    STA World3PunishmentRoomActive
     JSR World3_SaveRoomObjectsState0
     JSR World3_SaveRoomObjectsState1
-    LDA $54
+    LDA World3PunishmentReturnRoom
     STA $DF
     LDA $DF
     CMP #$11
@@ -95,7 +95,7 @@ Bank2_Label_A2A5:
     LDY #$00
 
 Bank2_Label_A2AA:
-    LDA a:$0725,Y
+    LDA a:World3PunishmentSavedPlayerState,Y
     STA a:$008C,Y
     INY
     CPY #$12

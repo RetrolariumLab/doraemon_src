@@ -147,6 +147,24 @@ than a second event channel.
 The queue record layout, NMI/disabled-rendering ownership split, capacity
 guard, and address calculations are described in `docs/world3_ppu_queue.md`.
 
+## World 3 punishment room
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `World3TreasurePenaltyCounter` | `$004D` | Counts collected diamond/gold types `$12/$13`; 20 forces punishment entry |
+| `World3PunishmentRoomActive` | `$0053` | Distinguishes a forced room `$12` visit from ordinary room flow |
+| `World3PunishmentReturnRoom` | `$0054` | Saves the room restored when punishment ends or the player dies |
+| `World3PunishmentDorayakiRemaining` | `$00A8` | Starts at 20 and decrements only on collectible type `$06` dorayaki |
+| `World3PunishmentSavedPlayerState` | `$0725-$0736` | Snapshot of `$008C-$009D` restored on exit |
+
+`World3_CheckPunishmentRoomEntry` clears the treasure counter, snapshots the
+current room and 18 player-state bytes, and loads room `$12` when the counter
+reaches `$14`. `World3_CheckPunishmentRoomExit` returns immediately after the
+20th dorayaki, or after all 250 scheduled objects and active slots are
+exhausted. `World3_ExitPunishmentRoom` restores the saved room, player state,
+and music. A type `$06` object with metasprite `$20` follows the damage path;
+any other type `$06` form is collected and decrements the remaining count.
+
 ## World 2 entity pools
 
 Bank 1 uses compact parallel arrays whose stride is the pool capacity, rather

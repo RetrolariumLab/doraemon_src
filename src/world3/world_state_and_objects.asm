@@ -366,9 +366,9 @@ Bank2_Func_89A1:
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
-    LDA $A8
+    LDA World3PunishmentDorayakiRemaining
     BEQ Bank2_Label_89E6
-    DEC $A8
+    DEC World3PunishmentDorayakiRemaining
 
 Bank2_Label_89E6:
     RTS
@@ -515,7 +515,7 @@ Bank2_Label_8AB7:
     JSR Bank2_Func_898C
     LDA #$13
     JSR Bank2_Func_A5EB
-    INC $4D
+    INC World3TreasurePenaltyCounter
     JSR Bank2_Func_8733
     LDA #$04
     STA $A4
@@ -529,7 +529,7 @@ Bank2_Label_8AD7:
     JSR Bank2_Func_898C
     LDA #$0E
     JSR Bank2_Func_A5EB
-    INC $4D
+    INC World3TreasurePenaltyCounter
     RTS
 
 Bank2_Label_8AEC:

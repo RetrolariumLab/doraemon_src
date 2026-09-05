@@ -1361,6 +1361,18 @@
     },
     {
       "bank": 2,
+      "address": "0x85C8",
+      "name": "World3_CheckPunishmentRoomExit",
+      "evidence": "exits-room-12-after-twenty-dorayaki-or-after-type-06-schedule-and-active-entities-are-exhausted"
+    },
+    {
+      "bank": 2,
+      "address": "0x85FD",
+      "name": "World3_CheckPunishmentRoomEntry",
+      "evidence": "warps-to-room-12-after-twenty-diamond-or-gold-pickups-and-saves-return-state"
+    },
+    {
+      "bank": 2,
       "address": "0x864D",
       "name": "World3_DormantUpdateState55ForRoomBands",
       "evidence": "complete-unreferenced-routine-selectively-writes-14-to-0055-from-room-number-bands"
@@ -1513,8 +1525,8 @@
     {
       "bank": 2,
       "address": "0x902F",
-      "name": "World3_InitTransientType06Room12Hazard",
-      "evidence": "initializer-slot-06-randomized-metasprite-and-variant"
+      "name": "World3_InitTransientType06PunishmentRoomSwarm",
+      "evidence": "initializer-slot-06-selects-collectible-dorayaki-or-damaging-skull-form"
     },
     {
       "bank": 2,
@@ -1938,6 +1950,12 @@
       "address": "0xA22F",
       "name": "World3_PlayerStateHandlerTable",
       "evidence": "five-slot-player-state-pointer-table"
+    },
+    {
+      "bank": 2,
+      "address": "0xA28D",
+      "name": "World3_ExitPunishmentRoom",
+      "evidence": "clears-punishment-state-restores-saved-room-player-state-and-music"
     },
     {
       "bank": 2,
@@ -2973,6 +2991,30 @@
       "evidence": "or-of-four-controller-shift-registers"
     },
     {
+      "address": "0x004D",
+      "name": "World3TreasurePenaltyCounter",
+      "banks": [
+        2
+      ],
+      "evidence": "incremented-by-diamond-and-gold-pickups-and-triggers-punishment-room-at-twenty"
+    },
+    {
+      "address": "0x0053",
+      "name": "World3PunishmentRoomActive",
+      "banks": [
+        2
+      ],
+      "evidence": "set-on-room-12-forced-entry-and-cleared-when-saved-room-state-is-restored"
+    },
+    {
+      "address": "0x0054",
+      "name": "World3PunishmentReturnRoom",
+      "banks": [
+        2
+      ],
+      "evidence": "room-number-saved-before-forced-room-12-entry-and-restored-on-exit"
+    },
+    {
       "address": "0x0046",
       "name": "World2ScreenStreamPointer",
       "size": 2,
@@ -3207,6 +3249,14 @@
         1
       ],
       "evidence": "stage-command-palette-id-restored-after-world2-transition"
+    },
+    {
+      "address": "0x00A8",
+      "name": "World3PunishmentDorayakiRemaining",
+      "banks": [
+        2
+      ],
+      "evidence": "initialized-to-twenty-and-decremented-only-when-type-06-dorayaki-form-is-collected"
     },
     {
       "address": "0x00AB",
@@ -4079,6 +4129,15 @@
         2
       ],
       "evidence": "two-slot-impact-animation-rate-counter"
+    },
+    {
+      "address": "0x0725",
+      "name": "World3PunishmentSavedPlayerState",
+      "size": 18,
+      "banks": [
+        2
+      ],
+      "evidence": "eighteen-byte-008c-through-009d-state-snapshot-saved-on-punishment-entry-and-restored-on-exit"
     },
     {
       "address": "0x2000",

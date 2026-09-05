@@ -16,7 +16,7 @@ disable the entity, or expand it into a multi-object formation.
 | `$03` | `$8FDB` | selects Gyokkun or the castle-room Gansuke metasprite |
 | `$04` | `$9028` | gives a skull a one-unit clone budget |
 | `$05` | `$902E` | ghost no-op initializer |
-| `$06` | `$902F` | randomizes the room-`$12` hazard's dorayaki/skull disguise |
+| `$06` | `$902F` | selects the punishment-room swarm's collectible dorayaki or damaging skull form |
 | `$07` | `$9044` | fixes Genki Candy at `$B0,$A8` in gated rooms `$26/$3B` |
 | `$08` | `$9071` | creates a giant-octopus formation in rooms `$27/$28/$34` |
 | `$09` | `$90AA` | octopus-segment no-op; not directly scheduled |

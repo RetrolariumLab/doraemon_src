@@ -52,13 +52,21 @@ controller byte, accepted manhole branch, and side-view initializer.
   <https://wikiwiki.jp/neskouryaku1/%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93>
 - Japanese World 3 progression and boss guide:
   <https://fc-doraemon.kouryaku.red/entry8.html>
+- World 3 punishment-room trigger and escape condition:
+  <https://w.atwiki.jp/famicomall/pages/176.html>
+- Independent punishment-room skull/dorayaki description:
+  <https://w.atwiki.jp/gcmatome/pages/3438.html>
 
 These sources supply names and independent sprite/gameplay descriptions. They
 are not used to infer binary layouts. Each identity in
 `config/world3_entity_types.json` must also agree with locally rendered CHR,
 metasprite selection, dispatch behavior, formation data, or type conversion.
-The `$06` room-`$12` hazard lacks an externally attested name and remains
-explicitly structural.
+Type `$06` has no standalone published character name, so its descriptive
+symbol remains structural in wording. Its role is nevertheless confirmed:
+both guides identify a forced punishment room filled with skulls and dorayaki,
+while the ROM ties the 20-treasure trigger, room `$12`, type `$06` schedule,
+two graphics, damaging/collectible collision split, and 20-dorayaki exit into
+one closed path.
 
 ## Toolchain evidence
 

@@ -319,7 +319,7 @@ def main() -> int:
         f"{report['property_table_count']} property tables, "
         f"{report['dispatch_contract_count']} dispatch domains, "
         f"{report['domain_count']} lifecycle domains, "
-        f"{report['relationship_count']} encoded type transformations, "
+        f"{report['relationship_count']} code relationships, "
         f"{report['confirmed_identity_count']}/{report['identity_count']} "
         "confirmed identities"
     )

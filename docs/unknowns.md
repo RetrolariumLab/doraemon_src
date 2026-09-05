@@ -87,14 +87,15 @@
   index. Its 130 direct entries, 58 flip aliases, 65 variable-length records,
   eleven palettes, and 64 room selectors are losslessly editable through
   `config/world3_metasprites.json`.
-- Known: all World 3 types except `$06` now have names independently supported
-  by locally rendered graphics/control flow and published enemy, item, or
-  progression references. The three shared behavior IDs with alternate forms,
-  bosses and parts, chest contents, puzzle items, drops, and companions are
-  recorded in `config/world3_entity_types.json`.
-- Unknown: the published canonical name, if any, of World 3 type `$06`. Its
-  room-`$12` schedule, 250-spawn budget, damage, and randomized dorayaki/skull
-  graphics are exact.
+- Known: all 32 World 3 types now have identities independently supported by
+  locally rendered graphics/control flow and published enemy, item, or
+  progression references. Type `$06` is the punishment-room dorayaki/skull
+  swarm: the ROM's 20-treasure warp to room `$12`, 250-spawn schedule,
+  damaging skull branch, collectible dorayaki branch, and 20-dorayaki exit
+  exactly match two published descriptions. No standalone canonical character
+  name is claimed. The three shared behavior IDs with alternate forms, bosses
+  and parts, chest contents, puzzle items, drops, and companions are recorded
+  in `config/world3_entity_types.json`.
 - Unknown: character/item identities for World 1 descriptors, individual World
   2 enemy identities and handler-specific meanings. The World 3 behavior
   bytecode, structural type catalog, room placement scheduler, formation
