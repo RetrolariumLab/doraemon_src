@@ -1,9 +1,10 @@
 # Source Reconstruction 1.0
 
-The project is moving from a matching preservation disassembly to a source
-reconstruction comparable in scope to `smb1_src` and `pacman_src`. Exact ROM
-identity remains a permanent constraint; semantic source, runtime evidence, and
-editable data are added without replacing or weakening the preservation build.
+The project has completed the technical reconstruction scope comparable to
+`smb1_src` and `pacman_src`, including the metadata and curated history required
+by revision 3 of the shared release contract. Exact ROM identity remains a
+permanent constraint; semantic source, runtime evidence, and editable data are
+added without replacing or weakening the preservation build.
 
 Version 1.0 targets exactly one image: the original Japanese PRG0 revision with
 payload CRC32 `BDE3AE9B`, PRG CRC32 `B00ABE1C`, and CHR CRC32 `761F994E`.
@@ -42,8 +43,8 @@ Source Reconstruction 1.0 is tag-ready only when all of these conditions hold:
 - linker-derived debugger symbols and fresh runtime captures cover every bank,
   NMI, all three worlds, transitions, and the ending;
 - one `source-1-audit` target performs the clean release gate;
-- `make source-check` passes on a clean tree and the manifest status is changed
-  to `tag-ready` only in the release commit.
+- `make source-check` passes on a clean tree and the manifest is changed to
+  `tag-ready` in the committed release candidate before the pre-tag gate.
 
 An `.incbin` remains acceptable for the private CHR input. Executable PRG bytes
 must stay represented as source. A bank boundary is a hardware layout fact, not
@@ -71,6 +72,8 @@ make validate-source-classification # classify every canonical PRG source byte
 make source-release-audit  # additionally require tag-ready status
 make source-check          # full project gate plus reconstruction audit
 make source-1-audit         # clean tag-ready gate with fresh runtime captures
+make source-1-post-tag-audit # validate the annotated local release tag
+make source-1-post-tag-remote-audit # validate the published tag target
 ```
 
 The normal `make verify` and `make check` targets remain available throughout
@@ -85,5 +88,9 @@ Relocation builds, Revision A, translations/region profiles, and exhaustive
 editors for secondary graphics/text tables are explicitly deferred to Source
 Reconstruction 2.0.
 
-The tracked manifest is now `tag-ready`. The release tag is created only
-after `make source-1-audit` succeeds from this committed, clean state.
+The tracked manifest is `tag-ready`: all technical requirements are satisfied,
+and the owner-approved rewrite condenses the 141 draft changes after the
+preservation base into 61 coherent, attributed commits. The unpublished legacy
+tag is retained under `source-reconstruction-1.0-pre-contract3`; the canonical
+release tag is created only after `make source-1-audit` succeeds from the clean,
+committed release candidate.

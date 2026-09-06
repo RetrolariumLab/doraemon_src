@@ -263,7 +263,7 @@ authoring documents, and 30 focused validators. The aggregate audit rejects
 missing chapter coverage, non-lossless components, missing evidence, or
 validators omitted from `release-check`.
 
-### 11. Source Reconstruction 1.0 - Complete
+### 11. Source Reconstruction 1.0 technical scope - Complete
 
 All release-scope unknowns are explicitly classified, and the clean aggregate
 `source-1-audit` refreshes all eight runtime scenarios before the annotated
@@ -284,6 +284,15 @@ The source-byte classification is also complete. The canonical ca65 listing
 accounts for 47,789 instruction bytes and 83,283 directive bytes. Every
 directive byte is now release-gated as base/supplemental typed data, proven
 encoded code, verified fill, or one of 5,700 exact registered-unknown bytes.
+
+### 12. Revision 3 release administration - Complete
+
+The revision-3 manifest, scope, profile/runtime matrix, SHA-256 artifact and
+private-input identities, pinned build/runtime toolchain, licensing inventory,
+documentation index, and pre/post-tag audits are complete. The owner-approved
+rewrite replaces 141 draft changes with 61 coherent commits after the immutable
+base; their messages and attribution satisfy the contract. The release
+candidate is `tag-ready` and awaits the clean aggregate pre-tag gate.
 
 ## Deferred to Source Reconstruction 2.0
 
