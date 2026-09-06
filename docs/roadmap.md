@@ -7,8 +7,8 @@ The independent workstream statuses below mirror
 ### 0. Preservation baseline - Complete
 
 The PRG0 identity, four-bank ca65 build, deterministic disassembly pipeline,
-known map ranges, and byte-for-byte verification are fixed at the `main`
-baseline commit.
+known map ranges, and byte-for-byte verification are fixed at immutable commit
+`499d4f8`, which remains an ancestor of the release.
 
 ### 1. Reconstruction contract - Complete
 

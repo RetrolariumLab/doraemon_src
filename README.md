@@ -9,11 +9,11 @@ tracked PRG assembly plus one private CHR input.
 
 The completed reconstruction on `source-reconstruction` is prepared for Source
 Reconstruction 1.0 under revision 3 of the
-[release contract](docs/source_reconstruction.md). The matching preservation
-state remains fixed on `main`; the release history now records semantic source,
-runtime evidence, editable primary formats, and debugger integration as 61
-reviewable changes without weakening byte identity. Relocation builds are
-deferred to Source Reconstruction 2.0.
+[release contract](docs/source_reconstruction.md). The immutable preservation
+base remains fixed at commit `499d4f8`; the promoted `main` history records
+semantic source, runtime evidence, editable primary formats, and debugger
+integration without weakening byte identity. Relocation builds are deferred to
+Source Reconstruction 2.0.
 
 - The exact local reference is identified by complete file, header, PRG, CHR,
   and payload hashes.
