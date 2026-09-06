@@ -205,6 +205,8 @@ cross-references keep this workstream partial.
 
 Recover PPU update paths, palettes, sprites/metasprites, CHR ownership, title,
 HUD, dialogue, item names, and ending presentation. World 1's complete
+12-record full PPU palette table, area-indexed loader, and all 384 bytes are
+exact and losslessly editable. Its complete
 row/column map-streaming path is now exact: two packet families own 92 RAM
 bytes, six producer/consumer routines, 1,013 routine bytes, and a complete
 20-call graph. Its four bounded directional camera routines, 325 routine

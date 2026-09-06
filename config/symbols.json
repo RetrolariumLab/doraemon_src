@@ -1710,6 +1710,13 @@
     },
     {
       "bank": 0,
+      "address": "0xD7A5",
+      "name": "World1PaletteSets",
+      "operand_symbol": true,
+      "evidence": "twelve-32-byte-area-palettes-indexed-by-world1-load-area-palette"
+    },
+    {
+      "bank": 0,
       "address": "0xDE12",
       "name": "World1_TestEntityMapCollisionAtOffset",
       "evidence": "validated-world1-final-routine-screen-offset-to-map-cell-solid-tile-test"

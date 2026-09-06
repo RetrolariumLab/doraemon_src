@@ -165,16 +165,16 @@
     {
       "bank": 0,
       "start": "0xD770",
-      "end": "0xD7A8",
+      "end": "0xD7A4",
       "path": "world1/underground_object_spawning.asm",
       "responsibility": "World 1 underground transient-object allocation and positioning"
     },
     {
       "bank": 0,
-      "start": "0xD7A9",
+      "start": "0xD7A5",
       "end": "0xD924",
-      "path": "world1/data/underground_chapter_tables.asm",
-      "responsibility": "World 1 underground chapter tables preceding object placements"
+      "path": "world1/data/palettes.asm",
+      "responsibility": "World 1 twelve-record full PPU palette table"
     },
     {
       "bank": 0,

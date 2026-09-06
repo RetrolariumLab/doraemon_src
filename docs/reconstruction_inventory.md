@@ -10,11 +10,11 @@ evidence manifests. Any change requires an intentional snapshot update.
 
 | Bank | Global labels | Semantic labels | Neutral routines | Neutral locals | Semantic indirect entries |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 1,011 | 326 | 0 | 685 | 84 / 84 |
+| 0 | 1,012 | 327 | 0 | 685 | 84 / 84 |
 | 1 | 879 | 320 | 0 | 559 | 97 / 97 |
 | 2 | 1,103 | 420 | 0 | 683 | 106 / 106 |
 | 3 | 363 | 161 | 0 | 202 | 67 / 67 |
-| Total | 3,356 | 1,227 | 0 | 2,129 | 354 / 354 |
+| Total | 3,357 | 1,228 | 0 | 2,129 | 354 / 354 |
 
 The inventory now separates zero neutral routine definitions from 2,129
 address-derived local branch labels. The common runtime naming pass removed 88 neutral routine
@@ -137,17 +137,18 @@ ten Bank 2 RAM fields; it also names three fixed transfer tables and the marker
 blink counter. No neutral routine definitions remain in any PRG bank.
 
 The symbol registry currently contains 1,092 evidence-backed code symbols and
-125 operand/table symbols. RAM coverage contains 437 unique aliases: 83 shared
+126 operand/table symbols. RAM coverage contains 437 unique aliases: 83 shared
 symbols plus 98 Bank 0, 97 Bank 1, 151 Bank 2, and 8 Bank 3 scoped symbols.
 
-Typed PRG ranges cover 65,796 bytes in 57 non-overlapping regions. Bank 3 now
-separates exact title, game-over, chapter-help, ending-opening, active-credit,
+Typed PRG ranges cover 66,180 bytes in 58 non-overlapping regions. Bank 0 now
+includes the twelve complete World 1 PPU palettes as one 384-byte table. Bank 3
+still separates exact title, game-over, chapter-help, ending-opening, active-credit,
 and post-credit presentation spans instead of treating them as audio or one
 undifferentiated credit tail:
 
 | Bank | Typed bytes | Ranges |
 | ---: | ---: | ---: |
-| 0 | 11,388 | 10 |
+| 0 | 11,772 | 11 |
 | 1 | 19,954 | 18 |
 | 2 | 12,373 | 20 |
 | 3 | 22,081 | 9 |

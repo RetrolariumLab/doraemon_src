@@ -55,6 +55,8 @@ OBJECT_PLACEMENTS := config/object_placements.json
 OBJECT_PLACEMENTS_AUTHORING := data/world1/object_data.json
 WORLD1_METASPRITES := config/world1_metasprites.json
 WORLD1_METASPRITE_AUTHORING := data/world1/metasprites.json
+WORLD1_PALETTES := config/world1_palettes.json
+WORLD1_PALETTE_AUTHORING := data/world1/palettes.json
 WORLD1_RANDOM := config/world1_random.json
 WORLD1_MAP_DECODER := config/world1_map_decoder.json
 WORLD1_PPU_STREAMING := config/world1_ppu_streaming.json
@@ -146,6 +148,7 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	shell-runtime validate-shell-runtime \
 	object-dispatch validate-object-dispatch object-placements \
 	validate-object-placements world1-metasprites validate-world1-metasprites \
+	world1-palettes validate-world1-palettes \
 	world1-random validate-world1-random \
 	world1-map-decoder validate-world1-map-decoder \
 	world1-ppu-streaming validate-world1-ppu-streaming \
@@ -398,6 +401,13 @@ world1-metasprites validate-world1-metasprites: $(PRG_ASSET) $(CHR_ASSET)
 		--objects "$(OBJECT_PLACEMENTS)" \
 		--symbols "$(SYMBOLS)" \
 		--authoring "$(WORLD1_METASPRITE_AUTHORING)"
+
+world1-palettes: validate-world1-palettes
+
+validate-world1-palettes: $(PRG_ASSET)
+	$(PYTHON) scripts/world1_palettes.py validate \
+		--prg "$(PRG_ASSET)" --manifest "$(WORLD1_PALETTES)" \
+		--authoring "$(WORLD1_PALETTE_AUTHORING)"
 
 world1-random validate-world1-random: $(PRG_ASSET)
 	$(PYTHON) scripts/world1_random.py --prg "$(PRG_ASSET)" \
@@ -772,6 +782,7 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-shell-runtime \
 	validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world1-metasprites \
+	validate-world1-palettes \
 	validate-world1-random \
 	validate-world1-map-decoder \
 	validate-world1-ppu-streaming \

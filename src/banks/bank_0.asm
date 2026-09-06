@@ -50,10 +50,10 @@
 .include "../world1/underground_collisions.asm"
 ; $D3A9-$D76F: World 1 underground room changes, completion paths, and entity updates
 .include "../world1/underground_transitions.asm"
-; $D770-$D7A8: World 1 underground transient-object allocation and positioning
+; $D770-$D7A4: World 1 underground transient-object allocation and positioning
 .include "../world1/underground_object_spawning.asm"
-; $D7A9-$D924: World 1 underground chapter tables preceding object placements
-.include "../world1/data/underground_chapter_tables.asm"
+; $D7A5-$D924: World 1 twelve-record full PPU palette table
+.include "../world1/data/palettes.asm"
 ; $D925-$D988: World 1 underground three-byte object placement records and terminator
 .include "../world1/data/underground_object_placements.asm"
 ; $D989-$DAD9: World 1 city three-byte object placement records and terminator

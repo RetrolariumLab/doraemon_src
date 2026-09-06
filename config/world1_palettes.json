@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "chr_bank": 0,
+  "palettes": {
+    "address": "0xD7A5",
+    "count": 12,
+    "colors_per_palette": 32,
+    "universal_background_color": "0x0F",
+    "expected_unique_count": 9,
+    "crc32": "f26c2516"
+  },
+  "loader_signature": {
+    "address": "0x83BD",
+    "area_index_address": "0x0029",
+    "staging_address": "0x0210",
+    "bytes": "A9 00 85 00 A5 29 4A 66 00 4A 66 00 4A 66 00 85 01 A5 00 18 69 A5 85 00 A5 01 69 D7 85 01 A0 00 B1 00 99 10 02 C8 C0 20 90 F6 60"
+  }
+}

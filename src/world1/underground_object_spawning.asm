@@ -1,4 +1,4 @@
-; Doraemon PRG bank 0 $D770-$D7A8
+; Doraemon PRG bank 0 $D770-$D7A4
 ; World 1 underground transient-object allocation and positioning
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
@@ -31,4 +31,3 @@ Bank0_Label_D77D:
     ADC a:World1EntityY
     STA a:World1EntityY+$1E,X
     RTS
-    .byte $0F, $01, $11, $1B

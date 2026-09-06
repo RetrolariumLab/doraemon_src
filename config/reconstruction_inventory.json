@@ -4,15 +4,15 @@
     "source_labels": {
       "module_count": 119,
       "total": {
-        "global_labels": 3356,
-        "semantic_labels": 1227,
+        "global_labels": 3357,
+        "semantic_labels": 1228,
         "neutral_routine_labels": 0,
         "neutral_local_labels": 2129
       },
       "by_bank": {
         "0": {
-          "global_labels": 1011,
-          "semantic_labels": 326,
+          "global_labels": 1012,
+          "semantic_labels": 327,
           "neutral_routine_labels": 0,
           "neutral_local_labels": 685
         },
@@ -39,12 +39,12 @@
     "evidence_backed_prg_symbols": {
       "total": {
         "semantic_code_symbols": 1092,
-        "operand_symbols": 125
+        "operand_symbols": 126
       },
       "by_bank": {
         "0": {
           "semantic_code_symbols": 291,
-          "operand_symbols": 33
+          "operand_symbols": 34
         },
         "1": {
           "semantic_code_symbols": 286,
@@ -129,17 +129,17 @@
     },
     "typed_prg_data": {
       "total": {
-        "range_count": 57,
-        "typed_bytes": 65796
+        "range_count": 58,
+        "typed_bytes": 66180
       },
       "by_bank": {
         "0": {
-          "range_count": 10,
-          "typed_bytes": 11388,
+          "range_count": 11,
+          "typed_bytes": 11772,
           "bytes_by_kind": {
             "data": 3268,
             "map": 5696,
-            "table": 2418,
+            "table": 2802,
             "vectors": 6
           }
         },

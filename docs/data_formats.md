@@ -11,6 +11,7 @@ header and the physical 32 KiB bank base.
 | world 1 big blocks | `$2EFF` | 0:`$AEEF` | 1,024 |
 | city map | `$32FF` | 0:`$B2EF` | 64x64 |
 | underground map | `$42FF` | 0:`$C2EF` | 64x25 |
+| world 1 full palettes | `$57B5` | 0:`$D7A5` | 12x32 bytes |
 | world 2 CadEditor attributes | `$B9DE` | 1:`$B9CE` | 256 declared |
 | world 2 runtime palettes | `$B9DF` | 1:`$B9CF` | 208 exact |
 | world 2 runtime metatiles | `$BAAF` | 1:`$BA9F` | 208x4 exact |
@@ -75,6 +76,10 @@ editable through `data/world2/compressed_screens.json`; see
 
 `scripts/map_data.py` validates all CadEditor-declared regions against
 independent CRC32 values and reports their overlap explicitly.
+
+World 1's twelve complete 32-byte PPU palettes occupy `$D7A5-$D924`. The area
+index directly selects one record; all 384 bytes round-trip through
+`data/world1/palettes.json`. See `docs/world1_palettes.md`.
 
 `config/world_data.json` proves the exact contiguous World 1 and World 3
 hierarchies and their cross-reference metrics. `scripts/world_data.py` validates

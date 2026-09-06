@@ -6,6 +6,7 @@ table 0 AAEF AEEE World1SmallBlocks
 table 0 AEEF B2EE World1BigBlocks
 map 0 B2EF C2EE World1CityMap
 map 0 C2EF C92E World1UndergroundMap
+table 0 D7A5 D924 World1PaletteSets
 table 0 E7F2 E83B World1AudioEffectPitchPeriods
 table 0 E931 E948 World1AudioEffectParameterData
 data 0 EFFB FCBE World1MusicHeadersAndReachableStreams
