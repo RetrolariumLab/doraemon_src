@@ -157,18 +157,23 @@ def image_facts(data: bytes) -> tuple[dict[str, object], dict[str, object]]:
     facts: dict[str, object] = {
         "file_size": len(data),
         "file_sha1": digest(data),
+        "file_sha256": digest(data, "sha256"),
         "file_md5": digest(data, "md5"),
         "file_crc32": crc32(data),
         "payload_sha1": digest(parsed["payload"]),
+        "payload_sha256": digest(parsed["payload"], "sha256"),
         "payload_crc32": crc32(parsed["payload"]),
         "header_size": len(parsed["header"]),
         "header_sha1": digest(parsed["header"]),
+        "header_sha256": digest(parsed["header"], "sha256"),
         "header_crc32": crc32(parsed["header"]),
         "prg_size": parsed["prg_size"],
         "prg_sha1": digest(parsed["prg"]),
+        "prg_sha256": digest(parsed["prg"], "sha256"),
         "prg_crc32": crc32(parsed["prg"]),
         "chr_size": parsed["chr_size"],
         "chr_sha1": digest(parsed["chr"]),
+        "chr_sha256": digest(parsed["chr"], "sha256"),
         "chr_crc32": crc32(parsed["chr"]),
         "trainer_size": parsed["trainer_size"],
         "mapper": parsed["mapper"],
@@ -229,11 +234,11 @@ def validate_asset(payload: bytes, entry: dict[str, object]) -> None:
     expected_size = parse_number(entry.get("size"), f"{label}.size")
     if len(payload) != expected_size:
         raise ProjectError(f"{label} size mismatch: got {len(payload)}, expected {expected_size}")
-    for algorithm in ("sha1", "crc32"):
+    for algorithm in ("sha1", "sha256", "crc32"):
         expected = entry.get(algorithm)
         if expected is None:
             continue
-        actual = digest(payload) if algorithm == "sha1" else crc32(payload)
+        actual = crc32(payload) if algorithm == "crc32" else digest(payload, algorithm)
         if actual != str(expected).lower():
             raise ProjectError(f"{label} {algorithm} mismatch: got {actual}, expected {expected}")
 

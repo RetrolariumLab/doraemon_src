@@ -17,13 +17,13 @@ CPU address.
 
 The expected identity is:
 
-| Region | Size | CRC32 |
-| --- | ---: | --- |
-| header | 16 | `06D1CEDD` |
-| PRG | 131,072 | `B00ABE1C` |
-| CHR | 32,768 | `761F994E` |
-| payload | 163,840 | `BDE3AE9B` |
-| complete iNES | 163,856 | `A9EB0DE9` |
+| Region | Size | CRC32 | SHA-256 |
+| --- | ---: | --- | --- |
+| header | 16 | `06D1CEDD` | `de078b947cbb5789d56543b4fe8e897076f2802515186feeddc2849b45da989e` |
+| PRG | 131,072 | `B00ABE1C` | `f648405257878becc0f362e23cb68cf2689aa42a8c41e2f6d5dbe98356fb5f45` |
+| CHR | 32,768 | `761F994E` | `297cc609a3cee675a616f61c1f2d5a68f05decd0b2c10e71865d7befe6187939` |
+| payload | 163,840 | `BDE3AE9B` | `de15604ba1f819b12dd35dec557a5f20c9821210c4bc853c29c763466d0ede94` |
+| complete iNES | 163,856 | `A9EB0DE9` | `6ed579c9c98a1f2db52fd3d2488a491953073e8ace1e3c1dc5884669cecca274` |
 
 `make check` also reproduces Ghidra facts, checks source formatting and policy,
 runs unit tests, validates map regions, and rebuilds the matching image.

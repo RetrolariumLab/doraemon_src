@@ -128,6 +128,7 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 AUTHORING_COVERAGE := config/authoring_coverage.json
 RUNTIME_STATE_COVERAGE := config/runtime_state_coverage.json
 SOURCE_CLASSIFICATION := config/source_classification.json
+TOOLCHAIN := config/toolchain.json
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -136,6 +137,7 @@ SOURCE_CLASSIFICATION := config/source_classification.json
 	ghidra-bootstrap ghidra-status ghidra-inspect ghidra-analyze disassemble \
 	disassembly-check maps validate-maps release-check check clean \
 	source-audit source-release-audit source-check source-1-audit trace-runtime \
+	verify-build-toolchain verify-runtime-toolchain \
 	debug-symbols validate-debug-symbols \
 	runtime-debug-symbols validate-runtime-debug-symbols \
 	reconstruction-inventory validate-reconstruction-inventory \
@@ -216,10 +218,18 @@ $(CHR_ASSET):
 $(PRG_ASSET):
 	$(PYTHON) scripts/project.py require --path "$@" --hint "run 'make split' first"
 
-$(OBJECT): $(SOURCE_FILES) $(CHR_ASSET) | $(BUILD_DIR)
+verify-build-toolchain:
+	$(PYTHON) scripts/toolchain.py --manifest "$(TOOLCHAIN)" \
+		--component ca65 --component ld65
+
+verify-runtime-toolchain:
+	$(PYTHON) scripts/toolchain.py --manifest "$(TOOLCHAIN)" \
+		--component fceux --fceux "$(FCEUX_EXE)"
+
+$(OBJECT): $(SOURCE_FILES) $(CHR_ASSET) | $(BUILD_DIR) verify-build-toolchain
 	$(CA65) --debug-info -g -o "$@" -l "$(BUILD_DIR)/doraemon.lst" "src/main.asm"
 
-$(ROM): $(OBJECT) config/linker/gnrom.cfg
+$(ROM): $(OBJECT) config/linker/gnrom.cfg | verify-build-toolchain
 	$(LD65) -C config/linker/gnrom.cfg -o "$@" "$<" -Ln "$(LABELS)" -m "$(MAP)" --dbgfile "$(DEBUG)"
 
 build: $(ROM)
@@ -326,7 +336,7 @@ source-1-audit:
 	$(MAKE) validate-runtime-debug-symbols
 	$(PYTHON) scripts/source_reconstruction_audit.py --require-ready --require-clean
 
-trace-runtime: verify-reference
+trace-runtime: verify-runtime-toolchain verify-reference
 	$(PYTHON) scripts/runtime/run_runtime_scenarios.py \
 		--fceux "$(FCEUX_EXE)" \
 		--rom "$(REFERENCE_ROM)" \
@@ -792,7 +802,7 @@ validate-debug-symbols: debug-symbols
 		--breakpoints "$(DEBUG_BREAKPOINTS)" --watches "$(DEBUG_WATCHES)" \
 		--output-dir "$(DEBUG_SYMBOL_DIR)"
 
-release-check: quality-check disassembly-check verify validate-maps \
+release-check: verify-build-toolchain quality-check disassembly-check verify validate-maps \
 	validate-debug-symbols \
 	validate-reconstruction-inventory validate-authoring-coverage \
 	validate-runtime-state-coverage validate-source-classification \

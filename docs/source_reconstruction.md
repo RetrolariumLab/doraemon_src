@@ -84,3 +84,6 @@ evidence or source change and leave all checks relevant to that change passing.
 Relocation builds, Revision A, translations/region profiles, and exhaustive
 editors for secondary graphics/text tables are explicitly deferred to Source
 Reconstruction 2.0.
+
+The tracked manifest is now `tag-ready`. The release tag is created only
+after `make source-1-audit` succeeds from this committed, clean state.

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "release": "Source Reconstruction 1.0",
   "tag": "source-reconstruction-1.0",
-  "status": "development",
+  "status": "tag-ready",
   "target_rom": {
     "title": "Doraemon (Japan, original revision)",
     "profile": "PRG0",
@@ -421,8 +421,23 @@
     },
     {
       "id": "source_reconstruction_1_0",
-      "status": "planned",
-      "evidence": []
+      "status": "complete",
+      "evidence": [
+        "Makefile",
+        "config/source_classification.json",
+        "config/source_reconstruction.json",
+        "docs/source_classification.md",
+        "docs/source_reconstruction.md",
+        "docs/verification.md",
+        "scenarios/runtime_scenarios.json",
+        "scripts/source_classification.py",
+        "scripts/source_reconstruction_audit.py",
+        "scripts/runtime/run_runtime_scenarios.py",
+        "scripts/runtime/validate_debugger_runtime.py",
+        "scripts/runtime/validate_runtime_scenarios.py",
+        "tests/test_source_classification.py",
+        "tests/test_source_reconstruction_audit.py"
+      ]
     }
   ],
   "runtime_contract": {

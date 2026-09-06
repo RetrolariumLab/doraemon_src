@@ -25,12 +25,16 @@ def sample_manifest(image: bytes) -> dict[str, object]:
         "reference_rom": {
             "file_size": len(image),
             "file_sha1": facts["file_sha1"],
+            "file_sha256": facts["file_sha256"],
             "file_crc32": facts["file_crc32"],
             "payload_crc32": facts["payload_crc32"],
+            "payload_sha256": facts["payload_sha256"],
             "prg_size": len(parsed["prg"]),
             "prg_crc32": facts["prg_crc32"],
+            "prg_sha256": facts["prg_sha256"],
             "chr_size": len(parsed["chr"]),
             "chr_crc32": facts["chr_crc32"],
+            "chr_sha256": facts["chr_sha256"],
             "trainer_size": 0,
             "mapper": 66,
             "mirroring": "vertical",
@@ -58,6 +62,18 @@ class InesTests(unittest.TestCase):
 
 
 class AssetTests(unittest.TestCase):
+    def test_asset_sha256_is_checked(self) -> None:
+        payload = b"private asset"
+        entry = {
+            "region": "fixture",
+            "size": len(payload),
+            "sha256": project.digest(payload, "sha256"),
+        }
+        project.validate_asset(payload, entry)
+        entry["sha256"] = "0" * 64
+        with self.assertRaisesRegex(project.ProjectError, "sha256 mismatch"):
+            project.validate_asset(payload, entry)
+
     def test_safe_asset_path(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

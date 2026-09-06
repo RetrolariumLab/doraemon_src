@@ -263,11 +263,11 @@ authoring documents, and 30 focused validators. The aggregate audit rejects
 missing chapter coverage, non-lossless components, missing evidence, or
 validators omitted from `release-check`.
 
-### 11. Source Reconstruction 1.0 - Planned
+### 11. Source Reconstruction 1.0 - Complete
 
-Resolve or explicitly classify remaining release-scope unknowns, refresh all
-eight runtime scenarios, run one clean aggregate `source-1-audit`, and prepare
-the audited release commit. Debugger-symbol validation is complete: the static
+All release-scope unknowns are explicitly classified, and the clean aggregate
+`source-1-audit` refreshes all eight runtime scenarios before the annotated
+release tag is created. Debugger-symbol validation is complete: the static
 gate checks all four linker segments, 3,828 ld65 symbols, eight FCEUX PRG name
 lists, 83 shared RAM labels, and required Reset/NMI/mapper/chapter-loop probes.
 The live gate additionally joins 14 observed program PCs across all four banks

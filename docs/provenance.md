@@ -73,3 +73,11 @@ one closed path.
 `tools/disassembly.lock.json` pins Ghidra and GhidraNes archives by version,
 size, and SHA-256. Ghidra facts are treated as classification evidence, never as
 authority over ROM bytes: the generator checks every emitted instruction byte.
+
+`config/toolchain.json` is the release toolchain contract. It pins the bundled
+ca65 and ld65 executables by upstream revision, size, version output, and
+SHA-256, and pins the external FCEUX automation executable by its source commit,
+size, and SHA-256. `make verify-build-toolchain` runs before assembler/linker
+use, while `make verify-runtime-toolchain` runs before any release trace. The
+supported release host is Windows 11 x86-64 with PowerShell, GNU Make 4.4.1,
+and Python 3.14.6.

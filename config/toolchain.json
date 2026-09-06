@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "components": [
+    {
+      "id": "ca65",
+      "role": "assembler",
+      "version": "2.19 (Git 0fca835)",
+      "source": "https://github.com/cc65/cc65",
+      "source_commit": "0fca835",
+      "provenance": "bundled",
+      "path": "bin/ca65.exe",
+      "size": 721629,
+      "binary_sha256": "9109d7118ff070e78f031bee4eb776061e56b74e7c8f9f40c70fd6707ea0ac5a",
+      "version_arguments": [
+        "--version"
+      ],
+      "version_output_contains": "ca65 V2.19 - Git 0fca835"
+    },
+    {
+      "id": "ld65",
+      "role": "linker",
+      "version": "2.19 (Git 0fca835)",
+      "source": "https://github.com/cc65/cc65",
+      "source_commit": "0fca835",
+      "provenance": "bundled",
+      "path": "bin/ld65.exe",
+      "size": 575874,
+      "binary_sha256": "5f68367a135c578c88744e27ba0b1234604d87ef1ff6294b46fcb031ff984db4",
+      "version_arguments": [
+        "--version"
+      ],
+      "version_output_contains": "ld65 V2.19 - Git 0fca835"
+    },
+    {
+      "id": "fceux",
+      "role": "runtime_emulator",
+      "version": "automation fork at ec507d86c57acd8979547bc35e9627fb199fac9a",
+      "source": "https://github.com/oranguthang/fceux_automation",
+      "source_commit": "ec507d86c57acd8979547bc35e9627fb199fac9a",
+      "provenance": "external_unbundled",
+      "path": "../fceux_automation/vc/x64/Release/fceux64.exe",
+      "size": 5499904,
+      "binary_sha256": "97aadff4970e98a413377810a296c045fab717661dd8270f84d58190f43a232e"
+    },
+    {
+      "id": "ghidra",
+      "role": "static_analysis",
+      "version": "12.1.3",
+      "source": "https://github.com/NationalSecurityAgency/ghidra",
+      "source_commit": null,
+      "provenance": "external_unbundled",
+      "archive_lock": "tools/disassembly.lock.json#ghidra"
+    },
+    {
+      "id": "ghidranes",
+      "role": "static_analysis_loader",
+      "version": "v20260531",
+      "source": "https://github.com/kylewlacy/GhidraNes",
+      "source_commit": "4c41964",
+      "provenance": "external_unbundled",
+      "archive_lock": "tools/disassembly.lock.json#nes_loader"
+    }
+  ],
+  "hosts": [
+    {
+      "id": "windows-x86_64",
+      "os": "Windows 11",
+      "architecture": "x86_64",
+      "shell": "PowerShell with GNU Make 4.4.1",
+      "language_versions": {
+        "python": "3.14.6"
+      },
+      "supported_status": "supported"
+    }
+  ],
+  "private_inputs": [
+    {
+      "id": "doraemon-japan-prg0-rom",
+      "role": "canonical_reference_image",
+      "path_policy": "user-supplied through REFERENCE_ROM",
+      "size": 163856,
+      "sha256": "6ed579c9c98a1f2db52fd3d2488a491953073e8ace1e3c1dc5884669cecca274"
+    },
+    {
+      "id": "doraemon-japan-prg0-chr",
+      "role": "private_build_input",
+      "path_policy": "extracted from the canonical reference by make split",
+      "size": 32768,
+      "sha256": "297cc609a3cee675a616f61c1f2d5a68f05decd0b2c10e71865d7befe6187939"
+    }
+  ]
+}
