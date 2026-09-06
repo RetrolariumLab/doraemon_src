@@ -1,8 +1,494 @@
 {
-  "schema_version": 1,
-  "release": "Source Reconstruction 1.0",
+  "schema_version": 2,
+  "contract": {
+    "schema": "retrolarium.source_reconstruction_release_contract",
+    "version": 3,
+    "release_line": "1.0"
+  },
+  "release": {
+    "name": "Source Reconstruction 1.0",
+    "version": "1.0"
+  },
+  "release_kind": "preservation",
   "tag": "source-reconstruction-1.0",
   "status": "tag-ready",
+  "predecessor": {
+    "manifest": null,
+    "tag": null,
+    "commit": "499d4f8cdfa505456127d629fee58f185e79ce93",
+    "kind": "preservation_base",
+    "reason": "This is the first source-reconstruction release; the recorded commit is the immutable matching-disassembly base rather than an earlier release tag."
+  },
+  "included_scope": [
+    {
+      "id": "doraemon-japan-prg0",
+      "kind": "profile",
+      "status": "satisfied"
+    },
+    {
+      "id": "four-bank-byte-identical-source",
+      "kind": "capability",
+      "status": "satisfied"
+    },
+    {
+      "id": "semantic-source-and-memory-contracts",
+      "kind": "capability",
+      "status": "satisfied"
+    },
+    {
+      "id": "primary-data-round-trips",
+      "kind": "capability",
+      "status": "satisfied"
+    },
+    {
+      "id": "eight-scenario-runtime-evidence",
+      "kind": "capability",
+      "status": "satisfied"
+    }
+  ],
+  "excluded_scope": [
+    {
+      "id": "revision-a",
+      "status": "planned",
+      "reason": "Source 1.0 accepts only the original Japanese PRG0 revision."
+    },
+    {
+      "id": "translations-and-regional-profiles",
+      "status": "unsupported",
+      "reason": "Translated and expanded mapper images are not original PRG0 profiles."
+    },
+    {
+      "id": "relocation-build",
+      "status": "planned",
+      "reason": "Relocation is an editing capability beyond the preservation release."
+    },
+    {
+      "id": "exhaustive-secondary-graphics-and-text-editors",
+      "status": "planned",
+      "reason": "Secondary fixed tables remain typed source or registered unknowns."
+    },
+    {
+      "id": "additional-official-profiles",
+      "status": "unsupported",
+      "reason": "No profile other than the original Japanese PRG0 image is accepted by Source 1.0."
+    },
+    {
+      "id": "published-artifacts",
+      "status": "unsupported",
+      "reason": "The project does not publish copyrighted ROM or extracted payload artifacts."
+    }
+  ],
+  "condition_decisions": [
+    {
+      "condition_id": "source-1.additional-profile-support-enabled",
+      "applies": false,
+      "requirement_id": "source-1.additional-profile-support",
+      "excluded_scope": "additional-official-profiles",
+      "reason": "Only doraemon-japan-prg0 is included."
+    },
+    {
+      "condition_id": "source-1.artifact-publication-enabled",
+      "applies": false,
+      "requirement_id": "source-1.published-artifacts",
+      "excluded_scope": "published-artifacts",
+      "reason": "The verified image remains a local build from private inputs."
+    }
+  ],
+  "delta": [
+    {
+      "id": "matching-four-bank-source",
+      "kind": "source",
+      "summary": "Replace the preservation baseline with address-ordered semantic ca65 modules for every executable PRG byte while preserving the private CHR boundary.",
+      "evidence": [
+        "config/source_modules.json",
+        "config/source_classification.json",
+        "docs/source_layout.md"
+      ]
+    },
+    {
+      "id": "semantic-runtime-reconstruction",
+      "kind": "evidence",
+      "summary": "Document and validate common shell, all three chapter runtimes, RAM ownership, dispatch graphs, rendering, and audio.",
+      "evidence": [
+        "config/reconstruction_inventory.json",
+        "config/runtime_state_coverage.json",
+        "docs/subsystems.md"
+      ]
+    },
+    {
+      "id": "lossless-primary-formats",
+      "kind": "tooling",
+      "summary": "Add lossless authoring contracts for primary world, object, collision, presentation, palette, metasprite, and audio data.",
+      "evidence": [
+        "config/authoring_coverage.json",
+        "docs/authoring_coverage.md"
+      ]
+    },
+    {
+      "id": "runtime-and-debugger-evidence",
+      "kind": "evidence",
+      "summary": "Add eight deterministic runtime scenarios and linker-derived bank-aware debugger symbols validated against live execution.",
+      "evidence": [
+        "scenarios/runtime_scenarios.json",
+        "config/runtime_debug_symbols.json",
+        "docs/runtime_evidence.md"
+      ]
+    },
+    {
+      "id": "release-contract-and-gates",
+      "kind": "tooling",
+      "summary": "Add aggregate source audits, complete byte classification, pinned tool identities, documentation, and release-state checks.",
+      "evidence": [
+        "config/toolchain.json",
+        "scripts/source_reconstruction_audit.py",
+        "docs/release_contract.md"
+      ]
+    }
+  ],
+  "requirements": {
+    "source-1.canonical-entrypoint-layout": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "verify"
+        ],
+        "files": [
+          "src/main.asm",
+          "config/linker/gnrom.cfg",
+          "docs/source_layout.md"
+        ],
+        "scenarios": [],
+        "artifacts": [
+          "doraemon-japan-prg0-ines"
+        ]
+      }
+    },
+    "source-1.reproducible-build": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "verify-build-toolchain",
+          "verify"
+        ],
+        "files": [
+          "config/toolchain.json",
+          "Makefile"
+        ],
+        "scenarios": [],
+        "artifacts": [
+          "doraemon-japan-prg0-ines"
+        ]
+      }
+    },
+    "source-1.byte-identity": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "verify"
+        ],
+        "files": [
+          "assets/manifest.json",
+          "docs/verification.md"
+        ],
+        "scenarios": [],
+        "artifacts": [
+          "doraemon-japan-prg0-ines"
+        ]
+      }
+    },
+    "source-1.documentation": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "lint"
+        ],
+        "files": [
+          "docs/index.md",
+          "docs/ram_map.md",
+          "docs/subsystems.md",
+          "docs/unknowns.md",
+          "docs/debugger_workflow.md",
+          "docs/provenance.md"
+        ],
+        "scenarios": [],
+        "artifacts": []
+      }
+    },
+    "source-1.quality-and-runtime": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "lint",
+          "test",
+          "trace",
+          "validate-runtime-debug-symbols"
+        ],
+        "files": [
+          "scenarios/runtime_scenarios.json"
+        ],
+        "scenarios": [
+          "boot-title",
+          "world1-city",
+          "world1-underground",
+          "world2-cave",
+          "world2-terminal-screen",
+          "world3-underwater",
+          "chapter-transition",
+          "ending-credits"
+        ],
+        "artifacts": [
+          "doraemon-japan-prg0-ines"
+        ]
+      }
+    },
+    "source-1.aggregate-gate": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "release-check",
+          "source-1-audit"
+        ],
+        "files": [
+          "Makefile",
+          "scripts/source_reconstruction_audit.py"
+        ],
+        "scenarios": [],
+        "artifacts": []
+      }
+    },
+    "source-1.private-input-policy": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "lint",
+          "verify"
+        ],
+        "files": [
+          ".gitignore",
+          "assets/manifest.json",
+          "config/toolchain.json"
+        ],
+        "scenarios": [],
+        "artifacts": []
+      }
+    },
+    "source-1.executable-source-policy": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "validate-source-classification"
+        ],
+        "files": [
+          "config/source_classification.json",
+          "docs/source_classification.md"
+        ],
+        "scenarios": [],
+        "artifacts": []
+      }
+    },
+    "source-1.licensing-and-provenance": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "source-audit"
+        ],
+        "files": [
+          "docs/provenance.md",
+          "bin/cc65-LICENSE.txt"
+        ],
+        "scenarios": [],
+        "artifacts": []
+      }
+    },
+    "source-1.additional-profile-support": {
+      "status": "not_applicable",
+      "condition_id": "source-1.additional-profile-support-enabled",
+      "excluded_scope": "additional-official-profiles",
+      "reason": "No additional official profile is included in Source 1.0.",
+      "evidence": {
+        "targets": [
+          "source-audit"
+        ],
+        "files": [
+          "assets/manifest.json",
+          "docs/source_reconstruction.md"
+        ],
+        "scenarios": [],
+        "artifacts": []
+      }
+    },
+    "source-1.published-artifacts": {
+      "status": "not_applicable",
+      "condition_id": "source-1.artifact-publication-enabled",
+      "excluded_scope": "published-artifacts",
+      "reason": "No ROM or extracted payload artifact is published by this project.",
+      "evidence": {
+        "targets": [
+          "lint",
+          "verify"
+        ],
+        "files": [
+          ".gitignore",
+          "config/source_reconstruction.json"
+        ],
+        "scenarios": [],
+        "artifacts": [
+          "doraemon-japan-prg0-ines"
+        ]
+      }
+    },
+    "source-1.commit-history": {
+      "status": "satisfied",
+      "evidence": {
+        "targets": [
+          "source-pre-tag-audit"
+        ],
+        "files": [
+          "CONTRIBUTING.md",
+          "docs/release_contract.md"
+        ],
+        "scenarios": [],
+        "artifacts": []
+      }
+    }
+  },
+  "profiles": [
+    {
+      "id": "doraemon-japan-prg0",
+      "status": "supported",
+      "artifact": "doraemon-japan-prg0-ines",
+      "identity": "byte-identical"
+    },
+    {
+      "id": "doraemon-japan-revision-a",
+      "status": "planned",
+      "artifact": null,
+      "identity": "not-evaluated"
+    }
+  ],
+  "runtime_coverage": [
+    {
+      "profile_id": "doraemon-japan-prg0",
+      "mode": "direct",
+      "scenarios": [
+        "boot-title",
+        "world1-city",
+        "world1-underground",
+        "world2-cave",
+        "world2-terminal-screen",
+        "world3-underwater",
+        "chapter-transition",
+        "ending-credits"
+      ]
+    }
+  ],
+  "toolchain": {
+    "manifest": "config/toolchain.json",
+    "components": [
+      "ca65",
+      "ld65",
+      "fceux",
+      "ghidra",
+      "ghidranes"
+    ],
+    "hosts": [
+      "windows-x86_64"
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "doraemon-japan-prg0-ines",
+      "profile": "doraemon-japan-prg0",
+      "build_target": "verify",
+      "path": "build/native/doraemon.nes",
+      "published": false,
+      "size": 163856,
+      "sha1": "d47ebb0be5697820691065faedff277607ac10fd",
+      "sha256": "6ed579c9c98a1f2db52fd3d2488a491953073e8ace1e3c1dc5884669cecca274"
+    }
+  ],
+  "aggregate_gates": {
+    "development": [
+      "make source-check"
+    ],
+    "pre_tag": [
+      "make source-1-audit"
+    ],
+    "post_tag": [
+      "make source-1-post-tag-audit",
+      "make source-1-post-tag-remote-audit"
+    ]
+  },
+  "layout_deviations": [
+    {
+      "rule_id": "scripts-subdirectory-ownership",
+      "actual_path": "scripts/*.py",
+      "reason": "The established project has a flat dependency-free script suite.",
+      "equivalent_control": "Make targets and unit tests provide stable ownership; scripts/runtime contains emulator-specific code."
+    },
+    {
+      "rule_id": "versioned-release-manifest-filename",
+      "actual_path": "config/source_reconstruction.json",
+      "reason": "Source 1.0 has one active canonical release manifest.",
+      "equivalent_control": "The manifest embeds an exact release version, tag, contract revision, and immutable predecessor."
+    },
+    {
+      "rule_id": "provenance-subdirectory",
+      "actual_path": "docs/provenance.md",
+      "reason": "A single game and accepted profile do not need multiple provenance records.",
+      "equivalent_control": "The release audit requires this document and the manifest identifies every licensing category."
+    }
+  ],
+  "licensing": [
+    {
+      "component": "project-tools-and-documentation",
+      "category": "project_authored",
+      "origin": "Doraemon reconstruction project contributors",
+      "license_id_or_status": "unknown",
+      "redistribution": "not_asserted",
+      "notes": "No repository-wide license has been granted."
+    },
+    {
+      "component": "reconstructed-game-source",
+      "category": "reconstructed_game_source",
+      "origin": "Hudson Soft Doraemon PRG0 image",
+      "license_id_or_status": "license_not_granted",
+      "redistribution": "not_asserted",
+      "notes": "Reconstruction does not grant rights to original code, graphics, text, music, or data."
+    },
+    {
+      "component": "bundled-cc65-tools",
+      "category": "bundled_external_tools",
+      "origin": "cc65 revision 0fca835",
+      "license_id_or_status": "licensed",
+      "redistribution": "allowed_under_bundled_zlib_license",
+      "notes": "See bin/cc65-LICENSE.txt."
+    },
+    {
+      "component": "external-analysis-and-runtime-tools",
+      "category": "external_tools",
+      "origin": "Ghidra, GhidraNes, and the FCEUX automation fork",
+      "license_id_or_status": "external_unbundled",
+      "redistribution": "not_bundled",
+      "notes": "Only versions, commits, download metadata, and hashes are tracked."
+    },
+    {
+      "component": "reference-rom-and-extracted-chr",
+      "category": "private_user_supplied_inputs",
+      "origin": "Legally obtained by the user",
+      "license_id_or_status": "private_user_supplied",
+      "redistribution": "forbidden_by_project_policy",
+      "notes": "All ROM and extracted payload paths are ignored and checked by hash."
+    }
+  ],
+  "provenance": {
+    "references": [
+      "docs/provenance.md",
+      "assets/manifest.json",
+      "tools/disassembly.lock.json"
+    ],
+    "private_inputs_tracked": false
+  },
   "target_rom": {
     "title": "Doraemon (Japan, original revision)",
     "profile": "PRG0",
@@ -491,11 +977,18 @@
   ],
   "required_documents": [
     "README.md",
+    "CONTRIBUTING.md",
+    "docs/index.md",
     "docs/architecture.md",
     "docs/authoring_coverage.md",
     "docs/ram_map.md",
     "docs/reconstruction_inventory.md",
     "docs/roadmap.md",
+    "docs/release_contract.md",
+    "docs/naming.md",
+    "docs/code_quality.md",
+    "docs/debugger_workflow.md",
+    "docs/provenance.md",
     "docs/runtime_state_coverage.md",
     "docs/source_classification.md",
     "docs/source_reconstruction.md",
@@ -503,7 +996,14 @@
     "docs/verification.md"
   ],
   "required_targets": [
+    "lint",
+    "format",
+    "test",
     "verify",
+    "trace",
+    "release-check",
+    "verify-build-toolchain",
+    "verify-runtime-toolchain",
     "validate-debug-symbols",
     "validate-runtime-debug-symbols",
     "validate-authoring-coverage",
@@ -532,7 +1032,10 @@
     "validate-world1-frame-mechanics",
     "source-audit",
     "source-release-audit",
+    "source-pre-tag-audit",
     "source-check",
-    "source-1-audit"
+    "source-1-audit",
+    "source-1-post-tag-audit",
+    "source-1-post-tag-remote-audit"
   ]
 }

@@ -136,7 +136,9 @@ TOOLCHAIN := config/toolchain.json
 	lint lint-asm lint-source lint-project test quality-check scaffold-check \
 	ghidra-bootstrap ghidra-status ghidra-inspect ghidra-analyze disassemble \
 	disassembly-check maps validate-maps release-check check clean \
-	source-audit source-release-audit source-check source-1-audit trace-runtime \
+	source-audit source-release-audit source-pre-tag-audit source-check \
+	source-1-audit source-1-post-tag-audit source-1-post-tag-remote-audit \
+	trace trace-runtime \
 	verify-build-toolchain verify-runtime-toolchain \
 	debug-symbols validate-debug-symbols \
 	runtime-debug-symbols validate-runtime-debug-symbols \
@@ -306,7 +308,10 @@ source-audit:
 	$(PYTHON) scripts/source_reconstruction_audit.py
 
 source-release-audit:
-	$(PYTHON) scripts/source_reconstruction_audit.py --require-ready
+	$(PYTHON) scripts/source_reconstruction_audit.py --phase pre-tag
+
+source-pre-tag-audit:
+	$(PYTHON) scripts/source_reconstruction_audit.py --phase pre-tag --check-remote
 
 reconstruction-inventory validate-reconstruction-inventory:
 	$(PYTHON) scripts/reconstruction_inventory.py \
@@ -330,11 +335,20 @@ source-classification validate-source-classification: $(ROM)
 source-check: release-check source-audit
 
 source-1-audit:
-	$(PYTHON) scripts/source_reconstruction_audit.py --require-ready
+	$(PYTHON) scripts/source_reconstruction_audit.py --phase pre-tag --check-remote
 	$(MAKE) source-check
-	$(MAKE) trace-runtime
+	$(MAKE) trace
 	$(MAKE) validate-runtime-debug-symbols
-	$(PYTHON) scripts/source_reconstruction_audit.py --require-ready --require-clean
+	$(PYTHON) scripts/source_reconstruction_audit.py --phase pre-tag --check-remote --require-clean
+
+source-1-post-tag-audit:
+	$(PYTHON) scripts/source_reconstruction_audit.py --phase post-tag --require-clean
+
+source-1-post-tag-remote-audit:
+	$(PYTHON) scripts/source_reconstruction_audit.py --phase post-tag \
+		--check-remote --require-clean
+
+trace: trace-runtime
 
 trace-runtime: verify-runtime-toolchain verify-reference
 	$(PYTHON) scripts/runtime/run_runtime_scenarios.py \

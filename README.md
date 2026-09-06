@@ -7,12 +7,13 @@ tracked PRG assembly plus one private CHR input.
 
 ## Current status
 
-Active development on `source-reconstruction` targets the audited
-[Source Reconstruction 1.0](docs/source_reconstruction.md) contract. The
-matching preservation state remains fixed on `main`; semantic reconstruction,
-runtime evidence, editable primary formats, and debugger integration are added
-incrementally without weakening byte identity. Relocation builds are deferred
-to Source Reconstruction 2.0.
+The completed reconstruction on `source-reconstruction` is prepared for Source
+Reconstruction 1.0 under revision 3 of the
+[release contract](docs/source_reconstruction.md). The matching preservation
+state remains fixed on `main`; the release history now records semantic source,
+runtime evidence, editable primary formats, and debugger integration as 61
+reviewable changes without weakening byte identity. Relocation builds are
+deferred to Source Reconstruction 2.0.
 
 - The exact local reference is identified by complete file, header, PRG, CHR,
   and payload hashes.
@@ -86,6 +87,17 @@ make check REFERENCE_ROM="Doraemon (J) (PRG0) [!].nes"
 
 `make inspect` is safe for identifying another dump. `make split` refuses any
 image that does not match the manifest.
+
+After the private input has been split, the single development verification
+command is:
+
+```bash
+make source-check REFERENCE_ROM="Doraemon (J) (PRG0) [!].nes"
+```
+
+See the [documentation index](docs/index.md) and
+[release-contract status](docs/release_contract.md) for the exact accepted
+scope and pre-tag verification procedure.
 
 ## Useful targets
 

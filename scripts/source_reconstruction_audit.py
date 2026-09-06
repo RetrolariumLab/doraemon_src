@@ -7,8 +7,12 @@ import argparse
 import json
 import re
 import subprocess
+import sys
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import release_contract
 
 
 EXPECTED_MILESTONES = [
@@ -54,13 +58,11 @@ def validate_milestones(
     states = [item.get("status") for item in milestones]
     if any(state not in VALID_STATES for state in states):
         return ["milestone status is invalid"]
-    if status == "tag-ready":
+    if status in {"tag-ready", "tagged"}:
         if any(state != "complete" for state in states):
             return ["tag-ready reconstruction has incomplete milestones"]
         return []
 
-    if all(state == "complete" for state in states):
-        return ["development reconstruction has no incomplete milestones"]
     return []
 
 
@@ -266,11 +268,14 @@ def validate_reconstruction(
     document = load_json(manifest_path)
     errors: list[str] = []
     status = document.get("status")
-    if document.get("schema_version") != 1:
-        errors.append("reconstruction manifest is not schema 1")
-    if document.get("release") != "Source Reconstruction 1.0":
+    if document.get("schema_version") != 2:
+        errors.append("reconstruction manifest is not schema 2")
+    if document.get("release") != {
+        "name": "Source Reconstruction 1.0",
+        "version": "1.0",
+    }:
         errors.append("reconstruction release identity differs")
-    if status not in {"development", "tag-ready"}:
+    if status not in {"development", "tag-ready", "tagged"}:
         errors.append("reconstruction status is invalid")
         return errors
     if require_ready and status != "tag-ready":
@@ -331,6 +336,14 @@ def validate_reconstruction(
     for target in [verification_target, *required_targets]:
         if target not in available_targets:
             errors.append(f"missing Make target: {target}")
+    errors.extend(
+        release_contract.validate_release_contract(
+            project_root,
+            document,
+            available_targets,
+            phase="development",
+        )
+    )
     if require_clean:
         errors.extend(validate_clean_worktree(project_root))
     return errors
@@ -345,6 +358,12 @@ def main() -> int:
     )
     parser.add_argument("--require-ready", action="store_true")
     parser.add_argument("--require-clean", action="store_true")
+    parser.add_argument(
+        "--phase",
+        choices=("development", "pre-tag", "post-tag"),
+        default="development",
+    )
+    parser.add_argument("--check-remote", action="store_true")
     args = parser.parse_args()
     project_root = Path(__file__).resolve().parent.parent
     manifest_path = args.manifest
@@ -357,6 +376,18 @@ def main() -> int:
             require_ready=args.require_ready,
             require_clean=args.require_clean,
         )
+        if args.phase != "development":
+            document = load_json(manifest_path)
+            makefile = (project_root / "Makefile").read_text(encoding="utf-8")
+            errors.extend(
+                release_contract.validate_release_contract(
+                    project_root,
+                    document,
+                    make_targets(makefile),
+                    phase=args.phase,
+                    check_remote=args.check_remote,
+                )
+            )
     except (OSError, json.JSONDecodeError, subprocess.SubprocessError) as exc:
         print(f"[ERROR] reconstruction audit failed: {exc}")
         return 1
@@ -364,7 +395,9 @@ def main() -> int:
         for error in errors:
             print(f"[ERROR] {error}")
         return 1
-    readiness = "tag-ready" if args.require_ready else "development"
+    readiness = args.phase if args.phase != "development" else (
+        "tag-ready" if args.require_ready else "development"
+    )
     print(f"[OK] Source Reconstruction 1.0 {readiness} contract is consistent")
     return 0
 

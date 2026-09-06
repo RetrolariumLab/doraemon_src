@@ -29,10 +29,10 @@ class MilestoneTests(unittest.TestCase):
         states = ["complete", "partial", "complete"] + ["planned"] * 9
         self.assertEqual(AUDIT.validate_milestones(self.milestones(states), "development"), [])
 
-    def test_rejects_development_with_every_milestone_complete(self) -> None:
+    def test_accepts_complete_technical_milestones_during_contract_work(self) -> None:
         states = ["complete"] * len(AUDIT.EXPECTED_MILESTONES)
-        self.assertTrue(
-            AUDIT.validate_milestones(self.milestones(states), "development")
+        self.assertEqual(
+            AUDIT.validate_milestones(self.milestones(states), "development"), []
         )
 
     def test_tag_ready_requires_every_milestone(self) -> None:
