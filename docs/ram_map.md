@@ -13,6 +13,8 @@
 | `$0023-$0024` | 2 | Famicom microphone state | retained bit-2 sample and 20-frame edge window |
 | `$0025-$0027` | 3 | score award and demo state | next 1UP threshold, sound event, and attract-mode flag |
 | `$002A-$002C` | 3 | shared player progression | lives, current health, and inverse health-capacity index |
+| `$003C-$003D` | 2 | Bank 3 chapter selection | modulo-three selection and Select-button latch |
+| `$004B-$004C` | 2 | Bank 3 ending credit pointer | advances through fixed 32-byte rows to `$ED3C` |
 | `$0041-$0050` | 16 | World 1 metasprite workspace (bank 0) | staged OAM tuple, origin, index/flags, record pointer/header, piece count, and write index |
 | `$004D` | 1 | World 3 treasure penalty counter | 20 diamond/gold pickups force punishment room `$12` |
 | `$0052-$0053` | 2 | World 1 frame-mixed random state | updated with the frame counter by the seven-call generator |
@@ -31,6 +33,7 @@
 | `$0230-$028E` | 92 of 95 | World 1 map-streaming packets | column and row tile/attribute buffers, pending flags, wrap scratch, and two-entry nibble queue |
 | `$0290-$0295` | 6 | current score digits | decimal compare/copy loop |
 | `$0298-$029D` | 6 | working score digits | decimal carry loop |
+| `$0406,$0409-$040C` | 5 | Bank 3 transition state | completion flag, motion index, relative OAM origin, and settle step |
 | `$0400-$066F` | 624 | World 1 entity storage | complete 13-column, 48-slot structure-of-arrays grid with class-specific behavior overlays |
 | `$0558-$05CE` | 119 | World 2 entity pools | bank-1 overlay containing 7 enemies, 6 enemy projectiles, and 7 player projectiles |
 | `$0600-$06AF` | 176 | World 3 active objects | bank-2 overlay containing eight parallel runtime entity slots |

@@ -41,7 +41,8 @@ Progress is measured per bank by a machine-audited reconstruction inventory,
 not inferred from module names. All 354 indirect entries and all sixteen bank
 gateway targets are semantic. Runtime now proves and names the four gameplay
 loops (city, underground, World 2, and World 3) at exactly one iteration per
-emulated frame; 290 probable routine entries remain neutral.
+emulated frame. The Bank 3 shell pass removes its final sixteen neutral routine
+entries; 274 probable routine entries remain across the gameplay banks.
 
 ### 6. RAM and object systems - Partial
 
@@ -184,8 +185,13 @@ Resolve or explicitly classify remaining release-scope unknowns, live-validate
 the generated linker-derived Mesen/FCEUX symbols, refresh all eight runtime
 scenarios, run one clean aggregate `source-1-audit`, and prepare the audited
 release commit. Static symbol generation is complete: the gate checks all four
-linker segments, 3,657 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
+linker segments, 3,665 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
 labels, and required Reset/NMI/mapper/chapter-loop probes.
+
+The first post-review naming slice is also complete: all sixteen Bank 3 shell
+routine entries now have behavioral names backed by a machine-checked
+caller/RAM contract. Remaining routine naming is concentrated in the three
+gameplay banks.
 
 ## Deferred to Source Reconstruction 2.0
 

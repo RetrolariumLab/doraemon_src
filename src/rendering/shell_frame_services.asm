@@ -70,7 +70,7 @@ Bank3_Label_90E8:
     .byte $F7, $AD, $C0, $01, $F0, $F2, $A2, $23, $8E, $06, $20, $8D, $06, $20, $A2, $00
     .byte $8E, $C0, $01, $BD, $C1, $01, $8D, $07, $20, $E8, $E0, $08, $90, $F5, $60
 
-Bank3_Func_9152:
+Shell_ClearBothNametables:
     LDA PpuCtrlShadow
     AND #$FB
     STA PpuCtrlShadow
@@ -114,7 +114,7 @@ Bank3_Label_9196:
     RTS
     .byte $A2, $04, $D0, $02
 
-Bank3_Func_91A1:
+Shell_HideAllOamEntries:
     LDX #$00
     LDA #$F0
 
@@ -164,7 +164,7 @@ Bank3_Label_91FD:
     LDY #$00
 
 Bank3_Label_921E:
-    LDA ($4B),Y
+    LDA (EndingCreditSourcePointer),Y
     CMP #$20
     BNE Bank3_Label_9226
     LDA #$7F
@@ -184,11 +184,11 @@ Bank3_Label_9232:
     INY
     CPY #$20
     BCC Bank3_Label_921E
-    LDA $4B
+    LDA EndingCreditSourcePointer
     CLC
     ADC #$20
-    STA $4B
-    LDA $4C
+    STA EndingCreditSourcePointer
+    LDA EndingCreditSourcePointer+$01
     ADC #$00
-    STA $4C
+    STA EndingCreditSourcePointer+$01
     RTS

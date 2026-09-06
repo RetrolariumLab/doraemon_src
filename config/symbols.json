@@ -4324,9 +4324,51 @@
     },
     {
       "bank": 3,
+      "address": "0x83C5",
+      "name": "Shell_PollIntroSkip",
+      "evidence": "validated-shell-runtime-title-input-poll-and-a-or-b-skip-state"
+    },
+    {
+      "bank": 3,
       "address": "0x8415",
       "name": "Shell_WaitForStartOrRunAttract",
       "evidence": "title-input-timeout-falls-through-attract-presentation-and-rotates-three-demo-gateways"
+    },
+    {
+      "bank": 3,
+      "address": "0x84D2",
+      "name": "Shell_PollTitleInputAndChapterSelect",
+      "evidence": "validated-shell-runtime-frame-wait-controller-return-and-select-edge-modulo-three"
+    },
+    {
+      "bank": 3,
+      "address": "0x84FC",
+      "name": "Shell_HandleAttractExitInput",
+      "evidence": "validated-shell-runtime-a-or-b-exit-and-title-score-presentation-rebuild"
+    },
+    {
+      "bank": 3,
+      "address": "0x858D",
+      "name": "Shell_InitializePersistentScoreState",
+      "evidence": "validated-shell-runtime-ok-marker-check-and-score-buffer-initialization"
+    },
+    {
+      "bank": 3,
+      "address": "0x85B9",
+      "name": "Shell_AdvanceAttractIntroSprites",
+      "evidence": "validated-shell-runtime-fourth-frame-four-byte-intro-sprite-reveal"
+    },
+    {
+      "bank": 3,
+      "address": "0x85E2",
+      "name": "Shell_StageCornerMarkerSprite",
+      "evidence": "validated-shell-runtime-fixed-first-oam-entry-y-tile-attribute-x-write"
+    },
+    {
+      "bank": 3,
+      "address": "0x85F7",
+      "name": "Shell_CopyTerminatedOamStream",
+      "evidence": "validated-shell-runtime-four-byte-oam-record-copy-through-zero-y-terminator"
     },
     {
       "bank": 3,
@@ -4354,6 +4396,18 @@
     },
     {
       "bank": 3,
+      "address": "0x8B8A",
+      "name": "Ending_CopyStaticOamLayout",
+      "evidence": "validated-shell-runtime-fixed-128-byte-ending-cast-layout-copy-to-upper-oam-half"
+    },
+    {
+      "bank": 3,
+      "address": "0x8C3B",
+      "name": "Shell_RunWorld1OpeningTransition",
+      "evidence": "validated-shell-runtime-negative-destination-entry-to-shared-interstitial"
+    },
+    {
+      "bank": 3,
       "address": "0x8C3F",
       "name": "Bank3_World1ToWorld2Transition",
       "evidence": "world1-gateway-target-and-bank1-exit"
@@ -4366,9 +4420,39 @@
     },
     {
       "bank": 3,
+      "address": "0x8CE6",
+      "name": "Shell_UpdateTransitionAnimation",
+      "evidence": "validated-shell-runtime-four-phase-animation-and-32-byte-oam-frame-copy"
+    },
+    {
+      "bank": 3,
+      "address": "0x8D3A",
+      "name": "Shell_UpdateTransitionPosition",
+      "evidence": "validated-shell-runtime-phase-motion-and-settle-origin-update"
+    },
+    {
+      "bank": 3,
+      "address": "0x8DB1",
+      "name": "Shell_DrawTransitionSprites",
+      "evidence": "validated-shell-runtime-common-and-destination-relative-oam-stream-selection"
+    },
+    {
+      "bank": 3,
+      "address": "0x8E05",
+      "name": "Shell_DrawRelativeOamStream",
+      "evidence": "validated-shell-runtime-slot-attribute-tile-relative-position-record-decoder"
+    },
+    {
+      "bank": 3,
       "address": "0x8F5A",
       "name": "Shell_WaitForNextFrame",
       "evidence": "spins-until-the-nmi-owned-frame-counter-changes-for-title-and-presentation-animation-steps"
+    },
+    {
+      "bank": 3,
+      "address": "0x8F63",
+      "name": "Shell_FillTwoNametables",
+      "evidence": "validated-shell-runtime-eight-256-byte-ppu-page-fill"
     },
     {
       "bank": 3,
@@ -4393,6 +4477,18 @@
       "address": "0x90D1",
       "name": "Shell_UploadStagedPalette",
       "evidence": "disables-rendering-then-tail-calls-palette-upload-service"
+    },
+    {
+      "bank": 3,
+      "address": "0x9152",
+      "name": "Shell_ClearBothNametables",
+      "evidence": "validated-shell-runtime-two-nametables-filled-with-7f-and-attribute-tables-zeroed"
+    },
+    {
+      "bank": 3,
+      "address": "0x91A1",
+      "name": "Shell_HideAllOamEntries",
+      "evidence": "validated-shell-runtime-offscreen-f0-y-write-to-all-64-oam-entries"
     },
     {
       "bank": 3,
@@ -5718,6 +5814,71 @@
       "address": "0x0037",
       "name": "World1FlashLightCarryFlag",
       "evidence": "set-by-world1-flash-light-pickup-consumed-into-world2-inventory-slot-two-then-cleared"
+    },
+    {
+      "address": "0x003C",
+      "name": "ShellChapterSelectIndex",
+      "banks": [
+        3
+      ],
+      "evidence": "select-edge-increments-modulo-three-and-title-start-selects-corresponding-chapter"
+    },
+    {
+      "address": "0x003D",
+      "name": "ShellChapterSelectLatch",
+      "banks": [
+        3
+      ],
+      "evidence": "set-while-select-is-held-and-cleared-on-release-before-next-chapter-index-increment"
+    },
+    {
+      "address": "0x004B",
+      "name": "EndingCreditSourcePointer",
+      "size": 2,
+      "banks": [
+        3
+      ],
+      "evidence": "initialized-to-bdbc-advanced-by-32-byte-credit-rows-and-compared-to-ed3c"
+    },
+    {
+      "address": "0x0406",
+      "name": "ShellTransitionCompleteFlag",
+      "banks": [
+        3
+      ],
+      "evidence": "cleared-on-interstitial-entry-set-after-fourth-animation-phase-and-polled-by-transition-loop"
+    },
+    {
+      "address": "0x0409",
+      "name": "ShellTransitionMotionIndex",
+      "banks": [
+        3
+      ],
+      "evidence": "incremented-modulo-sixteen-to-index-transition-x-delta-table"
+    },
+    {
+      "address": "0x040A",
+      "name": "ShellTransitionOriginX",
+      "banks": [
+        3
+      ],
+      "evidence": "transition-motion-destination-and-relative-oam-x-origin"
+    },
+    {
+      "address": "0x040B",
+      "name": "ShellTransitionOriginY",
+      "banks": [
+        3
+      ],
+      "evidence": "transition-phase-motion-and-relative-oam-y-origin"
+    },
+    {
+      "address": "0x040C",
+      "name": "ShellTransitionSettleStep",
+      "banks": [
+        3
+      ],
+      "evidence": "increments-to-three-after-motion-phases-and-selects-final-origin-and-sprite-records"
     },
     {
       "address": "0x0041",

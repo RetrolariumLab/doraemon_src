@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "bank": 3,
+  "routines": [
+    {
+      "address": "0x83C5",
+      "end_address": "0x83CC",
+      "size": 8,
+      "crc32": "6ae6bfbc",
+      "name": "Shell_PollIntroSkip",
+      "role": "poll-title-input-and-return-with-a-or-b-skip-state",
+      "callers": [
+        {
+          "address": "0x8373",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x837C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8382",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8395",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x84D2",
+      "end_address": "0x84FB",
+      "size": 42,
+      "crc32": "b1a7f199",
+      "name": "Shell_PollTitleInputAndChapterSelect",
+      "role": "wait-one-frame-return-controller-state-and-edge-detect-select-modulo-three",
+      "callers": [
+        {
+          "address": "0x83C5",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x841A",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x84FC",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A5B",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x84FC",
+      "end_address": "0x858C",
+      "size": 145,
+      "crc32": "6d537926",
+      "name": "Shell_HandleAttractExitInput",
+      "role": "exit-attract-on-a-or-b-and-rebuild-title-score-presentation",
+      "callers": [
+        {
+          "address": "0x8426",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x845E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8493",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x858D",
+      "end_address": "0x85B8",
+      "size": 44,
+      "crc32": "8440b65b",
+      "name": "Shell_InitializePersistentScoreState",
+      "role": "validate-ok-marker-or-clear-both-score-buffers-and-attract-index",
+      "callers": [
+        {
+          "address": "0x82BE",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x85B9",
+      "end_address": "0x85E1",
+      "size": 41,
+      "crc32": "41f168ea",
+      "name": "Shell_AdvanceAttractIntroSprites",
+      "role": "reveal-one-four-byte-intro-sprite-every-fourth-frame",
+      "callers": [
+        {
+          "address": "0x8429",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x85E2",
+      "end_address": "0x85F6",
+      "size": 21,
+      "crc32": "64f4a7f4",
+      "name": "Shell_StageCornerMarkerSprite",
+      "role": "write-fixed-y-tile-attribute-and-x-to-first-oam-entry",
+      "callers": [
+        {
+          "address": "0x846E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8499",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8B5E",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x85F7",
+      "end_address": "0x861B",
+      "size": 37,
+      "crc32": "657de393",
+      "name": "Shell_CopyTerminatedOamStream",
+      "role": "copy-four-byte-oam-records-from-pointer-until-zero-y",
+      "callers": [
+        {
+          "address": "0x846B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8496",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8B8A",
+      "end_address": "0x8B9A",
+      "size": 17,
+      "crc32": "bbd8254c",
+      "name": "Ending_CopyStaticOamLayout",
+      "role": "copy-fixed-128-byte-ending-cast-layout-to-upper-oam-half",
+      "callers": [
+        {
+          "address": "0x8B1B",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8C3B",
+      "end_address": "0x8C3E",
+      "size": 4,
+      "crc32": "9849f239",
+      "name": "Shell_RunWorld1OpeningTransition",
+      "role": "select-negative-transition-destination-and-enter-shared-interstitial",
+      "callers": [
+        {
+          "address": "0x83F6",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0x8CE6",
+      "end_address": "0x8D2D",
+      "size": 72,
+      "crc32": "1de420ad",
+      "name": "Shell_UpdateTransitionAnimation",
+      "role": "advance-four-phase-transition-animation-and-copy-32-byte-oam-frame",
+      "callers": [
+        {
+          "address": "0x8CC4",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8D3A",
+      "end_address": "0x8D9A",
+      "size": 97,
+      "crc32": "a774b150",
+      "name": "Shell_UpdateTransitionPosition",
+      "role": "apply-phase-specific-motion-then-settle-transition-origin",
+      "callers": [
+        {
+          "address": "0x8CC7",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8DB1",
+      "end_address": "0x8DF2",
+      "size": 66,
+      "crc32": "3bc4e370",
+      "name": "Shell_DrawTransitionSprites",
+      "role": "select-common-and-destination-specific-relative-oam-streams",
+      "callers": [
+        {
+          "address": "0x8CCA",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8E05",
+      "end_address": "0x8E32",
+      "size": 46,
+      "crc32": "fdc85b97",
+      "name": "Shell_DrawRelativeOamStream",
+      "role": "decode-slot-attribute-tile-x-y-records-relative-to-transition-origin",
+      "callers": [
+        {
+          "address": "0x8DC4",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8DDA",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8DF0",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0x8F63",
+      "end_address": "0x8F83",
+      "size": 33,
+      "crc32": "ff449227",
+      "name": "Shell_FillTwoNametables",
+      "role": "write-accumulator-to-eight-256-byte-nametable-pages",
+      "callers": [
+        {
+          "address": "0x87CD",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9152",
+      "end_address": "0x919C",
+      "size": 75,
+      "crc32": "97643d44",
+      "name": "Shell_ClearBothNametables",
+      "role": "fill-two-nametables-with-7f-and-zero-both-attribute-tables",
+      "callers": [
+        {
+          "address": "0x82AD",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x850F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A1F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A93",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8AFA",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8C57",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x91A1",
+      "end_address": "0x91AE",
+      "size": 14,
+      "crc32": "f275704b",
+      "name": "Shell_HideAllOamEntries",
+      "role": "write-offscreen-f0-y-to-all-64-four-byte-oam-entries",
+      "callers": [
+        {
+          "address": "0x8343",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8B12",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8B4B",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x003C",
+      "name": "ShellChapterSelectIndex"
+    },
+    {
+      "address": "0x003D",
+      "name": "ShellChapterSelectLatch"
+    },
+    {
+      "address": "0x004B",
+      "size": 2,
+      "name": "EndingCreditSourcePointer"
+    },
+    {
+      "address": "0x0406",
+      "name": "ShellTransitionCompleteFlag"
+    },
+    {
+      "address": "0x0409",
+      "name": "ShellTransitionMotionIndex"
+    },
+    {
+      "address": "0x040A",
+      "name": "ShellTransitionOriginX"
+    },
+    {
+      "address": "0x040B",
+      "name": "ShellTransitionOriginY"
+    },
+    {
+      "address": "0x040C",
+      "name": "ShellTransitionSettleStep"
+    }
+  ]
+}

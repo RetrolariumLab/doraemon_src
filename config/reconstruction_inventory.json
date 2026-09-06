@@ -5,8 +5,8 @@
       "module_count": 119,
       "total": {
         "global_labels": 3343,
-        "semantic_labels": 924,
-        "neutral_routine_labels": 290,
+        "semantic_labels": 940,
+        "neutral_routine_labels": 274,
         "neutral_local_labels": 2129
       },
       "by_bank": {
@@ -30,15 +30,15 @@
         },
         "3": {
           "global_labels": 363,
-          "semantic_labels": 145,
-          "neutral_routine_labels": 16,
+          "semantic_labels": 161,
+          "neutral_routine_labels": 0,
           "neutral_local_labels": 202
         }
       }
     },
     "evidence_backed_prg_symbols": {
       "total": {
-        "semantic_code_symbols": 803,
+        "semantic_code_symbols": 819,
         "operand_symbols": 111
       },
       "by_bank": {
@@ -55,7 +55,7 @@
           "operand_symbols": 43
         },
         "3": {
-          "semantic_code_symbols": 139,
+          "semantic_code_symbols": 155,
           "operand_symbols": 3
         }
       }
@@ -85,7 +85,7 @@
       }
     },
     "ram_aliases": {
-      "unique_symbols": 280,
+      "unique_symbols": 288,
       "shared": {
         "symbols": 83,
         "bytes": 155
@@ -104,8 +104,8 @@
           "bytes": 740
         },
         "3": {
-          "symbols": 0,
-          "bytes": 0
+          "symbols": 8,
+          "bytes": 9
         }
       },
       "effective_by_bank": {
@@ -122,8 +122,8 @@
           "bytes": 895
         },
         "3": {
-          "symbols": 83,
-          "bytes": 155
+          "symbols": 91,
+          "bytes": 164
         }
       }
     },

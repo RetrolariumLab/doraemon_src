@@ -80,6 +80,11 @@ game-over text, the ending-opening nametable, all three chapter-help screens,
 and those active credits have a lossless fixed-size authoring contract in
 `data/shell/text.json`; see `docs/shell_text.md`.
 
+The title/attract, transition, ending, nametable, and OAM routines now have a
+complete Bank 3 routine-level naming contract. Exact spans and all direct
+Ghidra callers are checked together with eight private RAM fields; see
+`docs/shell_runtime.md`.
+
 ## Audio / all four banks
 
 The shared audio request tables begin at `$9784` and executable driver entry

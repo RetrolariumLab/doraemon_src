@@ -13,10 +13,10 @@ evidence manifests. Any change requires an intentional snapshot update.
 | 0 | 1,011 | 256 | 70 | 685 | 84 / 84 |
 | 1 | 879 | 229 | 91 | 559 | 97 / 97 |
 | 2 | 1,090 | 294 | 113 | 683 | 106 / 106 |
-| 3 | 363 | 145 | 16 | 202 | 67 / 67 |
-| Total | 3,343 | 924 | 290 | 2,129 | 354 / 354 |
+| 3 | 363 | 161 | 0 | 202 | 67 / 67 |
+| Total | 3,343 | 940 | 274 | 2,129 | 354 / 354 |
 
-The neutral population now separates 290 probable routine entries from 2,129
+The neutral population now separates 274 probable routine entries from 2,129
 local branch labels. The common runtime naming pass removed 88 neutral routine
 names by proving copied reset/NMI/mapper services, cross-bank gateways, and
 bank-local dispatches. A second pass named all 19 previously neutral non-audio
@@ -37,10 +37,14 @@ while correcting a former label from the middle of the title prompt to the
 actual `$9248` stream start.
 Local labels are renamed only when that materially clarifies a routine contract.
 
-The symbol registry currently contains 803 evidence-backed code symbols and
-111 operand/table symbols. RAM coverage contains 280 unique aliases: 83 shared
-symbols plus 93 Bank 0, 39 Bank 1, and 65 Bank 2 scoped symbols. Bank 3 has the
-shared 83-symbol view; chapter-specific shell state remains a visible gap.
+The Bank 3 shell pass removes all sixteen remaining neutral routine entries
+from that bank. Title/attract input, chapter transitions, ending OAM setup, and
+shell nametable/OAM helpers are tied to exact code spans, complete Ghidra
+direct-caller sets, and eight Bank 3-private RAM fields.
+
+The symbol registry currently contains 819 evidence-backed code symbols and
+111 operand/table symbols. RAM coverage contains 288 unique aliases: 83 shared
+symbols plus 93 Bank 0, 39 Bank 1, 65 Bank 2, and 8 Bank 3 scoped symbols.
 
 Typed PRG ranges cover 65,796 bytes in 57 non-overlapping regions. Bank 3 now
 separates exact title, game-over, chapter-help, ending-opening, active-credit,

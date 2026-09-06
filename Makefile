@@ -47,6 +47,7 @@ AUDIO_ARBITRATION := config/audio_arbitration.json
 AUDIO_STREAM_AUTHORING := data/audio/music_streams.json
 SHELL_TEXT := config/shell_text.json
 SHELL_TEXT_AUTHORING := data/shell/text.json
+SHELL_RUNTIME := config/shell_runtime.json
 OBJECT_POOLS := config/object_pools.json
 OBJECT_DISPATCH := config/object_dispatch.json
 OBJECT_PLACEMENTS := config/object_placements.json
@@ -121,6 +122,7 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	audio-arbitration validate-audio-arbitration \
 	audio-streams validate-audio-streams \
 	shell-text validate-shell-text \
+	shell-runtime validate-shell-runtime \
 	object-dispatch validate-object-dispatch object-placements \
 	validate-object-placements world1-metasprites validate-world1-metasprites \
 	world1-random validate-world1-random \
@@ -312,6 +314,13 @@ audio-streams validate-audio-streams: $(PRG_ASSET)
 shell-text validate-shell-text: $(PRG_ASSET)
 	$(PYTHON) scripts/shell_text.py validate --prg "$(PRG_ASSET)" \
 		--manifest "$(SHELL_TEXT)" --authoring "$(SHELL_TEXT_AUTHORING)"
+
+shell-runtime: validate-shell-runtime
+
+validate-shell-runtime: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/shell_runtime.py --prg "$(PRG_ASSET)" \
+		--manifest "$(SHELL_RUNTIME)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_3.tsv"
 
 object-pools validate-object-pools:
 	$(PYTHON) scripts/object_pools.py --manifest "$(OBJECT_POOLS)" \
@@ -572,6 +581,7 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-audio-arbitration \
 	validate-audio-streams \
 	validate-shell-text \
+	validate-shell-runtime \
 	validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world1-metasprites \
 	validate-world1-random \

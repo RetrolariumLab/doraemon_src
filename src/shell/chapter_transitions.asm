@@ -2,7 +2,7 @@
 ; World transitions and interstitial cutscenes
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank3_Func_8C3B:
+Shell_RunWorld1OpeningTransition:
     LDA #$80
     BNE Bank3_Label_8C45
 
@@ -22,7 +22,7 @@ Bank3_Label_8C45:
     JSR Bank3_DisableRenderingForUpdate
     LDA #$03
     JSR Bank3_SelectChrBank
-    JSR Bank3_Func_9152
+    JSR Shell_ClearBothNametables
     LDA #$BC
     STA $00
     LDA #$AD
@@ -57,16 +57,16 @@ Bank3_Label_8C6E:
     STX $07
     STX $06
     STX $05
-    STX a:$0406
+    STX a:ShellTransitionCompleteFlag
     INX
     STX $09
     LDA #$00
-    STA a:$0409
-    STA a:$040C
+    STA a:ShellTransitionMotionIndex
+    STA a:ShellTransitionSettleStep
     LDA #$70
-    STA a:$040A
+    STA a:ShellTransitionOriginX
     LDA #$80
-    STA a:$040B
+    STA a:ShellTransitionOriginY
     LDA #$15
     JSR Audio_QueueEffect
     LDA #$00
@@ -75,10 +75,10 @@ Bank3_Label_8C6E:
 
 Bank3_Label_8CC1:
     JSR Shell_WaitForNextFrame
-    JSR Bank3_Func_8CE6
-    JSR Bank3_Func_8D3A
-    JSR Bank3_Func_8DB1
-    LDA a:$0406
+    JSR Shell_UpdateTransitionAnimation
+    JSR Shell_UpdateTransitionPosition
+    JSR Shell_DrawTransitionSprites
+    LDA a:ShellTransitionCompleteFlag
     BEQ Bank3_Label_8CC1
     LDA #$00
     JSR Audio_QueueEffect
@@ -93,7 +93,7 @@ Bank3_Label_8CE0:
 Bank3_Label_8CE3:
     JMP Bank3_EnterWorld1
 
-Bank3_Func_8CE6:
+Shell_UpdateTransitionAnimation:
     LDA #$01
     STA a:$0408
     LDA FrameCounter
@@ -109,7 +109,7 @@ Bank3_Label_8CFB:
     CPX #$04
     BCC Bank3_Label_8D08
     LDA #$01
-    STA a:$0406
+    STA a:ShellTransitionCompleteFlag
     LDX #$03
 
 Bank3_Label_8D08:
@@ -139,23 +139,23 @@ Bank3_Label_8D21:
     RTS
     .byte $20, $40, $80, $00, $00, $00, $00, $01, $15, $16, $17, $18
 
-Bank3_Func_8D3A:
+Shell_UpdateTransitionPosition:
     LDA $05
     CMP #$03
     BCS Bank3_Label_8D7A
     LDA FrameCounter
     LSR A
     BCS Bank3_Label_8D5A
-    LDX a:$0409
+    LDX a:ShellTransitionMotionIndex
     INX
     TXA
     AND #$0F
     TAX
-    STX a:$0409
-    LDA a:$040A
+    STX a:ShellTransitionMotionIndex
+    LDA a:ShellTransitionOriginX
     CLC
     ADC a:$8DA1,X
-    STA a:$040A
+    STA a:ShellTransitionOriginX
 
 Bank3_Label_8D5A:
     LDA $05
@@ -177,8 +177,8 @@ Bank3_Label_8D6E:
 
 Bank3_Label_8D72:
     CLC
-    ADC a:$040B
-    STA a:$040B
+    ADC a:ShellTransitionOriginY
+    STA a:ShellTransitionOriginY
 
 Bank3_Label_8D79:
     RTS
@@ -187,26 +187,26 @@ Bank3_Label_8D7A:
     LDA FrameCounter
     AND #$07
     BNE Bank3_Label_8D8B
-    LDX a:$040C
+    LDX a:ShellTransitionSettleStep
     CPX #$03
     BCS Bank3_Label_8D9A
     INX
-    STX a:$040C
+    STX a:ShellTransitionSettleStep
 
 Bank3_Label_8D8B:
-    LDX a:$040C
+    LDX a:ShellTransitionSettleStep
     LDA a:$8D9B,X
-    STA a:$040A
+    STA a:ShellTransitionOriginX
     LDA a:$8D9E,X
-    STA a:$040B
+    STA a:ShellTransitionOriginY
 
 Bank3_Label_8D9A:
     RTS
     .byte $70, $78, $7C, $80, $84, $80, $01, $01, $01, $01, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $01, $01, $01, $01
 
-Bank3_Func_8DB1:
-    LDA a:$040C
+Shell_DrawTransitionSprites:
+    LDA a:ShellTransitionSettleStep
     CMP #$03
     BCS Bank3_Label_8D9A
     ASL A
@@ -215,31 +215,31 @@ Bank3_Func_8DB1:
     STA $00
     LDA a:$8DF4,X
     STA $01
-    JSR Bank3_Func_8E05
+    JSR Shell_DrawRelativeOamStream
     LDA $08
     BMI Bank3_Label_8D9A
-    LDA a:$040C
+    LDA a:ShellTransitionSettleStep
     ASL A
     TAX
     LDA a:$8DFF,X
     STA $00
     LDA a:$8E00,X
     STA $01
-    JSR Bank3_Func_8E05
+    JSR Shell_DrawRelativeOamStream
     LDA $08
     BEQ Bank3_Label_8D9A
-    LDA a:$040C
+    LDA a:ShellTransitionSettleStep
     ASL A
     TAX
     LDA a:$8DF9,X
     STA $00
     LDA a:$8DFA,X
     STA $01
-    JMP Bank3_Func_8E05
+    JMP Shell_DrawRelativeOamStream
     .byte $33, $8E, $68, $8E, $79, $8E, $7E, $8E, $A3, $8E, $B4, $8E, $B9, $8E, $C6, $8E
     .byte $CF, $8E
 
-Bank3_Func_8E05:
+Shell_DrawRelativeOamStream:
     LDY #$00
 
 Bank3_Label_8E07:
@@ -253,12 +253,12 @@ Bank3_Label_8E07:
     INY
     LDA ($00),Y
     STA a:$0301,X
-    LDA a:$040A
+    LDA a:ShellTransitionOriginX
     CLC
     INY
     ADC ($00),Y
     STA a:$0303,X
-    LDA a:$040B
+    LDA a:ShellTransitionOriginY
     CLC
     INY
     ADC ($00),Y
@@ -294,7 +294,7 @@ Bank3_Label_8F5C:
     RTS
     .byte $A9, $00
 
-Bank3_Func_8F63:
+Shell_FillTwoNametables:
     PHA
     LDA PpuCtrlShadow
     AND #$FB

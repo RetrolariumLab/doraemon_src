@@ -6,7 +6,7 @@ Bank3_ShowGameOver:
     JSR Bank3_DisableRenderingForUpdate
     LDA #$03
     JSR Bank3_SelectChrBank
-    JSR Bank3_Func_9152
+    JSR Shell_ClearBothNametables
     LDA #$21
     STA a:PPU_ADDR
     LDA #$EB
@@ -36,7 +36,7 @@ Bank3_Label_8A2E:
     JSR Bank3_EnableNmiAndRendering
 
 Bank3_Label_8A5B:
-    JSR Bank3_Func_84D2
+    JSR Shell_PollTitleInputAndChapterSelect
     STA $00
     AND #$10
     BNE Bank3_Label_8A70

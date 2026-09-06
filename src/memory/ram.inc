@@ -27,6 +27,16 @@ PlayerHealthCapacityIndex = $002C
 AudioStreamPointers       = $002F
 World1FlashLightCarryFlag = $0037
 
+; Bank 3 title, transition, and ending state
+ShellChapterSelectIndex = $003C
+ShellChapterSelectLatch = $003D
+EndingCreditSourcePointer = $004B
+ShellTransitionCompleteFlag = $0406
+ShellTransitionMotionIndex = $0409
+ShellTransitionOriginX = $040A
+ShellTransitionOriginY = $040B
+ShellTransitionSettleStep = $040C
+
 ; World 1 metasprite renderer workspace
 World1OamY                 = $0041
 World1OamTile              = $0042

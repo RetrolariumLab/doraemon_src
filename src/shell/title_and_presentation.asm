@@ -23,8 +23,8 @@ Bank3_ShellMain:
     STA a:PPU_CTRL
     STA a:PPU_MASK
     STA $09
-    STA $3C
-    STA $3D
+    STA ShellChapterSelectIndex
+    STA ShellChapterSelectLatch
     LDX #$7F
     TXS
     LDA #$00
@@ -32,14 +32,14 @@ Bank3_ShellMain:
     JSR Bank3_DisableRenderingForUpdate
     LDA #$03
     JSR Bank3_SelectChrBank
-    JSR Bank3_Func_9152
+    JSR Shell_ClearBothNametables
     LDA #$86
     STA $01
     LDA #$30
     STA $00
     JSR Shell_CopyPaletteToStaging
     JSR Shell_UploadStagedPalette
-    JSR Bank3_Func_858D
+    JSR Shell_InitializePersistentScoreState
     LDA $3B
     AND #$7F
     STA $3B
@@ -117,7 +117,7 @@ Bank3_Label_832E:
     ORA #$10
     AND #$F4
     STA PpuCtrlShadow
-    JSR Bank3_Func_91A1
+    JSR Shell_HideAllOamEntries
     LDA #$01
     STA $0D
     STA NmiOamDmaRequest
@@ -138,18 +138,18 @@ Bank3_Label_832E:
     JSR Bank3_EnableNmiAndRendering
 
 Bank3_Label_8373:
-    JSR Bank3_Func_83C5
+    JSR Shell_PollIntroSkip
     DEC PpuScrollXShadow
     BNE Bank3_Label_8373
     LDX #$64
 
 Bank3_Label_837C:
-    JSR Bank3_Func_83C5
+    JSR Shell_PollIntroSkip
     DEX
     BNE Bank3_Label_837C
 
 Bank3_Label_8382:
-    JSR Bank3_Func_83C5
+    JSR Shell_PollIntroSkip
     INC PpuScrollYShadow
     DEC $0E
     INC $10
@@ -160,7 +160,7 @@ Bank3_Label_8382:
     STA PpuScrollYShadow
 
 Bank3_Label_8395:
-    JSR Bank3_Func_83C5
+    JSR Shell_PollIntroSkip
     INC $11
     DEC $0F
     BNE Bank3_Label_8395
@@ -175,7 +175,7 @@ Bank3_Label_839E:
     STA a:$0180
     STA a:$01C0
     STA a:$0405
-    STA a:$0406
+    STA a:ShellTransitionCompleteFlag
     STA a:$0407
     INC $09
 
@@ -186,8 +186,8 @@ Bank3_Label_83BA:
     BNE Bank3_Label_83BA
     JMP Shell_WaitForStartOrRunAttract
 
-Bank3_Func_83C5:
-    JSR Bank3_Func_84D2
+Shell_PollIntroSkip:
+    JSR Shell_PollTitleInputAndChapterSelect
     AND #$30
     BNE Bank3_Label_839E
     RTS
@@ -215,12 +215,12 @@ Bank3_Label_83DC:
     AND #$C0
     CMP #$C0
     BEQ Bank3_Label_83F9
-    JMP Bank3_Func_8C3B
+    JMP Shell_RunWorld1OpeningTransition
 
 Bank3_Label_83F9:
     LDA #$80
     STA $3B
-    LDX $3C
+    LDX ShellChapterSelectIndex
     BNE Bank3_Label_8404
     JMP Bank3_EnterWorld1
 
@@ -241,15 +241,15 @@ Shell_WaitForStartOrRunAttract:
     STA a:$0400
 
 Bank3_Label_841A:
-    JSR Bank3_Func_84D2
+    JSR Shell_PollTitleInputAndChapterSelect
     AND #$10
     BNE Bank3_Label_83CD
     DEC a:$0400
     BNE Bank3_Label_841A
 
 Bank3_Label_8426:
-    JSR Bank3_Func_84FC
-    JSR Bank3_Func_85B9
+    JSR Shell_HandleAttractExitInput
+    JSR Shell_AdvanceAttractIntroSprites
     BCC Bank3_Label_8426
     LDA #$B0
     STA $00
@@ -275,14 +275,14 @@ Bank3_Label_8426:
     STA $45
 
 Bank3_Label_845E:
-    JSR Bank3_Func_84FC
+    JSR Shell_HandleAttractExitInput
     LDA $40
     CMP #$20
     BCS Bank3_Label_8478
     LDA #$02
     STA $09
-    JSR Bank3_Func_85F7
-    JSR Bank3_Func_85E2
+    JSR Shell_CopyTerminatedOamStream
+    JSR Shell_StageCornerMarkerSprite
     LDA #$01
     STA $41
     JMP Bank3_Label_845E
@@ -303,9 +303,9 @@ Bank3_Label_8478:
     STA $42
 
 Bank3_Label_8493:
-    JSR Bank3_Func_84FC
-    JSR Bank3_Func_85F7
-    JSR Bank3_Func_85E2
+    JSR Shell_HandleAttractExitInput
+    JSR Shell_CopyTerminatedOamStream
+    JSR Shell_StageCornerMarkerSprite
     LDA a:AudioMusicState
     BNE Bank3_Label_8493
     LDA #$01
@@ -333,29 +333,29 @@ Bank3_Label_84BD:
     .byte $BC, $B1, $BC, $B5, $BC, $B9, $50, $86, $70, $86, $90, $86, $D0, $86, $29, $87
     .byte $62, $87
 
-Bank3_Func_84D2:
+Shell_PollTitleInputAndChapterSelect:
     JSR Shell_WaitForNextFrame
     LDA Controller1Buttons
     ORA Controller1ButtonsAlt
     AND #$20
     BEQ Bank3_Label_84F3
-    LDA $3D
+    LDA ShellChapterSelectLatch
     BNE Bank3_Label_84F7
-    LDX $3C
+    LDX ShellChapterSelectIndex
     INX
     CPX #$03
     BCC Bank3_Label_84EA
     LDX #$00
 
 Bank3_Label_84EA:
-    STX $3C
+    STX ShellChapterSelectIndex
     LDA #$01
-    STA $3D
+    STA ShellChapterSelectLatch
     JMP Bank3_Label_84F7
 
 Bank3_Label_84F3:
     LDA #$00
-    STA $3D
+    STA ShellChapterSelectLatch
 
 Bank3_Label_84F7:
     LDA Controller1Buttons
@@ -364,8 +364,8 @@ Bank3_Label_84F7:
 Bank3_Label_84FB:
     RTS
 
-Bank3_Func_84FC:
-    JSR Bank3_Func_84D2
+Shell_HandleAttractExitInput:
+    JSR Shell_PollTitleInputAndChapterSelect
     AND #$30
     BEQ Bank3_Label_84FB
     LDA #$00
@@ -373,7 +373,7 @@ Bank3_Func_84FC:
     LDA #$01
     STA $09
     JSR Bank3_DisableRenderingForUpdate
-    JSR Bank3_Func_9152
+    JSR Shell_ClearBothNametables
     LDA #$48
     STA $00
     LDA #$92
@@ -446,7 +446,7 @@ Bank3_Label_8561:
     JSR Bank3_EnableNmiAndRendering
     JMP Bank3_Label_83BA
 
-Bank3_Func_858D:
+Shell_InitializePersistentScoreState:
     LDA $39
     CMP #$4F
     BNE Bank3_Label_859A
@@ -477,7 +477,7 @@ Bank3_Label_85AE:
     STA $3B
     RTS
 
-Bank3_Func_85B9:
+Shell_AdvanceAttractIntroSprites:
     LDA #$01
     STA a:$0408
     CLC
@@ -505,7 +505,7 @@ Bank3_Label_85D1:
 Bank3_Label_85E1:
     RTS
 
-Bank3_Func_85E2:
+Shell_StageCornerMarkerSprite:
     LDA #$37
     STA a:OamBuffer
     LDA #$EF
@@ -516,7 +516,7 @@ Bank3_Func_85E2:
     STA a:$0303
     RTS
 
-Bank3_Func_85F7:
+Shell_CopyTerminatedOamStream:
     LDX #$80
     LDY #$00
 
@@ -572,7 +572,7 @@ Bank3_Label_861B:
 
 Shell_ShowStatusScreen:
     LDA #$FF
-    JSR Bank3_Func_8F63
+    JSR Shell_FillTwoNametables
     LDA PpuCtrlShadow
     AND #$FE
     STA PpuCtrlShadow

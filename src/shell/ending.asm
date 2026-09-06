@@ -8,7 +8,7 @@ Bank3_RunEnding:
     JSR Bank3_DisableRenderingForUpdate
     LDA #$03
     JSR Bank3_SelectChrBank
-    JSR Bank3_Func_9152
+    JSR Shell_ClearBothNametables
     LDA #$84
     STA $00
     LDA #$93
@@ -64,28 +64,28 @@ Bank3_Label_8AE9:
     JMP Bank3_EnterShell
 
 Bank3_Label_8AFA:
-    JSR Bank3_Func_9152
+    JSR Shell_ClearBothNametables
     LDA #$BC
-    STA $4B
+    STA EndingCreditSourcePointer
     LDA #$BD
-    STA $4C
+    STA EndingCreditSourcePointer+$01
     LDA #$03
     STA a:AudioMusicState
     LDA PpuCtrlShadow
     AND #$E0
     ORA #$10
     STA PpuCtrlShadow
-    JSR Bank3_Func_91A1
+    JSR Shell_HideAllOamEntries
     JSR Bank3_EnableNmiAndRendering
 
 Bank3_EndingCreditsFrameLoop:
     JSR Shell_WaitForNextFrame
-    JSR Bank3_Func_8B8A
+    JSR Ending_CopyStaticOamLayout
     JSR Shell_StreamEndingCreditRow
-    LDA $4B
+    LDA EndingCreditSourcePointer
     CMP #$3C
     BNE Bank3_EndingCreditsFrameLoop
-    LDA $4C
+    LDA EndingCreditSourcePointer+$01
     CMP #$ED
     BNE Bank3_EndingCreditsFrameLoop
     LDA #$B0
@@ -102,7 +102,7 @@ Bank3_EndingCreditsFrameLoop:
     AND #$E0
     ORA #$10
     STA PpuCtrlShadow
-    JSR Bank3_Func_91A1
+    JSR Shell_HideAllOamEntries
     LDA #$0C
     STA $3E
     LDA #$F2
@@ -113,7 +113,7 @@ Bank3_EndingCreditsFrameLoop:
     STA $42
 
 Bank3_Label_8B5E:
-    JSR Bank3_Func_85E2
+    JSR Shell_StageCornerMarkerSprite
     LDA $40
     CMP #$20
     BCS Bank3_Label_8B72
@@ -138,7 +138,7 @@ Bank3_Label_8B72:
 Bank3_Label_8B87:
     JMP Bank3_Label_8B87
 
-Bank3_Func_8B8A:
+Ending_CopyStaticOamLayout:
     LDX #$40
     LDY #$00
 

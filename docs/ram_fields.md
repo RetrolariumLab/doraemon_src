@@ -59,6 +59,23 @@ set. The title shell sets that flag before rotating through the three chapter
 entry gateways; normal World 1 and World 2 starts clear it, while demo-specific
 entry points set it. The same flag selects demo input, damage, and exit paths.
 
+## Bank 3 shell state
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `ShellChapterSelectIndex` | `$003C` | Select-edge-driven chapter index, wrapped through 0-2 |
+| `ShellChapterSelectLatch` | `$003D` | Prevents repeated increments while Select remains held |
+| `EndingCreditSourcePointer` | `$004B-$004C` | Advances by 32-byte rows from `$BDBC` to exclusive end `$ED3C` |
+| `ShellTransitionCompleteFlag` | `$0406` | Ends the interstitial loop after its fourth animation phase |
+| `ShellTransitionMotionIndex` | `$0409` | Modulo-16 index into the transition X-delta table |
+| `ShellTransitionOriginX` | `$040A` | Base X added to relative transition OAM records |
+| `ShellTransitionOriginY` | `$040B` | Base Y added to relative transition OAM records |
+| `ShellTransitionSettleStep` | `$040C` | Selects the final three position and sprite-record stages |
+
+These aliases are Bank 3-scoped because the gameplay banks overlay the same
+addresses with unrelated chapter state. The exact consumers are validated by
+`config/shell_runtime.json`.
+
 ## World 1 camera state
 
 | Symbol | Address | Role |
