@@ -214,9 +214,69 @@
     },
     {
       "bank": 0,
+      "address": "0x830C",
+      "name": "World1_BeginNormalGame",
+      "evidence": "validated-world1-core-clears-working-score-before-leaving-demo-mode"
+    },
+    {
+      "bank": 0,
+      "address": "0x8313",
+      "name": "World1_InitializeDemoState",
+      "evidence": "validated-world1-core-demo-player-camera-health-progression-and-object-mask-initializer"
+    },
+    {
+      "bank": 0,
+      "address": "0x834E",
+      "name": "World1_InitializeCityMapSources",
+      "evidence": "validated-world1-core-area-palette-city-map-and-city-object-source-initializer"
+    },
+    {
+      "bank": 0,
+      "address": "0x8362",
+      "name": "World1_ResetPlayerHealthAndPose",
+      "evidence": "validated-world1-core-health-capacity-derivation-and-player-pose-reset"
+    },
+    {
+      "bank": 0,
+      "address": "0x837C",
+      "name": "World1_ClearGameplayRamAndOam",
+      "evidence": "validated-world1-core-oam-entity-attribute-cache-and-working-ram-clear"
+    },
+    {
+      "bank": 0,
+      "address": "0x83A3",
+      "name": "World1_ResetAudioHardware",
+      "evidence": "validated-world1-core-audio-state-apu-and-dmc-reset"
+    },
+    {
+      "bank": 0,
+      "address": "0x83BD",
+      "name": "World1_LoadAreaPalette",
+      "evidence": "validated-world1-core-area-indexed-32-byte-palette-copy-to-staging"
+    },
+    {
+      "bank": 0,
+      "address": "0x83E8",
+      "name": "World1_InitializeAreaPresentation",
+      "evidence": "validated-world1-core-render-blank-status-delay-map-source-and-chr-initialization"
+    },
+    {
+      "bank": 0,
+      "address": "0x843B",
+      "name": "World1_StartAreaMusic",
+      "evidence": "validated-world1-core-area-index-to-music-state-table"
+    },
+    {
+      "bank": 0,
       "address": "0x8451",
       "name": "World1_DemoEntry",
       "evidence": "bank-zero-8277-target-initializes-demo-mode-world-one-state"
+    },
+    {
+      "bank": 0,
+      "address": "0x8490",
+      "name": "World1_UpdateInputOrDemoStream",
+      "evidence": "validated-world1-core-pressed-button-edge-or-duration-input-demo-stream-decoder"
     },
     {
       "bank": 0,
@@ -344,9 +404,69 @@
     },
     {
       "bank": 0,
+      "address": "0x95CB",
+      "name": "World1_HandlePause",
+      "evidence": "validated-world1-core-start-edge-audio-pause-and-resume-loop"
+    },
+    {
+      "bank": 0,
+      "address": "0x95ED",
+      "name": "World1_EnableGameplayRendering",
+      "evidence": "validated-world1-core-oam-dma-nmi-scroll-and-background-sprite-render-enable"
+    },
+    {
+      "bank": 0,
+      "address": "0x9614",
+      "name": "World1_DisableGameplayRendering",
+      "evidence": "validated-world1-core-frame-boundary-background-sprite-mask-and-oam-dma-disable"
+    },
+    {
+      "bank": 0,
       "address": "0x962F",
       "name": "World1_FrameRandomByte",
       "evidence": "two-byte-state-update-mixed-with-frame-counter-and-seven-direct-callers"
+    },
+    {
+      "bank": 0,
+      "address": "0x9674",
+      "name": "World1_RenderFrameSprites",
+      "evidence": "validated-world1-core-frame-parity-player-hud-and-four-pool-render-order"
+    },
+    {
+      "bank": 0,
+      "address": "0x96A0",
+      "name": "World1_RenderPlayerSprite",
+      "evidence": "validated-world1-core-player-state-to-metasprite-composer-adapter"
+    },
+    {
+      "bank": 0,
+      "address": "0x96BC",
+      "name": "World1_RenderHud",
+      "evidence": "validated-world1-core-score-lives-health-and-weapon-hud-oam-emitter"
+    },
+    {
+      "bank": 0,
+      "address": "0x97D2",
+      "name": "World1_RenderEntitySlot00_09",
+      "evidence": "validated-world1-core-slot-zero-through-nine-metasprite-adapter"
+    },
+    {
+      "bank": 0,
+      "address": "0x984A",
+      "name": "World1_RenderEntitySlot10_29",
+      "evidence": "validated-world1-core-slot-ten-through-twenty-nine-metasprite-adapter"
+    },
+    {
+      "bank": 0,
+      "address": "0x98A8",
+      "name": "World1_RenderEntitySlot30_37",
+      "evidence": "validated-world1-core-slot-thirty-through-thirty-seven-metasprite-adapter"
+    },
+    {
+      "bank": 0,
+      "address": "0x990A",
+      "name": "World1_RenderEntitySlot38_47",
+      "evidence": "validated-world1-core-slot-thirty-eight-through-forty-seven-metasprite-adapter"
     },
     {
       "bank": 0,
@@ -1317,6 +1437,144 @@
       "address": "0xEFFB",
       "name": "World1_MusicTrackHeaders",
       "evidence": "eight-four-channel-little-endian-stream-pointer-records"
+    },
+    {
+      "bank": 0,
+      "address": "0x884C",
+      "name": "World1_PlayPlayerDeathSequence",
+      "evidence": "validated-world1-frame-mechanics-player-death-animation-and-demo-shell-return"
+    },
+    {
+      "bank": 0,
+      "address": "0x8EF6",
+      "name": "World1_UpdateTransientEntities",
+      "evidence": "validated-world1-frame-mechanics-slots-10-through-29-update-and-despawn-pass"
+    },
+    {
+      "bank": 0,
+      "address": "0x8F47",
+      "name": "World1_UpdateAcceleratingTransientEntity",
+      "evidence": "validated-world1-frame-mechanics-axis-direction-velocity-and-acceleration-integrator"
+    },
+    {
+      "bank": 0,
+      "address": "0x8F9E",
+      "name": "World1_UpdateFallingTransientEntity",
+      "evidence": "validated-world1-frame-mechanics-horizontal-step-and-capped-gravity-update"
+    },
+    {
+      "bank": 0,
+      "address": "0x8FC5",
+      "name": "World1_UpdateOscillatingTransientEntity",
+      "evidence": "validated-world1-frame-mechanics-parity-selected-oscillation-vector-update"
+    },
+    {
+      "bank": 0,
+      "address": "0x9004",
+      "name": "World1_ReadEntityCenterCollisionProperty",
+      "evidence": "validated-world1-frame-mechanics-entity-center-world-tile-collision-property-reader"
+    },
+    {
+      "bank": 0,
+      "address": "0x9201",
+      "name": "World1_ScanPlayerProjectileHits",
+      "evidence": "validated-world1-frame-mechanics-player-projectile-object-and-enemy-collision-scan"
+    },
+    {
+      "bank": 0,
+      "address": "0x925A",
+      "name": "World1_ResolvePlayerProjectileEnemyHit",
+      "evidence": "validated-world1-frame-mechanics-enemy-hitbox-damage-hit-and-defeat-resolution"
+    },
+    {
+      "bank": 0,
+      "address": "0x931B",
+      "name": "World1_ScanPlayerContacts",
+      "evidence": "validated-world1-frame-mechanics-player-contact-scan-across-three-entity-groups"
+    },
+    {
+      "bank": 0,
+      "address": "0x9383",
+      "name": "World1_ResolveEnemyProjectilePlayerHit",
+      "evidence": "validated-world1-frame-mechanics-transient-projectile-player-damage-resolution"
+    },
+    {
+      "bank": 0,
+      "address": "0x93D4",
+      "name": "World1_ResolveEnemyPlayerContact",
+      "evidence": "validated-world1-frame-mechanics-main-enemy-player-contact-and-invulnerability-resolution"
+    },
+    {
+      "bank": 0,
+      "address": "0x9462",
+      "name": "World1_SpawnEnemyDefeatReward",
+      "evidence": "validated-world1-frame-mechanics-defeat-sequence-and-transient-reward-spawn"
+    },
+    {
+      "bank": 0,
+      "address": "0x94EB",
+      "name": "World1_WaitForPpuQueueIdle",
+      "evidence": "validated-world1-frame-mechanics-pending-nmi-ppu-command-buffer-wait"
+    },
+    {
+      "bank": 0,
+      "address": "0x94F8",
+      "name": "World1_ClearNametables",
+      "evidence": "validated-world1-frame-mechanics-four-kibibyte-ppu-nametable-clear"
+    },
+    {
+      "bank": 0,
+      "address": "0x951B",
+      "name": "World1_ClearAttributeCache",
+      "evidence": "validated-world1-frame-mechanics-128-byte-attribute-cache-clear"
+    },
+    {
+      "bank": 0,
+      "address": "0x9535",
+      "name": "World1_UploadOrQueuePalette",
+      "evidence": "validated-world1-frame-mechanics-direct-or-nmi-queued-32-byte-palette-upload"
+    },
+    {
+      "bank": 0,
+      "address": "0x9B54",
+      "name": "World1_UpdatePlayerProjectiles",
+      "evidence": "validated-world1-frame-mechanics-slots-30-through-37-motion-impact-and-despawn-pass"
+    },
+    {
+      "bank": 0,
+      "address": "0x9BCB",
+      "name": "World1_ReadPlayerProjectileCollisionProperty",
+      "evidence": "validated-world1-frame-mechanics-projectile-world-tile-collision-property-reader"
+    },
+    {
+      "bank": 0,
+      "address": "0xC92F",
+      "name": "World1_ClearWorkingScoreUnlessDemo",
+      "evidence": "validated-world1-frame-mechanics-normal-play-working-score-clear"
+    },
+    {
+      "bank": 0,
+      "address": "0xC982",
+      "name": "World1_RemoveCityObject",
+      "evidence": "validated-world1-frame-mechanics-collected-or-destroyed-city-object-removal"
+    },
+    {
+      "bank": 0,
+      "address": "0xC9E1",
+      "name": "World1_ResolvePlayerProjectileCityObjectHit",
+      "evidence": "validated-world1-frame-mechanics-city-object-hitbox-health-and-voice-condition-resolution"
+    },
+    {
+      "bank": 0,
+      "address": "0xCA6D",
+      "name": "World1_UpdateTimedPowerups",
+      "evidence": "validated-world1-frame-mechanics-enemy-freeze-and-invulnerability-countdown"
+    },
+    {
+      "bank": 0,
+      "address": "0xCB61",
+      "name": "World1_CollectProgrammerFaceAndClearProjectiles",
+      "evidence": "validated-world1-frame-mechanics-programmer-face-bonus-wrapper"
     },
     {
       "bank": 1,

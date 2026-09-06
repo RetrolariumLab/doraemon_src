@@ -2,7 +2,7 @@
 ; World 1 entity collision scans, damage resolution, and interaction helpers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_9201:
+World1_ScanPlayerProjectileHits:
     LDA #$00
     STA $95
 
@@ -27,7 +27,7 @@ Bank0_Label_9222:
     LDA a:World1EntityType+$26,Y
     BEQ Bank0_Label_9230
     BPL Bank0_Label_9230
-    JSR Bank0_Func_C9E1
+    JSR World1_ResolvePlayerProjectileCityObjectHit
 
 Bank0_Label_9230:
     INC $96
@@ -42,7 +42,7 @@ Bank0_Label_923C:
     LDX $95
     LDA a:World1EntityType,Y
     BEQ Bank0_Label_9248
-    JSR Bank0_Func_925A
+    JSR World1_ResolvePlayerProjectileEnemyHit
 
 Bank0_Label_9248:
     INC $96
@@ -60,7 +60,7 @@ Bank0_Label_9250:
 Bank0_Label_9259:
     RTS
 
-Bank0_Func_925A:
+World1_ResolvePlayerProjectileEnemyHit:
     CMP #$C0
     BCS Bank0_Label_9259
     CMP #$0F
@@ -137,7 +137,7 @@ Bank0_Label_92D3:
     STA a:World1EntityType,Y
     LDA #$05
     JSR World1_Audio_QueueEffectWithPriority
-    JSR Bank0_Func_9462
+    JSR World1_SpawnEnemyDefeatReward
     JMP Bank0_Label_92F0
 
 Bank0_Label_92EB:
@@ -154,7 +154,7 @@ Bank0_Label_92F0:
     .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $28, $0C, $04, $08
     .byte $0C
 
-Bank0_Func_931B:
+World1_ScanPlayerContacts:
     LDA #$00
     STA $81
     STA $80
@@ -171,7 +171,7 @@ Bank0_Label_9329:
     LDA a:World1EntityPositionHigh+$0A,X
     AND #$0F
     BNE Bank0_Label_933C
-    JSR Bank0_Func_9383
+    JSR World1_ResolveEnemyProjectilePlayerHit
 
 Bank0_Label_933C:
     INC $95
@@ -189,7 +189,7 @@ Bank0_Label_9348:
     LDA a:World1EntityPositionHigh,X
     AND #$0F
     BNE Bank0_Label_935B
-    JSR Bank0_Func_93D4
+    JSR World1_ResolveEnemyPlayerContact
 
 Bank0_Label_935B:
     INC $95
@@ -218,7 +218,7 @@ Bank0_Label_937A:
     BNE Bank0_Label_9367
     RTS
 
-Bank0_Func_9383:
+World1_ResolveEnemyProjectilePlayerHit:
     LDA World1PlayerX
     SEC
     SBC a:World1EntityX+$0A,X
@@ -275,7 +275,7 @@ Bank0_Label_93CE:
 Bank0_Label_93D3:
     RTS
 
-Bank0_Func_93D4:
+World1_ResolveEnemyPlayerContact:
     LDA a:World1EntityType,X
     CMP #$0F
     BEQ Bank0_Label_942A
@@ -343,11 +343,11 @@ Bank0_Label_942B:
     JSR World1_Audio_QueueEffectWithPriority
     TXA
     TAY
-    JMP Bank0_Func_9462
+    JMP World1_SpawnEnemyDefeatReward
     .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $2C, $0C, $0C
     .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $1E, $0C, $0C
 
-Bank0_Func_9462:
+World1_SpawnEnemyDefeatReward:
     TXA
     PHA
     TYA
@@ -421,9 +421,9 @@ World1_InvincibilityDefeatSequence:
     .byte $06, $06, $05, $04, $01, $06, $06, $A2, $15, $CA, $D0, $FD, $EA, $EA, $88, $D0
     .byte $F6, $60
 
-Bank0_Func_94EB:
+World1_WaitForPpuQueueIdle:
     LDA a:$0180
-    BNE Bank0_Func_94EB
+    BNE World1_WaitForPpuQueueIdle
     RTS
 
 World1_WaitForNextFrame:
@@ -434,7 +434,7 @@ Bank0_Label_94F3:
     BEQ Bank0_Label_94F3
     RTS
 
-Bank0_Func_94F8:
+World1_ClearNametables:
     LDA #$00
     PHA
     LDA PpuCtrlShadow
@@ -456,7 +456,7 @@ Bank0_Label_9511:
     BNE Bank0_Label_9511
     RTS
 
-Bank0_Func_951B:
+World1_ClearAttributeCache:
     LDX #$00
     LDA #$00
 
@@ -468,7 +468,7 @@ Bank0_Label_951F:
     RTS
     .byte $A0, $00, $B1, $00, $99, $10, $02, $C8, $C0, $20, $D0, $F6, $60
 
-Bank0_Func_9535:
+World1_UploadOrQueuePalette:
     LDA NmiOamDmaRequest
     BNE Bank0_Label_955C
     JSR Bank0_WaitForVblank
@@ -491,7 +491,7 @@ Bank0_Label_9551:
     RTS
 
 Bank0_Label_955C:
-    JSR Bank0_Func_94EB
+    JSR World1_WaitForPpuQueueIdle
     LDY #$00
     LDX #$20
     LDA #$3F

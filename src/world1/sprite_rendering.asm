@@ -2,7 +2,7 @@
 ; World 1 metasprite composition, OAM placement, and animation data
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_990A:
+World1_RenderEntitySlot38_47:
     LDA a:World1EntityPositionHigh+$26,Y
     STA World1MetaspriteOriginXHigh
     LSR A
@@ -390,7 +390,7 @@ World1_EmitOamEntry:
 Bank0_Label_9B53:
     RTS
 
-Bank0_Func_9B54:
+World1_UpdatePlayerProjectiles:
     LDX #$00
 
 Bank0_Label_9B56:
@@ -439,7 +439,7 @@ Bank0_Label_9B7A:
     STA $00
 
 Bank0_Label_9BAB:
-    JSR Bank0_Func_9BCB
+    JSR World1_ReadPlayerProjectileCollisionProperty
     BEQ Bank0_Label_9BBD
     LDA #$80
     STA a:World1EntityType+$1E,X
@@ -456,7 +456,7 @@ Bank0_Label_9BBD:
     RTS
     .byte $00, $04, $00, $FC, $FC, $00, $04, $00
 
-Bank0_Func_9BCB:
+World1_ReadPlayerProjectileCollisionProperty:
     LDA PpuScrollXShadow
     AND #$07
     CLC

@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "routines": [
+    {
+      "address": "0x884C",
+      "end_address": "0x888E",
+      "size": 67,
+      "crc32": "2d6ca262",
+      "name": "World1_PlayPlayerDeathSequence",
+      "role": "clear-transient-entities-stop-music-animate-player-death-and-return-demo-to-shell",
+      "callers": [
+        {
+          "address": "0x82F5",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE90",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD465",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8EF6",
+      "end_address": "0x8F46",
+      "size": 81,
+      "crc32": "51b4419a",
+      "name": "World1_UpdateTransientEntities",
+      "role": "update-slots-10-through-29-by-type-unless-enemies-are-frozen-and-remove-collided-or-offscreen-entries",
+      "callers": [
+        {
+          "address": "0x82DF",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE76",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD447",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD575",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD5CA",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8F47",
+      "end_address": "0x8F9D",
+      "size": 87,
+      "crc32": "ae30dc77",
+      "name": "World1_UpdateAcceleratingTransientEntity",
+      "role": "decode-axis-and-direction-bits-then-integrate-velocity-and-acceleration-on-the-selected-axis",
+      "callers": [
+        {
+          "address": "0x8F09",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8F0C",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8F9E",
+      "end_address": "0x8FC4",
+      "size": 39,
+      "crc32": "8e0c0138",
+      "name": "World1_UpdateFallingTransientEntity",
+      "role": "apply-horizontal-step-and-quarter-rate-gravity-with-capped-downward-velocity",
+      "callers": [
+        {
+          "address": "0x8F12",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8FC5",
+      "end_address": "0x8FE3",
+      "size": 31,
+      "crc32": "b8a2e88f",
+      "name": "World1_UpdateOscillatingTransientEntity",
+      "role": "select-frame-parity-motion-vector-from-eight-direction-oscillation-tables",
+      "callers": [
+        {
+          "address": "0x8F2A",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9004",
+      "end_address": "0x9064",
+      "size": 97,
+      "crc32": "1362645e",
+      "name": "World1_ReadEntityCenterCollisionProperty",
+      "role": "convert-entity-center-from-screen-to-world-tile-and-return-metatile-collision-property",
+      "callers": [
+        {
+          "address": "0x8F1A",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8F2D",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9201",
+      "end_address": "0x9258",
+      "size": 88,
+      "crc32": "6253c172",
+      "name": "World1_ScanPlayerProjectileHits",
+      "role": "scan-each-player-projectile-against-city-objects-and-main-enemy-slots",
+      "callers": [
+        {
+          "address": "0x82D3",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE67",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD43B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD56F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD5C7",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x925A",
+      "end_address": "0x92F8",
+      "size": 159,
+      "crc32": "debfbfa9",
+      "name": "World1_ResolvePlayerProjectileEnemyHit",
+      "role": "test-type-specific-hitbox-apply-projectile-damage-and-enter-enemy-hit-or-defeat-state",
+      "callers": [
+        {
+          "address": "0x9245",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x931B",
+      "end_address": "0x9382",
+      "size": 104,
+      "crc32": "c30c853e",
+      "name": "World1_ScanPlayerContacts",
+      "role": "scan-player-against-transient-enemies-main-enemies-and-interactive-city-objects",
+      "callers": [
+        {
+          "address": "0x82E2",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE79",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD44A",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD578",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD5CD",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9383",
+      "end_address": "0x93D3",
+      "size": 81,
+      "crc32": "47388a1e",
+      "name": "World1_ResolveEnemyProjectilePlayerHit",
+      "role": "test-player-hitbox-apply-transient-damage-and-consume-enemy-projectile",
+      "callers": [
+        {
+          "address": "0x9339",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x93D4",
+      "end_address": "0x9441",
+      "size": 110,
+      "crc32": "5184bbd9",
+      "name": "World1_ResolveEnemyPlayerContact",
+      "role": "test-type-specific-player-contact-damage-or-defeat-enemy-during-invulnerability",
+      "callers": [
+        {
+          "address": "0x9358",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9462",
+      "end_address": "0x94D3",
+      "size": 114,
+      "crc32": "1c4fd2f2",
+      "name": "World1_SpawnEnemyDefeatReward",
+      "role": "advance-secret-defeat-sequence-and-periodically-materialize-transient-reward-descriptors",
+      "callers": [
+        {
+          "address": "0x92E5",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x943F",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0x94EB",
+      "end_address": "0x94F0",
+      "size": 6,
+      "crc32": "2a69187a",
+      "name": "World1_WaitForPpuQueueIdle",
+      "role": "spin-until-nmi-clears-the-pending-ppu-command-buffer",
+      "callers": [
+        {
+          "address": "0x955C",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x94F8",
+      "end_address": "0x951A",
+      "size": 35,
+      "crc32": "0eba725f",
+      "name": "World1_ClearNametables",
+      "role": "write-zero-to-the-full-four-kibibyte-ppu-nametable-address-range",
+      "callers": [
+        {
+          "address": "0x8423",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x951B",
+      "end_address": "0x9527",
+      "size": 13,
+      "crc32": "5b3488c4",
+      "name": "World1_ClearAttributeCache",
+      "role": "clear-the-128-byte-world1-attribute-table-cache",
+      "callers": [
+        {
+          "address": "0x8426",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9535",
+      "end_address": "0x9586",
+      "size": 82,
+      "crc32": "2e061755",
+      "name": "World1_UploadOrQueuePalette",
+      "role": "upload-32-byte-staged-palette-directly-or-queue-it-for-nmi-while-oam-dma-is-active",
+      "callers": [
+        {
+          "address": "0x82B5",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE4C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD356",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD41D",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9B54",
+      "end_address": "0x9BC2",
+      "size": 111,
+      "crc32": "cea65ff0",
+      "name": "World1_UpdatePlayerProjectiles",
+      "role": "move-slots-30-through-37-animate-impact-state-and-remove-out-of-bounds-or-colliding-projectiles",
+      "callers": [
+        {
+          "address": "0x82CA",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE5E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD432",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD566",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD5BB",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD619",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD663",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9BCB",
+      "end_address": "0x9BFB",
+      "size": 49,
+      "crc32": "f1d23422",
+      "name": "World1_ReadPlayerProjectileCollisionProperty",
+      "role": "convert-projectile-probe-from-screen-to-world-tile-and-return-metatile-collision-property",
+      "callers": [
+        {
+          "address": "0x9BAB",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xC92F",
+      "end_address": "0xC93D",
+      "size": 15,
+      "crc32": "697f62de",
+      "name": "World1_ClearWorkingScoreUnlessDemo",
+      "role": "clear-eight-working-score-digits-for-normal-play-while-preserving-demo-score",
+      "callers": [
+        {
+          "address": "0x8306",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x830C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCEA5",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD476",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xC982",
+      "end_address": "0xC987",
+      "size": 6,
+      "crc32": "d5e546f2",
+      "name": "World1_RemoveCityObject",
+      "role": "clear-selected-city-object-slot-type-after-collection-or-destruction",
+      "callers": [
+        {
+          "address": "0xCAB6",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCACF",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCAE8",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCB01",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCB20",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCB3E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCB5E",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0xCBAC",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0xCBB9",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCBD0",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCBE7",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xC9E1",
+      "end_address": "0xCA6C",
+      "size": 140,
+      "crc32": "cef8ddb2",
+      "name": "World1_ResolvePlayerProjectileCityObjectHit",
+      "role": "test-object-hitbox-apply-descriptor-health-and-handle-special-voice-activated-object",
+      "callers": [
+        {
+          "address": "0x922D",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xCA6D",
+      "end_address": "0xCAA6",
+      "size": 58,
+      "crc32": "aac076e9",
+      "name": "World1_UpdateTimedPowerups",
+      "role": "count-down-enemy-freeze-and-alternate-frame-invulnerability-visibility-until-expiry",
+      "callers": [
+        {
+          "address": "0x82D0",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE64",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD438",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD56C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD5C1",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xCB61",
+      "end_address": "0xCB72",
+      "size": 18,
+      "crc32": "1a7f44e6",
+      "name": "World1_CollectProgrammerFaceAndClearProjectiles",
+      "role": "preserve-collision-indices-clear-player-projectiles-and-run-programmer-face-bonus-collection",
+      "callers": [
+        {
+          "address": "0xCA53",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x005B",
+      "name": "World1CameraTileX"
+    },
+    {
+      "address": "0x005C",
+      "name": "World1CameraTileY"
+    },
+    {
+      "address": "0x0078",
+      "name": "World1PlayerRenderFlags"
+    },
+    {
+      "address": "0x0079",
+      "name": "World1PlayerDamageState"
+    },
+    {
+      "address": "0x0082",
+      "name": "World1EnemyFreezeActive"
+    },
+    {
+      "address": "0x0083",
+      "name": "World1EnemyFreezeTimer"
+    },
+    {
+      "address": "0x00B2",
+      "name": "World1InvulnerabilityTimer"
+    }
+  ]
+}

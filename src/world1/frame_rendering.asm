@@ -2,7 +2,7 @@
 ; World 1 frame synchronization, PPU preparation, and sprite traversal
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_95CB:
+World1_HandlePause:
     LDA World1PressedButtons
     AND #$10
     BEQ Bank0_Label_95EC
@@ -13,7 +13,7 @@ Bank0_Func_95CB:
 
 Bank0_Label_95DB:
     JSR World1_WaitForNextFrame
-    JSR Bank0_Func_8490
+    JSR World1_UpdateInputOrDemoStream
     LDA World1PressedButtons
     AND #$10
     BEQ Bank0_Label_95DB
@@ -23,7 +23,7 @@ Bank0_Label_95DB:
 Bank0_Label_95EC:
     RTS
 
-Bank0_Func_95ED:
+World1_EnableGameplayRendering:
     JSR Bank0_HideAllSprites
     JSR Bank0_WaitForVblank
     LDA #$01
@@ -42,7 +42,7 @@ Bank0_Func_95ED:
     STA PpuMaskShadow
     RTS
 
-Bank0_Func_9614:
+World1_DisableGameplayRendering:
     LDA PpuCtrlShadow
     ORA #$80
     STA PpuCtrlShadow
@@ -106,12 +106,12 @@ Bank0_Label_9671:
     EOR World1RandomState+$03
     RTS
 
-Bank0_Func_9674:
+World1_RenderFrameSprites:
     LDA FrameCounter
     AND #$01
     BNE Bank0_Label_968D
-    JSR Bank0_Func_96BC
-    JSR Bank0_Func_96A0
+    JSR World1_RenderHud
+    JSR World1_RenderPlayerSprite
     JSR World1_RenderEntitySlots38_47
     JSR World1_RenderEntitySlots30_37
     JSR World1_RenderEntitySlots00_09
@@ -119,15 +119,15 @@ Bank0_Func_9674:
     RTS
 
 Bank0_Label_968D:
-    JSR Bank0_Func_96A0
+    JSR World1_RenderPlayerSprite
     JSR World1_RenderEntitySlots10_29
     JSR World1_RenderEntitySlots00_09
     JSR World1_RenderEntitySlots30_37
     JSR World1_RenderEntitySlots38_47
-    JSR Bank0_Func_96BC
+    JSR World1_RenderHud
     RTS
 
-Bank0_Func_96A0:
+World1_RenderPlayerSprite:
     LDA World1PlayerDamageState
     LDA World1PlayerX
     STA World1MetaspriteOriginX
@@ -143,7 +143,7 @@ Bank0_Func_96A0:
     JSR World1_ComposeMetasprite
     RTS
 
-Bank0_Func_96BC:
+World1_RenderHud:
     LDY #$00
     LDA #$5C
     STA World1OamX
@@ -288,7 +288,7 @@ Bank0_Label_97A4:
     LDY $0A
     LDA a:World1EntityType,Y
     BEQ Bank0_Label_97B2
-    JSR Bank0_Func_97D2
+    JSR World1_RenderEntitySlot00_09
     LDA World1OamWriteIndex
     BMI Bank0_Label_97D1
 
@@ -307,7 +307,7 @@ Bank0_Label_97BF:
     LDY $0A
     LDA a:World1EntityType,Y
     BEQ Bank0_Label_97CD
-    JSR Bank0_Func_97D2
+    JSR World1_RenderEntitySlot00_09
     LDA World1OamWriteIndex
     BMI Bank0_Label_97D1
 
@@ -318,7 +318,7 @@ Bank0_Label_97CD:
 Bank0_Label_97D1:
     RTS
 
-Bank0_Func_97D2:
+World1_RenderEntitySlot00_09:
     LDA a:World1EntityType,Y
     CMP #$D0
     BCC Bank0_Label_97E0
@@ -366,7 +366,7 @@ Bank0_Label_981C:
     LDY $0A
     LDA a:World1EntityType+$0A,Y
     BEQ Bank0_Label_982A
-    JSR Bank0_Func_984A
+    JSR World1_RenderEntitySlot10_29
     LDA World1OamWriteIndex
     BMI Bank0_Label_9849
 
@@ -385,7 +385,7 @@ Bank0_Label_9837:
     LDY $0A
     LDA a:World1EntityType+$0A,Y
     BEQ Bank0_Label_9845
-    JSR Bank0_Func_984A
+    JSR World1_RenderEntitySlot10_29
     LDA World1OamWriteIndex
     BMI Bank0_Label_9849
 
@@ -396,7 +396,7 @@ Bank0_Label_9845:
 Bank0_Label_9849:
     RTS
 
-Bank0_Func_984A:
+World1_RenderEntitySlot10_29:
     LDA a:World1EntityPositionHigh+$0A,Y
     STA World1MetaspriteOriginXHigh
     LSR A
@@ -426,7 +426,7 @@ Bank0_Label_987A:
     LDY $0A
     LDA a:World1EntityType+$1E,Y
     BEQ Bank0_Label_9888
-    JSR Bank0_Func_98A8
+    JSR World1_RenderEntitySlot30_37
     LDA World1OamWriteIndex
     BMI Bank0_Label_98A7
 
@@ -445,7 +445,7 @@ Bank0_Label_9895:
     LDY $0A
     LDA a:World1EntityType+$1E,Y
     BEQ Bank0_Label_98A3
-    JSR Bank0_Func_98A8
+    JSR World1_RenderEntitySlot30_37
     LDA World1OamWriteIndex
     BMI Bank0_Label_98A7
 
@@ -456,7 +456,7 @@ Bank0_Label_98A3:
 Bank0_Label_98A7:
     RTS
 
-Bank0_Func_98A8:
+World1_RenderEntitySlot30_37:
     LDA a:World1EntityPositionHigh+$1E,Y
     STA World1MetaspriteOriginXHigh
     LSR A
@@ -487,7 +487,7 @@ Bank0_Label_98D8:
     LDA a:World1EntityType+$26,Y
     BMI Bank0_Label_98E8
     BEQ Bank0_Label_98E8
-    JSR Bank0_Func_990A
+    JSR World1_RenderEntitySlot38_47
     LDA World1OamWriteIndex
     BMI Bank0_Label_9909
 
@@ -507,7 +507,7 @@ Bank0_Label_98F5:
     LDA a:World1EntityType+$26,Y
     BMI Bank0_Label_9905
     BEQ Bank0_Label_9905
-    JSR Bank0_Func_990A
+    JSR World1_RenderEntitySlot38_47
     LDA World1OamWriteIndex
     BMI Bank0_Label_9909
 

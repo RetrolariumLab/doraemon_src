@@ -1,9 +1,14 @@
 from __future__ import annotations
 
 import copy
+import csv
+import io
+import json
 from pathlib import Path
 import sys
+import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -81,6 +86,45 @@ class ShellRuntimeTests(unittest.TestCase):
         del changed["memory_symbols"][0]["banks"]
         errors, _report = shell_runtime.validate(prg, manifest, changed, facts)
         self.assertTrue(any("RAM symbol" in error for error in errors))
+
+    def test_compatibility_cli_loads_manifest_before_reporting(self) -> None:
+        prg, manifest, symbols, facts = self.fixture()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            paths = {
+                "prg": root / "prg.bin",
+                "manifest": root / "manifest.json",
+                "symbols": root / "symbols.json",
+                "facts": root / "facts.tsv",
+            }
+            paths["prg"].write_bytes(prg)
+            paths["manifest"].write_text(json.dumps(manifest), encoding="utf-8")
+            paths["symbols"].write_text(json.dumps(symbols), encoding="utf-8")
+            with paths["facts"].open("w", encoding="utf-8", newline="") as stream:
+                writer = csv.DictWriter(
+                    stream,
+                    fieldnames=["address", "mnemonic", "flows"],
+                    delimiter="\t",
+                )
+                writer.writeheader()
+                writer.writerows(facts)
+            argv = [
+                "shell_runtime.py",
+                "--prg",
+                str(paths["prg"]),
+                "--manifest",
+                str(paths["manifest"]),
+                "--symbols",
+                str(paths["symbols"]),
+                "--facts",
+                str(paths["facts"]),
+            ]
+            output = io.StringIO()
+            with mock.patch.object(sys, "argv", argv), mock.patch(
+                "sys.stdout", output
+            ):
+                self.assertEqual(shell_runtime.main(), 0)
+            self.assertIn("Bank 3 routine contract", output.getvalue())
 
 
 if __name__ == "__main__":

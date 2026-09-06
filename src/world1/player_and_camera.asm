@@ -454,7 +454,7 @@ Bank0_Label_8848:
     BPL Bank0_Label_87FA
     RTS
 
-Bank0_Func_884C:
+World1_PlayPlayerDeathSequence:
     JSR World1_ClearEntitySlots10_29
     JSR World1_ClearEntitySlots30_37
     LDA #$00

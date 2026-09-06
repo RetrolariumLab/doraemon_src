@@ -42,7 +42,10 @@ not inferred from module names. All 354 indirect entries and all sixteen bank
 gateway targets are semantic. Runtime now proves and names the four gameplay
 loops (city, underground, World 2, and World 3) at exactly one iteration per
 emulated frame. The Bank 3 shell pass removes its final sixteen neutral routine
-entries; 274 probable routine entries remain across the gameplay banks.
+entries. The first World 1 core pass removes another twenty initialization,
+input, pause, and frame-render entries. A second pass names twenty-three motion,
+collision, damage, reward, timed-powerup, and PPU-preparation routines; 231
+probable routine entries remain, including 27 in Bank 0.
 
 ### 6. RAM and object systems - Partial
 
@@ -190,8 +193,10 @@ labels, and required Reset/NMI/mapper/chapter-loop probes.
 
 The first post-review naming slice is also complete: all sixteen Bank 3 shell
 routine entries now have behavioral names backed by a machine-checked
-caller/RAM contract. Remaining routine naming is concentrated in the three
-gameplay banks.
+caller/RAM contract. World 1 now also has a machine-checked twenty-routine
+initialization/input/render slice and a twenty-three-routine frame-mechanics
+slice. Remaining naming is concentrated in deeper entity handlers and chapter
+transition helpers, with the largest populations in Banks 1 and 2.
 
 ## Deferred to Source Reconstruction 2.0
 

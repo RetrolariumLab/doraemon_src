@@ -60,6 +60,8 @@ WORLD1_PPU_STREAMING := config/world1_ppu_streaming.json
 WORLD1_CAMERA := config/world1_camera.json
 WORLD1_CAMERA_ENTITIES := config/world1_camera_entities.json
 WORLD1_PLAYER_CONTROLS := config/world1_player_controls.json
+WORLD1_CORE_ROUTINES := config/world1_core_routines.json
+WORLD1_FRAME_MECHANICS := config/world1_frame_mechanics.json
 WORLD1_WEAPONS := config/world1_weapons.json
 WORLD1_WEAPON_AUTHORING := data/world1/weapons.json
 WORLD1_UNDERGROUND_ROOMS := config/world1_underground_rooms.json
@@ -130,6 +132,8 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	world1-ppu-streaming validate-world1-ppu-streaming \
 	world1-camera validate-world1-camera \
 	world1-camera-entities validate-world1-camera-entities \
+	world1-core-routines validate-world1-core-routines \
+	world1-frame-mechanics validate-world1-frame-mechanics \
 	world1-player-controls validate-world1-player-controls \
 	world1-weapons validate-world1-weapons \
 	world1-underground-rooms validate-world1-underground-rooms \
@@ -318,7 +322,7 @@ shell-text validate-shell-text: $(PRG_ASSET)
 shell-runtime: validate-shell-runtime
 
 validate-shell-runtime: $(PRG_ASSET) ghidra-analyze
-	$(PYTHON) scripts/shell_runtime.py --prg "$(PRG_ASSET)" \
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
 		--manifest "$(SHELL_RUNTIME)" --symbols "$(SYMBOLS)" \
 		--facts "$(GHIDRA_FACTS_DIR)/bank_3.tsv"
 
@@ -369,6 +373,20 @@ world1-camera-entities validate-world1-camera-entities: $(PRG_ASSET)
 	$(PYTHON) scripts/world1_camera_entities.py --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD1_CAMERA_ENTITIES)" \
 		--symbols "$(SYMBOLS)"
+
+world1-core-routines: validate-world1-core-routines
+
+validate-world1-core-routines: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_CORE_ROUTINES)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_0.tsv"
+
+world1-frame-mechanics: validate-world1-frame-mechanics
+
+validate-world1-frame-mechanics: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_FRAME_MECHANICS)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_0.tsv"
 
 world1-player-controls validate-world1-player-controls: $(PRG_ASSET)
 	$(PYTHON) scripts/world1_player_controls.py --prg "$(PRG_ASSET)" \
@@ -589,6 +607,8 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-world1-ppu-streaming \
 	validate-world1-camera \
 	validate-world1-camera-entities \
+	validate-world1-core-routines \
+	validate-world1-frame-mechanics \
 	validate-world1-player-controls \
 	validate-world1-weapons \
 	validate-world1-underground-rooms \

@@ -2,7 +2,7 @@
 ; World 1 city item interactions and door transition sequence
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_CB61:
+World1_CollectProgrammerFaceAndClearProjectiles:
     TXA
     PHA
     TYA
@@ -54,7 +54,7 @@ Bank0_Label_CBA6:
     BNE Bank0_Label_CB93
     PLA
     TAX
-    JMP Bank0_Func_C982
+    JMP World1_RemoveCityObject
 
 World1_CollectGoldBar:
     LDA a:World1EntitySourceObjectId+$26,X
@@ -63,7 +63,7 @@ World1_CollectGoldBar:
     JSR World1_MarkObjectCollected
 
 Bank0_Label_CBB9:
-    JSR Bank0_Func_C982
+    JSR World1_RemoveCityObject
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$31
@@ -76,7 +76,7 @@ World1_CollectDiamond:
     JSR World1_MarkObjectCollected
 
 Bank0_Label_CBD0:
-    JSR Bank0_Func_C982
+    JSR World1_RemoveCityObject
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$32
@@ -89,7 +89,7 @@ World1_CollectInvulnerability:
     JSR World1_MarkObjectCollected
 
 Bank0_Label_CBE7:
-    JSR Bank0_Func_C982
+    JSR World1_RemoveCityObject
     LDA #$FF
     STA World1InvulnerabilityTimer
     LDA #$0E
@@ -271,8 +271,8 @@ Bank0_Label_CD42:
     JSR World1_RefreshObjectSpawnMask
     JSR Bank0_DisableRenderingForUpdate
     JSR World1_PrefillMapViewport
-    JSR Bank0_Func_843B
-    JSR Bank0_Func_95ED
+    JSR World1_StartAreaMusic
+    JSR World1_EnableGameplayRendering
     LDX #$0A
 
 Bank0_Label_CD7D:

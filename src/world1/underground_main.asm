@@ -13,7 +13,7 @@ Bank0_Label_CDB7:
     INX
     CPX #$10
     BNE Bank0_Label_CDB7
-    JSR Bank0_Func_83A3
+    JSR World1_ResetAudioHardware
     LDA $81
     SEC
     SBC #$08
@@ -21,12 +21,12 @@ Bank0_Label_CDB7:
     CLC
     ADC #$03
     STA $29
-    JSR Bank0_Func_843B
+    JSR World1_StartAreaMusic
     JMP Bank0_Label_CDE3
 
 Bank0_Label_CDDD:
-    JSR Bank0_Func_83E8
-    JSR Bank0_Func_843B
+    JSR World1_InitializeAreaPresentation
+    JSR World1_StartAreaMusic
 
 Bank0_Label_CDE3:
     LDA World1UndergroundRoomId
@@ -65,7 +65,7 @@ Bank0_Label_CDE3:
     STA World1UndergroundVerticalPage
     LDA #$00
     STA $9B
-    JSR Bank0_Func_9614
+    JSR World1_DisableGameplayRendering
     LDA #$EF
     STA World1MapDataPointer
     LDA #$C2
@@ -75,27 +75,27 @@ Bank0_Label_CDE3:
     LDA #$D9
     STA World1ObjectPlacementList+$01
     JSR World1_RefreshObjectSpawnMask
-    JSR Bank0_Func_83BD
+    JSR World1_LoadAreaPalette
     JSR World1_PrefillMapViewport
-    JSR Bank0_Func_9535
-    JSR Bank0_Func_95ED
+    JSR World1_UploadOrQueuePalette
+    JSR World1_EnableGameplayRendering
     LDX #$7F
     TXS
 
 Bank0_World1UndergroundFrameLoop:
     JSR World1_WaitForNextFrame
-    JSR Bank0_Func_8490
-    JSR Bank0_Func_95CB
-    JSR Bank0_Func_9B54
+    JSR World1_UpdateInputOrDemoStream
+    JSR World1_HandlePause
+    JSR World1_UpdatePlayerProjectiles
     JSR World1_UpdateUndergroundPlayer
-    JSR Bank0_Func_CA6D
-    JSR Bank0_Func_9201
+    JSR World1_UpdateTimedPowerups
+    JSR World1_ScanPlayerProjectileHits
     JSR World1_TrackUndergroundHorizontalCamera
     JSR World1_SpawnObjectsAtCameraEdges
     JSR World1_SpawnObjectsAtCameraEdges
     JSR World1_UpdateEntities
-    JSR Bank0_Func_8EF6
-    JSR Bank0_Func_931B
+    JSR World1_UpdateTransientEntities
+    JSR World1_ScanPlayerContacts
     JSR World1_CommitScoreAndCheckExtraLife
     LDA World1PlayerDamageState
     BMI Bank0_Label_CE90
@@ -107,7 +107,7 @@ Bank0_World1UndergroundFrameLoop:
     JMP Bank0_World1UndergroundFrameLoop
 
 Bank0_Label_CE90:
-    JSR Bank0_Func_884C
+    JSR World1_PlayPlayerDeathSequence
     DEC PlayerLives
     BMI Bank0_Label_CE9E
     LDA World1UndergroundRoomId
@@ -118,7 +118,7 @@ Bank0_Label_CE9E:
     JSR Bank0_CallShellGameOver
     LDA #$02
     STA PlayerLives
-    JSR Bank0_Func_C92F
+    JSR World1_ClearWorkingScoreUnlessDemo
     JMP Bank0_Label_CDDD
 
 Bank0_Label_CEAB:
@@ -149,9 +149,9 @@ Bank0_Label_CEC2:
     SBC #$E0
     STA World1PlayerY
     JSR World1_RefreshObjectSpawnMask
-    JSR Bank0_Func_9614
+    JSR World1_DisableGameplayRendering
     JSR World1_PrefillMapViewport
-    JSR Bank0_Func_95ED
+    JSR World1_EnableGameplayRendering
     JMP Bank0_World1UndergroundFrameLoop
 
 Bank0_Label_CEE5:
@@ -167,9 +167,9 @@ Bank0_Label_CEE5:
     ADC #$B0
     STA World1PlayerY
     JSR World1_RefreshObjectSpawnMask
-    JSR Bank0_Func_9614
+    JSR World1_DisableGameplayRendering
     JSR World1_PrefillMapViewport
-    JSR Bank0_Func_95ED
+    JSR World1_EnableGameplayRendering
     JMP Bank0_World1UndergroundFrameLoop
 
 World1_TrackUndergroundHorizontalCamera:

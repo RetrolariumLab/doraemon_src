@@ -2,7 +2,7 @@
 ; World 1 city object state initialization and interaction handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_C92F:
+World1_ClearWorkingScoreUnlessDemo:
     LDA DemoModeActive
     BNE Bank0_Label_C93D
     LDX #$07
@@ -76,7 +76,7 @@ Bank0_Label_C978:
     BPL Bank0_Label_C978
     RTS
 
-Bank0_Func_C982:
+World1_RemoveCityObject:
     LDA #$00
     STA a:World1EntityType+$26,X
     RTS
@@ -154,7 +154,7 @@ World1_JumpToCityItemHandler:
 Bank0_Label_C9E0:
     RTS
 
-Bank0_Func_C9E1:
+World1_ResolvePlayerProjectileCityObjectHit:
     AND #$7F
     TAX
     LDA a:World1EntityPositionHigh+$26,Y
@@ -221,7 +221,7 @@ Bank0_Label_CA37:
     STA a:World1EntityType+$26,Y
     CMP #$0A
     BNE Bank0_Label_CA59
-    JSR Bank0_Func_CB61
+    JSR World1_CollectProgrammerFaceAndClearProjectiles
     JMP Bank0_Label_CA5E
 
 Bank0_Label_CA59:
@@ -240,7 +240,7 @@ Bank0_Label_CA63:
     PLA
     JMP Bank0_Label_9250
 
-Bank0_Func_CA6D:
+World1_UpdateTimedPowerups:
     LDA World1EnemyFreezeActive
     BEQ Bank0_Label_CA8A
     DEC World1EnemyFreezeTimer
@@ -278,14 +278,14 @@ Bank0_Label_CAA6:
 
 World1_CollectGenkiCandy:
     DEC PlayerHealthCapacityIndex
-    JSR Bank0_Func_8362
+    JSR World1_ResetPlayerHealthAndPose
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CAB6
     STA $00
     JSR World1_MarkObjectCollected
 
 Bank0_Label_CAB6:
-    JSR Bank0_Func_C982
+    JSR World1_RemoveCityObject
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$35
@@ -299,21 +299,21 @@ World1_CollectOneUp:
     JSR World1_MarkObjectCollected
 
 Bank0_Label_CACF:
-    JSR Bank0_Func_C982
+    JSR World1_RemoveCityObject
     LDA #$01
     STA ExtraLifeSoundCounter
     LDA #$31
     JMP World1_AddEncodedScore
 
 World1_CollectDorayaki:
-    JSR Bank0_Func_8362
+    JSR World1_ResetPlayerHealthAndPose
     LDA a:World1EntitySourceObjectId+$26,X
     BMI Bank0_Label_CAE8
     STA $00
     JSR World1_MarkObjectCollected
 
 Bank0_Label_CAE8:
-    JSR Bank0_Func_C982
+    JSR World1_RemoveCityObject
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$32
@@ -327,7 +327,7 @@ World1_CollectWeaponUpgrade:
     JSR World1_MarkObjectCollected
 
 Bank0_Label_CB01:
-    JSR Bank0_Func_C982
+    JSR World1_RemoveCityObject
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$31
@@ -344,7 +344,7 @@ World1_CollectStopwatch:
     JSR World1_MarkObjectCollected
 
 Bank0_Label_CB20:
-    JSR Bank0_Func_C982
+    JSR World1_RemoveCityObject
     LDA #$01
     STA a:AudioMusicControl
     LDA #$07
@@ -360,7 +360,7 @@ World1_CollectRapidFireDrink:
     JSR World1_MarkObjectCollected
 
 Bank0_Label_CB3E:
-    JSR Bank0_Func_C982
+    JSR World1_RemoveCityObject
     LDA #$0E
     JSR World1_Audio_QueueEffectWithPriority
     LDA #$32
@@ -377,4 +377,4 @@ World1_CollectFlashLight:
 Bank0_Label_CB59:
     LDA #$0B
     JSR World1_Audio_QueueEffectWithPriority
-    JMP Bank0_Func_C982
+    JMP World1_RemoveCityObject

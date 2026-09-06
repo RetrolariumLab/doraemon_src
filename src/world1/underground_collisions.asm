@@ -290,7 +290,7 @@ World1_ReturnFromUndergroundToCity:
     STA World1PlayerRenderFlags
     LDA #$00
     STA World1PlayerAnimationCounter
-    JSR Bank0_Func_9614
+    JSR World1_DisableGameplayRendering
     LDA #$EF
     STA World1MapDataPointer
     LDA #$B2
@@ -320,11 +320,11 @@ Bank0_Label_D33C:
     BNE Bank0_Label_D33C
     JSR World1_ClearEntitySlots38_47
     JSR World1_RefreshObjectSpawnMask
-    JSR Bank0_Func_83BD
-    JSR Bank0_Func_9535
+    JSR World1_LoadAreaPalette
+    JSR World1_UploadOrQueuePalette
     JSR World1_PrefillMapViewport
-    JSR Bank0_Func_843B
-    JSR Bank0_Func_95ED
+    JSR World1_StartAreaMusic
+    JSR World1_EnableGameplayRendering
     LDX #$00
 
 Bank0_Label_D364:

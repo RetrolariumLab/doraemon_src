@@ -10,13 +10,13 @@ evidence manifests. Any change requires an intentional snapshot update.
 
 | Bank | Global labels | Semantic labels | Neutral routines | Neutral locals | Semantic indirect entries |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 1,011 | 256 | 70 | 685 | 84 / 84 |
+| 0 | 1,011 | 299 | 27 | 685 | 84 / 84 |
 | 1 | 879 | 229 | 91 | 559 | 97 / 97 |
 | 2 | 1,090 | 294 | 113 | 683 | 106 / 106 |
 | 3 | 363 | 161 | 0 | 202 | 67 / 67 |
-| Total | 3,343 | 940 | 274 | 2,129 | 354 / 354 |
+| Total | 3,343 | 983 | 231 | 2,129 | 354 / 354 |
 
-The neutral population now separates 274 probable routine entries from 2,129
+The neutral population now separates 231 probable routine entries from 2,129
 local branch labels. The common runtime naming pass removed 88 neutral routine
 names by proving copied reset/NMI/mapper services, cross-bank gateways, and
 bank-local dispatches. A second pass named all 19 previously neutral non-audio
@@ -42,7 +42,18 @@ from that bank. Title/attract input, chapter transitions, ending OAM setup, and
 shell nametable/OAM helpers are tied to exact code spans, complete Ghidra
 direct-caller sets, and eight Bank 3-private RAM fields.
 
-The symbol registry currently contains 819 evidence-backed code symbols and
+The first gameplay-bank pass names twenty World 1 core routines covering
+normal/demo initialization, area palette/music/input setup, pause and rendering
+boundaries, player/HUD composition, and all four entity-pool render adapters.
+Those entries account for 912 executable bytes and 68 direct callers.
+
+The next World 1 pass names twenty-three frame-mechanics routines spanning
+transient and player-projectile motion, both collision directions, damage and
+reward resolution, timed powerups, death presentation, and PPU preparation.
+The corresponding contract covers 1,591 executable bytes and 66 direct
+callers. Only 27 probable neutral routine entries remain in Bank 0.
+
+The symbol registry currently contains 862 evidence-backed code symbols and
 111 operand/table symbols. RAM coverage contains 288 unique aliases: 83 shared
 symbols plus 93 Bank 0, 39 Bank 1, 65 Bank 2, and 8 Bank 3 scoped symbols.
 

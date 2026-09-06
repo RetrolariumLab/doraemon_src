@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Bank 3 shell routines, direct callers, and private RAM state."""
+"""Validate bank-local routines, direct callers, and private RAM state."""
 
 from __future__ import annotations
 
@@ -30,7 +30,7 @@ def load_json(path: Path, description: str) -> dict[str, Any]:
 def bank_slice(prg: bytes, bank: int, address: int, size: int) -> bytes:
     offset = bank * BANK_SIZE + address - CPU_BASE
     if not 0 <= bank < 4 or not 0 <= offset <= len(prg) - size:
-        raise ValueError("shell runtime range is outside PRG")
+        raise ValueError("bank-local routine range is outside PRG")
     return prg[offset:offset + size]
 
 
@@ -42,7 +42,7 @@ def load_facts(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8", newline="") as stream:
         rows = list(csv.DictReader(stream, delimiter="\t"))
     if not rows or "flows" not in rows[0]:
-        raise ValueError("shell runtime Ghidra facts are incomplete")
+        raise ValueError("bank-local Ghidra facts are incomplete")
     return rows
 
 
@@ -88,28 +88,28 @@ def validate(
         size = int(routine["size"])
         name = str(routine["name"])
         if address <= previous_end or end - address + 1 != size:
-            errors.append(f"shell routine range differs: {name}")
+            errors.append(f"bank-local routine range differs: {name}")
             continue
         previous_end = end
         routine_bytes += size
         raw = bank_slice(prg, bank, address, size)
         if crc32(raw) != str(routine["crc32"]).lower():
-            errors.append(f"shell routine bytes differ: {name}")
+            errors.append(f"bank-local routine bytes differ: {name}")
         symbol = prg_symbols.get((bank, address))
         if symbol is None or symbol.get("name") != name:
-            errors.append(f"shell routine symbol differs: {name}")
+            errors.append(f"bank-local routine symbol differs: {name}")
         expected_callers = {
             (number(item["address"]), str(item["mnemonic"]))
             for item in routine["callers"]
         }
         observed_callers = direct_callers(facts, address)
         if observed_callers != expected_callers:
-            errors.append(f"shell routine callers differ: {name}")
+            errors.append(f"bank-local routine callers differ: {name}")
         caller_count += len(expected_callers)
         for caller, mnemonic in expected_callers:
             call = bank_slice(prg, bank, caller, 3)
             if call != bytes((CALL_OPCODES[mnemonic], address & 0xFF, address >> 8)):
-                errors.append(f"shell callsite bytes differ: {name} at ${caller:04X}")
+                errors.append(f"bank-local callsite bytes differ: {name} at ${caller:04X}")
 
     ram_bytes = 0
     for expected in manifest["memory_symbols"]:
@@ -122,7 +122,7 @@ def validate(
             or int(actual.get("size", 1)) != size
             or actual.get("banks") != [bank]
         ):
-            errors.append(f"shell RAM symbol differs: {name}")
+            errors.append(f"bank-local RAM symbol differs: {name}")
 
     report = {
         "routine_count": len(manifest["routines"]),
@@ -142,9 +142,10 @@ def main() -> int:
     parser.add_argument("--facts", required=True, type=Path)
     args = parser.parse_args()
     try:
+        manifest = load_json(args.manifest, "routine-contract")
         errors, report = validate(
             args.prg.read_bytes(),
-            load_json(args.manifest, "shell-runtime"),
+            manifest,
             load_json(args.symbols, "symbol"),
             load_facts(args.facts),
         )
@@ -153,14 +154,15 @@ def main() -> int:
                 print(f"[ERROR] {error}")
             return 1
         print(
-            f"[OK] Bank 3 shell runtime: {report['routine_count']} routines / "
+            f"[OK] Bank {manifest['bank']} routine contract: "
+            f"{report['routine_count']} routines / "
             f"{report['routine_bytes']} bytes, {report['direct_callers']} direct "
             f"callers, {report['memory_symbols']} RAM symbols / "
             f"{report['memory_bytes']} bytes"
         )
         return 0
     except (OSError, KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
-        print(f"[ERROR] shell runtime validation failed: {exc}")
+        print(f"[ERROR] bank-local routine validation failed: {exc}")
         return 1
 
 

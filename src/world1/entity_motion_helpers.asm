@@ -2,7 +2,7 @@
 ; World 1 entity direction, motion, and bounds helpers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_8F9E:
+World1_UpdateFallingTransientEntity:
     LDA a:World1EntityPrimaryBehavior,X
     JSR World1_MoveEntityXByA
     INC a:World1EntityDamageTimerOrAcceleration,X
@@ -21,7 +21,7 @@ Bank0_Label_8FBF:
     LDA a:World1EntityHealthOrVelocity,X
     JMP World1_MoveEntityYByA
 
-Bank0_Func_8FC5:
+World1_UpdateOscillatingTransientEntity:
     LDA a:World1EntityPrimaryBehavior,X
     AND #$07
     ASL A
@@ -41,7 +41,7 @@ Bank0_Func_8FC5:
     .byte $00, $00, $01, $01, $02, $01, $01, $00, $00, $00, $FF, $00, $FE, $FF, $FF, $00
     .byte $02, $01, $01, $01, $00, $00, $FF, $00, $FE, $FF, $FF, $00, $00, $00, $01, $00
 
-Bank0_Func_9004:
+World1_ReadEntityCenterCollisionProperty:
     LDA a:World1EntityPositionHigh,X
     STA $A4
     LDA PpuScrollXShadow

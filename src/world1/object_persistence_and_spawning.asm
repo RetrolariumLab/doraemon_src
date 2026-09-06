@@ -247,7 +247,7 @@ Bank0_Label_8EC6:
 Bank0_Label_8EF5:
     RTS
 
-Bank0_Func_8EF6:
+World1_UpdateTransientEntities:
     LDA World1EnemyFreezeActive
     BNE Bank0_Label_8F46
     LDX #$0A
@@ -259,15 +259,15 @@ Bank0_Label_8EFC:
     BEQ Bank0_Label_8F2A
     CMP #$02
     BEQ Bank0_Label_8F12
-    JSR Bank0_Func_8F47
-    JSR Bank0_Func_8F47
+    JSR World1_UpdateAcceleratingTransientEntity
+    JSR World1_UpdateAcceleratingTransientEntity
     JMP Bank0_Label_8F2D
 
 Bank0_Label_8F12:
-    JSR Bank0_Func_8F9E
+    JSR World1_UpdateFallingTransientEntity
     LDA a:World1EntityHealthOrVelocity,X
     BPL Bank0_Label_8F2D
-    JSR Bank0_Func_9004
+    JSR World1_ReadEntityCenterCollisionProperty
     BEQ Bank0_Label_8F37
     EOR #$FF
     SEC
@@ -276,10 +276,10 @@ Bank0_Label_8F12:
     JMP Bank0_Label_8F37
 
 Bank0_Label_8F2A:
-    JSR Bank0_Func_8FC5
+    JSR World1_UpdateOscillatingTransientEntity
 
 Bank0_Label_8F2D:
-    JSR Bank0_Func_9004
+    JSR World1_ReadEntityCenterCollisionProperty
     BEQ Bank0_Label_8F37
     LDA #$00
     STA a:World1EntityType,X
@@ -298,7 +298,7 @@ Bank0_Label_8F41:
 Bank0_Label_8F46:
     RTS
 
-Bank0_Func_8F47:
+World1_UpdateAcceleratingTransientEntity:
     LDA #$FF
     STA $95
     STA $96

@@ -24,37 +24,37 @@ Bank0_World1Main:
     TXS
     LDA #$00
     STA a:$0180
-    JSR Bank0_Func_83A3
-    JSR Bank0_Func_837C
-    JSR Bank0_Func_830C
+    JSR World1_ResetAudioHardware
+    JSR World1_ClearGameplayRamAndOam
+    JSR World1_BeginNormalGame
 
 Bank0_Label_829F:
-    JSR Bank0_Func_83E8
-    JSR Bank0_Func_8362
+    JSR World1_InitializeAreaPresentation
+    JSR World1_ResetPlayerHealthAndPose
     LDA #$01
     STA $51
     JSR World1_ClearEntitySlots00_09
     JSR World1_ClearEntitySlots10_29
     JSR World1_ClearEntitySlots38_47
     JSR World1_RefreshObjectSpawnMask
-    JSR Bank0_Func_9535
+    JSR World1_UploadOrQueuePalette
     JSR World1_PrefillMapViewport
-    JSR Bank0_Func_843B
-    JSR Bank0_Func_95ED
+    JSR World1_StartAreaMusic
+    JSR World1_EnableGameplayRendering
 
 Bank0_World1CityFrameLoop:
     JSR World1_WaitForNextFrame
-    JSR Bank0_Func_8490
-    JSR Bank0_Func_95CB
-    JSR Bank0_Func_9B54
+    JSR World1_UpdateInputOrDemoStream
+    JSR World1_HandlePause
+    JSR World1_UpdatePlayerProjectiles
     JSR World1_UpdateCityPlayer
-    JSR Bank0_Func_CA6D
-    JSR Bank0_Func_9201
+    JSR World1_UpdateTimedPowerups
+    JSR World1_ScanPlayerProjectileHits
     JSR World1_UpdateCameraFromPlayer
     JSR World1_SpawnObjectsAtCameraEdges
     JSR World1_UpdateEntities
-    JSR Bank0_Func_8EF6
-    JSR Bank0_Func_931B
+    JSR World1_UpdateTransientEntities
+    JSR World1_ScanPlayerContacts
     JSR World1_TryEnterAnywhereDoor
     JSR World1_TryEnterManhole
     JSR World1_CommitScoreAndCheckExtraLife
@@ -63,7 +63,7 @@ Bank0_World1CityFrameLoop:
     JMP Bank0_World1CityFrameLoop
 
 Bank0_Label_82F5:
-    JSR Bank0_Func_884C
+    JSR World1_PlayPlayerDeathSequence
     DEC PlayerLives
     BMI Bank0_Label_82FF
     JMP Bank0_Label_829F
@@ -72,15 +72,15 @@ Bank0_Label_82FF:
     JSR Bank0_CallShellGameOver
     LDA #$02
     STA PlayerLives
-    JSR Bank0_Func_C92F
+    JSR World1_ClearWorkingScoreUnlessDemo
     JMP Bank0_Label_829F
 
-Bank0_Func_830C:
-    JSR Bank0_Func_C92F
+World1_BeginNormalGame:
+    JSR World1_ClearWorkingScoreUnlessDemo
     LDA #$00
     STA DemoModeActive
 
-Bank0_Func_8313:
+World1_InitializeDemoState:
     JSR World1_InitializeObjectSpawnMask
     LDA #$02
     STA PlayerLives
@@ -108,11 +108,11 @@ Bank0_Func_8313:
     STA Controller2MicrophoneEdgeTimer
     LDA #$06
     STA PlayerHealthCapacityIndex
-    JSR Bank0_Func_8362
+    JSR World1_ResetPlayerHealthAndPose
     RTS
 
-Bank0_Func_834E:
-    JSR Bank0_Func_83BD
+World1_InitializeCityMapSources:
+    JSR World1_LoadAreaPalette
     LDA #$EF
     STA World1MapDataPointer
     LDA #$B2
@@ -123,7 +123,7 @@ Bank0_Func_834E:
     STA World1ObjectPlacementList+$01
     RTS
 
-Bank0_Func_8362:
+World1_ResetPlayerHealthAndPose:
     LDA #$08
     SEC
     SBC PlayerHealthCapacityIndex
@@ -140,7 +140,7 @@ Bank0_Func_8362:
     STA World1PlayerRenderFlags
     RTS
 
-Bank0_Func_837C:
+World1_ClearGameplayRamAndOam:
     LDX #$00
     TXA
 
@@ -166,7 +166,7 @@ Bank0_Label_839F:
     BNE Bank0_Label_837F
     RTS
 
-Bank0_Func_83A3:
+World1_ResetAudioHardware:
     LDA #$00
     STA a:AudioEffectRequestState
     STA a:AudioMusicState
@@ -178,7 +178,7 @@ Bank0_Func_83A3:
     STA a:$4017
     RTS
 
-Bank0_Func_83BD:
+World1_LoadAreaPalette:
     LDA #$00
     STA $00
     LDA $29
@@ -206,9 +206,9 @@ Bank0_Label_83DD:
     BCC Bank0_Label_83DD
     RTS
 
-Bank0_Func_83E8:
-    JSR Bank0_Func_9614
-    JSR Bank0_Func_83A3
+World1_InitializeAreaPresentation:
+    JSR World1_DisableGameplayRendering
+    JSR World1_ResetAudioHardware
     LDA PpuCtrlShadow
     AND #$FE
     ORA #$10
@@ -226,7 +226,7 @@ Bank0_Func_83E8:
     LDA DemoModeActive
     BNE Bank0_Label_841D
     JSR Bank0_CallShellStatusScreen
-    JSR Bank0_Func_95ED
+    JSR World1_EnableGameplayRendering
     LDX #$5A
 
 Bank0_Label_8417:
@@ -235,20 +235,20 @@ Bank0_Label_8417:
     BNE Bank0_Label_8417
 
 Bank0_Label_841D:
-    JSR Bank0_Func_9614
-    JSR Bank0_Func_834E
-    JSR Bank0_Func_94F8
-    JSR Bank0_Func_951B
+    JSR World1_DisableGameplayRendering
+    JSR World1_InitializeCityMapSources
+    JSR World1_ClearNametables
+    JSR World1_ClearAttributeCache
     LDA PpuCtrlShadow
     ORA #$10
     STA PpuCtrlShadow
     LDA #$00
     JSR Bank0_SelectChrBank
     JSR World1_RefreshObjectSpawnMask
-    JSR Bank0_Func_8362
+    JSR World1_ResetPlayerHealthAndPose
     RTS
 
-Bank0_Func_843B:
+World1_StartAreaMusic:
     LDA $29
     TAX
     LDA a:$8445,X
@@ -261,9 +261,9 @@ World1_DemoEntry:
     TXS
     LDA #$00
     STA a:$0180
-    JSR Bank0_Func_83A3
-    JSR Bank0_Func_837C
-    JSR Bank0_Func_8313
+    JSR World1_ResetAudioHardware
+    JSR World1_ClearGameplayRamAndOam
+    JSR World1_InitializeDemoState
     LDA #$01
     STA DemoModeActive
     LDA #$00
@@ -287,7 +287,7 @@ World1_DemoEntry:
     STA World1WeaponLevel
     JMP Bank0_Label_829F
 
-Bank0_Func_8490:
+World1_UpdateInputOrDemoStream:
     LDA DemoModeActive
     BNE Bank0_Label_84A3
 
@@ -416,7 +416,7 @@ Bank0_Label_8531:
     STA World1OamWriteIndex
     LDA $51
     BEQ Bank0_Label_856B
-    JSR Bank0_Func_9674
+    JSR World1_RenderFrameSprites
 
 Bank0_Label_856B:
     RTS

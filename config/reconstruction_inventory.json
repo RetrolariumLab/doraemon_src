@@ -5,15 +5,15 @@
       "module_count": 119,
       "total": {
         "global_labels": 3343,
-        "semantic_labels": 940,
-        "neutral_routine_labels": 274,
+        "semantic_labels": 983,
+        "neutral_routine_labels": 231,
         "neutral_local_labels": 2129
       },
       "by_bank": {
         "0": {
           "global_labels": 1011,
-          "semantic_labels": 256,
-          "neutral_routine_labels": 70,
+          "semantic_labels": 299,
+          "neutral_routine_labels": 27,
           "neutral_local_labels": 685
         },
         "1": {
@@ -38,12 +38,12 @@
     },
     "evidence_backed_prg_symbols": {
       "total": {
-        "semantic_code_symbols": 819,
+        "semantic_code_symbols": 862,
         "operand_symbols": 111
       },
       "by_bank": {
         "0": {
-          "semantic_code_symbols": 221,
+          "semantic_code_symbols": 264,
           "operand_symbols": 33
         },
         "1": {

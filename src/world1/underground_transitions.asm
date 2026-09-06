@@ -16,7 +16,7 @@ Bank0_Label_D3AB:
     JMP Bank0_Label_D3CB
 
 Bank0_Label_D3BF:
-    JSR Bank0_Func_83E8
+    JSR World1_InitializeAreaPresentation
     LDA #$01
     STA $51
     LDA #$06
@@ -49,7 +49,7 @@ Bank0_Label_D3CB:
     STA World1EnemyFreezeActive
     STA World1EnemyFreezeTimer
     STA World1InvulnerabilityTimer
-    JSR Bank0_Func_9614
+    JSR World1_DisableGameplayRendering
     LDA #$EF
     STA World1MapDataPointer
     LDA #$C2
@@ -60,27 +60,27 @@ Bank0_Label_D3CB:
     STA World1ObjectPlacementList+$01
     LDA #$02
     STA $29
-    JSR Bank0_Func_83BD
+    JSR World1_LoadAreaPalette
     JSR World1_PrefillMapViewport
-    JSR Bank0_Func_9535
-    JSR Bank0_Func_843B
-    JSR Bank0_Func_95ED
+    JSR World1_UploadOrQueuePalette
+    JSR World1_StartAreaMusic
+    JSR World1_EnableGameplayRendering
     LDX #$7F
     TXS
 
 Bank0_Label_D429:
     JSR World1_WaitForNextFrame
-    JSR Bank0_Func_8490
-    JSR Bank0_Func_95CB
-    JSR Bank0_Func_9B54
+    JSR World1_UpdateInputOrDemoStream
+    JSR World1_HandlePause
+    JSR World1_UpdatePlayerProjectiles
     JSR World1_UpdateUndergroundPlayer
-    JSR Bank0_Func_CA6D
-    JSR Bank0_Func_9201
+    JSR World1_UpdateTimedPowerups
+    JSR World1_ScanPlayerProjectileHits
     JSR World1_TrackUndergroundVerticalCamera
     JSR World1_SpawnObjectsAtCameraEdges
     JSR World1_UpdateEntities
-    JSR Bank0_Func_8EF6
-    JSR Bank0_Func_931B
+    JSR World1_UpdateTransientEntities
+    JSR World1_ScanPlayerContacts
     JSR World1_CullOffscreenEntities
     JSR World1_CommitScoreAndCheckExtraLife
     LDA PpuScrollYShadow
@@ -95,7 +95,7 @@ Bank0_Label_D462:
     JMP Bank0_Func_D4EE
 
 Bank0_Func_D465:
-    JSR Bank0_Func_884C
+    JSR World1_PlayPlayerDeathSequence
     DEC PlayerLives
     BMI Bank0_Label_D46F
     JMP Bank0_Label_D3BF
@@ -104,7 +104,7 @@ Bank0_Label_D46F:
     JSR Bank0_CallShellGameOver
     LDA #$02
     STA PlayerLives
-    JSR Bank0_Func_C92F
+    JSR World1_ClearWorkingScoreUnlessDemo
     JMP Bank0_Label_D3BF
 
 World1_TrackUndergroundVerticalCamera:
@@ -234,15 +234,15 @@ Bank0_Label_D54D:
     STA a:World1EntityType
 
 Bank0_Label_D560:
-    JSR Bank0_Func_8490
-    JSR Bank0_Func_95CB
-    JSR Bank0_Func_9B54
+    JSR World1_UpdateInputOrDemoStream
+    JSR World1_HandlePause
+    JSR World1_UpdatePlayerProjectiles
     JSR World1_UpdateUndergroundPlayer
-    JSR Bank0_Func_CA6D
-    JSR Bank0_Func_9201
+    JSR World1_UpdateTimedPowerups
+    JSR World1_ScanPlayerProjectileHits
     JSR World1_UpdateEntities
-    JSR Bank0_Func_8EF6
-    JSR Bank0_Func_931B
+    JSR World1_UpdateTransientEntities
+    JSR World1_ScanPlayerContacts
     JSR World1_CullOffscreenEntities
     JSR World1_CommitScoreAndCheckExtraLife
     LDA World1PlayerDamageState
@@ -277,15 +277,15 @@ Bank0_Label_D598:
 
 Bank0_Label_D5B2:
     JSR World1_WaitForNextFrame
-    JSR Bank0_Func_8490
-    JSR Bank0_Func_95CB
-    JSR Bank0_Func_9B54
+    JSR World1_UpdateInputOrDemoStream
+    JSR World1_HandlePause
+    JSR World1_UpdatePlayerProjectiles
     JSR World1_UpdateUndergroundPlayer
-    JSR Bank0_Func_CA6D
+    JSR World1_UpdateTimedPowerups
     JSR World1_UpdateEntities
-    JSR Bank0_Func_9201
-    JSR Bank0_Func_8EF6
-    JSR Bank0_Func_931B
+    JSR World1_ScanPlayerProjectileHits
+    JSR World1_UpdateTransientEntities
+    JSR World1_ScanPlayerContacts
     JSR World1_CullOffscreenEntities
     JSR World1_CommitScoreAndCheckExtraLife
     JSR Bank0_Func_D67A
@@ -311,7 +311,7 @@ Bank0_Label_D5E5:
 
 Bank0_Label_D601:
     JSR World1_WaitForNextFrame
-    JSR Bank0_Func_8490
+    JSR World1_UpdateInputOrDemoStream
     JSR World1_UpdateUndergroundPlayer
     LDA FrameCounter
     AND #$03
@@ -322,7 +322,7 @@ Bank0_Label_D601:
     JSR Bank0_Func_D770
 
 Bank0_Label_D619:
-    JSR Bank0_Func_9B54
+    JSR World1_UpdatePlayerProjectiles
     DEC $9C
     BNE Bank0_Label_D601
     JSR World1_ClearEntitySlots30_37
@@ -354,8 +354,8 @@ Bank0_Label_D619:
 
 Bank0_Label_D65D:
     JSR World1_WaitForNextFrame
-    JSR Bank0_Func_8490
-    JSR Bank0_Func_9B54
+    JSR World1_UpdateInputOrDemoStream
+    JSR World1_UpdatePlayerProjectiles
     LDA FrameCounter
     LSR A
     LSR A
