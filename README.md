@@ -140,6 +140,9 @@ make validate-world3-room-runtime # validate World 3 room/input/player runtime n
 make validate-world3-player-runtime # validate World 3 player movement/state naming
 make validate-world3-interaction-runtime # validate World 3 combat/item/contact naming
 make validate-world3-entity-runtime # validate World 3 lifecycle/spawn/portal naming
+make validate-world3-room-rendering # validate World 3 hierarchical room rendering
+make validate-world3-formation-runtime # validate World 3 boss/encounter formations
+make validate-world3-transition-runtime # validate World 3 completion/debug transitions
 make validate-debug-symbols # verify ld65 symbols and generated FCEUX name lists
 make source-audit       # validate reconstruction milestones and evidence
 make runtime-architecture # capture and validate reset/NMI/mapper evidence
@@ -193,6 +196,9 @@ config/world3_room_runtime.json World 3 room/input/player routine contract
 config/world3_player_runtime.json World 3 player movement/state routine contract
 config/world3_interaction_runtime.json World 3 combat/item/contact routine contract
 config/world3_entity_runtime.json World 3 lifecycle/spawn/portal routine contract
+config/world3_room_rendering.json World 3 hierarchical room-rendering contract
+config/world3_formation_runtime.json World 3 boss/encounter formation contract
+config/world3_transition_runtime.json World 3 completion/debug transition contract
 docs/                       architecture, formats, evidence, and roadmap
 docs/ram_fields.md          proved shared RAM layout and ownership notes
 docs/world3_dormant_code.md statically recovered but unreferenced code islands

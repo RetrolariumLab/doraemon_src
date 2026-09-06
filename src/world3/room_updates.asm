@@ -2,18 +2,18 @@
 ; World 3 room updates and early entity collision adjustment
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_A8B0:
+World3_FadePaletteIn:
     LDX #$00
     STX $02
 
 Bank2_Label_A8B4:
     LDA a:World3PaletteShadow,X
-    CMP a:$0705,X
+    CMP a:World3PaletteTarget,X
     BEQ Bank2_Label_A8D3
     INC $02
     CMP #$0F
     BNE Bank2_Label_A8CA
-    LDA a:$0705,X
+    LDA a:World3PaletteTarget,X
     AND #$0F
     JMP Bank2_Label_A8D0
 
@@ -36,33 +36,33 @@ Bank2_Label_A8D3:
     STA World3FrameWaitCounter
     JSR World3_WaitFrames
     LDA $02
-    BNE Bank2_Func_A8B0
+    BNE World3_FadePaletteIn
     RTS
 
-Bank2_Func_A8EB:
-    JSR Bank2_Func_A904
+World3_StreamCurrentRoomBackground:
+    JSR World3_CalculateCurrentRoomMapPointer
     LDA #$00
-    STA $88
-    STA $86
-    STA $87
+    STA World3RoomRenderRow
+    STA World3RoomBigBlockRowOffset
+    STA World3RoomSmallBlockRowOffset
     LDA #$1E
     STA $07
 
 Bank2_Label_A8FA:
-    JSR Bank2_Func_A922
-    INC $88
+    JSR World3_QueueRoomBackgroundRow
+    INC World3RoomRenderRow
     DEC $07
     BNE Bank2_Label_A8FA
     RTS
 
-Bank2_Func_A904:
+World3_CalculateCurrentRoomMapPointer:
     LDA World3CurrentRoom
     AND #$F8
     LSR A
     LSR A
     CLC
     ADC #$E6
-    STA $85
+    STA World3RoomMapPointer+$01
     LDA World3CurrentRoom
     AND #$07
     ASL A
@@ -70,23 +70,23 @@ Bank2_Func_A904:
     ASL A
     CLC
     ADC #$F2
-    STA $84
-    LDA $85
+    STA World3RoomMapPointer
+    LDA World3RoomMapPointer+$01
     ADC #$00
-    STA $85
+    STA World3RoomMapPointer+$01
     RTS
 
-Bank2_Func_A922:
-    JSR Bank2_Func_A946
+World3_QueueRoomBackgroundRow:
+    JSR World3_ExpandNextRoomTileRow
     LDX #$00
-    LDY $88
+    LDY World3RoomRenderRow
     JSR World3_CalculateNametableAddress
     LDX #$A0
     LDY #$04
     LDA #$20
     JSR World3_QueuePpuBlock
     LDX #$00
-    LDY $88
+    LDY World3RoomRenderRow
     JSR World3_CalculateAttributeAddress
     LDX #$C0
     LDY #$04
@@ -94,28 +94,28 @@ Bank2_Func_A922:
     JSR World3_QueuePpuBlock
     RTS
 
-Bank2_Func_A946:
-    JSR Bank2_Func_A967
-    LDA $87
+World3_ExpandNextRoomTileRow:
+    JSR World3_ExpandRoomTileRow
+    LDA World3RoomSmallBlockRowOffset
     EOR #$02
-    STA $87
+    STA World3RoomSmallBlockRowOffset
     BNE Bank2_Label_A966
-    LDA $86
+    LDA World3RoomBigBlockRowOffset
     EOR #$02
-    STA $86
+    STA World3RoomBigBlockRowOffset
     BNE Bank2_Label_A966
-    LDA $84
+    LDA World3RoomMapPointer
     CLC
     ADC #$40
-    STA $84
-    LDA $85
+    STA World3RoomMapPointer
+    LDA World3RoomMapPointer+$01
     ADC #$00
-    STA $85
+    STA World3RoomMapPointer+$01
 
 Bank2_Label_A966:
     RTS
 
-Bank2_Func_A967:
+World3_ExpandRoomTileRow:
     LDX #$00
     STX $01
 
@@ -123,7 +123,7 @@ Bank2_Label_A96B:
     LDA #$00
     STA $03
     LDY $01
-    LDA ($84),Y
+    LDA (World3RoomMapPointer),Y
     ASL A
     ROL $03
     ASL A
@@ -134,19 +134,19 @@ Bank2_Label_A96B:
     LDA $03
     ADC #$E2
     STA $03
-    LDA $86
+    LDA World3RoomBigBlockRowOffset
     STA $00
-    JSR Bank2_Func_A99C
+    JSR World3_AppendSmallBlockTilePair
     INC $00
-    JSR Bank2_Func_A99C
-    JSR Bank2_Func_A9C5
+    JSR World3_AppendSmallBlockTilePair
+    JSR World3_UpdateRoomAttributeByte
     INC $01
     LDA $01
     CMP #$08
     BNE Bank2_Label_A96B
     RTS
 
-Bank2_Func_A99C:
+World3_AppendSmallBlockTilePair:
     LDA #$00
     STA $05
     LDY $00
@@ -161,7 +161,7 @@ Bank2_Func_A99C:
     LDA $05
     ADC #$DE
     STA $05
-    LDY $87
+    LDY World3RoomSmallBlockRowOffset
     LDA ($04),Y
     STA a:$04A0,X
     INX
@@ -171,7 +171,7 @@ Bank2_Func_A99C:
     INX
     RTS
 
-Bank2_Func_A9C5:
+World3_UpdateRoomAttributeByte:
     STX $3E
     LDY $00
     LDA ($02),Y
@@ -191,13 +191,13 @@ Bank2_Func_A9C5:
     ASL A
     ASL A
     STA $3D
-    LDA $88
+    LDA World3RoomRenderRow
     AND #$FC
     ASL A
     CLC
     ADC $01
     TAY
-    LDA $88
+    LDA World3RoomRenderRow
     AND #$02
     BNE Bank2_Label_A9FD
     LDA a:World3AttributeShadow,Y
@@ -220,27 +220,27 @@ Bank2_Label_AA04:
 World3_AdvancePackedRateCounter:
     PHA
     AND #$0F
-    STA $AA
+    STA World3PackedRateThreshold
     PLA
     CLC
     ADC #$10
-    STA $A9
+    STA World3PackedRateCounterNext
     LSR A
     LSR A
     LSR A
     LSR A
-    CMP $AA
+    CMP World3PackedRateThreshold
     BNE Bank2_Label_AA26
-    LDA $AA
+    LDA World3PackedRateThreshold
     SEC
     RTS
 
 Bank2_Label_AA26:
-    LDA $A9
+    LDA World3PackedRateCounterNext
     CLC
     RTS
 
-Bank2_Func_AA2A:
+World3_UpdateGiantOctopusTentacle:
     LDA World3PlayerX
     STA $00
     LDA World3PlayerY
@@ -253,18 +253,18 @@ Bank2_Func_AA2A:
     SBC $02
     STA $03
     LDA #$68
-    STA $A2
+    STA World3OctopusTerminalAnchorY
     LDA $02
     CMP #$01
     BEQ Bank2_Label_AA4E
     LDA #$80
-    STA $A2
+    STA World3OctopusTerminalAnchorY
 
 Bank2_Label_AA4E:
-    JSR Bank2_Func_AA52
+    JSR World3_ConstrainGiantOctopusTentacleSegments
     RTS
 
-Bank2_Func_AA52:
+World3_ConstrainGiantOctopusTentacleSegments:
     LDY #$F2
     LDA a:World3EntityX,X
     CMP $00
@@ -287,13 +287,13 @@ Bank2_Label_AA6E:
     CLC
     ADC $01
     STA $09
-    JSR Bank2_Func_AAAA
+    JSR World3_LoadNextEntityPosition
     INC $02
     DEC $03
     DEC $03
 
 Bank2_Label_AA7D:
-    JSR Bank2_Func_AA9E
+    JSR World3_LoadPreviousEntityPosition
     INC $02
     DEC $03
     BNE Bank2_Label_AA7D
@@ -304,26 +304,26 @@ Bank2_Label_AA7D:
     STA $09
     LDA #$80
     STA $3E
-    LDA $A2
+    LDA World3OctopusTerminalAnchorY
     STA $3F
-    JSR Bank2_Func_AAB6
+    JSR World3_UpdateTentacleSegmentPosition
     RTS
 
-Bank2_Func_AA9E:
+World3_LoadPreviousEntityPosition:
     LDX $02
     LDA a:World3EntityState+$07,X
     STA $08
     LDA a:World3EntityX+$07,X
     STA $09
 
-Bank2_Func_AAAA:
+World3_LoadNextEntityPosition:
     LDX $02
     LDA a:World3EntityX+$01,X
     STA $3E
     LDA a:World3EntityY+$01,X
     STA $3F
 
-Bank2_Func_AAB6:
+World3_UpdateTentacleSegmentPosition:
     LDX $02
     LDA a:World3EntityX,X
     STA $3C
@@ -333,7 +333,7 @@ Bank2_Func_AAB6:
     JSR World3_AdvancePackedRateCounter
     STA a:World3EntityFrameCounter,X
     BCC Bank2_Label_AAF0
-    JSR Bank2_Func_AAF1
+    JSR World3_StepWorkPositionTowardNearestAnchor
     LDX $02
     LDA $3C
     SEC
@@ -353,7 +353,7 @@ Bank2_Func_AAB6:
 Bank2_Label_AAF0:
     RTS
 
-Bank2_Func_AAF1:
+World3_StepWorkPositionTowardNearestAnchor:
     LDA $3C
     SEC
     SBC $08
@@ -366,12 +366,12 @@ Bank2_Func_AAF1:
     CMP $40
     BCS Bank2_Label_AB0F
     LDX $08
-    JSR Bank2_Func_AB3B
+    JSR World3_StepWorkXTowardTarget
     JMP Bank2_Label_AB14
 
 Bank2_Label_AB0F:
     LDX $3E
-    JSR Bank2_Func_AB3B
+    JSR World3_StepWorkXTowardTarget
 
 Bank2_Label_AB14:
     LDA $3D
@@ -386,12 +386,12 @@ Bank2_Label_AB14:
     CMP $40
     BCS Bank2_Label_AB32
     LDY $09
-    JSR Bank2_Func_AB47
+    JSR World3_StepWorkYTowardTarget
     JMP Bank2_Label_AB37
 
 Bank2_Label_AB32:
     LDY $3F
-    JSR Bank2_Func_AB47
+    JSR World3_StepWorkYTowardTarget
 
 Bank2_Label_AB37:
     SEC

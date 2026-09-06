@@ -130,7 +130,7 @@ Bank2_World3FrameLoop:
 Bank2_Label_839E:
     LDA World3ChapterCompletionDelay
     BNE Bank2_Label_83A5
-    JSR Bank2_Func_AF30
+    JSR World3_RenderRoom3FCompletionMarker
 
 Bank2_Label_83A5:
     JSR World3_UpdateTransientSpawns
@@ -198,7 +198,7 @@ Bank2_Label_8419:
     BEQ Bank2_Label_8424
     DEC World3ChapterCompletionDelay
     BNE Bank2_Label_8424
-    JMP Bank2_Func_AE12
+    JMP World3_RunChapterCompletionSequence
 
 Bank2_Label_8424:
     JMP Bank2_World3FrameLoop
@@ -254,7 +254,7 @@ Bank2_Label_8472:
     LDA Controller2Buttons
     CMP #$C0
     BNE Bank2_Label_8486
-    JSR Bank2_Func_AF6F
+    JSR World3_SetupDebugSpriteTestScreen
 
 Bank2_Label_847B:
     LDA Controller2Buttons
@@ -388,7 +388,7 @@ Bank2_Label_8543:
     CPY #$0D
     BNE Bank2_Label_8543
     LDA #$07
-    JMP Bank2_Func_AF51
+    JMP World3_HaltWithDiagnosticCode
 
 Bank2_Label_8554:
     LDA a:World3RoomObjectRoom,Y

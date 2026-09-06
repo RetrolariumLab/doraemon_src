@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "bank": 2,
+  "routines": [
+    {
+      "address": "0xAE12",
+      "end_address": "0xAE5C",
+      "size": 75,
+      "crc32": "93450440",
+      "name": "World3_RunChapterCompletionSequence",
+      "role": "run-the-eight-step-inward-wipe-and-delay-before-entering-the-ending-bank",
+      "callers": [
+        {
+          "address": "0x8421",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0xAE5D",
+      "end_address": "0xAEF1",
+      "size": 149,
+      "crc32": "10465a1f",
+      "name": "World3_UpdateChapterCompletionWipe",
+      "role": "queue-opposing-blank-rows-and-columns-center-the-player-and-clear-non-type-1f-entities",
+      "callers": [
+        {
+          "address": "0xAE3C",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAF30",
+      "end_address": "0xAF50",
+      "size": 33,
+      "crc32": "92c2818b",
+      "name": "World3_RenderRoom3FCompletionMarker",
+      "role": "blink-fixed-metasprite-ac-at-70-74-only-in-room-3f-before-the-completion-delay",
+      "callers": [
+        {
+          "address": "0x83A2",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAF51",
+      "end_address": "0xAF6E",
+      "size": 30,
+      "crc32": "cf7a88ad",
+      "name": "World3_HaltWithDiagnosticCode",
+      "role": "render-the-code-derived-tile-at-screen-center-request-oam-dma-and-loop-forever",
+      "callers": [
+        {
+          "address": "0x8551",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x8921",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x8A14",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x8C0B",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x8D26",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9081",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x94D0",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x987B",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0xAF6F",
+      "end_address": "0xAFC5",
+      "size": 87,
+      "crc32": "73bf1cdf",
+      "name": "World3_SetupDebugSpriteTestScreen",
+      "role": "clear-the-screen-load-the-final-palette-and-copy-eight-fixed-oam-records-for-the-debug-hook",
+      "callers": [
+        {
+          "address": "0x8478",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x004F",
+      "name": "World3ChapterCompletionDelay"
+    },
+    {
+      "address": "0x0050",
+      "name": "World3Room3FMarkerBlinkCounter"
+    },
+    {
+      "address": "0x0068",
+      "name": "World3FrameWaitCounter"
+    },
+    {
+      "address": "0x0072",
+      "name": "World3PpuQueueVerticalIncrement"
+    },
+    {
+      "address": "0x0074",
+      "name": "World3OamWriteIndex"
+    },
+    {
+      "address": "0x008C",
+      "name": "World3PlayerX"
+    },
+    {
+      "address": "0x008D",
+      "name": "World3PlayerY"
+    },
+    {
+      "address": "0x0090",
+      "name": "World3PlayerMetaspriteBase"
+    },
+    {
+      "address": "0x0091",
+      "name": "World3PlayerAnimationFrame"
+    },
+    {
+      "address": "0x00DF",
+      "name": "World3CurrentRoom"
+    }
+  ]
+}

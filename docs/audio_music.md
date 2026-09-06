@@ -82,7 +82,9 @@ World 2 metatile-attribute prefix. The authoring format records this byte once
 as an audio event while the physical source retains its adjacent data owner.
 
 `make validate-audio-streams` re-decodes the PRG state graph and checks exact
-document equality plus a 10,224-byte sparse-payload round trip. Exact effect
-identities and classification of data outside the header-reachable spans remain
-open for Source 1.0. Effect-versus-music APU ownership is separately proven in
-`docs/audio_arbitration.md`.
+document equality plus a 10,224-byte sparse-payload round trip. Together with
+the effect and arbitration contracts, this completes the Source 1.0 audio
+milestone. Exact in-game effect names and classification of data outside the
+header-reachable spans remain explicit non-blocking unknowns; no musical intent
+is inferred from the structural driver evidence. Effect-versus-music APU
+ownership is separately proven in `docs/audio_arbitration.md`.

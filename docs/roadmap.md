@@ -32,7 +32,7 @@ Replace the four monolithic physical-bank listings with address-ordered common,
 world, audio, and data modules. Every byte of all four banks is covered without
 gaps or overlaps, and every module remains at or below 700 lines.
 
-### 5. Semantic naming - Partial
+### 5. Semantic naming - Complete
 
 Replace neutral address-based names for all major routines, indirect-dispatch
 targets, and key RAM state with evidence-backed roles. Local branch labels are
@@ -84,8 +84,23 @@ checkpoint, the remaining 36 neutral routine entries were confined to the
 World 3 gameplay subsystems in Bank 2. The entity-runtime pass names ten Passing Hoop,
 persistent-object clamp/carry, type-04 split, stopwatch, spawn-coordinate, and
 portal-opening helpers plus the 64-entry room clamp table. Its contract covers
-545 executable bytes and 17 direct calls or tail jumps. The remaining 26
-neutral routine entries are confined to Bank 2.
+545 executable bytes and 17 direct calls or tail jumps. At that checkpoint,
+the remaining 26 neutral routine entries were confined to Bank 2. The
+room-rendering pass names eight palette-in, map-window, hierarchical expansion,
+tile-pair, attribute, and PPU-row helpers plus five RAM fields. Its contract
+covers 351 executable bytes and ten direct calls. At that checkpoint, the
+remaining 18 neutral routine entries were confined to Bank 2. The
+formation-runtime pass names thirteen giant-octopus chain, coordinate-step,
+encounter-room, dragon spawn, and dragon update helpers plus the 64-room
+encounter exclusion mask and six RAM aliases. Its contract covers 679
+executable bytes and 28 direct calls. At that checkpoint, the remaining five
+neutral routine entries were confined to Bank 2 chapter transitions. The final
+transition-runtime pass names the completion sequence and wipe, room `$3F`
+marker, diagnostic halt, and controller-two sprite-test setup plus three fixed
+transfer tables and one RAM alias. Its contract covers 374 executable bytes and
+twelve direct calls or tail jumps. No neutral routine definitions remain in
+any PRG bank; address-derived local branch labels remain intentionally tracked
+as a separate readability metric.
 
 ### 6. RAM and object systems - Partial
 
@@ -211,7 +226,7 @@ and losslessly editable. Its NMI/disabled-rendering queue ownership, ring
 indexes, record flags, address calculators, and palette/attribute shadows are
 also documented.
 
-### 9. Audio - Partial
+### 9. Audio - Complete
 
 Recover the sound driver, channel state, command streams, music, and sound
 effects with documented formats and bank ownership. The four local music
@@ -221,7 +236,10 @@ bytes of envelope/duration/event/stream-position helpers are exact. All 26 playa
 track headers and 10,016 header-reachable stream bytes now round-trip through
 a state-aware authoring format. The four effect-before-music frame paths,
 channel timer leases, guarded music writes, and track-start reset exception are
-also exact. Individual effect identities remain open.
+also exact. All 93 request IDs are classified into 26 conservative structural
+effect roles. Exact in-game names for individual effects and bytes outside the
+header-reachable streams remain registered unknowns rather than release claims;
+they do not weaken the complete driver, ABI, arbitration, or stream contracts.
 
 ### 10. Authoring round trips - Partial
 
@@ -236,58 +254,15 @@ Resolve or explicitly classify remaining release-scope unknowns, live-validate
 the generated linker-derived Mesen/FCEUX symbols, refresh all eight runtime
 scenarios, run one clean aggregate `source-1-audit`, and prepare the audited
 release commit. Static symbol generation is complete: the gate checks all four
-linker segments, 3,782 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
+linker segments, 3,827 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
 labels, and required Reset/NMI/mapper/chapter-loop probes.
 
-The first post-review naming slice is also complete: all sixteen Bank 3 shell
-routine entries now have behavioral names backed by a machine-checked
-caller/RAM contract. World 1 now also has a machine-checked twenty-routine
-initialization/input/render slice, a twenty-three-routine frame-mechanics
-slice, and a seventeen-routine entity-helper slice. The final ten Bank 0
-entries now have machine-checked underground-finale, Bull Robo, collision,
-distance, motion, and alignment contracts. The remaining neutral routine
-population is confined to Banks 1 and 2.
-The first Bank 1 slice now pins fifteen central frame/stage routines and ten
-RAM fields for scrolling, timing, player damage/death, completion flags, and
-the microphone item.
-The following player-system slice pins all seven inventory update paths,
-position history, movement, repeated fire, companion shots, and damage state.
-The screen-core slice adds the NMI PPU commit, screen-service dispatch,
-transition-row setup, PPU address helper, nametable initialization, and the
-post-switch overlay entry used by the World 3 gateway.
-The projectile-runtime slice adds the player hazard scanner, all directional
-player-projectile helpers, both inventory attacks, and their render paths.
-The following sprite-runtime slice names the player and seven-slot inventory
-renderer, metasprite row composition, flicker-selected OAM emission, and both
-48-byte player-position history rings. The final Bank 1 slice closes packed
-enemy activation, attack collision, enemy/projectile rendering, terminal exit,
-and HUD composition. Bank 1 now has no neutral routine entries. The first
-Bank 2 slice connects the World 3 loop to hardware/RAM initialization, start
-room and position selection, pause and microphone hooks, persistent-state
-reset, palette flash, double-buffered OAM composition, and all HUD paths.
-The second Bank 2 slice names the entity render adapter, all player/entity/
-projectile terrain edge probes, the common terrain samplers, and the final-room,
-Passing Hoop, and defeated-boss collision overrides. Seventy-three neutral
-routine entries remained, all in Bank 2. The third Bank 2 slice connects all
-four room edges to the persistence transaction and complete room rebuild,
-names the attract-safe input and register-preserving audio wrappers, player
-renderer, palette fade, and two-stage room music selection. Fifty-eight
-neutral routine entries remained, all in Bank 2. The fourth Bank 2 slice names
-the hierarchical map lookup and the complete player initialization, refill,
-restart, five-state movement, and room-edge motion path. Its contract covers
-690 executable bytes, 25 direct calls or tail jumps, four conditional entries,
-and fourteen newly named RAM bytes. Forty-five neutral routine entries remain,
-all in Bank 2. The fifth Bank 2 slice closes the full player/entity interaction
-path: final companion rescue, formation/barrier presentation, projectile
-damage, boss progression, defeat/score adapters, items, persistent follower
-toggling, contact damage, damage recovery, and death entry. Its contract covers
-1,016 executable bytes, 26 direct calls, and eight new RAM fields. Thirty-six
-neutral routine entries remain, all in Bank 2. The sixth Bank 2 slice closes
-cross-chapter Passing Hoop placement, persistent-object edge clamps and
-Holding Bag carry capacity, type-04 splitting, stopwatch expiry, passable spawn
-selection, and Passing Hoop boundary opening. Its contract covers 545 bytes
-and 17 direct calls or tail jumps. Twenty-six neutral routine entries remain,
-all in Bank 2.
+The post-review routine pass is complete. The inventory now records 1,227
+semantic global labels, no neutral routine definitions in any bank, and all
+354 indirect code entries with evidence-backed symbols. The remaining 2,129
+address-derived labels are local branches and are tracked separately; they are
+renamed only where a behavioral role materially improves the surrounding
+routine contract.
 
 ## Deferred to Source Reconstruction 2.0
 

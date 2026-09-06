@@ -36,8 +36,8 @@ Bank2_Label_9338:
     STA $3D
     LDX World3PlayerX
     LDY World3PlayerY
-    JSR Bank2_Func_AB3B
-    JSR Bank2_Func_AB47
+    JSR World3_StepWorkXTowardTarget
+    JSR World3_StepWorkYTowardTarget
     LDX $3E
     LDA $3C
     STA a:World3EntityX,X
@@ -229,7 +229,7 @@ Bank2_Label_94C9:
     CPX #$0D
     BNE Bank2_Label_94BA
     LDA #$04
-    JMP Bank2_Func_AF51
+    JMP World3_HaltWithDiagnosticCode
 
 Bank2_Label_94D3:
     LDA $40
@@ -311,7 +311,7 @@ World3_UpdateTypes06HazardAnd07Candy:
     RTS
 
 World3_UpdateType08OctopusTip:
-    JSR Bank2_Func_AA2A
+    JSR World3_UpdateGiantOctopusTentacle
 
 World3_UpdateType09OctopusSegment:
     RTS
@@ -324,7 +324,7 @@ World3_UpdateType0ADragonHead:
     JSR World3_QueueEffectPreserveXY
 
 Bank2_Label_95A1:
-    JSR Bank2_Func_AD21
+    JSR World3_UpdateDragonFormation
 
 World3_UpdateType0BDragonSegment:
     RTS
@@ -361,8 +361,8 @@ Bank2_Label_95B9:
     SEC
     SBC #$0C
     TAY
-    JSR Bank2_Func_AB3B
-    JSR Bank2_Func_AB47
+    JSR World3_StepWorkXTowardTarget
+    JSR World3_StepWorkYTowardTarget
     LDX $3E
     LDA $3C
     STA a:World3EntityX,X

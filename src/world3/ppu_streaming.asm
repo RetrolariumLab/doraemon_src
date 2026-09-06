@@ -229,14 +229,14 @@ World3_LoadCurrentRoom:
     JSR Bank2_SelectChrBank
     LDA #$90
     STA PpuCtrlShadow
-    JSR Bank2_Func_A8EB
+    JSR World3_StreamCurrentRoomBackground
     JSR World3_LoadRoomPalette
     JSR World3_ClearPlayerProjectiles
     JSR World3_ClearEntityStorage
     JSR World3_ClampPersistentObjectsAtRoomEdges
     JSR World3_MaterializeRoomObjects
-    JSR Bank2_Func_AB53
-    JSR Bank2_Func_ABF9
+    JSR World3_AdvanceRandomEncounterRoomTowardPlayer
+    JSR World3_TrySpawnDragonEncounter
     LDA World3FinalCompanionsFreed
     BEQ Bank2_Label_A761
     JSR World3_OpenFinalCompanionBarrier
@@ -292,7 +292,7 @@ Bank2_Label_A79C:
 Bank2_Label_A7AB:
     JSR World3_RenderHud
     JSR World3_EnableRendering
-    JSR Bank2_Func_A8B0
+    JSR World3_FadePaletteIn
     LDA #$00
     STA World3OamBufferHalf
     STA World3OamWriteIndex
@@ -361,7 +361,7 @@ World3_LoadRoomPalette:
 
 Bank2_Label_A858:
     LDA ($40),Y
-    STA a:$0705,Y
+    STA a:World3PaletteTarget,Y
     INY
     CPY #$20
     BNE Bank2_Label_A858

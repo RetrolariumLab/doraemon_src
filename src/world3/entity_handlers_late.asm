@@ -306,7 +306,7 @@ Bank2_Label_986F:
     CPX #$0D
     BNE Bank2_Label_986F
     LDA #$05
-    JMP Bank2_Func_AF51
+    JMP World3_HaltWithDiagnosticCode
 
 Bank2_Label_987E:
     CLC
@@ -360,12 +360,12 @@ Bank2_Label_98C5:
     LDA a:World3EntityX,X
     SEC
     SBC #$78
-    STA $C9
+    STA World3FormationOffsetX
     LDA a:World3EntityY,X
     SEC
     SBC #$78
-    STA $CA
-    JSR Bank2_Func_AC1F
+    STA World3FormationOffsetY
+    JSR World3_PopulateDragonFormation
 
 Bank2_Label_98E2:
     RTS
@@ -415,7 +415,7 @@ Bank2_Label_98FF:
     JSR World3_AbsoluteValue8
     CMP #$0F
     BCC Bank2_Label_9940
-    JSR Bank2_Func_AB3B
+    JSR World3_StepWorkXTowardTarget
 
 Bank2_Label_9940:
     LDA $3D
@@ -424,7 +424,7 @@ Bank2_Label_9940:
     JSR World3_AbsoluteValue8
     CMP #$0F
     BCC Bank2_Label_994F
-    JSR Bank2_Func_AB47
+    JSR World3_StepWorkYTowardTarget
 
 Bank2_Label_994F:
     LDX $3E
@@ -518,7 +518,7 @@ Bank2_Label_99C5:
     JSR World3_AbsoluteValue8
     CMP #$0D
     BCC Bank2_Label_99E8
-    JSR Bank2_Func_AB3B
+    JSR World3_StepWorkXTowardTarget
 
 Bank2_Label_99E8:
     TYA
@@ -527,7 +527,7 @@ Bank2_Label_99E8:
     JSR World3_AbsoluteValue8
     CMP #$0D
     BCC Bank2_Label_99F6
-    JSR Bank2_Func_AB47
+    JSR World3_StepWorkYTowardTarget
 
 Bank2_Label_99F6:
     LDX $3E

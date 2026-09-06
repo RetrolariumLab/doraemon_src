@@ -103,7 +103,7 @@ Bank2_Label_8BFD:
     CPY #$0D
     BNE Bank2_Label_8BFD
     LDA #$06
-    JMP Bank2_Func_AF51
+    JMP World3_HaltWithDiagnosticCode
 
 Bank2_Label_8C0E:
     LDA #$00
@@ -240,7 +240,7 @@ Bank2_Label_8D1A:
     CPY #$0D
     BNE Bank2_Label_8D1A
     LDA #$02
-    JMP Bank2_Func_AF51
+    JMP World3_HaltWithDiagnosticCode
 
 Bank2_Label_8D29:
     LDA a:World3EntityPersistentState,X

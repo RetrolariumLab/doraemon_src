@@ -373,9 +373,14 @@ than a second event channel.
 | `World3ScrollY` | `$0070` | Second World 3 `PPU_SCROLL` value |
 | `World3NametableSelect` | `$0071` | Low two `PPU_CTRL` nametable bits |
 | `World3PpuQueueVerticalIncrement` | `$0072` | Nonzero encodes PPU increment 32 in a queued record |
+| `World3RoomMapPointer` | `$0084-$0085` | Current eight-cell-wide room window in the 64x64 large-block map |
+| `World3RoomBigBlockRowOffset` | `$0086` | Zero-or-two row selector within a four-entry large block |
+| `World3RoomSmallBlockRowOffset` | `$0087` | Zero-or-two row selector within a four-tile small block |
+| `World3RoomRenderRow` | `$0088` | Current zero-through-29 nametable and attribute output row |
 | `World3AttributeShadow` | `$0400-$047F` | Attribute bytes filled and updated before upload |
 | `World3PaletteShadow` | `$0480-$049F` | Last complete 32-byte palette queued at `$3F00` |
 | `World3PpuQueue` | `$0500-$05FF` | 256-byte address/length/payload ring buffer |
+| `World3PaletteTarget` | `$0705-$0724` | Selected room palette consumed by the palette-in loop |
 
 The queue record layout, NMI/disabled-rendering ownership split, capacity
 guard, and address calculations are described in `docs/world3_ppu_queue.md`.
@@ -527,6 +532,21 @@ hit points, base metasprite, render flags, contact damage, and score reward.
 Their 32-entry contents and the four lifecycle domains spanning `$00-$1F` are
 validated by `config/world3_entity_types.json` and described in
 `docs/world3_entity_types.md`.
+
+| Formation field | Address | Role |
+| --- | ---: | --- |
+| `World3FormationActive` | `$0051` | Selects formation-owned update and render ordering |
+| `World3OctopusTerminalAnchorY` | `$00A2` | Fixed `$68` or `$80` terminal Y for a type `$08/$09` chain |
+| `World3PackedRateCounterNext` | `$00A9` | Advanced high-nibble value returned to the entity frame field |
+| `World3PackedRateThreshold` | `$00AA` | Saved low-nibble period tested by the rate helper |
+| `World3FormationHeadSlot` | `$00C8` | Active slot containing the type `$0A` dragon head |
+| `World3FormationOffsetX` | `$00C9` | X offset applied to fixed dragon formation coordinates |
+| `World3FormationOffsetY` | `$00CA` | Y offset applied to fixed dragon formation coordinates |
+
+| Transition field | Address | Role |
+| --- | ---: | --- |
+| `World3ChapterCompletionDelay` | `$004F` | Final-formation countdown before the completion wipe |
+| `World3Room3FMarkerBlinkCounter` | `$0050` | Bit-four cadence for the fixed room `$3F` completion marker |
 
 `World3EncounterRoomList` at `$06F1-$06F8` stores eight room numbers. Empty
 entries contain `$FF`; encounter placement expands the list to adjacent valid

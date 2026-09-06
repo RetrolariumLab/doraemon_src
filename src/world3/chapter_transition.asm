@@ -2,7 +2,7 @@
 ; World 3 completion sequence, transition loop, and support routines
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_AE12:
+World3_RunChapterCompletionSequence:
     JSR World3_InitializePlayerState
     LDA #$00
     STA $00
@@ -24,7 +24,7 @@ Bank2_Label_AE2B:
     STA World3OamWriteIndex
     JSR World3_RenderPlayer
     JSR World3_RenderEntities
-    JSR Bank2_Func_AE5D
+    JSR World3_UpdateChapterCompletionWipe
     LDA #$01
     STA NmiOamDmaRequest
     LDA #$01
@@ -41,7 +41,7 @@ Bank2_Label_AE4E:
     JSR World3_WaitFrames
     JMP Bank2_EnterEnding
 
-Bank2_Func_AE5D:
+World3_UpdateChapterCompletionWipe:
     LDA $02
     BEQ Bank2_Label_AEBF
     LDX #$00
@@ -121,17 +121,21 @@ Bank2_Label_AEEC:
     CPY #$08
     BNE Bank2_Label_AED1
     RTS
+
+World3_CompletionBlankRow:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+
+World3_CompletionBlankColumn:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
-Bank2_Func_AF30:
+World3_RenderRoom3FCompletionMarker:
     LDA World3CurrentRoom
     CMP #$3F
     BNE Bank2_Label_AF50
-    INC $50
-    LDA $50
+    INC World3Room3FMarkerBlinkCounter
+    LDA World3Room3FMarkerBlinkCounter
     AND #$10
     BNE Bank2_Label_AF50
     LDX #$70
@@ -146,7 +150,7 @@ Bank2_Func_AF30:
 Bank2_Label_AF50:
     RTS
 
-Bank2_Func_AF51:
+World3_HaltWithDiagnosticCode:
     PHA
     JSR World3_HideAllSprites
     PLA
@@ -163,7 +167,7 @@ Bank2_Func_AF51:
 Bank2_Label_AF6C:
     JMP Bank2_Label_AF6C
 
-Bank2_Func_AF6F:
+World3_SetupDebugSpriteTestScreen:
     JSR Bank2_DisableRenderingForUpdate
     LDA #$90
     STA PpuCtrlShadow
@@ -202,6 +206,8 @@ Bank2_Func_AF6F:
     LDA #$00
     STA a:AudioMusicControl
     RTS
+
+World3_DebugSpriteTestOam:
     .byte $58, $EE, $00, $78, $58, $EF, $00, $80, $60, $FE, $00, $78, $60, $FF, $00, $80
     .byte $68, $2E, $00, $78, $68, $2F, $00, $80, $70, $E5, $00, $78, $70, $F5, $00, $80
 

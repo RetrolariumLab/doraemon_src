@@ -12,12 +12,12 @@ evidence manifests. Any change requires an intentional snapshot update.
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 0 | 1,011 | 326 | 0 | 685 | 84 / 84 |
 | 1 | 879 | 320 | 0 | 559 | 97 / 97 |
-| 2 | 1,099 | 390 | 26 | 683 | 106 / 106 |
+| 2 | 1,103 | 420 | 0 | 683 | 106 / 106 |
 | 3 | 363 | 161 | 0 | 202 | 67 / 67 |
-| Total | 3,352 | 1,197 | 26 | 2,129 | 354 / 354 |
+| Total | 3,356 | 1,227 | 0 | 2,129 | 354 / 354 |
 
-The neutral population now separates 26 probable routine entries from 2,129
-local branch labels. The common runtime naming pass removed 88 neutral routine
+The inventory now separates zero neutral routine definitions from 2,129
+address-derived local branch labels. The common runtime naming pass removed 88 neutral routine
 names by proving copied reset/NMI/mapper services, cross-bank gateways, and
 bank-local dispatches. A second pass named all 19 previously neutral non-audio
 dispatch entries in World 2 streaming and the World 3 player state machine. The
@@ -117,12 +117,28 @@ pass names ten cross-chapter Passing Hoop, persistent-object clamp/carry,
 type-04 split, stopwatch, spawn-coordinate, and portal-opening helpers. Its
 exact contract covers 545 executable bytes, 17 direct calls or tail jumps, and
 seven established RAM fields; it also names the 64-entry room clamp table.
-Bank 2 now contains the complete remaining population of 26 neutral routine
-entries.
+At that checkpoint, Bank 2 contained the complete remaining population of 26
+neutral routine entries. The room-rendering pass names eight palette-in,
+map-window, hierarchical expansion, tile-pair, attribute, and PPU-row helpers.
+Its exact contract covers 351 executable bytes and ten direct calls; it also
+names five RAM fields spanning the room map pointer, row selectors, output row,
+and target palette. At that checkpoint, Bank 2 contained the complete remaining
+population of 18 neutral routine entries. The formation-runtime pass names
+thirteen giant-octopus chain, coordinate-step, encounter-room, dragon spawn,
+and dragon update helpers. Its exact contract covers 679 executable bytes,
+28 direct calls, and twelve RAM fields; it also names the 64-room encounter
+exclusion mask and six formation-specific RAM aliases. At that checkpoint,
+Bank 2 contained the complete remaining population of five neutral routine
+entries. The final
+transition-runtime pass names the completion sequence and wipe, room `$3F`
+marker, diagnostic halt, and controller-two sprite-test setup. Its exact
+contract covers 374 executable bytes, twelve direct calls or tail jumps, and
+ten Bank 2 RAM fields; it also names three fixed transfer tables and the marker
+blink counter. No neutral routine definitions remain in any PRG bank.
 
-The symbol registry currently contains 1,066 evidence-backed code symbols and
-121 operand/table symbols. RAM coverage contains 425 unique aliases: 83 shared
-symbols plus 98 Bank 0, 97 Bank 1, 139 Bank 2, and 8 Bank 3 scoped symbols.
+The symbol registry currently contains 1,092 evidence-backed code symbols and
+125 operand/table symbols. RAM coverage contains 437 unique aliases: 83 shared
+symbols plus 98 Bank 0, 97 Bank 1, 151 Bank 2, and 8 Bank 3 scoped symbols.
 
 Typed PRG ranges cover 65,796 bytes in 57 non-overlapping regions. Bank 3 now
 separates exact title, game-over, chapter-help, ending-opening, active-credit,

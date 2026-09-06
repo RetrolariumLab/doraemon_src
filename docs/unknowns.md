@@ -138,7 +138,10 @@
   `config/audio_effects.json`.
 - Unknown: exact gameplay identities for individual effects and whether
   header-unreachable bytes adjacent to the proven spans contain dormant music
-  material or unrelated tables.
+  material or unrelated tables. These are non-blocking for Source 1.0: the
+  active driver, structural effect roles, APU arbitration, reachable streams,
+  and their lossless authoring contract are complete without inferred names or
+  claims about unreachable data.
 
 ## TEXT-001 - post-credit presentation data
 

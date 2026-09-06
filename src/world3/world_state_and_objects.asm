@@ -255,7 +255,7 @@ Bank2_Label_88EE:
     CMP #$34
     BEQ Bank2_Label_8932
     LDA #$00
-    JMP Bank2_Func_AF51
+    JMP World3_HaltWithDiagnosticCode
 
 Bank2_Label_8924:
     LDA #$01
@@ -397,7 +397,7 @@ Bank2_Label_89EA:
     CMP #$3B
     BEQ Bank2_Label_8A1C
     LDA #$01
-    JMP Bank2_Func_AF51
+    JMP World3_HaltWithDiagnosticCode
 
 Bank2_Label_8A17:
     INC World3Room26GenkiCandyCollected

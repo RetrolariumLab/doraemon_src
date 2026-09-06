@@ -4925,15 +4925,142 @@
     },
     {
       "bank": 2,
+      "address": "0xA8B0",
+      "name": "World3_FadePaletteIn",
+      "evidence": "stepwise-world3-palette-shadow-restore-to-the-room-target-with-three-frame-uploads"
+    },
+    {
+      "bank": 2,
+      "address": "0xA8EB",
+      "name": "World3_StreamCurrentRoomBackground",
+      "evidence": "thirty-row-room-background-expansion-and-nametable-attribute-queue-loop"
+    },
+    {
+      "bank": 2,
+      "address": "0xA904",
+      "name": "World3_CalculateCurrentRoomMapPointer",
+      "evidence": "maps-the-six-bit-current-room-row-and-column-to-its-eight-cell-wide-world-map-window"
+    },
+    {
+      "bank": 2,
+      "address": "0xA922",
+      "name": "World3_QueueRoomBackgroundRow",
+      "evidence": "expands-one-room-row-and-queues-32-nametable-bytes-plus-eight-attribute-bytes"
+    },
+    {
+      "bank": 2,
+      "address": "0xA946",
+      "name": "World3_ExpandNextRoomTileRow",
+      "evidence": "expands-one-tile-row-then-advances-the-small-block-big-block-and-map-row-selectors"
+    },
+    {
+      "bank": 2,
+      "address": "0xA967",
+      "name": "World3_ExpandRoomTileRow",
+      "evidence": "expands-eight-large-block-map-cells-into-the-32-byte-tile-row-and-eight-attribute-bytes"
+    },
+    {
+      "bank": 2,
+      "address": "0xA99C",
+      "name": "World3_AppendSmallBlockTilePair",
+      "evidence": "resolves-one-small-block-through-its-four-tile-record-and-appends-the-selected-two-tile-row"
+    },
+    {
+      "bank": 2,
+      "address": "0xA9C5",
+      "name": "World3_UpdateRoomAttributeByte",
+      "evidence": "packs-two-small-block-palette-selectors-into-the-room-attribute-shadow-and-row-buffer"
+    },
+    {
+      "bank": 2,
       "address": "0xAA0F",
       "name": "World3_AdvancePackedRateCounter",
       "evidence": "increments-high-nibble-and-signals-when-it-matches-low-nibble"
     },
     {
       "bank": 2,
+      "address": "0xAA2A",
+      "name": "World3_UpdateGiantOctopusTentacle",
+      "evidence": "walks-the-type-08-09-slot-chain-between-the-player-side-and-fixed-terminal-anchors"
+    },
+    {
+      "bank": 2,
+      "address": "0xAA52",
+      "name": "World3_ConstrainGiantOctopusTentacleSegments",
+      "evidence": "derives-fourteen-pixel-player-anchor-and-updates-each-intermediate-and-terminal-segment"
+    },
+    {
+      "bank": 2,
+      "address": "0xAA9E",
+      "name": "World3_LoadPreviousEntityPosition",
+      "evidence": "loads-the-prior-contiguous-entity-slot-position-as-the-near-segment-anchor"
+    },
+    {
+      "bank": 2,
+      "address": "0xAAAA",
+      "name": "World3_LoadNextEntityPosition",
+      "evidence": "loads-the-next-contiguous-entity-slot-position-as-the-far-segment-anchor"
+    },
+    {
+      "bank": 2,
+      "address": "0xAAB6",
+      "name": "World3_UpdateTentacleSegmentPosition",
+      "evidence": "rate-gates-one-slot-adjustment-and-stores-the-resulting-segment-distance-deltas"
+    },
+    {
+      "bank": 2,
+      "address": "0xAAF1",
+      "name": "World3_StepWorkPositionTowardNearestAnchor",
+      "evidence": "selects-the-nearer-anchor-independently-on-each-axis-and-steps-the-work-position-one-pixel"
+    },
+    {
+      "bank": 2,
+      "address": "0xAB3B",
+      "name": "World3_StepWorkXTowardTarget",
+      "evidence": "moves-the-3c-work-coordinate-one-pixel-toward-the-x-register-target"
+    },
+    {
+      "bank": 2,
+      "address": "0xAB47",
+      "name": "World3_StepWorkYTowardTarget",
+      "evidence": "moves-the-3d-work-coordinate-one-pixel-toward-the-y-register-target"
+    },
+    {
+      "bank": 2,
+      "address": "0xAB53",
+      "name": "World3_AdvanceRandomEncounterRoomTowardPlayer",
+      "evidence": "selects-one-occupied-encounter-slot-and-tries-one-row-then-one-column-step-toward-current-room"
+    },
+    {
+      "bank": 2,
+      "address": "0xAB9E",
+      "name": "World3_StoreEncounterRoomIfEligible",
+      "evidence": "commits-the-candidate-room-only-when-not-blocked-and-not-already-present-in-the-eight-slot-list"
+    },
+    {
+      "bank": 2,
+      "address": "0xABB9",
+      "name": "World3_EncounterRoomBlockedByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-mask-rejecting-candidate-rooms-for-the-moving-dragon-encounter-list"
+    },
+    {
+      "bank": 2,
+      "address": "0xABF9",
+      "name": "World3_TrySpawnDragonEncounter",
+      "evidence": "matches-current-room-against-the-encounter-list-and-reserves-a-free-slot-for-the-dragon-formation"
+    },
+    {
+      "bank": 2,
       "address": "0xAC15",
       "name": "World3_CreateDragonFormationTypes0ATo0B",
       "evidence": "fills-remaining-active-slots-from-fixed-type-0a-0b-formation"
+    },
+    {
+      "bank": 2,
+      "address": "0xAC1F",
+      "name": "World3_PopulateDragonFormation",
+      "evidence": "fills-active-slots-from-a-start-index-with-the-offset-type-0a-0b-formation-records"
     },
     {
       "bank": 2,
@@ -5009,6 +5136,63 @@
       "name": "World3_GiantOctopusFormationFrameCounter",
       "operand_symbol": true,
       "evidence": "eight-object-type-08-encounter-initial-frame-counter-column"
+    },
+    {
+      "bank": 2,
+      "address": "0xAD21",
+      "name": "World3_UpdateDragonFormation",
+      "evidence": "updates-the-type-0a-head-target-and-keeps-each-following-type-0b-segment-within-six-pixels"
+    },
+    {
+      "bank": 2,
+      "address": "0xAE12",
+      "name": "World3_RunChapterCompletionSequence",
+      "evidence": "eight-step-inward-wipe-centered-player-and-surviving-type-1f-actors-before-ending-gateway"
+    },
+    {
+      "bank": 2,
+      "address": "0xAE5D",
+      "name": "World3_UpdateChapterCompletionWipe",
+      "evidence": "queues-opposing-blank-rows-and-columns-and-centers-the-player-while-clearing-non-type-1f-entities"
+    },
+    {
+      "bank": 2,
+      "address": "0xAEF2",
+      "name": "World3_CompletionBlankRow",
+      "operand_symbol": true,
+      "evidence": "32-zero-byte-horizontal-transfer-source-used-by-the-eight-step-completion-wipe"
+    },
+    {
+      "bank": 2,
+      "address": "0xAF12",
+      "name": "World3_CompletionBlankColumn",
+      "operand_symbol": true,
+      "evidence": "30-zero-byte-vertical-transfer-source-used-by-the-eight-step-completion-wipe"
+    },
+    {
+      "bank": 2,
+      "address": "0xAF30",
+      "name": "World3_RenderRoom3FCompletionMarker",
+      "evidence": "blinks-fixed-metasprite-ac-at-70-74-only-in-final-room-3f-before-completion-delay"
+    },
+    {
+      "bank": 2,
+      "address": "0xAF51",
+      "name": "World3_HaltWithDiagnosticCode",
+      "evidence": "renders-the-a-or-30-code-tile-at-screen-center-requests-oam-dma-and-enters-an-infinite-loop"
+    },
+    {
+      "bank": 2,
+      "address": "0xAF6F",
+      "name": "World3_SetupDebugSpriteTestScreen",
+      "evidence": "controller-two-debug-hook-clears-the-screen-loads-final-palette-and-copies-eight-fixed-oam-records"
+    },
+    {
+      "bank": 2,
+      "address": "0xAFC6",
+      "name": "World3_DebugSpriteTestOam",
+      "operand_symbol": true,
+      "evidence": "eight-four-byte-oam-records-copied-to-page-three-by-the-controller-two-debug-screen"
     },
     {
       "bank": 2,
@@ -8363,6 +8547,14 @@
       "evidence": "loaded-with-46-hex-after-the-final-formation-defeat-and-counted-down-before-the-ending-transition"
     },
     {
+      "address": "0x0050",
+      "name": "World3Room3FMarkerBlinkCounter",
+      "banks": [
+        2
+      ],
+      "evidence": "incremented-in-room-3f-and-bit-four-gates-the-fixed-completion-marker-metasprite"
+    },
+    {
       "address": "0x0058",
       "name": "World3BossRoom27Defeated",
       "banks": [
@@ -8411,6 +8603,39 @@
       "evidence": "initialized-from-the-current-oam-half-and-advanced-by-two-for-each-four-byte-oam-entry"
     },
     {
+      "address": "0x0084",
+      "name": "World3RoomMapPointer",
+      "size": 2,
+      "banks": [
+        2
+      ],
+      "evidence": "little-endian-pointer-to-the-current-eight-cell-wide-room-window-in-the-64x64-map"
+    },
+    {
+      "address": "0x0086",
+      "name": "World3RoomBigBlockRowOffset",
+      "banks": [
+        2
+      ],
+      "evidence": "zero-or-two-row-selector-for-the-four-entry-large-block-record-during-room-expansion"
+    },
+    {
+      "address": "0x0087",
+      "name": "World3RoomSmallBlockRowOffset",
+      "banks": [
+        2
+      ],
+      "evidence": "zero-or-two-row-selector-for-the-four-tile-small-block-record-during-room-expansion"
+    },
+    {
+      "address": "0x0088",
+      "name": "World3RoomRenderRow",
+      "banks": [
+        2
+      ],
+      "evidence": "zero-through-29-room-background-row-used-for-nametable-and-attribute-addresses"
+    },
+    {
       "address": "0x0089",
       "name": "World3RoomColumn",
       "banks": [
@@ -8443,6 +8668,14 @@
       "evidence": "world3-player-y-coordinate-used-by-movement-collision-rendering-spawns-and-room-persistence"
     },
     {
+      "address": "0x00A2",
+      "name": "World3OctopusTerminalAnchorY",
+      "banks": [
+        2
+      ],
+      "evidence": "fixed-68-or-80-y-anchor-selected-from-the-type-08-head-slot-for-the-terminal-segment"
+    },
+    {
       "address": "0x00A5",
       "name": "World3RoomMusicTrack",
       "banks": [
@@ -8457,6 +8690,46 @@
         2
       ],
       "evidence": "loaded-with-28-hex-after-boss-defeat-and-counted-down-before-restoring-room-music"
+    },
+    {
+      "address": "0x00A9",
+      "name": "World3PackedRateCounterNext",
+      "banks": [
+        2
+      ],
+      "evidence": "high-nibble-advanced-packed-rate-counter-returned-to-the-current-entity-frame-field"
+    },
+    {
+      "address": "0x00AA",
+      "name": "World3PackedRateThreshold",
+      "banks": [
+        2
+      ],
+      "evidence": "saved-low-nibble-period-compared-with-the-advanced-high-nibble-by-the-packed-rate-helper"
+    },
+    {
+      "address": "0x00C8",
+      "name": "World3FormationHeadSlot",
+      "banks": [
+        2
+      ],
+      "evidence": "active-slot-index-of-the-type-0a-dragon-head-used-to-update-the-contiguous-formation"
+    },
+    {
+      "address": "0x00C9",
+      "name": "World3FormationOffsetX",
+      "banks": [
+        2
+      ],
+      "evidence": "signed-x-offset-added-to-each-fixed-dragon-formation-coordinate"
+    },
+    {
+      "address": "0x00CA",
+      "name": "World3FormationOffsetY",
+      "banks": [
+        2
+      ],
+      "evidence": "signed-y-offset-added-to-each-fixed-dragon-formation-coordinate"
     },
     {
       "address": "0x00CE",
@@ -9739,6 +10012,15 @@
         2
       ],
       "evidence": "32-byte-palette-copy-updated-with-every-3f00-queue-record"
+    },
+    {
+      "address": "0x0705",
+      "name": "World3PaletteTarget",
+      "size": 32,
+      "banks": [
+        2
+      ],
+      "evidence": "selected-room-palette-copy-restored-into-the-visible-shadow-by-the-palette-in-loop"
     },
     {
       "address": "0x0500",

@@ -13,7 +13,7 @@ World3_LookupMapTileAtPixel:
     LSR A
     LSR A
     STA $41
-    JSR Bank2_Func_A904
+    JSR World3_CalculateCurrentRoomMapPointer
     LDX #$00
     STX $09
     LDA $41
@@ -27,10 +27,10 @@ World3_LookupMapTileAtPixel:
     ASL A
     ROL $09
     CLC
-    ADC $84
+    ADC World3RoomMapPointer
     STA $08
     LDA $09
-    ADC $85
+    ADC World3RoomMapPointer+$01
     STA $09
     LDA $40
     LSR A

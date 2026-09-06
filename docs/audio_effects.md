@@ -29,4 +29,6 @@ canonical source registry.
 `make validate-audio-effects` checks the complete request-to-pair permutation,
 all channel contracts, shared-handler consistency, and semantic symbols.
 Exact gameplay identities for the effects remain intentionally open until
-runtime call-site/audio evidence supports them.
+runtime call-site/audio evidence supports them. Source 1.0 requires exact
+request routing, synthesis behavior, channel ownership, and lossless music
+streams; it does not require speculative external names for every sound.

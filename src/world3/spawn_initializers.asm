@@ -148,7 +148,7 @@ World3_InitTransientType08GiantOctopus:
     CMP #$34
     BEQ Bank2_Label_9092
     LDA #$03
-    JMP Bank2_Func_AF51
+    JMP World3_HaltWithDiagnosticCode
 
 Bank2_Label_9084:
     LDA World3BossRoom27Defeated

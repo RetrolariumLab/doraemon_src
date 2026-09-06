@@ -2,7 +2,7 @@
 ; World 3 room collision helpers and movement state tables
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_AB3B:
+World3_StepWorkXTowardTarget:
     CPX $3C
     BEQ Bank2_Label_AB46
     BCS Bank2_Label_AB44
@@ -15,7 +15,7 @@ Bank2_Label_AB44:
 Bank2_Label_AB46:
     RTS
 
-Bank2_Func_AB47:
+World3_StepWorkYTowardTarget:
     CPY $3D
     BEQ Bank2_Label_AB52
     BCS Bank2_Label_AB50
@@ -28,7 +28,7 @@ Bank2_Label_AB50:
 Bank2_Label_AB52:
     RTS
 
-Bank2_Func_AB53:
+World3_AdvanceRandomEncounterRoomTowardPlayer:
     JSR World3_RandomByte
     AND #$07
     TAX
@@ -55,7 +55,7 @@ Bank2_Label_AB75:
     STA $3E
 
 Bank2_Label_AB7C:
-    JSR Bank2_Func_AB9E
+    JSR World3_StoreEncounterRoomIfEligible
 
 Bank2_Label_AB7F:
     LDA $3E
@@ -76,14 +76,14 @@ Bank2_Label_AB93:
     STA $3E
 
 Bank2_Label_AB9A:
-    JSR Bank2_Func_AB9E
+    JSR World3_StoreEncounterRoomIfEligible
 
 Bank2_Label_AB9D:
     RTS
 
-Bank2_Func_AB9E:
+World3_StoreEncounterRoomIfEligible:
     LDY $3E
-    LDA a:$ABB9,Y
+    LDA a:World3_EncounterRoomBlockedByRoom,Y
     BNE Bank2_Label_ABB8
     LDY #$00
 
@@ -99,12 +99,14 @@ Bank2_Label_ABA7:
 
 Bank2_Label_ABB8:
     RTS
+
+World3_EncounterRoomBlockedByRoom:
     .byte $00, $00, $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $01, $01, $00, $01, $00, $01, $01, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $01, $01, $00, $00, $00, $01, $01, $00, $00, $00, $00, $01, $01, $01
     .byte $00, $00, $00, $00, $01, $01, $01, $01, $00, $00, $00, $00, $01, $01, $01, $01
 
-Bank2_Func_ABF9:
+World3_TrySpawnDragonEncounter:
     LDA #$00
     STA World3FormationActive
     LDX #$00
@@ -128,15 +130,15 @@ World3_CreateDragonFormationTypes0ATo0B:
     LDA #$00
     STA World3FormationActive
     LDA #$00
-    STA $C9
-    STA $CA
+    STA World3FormationOffsetX
+    STA World3FormationOffsetY
 
-Bank2_Func_AC1F:
+World3_PopulateDragonFormation:
     LDA #$00
     STA World3FormationActive
     CPX #$06
     BCS Bank2_Label_AC6B
-    STX $C8
+    STX World3FormationHeadSlot
     LDA #$01
     STA World3FormationActive
     LDY #$00
@@ -147,11 +149,11 @@ Bank2_Label_AC2F:
     STA a:World3EntityState,X
     LDA a:World3_DragonFormationX,Y
     CLC
-    ADC $C9
+    ADC World3FormationOffsetX
     STA a:World3EntityX,X
     LDA a:World3_DragonFormationY,Y
     CLC
-    ADC $CA
+    ADC World3FormationOffsetY
     STA a:World3EntityY,X
     LDA a:World3_DragonFormationType,Y
     STA a:World3EntityType,X
@@ -260,8 +262,8 @@ World3_GiantOctopusFormationType:
 World3_GiantOctopusFormationFrameCounter:
     .byte $01, $01, $02, $02, $02, $02, $03, $03
 
-Bank2_Func_AD21:
-    LDX $C8
+World3_UpdateDragonFormation:
+    LDX World3FormationHeadSlot
     LDA a:World3EntityBehaviorTimer,X
     BNE Bank2_Label_AD58
     JSR World3_RandomByte
@@ -307,9 +309,9 @@ Bank2_Label_AD75:
     LDY World3PlayerY
 
 Bank2_Label_AD79:
-    JSR Bank2_Func_AB3B
-    JSR Bank2_Func_AB47
-    LDX $C8
+    JSR World3_StepWorkXTowardTarget
+    JSR World3_StepWorkYTowardTarget
+    LDX World3FormationHeadSlot
     LDA $3C
     STA a:World3EntityX,X
     LDA $3D
@@ -332,7 +334,7 @@ Bank2_Label_AD8D:
     JSR World3_AbsoluteValue8
     CMP #$06
     BCC Bank2_Label_ADAF
-    JSR Bank2_Func_AB3B
+    JSR World3_StepWorkXTowardTarget
 
 Bank2_Label_ADAF:
     TYA
@@ -341,7 +343,7 @@ Bank2_Label_ADAF:
     JSR World3_AbsoluteValue8
     CMP #$06
     BCC Bank2_Label_ADBD
-    JSR Bank2_Func_AB47
+    JSR World3_StepWorkYTowardTarget
 
 Bank2_Label_ADBD:
     LDX $05
