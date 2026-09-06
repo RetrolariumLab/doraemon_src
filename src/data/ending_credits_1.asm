@@ -2,7 +2,7 @@
 ; First contiguous part of the ending credit stream
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-EndingCredits_Text:
+EndingCredits_Rows:
     .byte $20, $20, $20, $20, $20, $20, $20, $45, $58, $45, $43, $55, $54, $49, $56, $45
     .byte $20, $50, $52, $4F, $44, $55, $43, $45, $52, $20, $20, $20, $20, $20, $20, $20
     .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20

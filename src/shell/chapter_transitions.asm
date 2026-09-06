@@ -45,8 +45,8 @@ Bank3_Label_8C6E:
     STA $00
     LDA #$8E
     STA $01
-    JSR Bank3_Func_90C4
-    JSR Bank3_Func_90D1
+    JSR Shell_CopyPaletteToStaging
+    JSR Shell_UploadStagedPalette
     LDA PpuCtrlShadow
     AND #$E7
     ORA #$08
@@ -315,7 +315,7 @@ Bank3_Label_8F7A:
     BNE Bank3_Label_8F7A
     RTS
 
-Bank3_Func_8F84:
+Shell_UploadPpuCommandStream:
     LDA PpuCtrlShadow
     AND #$FB
     STA PpuCtrlShadow

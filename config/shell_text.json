@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "bank": 3,
+  "game_over": {
+    "address": "0x8A7F",
+    "size": 9,
+    "crc32": "60a9a684"
+  },
+  "title_stream": {
+    "address": "0x9248",
+    "end_address": "0x9383",
+    "record_count": 13,
+    "crc32": "a0763f61",
+    "text_records": [
+      {
+        "id": "push_start_button",
+        "ppu_address": "0x21E7"
+      },
+      {
+        "id": "hiscore",
+        "ppu_address": "0x2248"
+      },
+      {
+        "id": "score",
+        "ppu_address": "0x228A"
+      },
+      {
+        "id": "hudson_copyright",
+        "ppu_address": "0x22E3"
+      },
+      {
+        "id": "license_copyright",
+        "ppu_address": "0x2322"
+      }
+    ]
+  },
+  "ending_nametable": {
+    "address": "0x9384",
+    "row_width": 32,
+    "row_count": 32,
+    "crc32": "65da79f3"
+  },
+  "chapter_help_screens": {
+    "address": "0xB1BC",
+    "size": 3072,
+    "screen_size": 1024,
+    "count": 3,
+    "crc32": "2452c0d6",
+    "screens": [
+      {
+        "id": "world1",
+        "address": "0xB1BC",
+        "text_spans": [
+          {
+            "id": "tanma",
+            "address": "0xB30A",
+            "size": 5
+          },
+          {
+            "id": "watch",
+            "address": "0xB310",
+            "size": 5
+          },
+          {
+            "id": "shock",
+            "address": "0xB36A",
+            "size": 5
+          },
+          {
+            "id": "kuukihou",
+            "address": "0xB3CA",
+            "size": 8
+          },
+          {
+            "id": "kyouryoku",
+            "address": "0xB42A",
+            "size": 9
+          },
+          {
+            "id": "uchiwa",
+            "address": "0xB434",
+            "size": 6
+          },
+          {
+            "id": "dorayaki",
+            "address": "0xB48A",
+            "size": 8
+          },
+          {
+            "id": "genki",
+            "address": "0xB4EA",
+            "size": 5
+          },
+          {
+            "id": "candy",
+            "address": "0xB4F0",
+            "size": 5
+          }
+        ]
+      },
+      {
+        "id": "world2",
+        "address": "0xB5BC",
+        "text_spans": [
+          {
+            "id": "small",
+            "address": "0xB72A",
+            "size": 5
+          },
+          {
+            "id": "light",
+            "address": "0xB730",
+            "size": 5
+          },
+          {
+            "id": "hirari",
+            "address": "0xB7AA",
+            "size": 6
+          },
+          {
+            "id": "mantle",
+            "address": "0xB7B1",
+            "size": 6
+          },
+          {
+            "id": "dorayaki",
+            "address": "0xB82A",
+            "size": 8
+          },
+          {
+            "id": "genki",
+            "address": "0xB8AA",
+            "size": 5
+          },
+          {
+            "id": "candy",
+            "address": "0xB8B0",
+            "size": 5
+          }
+        ]
+      },
+      {
+        "id": "world3",
+        "address": "0xB9BC",
+        "text_spans": [
+          {
+            "id": "tourinuke",
+            "address": "0xBAEA",
+            "size": 9
+          },
+          {
+            "id": "hoop",
+            "address": "0xBAF4",
+            "size": 4
+          },
+          {
+            "id": "kagi",
+            "address": "0xBB4A",
+            "size": 4
+          },
+          {
+            "id": "toriyose",
+            "address": "0xBBAA",
+            "size": 8
+          },
+          {
+            "id": "omamori",
+            "address": "0xBC0A",
+            "size": 7
+          },
+          {
+            "id": "tanma",
+            "address": "0xBC6A",
+            "size": 5
+          },
+          {
+            "id": "watch",
+            "address": "0xBC70",
+            "size": 5
+          },
+          {
+            "id": "dorayaki",
+            "address": "0xBCCA",
+            "size": 8
+          },
+          {
+            "id": "genki",
+            "address": "0xBD2A",
+            "size": 5
+          },
+          {
+            "id": "candy",
+            "address": "0xBD30",
+            "size": 5
+          }
+        ]
+      }
+    ]
+  },
+  "ending_credits": {
+    "address": "0xBDBC",
+    "end_address": "0xED3B",
+    "row_width": 32,
+    "row_count": 380,
+    "crc32": "994bf134",
+    "source_to_tile_remap": {
+      "0x20": "0x7F",
+      "0x2E": "0x5B",
+      "0x26": "0x5F"
+    }
+  },
+  "post_credit_data": {
+    "address": "0xED3C",
+    "size": 3200,
+    "crc32": "f1c65904",
+    "classification": "typed-unclassified-presentation-data"
+  },
+  "signatures": [
+    {
+      "address": "0x82C7",
+      "purpose": "title stream pointer and upload call",
+      "bytes": "A9 48 85 00 A9 92 85 01 20 CF 80 20 84 8F"
+    },
+    {
+      "address": "0x84C0",
+      "purpose": "three chapter-help nametable pointers",
+      "bytes": "BC B1 BC B5 BC B9"
+    },
+    {
+      "address": "0x8A2C",
+      "purpose": "biased nine-byte game-over text upload",
+      "bytes": "A2 F7 BD 88 89 8D 07 20 E8 D0 F7"
+    },
+    {
+      "address": "0x8A96",
+      "purpose": "ending opening nametable pointer and four-page copy",
+      "bytes": "A9 84 85 00 A9 93 85 01 A9 20 8D 06 20 A0 00 8C 06 20 A2 04"
+    },
+    {
+      "address": "0x8AFD",
+      "purpose": "credits source pointer",
+      "bytes": "A9 BC 85 4B A9 BD 85 4C"
+    },
+    {
+      "address": "0x8B1E",
+      "purpose": "credits row upload and exclusive end pointer",
+      "bytes": "20 EE 91 A5 4B C9 3C D0 F1 A5 4C C9 ED D0 EB"
+    },
+    {
+      "address": "0x8F84",
+      "purpose": "address-count-payload PPU stream reader",
+      "bytes": "A5 19 29 FB 85 19 8D 00 20 A0 00 B1 00 F0 34 8D 06 20 C8 B1 00 8D 06 20 C8 B1 00 AA C8"
+    },
+    {
+      "address": "0x91EE",
+      "purpose": "32-byte credits row remap and queue",
+      "bytes": "A5 16 29 03 D0 F9 A6 1C E8 E0 F0 90 02 A2 00 86 1C 8A 29 07 C9 03 D0 E7 A9 08 85 01"
+    }
+  ]
+}

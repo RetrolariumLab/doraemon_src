@@ -4348,6 +4348,12 @@
     },
     {
       "bank": 3,
+      "address": "0x8B18",
+      "name": "Bank3_EndingCreditsFrameLoop",
+      "evidence": "runtime-probed-frame-loop-streams-one-fixed-width-row-until-exclusive-ed3c-pointer"
+    },
+    {
+      "bank": 3,
       "address": "0x8C3F",
       "name": "Bank3_World1ToWorld2Transition",
       "evidence": "world1-gateway-target-and-bank1-exit"
@@ -4366,15 +4372,70 @@
     },
     {
       "bank": 3,
+      "address": "0x8F84",
+      "name": "Shell_UploadPpuCommandStream",
+      "evidence": "reads-address-count-payload-records-through-zero-high-byte-terminator"
+    },
+    {
+      "bank": 3,
       "address": "0x8FF2",
       "name": "Shell_NmiFrameServices",
       "evidence": "bank3-nmi-target-selects-one-of-three-presentation-ppu-and-scroll-service-paths"
     },
     {
       "bank": 3,
-      "address": "0x931E",
-      "name": "TitleScreen_Text",
-      "evidence": "embedded-ascii"
+      "address": "0x90C4",
+      "name": "Shell_CopyPaletteToStaging",
+      "evidence": "copies-32-bytes-from-zero-page-source-pointer-to-0210-palette-staging"
+    },
+    {
+      "bank": 3,
+      "address": "0x90D1",
+      "name": "Shell_UploadStagedPalette",
+      "evidence": "disables-rendering-then-tail-calls-palette-upload-service"
+    },
+    {
+      "bank": 3,
+      "address": "0x91EE",
+      "name": "Shell_StreamEndingCreditRow",
+      "evidence": "every-fourth-frame-remaps-and-queues-one-32-byte-credit-row-then-advances-source-pointer"
+    },
+    {
+      "bank": 3,
+      "address": "0x8A7F",
+      "name": "Shell_GameOverText",
+      "evidence": "nine-byte-zero-space-text-uploaded-by-biased-absolute-index-loop"
+    },
+    {
+      "bank": 3,
+      "address": "0x9248",
+      "name": "TitleScreen_PpuStream",
+      "evidence": "title-pointer-target-containing-thirteen-address-count-payload-records-and-zero-terminator",
+      "operand_symbol": true
+    },
+    {
+      "bank": 3,
+      "address": "0x9384",
+      "name": "EndingOpening_Nametable",
+      "evidence": "ending-loader-pointer-target-copied-as-four-256-byte-pages"
+    },
+    {
+      "bank": 3,
+      "address": "0xB1BC",
+      "name": "World1Help_Nametable",
+      "evidence": "first-entry-of-three-pointer-chapter-help-screen-table"
+    },
+    {
+      "bank": 3,
+      "address": "0xB5BC",
+      "name": "World2Help_Nametable",
+      "evidence": "second-entry-of-three-pointer-chapter-help-screen-table"
+    },
+    {
+      "bank": 3,
+      "address": "0xB9BC",
+      "name": "World3Help_Nametable",
+      "evidence": "third-entry-of-three-pointer-chapter-help-screen-table"
     },
     {
       "bank": 3,
@@ -4608,8 +4669,14 @@
     {
       "bank": 3,
       "address": "0xBDBC",
-      "name": "EndingCredits_Text",
-      "evidence": "embedded-ascii"
+      "name": "EndingCredits_Rows",
+      "evidence": "credits-source-pointer-target-read-as-380-fixed-32-byte-rows-until-exclusive-ed3c"
+    },
+    {
+      "bank": 3,
+      "address": "0xED3C",
+      "name": "PostCredit_PresentationData",
+      "evidence": "typed-data-starts-at-exclusive-active-credit-stop-pointer-with-no-consumer-yet-proven"
     },
     {
       "bank": 0,

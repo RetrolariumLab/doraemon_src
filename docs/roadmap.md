@@ -41,7 +41,7 @@ Progress is measured per bank by a machine-audited reconstruction inventory,
 not inferred from module names. All 354 indirect entries and all sixteen bank
 gateway targets are semantic. Runtime now proves and names the four gameplay
 loops (city, underground, World 2, and World 3) at exactly one iteration per
-emulated frame; 294 probable routine entries remain neutral.
+emulated frame; 290 probable routine entries remain neutral.
 
 ### 6. RAM and object systems - Partial
 
@@ -113,6 +113,11 @@ active World 3 PPU queue now has named RAM ownership and a documented
 address/flags/length/payload record.
 Its record geometry, capacity invariant, RAM ownership, routine addresses, and
 representative consumer/producer bytes are enforced by the release gate.
+Bank 3's fixed text path is also exact: game-over text, thirteen title PPU
+records, the ending-opening nametable, three chapter-help nametables and their
+26 item-name spans, and all 380 active credit rows are losslessly editable.
+The 3,200 bytes after the proven credit stop pointer are typed and explicitly
+registered as unclassified rather than folded into the active credits.
 
 ### 7. World data formats - Partial
 

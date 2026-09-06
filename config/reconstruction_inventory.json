@@ -2,12 +2,12 @@
   "schema_version": 1,
   "snapshot": {
     "source_labels": {
-      "module_count": 115,
+      "module_count": 119,
       "total": {
-        "global_labels": 3337,
-        "semantic_labels": 913,
-        "neutral_routine_labels": 294,
-        "neutral_local_labels": 2130
+        "global_labels": 3343,
+        "semantic_labels": 924,
+        "neutral_routine_labels": 290,
+        "neutral_local_labels": 2129
       },
       "by_bank": {
         "0": {
@@ -29,17 +29,17 @@
           "neutral_local_labels": 683
         },
         "3": {
-          "global_labels": 357,
-          "semantic_labels": 134,
-          "neutral_routine_labels": 20,
-          "neutral_local_labels": 203
+          "global_labels": 363,
+          "semantic_labels": 145,
+          "neutral_routine_labels": 16,
+          "neutral_local_labels": 202
         }
       }
     },
     "evidence_backed_prg_symbols": {
       "total": {
-        "semantic_code_symbols": 793,
-        "operand_symbols": 110
+        "semantic_code_symbols": 803,
+        "operand_symbols": 111
       },
       "by_bank": {
         "0": {
@@ -55,8 +55,8 @@
           "operand_symbols": 43
         },
         "3": {
-          "semantic_code_symbols": 129,
-          "operand_symbols": 2
+          "semantic_code_symbols": 139,
+          "operand_symbols": 3
         }
       }
     },
@@ -129,8 +129,8 @@
     },
     "typed_prg_data": {
       "total": {
-        "range_count": 51,
-        "typed_bytes": 46015
+        "range_count": 57,
+        "typed_bytes": 65796
       },
       "by_bank": {
         "0": {
@@ -165,24 +165,26 @@
           }
         },
         "3": {
-          "range_count": 3,
-          "typed_bytes": 2300,
+          "range_count": 9,
+          "typed_bytes": 22081,
           "bytes_by_kind": {
-            "data": 2278,
-            "table": 16,
+            "data": 9574,
+            "table": 332,
+            "text": 12169,
             "vectors": 6
           }
         }
       }
     },
     "open_unknowns": {
-      "section_count": 4,
-      "claim_count": 4,
+      "section_count": 5,
+      "claim_count": 5,
       "section_ids": [
         "BANK-001",
         "BANK-002",
         "WORLD-DATA-002",
-        "AUDIO-002"
+        "AUDIO-002",
+        "TEXT-001"
       ]
     }
   }

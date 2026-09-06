@@ -37,8 +37,8 @@ Bank3_ShellMain:
     STA $01
     LDA #$30
     STA $00
-    JSR Bank3_Func_90C4
-    JSR Bank3_Func_90D1
+    JSR Shell_CopyPaletteToStaging
+    JSR Shell_UploadStagedPalette
     JSR Bank3_Func_858D
     LDA $3B
     AND #$7F
@@ -48,7 +48,7 @@ Bank3_ShellMain:
     LDA #$92
     STA $01
     JSR Bank3_WaitForVblank
-    JSR Bank3_Func_8F84
+    JSR Shell_UploadPpuCommandStream
     LDA #$FF
     STA PpuScrollXShadow
     LDA #$D0
@@ -255,7 +255,7 @@ Bank3_Label_8426:
     STA $00
     LDA #$86
     STA $01
-    JSR Bank3_Func_90C4
+    JSR Shell_CopyPaletteToStaging
     LDA #$01
     STA a:$0408
     LDA $3B
@@ -295,7 +295,7 @@ Bank3_Label_8478:
     STA $00
     LDA a:$84C7,X
     STA $01
-    JSR Bank3_Func_90C4
+    JSR Shell_CopyPaletteToStaging
     LDX #$00
     STX $43
     INX
@@ -379,7 +379,7 @@ Bank3_Func_84FC:
     LDA #$92
     STA $01
     JSR Bank3_WaitForVblank
-    JSR Bank3_Func_8F84
+    JSR Shell_UploadPpuCommandStream
     LDX #$00
 
 Bank3_Label_8522:
@@ -436,8 +436,8 @@ Bank3_Label_8561:
     STA $01
     LDA #$30
     STA $00
-    JSR Bank3_Func_90C4
-    JSR Bank3_Func_90D1
+    JSR Shell_CopyPaletteToStaging
+    JSR Shell_UploadStagedPalette
     LDA #$00
     STA PpuScrollYShadow
     STA PpuScrollXShadow
@@ -581,7 +581,7 @@ Shell_ShowStatusScreen:
     LDA #$88
     STA $01
     JSR Bank3_WaitForVblank
-    JSR Bank3_Func_8F84
+    JSR Shell_UploadPpuCommandStream
     LDA $28
     ASL A
     TAY
@@ -589,7 +589,7 @@ Shell_ShowStatusScreen:
     STA $00
     LDA a:$883A,Y
     STA $01
-    JSR Bank3_Func_8F84
+    JSR Shell_UploadPpuCommandStream
     LDA #$03
     JSR Bank3_SelectChrBank
     LDA PpuCtrlShadow

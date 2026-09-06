@@ -746,16 +746,30 @@
     {
       "bank": 3,
       "start": "0x8FF2",
-      "end": "0x9829",
+      "end": "0x9247",
       "path": "rendering/shell_frame_services.asm",
-      "responsibility": "Shell PPU updates, text drawing, and presentation data"
+      "responsibility": "Shell PPU updates, palette staging, and ending-credit row streaming"
     },
     {
       "bank": 3,
-      "start": "0x982A",
+      "start": "0x9248",
+      "end": "0x9383",
+      "path": "data/title_screen.asm",
+      "responsibility": "Title nametable command stream and fixed text records"
+    },
+    {
+      "bank": 3,
+      "start": "0x9384",
+      "end": "0x9783",
+      "path": "data/ending_opening_nametable.asm",
+      "responsibility": "Complete 32 by 32 ending-opening nametable"
+    },
+    {
+      "bank": 3,
+      "start": "0x9784",
       "end": "0x9C1C",
       "path": "audio/effect_dispatch.asm",
-      "responsibility": "Audio-effect request arbitration and primary handlers"
+      "responsibility": "Audio-effect request tables, arbitration, and primary handlers"
     },
     {
       "bank": 3,
@@ -774,9 +788,16 @@
     {
       "bank": 3,
       "start": "0xA30F",
-      "end": "0xBDBB",
+      "end": "0xB1BB",
       "path": "audio/music_data.asm",
       "responsibility": "Shell APU tables, track headers, header-reachable streams, and adjacent unclassified data"
+    },
+    {
+      "bank": 3,
+      "start": "0xB1BC",
+      "end": "0xBDBB",
+      "path": "data/chapter_help_screens.asm",
+      "responsibility": "Three complete chapter-help nametables and their fixed item names"
     },
     {
       "bank": 3,
@@ -788,9 +809,16 @@
     {
       "bank": 3,
       "start": "0xDBBC",
-      "end": "0xF9BB",
+      "end": "0xED3B",
       "path": "data/ending_credits_2.asm",
-      "responsibility": "Second contiguous part of the ending credit stream"
+      "responsibility": "Second and final contiguous part of the active ending credit stream"
+    },
+    {
+      "bank": 3,
+      "start": "0xED3C",
+      "end": "0xF9BB",
+      "path": "data/ending_postscript.asm",
+      "responsibility": "Typed presentation data beyond the active ending-credit stop pointer"
     },
     {
       "bank": 3,

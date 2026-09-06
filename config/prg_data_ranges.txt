@@ -49,5 +49,11 @@ table 2 E2F2 E6F1 World3BigBlocks
 map 2 E6F2 F6F1 World3Map
 vectors 2 FFFA FFFF Bank2InterruptVectors
 table 3 8251 8260 Bank3ExtraLifeScoreThresholds
+text 3 8A7F 8A87 ShellGameOverText
+table 3 9248 9383 ShellTitlePpuStream
+data 3 9384 9783 ShellEndingOpeningNametable
 data 3 A4D6 ADBB ShellMusicHeadersAndReachableStreams
+data 3 B1BC BDBB ShellChapterHelpNametables
+text 3 BDBC ED3B ShellEndingCreditsRows
+data 3 ED3C F9BB ShellPostCreditPresentationData
 vectors 3 FFFA FFFF Bank3InterruptVectors

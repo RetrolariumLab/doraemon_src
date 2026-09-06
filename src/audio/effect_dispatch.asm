@@ -1,6 +1,25 @@
-; Doraemon PRG bank 3 $982A-$9C1C
-; Audio-effect request arbitration and primary handlers
+; Doraemon PRG bank 3 $9784-$9C1C
+; Audio-effect request tables, arbitration, and primary handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
+
+AudioEffect_RequestPriority:
+    .byte $00, $54, $64, $4C, $40, $44, $04, $38, $34, $3C, $1C, $50, $58, $60, $2C, $28
+    .byte $08, $48, $30, $20, $24, $18, $14, $10, $0C, $5C
+
+AudioEffect_RtsDispatchTable:
+    .byte $A1, $98, $A0, $98, $C2, $99, $DA, $99, $19, $9A, $33, $9A, $EE, $9D, $9B, $9D
+    .byte $C3, $9D, $CD, $9D, $8E, $9D, $98, $9D, $5E, $9D, $68, $9D, $FA, $9A, $07, $9B
+    .byte $1B, $9D, $30, $9C, $24, $9D, $41, $9D, $1C, $9C, $30, $9C, $D9, $9B, $E8, $9B
+    .byte $DA, $9C, $F5, $9C, $B1, $9A, $93, $98, $83, $9A, $93, $98, $CA, $9A, $E1, $9A
+    .byte $8B, $99, $30, $9C, $93, $99, $30, $9C, $A9, $9C, $BD, $9C, $9B, $9A, $93, $98
+    .byte $60, $9B, $93, $98, $7B, $9B, $93, $98, $CE, $98, $F0, $98, $CE, $98, $39, $99
+    .byte $91, $9B, $A5, $9B, $69, $99, $98, $98, $C9, $1A, $B0, $1A, $86, $49, $AE, $A0
+    .byte $02, $30, $0E, $84, $4A, $A8, $BD, $84, $97, $D9, $84, $97, $90, $09, $98, $A4
+    .byte $4A, $8D, $A0, $02, $A6, $49
+
+Bank3_Label_9824:
+    RTS
+    .byte $A4, $4A, $4C, $22, $98
 
 Audio_QueueEffect:
     CMP #$1A

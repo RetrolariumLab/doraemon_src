@@ -13,10 +13,10 @@ evidence manifests. Any change requires an intentional snapshot update.
 | 0 | 1,011 | 256 | 70 | 685 | 84 / 84 |
 | 1 | 879 | 229 | 91 | 559 | 97 / 97 |
 | 2 | 1,090 | 294 | 113 | 683 | 106 / 106 |
-| 3 | 357 | 134 | 20 | 203 | 67 / 67 |
-| Total | 3,337 | 913 | 294 | 2,130 | 354 / 354 |
+| 3 | 363 | 145 | 16 | 202 | 67 / 67 |
+| Total | 3,343 | 924 | 290 | 2,129 | 354 / 354 |
 
-The neutral population now separates 294 probable routine entries from 2,130
+The neutral population now separates 290 probable routine entries from 2,129
 local branch labels. The common runtime naming pass removed 88 neutral routine
 names by proving copied reset/NMI/mapper services, cross-bank gateways, and
 bank-local dispatches. A second pass named all 19 previously neutral non-audio
@@ -31,28 +31,32 @@ city `$82C1`, World 1 underground `$CE55`, World 2 `$8959`, and World 3
 `$838E`. All sixteen bank gateway targets, the three bank-local NMI targets
 that were still neutral, and the frame waits used by these top-level paths are
 also named and checked. Source 1.0 gives priority to the remaining directly
-reached core routines.
+reached core routines. The shell-text pass names the PPU record reader, palette
+staging, ending-credit row streamer, fixed screen data, and active credit loop
+while correcting a former label from the middle of the title prompt to the
+actual `$9248` stream start.
 Local labels are renamed only when that materially clarifies a routine contract.
 
-The symbol registry currently contains 793 evidence-backed code symbols and
-110 operand/table symbols. RAM coverage contains 280 unique aliases: 83 shared
+The symbol registry currently contains 803 evidence-backed code symbols and
+111 operand/table symbols. RAM coverage contains 280 unique aliases: 83 shared
 symbols plus 93 Bank 0, 39 Bank 1, and 65 Bank 2 scoped symbols. Bank 3 has the
 shared 83-symbol view; chapter-specific shell state remains a visible gap.
 
-Typed PRG ranges cover 46,015 bytes in 51 non-overlapping regions. The increase
-comes from exact header-reachable music streams, not blanket classification of
-the surrounding modules:
+Typed PRG ranges cover 65,796 bytes in 57 non-overlapping regions. Bank 3 now
+separates exact title, game-over, chapter-help, ending-opening, active-credit,
+and post-credit presentation spans instead of treating them as audio or one
+undifferentiated credit tail:
 
 | Bank | Typed bytes | Ranges |
 | ---: | ---: | ---: |
 | 0 | 11,388 | 10 |
 | 1 | 19,954 | 18 |
 | 2 | 12,373 | 20 |
-| 3 | 2,300 | 3 |
+| 3 | 22,081 | 9 |
 
-Four sections still contain explicit `Unknown:` claims: `BANK-001`,
-`BANK-002`, `WORLD-DATA-002`, and `AUDIO-002`. Long sections containing only
-resolved `Known:` evidence do not inflate that count.
+Five sections still contain explicit `Unknown:` claims: `BANK-001`,
+`BANK-002`, `WORLD-DATA-002`, `AUDIO-002`, and `TEXT-001`. Long sections
+containing only resolved `Known:` evidence do not inflate that count.
 
 ## Priority rule
 

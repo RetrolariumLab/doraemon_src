@@ -140,6 +140,15 @@
   header-unreachable bytes adjacent to the proven spans contain dormant music
   material or unrelated tables.
 
+## TEXT-001 - post-credit presentation data
+
+- Known: the active ending loop reads 380 fixed 32-byte rows from
+  `$BDBC-$ED3B` and exits when its source pointer reaches `$ED3C`.
+- Known: `$ED3C-$F9BB` contains text-like and graphics-like presentation bytes
+  and is now isolated as typed data rather than attributed to active credits.
+- Unknown: whether another dormant or currently untraced path consumes this
+  3,200-byte region and what its exact screen format is.
+
 ## Out-of-scope reference: Revision A
 
 - Known: CHR is unchanged; PRG and payload CRCs differ.

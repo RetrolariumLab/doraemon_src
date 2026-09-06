@@ -34,7 +34,7 @@ Bank3_Label_8AB9:
     STA a:$0130,X
     INX
     BNE Bank3_Label_8AB9
-    JSR Bank3_Func_90D1
+    JSR Shell_UploadStagedPalette
     LDA #$00
     STA PpuScrollXShadow
     STA PpuScrollYShadow
@@ -78,21 +78,21 @@ Bank3_Label_8AFA:
     JSR Bank3_Func_91A1
     JSR Bank3_EnableNmiAndRendering
 
-Bank3_Label_8B18:
+Bank3_EndingCreditsFrameLoop:
     JSR Shell_WaitForNextFrame
     JSR Bank3_Func_8B8A
-    JSR Bank3_Func_91EE
+    JSR Shell_StreamEndingCreditRow
     LDA $4B
     CMP #$3C
-    BNE Bank3_Label_8B18
+    BNE Bank3_EndingCreditsFrameLoop
     LDA $4C
     CMP #$ED
-    BNE Bank3_Label_8B18
+    BNE Bank3_EndingCreditsFrameLoop
     LDA #$B0
     STA $00
     LDA #$86
     STA $01
-    JSR Bank3_Func_90C4
+    JSR Shell_CopyPaletteToStaging
     LDA #$01
     STA a:$0408
     LDA #$00
@@ -128,7 +128,7 @@ Bank3_Label_8B72:
     STA $00
     LDA #$86
     STA $01
-    JSR Bank3_Func_90C4
+    JSR Shell_CopyPaletteToStaging
     LDX #$00
     STX $43
     INX

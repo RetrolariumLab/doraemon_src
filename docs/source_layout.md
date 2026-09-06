@@ -23,7 +23,8 @@
 | `src/shell/*.asm` | PRG bank 3 | title, game over, ending, and transitions |
 | `src/rendering/*.asm` | PRG bank 3 | shell PPU/text/frame services |
 | `src/audio/*.asm` | PRG bank 3 | effect driver, music engine, and streams |
-| `src/data/*.asm` | PRG bank 3 | credits and unclassified trailing data |
+| `src/data/*.asm` | PRG bank 3 | title/help/ending screens, credits, and typed trailing data |
+| `data/shell/*.json` | editable data | lossless shell text and presentation regions |
 | `src/graphics/chr.asm` | four 8 KiB banks | private CHR payload |
 | `src/memory/*.inc` | no bytes | hardware and evidence-backed RAM aliases |
 
@@ -42,6 +43,7 @@ boundary through an instruction, and the reconstruction audit enforces the
 700-line limit on every declared semantic module. World 2 separates the stage
 sequence and standard pointer table from three contiguous storage shards for
 the variable-length screen streams; the shard boundaries do not claim
-format-level screen boundaries. Likewise, the two ending-credit files are
-contiguous storage shards rather than a claim that `$DBBC` is a format-level
-boundary.
+format-level screen boundaries. Likewise, the two active ending-credit files
+are contiguous storage shards rather than a claim that `$DBBC` is a
+format-level boundary. The semantic credit range ends at the proven exclusive
+reader pointer `$ED3C`; subsequent presentation bytes remain separately typed.

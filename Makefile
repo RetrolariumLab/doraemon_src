@@ -41,6 +41,8 @@ AUDIO_EFFECTS := config/audio_effects.json
 AUDIO_MUSIC := config/audio_music.json
 AUDIO_ARBITRATION := config/audio_arbitration.json
 AUDIO_STREAM_AUTHORING := data/audio/music_streams.json
+SHELL_TEXT := config/shell_text.json
+SHELL_TEXT_AUTHORING := data/shell/text.json
 OBJECT_POOLS := config/object_pools.json
 OBJECT_DISPATCH := config/object_dispatch.json
 OBJECT_PLACEMENTS := config/object_placements.json
@@ -113,6 +115,7 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	audio-music validate-audio-music \
 	audio-arbitration validate-audio-arbitration \
 	audio-streams validate-audio-streams \
+	shell-text validate-shell-text \
 	object-dispatch validate-object-dispatch object-placements \
 	validate-object-placements world1-metasprites validate-world1-metasprites \
 	world1-random validate-world1-random \
@@ -300,6 +303,10 @@ audio-arbitration validate-audio-arbitration: $(PRG_ASSET)
 audio-streams validate-audio-streams: $(PRG_ASSET)
 	$(PYTHON) scripts/audio_streams.py validate --prg "$(PRG_ASSET)" \
 		--music "$(AUDIO_MUSIC)" --authoring "$(AUDIO_STREAM_AUTHORING)"
+
+shell-text validate-shell-text: $(PRG_ASSET)
+	$(PYTHON) scripts/shell_text.py validate --prg "$(PRG_ASSET)" \
+		--manifest "$(SHELL_TEXT)" --authoring "$(SHELL_TEXT_AUTHORING)"
 
 object-pools validate-object-pools:
 	$(PYTHON) scripts/object_pools.py --manifest "$(OBJECT_POOLS)" \
@@ -544,6 +551,7 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-audio-dispatch validate-audio-effects validate-audio-music \
 	validate-audio-arbitration \
 	validate-audio-streams \
+	validate-shell-text \
 	validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world1-metasprites \
 	validate-world1-random \

@@ -122,6 +122,7 @@ make validate-audio-effects # validate request roles, channel leases, and handle
 make validate-audio-music # validate music commands, channel RAM, and helpers
 make validate-audio-arbitration # validate effect/music ownership of APU channels
 make validate-audio-streams # round-trip all header-reachable music streams
+make validate-shell-text # round-trip title/help/ending text and presentation data
 make source-audit       # validate reconstruction milestones and evidence
 make runtime-architecture # capture and validate reset/NMI/mapper evidence
 make source-check       # complete project and reconstruction development gate
@@ -186,7 +187,7 @@ src/world3/                 underwater runtime, map, objects, and audio modules
 src/shell/                  title, ending, game-over, and transition code
 src/rendering/              shell PPU and text services
 src/audio/                  effect driver, music engine, and stream data
-src/data/                   ending credits and pending bank 3 data formats
+src/data/                   title/help/ending screens, credits, and typed bank 3 data
 src/graphics/chr.asm        private 32 KiB CHR include
 tests/                      tooling and data-contract tests
 ```

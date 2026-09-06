@@ -24,8 +24,8 @@ Bank3_Label_8A2E:
     STA $01
     LDA #$30
     STA $00
-    JSR Bank3_Func_90C4
-    JSR Bank3_Func_90D1
+    JSR Shell_CopyPaletteToStaging
+    JSR Shell_UploadStagedPalette
     LDA #$00
     STA PpuScrollYShadow
     STA PpuScrollXShadow
@@ -56,4 +56,6 @@ Bank3_Label_8A70:
     BEQ Bank3_Label_8A6D
     JSR Bank3_DisableRenderingForUpdate
     RTS
+
+Shell_GameOverText:
     .byte $47, $41, $4D, $45, $00, $4F, $56, $45, $52

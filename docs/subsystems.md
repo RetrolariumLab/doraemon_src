@@ -75,11 +75,16 @@ common presentation material. RESET execution is expected to begin here on
 power-on, but every bank retains compatible vectors for interrupt safety.
 The recovered `$8A88` ending entry initializes the credits pointer to `$BDBC`;
 runtime reaches its `$8B18` scroll loop through the World 3 completion gateway.
+The loop reads 380 fixed 32-byte rows and stops at `$ED3C`. Title PPU records,
+game-over text, the ending-opening nametable, all three chapter-help screens,
+and those active credits have a lossless fixed-size authoring contract in
+`data/shell/text.json`; see `docs/shell_text.md`.
 
 ## Audio / all four banks
 
-The shared audio driver begins at `$982A`. Requests 0-25 are accepted through
-`$02A0`; the table at `$9784` maps each request to an even dispatch index and
+The shared audio request tables begin at `$9784` and executable driver entry
+points begin at `$982A`. Requests 0-25 are accepted through `$02A0`; the first
+table maps each request to an even dispatch index and
 therefore also acts as its priority. The per-frame routine at `$983B` services
 four effect timers at `$02A3-$02A6`, then dispatches by pushing a little-endian
 address from `$979E` and returning through `RTS`. The table contains 52 slots
