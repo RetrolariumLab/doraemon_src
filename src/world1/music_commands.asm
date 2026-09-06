@@ -2,18 +2,18 @@
 ; World 1 music command handlers and stream reader
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-World1_MusicCommand_LoadExtendedNote:
+World1_MusicCommand_LoadExtendedDuration:
     JSR World1_Audio_ReadStreamByte
 
 Bank0_Label_EB68:
     LDX a:AudioChannelIndex
-    STA a:AudioChannelNotes,X
+    STA a:AudioChannelDurationCodes,X
     LDA a:AudioChannelFixedPitchFlags,X
     BNE Bank0_Label_EBEF
 
 Bank0_Label_EB73:
     LDX a:AudioChannelIndex
-    LDA a:AudioChannelNotes,X
+    LDA a:AudioChannelDurationCodes,X
 
 Bank0_Label_EB79:
     STA a:AudioWorkByte
@@ -184,7 +184,7 @@ Bank0_Label_EC86:
 
 Bank0_Label_EC94:
     LDX a:AudioChannelIndex
-    LDA a:AudioChannelNotes,X
+    LDA a:AudioChannelDurationCodes,X
     STA a:AudioChannelDurations,X
     RTS
 
@@ -304,18 +304,18 @@ World1_Music_SaveStreamPosition:
     ASL A
     TAX
     LDA AudioStreamPointers,X
-    STA a:AudioStreamHeaderPointers,X
+    STA a:AudioSavedStreamPointers,X
     LDA AudioStreamPointers+$01,X
-    STA a:AudioStreamHeaderPointers+$01,X
+    STA a:AudioSavedStreamPointers+$01,X
     RTS
 
 World1_MusicCommand_RestoreStreamPosition:
     LDA a:AudioChannelIndex
     ASL A
     TAX
-    LDA a:AudioStreamHeaderPointers,X
+    LDA a:AudioSavedStreamPointers,X
     STA AudioStreamPointers,X
-    LDA a:AudioStreamHeaderPointers+$01,X
+    LDA a:AudioSavedStreamPointers+$01,X
     STA AudioStreamPointers+$01,X
     JMP World1_Music_UpdateChannelStream
 

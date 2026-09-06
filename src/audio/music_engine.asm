@@ -26,9 +26,9 @@ Bank3_Label_9EF1:
     LDX #$07
 
 Bank3_Label_9EFC:
-    LDA a:$A4D5,Y
+    LDA a:MusicTrackHeaderIndexBase,Y
     STA AudioStreamPointers,X
-    STA a:AudioStreamHeaderPointers,X
+    STA a:AudioSavedStreamPointers,X
     DEY
     DEX
     BPL Bank3_Label_9EFC
@@ -54,10 +54,10 @@ Bank3_Label_9EFC:
     STX a:AudioChannelDurations+$01
     STX a:AudioChannelDurations+$02
     STX a:AudioChannelDurations+$03
-    STX a:AudioChannelNotes
-    STX a:AudioChannelNotes+$01
-    STX a:AudioChannelNotes+$02
-    STX a:AudioChannelNotes+$03
+    STX a:AudioChannelDurationCodes
+    STX a:AudioChannelDurationCodes+$01
+    STX a:AudioChannelDurationCodes+$02
+    STX a:AudioChannelDurationCodes+$03
     LDA #$08
     STA a:AudioChannelLengthBits
     STA a:AudioChannelLengthBits+$01
@@ -186,18 +186,18 @@ Bank3_Label_A039:
     AND #$7F
     BPL Bank3_Label_A043
 
-MusicCommand_LoadExtendedNote:
+MusicCommand_LoadExtendedDuration:
     JSR Audio_ReadStreamByte
 
 Bank3_Label_A043:
     LDX a:AudioChannelIndex
-    STA a:AudioChannelNotes,X
+    STA a:AudioChannelDurationCodes,X
     LDA a:AudioChannelFixedPitchFlags,X
     BNE Bank3_Label_A0CA
 
 Bank3_Label_A04E:
     LDX a:AudioChannelIndex
-    LDA a:AudioChannelNotes,X
+    LDA a:AudioChannelDurationCodes,X
 
 Bank3_Label_A054:
     STA a:AudioWorkByte
@@ -368,7 +368,7 @@ Bank3_Label_A161:
 
 Bank3_Label_A16F:
     LDX a:AudioChannelIndex
-    LDA a:AudioChannelNotes,X
+    LDA a:AudioChannelDurationCodes,X
     STA a:AudioChannelDurations,X
     RTS
 
@@ -488,18 +488,18 @@ Music_SaveStreamPosition:
     ASL A
     TAX
     LDA AudioStreamPointers,X
-    STA a:AudioStreamHeaderPointers,X
+    STA a:AudioSavedStreamPointers,X
     LDA AudioStreamPointers+$01,X
-    STA a:AudioStreamHeaderPointers+$01,X
+    STA a:AudioSavedStreamPointers+$01,X
     RTS
 
 MusicCommand_RestoreStreamPosition:
     LDA a:AudioChannelIndex
     ASL A
     TAX
-    LDA a:AudioStreamHeaderPointers,X
+    LDA a:AudioSavedStreamPointers,X
     STA AudioStreamPointers,X
-    LDA a:AudioStreamHeaderPointers+$01,X
+    LDA a:AudioSavedStreamPointers+$01,X
     STA AudioStreamPointers+$01,X
     JMP Music_UpdateChannelStream
 

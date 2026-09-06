@@ -220,17 +220,21 @@
       "evidence": [
         "config/audio_dispatch.json",
         "config/audio_music.json",
+        "data/audio/music_streams.json",
         "docs/audio_music.md",
         "docs/subsystems.md",
         "scripts/audio_dispatch.py",
         "scripts/audio_music.py",
-        "tests/test_audio_music.py"
+        "scripts/audio_streams.py",
+        "tests/test_audio_music.py",
+        "tests/test_audio_streams.py"
       ]
     },
     {
       "id": "authoring_roundtrips",
       "status": "partial",
       "evidence": [
+        "data/audio/music_streams.json",
         "data/world1/metasprites.json",
         "data/world2/compressed_screens.json",
         "data/world2/metatiles.json",
@@ -244,6 +248,7 @@
         "data/world1/hierarchical_world.json",
         "data/world3/hierarchical_world.json",
         "docs/world1_metasprites.md",
+        "docs/audio_music.md",
         "docs/world2_streaming.md",
         "docs/world2_metatiles.md",
         "docs/world2_metasprites.md",
@@ -255,6 +260,7 @@
         "docs/world3_metasprites.md",
         "docs/world_data.md",
         "scripts/world1_metasprites.py",
+        "scripts/audio_streams.py",
         "scripts/world2_streaming.py",
         "scripts/world2_metatiles.py",
         "scripts/world2_metasprites.py",
@@ -266,6 +272,7 @@
         "scripts/world3_metasprites.py",
         "scripts/world_data.py",
         "tests/test_world1_metasprites.py",
+        "tests/test_audio_streams.py",
         "tests/test_world2_streaming.py",
         "tests/test_world2_metatiles.py",
         "tests/test_world2_metasprites.py",

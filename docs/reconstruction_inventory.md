@@ -10,31 +10,33 @@ evidence manifests. Any change requires an intentional snapshot update.
 
 | Bank | Global labels | Semantic labels | Neutral routines | Neutral locals | Semantic indirect entries |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 1,009 | 186 | 134 | 689 | 48 / 84 |
-| 1 | 877 | 161 | 157 | 559 | 60 / 97 |
-| 2 | 1,088 | 224 | 181 | 683 | 65 / 106 |
-| 3 | 355 | 59 | 93 | 203 | 25 / 67 |
-| Total | 3,329 | 630 | 565 | 2,134 | 198 / 354 |
+| 0 | 1,010 | 188 | 134 | 688 | 48 / 84 |
+| 1 | 879 | 163 | 157 | 559 | 60 / 97 |
+| 2 | 1,090 | 226 | 181 | 683 | 65 / 106 |
+| 3 | 357 | 61 | 93 | 203 | 25 / 67 |
+| Total | 3,336 | 638 | 565 | 2,133 | 198 / 354 |
 
 The previous aggregate observation of roughly 82% neutral definitions mixed
-565 probable routine entries with 2,134 local branch labels. Source 1.0 gives
+565 probable routine entries with 2,133 local branch labels. Source 1.0 gives
 priority to the former and to the 156 indirect entries that still lack an
 evidence-backed semantic symbol. Local labels are renamed only when that
 materially clarifies a routine contract.
 
-The symbol registry currently contains 514 evidence-backed code symbols and
-106 operand/table symbols. RAM coverage contains 276 unique aliases: 79 shared
+The symbol registry currently contains 518 evidence-backed code symbols and
+110 operand/table symbols. RAM coverage contains 276 unique aliases: 79 shared
 symbols plus 93 Bank 0, 39 Bank 1, and 65 Bank 2 scoped symbols. Bank 3 has the
 shared 79-symbol view; chapter-specific shell state remains a visible gap.
 
-Typed PRG ranges cover 35,792 bytes in 46 non-overlapping regions:
+Typed PRG ranges cover 46,015 bytes in 51 non-overlapping regions. The increase
+comes from exact header-reachable music streams, not blanket classification of
+the surrounding modules:
 
 | Bank | Typed bytes | Ranges |
 | ---: | ---: | ---: |
-| 0 | 8,120 | 9 |
-| 1 | 18,213 | 16 |
-| 2 | 9,437 | 19 |
-| 3 | 22 | 2 |
+| 0 | 11,388 | 10 |
+| 1 | 19,954 | 18 |
+| 2 | 12,373 | 20 |
+| 3 | 2,300 | 3 |
 
 Four sections still contain explicit `Unknown:` claims: `BANK-001`,
 `BANK-002`, `WORLD-DATA-002`, and `AUDIO-002`. Long sections containing only

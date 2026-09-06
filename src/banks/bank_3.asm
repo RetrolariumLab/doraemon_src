@@ -22,7 +22,7 @@
 .include "../audio/effect_handlers.asm"
 ; $9ED8-$A30E: Four-channel music sequencer and stream interpreter
 .include "../audio/music_engine.asm"
-; $A30F-$BDBB: APU period tables, track headers, and music streams
+; $A30F-$BDBB: Shell APU tables, track headers, header-reachable streams, and adjacent unclassified data
 .include "../audio/music_data.asm"
 ; $BDBC-$DBBB: First contiguous part of the ending credit stream
 .include "../data/ending_credits_1.asm"

@@ -4,33 +4,33 @@
     "source_labels": {
       "module_count": 115,
       "total": {
-        "global_labels": 3329,
-        "semantic_labels": 630,
+        "global_labels": 3336,
+        "semantic_labels": 638,
         "neutral_routine_labels": 565,
-        "neutral_local_labels": 2134
+        "neutral_local_labels": 2133
       },
       "by_bank": {
         "0": {
-          "global_labels": 1009,
-          "semantic_labels": 186,
+          "global_labels": 1010,
+          "semantic_labels": 188,
           "neutral_routine_labels": 134,
-          "neutral_local_labels": 689
+          "neutral_local_labels": 688
         },
         "1": {
-          "global_labels": 877,
-          "semantic_labels": 161,
+          "global_labels": 879,
+          "semantic_labels": 163,
           "neutral_routine_labels": 157,
           "neutral_local_labels": 559
         },
         "2": {
-          "global_labels": 1088,
-          "semantic_labels": 224,
+          "global_labels": 1090,
+          "semantic_labels": 226,
           "neutral_routine_labels": 181,
           "neutral_local_labels": 683
         },
         "3": {
-          "global_labels": 355,
-          "semantic_labels": 59,
+          "global_labels": 357,
+          "semantic_labels": 61,
           "neutral_routine_labels": 93,
           "neutral_local_labels": 203
         }
@@ -38,25 +38,25 @@
     },
     "evidence_backed_prg_symbols": {
       "total": {
-        "semantic_code_symbols": 514,
-        "operand_symbols": 106
+        "semantic_code_symbols": 518,
+        "operand_symbols": 110
       },
       "by_bank": {
         "0": {
-          "semantic_code_symbols": 152,
-          "operand_symbols": 32
+          "semantic_code_symbols": 153,
+          "operand_symbols": 33
         },
         "1": {
-          "semantic_code_symbols": 128,
-          "operand_symbols": 31
+          "semantic_code_symbols": 129,
+          "operand_symbols": 32
         },
         "2": {
-          "semantic_code_symbols": 179,
-          "operand_symbols": 42
+          "semantic_code_symbols": 180,
+          "operand_symbols": 43
         },
         "3": {
-          "semantic_code_symbols": 55,
-          "operand_symbols": 1
+          "semantic_code_symbols": 56,
+          "operand_symbols": 2
         }
       }
     },
@@ -129,32 +129,35 @@
     },
     "typed_prg_data": {
       "total": {
-        "range_count": 46,
-        "typed_bytes": 35792
+        "range_count": 51,
+        "typed_bytes": 46015
       },
       "by_bank": {
         "0": {
-          "range_count": 9,
-          "typed_bytes": 8120,
+          "range_count": 10,
+          "typed_bytes": 11388,
           "bytes_by_kind": {
+            "data": 3268,
             "map": 5696,
             "table": 2418,
             "vectors": 6
           }
         },
         "1": {
-          "range_count": 16,
-          "typed_bytes": 18213,
+          "range_count": 18,
+          "typed_bytes": 19954,
           "bytes_by_kind": {
+            "data": 1741,
             "map": 16430,
             "table": 1777,
             "vectors": 6
           }
         },
         "2": {
-          "range_count": 19,
-          "typed_bytes": 9437,
+          "range_count": 20,
+          "typed_bytes": 12373,
           "bytes_by_kind": {
+            "data": 2936,
             "map": 4096,
             "table": 5287,
             "text": 48,
@@ -162,9 +165,10 @@
           }
         },
         "3": {
-          "range_count": 2,
-          "typed_bytes": 22,
+          "range_count": 3,
+          "typed_bytes": 2300,
           "bytes_by_kind": {
+            "data": 2278,
             "table": 16,
             "vectors": 6
           }

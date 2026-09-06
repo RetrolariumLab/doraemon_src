@@ -28,14 +28,14 @@ EXPECTED_COMMANDS = [
     (0xF3, 0, "ReturnFromStream"),
     (0xF2, 0, "ResetLengthBits"),
     (0xF1, 0, "SelectTrackChannelStream"),
-    (0xF0, 1, "LoadExtendedNote"),
+    (0xF0, 1, "LoadExtendedDuration"),
     (0xEF, 1, "SetEnvelopeVolume"),
 ]
 EXPECTED_DRIVERS = {
-    0: ("world1-audio", "World1_", 9, 0xE9FD),
-    1: ("world2-audio", "World2_", 7, 0xACE4),
-    2: ("world3-audio", "World3_", 9, 0xC4F5),
-    3: ("shell-audio", "", 5, 0x9ED8),
+    0: ("world1-audio", "World1_", 1, 9, 8, 0xEFFB, 0xE9FD),
+    1: ("world2-audio", "World2_", 1, 7, 6, 0xB2E3, 0xACE4),
+    2: ("world3-audio", "World3_", 1, 9, 8, 0xCAF3, 0xC4F5),
+    3: ("shell-audio", "", 1, 5, 4, 0xA4D6, 0x9ED8),
 }
 EXPECTED_OVERLAY = [
     (
@@ -107,6 +107,22 @@ def prg_symbol_matches(
     )
 
 
+def prg_operand_symbol_matches(
+    registry: dict[str, Any], bank: int, address: int, name: str
+) -> bool:
+    matches = [
+        item
+        for item in registry.get("symbols", [])
+        if item.get("name") == name
+    ]
+    return (
+        len(matches) == 1
+        and int(matches[0]["bank"]) == bank
+        and number(matches[0]["address"]) == address
+        and matches[0].get("operand_symbol", False) is True
+    )
+
+
 def dispatch_by_bank(document: dict[str, Any]) -> dict[int, dict[str, Any]]:
     drivers = [
         {key: value for key, value in document.items() if key != "additional_drivers"},
@@ -169,17 +185,49 @@ def validate_manifest(
         identity = (
             str(driver["name"]),
             str(driver["symbol_prefix"]),
+            int(driver["track_id_min"]),
+            int(driver["track_id_limit"]),
             int(driver["track_count"]),
+            number(driver["track_header_table"]),
             number(driver["music_update"]),
         )
         if EXPECTED_DRIVERS.get(bank) != identity:
             errors.append(f"audio driver identity differs for bank {bank}")
             continue
-        _driver_name, prefix, track_count, music_update = identity
+        (
+            _driver_name,
+            prefix,
+            first_track,
+            track_limit,
+            track_count,
+            header_table,
+            music_update,
+        ) = identity
+        if first_track != 1 or track_count != track_limit - first_track:
+            errors.append(f"audio track-ID geometry differs for bank {bank}")
         if bank_slice(prg, bank, music_update + 0x12, 2) != bytes(
-            (0xC9, track_count)
+            (0xC9, track_limit)
         ):
             errors.append(f"audio track limit differs for bank {bank}")
+        header_operand = header_table - 1
+        if bank_slice(prg, bank, music_update + 0x24, 3) != bytes(
+            (0xB9, header_operand & 0xFF, header_operand >> 8)
+        ):
+            errors.append(f"audio track-header load differs for bank {bank}")
+        if not prg_operand_symbol_matches(
+            registry,
+            bank,
+            header_operand,
+            f"{prefix}MusicTrackHeaderIndexBase",
+        ):
+            errors.append(f"audio track-header index symbol differs for bank {bank}")
+        if not prg_symbol_matches(
+            registry,
+            bank,
+            header_table,
+            f"{prefix}MusicTrackHeaders",
+        ):
+            errors.append(f"audio track-header table symbol differs for bank {bank}")
         dispatch_driver = dispatches.get(bank)
         if dispatch_driver is None:
             errors.append(f"audio dispatch is missing bank {bank}")
@@ -213,6 +261,7 @@ def validate_manifest(
             routine_bytes += size
     return errors, {
         "driver_count": len(drivers),
+        "track_count": sum(int(driver["track_count"]) for driver in drivers),
         "command_count": len(commands),
         "command_target_count": command_targets,
         "ram_symbol_count": len(ram),
@@ -244,6 +293,7 @@ def main() -> int:
         return 1
     print(
         f"[OK] audio music ABI: {report['driver_count']} drivers, "
+        f"{report['track_count']} playable tracks, "
         f"{report['command_count']} commands / "
         f"{report['command_target_count']} bank-local targets, "
         f"{report['ram_symbol_count']} RAM fields ({report['ram_byte_count']} bytes), "

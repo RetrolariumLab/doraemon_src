@@ -10,7 +10,7 @@
     {
       "address": "0x02AC",
       "size": 4,
-      "symbol": "AudioChannelNotes"
+      "symbol": "AudioChannelDurationCodes"
     },
     {
       "address": "0x02B0",
@@ -60,7 +60,7 @@
     {
       "address": "0x02DC",
       "size": 8,
-      "symbol": "AudioStreamHeaderPointers"
+      "symbol": "AudioSavedStreamPointers"
     },
     {
       "address": "0x02E4",
@@ -205,7 +205,7 @@
     {
       "opcode": "0xF0",
       "operand_bytes": 1,
-      "name": "LoadExtendedNote"
+      "name": "LoadExtendedDuration"
     },
     {
       "opcode": "0xEF",
@@ -218,7 +218,10 @@
       "bank": 0,
       "name": "world1-audio",
       "symbol_prefix": "World1_",
-      "track_count": 9,
+      "track_id_min": 1,
+      "track_id_limit": 9,
+      "track_count": 8,
+      "track_header_table": "0xEFFB",
       "music_update": "0xE9FD",
       "routines": [
         {
@@ -245,7 +248,10 @@
       "bank": 1,
       "name": "world2-audio",
       "symbol_prefix": "World2_",
-      "track_count": 7,
+      "track_id_min": 1,
+      "track_id_limit": 7,
+      "track_count": 6,
+      "track_header_table": "0xB2E3",
       "music_update": "0xACE4",
       "routines": [
         {
@@ -272,7 +278,10 @@
       "bank": 2,
       "name": "world3-audio",
       "symbol_prefix": "World3_",
-      "track_count": 9,
+      "track_id_min": 1,
+      "track_id_limit": 9,
+      "track_count": 8,
+      "track_header_table": "0xCAF3",
       "music_update": "0xC4F5",
       "routines": [
         {
@@ -299,7 +308,10 @@
       "bank": 3,
       "name": "shell-audio",
       "symbol_prefix": "",
-      "track_count": 5,
+      "track_id_min": 1,
+      "track_id_limit": 5,
+      "track_count": 4,
+      "track_header_table": "0xA4D6",
       "music_update": "0x9ED8",
       "routines": [
         {

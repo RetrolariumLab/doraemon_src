@@ -53,6 +53,29 @@ class AudioMusicTests(unittest.TestCase):
             )
         )
 
+    def test_track_header_index_requires_operand_symbol(self) -> None:
+        registry = {
+            "symbols": [
+                {
+                    "bank": 1,
+                    "address": "0xB2E2",
+                    "name": "World2_MusicTrackHeaderIndexBase",
+                    "operand_symbol": True,
+                }
+            ]
+        }
+        self.assertTrue(
+            AUDIO.prg_operand_symbol_matches(
+                registry, 1, 0xB2E2, "World2_MusicTrackHeaderIndexBase"
+            )
+        )
+
+    def test_playable_track_counts_exclude_zero_state(self) -> None:
+        self.assertEqual(
+            sum(identity[4] for identity in AUDIO.EXPECTED_DRIVERS.values()),
+            26,
+        )
+
     def test_dispatches_are_indexed_by_bank(self) -> None:
         document = {
             "name": "shell",

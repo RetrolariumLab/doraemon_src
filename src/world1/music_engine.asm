@@ -26,9 +26,9 @@ Bank0_Label_EA16:
     LDX #$07
 
 Bank0_Label_EA21:
-    LDA a:$EFFA,Y
+    LDA a:World1_MusicTrackHeaderIndexBase,Y
     STA AudioStreamPointers,X
-    STA a:AudioStreamHeaderPointers,X
+    STA a:AudioSavedStreamPointers,X
     DEY
     DEX
     BPL Bank0_Label_EA21
@@ -54,10 +54,10 @@ Bank0_Label_EA21:
     STX a:AudioChannelDurations+$01
     STX a:AudioChannelDurations+$02
     STX a:AudioChannelDurations+$03
-    STX a:AudioChannelNotes
-    STX a:AudioChannelNotes+$01
-    STX a:AudioChannelNotes+$02
-    STX a:AudioChannelNotes+$03
+    STX a:AudioChannelDurationCodes
+    STX a:AudioChannelDurationCodes+$01
+    STX a:AudioChannelDurationCodes+$02
+    STX a:AudioChannelDurationCodes+$03
     LDA #$08
     STA a:AudioChannelLengthBits
     STA a:AudioChannelLengthBits+$01

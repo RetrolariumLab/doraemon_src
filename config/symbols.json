@@ -1020,7 +1020,7 @@
     {
       "bank": 0,
       "address": "0xEB65",
-      "name": "World1_MusicCommand_LoadExtendedNote",
+      "name": "World1_MusicCommand_LoadExtendedDuration",
       "evidence": "music-command-rts-slot-15"
     },
     {
@@ -1136,6 +1136,19 @@
       "address": "0xEE26",
       "name": "World1_Audio_ReadStreamByte",
       "evidence": "indirect-stream-read-and-pointer-advance"
+    },
+    {
+      "bank": 0,
+      "address": "0xEFFA",
+      "name": "World1_MusicTrackHeaderIndexBase",
+      "evidence": "one-byte-before-eight-byte-track-records-indexed-by-eight-times-nonzero-music-state",
+      "operand_symbol": true
+    },
+    {
+      "bank": 0,
+      "address": "0xEFFB",
+      "name": "World1_MusicTrackHeaders",
+      "evidence": "eight-four-channel-little-endian-stream-pointer-records"
     },
     {
       "bank": 1,
@@ -1932,7 +1945,7 @@
     {
       "bank": 1,
       "address": "0xAE4C",
-      "name": "World2_MusicCommand_LoadExtendedNote",
+      "name": "World2_MusicCommand_LoadExtendedDuration",
       "evidence": "music-command-rts-slot-15"
     },
     {
@@ -2048,6 +2061,19 @@
       "address": "0xB10D",
       "name": "World2_Audio_ReadStreamByte",
       "evidence": "indirect-stream-read-and-pointer-advance"
+    },
+    {
+      "bank": 1,
+      "address": "0xB2E2",
+      "name": "World2_MusicTrackHeaderIndexBase",
+      "evidence": "one-byte-before-eight-byte-track-records-indexed-by-eight-times-nonzero-music-state",
+      "operand_symbol": true
+    },
+    {
+      "bank": 1,
+      "address": "0xB2E3",
+      "name": "World2_MusicTrackHeaders",
+      "evidence": "six-four-channel-little-endian-stream-pointer-records"
     },
     {
       "bank": 1,
@@ -3247,7 +3273,7 @@
     {
       "bank": 2,
       "address": "0xC65D",
-      "name": "World3_MusicCommand_LoadExtendedNote",
+      "name": "World3_MusicCommand_LoadExtendedDuration",
       "evidence": "music-command-rts-slot-15"
     },
     {
@@ -3363,6 +3389,19 @@
       "address": "0xC91E",
       "name": "World3_Audio_ReadStreamByte",
       "evidence": "indirect-stream-read-and-pointer-advance"
+    },
+    {
+      "bank": 2,
+      "address": "0xCAF2",
+      "name": "World3_MusicTrackHeaderIndexBase",
+      "evidence": "one-byte-before-eight-byte-track-records-indexed-by-eight-times-nonzero-music-state",
+      "operand_symbol": true
+    },
+    {
+      "bank": 2,
+      "address": "0xCAF3",
+      "name": "World3_MusicTrackHeaders",
+      "evidence": "eight-four-channel-little-endian-stream-pointer-records"
     },
     {
       "bank": 2,
@@ -3704,7 +3743,7 @@
     {
       "bank": 3,
       "address": "0xA040",
-      "name": "MusicCommand_LoadExtendedNote",
+      "name": "MusicCommand_LoadExtendedDuration",
       "evidence": "music-command-rts-slot-15"
     },
     {
@@ -3820,6 +3859,19 @@
       "address": "0xA301",
       "name": "Audio_ReadStreamByte",
       "evidence": "indirect-stream-read-and-pointer-advance"
+    },
+    {
+      "bank": 3,
+      "address": "0xA4D5",
+      "name": "MusicTrackHeaderIndexBase",
+      "evidence": "one-byte-before-eight-byte-track-records-indexed-by-eight-times-nonzero-music-state",
+      "operand_symbol": true
+    },
+    {
+      "bank": 3,
+      "address": "0xA4D6",
+      "name": "MusicTrackHeaders",
+      "evidence": "four-four-channel-little-endian-stream-pointer-records"
     },
     {
       "bank": 3,
@@ -4991,15 +5043,15 @@
     },
     {
       "address": "0x02AC",
-      "name": "AudioChannelNotes",
+      "name": "AudioChannelDurationCodes",
       "size": 4,
-      "evidence": "four-channel-current-note-array"
+      "evidence": "high-bit-duration-events-store-seven-bit-code-used-to-reload-four-channel-countdowns"
     },
     {
       "address": "0x02B0",
       "name": "AudioChannelDurations",
       "size": 4,
-      "evidence": "four-channel-note-duration-array"
+      "evidence": "four-channel-per-frame-duration-countdowns"
     },
     {
       "address": "0x02B4",
@@ -5051,9 +5103,9 @@
     },
     {
       "address": "0x02DC",
-      "name": "AudioStreamHeaderPointers",
+      "name": "AudioSavedStreamPointers",
       "size": 8,
-      "evidence": "eight-byte-track-header-copy"
+      "evidence": "initialized-from-track-header-then-overwritten-and-restored-by-commands-f7-fe"
     },
     {
       "address": "0x02E4",

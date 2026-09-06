@@ -87,34 +87,36 @@ The per-channel interpreter at `$9FE7` treats `$EF-$FF` as commands. It indexes
 the 17-entry table at `$A017` with `2 * ($FF - command)` and uses the same
 target-minus-one RTS dispatch as the effect driver. All 17 commands now have
 structural names and explicit operand widths derived from their state changes
-and control flow. The shared four-channel ABI covers 92 bytes of note,
-duration, envelope, fixed-pitch, loop, call, and stream-pointer state.
+and control flow. The shared four-channel ABI covers 92 bytes of duration,
+event, envelope, fixed-pitch, loop, call, and stream-pointer state.
 
 World 3 carries a relocated, non-identical copy at `$BE90-$CAxx` in bank 2.
 It preserves the same 26-value priority table, 52-slot effect dispatch, and 17
-commands, while its music initializer accepts nine tracks instead of bank 3's
-five. Its effect table is at `$BE28`, its command table at `$C634`, and its
-stream reader at `$C91E`.
+commands. Its exclusive track-ID limit is nine, yielding eight playable tracks
+instead of bank 3's four. Its effect table is at `$BE28`, its command table at
+`$C634`, and its stream reader at `$C91E`.
 
 World 2 has a smaller local variant in bank 1. It accepts 15 requests through
 the priority table at `$A80B` and dispatches 30 effect slots from `$A81A` to 25
 unique handlers. Its 17 music commands use the table at `$AE23`, its stream
-reader is at `$B10D`, and its initializer accepts seven tracks.
+reader is at `$B10D`, and track IDs 1-6 are playable.
 
 World 1 carries the fourth driver in bank 0. It restores the 26-request and
 52-slot shape, with its priority table at `$E316`, effect table at `$E330`, and
 38 unique effect handlers. The music command table is at `$EB3C`, the stream
-reader at `$EE26`, and the initializer accepts nine tracks. Across the four
-banks, the accepted track counts are nine for World 1, seven for World 2, nine
-for World 3, and five for the shell. All copies are validated independently;
-shared structure does not imply byte identity or a callable cross-bank sound
-service.
+reader at `$EE26`, and track IDs 1-8 are playable. Across the four banks, ID
+zero stops music and the playable counts are eight for World 1, six for World
+2, eight for World 3, and four for the shell. All copies are validated
+independently; shared structure does not imply byte identity or a callable
+cross-bank sound service.
 
 `config/audio_dispatch.json` records the complete indirect edge set, while
 `make validate-audio-dispatch` proves the ROM tables and Ghidra seed registry
 remain synchronized. `config/audio_music.json` and `docs/audio_music.md` record
 the shared command grammar and RAM ABI; `make validate-audio-music` verifies
-all 68 bank-local command targets and the common helper contracts.
+all 68 bank-local command targets and the common helper contracts. The
+state-aware `make validate-audio-streams` gate additionally proves all 26
+headers and 10,016 header-reachable stream bytes round-trip losslessly.
 
 ## Object storage and lifecycle
 

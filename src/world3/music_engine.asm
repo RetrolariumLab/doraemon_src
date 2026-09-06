@@ -26,9 +26,9 @@ Bank2_Label_C50E:
     LDX #$07
 
 Bank2_Label_C519:
-    LDA a:$CAF2,Y
+    LDA a:World3_MusicTrackHeaderIndexBase,Y
     STA AudioStreamPointers,X
-    STA a:AudioStreamHeaderPointers,X
+    STA a:AudioSavedStreamPointers,X
     DEY
     DEX
     BPL Bank2_Label_C519
@@ -54,10 +54,10 @@ Bank2_Label_C519:
     STX a:AudioChannelDurations+$01
     STX a:AudioChannelDurations+$02
     STX a:AudioChannelDurations+$03
-    STX a:AudioChannelNotes
-    STX a:AudioChannelNotes+$01
-    STX a:AudioChannelNotes+$02
-    STX a:AudioChannelNotes+$03
+    STX a:AudioChannelDurationCodes
+    STX a:AudioChannelDurationCodes+$01
+    STX a:AudioChannelDurationCodes+$02
+    STX a:AudioChannelDurationCodes+$03
     LDA #$08
     STA a:AudioChannelLengthBits
     STA a:AudioChannelLengthBits+$01

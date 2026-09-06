@@ -527,8 +527,8 @@ All four PRG banks carry their own driver code but use the same RAM layout.
 | `AudioEffectTimers` | `$02A3` | Four per-frame effect countdown bytes |
 | `AudioMusicState` | `$02AA` | Music request and active-state byte |
 | `AudioMusicControl` | `$02AB` | Music reset/control state shared with transition code |
-| `AudioChannelNotes` | `$02AC` | Four current note values |
-| `AudioChannelDurations` | `$02B0` | Four channel countdown values |
+| `AudioChannelDurationCodes` | `$02AC` | Four current seven-bit duration/articulation codes |
+| `AudioChannelDurations` | `$02B0` | Four per-frame duration countdowns |
 | `AudioChannelBaseVolumes` | `$02B4` | Four envelope base values loaded by command `$EF` |
 | `AudioChannelEnvelopeVolumes` | `$02B8` | Four current envelope accumulators |
 | `AudioChannelEnvelopeSteps` | `$02BC` | Four signed envelope steps |
@@ -537,7 +537,7 @@ All four PRG banks carry their own driver code but use the same RAM layout.
 | `AudioLoopExitPointers` | `$02CC` | Four little-endian post-loop pointers |
 | `AudioLoopRepeatLimits` | `$02D4` | Four counted-loop repeat limits |
 | `AudioLoopIterationCounts` | `$02D8` | Four counted-loop iteration counters |
-| `AudioStreamHeaderPointers` | `$02DC` | Eight-byte copy of the selected track header pointers |
+| `AudioSavedStreamPointers` | `$02DC` | Four initial-or-command-`$F7` saved stream pointers |
 | `AudioStreamCallReturnPointers` | `$02E4` | Four little-endian command `$F6` return pointers |
 | `AudioChannelPitchOffsets` | `$02EC` | Three tonal-channel pitch offsets |
 | `AudioChannelFixedPitchFlags` | `$02EF` | Four command `$FA/$F9` mode flags |

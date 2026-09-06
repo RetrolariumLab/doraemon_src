@@ -8,6 +8,7 @@ map 0 B2EF C2EE World1CityMap
 map 0 C2EF C92E World1UndergroundMap
 table 0 E7F2 E83B World1AudioEffectPitchPeriods
 table 0 E931 E948 World1AudioEffectParameterData
+data 0 EFFB FCBE World1MusicHeadersAndReachableStreams
 vectors 0 FFFA FFFF Bank0InterruptVectors
 table 1 8251 8260 Bank1ExtraLifeScoreThresholds
 table 1 87A1 8830 World2PaletteSets
@@ -17,6 +18,8 @@ table 1 A70F A71F World2StageBranchTriggerScreens
 table 1 A720 A730 World2StageBranchDestinationOffsets
 table 1 A731 A741 World2StageBranchConditionCodes
 table 1 A742 A752 World2StageBranchReturnOverrides
+data 1 B2E3 B8E1 World2MusicHeadersAndEarlyReachableStreams
+data 1 B900 B9CD World2MusicLateReachableStreams
 table 1 B9CE B9CE World2UnindexedAttributePrefix
 table 1 B9CF BA9E World2MetatilePaletteSelectors
 table 1 BA9F BDDE World2MetatileTileQuads
@@ -38,6 +41,7 @@ table 2 ADD2 AE11 World3RoomPaletteSelectors
 table 2 B6D7 B84E World3MetaspriteIndex
 table 2 B84F BCAD World3MetaspriteRecords
 table 2 BCAE BE0D World3PaletteSets
+data 2 CAF3 D66A World3MusicHeadersAndReachableStreams
 table 2 D66B D96A World3TransientSpawnSchedules
 table 2 DDF2 DEF1 World3BlockAttributes
 table 2 DEF2 E2F1 World3SmallBlocks
@@ -45,4 +49,5 @@ table 2 E2F2 E6F1 World3BigBlocks
 map 2 E6F2 F6F1 World3Map
 vectors 2 FFFA FFFF Bank2InterruptVectors
 table 3 8251 8260 Bank3ExtraLifeScoreThresholds
+data 3 A4D6 ADBB ShellMusicHeadersAndReachableStreams
 vectors 3 FFFA FFFF Bank3InterruptVectors

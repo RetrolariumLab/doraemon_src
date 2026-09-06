@@ -117,6 +117,7 @@ make validate-maps      # validate map/table sizes and CRCs
 make quality-check      # formatting, lint, and unit tests
 make reconstruction-inventory # measure semantic naming and typed-data progress
 make validate-audio-music # validate music commands, channel RAM, and helpers
+make validate-audio-streams # round-trip all header-reachable music streams
 make source-audit       # validate reconstruction milestones and evidence
 make runtime-architecture # capture and validate reset/NMI/mapper evidence
 make source-check       # complete project and reconstruction development gate

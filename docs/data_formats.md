@@ -134,3 +134,9 @@ World 1's three weapon levels select one sound and four direction-specific
 projectile spawn profiles. The 51-byte contiguous region round-trips through
 `data/world1/weapons.json`; the level-biased sound lookup and four-field profile
 loader are fixed by `config/world1_weapons.json`. See `docs/world1_weapons.md`.
+
+The four music drivers expose 26 playable eight-byte track headers and 104
+channel entries. A state-aware decoder follows fixed-width commands, counted
+loops, saved-position jumps, track-channel restarts, and single-level stream
+calls. Its 10,016 reachable bytes round-trip through
+`data/audio/music_streams.json`; see `docs/audio_music.md`.

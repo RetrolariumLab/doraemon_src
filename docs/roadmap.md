@@ -156,9 +156,11 @@ also documented.
 Recover the sound driver, channel state, command streams, music, and sound
 effects with documented formats and bank ownership. The four local music
 drivers now share a machine-validated 92-byte channel ABI and a structurally
-named 17-command grammar. All 68 command targets, four track limits, and 980
-bytes of envelope/note/stream-position helpers are exact. Track-header and
-reachable-stream authoring plus effect/music APU arbitration remain open.
+named 17-command grammar. All 68 command targets, four track-ID limits, and 980
+bytes of envelope/duration/event/stream-position helpers are exact. All 26 playable
+track headers and 10,016 header-reachable stream bytes now round-trip through
+a state-aware authoring format. Effect identities and effect/music APU
+arbitration remain open.
 
 ### 10. Authoring round trips - Partial
 

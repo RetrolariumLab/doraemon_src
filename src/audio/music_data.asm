@@ -1,5 +1,5 @@
 ; Doraemon PRG bank 3 $A30F-$BDBB
-; APU period tables, track headers, and music streams
+; Shell APU tables, track headers, header-reachable streams, and adjacent unclassified data
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
     .byte $00, $00, $AE, $06, $4E, $06, $F3, $05, $9F, $05, $4D, $05, $01, $05, $B9, $04
@@ -30,215 +30,220 @@
     .byte $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01
     .byte $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01
     .byte $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01
-    .byte $01, $01, $01, $01, $01, $01, $01, $F6, $A4, $D6, $A5, $C1, $A6, $9E, $A7, $11
-    .byte $A8, $6C, $A8, $C5, $A8, $11, $A9, $38, $A9, $8B, $A9, $DF, $A9, $2D, $AA, $4B
-    .byte $AD, $83, $AD, $A4, $AD, $BB, $AD
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $0, $9  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $19, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $29, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $39, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $49, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $59, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $69, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $79, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $89, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $99, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $A9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $B9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $C9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $D9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $E9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $F9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $109, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $119, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $129, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $139, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $149, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $159, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $169, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $179, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $189, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $199, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1A9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1B9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1C9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1D9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1E9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1F9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $209, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $219, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $229, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $239, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $249, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $259, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $269, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $279, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $289, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $299, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2A9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2B9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2C9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2D9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2E9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2F9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $309, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $319, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $329, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $339, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $349, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $359, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $369, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $379, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $389, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $399, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3A9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3B9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3C9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3D9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3E9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3F9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $409, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $419, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $429, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $439, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $449, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $459, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $469, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $479, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $489, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $499, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4A9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4B9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4C9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4D9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4E9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4F9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $509, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $519, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $529, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $539, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $549, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $559, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $569, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $579, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $589, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $599, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5A9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5B9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5C9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5D9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5E9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5F9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $609, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $619, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $629, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $639, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $649, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $659, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $669, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $679, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $689, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $699, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6A9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6B9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6C9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6D9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6E9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6F9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $709, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $719, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $729, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $739, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $749, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $759, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $769, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $779, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $789, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $799, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7A9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7B9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7C9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7D9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7E9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7F9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $809, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $819, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $829, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $839, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $849, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $859, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $869, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $879, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $889, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $899, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $8A9, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $8B9, $D  ; rom-asset .byte
-    .byte $10, $01, $21
+    .byte $01, $01, $01, $01, $01, $01
+
+MusicTrackHeaderIndexBase:
+    .byte $01
+
+MusicTrackHeaders:
+    .byte $F6, $A4, $D6, $A5, $C1, $A6, $9E, $A7, $11, $A8, $6C, $A8, $C5, $A8, $11, $A9
+    .byte $38, $A9, $8B, $A9, $DF, $A9, $2D, $AA, $4B, $AD, $83, $AD, $A4, $AD, $BB, $AD
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $10, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $20, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $30, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $40, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $50, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $60, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $70, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $80, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $90, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $A0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $B0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $C0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $D0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $E0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $F0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $100, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $110, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $120, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $130, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $140, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $150, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $160, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $170, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $180, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $190, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1A0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1B0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1C0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1D0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1E0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $1F0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $200, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $210, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $220, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $230, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $240, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $250, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $260, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $270, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $280, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $290, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2A0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2B0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2C0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2D0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2E0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $2F0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $300, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $310, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $320, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $330, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $340, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $350, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $360, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $370, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $380, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $390, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3A0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3B0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3C0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3D0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3E0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $3F0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $400, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $410, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $420, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $430, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $440, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $450, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $460, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $470, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $480, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $490, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4A0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4B0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4C0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4D0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4E0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $4F0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $500, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $510, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $520, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $530, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $540, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $550, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $560, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $570, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $580, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $590, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5A0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5B0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5C0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5D0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5E0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $5F0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $600, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $610, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $620, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $630, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $640, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $650, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $660, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $670, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $680, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $690, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6A0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6B0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6C0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6D0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6E0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $6F0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $700, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $710, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $720, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $730, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $740, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $750, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $760, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $770, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $780, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $790, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7A0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7B0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7C0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7D0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7E0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $7F0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $800, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $810, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $820, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $830, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $840, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $850, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $860, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $870, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $880, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $890, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $8A0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $8B0, $10  ; rom-asset .byte
+    .incbin "assets/generated/audio/music/prg3-a4f6.bin", $8C0, $6  ; rom-asset .byte
+    .byte $10, $01, $21, $21, $21, $21, $21, $21, $21, $21
     .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $02, $20, $10, $10, $01
+    .byte $21, $21, $21, $21, $02, $20, $10, $10, $01, $21, $21, $21, $21, $21, $21, $21
     .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $02, $20, $20, $10, $10, $10
-    .byte $01, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $02, $20, $20, $20, $10, $10, $10
-    .byte $10, $01, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $21, $21, $21, $21, $21, $21, $02, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $01, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $21, $21, $21, $21, $21, $02, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $01, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $21, $21, $21, $21, $02, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $01, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $21, $21, $21, $02, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $01, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $21, $21, $02, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $01, $21, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $21, $02, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $01, $21, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $21, $02, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $01, $21, $21, $21, $21, $21, $21, $21
-    .byte $21, $02, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $10, $01, $21, $21, $21, $21, $21, $21
-    .byte $02, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $01, $21, $21, $21, $21, $02
-    .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $01, $21, $21, $02, $20
-    .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $01, $02, $20, $20
-    .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $11, $12, $20, $20
-    .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $11, $22, $22, $12, $20
-    .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $10, $10, $11, $22, $22, $22, $22, $12
-    .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $10, $11, $22, $22, $22, $22, $22, $22
-    .byte $12, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $10, $11, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $12, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $10, $11, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $12, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $10, $11, $22, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $22, $12, $20, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $10, $11, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $22, $22, $12, $20, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $10, $11, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $22, $22, $22, $12, $20, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $10, $11, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $22, $22, $22, $22, $12, $20, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $10, $11, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $22, $22, $22, $22, $22, $12, $20, $20, $20, $20, $20, $10, $10, $10
-    .byte $10, $11, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $22, $22, $22, $22, $22, $22, $12, $20, $20, $20, $20, $10, $10, $10
-    .byte $11, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $12, $20, $20, $20, $10, $10, $11
+    .byte $21, $21, $21, $02, $20, $20, $10, $10, $10, $01, $21, $21, $21, $21, $21, $21
+    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
+    .byte $21, $21, $02, $20, $20, $20, $10, $10, $10, $10, $01, $21, $21, $21, $21, $21
+    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
+    .byte $21, $02, $20, $20, $20, $20, $10, $10, $10, $10, $10, $01, $21, $21, $21, $21
+    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21
+    .byte $02, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $01, $21, $21, $21
+    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $02
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $01, $21, $21
+    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $02, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $01, $21
+    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $02, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $01
+    .byte $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $02, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $01, $21, $21, $21, $21, $21, $21, $21, $21, $21, $21, $02, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $01, $21, $21, $21, $21, $21, $21, $21, $21, $02, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $10, $01, $21, $21, $21, $21, $21, $21, $02, $20, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $10, $10, $01, $21, $21, $21, $21, $02, $20, $20, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $10, $10, $10, $01, $21, $21, $02, $20, $20, $20, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $10, $10, $10, $10, $01, $02, $20, $20, $20, $20, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $10, $10, $10, $10, $11, $12, $20, $20, $20, $20, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $10, $10, $10, $11, $22, $22, $12, $20, $20, $20, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $10, $10, $11, $22, $22, $22, $22, $12, $20, $20, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $10, $11, $22, $22, $22, $22, $22, $22, $12, $20, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $10, $11, $22, $22, $22, $22, $22, $22, $22, $22, $12, $20, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $10
+    .byte $11, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $12, $20, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $10, $11
+    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $12, $20, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $10, $11, $22
+    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $12, $20, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $10, $11, $22, $22
+    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $12, $20
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $10, $11, $22, $22, $22
+    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $12
+    .byte $20, $20, $20, $20, $20, $20, $10, $10, $10, $10, $10, $11, $22, $22, $22, $22
     .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $12, $20, $20, $10, $11, $22
+    .byte $12, $20, $20, $20, $20, $20, $10, $10, $10, $10, $11, $22, $22, $22, $22, $22
     .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
-    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $12, $20, $00, $00, $00
+    .byte $22, $12, $20, $20, $20, $20, $10, $10, $10, $11, $22, $22, $22, $22, $22, $22
+    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
+    .byte $22, $22, $12, $20, $20, $20, $10, $10, $11, $22, $22, $22, $22, $22, $22, $22
+    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
+    .byte $22, $22, $22, $12, $20, $20, $10, $11, $22, $22, $22, $22, $22, $22, $22, $22
+    .byte $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22, $22
+    .byte $22, $22, $22, $22, $12, $20, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $50, $50, $50, $50, $50, $50, $50, $50, $7F, $7F, $7F
+    .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $50, $50
+    .byte $50, $50, $50, $50, $50, $50, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
@@ -246,78 +251,77 @@
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $D0, $D1
+    .byte $D2, $7F, $7F, $7F, $D3, $D4, $D5, $7F, $7F, $7F, $DC, $DD, $DE, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $E0, $E1
+    .byte $E2, $7F, $7F, $7F, $E3, $E4, $E5, $7F, $7F, $7F, $EC, $ED, $EE, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $F0, $F1
+    .byte $F2, $7F, $7F, $7F, $F3, $F4, $F5, $7F, $7F, $7F, $FC, $FD, $FE, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $EF, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $D0, $D1, $D2, $7F, $7F, $7F, $D3, $D4, $D5, $7F, $7F
-    .byte $7F, $DC, $DD, $DE, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $E0, $E1, $E2, $7F, $7F, $7F, $E3, $E4, $E5, $7F, $7F
-    .byte $7F, $EC, $ED, $EE, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $F0, $F1, $F2, $7F, $7F, $7F, $F3, $F4, $F5, $7F, $7F
-    .byte $7F, $FC, $FD, $FE, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $EF, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $54, $41, $4E, $4D, $41, $7F, $57, $41, $54, $43, $48, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $54, $41, $4E, $4D, $41
-    .byte $7F, $57, $41, $54, $43, $48, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $61, $62, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $53, $48, $4F, $43, $4B, $7F, $47, $55, $4E, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $70, $71, $72, $73, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $61, $62, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $53, $48, $4F, $43, $4B
-    .byte $7F, $47, $55, $4E, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $70, $71, $72, $73, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $64, $65, $66, $67, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $64, $65, $66, $67, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $74, $75, $76, $77, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $4B, $55, $55, $4B, $49, $48, $4F, $55, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $68, $69, $6A, $6B, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $74, $75, $76, $77, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $4B, $55, $55, $4B, $49
-    .byte $48, $4F, $55, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $68, $69, $6A, $6B, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $79, $7A, $7B, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $79, $7A, $7B, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $4B, $59, $4F, $55, $52
-    .byte $59, $4F, $4B, $55, $7F, $55, $43, $48, $49, $57, $41, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $4B, $59, $4F, $55, $52, $59, $4F, $4B, $55, $7F, $55, $43
+    .byte $48, $49, $57, $41, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $44, $4F, $52, $41, $59
-    .byte $41, $4B, $49, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $44, $4F, $52, $41, $59, $41, $4B, $49, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $47, $45, $4E, $4B, $49
-    .byte $7F, $43, $41, $4E, $44, $59, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $47, $45, $4E, $4B, $49, $7F, $43, $41, $4E, $44, $59, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $30, $00, $00, $00, $00, $00, $00, $00, $00, $40, $00
-    .byte $44, $55, $55, $11, $00, $40, $55, $00, $44, $55, $15, $00, $00, $04, $55, $00
-    .byte $44, $55, $51, $50, $10, $00, $00, $00, $44, $55, $11, $00, $00, $00, $00, $00
-    .byte $44, $05, $05, $05, $00, $00, $00, $00, $00, $00, $00, $00, $00, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $00, $00, $00, $00, $00, $00, $00, $00, $30, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $40, $00, $44, $55, $55, $11, $00, $40, $55
+    .byte $00, $44, $55, $15, $00, $00, $04, $55, $00, $44, $55, $51, $50, $10, $00, $00
+    .byte $00, $44, $55, $11, $00, $00, $00, $00, $00, $44, $05, $05, $05, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $D6, $D7, $D8, $7F, $7F, $7F, $D9, $DA, $DB, $7F, $7F
-    .byte $7F, $DC, $DD, $DE, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $E6, $E7, $E8, $7F, $7F, $7F, $E9, $EA, $EB, $7F, $7F
-    .byte $7F, $EC, $ED, $EE, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $F6, $F7, $F8, $7F, $7F, $7F, $F9, $FA, $FB, $7F, $7F
-    .byte $7F, $FC, $FD, $FE, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $EF, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $D6, $D7
+    .byte $D8, $7F, $7F, $7F, $D9, $DA, $DB, $7F, $7F, $7F, $DC, $DD, $DE, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $E6, $E7
+    .byte $E8, $7F, $7F, $7F, $E9, $EA, $EB, $7F, $7F, $7F, $EC, $ED, $EE, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $F6, $F7
+    .byte $F8, $7F, $7F, $7F, $F9, $FA, $FB, $7F, $7F, $7F, $FC, $FD, $FE, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $EF, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
@@ -325,35 +329,32 @@
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $53, $4D, $41, $4C, $4C
-    .byte $7F, $4C, $49, $47, $48, $54, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $53, $4D, $41, $4C, $4C, $7F, $4C, $49, $47, $48, $54, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $61, $62, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $70, $71, $72, $73, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $61, $62, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $64, $65, $66, $67, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $48, $49, $52, $41, $52
-    .byte $49, $7F, $4D, $41, $4E, $54, $4C, $45, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $74, $75, $76, $77, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $70, $71, $72, $73, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $68, $69, $6A, $6B, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $64, $65, $66, $67, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $48, $49, $52, $41, $52, $49, $7F, $4D, $41, $4E, $54, $4C
+    .byte $45, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $74, $75, $76, $77, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $79, $7A, $7B, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $68, $69, $6A, $6B, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $44, $4F, $52, $41, $59
-    .byte $41, $4B, $49, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $79, $7A, $7B, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $44, $4F, $52, $41, $59, $41, $4B, $49, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $47, $45, $4E, $4B, $49
-    .byte $7F, $43, $41, $4E, $44, $59, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $47, $45, $4E, $4B, $49, $7F, $43, $41, $4E, $44, $59, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
@@ -362,72 +363,76 @@
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $30, $00, $00, $00, $00, $00, $00, $00, $00, $40, $00
-    .byte $54, $55, $55, $11, $00, $40, $55, $00, $51, $50, $50, $50, $00, $04, $55, $00
-    .byte $55, $55, $51, $50, $10, $00, $00, $00, $55, $55, $51, $50, $00, $00, $00, $00
-    .byte $55, $05, $05, $05, $00, $00, $00, $00, $00, $00, $00, $00, $00, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $00, $00, $00, $00, $00, $00, $00, $00, $30, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $40, $00, $54, $55, $55, $11, $00, $40, $55
+    .byte $00, $51, $50, $50, $50, $00, $04, $55, $00, $55, $55, $51, $50, $10, $00, $00
+    .byte $00, $55, $55, $51, $50, $00, $00, $00, $00, $55, $05, $05, $05, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $A0, $A1, $A2, $7F, $7F, $7F, $A3, $A4, $A5, $7F, $7F
-    .byte $7F, $DC, $DD, $DE, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $B0, $B1, $B2, $7F, $7F, $7F, $B3, $B4, $B5, $7F, $7F
-    .byte $7F, $EC, $ED, $EE, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $C0, $C1, $C2, $7F, $7F, $7F, $C3, $C4, $C5, $7F, $7F
-    .byte $7F, $FC, $FD, $FE, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $EF, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $A0, $A1
+    .byte $A2, $7F, $7F, $7F, $A3, $A4, $A5, $7F, $7F, $7F, $DC, $DD, $DE, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $B0, $B1
+    .byte $B2, $7F, $7F, $7F, $B3, $B4, $B5, $7F, $7F, $7F, $EC, $ED, $EE, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $C0, $C1
+    .byte $C2, $7F, $7F, $7F, $C3, $C4, $C5, $7F, $7F, $7F, $FC, $FD, $FE, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $EF, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $54, $4F, $55, $52, $49
-    .byte $4E, $55, $4B, $45, $7F, $48, $4F, $4F, $50, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $54, $4F, $55, $52, $49, $4E, $55, $4B, $45, $7F, $48, $4F
+    .byte $4F, $50, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $4B, $41, $47, $49, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $61, $62, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $70, $71, $72, $73, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $64, $65, $66, $67, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $54, $4F, $52, $49, $59
-    .byte $4F, $53, $45, $7F, $42, $41, $47, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $74, $75, $76, $77, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $4B, $41, $47, $49, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $61, $62, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $68, $69, $6A, $6B, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $70, $71, $72, $73, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $79, $7A, $7B, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $4F, $4D, $41, $4D, $4F
-    .byte $52, $49, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $64, $65, $66, $67, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $54, $4F, $52, $49, $59, $4F, $53, $45, $7F, $42, $41, $47
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $74, $75, $76, $77, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $68, $69, $6A, $6B, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $79, $7A, $7B, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $4F, $4D, $41, $4D, $4F, $52, $49, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $54, $41, $4E, $4D, $41
-    .byte $7F, $57, $41, $54, $43, $48, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $54, $41, $4E, $4D, $41, $7F, $57, $41, $54, $43, $48, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $44, $4F, $52, $41, $59
-    .byte $41, $4B, $49, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $47, $45, $4E, $4B, $49
-    .byte $7F, $43, $41, $4E, $44, $59, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $44, $4F, $52, $41, $59, $41, $4B, $49, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
-    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $00, $00, $00
-    .byte $00, $00, $00, $00, $00, $30, $00, $00, $00, $00, $00, $00, $00, $00, $40, $00
-    .byte $55, $55, $55, $55, $01, $40, $55, $00, $55, $51, $50, $50, $00, $04, $55, $00
-    .byte $55, $55, $51, $50, $10, $00, $00, $00, $55, $55, $55, $51, $00, $00, $00, $00
-    .byte $55, $55, $55, $55, $00, $00, $00, $00, $00, $00, $00, $00, $00
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $47, $45, $4E, $4B, $49, $7F, $43, $41, $4E, $44, $59, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F
+    .byte $7F, $7F, $7F, $7F, $7F, $7F, $00, $00, $00, $00, $00, $00, $00, $00, $30, $00
+    .byte $00, $00, $00, $00, $00, $00, $00, $40, $00, $55, $55, $55, $55, $01, $40, $55
+    .byte $00, $55, $51, $50, $50, $00, $04, $55, $00, $55, $55, $51, $50, $10, $00, $00
+    .byte $00, $55, $55, $55, $51, $00, $00, $00, $00, $55, $55, $55, $55, $00, $00, $00
+    .byte $00, $00, $00, $00, $00, $00

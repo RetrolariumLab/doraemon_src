@@ -12,18 +12,18 @@ Bank2_Label_C656:
     AND #$7F
     BPL Bank2_Label_C660
 
-World3_MusicCommand_LoadExtendedNote:
+World3_MusicCommand_LoadExtendedDuration:
     JSR World3_Audio_ReadStreamByte
 
 Bank2_Label_C660:
     LDX a:AudioChannelIndex
-    STA a:AudioChannelNotes,X
+    STA a:AudioChannelDurationCodes,X
     LDA a:AudioChannelFixedPitchFlags,X
     BNE Bank2_Label_C6E7
 
 Bank2_Label_C66B:
     LDX a:AudioChannelIndex
-    LDA a:AudioChannelNotes,X
+    LDA a:AudioChannelDurationCodes,X
 
 Bank2_Label_C671:
     STA a:AudioWorkByte
@@ -194,7 +194,7 @@ Bank2_Label_C77E:
 
 Bank2_Label_C78C:
     LDX a:AudioChannelIndex
-    LDA a:AudioChannelNotes,X
+    LDA a:AudioChannelDurationCodes,X
     STA a:AudioChannelDurations,X
     RTS
 
@@ -314,18 +314,18 @@ World3_Music_SaveStreamPosition:
     ASL A
     TAX
     LDA AudioStreamPointers,X
-    STA a:AudioStreamHeaderPointers,X
+    STA a:AudioSavedStreamPointers,X
     LDA AudioStreamPointers+$01,X
-    STA a:AudioStreamHeaderPointers+$01,X
+    STA a:AudioSavedStreamPointers+$01,X
     RTS
 
 World3_MusicCommand_RestoreStreamPosition:
     LDA a:AudioChannelIndex
     ASL A
     TAX
-    LDA a:AudioStreamHeaderPointers,X
+    LDA a:AudioSavedStreamPointers,X
     STA AudioStreamPointers,X
-    LDA a:AudioStreamHeaderPointers+$01,X
+    LDA a:AudioSavedStreamPointers+$01,X
     STA AudioStreamPointers+$01,X
     JMP World3_Music_UpdateChannelStream
 

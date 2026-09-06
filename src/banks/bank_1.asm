@@ -40,7 +40,7 @@
 .include "../world2/music_engine.asm"
 ; $AE23-$B11A: World 2 music RTS table, command handlers, and stream reader
 .include "../world2/music_commands.asm"
-; $B11B-$B9CD: World 2 APU period tables, track headers, and music streams
+; $B11B-$B9CD: World 2 APU tables, track headers, header-reachable streams, and adjacent unclassified data
 .include "../world2/music_data.asm"
 ; $B9CE-$BA9E: World 2 unindexed CadEditor prefix and exact 208-entry metatile palette table
 .include "../world2/data/block_attributes.asm"

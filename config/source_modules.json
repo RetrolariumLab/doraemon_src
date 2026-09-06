@@ -258,7 +258,7 @@
       "start": "0xEE34",
       "end": "0xFFF9",
       "path": "world1/music_data.asm",
-      "responsibility": "World 1 APU period tables, track headers, and music streams"
+      "responsibility": "World 1 APU tables, track headers, header-reachable streams, and adjacent unclassified data"
     },
     {
       "bank": 0,
@@ -398,7 +398,7 @@
       "start": "0xB11B",
       "end": "0xB9CD",
       "path": "world2/music_data.asm",
-      "responsibility": "World 2 APU period tables, track headers, and music streams"
+      "responsibility": "World 2 APU tables, track headers, header-reachable streams, and adjacent unclassified data"
     },
     {
       "bank": 1,
@@ -636,7 +636,7 @@
       "start": "0xC92C",
       "end": "0xD66A",
       "path": "world3/music_data.asm",
-      "responsibility": "World 3 APU period tables, track headers, and music streams"
+      "responsibility": "World 3 APU tables, track headers, header-reachable streams, and adjacent unclassified data"
     },
     {
       "bank": 2,
@@ -776,7 +776,7 @@
       "start": "0xA30F",
       "end": "0xBDBB",
       "path": "audio/music_data.asm",
-      "responsibility": "APU period tables, track headers, and music streams"
+      "responsibility": "Shell APU tables, track headers, header-reachable streams, and adjacent unclassified data"
     },
     {
       "bank": 3,
