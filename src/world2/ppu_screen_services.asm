@@ -37,7 +37,7 @@ Bank1_Label_846E:
     RTS
 
 World2_PrepareRowTransferAddresses:
-    LDA $3F
+    LDA World2ScrollX
     CLC
     ADC #$10
     ROR A
@@ -48,7 +48,7 @@ World2_PrepareRowTransferAddresses:
     STA $51
     LDA #$04
     STA $52
-    LDA $3F
+    LDA World2ScrollX
     LSR A
     LSR A
     LSR A
@@ -438,12 +438,12 @@ World2_Audio_UpdateFrame:
     JSR World2_Audio_UpdateEffects
     JMP World2_Audio_UpdateMusic
 
-Bank1_Func_870A:
+World2_SetPpuAddressAX:
     STA a:PPU_ADDR
     STX a:PPU_ADDR
     RTS
 
-Bank1_Func_8711:
+World2_InitializePpuAndNametable:
     JSR Bank1_DisableRenderingForUpdate
     JSR Bank1_WaitForVblank
     JSR Bank1_DisableNmiAndRendering
@@ -452,14 +452,14 @@ Bank1_Func_8711:
     STA PpuCtrlShadow
     STA a:PPU_CTRL
     LDA #$00
-    STA $40
-    STA $3F
+    STA World2ScrollY
+    STA World2ScrollX
     JSR Bank1_HideAllSprites
     JSR Bank1_DisableRenderingForUpdate
     JSR World2_UploadDefaultBackgroundPalette
     LDA #$20
     LDX #$00
-    JSR Bank1_Func_870A
+    JSR World2_SetPpuAddressAX
     LDY #$08
     TXA
 
@@ -486,7 +486,7 @@ World2_UploadBackgroundPalette:
     STA World2PendingBackgroundPalette
     LDA #$3F
     LDX #$00
-    JSR Bank1_Func_870A
+    JSR World2_SetPpuAddressAX
     PLA
     ASL A
     ASL A
@@ -506,7 +506,7 @@ Bank1_Label_8765:
 World2_UploadDefaultBackgroundPalette:
     LDA #$3F
     LDX #$00
-    JSR Bank1_Func_870A
+    JSR World2_SetPpuAddressAX
     LDY #$10
 
 Bank1_Label_877A:

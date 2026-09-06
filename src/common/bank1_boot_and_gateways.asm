@@ -62,7 +62,7 @@ Bank1_CallShellGameOver:
     PHA
     LDA #$03
     JSR Bank1_SelectPrgBank
-    JSR Bank1_Func_827D
+    JSR World2_CommitNmiPpuState
     PLA
     JMP Bank1_SelectPrgBank
 
@@ -82,7 +82,7 @@ Bank1_EnterWorld2ToWorld3Transition:
     JSR Bank1_DisableNmiAndRendering
     LDA #$03
     JSR Bank1_SelectPrgBank
-    JMP Bank1_Func_8286
+    JMP Bank1_PostSwitchWorld3TransitionEntry
 
 Bank1_Reset:
     LDX #$7F

@@ -12,9 +12,9 @@ Bank1_Func_A612:
     LDA World2PlayerY
     CMP #$28
     BCS Bank1_Label_A62A
-    LDA $41
+    LDA World2ScrollingActive
     BNE Bank1_Label_A62A
-    INC $B2
+    INC World2ChapterComplete
 
 Bank1_Label_A62A:
     RTS
@@ -27,7 +27,7 @@ World2_UpdateInventorySpawns:
     CLC
     ADC #$10
     STA $67
-    JSR Bank1_Func_8AD0
+    JSR World2_LoadInitialPlayerHealth
     CMP $67
     BCC Bank1_Label_A641
     LDA $67
@@ -36,7 +36,7 @@ Bank1_Label_A641:
     STA PlayerHealth
     LDA #$00
     STA World2InventoryState+$03
-    STA $A5
+    STA World2InventoryDropHitCounter
 
 Bank1_Label_A649:
     LDA World2InventoryState+$05
@@ -44,11 +44,11 @@ Bank1_Label_A649:
     BNE Bank1_Label_A65E
     INC $A3
     DEC PlayerHealthCapacityIndex
-    JSR Bank1_Func_8AD0
+    JSR World2_LoadInitialPlayerHealth
     STA PlayerHealth
     LDA #$00
     STA World2InventoryState+$05
-    STA $A5
+    STA World2InventoryDropHitCounter
 
 Bank1_Label_A65E:
     LDY #$06
@@ -62,13 +62,13 @@ Bank1_Label_A660:
     RTS
 
 Bank1_Label_A66B:
-    LDA $40
+    LDA World2ScrollY
     CMP #$78
     BEQ Bank1_Label_A672
     RTS
 
 Bank1_Label_A672:
-    LDA $B1
+    LDA World2FirePressCounter
     AND #$01
     TAX
 
@@ -79,7 +79,7 @@ Bank1_Label_A677:
     BNE Bank1_Label_A696
     LDA World2InventoryState,X
     BNE Bank1_Label_A69A
-    JSR Bank1_Func_8AD0
+    JSR World2_LoadInitialPlayerHealth
     SEC
     SBC PlayerHealth
     CMP #$06

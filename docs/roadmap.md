@@ -50,7 +50,12 @@ direction, map-probe, collision-edge, and projectile-construction helpers; 214
 probable routine entries remained. The final World 1 pass names the ten
 remaining underground-finale and handler-local entries plus five boss/finale
 RAM fields. Bank 0 now has no neutral routine entries; all 204 remaining
-routine entries are in Banks 1 and 2.
+routine entries were in Banks 1 and 2. The first World 2 core pass names
+fifteen frame/render/stage routines and ten RAM fields, reducing the current
+total to 189. The player/inventory/fire pass names thirteen more routines and
+nine RAM fields, reducing the current total to 176 (63 in Bank 1 and 113 in
+Bank 2). The screen/NMI/PPU pass removes six more Bank 1 entries, reducing the
+current total to 170 (57 in Bank 1 and 113 in Bank 2).
 
 ### 6. RAM and object systems - Partial
 
@@ -193,7 +198,7 @@ Resolve or explicitly classify remaining release-scope unknowns, live-validate
 the generated linker-derived Mesen/FCEUX symbols, refresh all eight runtime
 scenarios, run one clean aggregate `source-1-audit`, and prepare the audited
 release commit. Static symbol generation is complete: the gate checks all four
-linker segments, 3,670 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
+linker segments, 3,691 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
 labels, and required Reset/NMI/mapper/chapter-loop probes.
 
 The first post-review naming slice is also complete: all sixteen Bank 3 shell
@@ -204,6 +209,14 @@ slice, and a seventeen-routine entity-helper slice. The final ten Bank 0
 entries now have machine-checked underground-finale, Bull Robo, collision,
 distance, motion, and alignment contracts. The remaining neutral routine
 population is confined to Banks 1 and 2.
+The first Bank 1 slice now pins fifteen central frame/stage routines and ten
+RAM fields for scrolling, timing, player damage/death, completion flags, and
+the microphone item.
+The following player-system slice pins all seven inventory update paths,
+position history, movement, repeated fire, companion shots, and damage state.
+The screen-core slice adds the NMI PPU commit, screen-service dispatch,
+transition-row setup, PPU address helper, nametable initialization, and the
+post-switch overlay entry used by the World 3 gateway.
 
 ## Deferred to Source Reconstruction 2.0
 

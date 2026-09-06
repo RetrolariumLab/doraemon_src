@@ -2971,6 +2971,210 @@
       "evidence": "first-standard-pointer-target-and-token-decoder-input"
     },
     {
+      "bank": 1,
+      "address": "0x8A1A",
+      "name": "World2_WaitAndRenderFrame",
+      "evidence": "validated-world2-frame-core-wait-then-render-fallthrough"
+    },
+    {
+      "bank": 1,
+      "address": "0x8A1D",
+      "name": "World2_RenderFrame",
+      "evidence": "validated-world2-frame-core-sprite-projectile-enemy-stage-and-hud-render-pass"
+    },
+    {
+      "bank": 1,
+      "address": "0x8A32",
+      "name": "World2_EnterWorld3",
+      "evidence": "validated-world2-frame-core-carry-final-inventory-state-and-enter-world3"
+    },
+    {
+      "bank": 1,
+      "address": "0x8A46",
+      "name": "World2_AdvanceStage",
+      "evidence": "validated-world2-frame-core-clear-pools-delay-advance-stage-and-resume"
+    },
+    {
+      "bank": 1,
+      "address": "0x8A74",
+      "name": "World2_DowngradeInventorySlotAfterStage",
+      "evidence": "validated-world2-frame-core-demote-nonactive-inventory-slot-to-entering-state"
+    },
+    {
+      "bank": 1,
+      "address": "0x8A7F",
+      "name": "World2_PlayCompletionEffectAndDelay",
+      "evidence": "validated-world2-frame-core-completion-effect-prefix-to-transition-delay"
+    },
+    {
+      "bank": 1,
+      "address": "0x8A84",
+      "name": "World2_RunStageTransitionDelay",
+      "evidence": "validated-world2-frame-core-f0-frame-palette-transition-delay"
+    },
+    {
+      "bank": 1,
+      "address": "0x8A94",
+      "name": "World2_HideAllSpriteBuffers",
+      "evidence": "validated-world2-frame-core-fill-four-sprite-pages-with-hidden-y-coordinate"
+    },
+    {
+      "bank": 1,
+      "address": "0x8AAB",
+      "name": "World2_ClearScreenMetatileBuffer",
+      "evidence": "validated-world2-frame-core-clear-screen-metatile-work-page"
+    },
+    {
+      "bank": 1,
+      "address": "0x8AB6",
+      "name": "World2_ResetAudioHardware",
+      "evidence": "validated-world2-frame-core-clear-apu-and-audio-request-state"
+    },
+    {
+      "bank": 1,
+      "address": "0x8AD0",
+      "name": "World2_LoadInitialPlayerHealth",
+      "evidence": "validated-world2-frame-core-health-capacity-index-to-initial-health-table"
+    },
+    {
+      "bank": 1,
+      "address": "0x8ADF",
+      "name": "World2_InitializeStagePresentation",
+      "evidence": "validated-world2-frame-core-stage-sequence-palette-and-initial-screen-upload"
+    },
+    {
+      "bank": 1,
+      "address": "0x8B3B",
+      "name": "World2_UpdateStageStartCountdown",
+      "evidence": "validated-world2-frame-core-enable-scrolling-after-start-delay-or-in-demo"
+    },
+    {
+      "bank": 1,
+      "address": "0x8B4C",
+      "name": "World2_UpdateStageMusicCountdown",
+      "evidence": "validated-world2-frame-core-delayed-stage-music-selection"
+    },
+    {
+      "bank": 1,
+      "address": "0x8B65",
+      "name": "World2_UpdateMicrophoneAttackAndExtraLifeSound",
+      "evidence": "validated-world2-frame-core-microphone-item-attack-score-and-extra-life-audio"
+    },
+    {
+      "bank": 1,
+      "address": "0x8C5D",
+      "name": "World2_UpdatePlayerDamageEffect",
+      "evidence": "validated-world2-player-system-eight-frame-damage-effect-state-advance"
+    },
+    {
+      "bank": 1,
+      "address": "0x8C74",
+      "name": "World2_UpdateInventorySlot3",
+      "evidence": "validated-world2-player-system-fixed-inventory-slot-three-wrapper"
+    },
+    {
+      "bank": 1,
+      "address": "0x8C78",
+      "name": "World2_UpdateInventorySlot5",
+      "evidence": "validated-world2-player-system-fixed-inventory-slot-five-wrapper"
+    },
+    {
+      "bank": 1,
+      "address": "0x8C7C",
+      "name": "World2_UpdateInventorySlot4",
+      "evidence": "validated-world2-player-system-fixed-inventory-slot-four-wrapper"
+    },
+    {
+      "bank": 1,
+      "address": "0x8C80",
+      "name": "World2_UpdateInventorySlot6",
+      "evidence": "validated-world2-player-system-fixed-inventory-slot-six-wrapper"
+    },
+    {
+      "bank": 1,
+      "address": "0x8C84",
+      "name": "World2_UpdateInventorySlot2",
+      "evidence": "validated-world2-player-system-slot-two-and-shared-homing-state-machine"
+    },
+    {
+      "bank": 1,
+      "address": "0x8CD9",
+      "name": "World2_UpdateDetachedInventorySlot2To6",
+      "evidence": "validated-world2-player-system-shared-detached-inventory-motion-and-despawn"
+    },
+    {
+      "bank": 1,
+      "address": "0x8D01",
+      "name": "World2_UpdateInventorySlot1",
+      "evidence": "validated-world2-player-system-slot-one-history-follow-and-state-machine"
+    },
+    {
+      "bank": 1,
+      "address": "0x8D60",
+      "name": "World2_UpdateDetachedInventorySlot1",
+      "evidence": "validated-world2-player-system-slot-one-detached-motion-and-despawn"
+    },
+    {
+      "bank": 1,
+      "address": "0x8D88",
+      "name": "World2_UpdateInventorySlot0",
+      "evidence": "validated-world2-player-system-slot-zero-history-follow-and-state-machine"
+    },
+    {
+      "bank": 1,
+      "address": "0x8DE7",
+      "name": "World2_UpdateDetachedInventorySlot0",
+      "evidence": "validated-world2-player-system-slot-zero-detached-motion-and-despawn"
+    },
+    {
+      "bank": 1,
+      "address": "0x8E0F",
+      "name": "World2_RecordPlayerPositionHistory",
+      "evidence": "validated-world2-player-system-deduplicated-forty-eight-position-ring"
+    },
+    {
+      "bank": 1,
+      "address": "0x8E3C",
+      "name": "World2_UpdatePlayerMovementAndFire",
+      "evidence": "validated-world2-player-system-input-bounds-repeat-fire-and-projectile-creation"
+    },
+    {
+      "bank": 1,
+      "address": "0x827D",
+      "name": "World2_CommitNmiPpuState",
+      "evidence": "validated-world2-screen-core-palette-mask-scroll-control-and-frame-commit"
+    },
+    {
+      "bank": 1,
+      "address": "0x8286",
+      "name": "Bank1_PostSwitchWorld3TransitionEntry",
+      "evidence": "validated-bank-gateway-address-resolves-in-bank3-after-prg-switch"
+    },
+    {
+      "bank": 1,
+      "address": "0x835D",
+      "name": "World2_DispatchFrameScreenService",
+      "evidence": "validated-world2-screen-core-rts-minus-one-frame-service-dispatch"
+    },
+    {
+      "bank": 1,
+      "address": "0x8366",
+      "name": "World2_BeginScreenTransitionRows",
+      "evidence": "validated-world2-screen-core-commit-direction-and-start-fifteen-row-transition"
+    },
+    {
+      "bank": 1,
+      "address": "0x870A",
+      "name": "World2_SetPpuAddressAX",
+      "evidence": "validated-world2-screen-core-write-a-high-and-x-low-to-ppu-address"
+    },
+    {
+      "bank": 1,
+      "address": "0x8711",
+      "name": "World2_InitializePpuAndNametable",
+      "evidence": "validated-world2-screen-core-disable-rendering-load-palette-and-clear-nametable"
+    },
+    {
       "bank": 2,
       "address": "0x8000",
       "name": "Bank2_EnterWorld1",
@@ -6115,6 +6319,22 @@
   ],
   "memory_symbols": [
     {
+      "address": "0x003F",
+      "name": "World2ScrollX",
+      "banks": [
+        1
+      ],
+      "evidence": "first-ppu-scroll-write-and-horizontal-stage-scroll-coordinate"
+    },
+    {
+      "address": "0x0040",
+      "name": "World2ScrollY",
+      "banks": [
+        1
+      ],
+      "evidence": "second-ppu-scroll-write-and-vertical-stage-scroll-coordinate"
+    },
+    {
       "address": "0x0014",
       "name": "NmiOamDmaRequest",
       "evidence": "common-nmi-oam-dma-gate"
@@ -6836,6 +7056,14 @@
       "evidence": "room-number-saved-before-forced-room-12-entry-and-restored-on-exit"
     },
     {
+      "address": "0x0041",
+      "name": "World2ScrollingActive",
+      "banks": [
+        1
+      ],
+      "evidence": "enables-nmi-screen-streaming-and-world-relative-entity-motion-after-stage-start-delay"
+    },
+    {
       "address": "0x0046",
       "name": "World2ScreenStreamPointer",
       "size": 2,
@@ -6899,6 +7127,22 @@
         1
       ],
       "evidence": "initialized-to-0x78-and-updated-by-vertical-input-with-flight-bounds"
+    },
+    {
+      "address": "0x005E",
+      "name": "World2MovementStep",
+      "banks": [
+        1
+      ],
+      "evidence": "two-pixel-step-used-by-player-input-and-world-relative-entity-motion"
+    },
+    {
+      "address": "0x005F",
+      "name": "World2PlayerHistoryWriteIndex",
+      "banks": [
+        1
+      ],
+      "evidence": "zero-through-47-ring-index-for-player-position-history"
     },
     {
       "address": "0x0067",
@@ -7013,6 +7257,22 @@
       "evidence": "d0-through-ee-compressed-screen-token-passed-to-world2-enemy-spawn"
     },
     {
+      "address": "0x007A",
+      "name": "World2FireRepeatTimer",
+      "banks": [
+        1
+      ],
+      "evidence": "held-fire-delay-counter-reset-on-release-and-after-thirty-frames"
+    },
+    {
+      "address": "0x007B",
+      "name": "World2CompanionFirePhase",
+      "banks": [
+        1
+      ],
+      "evidence": "alternating-phase-gating-slot-one-companion-projectile-fire"
+    },
+    {
       "address": "0x007C",
       "name": "World2InventoryState",
       "size": 7,
@@ -7040,6 +7300,30 @@
       "evidence": "seven-slot-y-array-used-by-inventory-motion-collision-and-rendering"
     },
     {
+      "address": "0x0093",
+      "name": "World2SpriteFlickerPhase",
+      "banks": [
+        1
+      ],
+      "evidence": "toggles-bit-seven-on-each-frame-wait-and-xors-sprite-attribute-priority"
+    },
+    {
+      "address": "0x0091",
+      "name": "World2NextProjectileDirection",
+      "banks": [
+        1
+      ],
+      "evidence": "direction-code-copied-into-new-player-or-companion-projectile-record"
+    },
+    {
+      "address": "0x0092",
+      "name": "World2CompanionFireCounter",
+      "banks": [
+        1
+      ],
+      "evidence": "advances-companion-shot-direction-and-rate-on-alternating-fire-phases"
+    },
+    {
       "address": "0x009D",
       "name": "World2PendingBackgroundPalette",
       "banks": [
@@ -7056,12 +7340,60 @@
       "evidence": "saved-by-special-screen-branching-and-restored-by-f7-stage-command"
     },
     {
+      "address": "0x00A0",
+      "name": "World2PlayerDamageTimer",
+      "banks": [
+        1
+      ],
+      "evidence": "loaded-after-player-hit-decremented-each-frame-and-gates-damage-and-projectile-paths"
+    },
+    {
+      "address": "0x00A2",
+      "name": "World2PlayerDefeated",
+      "banks": [
+        1
+      ],
+      "evidence": "set-when-player-health-underflows-and-consumed-by-the-main-loop-death-sequence"
+    },
+    {
+      "address": "0x00A5",
+      "name": "World2InventoryDropHitCounter",
+      "banks": [
+        1
+      ],
+      "evidence": "counts-player-hits-until-an-active-inventory-slot-is-knocked-loose"
+    },
+    {
+      "address": "0x00A8",
+      "name": "World2PlayerDamageEffect",
+      "banks": [
+        1
+      ],
+      "evidence": "nonzero-damage-effect-state-advanced-every-eight-frames-and-rendered-near-player"
+    },
+    {
       "address": "0x00AE",
       "name": "World2StageBranchCooldown",
       "banks": [
         1
       ],
       "evidence": "successful-stage-branch-wraps-zero-to-0xff-then-decrements-on-each-frame-call"
+    },
+    {
+      "address": "0x00AA",
+      "name": "World2StageStartCountdown",
+      "banks": [
+        1
+      ],
+      "evidence": "initialized-to-0x80-and-enables-scrolling-when-it-reaches-zero"
+    },
+    {
+      "address": "0x00AD",
+      "name": "World2SequenceTimer",
+      "banks": [
+        1
+      ],
+      "evidence": "shared-countdown-for-stage-music-start-death-presentation-and-stage-transition-delay"
     },
     {
       "address": "0x00B4",
@@ -7094,6 +7426,46 @@
         1
       ],
       "evidence": "increments-only-for-defeated-state-02-spawns-item-at-four-and-resets-for-other-states"
+    },
+    {
+      "address": "0x00B2",
+      "name": "World2ChapterComplete",
+      "banks": [
+        1
+      ],
+      "evidence": "set-at-terminal-screen-exit-and-dispatches-the-world2-to-world3-transition"
+    },
+    {
+      "address": "0x00B1",
+      "name": "World2FirePressCounter",
+      "banks": [
+        1
+      ],
+      "evidence": "increments-on-fire-input-and-selects-alternating-inventory-spawn-search-parity"
+    },
+    {
+      "address": "0x00B3",
+      "name": "World2StageComplete",
+      "banks": [
+        1
+      ],
+      "evidence": "set-when-boss-encounter-completes-and-dispatches-stage-advance"
+    },
+    {
+      "address": "0x00B9",
+      "name": "World2MicrophoneHoldCounter",
+      "banks": [
+        1
+      ],
+      "evidence": "counts-consecutive-microphone-edge-frames-until-the-item-attack-threshold"
+    },
+    {
+      "address": "0x00BA",
+      "name": "World2MicrophoneAttackUsed",
+      "banks": [
+        1
+      ],
+      "evidence": "one-shot-latch-preventing-a-second-microphone-item-attack"
     },
     {
       "address": "0x00A8",

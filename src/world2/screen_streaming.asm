@@ -2,7 +2,7 @@
 ; World 2 stage sequence, compressed-screen selection, and row decoding control
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank1_Func_827D:
+World2_CommitNmiPpuState:
     JSR World2_ApplyPendingBackgroundPalette
 
 Bank1_Label_8280:
@@ -12,14 +12,14 @@ Bank1_Label_8283 = * + 1  ; overlapping entry $8283
     STA a:PPU_MASK
     .byte $A9
 
-Bank1_Func_8286:
+Bank1_PostSwitchWorld3TransitionEntry:
     BRK
     .byte $8D, $06, $20, $8D, $06, $20, $A5, $3F, $8D, $05, $20, $A5, $40, $8D, $05, $20
     .byte $A5, $19, $8D, $00, $20, $E6, $73, $60
 
 World2_NmiFrameServices:
-    LDA $41
-    BEQ Bank1_Func_827D
+    LDA World2ScrollingActive
+    BEQ World2_CommitNmiPpuState
     LDX $42
     BEQ Bank1_Label_8302
     DEX
@@ -29,18 +29,18 @@ World2_NmiFrameServices:
     DEX
     STX $44
     BNE Bank1_Label_82B6
-    JSR Bank1_Func_8366
+    JSR World2_BeginScreenTransitionRows
 
 Bank1_Label_82B6:
-    LDA $40
+    LDA World2ScrollY
     CMP #$EF
     BNE Bank1_Label_82C0
     LDA #$FF
-    STA $40
+    STA World2ScrollY
 
 Bank1_Label_82C0:
-    INC $40
-    LDA $40
+    INC World2ScrollY
+    LDA World2ScrollY
     ASL A
     AND #$1E
     TAX
@@ -60,17 +60,17 @@ Bank1_Label_82D7:
     DEX
     STX $44
     BNE Bank1_Label_82E3
-    JSR Bank1_Func_8366
+    JSR World2_BeginScreenTransitionRows
 
 Bank1_Label_82E3:
-    LDA $40
+    LDA World2ScrollY
     BNE Bank1_Label_82EB
     LDA #$F0
-    STA $40
+    STA World2ScrollY
 
 Bank1_Label_82EB:
-    DEC $40
-    LDA $40
+    DEC World2ScrollY
+    LDA World2ScrollY
     ASL A
     AND #$1E
     TAX
@@ -91,7 +91,7 @@ Bank1_Label_8302:
     STX $45
     LDA PpuCtrlShadow
     PHA
-    LDA $3F
+    LDA World2ScrollX
     PHA
     LDA PpuCtrlShadow
     EOR #$01
@@ -99,21 +99,21 @@ Bank1_Label_8302:
     TXA
     EOR #$0F
     ORA #$F0
-    STA $3F
+    STA World2ScrollX
     ASL A
     AND #$1E
     TAX
-    JSR Bank1_Func_835D
+    JSR World2_DispatchFrameScreenService
     PLA
-    STA $3F
+    STA World2ScrollX
     PLA
     STA PpuCtrlShadow
     JMP Bank1_Label_8280
     .byte $68, $85, $3F, $68, $85, $19, $4C, $80, $82
 
 Bank1_Label_8335:
-    INC $3F
-    LDA $3F
+    INC World2ScrollX
+    LDA World2ScrollX
     BNE Bank1_Label_8343
     PHA
     LDA PpuCtrlShadow
@@ -142,7 +142,7 @@ Bank1_Label_8353:
     LDA #$7F
     PHA
 
-Bank1_Func_835D:
+World2_DispatchFrameScreenService:
     LDA a:$8832,X
     PHA
     LDA a:$8831,X
@@ -151,7 +151,7 @@ Bank1_Func_835D:
 World2_ScreenService_NoOp:
     RTS
 
-Bank1_Func_8366:
+World2_BeginScreenTransitionRows:
     LDA $43
     STA $42
     LDA #$0F
@@ -205,7 +205,7 @@ Bank1_Label_83A3:
 
 Bank1_Label_83B1:
     LDA #$00
-    STA $41
+    STA World2ScrollingActive
     BEQ Bank1_Label_838B
 
 Bank1_Label_83B7:
@@ -270,7 +270,7 @@ Bank1_Label_8409:
     CPX #$10
     BCC Bank1_Label_8409
     STY World2ScreenStreamOffset
-    LDA $40
+    LDA World2ScrollY
     AND #$F0
     STA $51
     LDX #$04
@@ -279,7 +279,7 @@ Bank1_Label_8409:
     AND #$01
     ORA #$08
     STA $49
-    LDA $40
+    LDA World2ScrollY
     AND #$F0
     ASL A
     ROL $49

@@ -59,19 +59,19 @@ Bank1_Label_9B94:
     BEQ Bank1_Label_9BE6
     BCS Bank1_Label_9BB0
     EOR #$FF
-    CMP $5E
+    CMP World2MovementStep
     BCC Bank1_Label_9C12
     LDA a:World2EnemyX,X
     SEC
-    SBC $5E
+    SBC World2MovementStep
     JMP Bank1_Label_9BBA
 
 Bank1_Label_9BB0:
-    CMP $5E
+    CMP World2MovementStep
     BCC Bank1_Label_9C12
     LDA a:World2EnemyX,X
     CLC
-    ADC $5E
+    ADC World2MovementStep
 
 Bank1_Label_9BBA:
     STA $67
@@ -105,19 +105,19 @@ Bank1_Label_9BE6:
     BEQ Bank1_Label_9C12
     BCS Bank1_Label_9BF9
     EOR #$FF
-    CMP $5E
+    CMP World2MovementStep
     BCC Bank1_Label_9C12
     LDA a:World2EnemyY,X
     SEC
-    SBC $5E
+    SBC World2MovementStep
     JMP Bank1_Label_9C03
 
 Bank1_Label_9BF9:
-    CMP $5E
+    CMP World2MovementStep
     BCC Bank1_Label_9C12
     LDA a:World2EnemyY,X
     CLC
-    ADC $5E
+    ADC World2MovementStep
 
 Bank1_Label_9C03:
     STA $68

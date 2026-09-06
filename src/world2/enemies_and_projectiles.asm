@@ -64,7 +64,7 @@ Bank1_Label_8FA1:
 Bank1_Func_8FA2:
     LDA #$00
     STA $9C
-    LDA $A0
+    LDA World2PlayerDamageTimer
     BNE Bank1_Label_8FA1
     LDA World2PlayerX
     CLC
@@ -81,7 +81,7 @@ Bank1_Func_8FA2:
     STA $9C
 
 Bank1_Label_8FC3:
-    LDA $A0
+    LDA World2PlayerDamageTimer
     CMP #$50
     BCS Bank1_Label_9009
     LDX #$06

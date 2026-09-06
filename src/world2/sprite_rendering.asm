@@ -65,11 +65,11 @@ Bank1_Func_96BA:
 
 Bank1_Func_96BC:
     TYA
-    EOR $93
+    EOR World2SpriteFlickerPhase
     TAY
     JSR Bank1_Func_96C8
     TYA
-    EOR $93
+    EOR World2SpriteFlickerPhase
     TAY
     RTS
 
@@ -118,7 +118,7 @@ Bank1_Label_97D4:
 Bank1_Label_97D5:
     CMP #$02
     BEQ Bank1_Label_97FC
-    LDA $3F
+    LDA World2ScrollX
     CMP #$F0
     BNE Bank1_Label_97D4
     INC World2BossEncounterState
@@ -244,7 +244,7 @@ Bank1_Label_98A2:
 World2_CompleteBossEncounter:
     LDA #$05
     STA a:AudioMusicState
-    INC $B3
+    INC World2StageComplete
     RTS
 
 World2_OroronProjectilePhaseSequence:

@@ -128,6 +128,9 @@ make validate-world1-core-routines # validate World 1 frame/render core naming
 make validate-world1-frame-mechanics # validate World 1 motion/collision frame services
 make validate-world1-entity-helpers # validate World 1 movement/aiming helper naming
 make validate-world1-final-routines # validate final Bank 0 routine/RAM naming
+make validate-world2-frame-core # validate World 2 frame/stage core naming
+make validate-world2-player-systems # validate World 2 player/inventory/fire naming
+make validate-world2-screen-core # validate World 2 NMI/screen/PPU core naming
 make validate-debug-symbols # verify ld65 symbols and generated FCEUX name lists
 make source-audit       # validate reconstruction milestones and evidence
 make runtime-architecture # capture and validate reset/NMI/mapper evidence
@@ -172,6 +175,9 @@ config/world1_core_routines.json World 1 initialization/frame/render contract
 config/world1_frame_mechanics.json World 1 motion/collision frame contract
 config/world1_entity_helpers.json World 1 movement/aiming helper contract
 config/world1_final_routines.json final World 1 routine and RAM contract
+config/world2_frame_core.json World 2 frame/stage routine and RAM contract
+config/world2_player_systems.json World 2 player/inventory/fire contract
+config/world2_screen_core.json World 2 NMI/screen/PPU routine contract
 docs/                       architecture, formats, evidence, and roadmap
 docs/ram_fields.md          proved shared RAM layout and ownership notes
 docs/world3_dormant_code.md statically recovered but unreferenced code islands

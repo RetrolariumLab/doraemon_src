@@ -8,7 +8,7 @@ Bank1_World2Main:
     LDA #$00
     STA World2InventoryState+$06
     STA $A3
-    STA $BA
+    STA World2MicrophoneAttackUsed
     STA DemoModeActive
 
 Bank1_Label_88B1:
@@ -19,52 +19,52 @@ Bank1_Label_88B1:
 Bank1_Label_88B7:
     LDX #$7F
     TXS
-    JSR Bank1_Func_8711
-    JSR Bank1_Func_8AB6
+    JSR World2_InitializePpuAndNametable
+    JSR World2_ResetAudioHardware
     LDA #$02
-    STA $5E
+    STA World2MovementStep
     LDA #$3C
     STA World2PlayerX
     LDA #$78
     STA World2PlayerY
     LDA #$00
-    STA $B9
-    STA $40
+    STA World2MicrophoneHoldCounter
+    STA World2ScrollY
     STA $44
-    STA $3F
+    STA World2ScrollX
     STA World2TakkonDefeatStreak
     STA World2StageBranchCooldown
-    STA $5F
+    STA World2PlayerHistoryWriteIndex
     STA World2BossEncounterState
     STA World2PendingBackgroundPalette
-    STA $93
-    STA $92
-    STA $7B
+    STA World2SpriteFlickerPhase
+    STA World2CompanionFireCounter
+    STA World2CompanionFirePhase
     STA $6A
     STA $6F
     STA $45
     STA $42
     STA $43
-    STA $A0
+    STA World2PlayerDamageTimer
     STA $9C
-    STA $A5
+    STA World2InventoryDropHitCounter
     STA $A1
     STA World2InventoryState
     STA World2InventoryState+$01
-    STA $41
+    STA World2ScrollingActive
     STA World2InventoryState+$02
     STA World2InventoryState+$04
     STA World2InventoryState+$05
     STA World2InventoryState+$03
-    STA $A8
-    STA $B3
-    STA $A0
-    STA $A2
-    STA $B2
+    STA World2PlayerDamageEffect
+    STA World2StageComplete
+    STA World2PlayerDamageTimer
+    STA World2PlayerDefeated
+    STA World2ChapterComplete
     STA $38
     LDA #$96
-    STA $AD
-    JSR Bank1_Func_8AD0
+    STA World2SequenceTimer
+    JSR World2_LoadInitialPlayerHealth
     STA PlayerHealth
     LDA World1FlashLightCarryFlag
     BEQ Bank1_Label_8923
@@ -74,7 +74,7 @@ Bank1_Label_88B7:
 Bank1_Label_8923:
     LDA #$00
     STA World1FlashLightCarryFlag
-    JSR Bank1_Func_8AAB
+    JSR World2_ClearScreenMetatileBuffer
     LDA DemoModeActive
     BNE Bank1_Label_8940
     LDA #$01
@@ -89,10 +89,10 @@ Bank1_Label_893A:
     BNE Bank1_Label_893A
 
 Bank1_Label_8940:
-    JSR Bank1_Func_8711
+    JSR World2_InitializePpuAndNametable
     LDA #$01
     JSR Bank1_SelectChrBank
-    JSR Bank1_Func_8ADF
+    JSR World2_InitializeStagePresentation
     LDA PpuCtrlShadow
     AND #$E7
     ORA #$11
@@ -102,8 +102,8 @@ Bank1_Label_8940:
 
 Bank1_World2FrameLoop:
     JSR World2_WaitForNextFrame
-    JSR Bank1_Func_8B3B
-    JSR Bank1_Func_8B4C
+    JSR World2_UpdateStageStartCountdown
+    JSR World2_UpdateStageMusicCountdown
     JSR World2_UpdatePlayerAndInventory
     JSR World2_UpdatePlayerProjectiles
     JSR World2_UpdateEnemies
@@ -112,12 +112,12 @@ Bank1_World2FrameLoop:
     JSR Bank1_Func_8FA2
     JSR World2_CheckStageBranch
     JSR World2_UpdateInventorySpawns
-    JSR Bank1_Func_8A1D
-    JSR Bank1_Func_8B65
+    JSR World2_RenderFrame
+    JSR World2_UpdateMicrophoneAttackAndExtraLifeSound
     JSR Bank1_Func_A612
-    LDA $B2
+    LDA World2ChapterComplete
     BNE Bank1_Label_89D1
-    LDA $B3
+    LDA World2StageComplete
     BNE Bank1_Label_89CE
     LDA DemoModeActive
     BEQ Bank1_Label_8991
@@ -127,20 +127,20 @@ Bank1_Label_8991:
     ORA #$10
     AND CombinedControllerButtons
     BNE Bank1_Label_89D7
-    LDA $A2
+    LDA World2PlayerDefeated
     BEQ Bank1_World2FrameLoop
     LDA DemoModeActive
     BNE Bank1_Label_89DB
     LDA #$06
     STA a:AudioMusicState
     LDA #$00
-    STA $41
+    STA World2ScrollingActive
     LDA #$DC
-    STA $AD
+    STA World2SequenceTimer
 
 Bank1_Label_89AC:
-    JSR Bank1_Func_8A1A
-    DEC $AD
+    JSR World2_WaitAndRenderFrame
+    DEC World2SequenceTimer
     BNE Bank1_Label_89AC
     DEC PlayerLives
     BMI Bank1_Label_89BA
@@ -160,11 +160,11 @@ Bank1_Label_89C1:
     JMP Bank1_Label_88B7
 
 Bank1_Label_89CE:
-    JMP Bank1_Func_8A46
+    JMP World2_AdvanceStage
 
 Bank1_Label_89D1:
-    JSR Bank1_Func_8A7F
-    JMP Bank1_Func_8A32
+    JSR World2_PlayCompletionEffectAndDelay
+    JMP World2_EnterWorld3
 
 Bank1_Label_89D7:
     LDA DemoModeActive
@@ -174,23 +174,23 @@ Bank1_Label_89DB:
     JMP Bank1_EnterShell
 
 Bank1_Label_89DE:
-    LDA $41
+    LDA World2ScrollingActive
     PHA
     LDA #$00
-    STA $41
+    STA World2ScrollingActive
     LDA #$06
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$01
     STA a:AudioMusicControl
 
 Bank1_Label_89EF:
-    JSR Bank1_Func_8A1A
+    JSR World2_WaitAndRenderFrame
     LDA CombinedControllerButtons
     AND #$10
     BNE Bank1_Label_89EF
 
 Bank1_Label_89F8:
-    JSR Bank1_Func_8A1A
+    JSR World2_WaitAndRenderFrame
     LDA CombinedControllerButtons
     AND #$10
     BEQ Bank1_Label_89F8
@@ -200,19 +200,19 @@ Bank1_Label_89F8:
     STA a:AudioMusicControl
 
 Bank1_Label_8A0B:
-    JSR Bank1_Func_8A1A
+    JSR World2_WaitAndRenderFrame
     LDA CombinedControllerButtons
     AND #$10
     BNE Bank1_Label_8A0B
     PLA
-    STA $41
+    STA World2ScrollingActive
     JMP Bank1_World2FrameLoop
 
-Bank1_Func_8A1A:
+World2_WaitAndRenderFrame:
     JSR World2_WaitForNextFrame
 
-Bank1_Func_8A1D:
-    JSR Bank1_Func_8A94
+World2_RenderFrame:
+    JSR World2_HideAllSpriteBuffers
     JSR Bank1_Func_91CD
     JSR Bank1_Func_93E5
     JSR Bank1_Func_A304
@@ -220,7 +220,7 @@ Bank1_Func_8A1D:
     JSR Bank1_Func_93B7
     JMP Bank1_Func_A753
 
-Bank1_Func_8A32:
+World2_EnterWorld3:
     LDA World2InventoryState+$06
     STA $38
     JMP Bank1_EnterWorld2ToWorld3Transition
@@ -231,21 +231,21 @@ World2_WaitForNextFrame:
 Bank1_Label_8A3B:
     CMP FrameCounter
     BEQ Bank1_Label_8A3B
-    LDA $93
+    LDA World2SpriteFlickerPhase
     EOR #$80
-    STA $93
+    STA World2SpriteFlickerPhase
     RTS
 
-Bank1_Func_8A46:
+World2_AdvanceStage:
     JSR World2_ClearEntityPools
-    JSR Bank1_Func_8A84
+    JSR World2_RunStageTransitionDelay
     LDA #$01
-    STA $41
+    STA World2ScrollingActive
     LDA #$00
-    STA $B3
+    STA World2StageComplete
     STA World2BossEncounterState
     LDA #$64
-    STA $AD
+    STA World2SequenceTimer
     LDA World2SavedBackgroundPalette
     STA World2PendingBackgroundPalette
     LDA World2StageIndex
@@ -256,14 +256,14 @@ Bank1_Func_8A46:
 Bank1_Label_8A66:
     BNE Bank1_Label_8A71
     LDX #$00
-    JSR Bank1_Func_8A74
+    JSR World2_DowngradeInventorySlotAfterStage
     INX
-    JSR Bank1_Func_8A74
+    JSR World2_DowngradeInventorySlotAfterStage
 
 Bank1_Label_8A71:
     JMP Bank1_World2FrameLoop
 
-Bank1_Func_8A74:
+World2_DowngradeInventorySlotAfterStage:
     LDA World2InventoryState,X
     CMP #$03
     BEQ Bank1_Label_8A7E
@@ -273,23 +273,23 @@ Bank1_Func_8A74:
 Bank1_Label_8A7E:
     RTS
 
-Bank1_Func_8A7F:
+World2_PlayCompletionEffectAndDelay:
     LDA #$09
     JSR World2_Audio_QueueEffect
 
-Bank1_Func_8A84:
+World2_RunStageTransitionDelay:
     LDA #$F0
-    STA $AD
+    STA World2SequenceTimer
 
 Bank1_Label_8A88:
-    JSR Bank1_Func_8A1A
+    JSR World2_WaitAndRenderFrame
     LDA #$FF
     STA World2PendingBackgroundPalette
-    DEC $AD
+    DEC World2SequenceTimer
     BNE Bank1_Label_8A88
     RTS
 
-Bank1_Func_8A94:
+World2_HideAllSpriteBuffers:
     LDX #$3C
     LDA #$F8
 
@@ -305,7 +305,7 @@ Bank1_Label_8A98:
     BPL Bank1_Label_8A98
     RTS
 
-Bank1_Func_8AAB:
+World2_ClearScreenMetatileBuffer:
     LDX #$FF
     LDA #$00
 
@@ -315,7 +315,7 @@ Bank1_Label_8AAF:
     BNE Bank1_Label_8AAF
     RTS
 
-Bank1_Func_8AB6:
+World2_ResetAudioHardware:
     LDA #$00
     STA a:$4011
     STA a:APU_STATUS
@@ -327,7 +327,7 @@ Bank1_Func_8AB6:
     STA a:$4017
     RTS
 
-Bank1_Func_8AD0:
+World2_LoadInitialPlayerHealth:
     STX $76
     LDX PlayerHealthCapacityIndex
     LDA a:$8AD8,X
@@ -335,7 +335,7 @@ Bank1_Func_8AD0:
     RTS
     .byte $18, $14, $10, $0C, $08
 
-Bank1_Func_8ADF:
+World2_InitializeStagePresentation:
     JSR Bank1_WaitForVblank
     LDY World2StageIndex
     LDX a:World2_StageSequenceStartOffsets,Y
@@ -349,15 +349,15 @@ Bank1_Func_8ADF:
     LDA #$0F
     STA World2ScreenRowIndex
     LDA #$00
-    STA $40
+    STA World2ScrollY
     STA $44
-    STA $3F
+    STA World2ScrollX
     STA $42
-    STA $41
+    STA World2ScrollingActive
     LDA #$F0
-    STA $3F
+    STA World2ScrollX
     LDA #$80
-    STA $AA
+    STA World2StageStartCountdown
     LDA #$11
     STA $67
 
@@ -370,10 +370,10 @@ Bank1_Label_8B14:
     JSR World2_UploadVerticalTileColumnsA
     JSR World2_MergeVerticalAttributes
     JSR World2_UploadVerticalTileColumnsBAndAttributes
-    LDA $3F
+    LDA World2ScrollX
     CLC
     ADC #$10
-    STA $3F
+    STA World2ScrollX
     DEC $67
     BNE Bank1_Label_8B14
     RTS
@@ -381,27 +381,27 @@ Bank1_Label_8B14:
 World2_StageSequenceStartOffsets:
     .byte $00, $25, $5C
 
-Bank1_Func_8B3B:
+World2_UpdateStageStartCountdown:
     LDA DemoModeActive
     BNE Bank1_Label_8B47
-    LDA $AA
+    LDA World2StageStartCountdown
     BEQ Bank1_Label_8B4B
-    DEC $AA
+    DEC World2StageStartCountdown
     BNE Bank1_Label_8B4B
 
 Bank1_Label_8B47:
     LDA #$01
-    STA $41
+    STA World2ScrollingActive
 
 Bank1_Label_8B4B:
     RTS
 
-Bank1_Func_8B4C:
-    LDA $AD
+World2_UpdateStageMusicCountdown:
+    LDA World2SequenceTimer
     BEQ Bank1_Label_8B64
     LDA DemoModeActive
     BNE Bank1_Label_8B58
-    DEC $AD
+    DEC World2SequenceTimer
     BNE Bank1_Label_8B64
 
 Bank1_Label_8B58:
@@ -409,21 +409,21 @@ Bank1_Label_8B58:
     LDA a:$8BA2,X
     STA a:AudioMusicState
     LDA #$00
-    STA $AD
+    STA World2SequenceTimer
 
 Bank1_Label_8B64:
     RTS
 
-Bank1_Func_8B65:
-    LDA $BA
+World2_UpdateMicrophoneAttackAndExtraLifeSound:
+    LDA World2MicrophoneAttackUsed
     BNE Bank1_Label_8B92
     LDA World2InventoryState
     CMP #$03
     BNE Bank1_Label_8B92
     LDA Controller2MicrophoneEdgeTimer
     BEQ Bank1_Label_8B90
-    INC $B9
-    LDA $B9
+    INC World2MicrophoneHoldCounter
+    LDA World2MicrophoneHoldCounter
     CMP #$60
     BCC Bank1_Label_8B92
     LDX #$06
@@ -439,10 +439,10 @@ Bank1_Label_8B7D:
 Bank1_Label_8B8B:
     DEX
     BPL Bank1_Label_8B7D
-    INC $BA
+    INC World2MicrophoneAttackUsed
 
 Bank1_Label_8B90:
-    STA $B9
+    STA World2MicrophoneHoldCounter
 
 Bank1_Label_8B92:
     JSR World2_CommitScoreAndCheckExtraLife
@@ -461,19 +461,19 @@ World2_InitialSpritePaletteOffsets:
     .byte $10, $20, $30
 
 World2_UpdatePlayerAndInventory:
-    JSR Bank1_Func_8E3C
-    JSR Bank1_Func_8E0F
-    JSR Bank1_Func_8D01
-    JSR Bank1_Func_8D88
-    JSR Bank1_Func_8C84
-    JSR Bank1_Func_8C74
-    JSR Bank1_Func_8C78
-    JSR Bank1_Func_8C7C
-    JSR Bank1_Func_8C5D
-    JSR Bank1_Func_8C80
-    LDA $A0
+    JSR World2_UpdatePlayerMovementAndFire
+    JSR World2_RecordPlayerPositionHistory
+    JSR World2_UpdateInventorySlot1
+    JSR World2_UpdateInventorySlot0
+    JSR World2_UpdateInventorySlot2
+    JSR World2_UpdateInventorySlot3
+    JSR World2_UpdateInventorySlot5
+    JSR World2_UpdateInventorySlot4
+    JSR World2_UpdatePlayerDamageEffect
+    JSR World2_UpdateInventorySlot6
+    LDA World2PlayerDamageTimer
     BNE Bank1_Label_8C3C
-    LDA $A8
+    LDA World2PlayerDamageEffect
     BNE Bank1_Label_8C3B
     LDA DemoModeActive
     BEQ Bank1_Label_8BDF
@@ -497,15 +497,15 @@ Bank1_Label_8BDF:
     LDA #$0C
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$78
-    STA $A0
-    INC $A5
-    LDA $A5
+    STA World2PlayerDamageTimer
+    INC World2InventoryDropHitCounter
+    LDA World2InventoryDropHitCounter
     CMP #$04
     BCC Bank1_Label_8C3B
 
 Bank1_Label_8C04:
     LDA #$00
-    STA $A5
+    STA World2InventoryDropHitCounter
     LDA DemoModeActive
     BNE Bank1_Label_8C17
     LDX #$05
@@ -521,12 +521,12 @@ Bank1_Label_8C17:
     RTS
 
 Bank1_Label_8C18:
-    INC $A5
-    LDA $A5
+    INC World2InventoryDropHitCounter
+    LDA World2InventoryDropHitCounter
     CMP #$06
     BCS Bank1_Label_8C04
     LDA #$01
-    STA $A8
+    STA World2PlayerDamageEffect
     RTS
 
 Bank1_Label_8C25:
@@ -547,7 +547,7 @@ Bank1_Label_8C3B:
     RTS
 
 Bank1_Label_8C3C:
-    DEC $A0
+    DEC World2PlayerDamageTimer
     BNE Bank1_Label_8C3B
     LDX $B0
     BPL Bank1_Label_8C4E
@@ -565,7 +565,7 @@ Bank1_Label_8C4E:
     LDA PlayerHealth
     BPL Bank1_Label_8C5C
     LDA #$01
-    STA $A2
+    STA World2PlayerDefeated
     LDA #$00
     STA PlayerHealth
 

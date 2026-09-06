@@ -64,6 +64,9 @@ WORLD1_CORE_ROUTINES := config/world1_core_routines.json
 WORLD1_FRAME_MECHANICS := config/world1_frame_mechanics.json
 WORLD1_ENTITY_HELPERS := config/world1_entity_helpers.json
 WORLD1_FINAL_ROUTINES := config/world1_final_routines.json
+WORLD2_FRAME_CORE := config/world2_frame_core.json
+WORLD2_PLAYER_SYSTEMS := config/world2_player_systems.json
+WORLD2_SCREEN_CORE := config/world2_screen_core.json
 WORLD1_WEAPONS := config/world1_weapons.json
 WORLD1_WEAPON_AUTHORING := data/world1/weapons.json
 WORLD1_UNDERGROUND_ROOMS := config/world1_underground_rooms.json
@@ -138,6 +141,9 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	world1-frame-mechanics validate-world1-frame-mechanics \
 	world1-entity-helpers validate-world1-entity-helpers \
 	world1-final-routines validate-world1-final-routines \
+	world2-frame-core validate-world2-frame-core \
+	world2-player-systems validate-world2-player-systems \
+	world2-screen-core validate-world2-screen-core \
 	world1-player-controls validate-world1-player-controls \
 	world1-weapons validate-world1-weapons \
 	world1-underground-rooms validate-world1-underground-rooms \
@@ -406,6 +412,27 @@ validate-world1-final-routines: $(PRG_ASSET) ghidra-analyze
 		--manifest "$(WORLD1_FINAL_ROUTINES)" --symbols "$(SYMBOLS)" \
 		--facts "$(GHIDRA_FACTS_DIR)/bank_0.tsv"
 
+world2-frame-core: validate-world2-frame-core
+
+validate-world2-frame-core: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_FRAME_CORE)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_1.tsv"
+
+world2-player-systems: validate-world2-player-systems
+
+validate-world2-player-systems: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_PLAYER_SYSTEMS)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_1.tsv"
+
+world2-screen-core: validate-world2-screen-core
+
+validate-world2-screen-core: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD2_SCREEN_CORE)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_1.tsv"
+
 world1-player-controls validate-world1-player-controls: $(PRG_ASSET)
 	$(PYTHON) scripts/world1_player_controls.py --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD1_PLAYER_CONTROLS)" \
@@ -629,6 +656,9 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-world1-frame-mechanics \
 	validate-world1-entity-helpers \
 	validate-world1-final-routines \
+	validate-world2-frame-core \
+	validate-world2-player-systems \
+	validate-world2-screen-core \
 	validate-world1-player-controls \
 	validate-world1-weapons \
 	validate-world1-underground-rooms \

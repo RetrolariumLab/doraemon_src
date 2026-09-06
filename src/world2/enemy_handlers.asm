@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World2_ApplyScrollingToEnemy:
-    LDA $41
+    LDA World2ScrollingActive
     BEQ Bank1_Label_A114
     LDY $42
     BEQ Bank1_Label_A103
@@ -42,7 +42,7 @@ Bank1_Label_A114:
     RTS
 
 Bank1_Func_A115:
-    LDA $41
+    LDA World2ScrollingActive
     BEQ Bank1_Label_A114
     LDY $42
     BEQ Bank1_Label_A131
@@ -73,7 +73,7 @@ Bank1_Label_A13F:
     RTS
 
 World2_SpawnEnemyProjectile:
-    LDA $A0
+    LDA World2PlayerDamageTimer
     BNE Bank1_Label_A13F
     STX $79
     LDA World2PlayerX
@@ -83,7 +83,7 @@ World2_SpawnEnemyProjectile:
     LDA World2PlayerY
     ADC #$08
     STA $A7
-    LDA $41
+    LDA World2ScrollingActive
     BEQ Bank1_Label_A17E
     LDA $42
     BEQ Bank1_Label_A173

@@ -54,7 +54,7 @@ Bank1_Label_9321:
 World2_TestMetatileCollision:
     LDA $68
     CLC
-    ADC $40
+    ADC World2ScrollY
     BCC Bank1_Label_9380
     ADC #$0F
 
@@ -68,7 +68,7 @@ Bank1_Label_9388:
     STA $69
     LDA $67
     CLC
-    ADC $3F
+    ADC World2ScrollX
     ROR A
     ROR A
     ROR A
@@ -130,7 +130,7 @@ Bank1_Func_93E5:
     RTS
 
 Bank1_Func_93EC:
-    LDA $A8
+    LDA World2PlayerDamageEffect
     BEQ Bank1_Label_942F
     AND #$01
     LDX $42
@@ -394,7 +394,7 @@ Bank1_Label_9586:
     JMP Bank1_Label_95F8
 
 Bank1_Label_9591:
-    LDA $5F
+    LDA World2PlayerHistoryWriteIndex
     SEC
     SBC #$2F
     BPL Bank1_Label_959A
@@ -438,7 +438,7 @@ Bank1_Label_95C7:
     JMP Bank1_Label_95F8
 
 Bank1_Label_95D2:
-    LDA $5F
+    LDA World2PlayerHistoryWriteIndex
     SEC
     SBC #$17
     BPL Bank1_Label_95DB
@@ -479,9 +479,9 @@ Bank1_Func_9606:
     LDY #$00
     LDA #$00
     STA $62
-    LDA $A2
+    LDA World2PlayerDefeated
     BNE Bank1_Label_9619
-    LDX $A0
+    LDX World2PlayerDamageTimer
     BEQ Bank1_Label_9628
     LDA World2FrameCounter
     ROR A

@@ -2,39 +2,39 @@
 ; World 2 player animation, weapon state, and projectile creation
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank1_Func_8C5D:
-    LDA $A8
+World2_UpdatePlayerDamageEffect:
+    LDA World2PlayerDamageEffect
     BEQ Bank1_Label_8C73
     LDA World2FrameCounter
     AND #$07
     BNE Bank1_Label_8C73
-    INC $A8
-    LDA $A8
+    INC World2PlayerDamageEffect
+    LDA World2PlayerDamageEffect
     CMP #$05
     BNE Bank1_Label_8C73
     LDA #$00
-    STA $A8
+    STA World2PlayerDamageEffect
 
 Bank1_Label_8C73:
     RTS
 
-Bank1_Func_8C74:
+World2_UpdateInventorySlot3:
     LDX #$03
     BNE Bank1_Label_8C86
 
-Bank1_Func_8C78:
+World2_UpdateInventorySlot5:
     LDX #$05
     BNE Bank1_Label_8C86
 
-Bank1_Func_8C7C:
+World2_UpdateInventorySlot4:
     LDX #$04
     BNE Bank1_Label_8C86
 
-Bank1_Func_8C80:
+World2_UpdateInventorySlot6:
     LDX #$06
     BNE Bank1_Label_8C86
 
-Bank1_Func_8C84:
+World2_UpdateInventorySlot2:
     LDX #$02
 
 Bank1_Label_8C86:
@@ -75,14 +75,14 @@ Bank1_Label_8CB4:
     LDA #$09
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$00
-    STA $A5
+    STA World2InventoryDropHitCounter
     INC World2InventoryState,X
 
 Bank1_Label_8CC2:
     RTS
 
 Bank1_Label_8CC3:
-    JSR Bank1_Func_8CD9
+    JSR World2_UpdateDetachedInventorySlot2To6
     LDA World2InventoryState,X
     CMP #$01
     BNE Bank1_Label_8CC2
@@ -96,7 +96,7 @@ Bank1_Label_8CD6:
     INC World2InventoryState,X
     RTS
 
-Bank1_Func_8CD9:
+World2_UpdateDetachedInventorySlot2To6:
     LDY $42
     BEQ Bank1_Label_8CEE
     DEY
@@ -128,7 +128,7 @@ Bank1_Label_8CF6:
 Bank1_Label_8D00:
     RTS
 
-Bank1_Func_8D01:
+World2_UpdateInventorySlot1:
     LDY #$00
     LDA World2InventoryState+$01
     CMP #$01
@@ -137,7 +137,7 @@ Bank1_Func_8D01:
     BEQ Bank1_Label_8D4A
     CMP #$02
     BNE Bank1_Label_8D49
-    LDA $5F
+    LDA World2PlayerHistoryWriteIndex
     SEC
     SBC #$17
     BPL Bank1_Label_8D1A
@@ -175,13 +175,13 @@ Bank1_Label_8D3B:
     LDA #$09
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$00
-    STA $A5
+    STA World2InventoryDropHitCounter
 
 Bank1_Label_8D49:
     RTS
 
 Bank1_Label_8D4A:
-    JSR Bank1_Func_8D60
+    JSR World2_UpdateDetachedInventorySlot1
     LDA World2InventoryState+$01
     CMP #$01
     BNE Bank1_Label_8D49
@@ -195,7 +195,7 @@ Bank1_Label_8D5D:
     INC World2InventoryState+$01
     RTS
 
-Bank1_Func_8D60:
+World2_UpdateDetachedInventorySlot1:
     LDY $42
     BEQ Bank1_Label_8D75
     DEY
@@ -227,7 +227,7 @@ Bank1_Label_8D7D:
 Bank1_Label_8D87:
     RTS
 
-Bank1_Func_8D88:
+World2_UpdateInventorySlot0:
     LDY #$00
     LDA World2InventoryState
     CMP #$01
@@ -236,7 +236,7 @@ Bank1_Func_8D88:
     BEQ Bank1_Label_8DD1
     CMP #$02
     BNE Bank1_Label_8DD0
-    LDA $5F
+    LDA World2PlayerHistoryWriteIndex
     SEC
     SBC #$2F
     BPL Bank1_Label_8DA1
@@ -273,14 +273,14 @@ Bank1_Label_8DC2:
     LDA #$09
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$00
-    STA $A5
+    STA World2InventoryDropHitCounter
     INC World2InventoryState
 
 Bank1_Label_8DD0:
     RTS
 
 Bank1_Label_8DD1:
-    JSR Bank1_Func_8DE7
+    JSR World2_UpdateDetachedInventorySlot0
     LDA World2InventoryState
     CMP #$01
     BNE Bank1_Label_8DD0
@@ -294,7 +294,7 @@ Bank1_Label_8DE4:
     INC World2InventoryState
     RTS
 
-Bank1_Func_8DE7:
+World2_UpdateDetachedInventorySlot0:
     LDY $42
     BEQ Bank1_Label_8DFC
     DEY
@@ -326,8 +326,8 @@ Bank1_Label_8E04:
 Bank1_Label_8E0E:
     RTS
 
-Bank1_Func_8E0F:
-    LDX $5F
+World2_RecordPlayerPositionHistory:
+    LDX World2PlayerHistoryWriteIndex
     DEX
     BPL Bank1_Label_8E16
     LDX #$30
@@ -342,7 +342,7 @@ Bank1_Label_8E16:
     RTS
 
 Bank1_Label_8E25:
-    LDX $5F
+    LDX World2PlayerHistoryWriteIndex
     LDA World2PlayerX
     STA a:$0200,X
     LDA World2PlayerY
@@ -354,10 +354,10 @@ Bank1_Label_8E25:
     LDA #$00
 
 Bank1_Label_8E39:
-    STA $5F
+    STA World2PlayerHistoryWriteIndex
     RTS
 
-Bank1_Func_8E3C:
+World2_UpdatePlayerMovementAndFire:
     LDA DemoModeActive
     BEQ Bank1_Label_8E4E
     LDA World2FrameCounter
@@ -380,7 +380,7 @@ Bank1_Label_8E50:
     LDA World2PlayerX
     CMP #$D0
     BCS Bank1_Label_8E73
-    LDA $5E
+    LDA World2MovementStep
     ADC World2PlayerX
     STA World2PlayerX
     BNE Bank1_Label_8E73
@@ -391,7 +391,7 @@ Bank1_Label_8E63:
     BEQ Bank1_Label_8E73
     LDA World2PlayerX
     SEC
-    SBC $5E
+    SBC World2MovementStep
     CMP #$20
     BCC Bank1_Label_8E73
     STA World2PlayerX
@@ -403,7 +403,7 @@ Bank1_Label_8E73:
     LDA World2PlayerY
     CMP #$D0
     BCS Bank1_Label_8E93
-    ADC $5E
+    ADC World2MovementStep
     STA World2PlayerY
     BNE Bank1_Label_8E93
 
@@ -412,7 +412,7 @@ Bank1_Label_8E84:
     AND #$08
     BEQ Bank1_Label_8E93
     LDA World2PlayerY
-    SBC $5E
+    SBC World2MovementStep
     CMP #$20
     BCC Bank1_Label_8E93
     STA World2PlayerY
@@ -421,44 +421,44 @@ Bank1_Label_8E93:
     TXA
     AND #$C0
     BNE Bank1_Label_8E9B
-    STA $7A
+    STA World2FireRepeatTimer
 
 Bank1_Label_8E9A:
     RTS
 
 Bank1_Label_8E9B:
-    INC $B1
-    LDA $A0
+    INC World2FirePressCounter
+    LDA World2PlayerDamageTimer
     CMP #$50
     BCS Bank1_Label_8E9A
-    LDA $7A
+    LDA World2FireRepeatTimer
     BEQ Bank1_Label_8EB3
-    INC $7A
+    INC World2FireRepeatTimer
     LDX #$1E
-    CPX $7A
+    CPX World2FireRepeatTimer
     BNE Bank1_Label_8E9A
     LDA #$00
-    STA $7A
+    STA World2FireRepeatTimer
 
 Bank1_Label_8EB3:
-    INC $7A
+    INC World2FireRepeatTimer
     LDA #$00
-    STA $91
+    STA World2NextProjectileDirection
     LDA World2InventoryState+$01
     CMP #$03
     BNE Bank1_Label_8F0C
-    LDA $7B
+    LDA World2CompanionFirePhase
     EOR #$01
-    STA $7B
+    STA World2CompanionFirePhase
     AND #$01
     BEQ Bank1_Label_8F0C
-    INC $92
-    LDA $92
+    INC World2CompanionFireCounter
+    LDA World2CompanionFireCounter
     AND #$01
     BEQ Bank1_Label_8F0C
-    LDA $92
+    LDA World2CompanionFireCounter
     AND #$03
-    STA $91
+    STA World2NextProjectileDirection
     LDA #$01
     JSR World2_Audio_QueueEffectWithPriority
     LDX #$06
@@ -470,11 +470,11 @@ Bank1_Label_8EDE:
     CPX #$03
     BNE Bank1_Label_8EDE
     LDA #$00
-    STA $7A
+    STA World2FireRepeatTimer
     RTS
 
 Bank1_Label_8EED:
-    LDA $5F
+    LDA World2PlayerHistoryWriteIndex
     SEC
     SBC #$17
     BPL Bank1_Label_8EF6
@@ -512,7 +512,7 @@ Bank1_Label_8F1E:
     DEX
     BPL Bank1_Label_8F1E
     LDA #$00
-    STA $7A
+    STA World2FireRepeatTimer
     RTS
 
 Bank1_Label_8F2B:
@@ -530,6 +530,6 @@ Bank1_Label_8F2B:
 Bank1_Label_8F40:
     LDA #$01
     STA a:World2PlayerProjectileState,X
-    LDA $91
+    LDA World2NextProjectileDirection
     STA a:World2PlayerProjectileDirection,X
     RTS

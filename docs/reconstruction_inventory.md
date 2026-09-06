@@ -11,12 +11,12 @@ evidence manifests. Any change requires an intentional snapshot update.
 | Bank | Global labels | Semantic labels | Neutral routines | Neutral locals | Semantic indirect entries |
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 0 | 1,011 | 326 | 0 | 685 | 84 / 84 |
-| 1 | 879 | 229 | 91 | 559 | 97 / 97 |
+| 1 | 879 | 263 | 57 | 559 | 97 / 97 |
 | 2 | 1,090 | 294 | 113 | 683 | 106 / 106 |
 | 3 | 363 | 161 | 0 | 202 | 67 / 67 |
-| Total | 3,343 | 1,010 | 204 | 2,129 | 354 / 354 |
+| Total | 3,343 | 1,044 | 170 | 2,129 | 354 / 354 |
 
-The neutral population now separates 204 probable routine entries from 2,129
+The neutral population now separates 170 probable routine entries from 2,129
 local branch labels. The common runtime naming pass removed 88 neutral routine
 names by proving copied reset/NMI/mapper services, cross-bank gateways, and
 bank-local dispatches. A second pass named all 19 previously neutral non-audio
@@ -65,9 +65,21 @@ helpers. Its contract covers 965 bytes, 19 direct callers, and five newly named
 finale RAM fields. Bank 0 now has zero neutral routine entries; the remaining
 204 are entirely in Banks 1 and 2.
 
-The symbol registry currently contains 889 evidence-backed code symbols and
-111 operand/table symbols. RAM coverage contains 293 unique aliases: 83 shared
-symbols plus 98 Bank 0, 39 Bank 1, 65 Bank 2, and 8 Bank 3 scoped symbols.
+The first World 2 naming pass covers fifteen frame/stage core routines and ten
+Bank 1 RAM fields: render cadence, stage/chapter completion, transition delays,
+initial presentation, delayed scroll/music activation, player damage/death,
+and the microphone item. It removes 15 neutral Bank 1 entries, leaving 76 in
+Bank 1 and 113 in Bank 2.
+
+The World 2 player-system pass names thirteen more routines and nine RAM
+fields across movement, firing, player history, damage state, and all seven
+inventory slots. The subsequent screen-core pass names five NMI/PPU routines,
+one post-switch overlay entry, and the scroll-coordinate pair. Bank 1 now has
+57 neutral routine entries.
+
+The symbol registry currently contains 923 evidence-backed code symbols and
+111 operand/table symbols. RAM coverage contains 314 unique aliases: 83 shared
+symbols plus 98 Bank 0, 60 Bank 1, 65 Bank 2, and 8 Bank 3 scoped symbols.
 
 Typed PRG ranges cover 65,796 bytes in 57 non-overlapping regions. Bank 3 now
 separates exact title, game-over, chapter-help, ending-opening, active-credit,

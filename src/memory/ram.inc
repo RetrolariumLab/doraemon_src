@@ -215,6 +215,9 @@ World1SavedUndergroundObjectBits = $06A0
 World1AttributeTableCache = $06B0
 
 ; World 2 compressed-screen decoder state
+World2ScrollX              = $003F
+World2ScrollY              = $0040
+World2ScrollingActive      = $0041
 World2ScreenStreamPointer = $0046
 World2ScreenStreamOffset  = $0054
 World2StageSequenceOffset = $0055
@@ -223,18 +226,36 @@ World2ScreenRunLength     = $0057
 World2CurrentScreenId     = $0058
 World2PlayerX             = $005C
 World2PlayerY             = $005D
+World2MovementStep        = $005E
+World2PlayerHistoryWriteIndex = $005F
 World2FrameCounter        = $0073
 World2EnemySpawnState     = $0074
+World2FireRepeatTimer     = $007A
+World2CompanionFirePhase  = $007B
 World2InventoryState      = $007C
 World2InventoryX          = $0083
 World2InventoryY          = $008A
+World2NextProjectileDirection = $0091
+World2CompanionFireCounter = $0092
+World2SpriteFlickerPhase  = $0093
 World2PendingBackgroundPalette = $009D
 World2SavedStageSequenceOffset = $009E
+World2PlayerDamageTimer   = $00A0
+World2PlayerDefeated      = $00A2
 World2BossEncounterState = $00A4
+World2InventoryDropHitCounter = $00A5
+World2PlayerDamageEffect = $00A8
 World2StageIndex = $00A9
+World2StageStartCountdown = $00AA
+World2SequenceTimer       = $00AD
 World2StageBranchCooldown = $00AE
+World2FirePressCounter    = $00B1
+World2ChapterComplete     = $00B2
+World2StageComplete       = $00B3
 World2SavedBackgroundPalette = $00B4
 World2TakkonDefeatStreak = $00B8
+World2MicrophoneHoldCounter = $00B9
+World2MicrophoneAttackUsed = $00BA
 World2ScreenMetatiles     = $0400
 
 ; World 3 room-indexed transient spawn scheduler
