@@ -35,8 +35,19 @@ entries in `config/debugger_breakpoints.json` and
 to the global FCEUX RAM list; bank-scoped aliases remain in the linker symbols.
 
 This gate proves generation and static consistency. Importing the results in a
-live Mesen/FCEUX session and recording that validation remains a Source
-Reconstruction 1.0 release task.
+live emulator is checked after fresh runtime capture with:
+
+```bash
+make runtime-architecture
+make validate-runtime-debug-symbols
+```
+
+The capture records an explicit PC for every execute hook. The live-symbol
+validator joins 14 Reset/NMI/mapper/frame-loop observations across all four
+PRG banks to the configured breakpoints and generated FCEUX name lists. It
+also joins five changing trace columns to their configured RAM watches and
+generated RAM names. This prevents a plausible but stale name file from being
+accepted merely because it parses.
 
 First traces should cover:
 

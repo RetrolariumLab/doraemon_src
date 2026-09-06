@@ -42,14 +42,18 @@
       "evidence": [
         "config/bank_gateways.json",
         "config/common_runtime.json",
+        "config/runtime_debug_symbols.json",
         "docs/common_runtime.md",
+        "docs/debugger_workflow.md",
         "docs/runtime_evidence.md",
         "scenarios/runtime_scenarios.json",
         "scripts/bank_gateways.py",
         "scripts/common_runtime.py",
         "scripts/runtime/capture_architecture.lua",
         "scripts/runtime/run_runtime_scenarios.py",
-        "scripts/runtime/validate_runtime_scenarios.py"
+        "scripts/runtime/validate_debugger_runtime.py",
+        "scripts/runtime/validate_runtime_scenarios.py",
+        "tests/test_debugger_runtime.py"
       ]
     },
     {
@@ -455,6 +459,7 @@
   "required_targets": [
     "verify",
     "validate-debug-symbols",
+    "validate-runtime-debug-symbols",
     "validate-shell-runtime",
     "validate-world1-core-routines",
     "validate-world1-entity-helpers",
@@ -477,6 +482,7 @@
     "validate-world1-frame-mechanics",
     "source-audit",
     "source-release-audit",
-    "source-check"
+    "source-check",
+    "source-1-audit"
   ]
 }

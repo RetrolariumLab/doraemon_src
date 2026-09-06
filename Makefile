@@ -19,6 +19,7 @@ DEBUG_SYMBOLS := config/debug_symbols.json
 DEBUG_BREAKPOINTS := config/debugger_breakpoints.json
 DEBUG_WATCHES := config/debugger_watches.json
 DEBUG_SYMBOL_DIR := build/debugger
+RUNTIME_DEBUG_SYMBOLS := config/runtime_debug_symbols.json
 BANK_SOURCES := src/banks/bank_0.asm src/banks/bank_1.asm \
 	src/banks/bank_2.asm src/banks/bank_3.asm
 SEMANTIC_SOURCES := $(wildcard src/common/*.asm src/shell/*.asm \
@@ -129,8 +130,9 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	lint lint-asm lint-source lint-project test quality-check scaffold-check \
 	ghidra-bootstrap ghidra-status ghidra-inspect ghidra-analyze disassemble \
 	disassembly-check maps validate-maps release-check check clean \
-	source-audit source-release-audit source-check trace-runtime \
+	source-audit source-release-audit source-check source-1-audit trace-runtime \
 	debug-symbols validate-debug-symbols \
+	runtime-debug-symbols validate-runtime-debug-symbols \
 	reconstruction-inventory validate-reconstruction-inventory \
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
 	common-runtime validate-common-runtime \
@@ -293,6 +295,13 @@ reconstruction-inventory validate-reconstruction-inventory:
 
 source-check: release-check source-audit
 
+source-1-audit:
+	$(PYTHON) scripts/source_reconstruction_audit.py --require-ready
+	$(MAKE) source-check
+	$(MAKE) trace-runtime
+	$(MAKE) validate-runtime-debug-symbols
+	$(PYTHON) scripts/source_reconstruction_audit.py --require-ready --require-clean
+
 trace-runtime: verify-reference
 	$(PYTHON) scripts/runtime/run_runtime_scenarios.py \
 		--fceux "$(FCEUX_EXE)" \
@@ -306,6 +315,14 @@ validate-runtime:
 	$(PYTHON) scripts/runtime/validate_runtime_scenarios.py \
 		--scenarios "$(RUNTIME_SCENARIOS)" \
 		--trace-dir "$(RUNTIME_TRACE_DIR)"
+
+runtime-debug-symbols: validate-runtime-debug-symbols
+
+validate-runtime-debug-symbols: validate-debug-symbols validate-runtime
+	$(PYTHON) scripts/runtime/validate_debugger_runtime.py \
+		--contract "$(RUNTIME_DEBUG_SYMBOLS)" \
+		--breakpoints "$(DEBUG_BREAKPOINTS)" --watches "$(DEBUG_WATCHES)" \
+		--trace-dir "$(RUNTIME_TRACE_DIR)" --symbol-dir "$(DEBUG_SYMBOL_DIR)"
 
 runtime-architecture: validate-bank-gateways trace-runtime validate-runtime
 

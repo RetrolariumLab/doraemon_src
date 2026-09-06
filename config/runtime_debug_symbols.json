@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "fceux_rom_filename": "doraemon.nes",
+  "program_observations": [
+    {
+      "kind": "reset",
+      "scenario": "boot-title",
+      "event": "reset",
+      "detail": "Reset",
+      "bank": 0,
+      "address": "0x8098",
+      "symbol": "Bank0_Reset"
+    },
+    {
+      "kind": "nmi",
+      "scenario": "world1-city",
+      "event": "nmi",
+      "detail": "Nmi",
+      "bank": 0,
+      "address": "0x813C",
+      "symbol": "Bank0_Nmi"
+    },
+    {
+      "kind": "nmi",
+      "scenario": "world2-cave",
+      "event": "nmi",
+      "detail": "Nmi",
+      "bank": 1,
+      "address": "0x813C",
+      "symbol": "Bank1_Nmi"
+    },
+    {
+      "kind": "nmi",
+      "scenario": "world3-underwater",
+      "event": "nmi",
+      "detail": "Nmi",
+      "bank": 2,
+      "address": "0x813C",
+      "symbol": "Bank2_Nmi"
+    },
+    {
+      "kind": "nmi",
+      "scenario": "boot-title",
+      "event": "nmi",
+      "detail": "Nmi",
+      "bank": 3,
+      "address": "0x813C",
+      "symbol": "Bank3_Nmi"
+    },
+    {
+      "kind": "mapper",
+      "scenario": "world1-city",
+      "event": "mapper_write",
+      "detail": "WriteMapper",
+      "bank": 0,
+      "address": "0x81BB",
+      "symbol": "Bank0_WriteMapper"
+    },
+    {
+      "kind": "mapper",
+      "scenario": "world2-cave",
+      "event": "mapper_write",
+      "detail": "WriteMapper",
+      "bank": 1,
+      "address": "0x81BB",
+      "symbol": "Bank1_WriteMapper"
+    },
+    {
+      "kind": "mapper",
+      "scenario": "world3-underwater",
+      "event": "mapper_write",
+      "detail": "WriteMapper",
+      "bank": 2,
+      "address": "0x81BB",
+      "symbol": "Bank2_WriteMapper"
+    },
+    {
+      "kind": "mapper",
+      "scenario": "boot-title",
+      "event": "mapper_write",
+      "detail": "WriteMapper",
+      "bank": 3,
+      "address": "0x81BB",
+      "symbol": "Bank3_WriteMapper"
+    },
+    {
+      "kind": "frame-loop",
+      "scenario": "world1-city",
+      "event": "probe",
+      "detail": "world1_city_frame_loop",
+      "bank": 0,
+      "address": "0x82C1",
+      "symbol": "Bank0_World1CityFrameLoop"
+    },
+    {
+      "kind": "frame-loop",
+      "scenario": "world1-underground",
+      "event": "probe",
+      "detail": "world1_underground_frame_loop",
+      "bank": 0,
+      "address": "0xCE55",
+      "symbol": "Bank0_World1UndergroundFrameLoop"
+    },
+    {
+      "kind": "frame-loop",
+      "scenario": "world2-cave",
+      "event": "probe",
+      "detail": "world2_frame_loop",
+      "bank": 1,
+      "address": "0x8959",
+      "symbol": "Bank1_World2FrameLoop"
+    },
+    {
+      "kind": "frame-loop",
+      "scenario": "world3-underwater",
+      "event": "probe",
+      "detail": "world3_frame_loop",
+      "bank": 2,
+      "address": "0x838E",
+      "symbol": "Bank2_World3FrameLoop"
+    },
+    {
+      "kind": "frame-loop",
+      "scenario": "ending-credits",
+      "event": "probe",
+      "detail": "ending_credits_loop",
+      "bank": 3,
+      "address": "0x8B18",
+      "symbol": "Bank3_EndingCreditsFrameLoop"
+    }
+  ],
+  "ram_observations": [
+    {
+      "scenario": "boot-title",
+      "column": "nmi_busy",
+      "address": "0x0015",
+      "size": 1,
+      "symbol": "NmiBusy",
+      "minimum_unique_values": 2
+    },
+    {
+      "scenario": "boot-title",
+      "column": "selector",
+      "address": "0x0017",
+      "size": 1,
+      "symbol": "MapperSelection",
+      "minimum_unique_values": 2
+    },
+    {
+      "scenario": "boot-title",
+      "column": "ppu_ctrl",
+      "address": "0x0019",
+      "size": 1,
+      "symbol": "PpuCtrlShadow",
+      "minimum_unique_values": 2
+    },
+    {
+      "scenario": "boot-title",
+      "column": "ppu_mask",
+      "address": "0x001A",
+      "size": 1,
+      "symbol": "PpuMaskShadow",
+      "minimum_unique_values": 2
+    },
+    {
+      "scenario": "boot-title",
+      "column": "controller1",
+      "address": "0x001F",
+      "size": 1,
+      "symbol": "Controller1Buttons",
+      "minimum_unique_values": 2
+    }
+  ],
+  "expected_metrics": {
+    "program_observations": 14,
+    "program_banks": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "program_kinds": {
+      "frame-loop": 5,
+      "mapper": 4,
+      "nmi": 4,
+      "reset": 1
+    },
+    "ram_observations": 5
+  }
+}

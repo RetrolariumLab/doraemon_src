@@ -6,10 +6,14 @@
 - Unknown: which PRG/CHR state the physical GNROM latch exposes reliably at
   power-on and what assumptions the software makes before its first write.
 
-## BANK-002 - dispatch table roles
+## BANK-002 - dispatch table roles (resolved)
 
-- Known: four bank-specific JMP entries begin at `$8271`.
-- Unknown: exact init/frame/render/transition meanings for each entry.
+- Known: every bank has four bank-specific JMP entries at `$8271`, `$8274`,
+  `$8277`, and `$827A`.
+- Resolved: they are respectively the primary chapter/shell entry, NMI frame
+  service, secondary demo/status entry, and audio frame service. All sixteen
+  exact targets, their semantic symbols, and the NMI callers are validated by
+  `config/common_runtime.json`.
 
 ## W2-DATA-001 - block-table overlap
 

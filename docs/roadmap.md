@@ -250,12 +250,13 @@ registered unknown, not necessarily a dedicated visual editor.
 
 ### 11. Source Reconstruction 1.0 - Planned
 
-Resolve or explicitly classify remaining release-scope unknowns, live-validate
-the generated linker-derived Mesen/FCEUX symbols, refresh all eight runtime
-scenarios, run one clean aggregate `source-1-audit`, and prepare the audited
-release commit. Static symbol generation is complete: the gate checks all four
-linker segments, 3,827 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
-labels, and required Reset/NMI/mapper/chapter-loop probes.
+Resolve or explicitly classify remaining release-scope unknowns, refresh all
+eight runtime scenarios, run one clean aggregate `source-1-audit`, and prepare
+the audited release commit. Debugger-symbol validation is complete: the static
+gate checks all four linker segments, 3,827 ld65 symbols, eight FCEUX PRG name
+lists, 83 shared RAM labels, and required Reset/NMI/mapper/chapter-loop probes.
+The live gate additionally joins 14 observed program PCs across all four banks
+and five changing RAM watches to those generated names.
 
 The post-review routine pass is complete. The inventory now records 1,227
 semantic global labels, no neutral routine definitions in any bank, and all

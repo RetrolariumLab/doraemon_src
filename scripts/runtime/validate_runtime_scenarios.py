@@ -18,6 +18,7 @@ REQUIRED_COLUMNS = {
     "target_prg",
     "target_chr",
     "address",
+    "pc",
     "rom_value",
     "nmi_busy",
     "ppu_ctrl",

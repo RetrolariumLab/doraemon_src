@@ -232,10 +232,24 @@ def validate_runtime_manifest(
     return []
 
 
+def validate_clean_worktree(project_root: Path) -> list[str]:
+    try:
+        status = git_output(
+            project_root, "status", "--porcelain", "--untracked-files=all"
+        )
+    except (subprocess.CalledProcessError, OSError):
+        return ["release worktree cleanliness cannot be inspected"]
+    if status:
+        path_count = len(status.splitlines())
+        return [f"release worktree is not clean ({path_count} changed paths)"]
+    return []
+
+
 def validate_reconstruction(
     project_root: Path,
     manifest_path: Path,
     require_ready: bool = False,
+    require_clean: bool = False,
 ) -> list[str]:
     document = load_json(manifest_path)
     errors: list[str] = []
@@ -305,6 +319,8 @@ def validate_reconstruction(
     for target in [verification_target, *required_targets]:
         if target not in available_targets:
             errors.append(f"missing Make target: {target}")
+    if require_clean:
+        errors.extend(validate_clean_worktree(project_root))
     return errors
 
 
@@ -316,6 +332,7 @@ def main() -> int:
         default=Path("config/source_reconstruction.json"),
     )
     parser.add_argument("--require-ready", action="store_true")
+    parser.add_argument("--require-clean", action="store_true")
     args = parser.parse_args()
     project_root = Path(__file__).resolve().parent.parent
     manifest_path = args.manifest
@@ -323,7 +340,10 @@ def main() -> int:
         manifest_path = project_root / manifest_path
     try:
         errors = validate_reconstruction(
-            project_root, manifest_path, require_ready=args.require_ready
+            project_root,
+            manifest_path,
+            require_ready=args.require_ready,
+            require_clean=args.require_clean,
         )
     except (OSError, json.JSONDecodeError, subprocess.SubprocessError) as exc:
         print(f"[ERROR] reconstruction audit failed: {exc}")

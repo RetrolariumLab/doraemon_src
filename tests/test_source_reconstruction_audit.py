@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -127,6 +128,21 @@ class ContractHelpersTests(unittest.TestCase):
             expected = (root / "docs" / "status.md").resolve()
             self.assertEqual(
                 AUDIT.safe_project_path(root, "docs/status.md"), expected
+            )
+
+    def test_accepts_clean_release_worktree(self) -> None:
+        with mock.patch.object(AUDIT, "git_output", return_value=""):
+            self.assertEqual(AUDIT.validate_clean_worktree(ROOT), [])
+
+    def test_rejects_changed_release_worktree(self) -> None:
+        with mock.patch.object(
+            AUDIT,
+            "git_output",
+            return_value=" M README.md\n?? release-note.txt",
+        ):
+            self.assertEqual(
+                AUDIT.validate_clean_worktree(ROOT),
+                ["release worktree is not clean (2 changed paths)"],
             )
 
     def test_rejects_semantic_module_over_line_limit(self) -> None:

@@ -40,14 +40,14 @@ local function active_bank()
     return bank
 end
 
-local function emit(event, detail, selector, address, rom_value)
+local function emit(event, detail, selector, address, rom_value, pc)
     local selection = selector or byte(MAPPER_SELECTION)
     output:write(string.format(
-        "%d,%s,%s,%d,%02X,%d,%d,%04X,%02X,%02X,%02X,%02X,%02X\n",
+        "%d,%s,%s,%d,%02X,%d,%d,%04X,%04X,%02X,%02X,%02X,%02X,%02X\n",
         emu.framecount(), event, detail or "", active_bank(), selection,
         bit.band(selection, 0x03), bit.band(bit.rshift(selection, 2), 0x03),
-        address or 0, rom_value or 0, byte(NMI_BUSY), byte(PPU_CTRL_SHADOW),
-        byte(PPU_MASK_SHADOW), byte(CONTROLLER_1)
+        address or 0, pc or 0, rom_value or 0, byte(NMI_BUSY),
+        byte(PPU_CTRL_SHADOW), byte(PPU_MASK_SHADOW), byte(CONTROLLER_1)
     ))
     output:flush()
 end
@@ -87,31 +87,31 @@ end
 
 output:write(
     "frame,event,detail,bank,selector,target_prg,target_chr,address," ..
-    "rom_value,nmi_busy,ppu_ctrl,ppu_mask,controller1\n"
+    "pc,rom_value,nmi_busy,ppu_ctrl,ppu_mask,controller1\n"
 )
 emit("trace_start", scenario)
 
 memory.registerexecute(0x8098, function()
-    emit("reset", "Reset")
+    emit("reset", "Reset", nil, nil, nil, 0x8098)
 end)
 
 memory.registerexecute(0x813C, function()
-    emit("nmi", "Nmi")
+    emit("nmi", "Nmi", nil, nil, nil, 0x813C)
 end)
 
 memory.registerexecute(0x81BB, function()
     local selector = byte(MAPPER_SELECTION)
     local address = MAPPER_TABLE + selector
-    emit("mapper_write", "WriteMapper", selector, address, byte(address))
+    emit("mapper_write", "WriteMapper", selector, address, byte(address), 0x81BB)
 end)
 
 memory.registerexecute(0x81C4, function()
-    emit("mapper_commit", "post-STA")
+    emit("mapper_commit", "post-STA", nil, nil, nil, 0x81C4)
 end)
 
 for _, address in ipairs({0x8271, 0x8274, 0x8277, 0x827A, 0x827D, 0x8280, 0x8283, 0x8286}) do
     memory.registerexecute(address, function()
-        emit("dispatch", string.format("%04X", address))
+        emit("dispatch", string.format("%04X", address), nil, nil, nil, address)
     end)
 end
 
@@ -138,7 +138,7 @@ local probes = {
 for address, probe in pairs(probes) do
     memory.registerexecute(address, function()
         if active_bank() == probe.bank then
-            emit("probe", probe.name)
+            emit("probe", probe.name, nil, nil, nil, address)
         end
     end)
 end

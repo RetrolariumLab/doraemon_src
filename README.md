@@ -144,9 +144,11 @@ make validate-world3-room-rendering # validate World 3 hierarchical room renderi
 make validate-world3-formation-runtime # validate World 3 boss/encounter formations
 make validate-world3-transition-runtime # validate World 3 completion/debug transitions
 make validate-debug-symbols # verify ld65 symbols and generated FCEUX name lists
+make validate-runtime-debug-symbols # join debugger symbols to live FCEUX PCs/RAM
 make source-audit       # validate reconstruction milestones and evidence
 make runtime-architecture # capture and validate reset/NMI/mapper evidence
 make source-check       # complete project and reconstruction development gate
+make source-1-audit     # clean tag-ready gate with fresh runtime captures
 make check              # current byte-identity and subsystem verification gate
 make clean              # remove build artifacts only
 ```

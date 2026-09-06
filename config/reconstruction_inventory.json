@@ -177,11 +177,10 @@
       }
     },
     "open_unknowns": {
-      "section_count": 5,
-      "claim_count": 5,
+      "section_count": 4,
+      "claim_count": 4,
       "section_ids": [
         "BANK-001",
-        "BANK-002",
         "WORLD-DATA-002",
         "AUDIO-002",
         "TEXT-001"

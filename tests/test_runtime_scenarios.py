@@ -34,6 +34,7 @@ def row(event: str, **changes: str) -> dict[str, str]:
         "target_prg": "3",
         "target_chr": "0",
         "address": "8264",
+        "pc": "81BB",
         "rom_value": "30",
         "nmi_busy": "00",
         "ppu_ctrl": "10",

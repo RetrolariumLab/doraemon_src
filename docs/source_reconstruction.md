@@ -62,11 +62,16 @@ treated as reconstructed.
 make source-audit          # validate the active development contract
 make source-release-audit  # additionally require tag-ready status
 make source-check          # full project gate plus reconstruction audit
+make source-1-audit         # clean tag-ready gate with fresh runtime captures
 ```
 
 The normal `make verify` and `make check` targets remain available throughout
-the work. Incremental commits should finish one coherent evidence or source
-change and leave all checks relevant to that change passing.
+the work. `source-1-audit` first rejects a non-ready manifest, then runs the
+complete static/source gate, regenerates and validates all eight runtime
+scenarios, and finally requires both the tag-ready contract and a clean Git
+worktree. It is therefore run from the committed release candidate, not during
+an ordinary development edit. Incremental commits should finish one coherent
+evidence or source change and leave all checks relevant to that change passing.
 
 Relocation builds, Revision A, translations/region profiles, and exhaustive
 editors for secondary graphics/text tables are explicitly deferred to Source
