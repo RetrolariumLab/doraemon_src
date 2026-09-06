@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "shared_range": {
+    "address": "0x8098",
+    "size": 473,
+    "sha1": "234a6b63cd2fe1660fa5cf1e9a8d1d64b291d1d3"
+  },
+  "shared_services": [
+    {
+      "address": "0x8098",
+      "size": 55,
+      "sha1": "edaef4c8f30a550f39cbb9a1b00b11261a24ebe5",
+      "suffix": "Reset"
+    },
+    {
+      "address": "0x80CF",
+      "size": 11,
+      "sha1": "b106514eda3c6756c9fa246ca75c68e13e6c3032",
+      "suffix": "WaitForVblank"
+    },
+    {
+      "address": "0x80DA",
+      "size": 22,
+      "sha1": "e3eb3bb9c613c206877cf88c02ff5e61a177fa96",
+      "suffix": "DisableRenderingForUpdate"
+    },
+    {
+      "address": "0x80F0",
+      "size": 13,
+      "sha1": "5e26f692a9bbcd22d1ac4c021ee33d5d12e0cc01",
+      "suffix": "DisableNmiAndRendering"
+    },
+    {
+      "address": "0x80FD",
+      "size": 52,
+      "sha1": "7ab5882819165b25256c762278a2111a7c360132",
+      "suffix": "EnableNmiAndRendering"
+    },
+    {
+      "address": "0x8131",
+      "size": 11,
+      "sha1": "77e48e43928c73218ada4f39d9d7f98d1e5e37a3",
+      "suffix": "HideAllSprites"
+    },
+    {
+      "address": "0x813C",
+      "size": 110,
+      "sha1": "8a50b0d2c68858bace472013ea834c6981d9ae0c",
+      "suffix": "Nmi"
+    },
+    {
+      "address": "0x81AA",
+      "size": 8,
+      "sha1": "f03ed5118650caaa6ae4010ff56ff612b176afff",
+      "suffix": "SelectChrBank"
+    },
+    {
+      "address": "0x81B2",
+      "size": 9,
+      "sha1": "3552c9ea71eb3db75ecbd089f1f5cbeaade6260c",
+      "suffix": "SelectPrgBank"
+    },
+    {
+      "address": "0x81BB",
+      "size": 14,
+      "sha1": "04e514f6dd35fe66e4a8007babe82978138fcddf",
+      "suffix": "WriteMapper"
+    }
+  ],
+  "bank_dispatches": [
+    {
+      "bank": 0,
+      "entries": [
+        {
+          "address": "0x8271",
+          "target": "0x828E",
+          "symbol": "Bank0_PrimaryEntryDispatch",
+          "target_symbol": "Bank0_World1Main"
+        },
+        {
+          "address": "0x8274",
+          "target": "0x84D9",
+          "symbol": "Bank0_NmiFrameDispatch",
+          "target_symbol": "World1_NmiFrameServices"
+        },
+        {
+          "address": "0x8277",
+          "target": "0x8451",
+          "symbol": "Bank0_SecondaryEntryDispatch",
+          "target_symbol": "World1_DemoEntry"
+        },
+        {
+          "address": "0x827A",
+          "target": "0x827D",
+          "symbol": "Bank0_AudioFrameDispatch",
+          "target_symbol": "World1_Audio_UpdateFrameWithExtraLifeCue"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "entries": [
+        {
+          "address": "0x8271",
+          "target": "0x88A4",
+          "symbol": "Bank1_PrimaryEntryDispatch",
+          "target_symbol": "Bank1_World2Main"
+        },
+        {
+          "address": "0x8274",
+          "target": "0x829F",
+          "symbol": "Bank1_NmiFrameDispatch",
+          "target_symbol": "World2_NmiFrameServices"
+        },
+        {
+          "address": "0x8277",
+          "target": "0x8891",
+          "symbol": "Bank1_SecondaryEntryDispatch",
+          "target_symbol": "World2_DemoEntry"
+        },
+        {
+          "address": "0x827A",
+          "target": "0x8704",
+          "symbol": "Bank1_AudioFrameDispatch",
+          "target_symbol": "World2_Audio_UpdateFrame"
+        }
+      ]
+    },
+    {
+      "bank": 2,
+      "entries": [
+        {
+          "address": "0x8271",
+          "target": "0x82F6",
+          "symbol": "Bank2_PrimaryEntryDispatch",
+          "target_symbol": "Bank2_World3Main"
+        },
+        {
+          "address": "0x8274",
+          "target": "0xAFED",
+          "symbol": "Bank2_NmiFrameDispatch",
+          "target_symbol": "World3_NmiFrameServices"
+        },
+        {
+          "address": "0x8277",
+          "target": "0x82AD",
+          "symbol": "Bank2_SecondaryEntryDispatch",
+          "target_symbol": "World3_DemoEntry"
+        },
+        {
+          "address": "0x827A",
+          "target": "0xAFE6",
+          "symbol": "Bank2_AudioFrameDispatch",
+          "target_symbol": "World3_Audio_UpdateFrame"
+        }
+      ]
+    },
+    {
+      "bank": 3,
+      "entries": [
+        {
+          "address": "0x8271",
+          "target": "0x828F",
+          "symbol": "Bank3_PrimaryEntryDispatch",
+          "target_symbol": "Bank3_ShellMain"
+        },
+        {
+          "address": "0x8274",
+          "target": "0x8FF2",
+          "symbol": "Bank3_NmiFrameDispatch",
+          "target_symbol": "Shell_NmiFrameServices"
+        },
+        {
+          "address": "0x8277",
+          "target": "0x87CB",
+          "symbol": "Bank3_SecondaryEntryDispatch",
+          "target_symbol": "Shell_ShowStatusScreen"
+        },
+        {
+          "address": "0x827A",
+          "target": "0x8289",
+          "symbol": "Bank3_AudioFrameDispatch",
+          "target_symbol": "Audio_UpdateFrame"
+        }
+      ]
+    }
+  ]
+}

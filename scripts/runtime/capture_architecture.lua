@@ -116,6 +116,9 @@ for _, address in ipairs({0x8271, 0x8274, 0x8277, 0x827A, 0x827D, 0x8280, 0x8283
 end
 
 local probes = {
+    [0x828E] = {name = "world1_main_entry", bank = 0},
+    [0x82C1] = {name = "world1_city_frame_loop", bank = 0},
+    [0xCE55] = {name = "world1_underground_frame_loop", bank = 0},
     [0x82F6] = {name = "world3_main_entry", bank = 2},
     [0x838E] = {name = "world3_frame_loop", bank = 2},
     [0x8A88] = {name = "ending_entry", bank = 3},

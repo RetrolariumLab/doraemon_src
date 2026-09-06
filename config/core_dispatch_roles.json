@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "domains": [
+    {
+      "name": "world2_screen_services",
+      "bank": 1,
+      "source": "world2_streaming",
+      "tables": [
+        "frame_screen_services",
+        "reverse_screen_services",
+        "forward_screen_services"
+      ],
+      "targets": [
+        {
+          "address": "0x8365",
+          "symbol": "World2_ScreenService_NoOp",
+          "role": "empty dispatch slot"
+        },
+        {
+          "address": "0x8371",
+          "symbol": "World2_AdvanceScreenStage",
+          "role": "advance stage sequence and arm row delay"
+        },
+        {
+          "address": "0x83CF",
+          "symbol": "World2_DecodeScreenRow15",
+          "role": "decode at least fifteen metatiles"
+        },
+        {
+          "address": "0x83DD",
+          "symbol": "World2_AdvanceStreamedScreenRow",
+          "role": "advance row and consume row-13 branch command"
+        },
+        {
+          "address": "0x8405",
+          "symbol": "World2_DecodeScreenRow16",
+          "role": "decode sixteen metatiles and prepare column addresses"
+        },
+        {
+          "address": "0x8471",
+          "symbol": "World2_PrepareRowTransferAddresses",
+          "role": "derive nametable and attribute addresses from vertical scroll"
+        },
+        {
+          "address": "0x84AB",
+          "symbol": "World2_ExpandHorizontalMetatileRow",
+          "role": "expand sixteen metatiles into tile and palette buffers"
+        },
+        {
+          "address": "0x84C1",
+          "symbol": "World2_ReadVerticalAttributeColumn",
+          "role": "read eight attribute bytes at eight-byte stride"
+        },
+        {
+          "address": "0x84E1",
+          "symbol": "World2_ExpandVerticalMetatileColumn",
+          "role": "expand fifteen metatiles at sixteen-byte stride"
+        },
+        {
+          "address": "0x8578",
+          "symbol": "World2_UploadVerticalTileColumnsA",
+          "role": "upload first two vertical tile columns with PPU increment 32"
+        },
+        {
+          "address": "0x85A5",
+          "symbol": "World2_MergeVerticalAttributes",
+          "role": "merge fifteen palette selectors into attribute buffer"
+        },
+        {
+          "address": "0x85F7",
+          "symbol": "World2_UploadVerticalTileColumnsBAndAttributes",
+          "role": "upload second tile-column pair and eight attributes"
+        },
+        {
+          "address": "0x8641",
+          "symbol": "World2_UploadHorizontalTileRowsB",
+          "role": "upload second pair of sixteen-tile rows"
+        },
+        {
+          "address": "0x8660",
+          "symbol": "World2_ReadAndMergeHorizontalAttributes",
+          "role": "read and merge eight attributes for sixteen metatiles"
+        },
+        {
+          "address": "0x86C9",
+          "symbol": "World2_UploadHorizontalTileRowsA",
+          "role": "upload first pair of sixteen-tile rows"
+        },
+        {
+          "address": "0x86EB",
+          "symbol": "World2_UploadHorizontalAttributes",
+          "role": "upload eight merged attribute bytes"
+        },
+        {
+          "address": "0x8747",
+          "symbol": "World2_ApplyPendingBackgroundPalette",
+          "role": "select and upload pending background palette"
+        }
+      ]
+    },
+    {
+      "name": "world3_player_states",
+      "bank": 2,
+      "source": "object_dispatch",
+      "table": "world3_player_state_handlers",
+      "targets": [
+        {
+          "address": "0xA239",
+          "symbol": "World3_PlayerState_Frozen",
+          "role": "state 0 performs no update"
+        },
+        {
+          "address": "0xA335",
+          "symbol": "World3_PlayerState_ControlledMovement",
+          "role": "state 1 updates controlled movement and firing"
+        },
+        {
+          "address": "0xA33C",
+          "symbol": "World3_PlayerState_AlternateMovement",
+          "role": "state 2 updates alternate movement and firing"
+        },
+        {
+          "address": "0xA2E9",
+          "symbol": "World3_PlayerState_DamageRecovery",
+          "role": "state 3 runs timed knockback then returns to state 1"
+        },
+        {
+          "address": "0xA23A",
+          "symbol": "World3_PlayerState_Dying",
+          "role": "state 4 animates death and resolves life loss"
+        }
+      ]
+    }
+  ]
+}

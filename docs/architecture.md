@@ -86,6 +86,10 @@ checks the four copies, source calls, and possible graph edges. The resulting
 static PRG graph is `{0,1,2}->3` plus `3->{0,1,2,3}`; runtime traces exercise
 the shell-to-chapter edges and callable shell returns.
 
+The adjacent `$8098-$8270` runtime is also identical in all four banks. Its
+reset, NMI, rendering transition, OAM, mapper, and score services are validated
+and named by `config/common_runtime.json`.
+
 ## Three gameplay systems
 
 World 1 uses a 64x64 city map plus a 64x25 underground map and two metatile

@@ -165,6 +165,45 @@ class RuntimeValidationTests(unittest.TestCase):
         self.assertTrue(RUNTIME.probe_sequence(scenario, correct))
         self.assertFalse(RUNTIME.probe_sequence(scenario, wrong_bank))
 
+    def test_accepts_one_frame_loop_hit_per_consecutive_frame(self) -> None:
+        scenario = {
+            "recurring_frame_loops": [
+                {
+                    "name": "world1_city_frame_loop",
+                    "bank": 0,
+                    "minimum_frames": 3,
+                    "maximum_frame_gap": 1,
+                }
+            ]
+        }
+        rows = [
+            row("probe", detail="world1_city_frame_loop", bank="0", frame=str(frame))
+            for frame in range(100, 103)
+        ]
+        self.assertTrue(RUNTIME.recurring_frame_loops(scenario, rows))
+
+    def test_rejects_duplicate_or_gapped_frame_loop_hits(self) -> None:
+        scenario = {
+            "recurring_frame_loops": [
+                {
+                    "name": "world2_frame_loop",
+                    "bank": 1,
+                    "minimum_frames": 3,
+                    "maximum_frame_gap": 1,
+                }
+            ]
+        }
+        duplicate = [
+            row("probe", detail="world2_frame_loop", bank="1", frame=frame)
+            for frame in ("10", "10", "11")
+        ]
+        gapped = [
+            row("probe", detail="world2_frame_loop", bank="1", frame=frame)
+            for frame in ("10", "11", "13")
+        ]
+        self.assertFalse(RUNTIME.recurring_frame_loops(scenario, duplicate))
+        self.assertFalse(RUNTIME.recurring_frame_loops(scenario, gapped))
+
     def test_requires_declared_memory_patch(self) -> None:
         scenario = {
             "memory_patches": [

@@ -17,7 +17,7 @@ Bank1_Func_8286:
     .byte $8D, $06, $20, $8D, $06, $20, $A5, $3F, $8D, $05, $20, $A5, $40, $8D, $05, $20
     .byte $A5, $19, $8D, $00, $20, $E6, $73, $60
 
-Bank1_Func_829F:
+World2_NmiFrameServices:
     LDA $41
     BEQ Bank1_Func_827D
     LDX $42
@@ -148,7 +148,7 @@ Bank1_Func_835D:
     LDA a:$8831,X
     PHA
 
-Bank1_Func_8365:
+World2_ScreenService_NoOp:
     RTS
 
 Bank1_Func_8366:
@@ -159,7 +159,7 @@ Bank1_Func_8366:
     INC World2ScreenRowIndex
     RTS
 
-Bank1_Func_8371:
+World2_AdvanceScreenStage:
     JSR World2_AdvanceStageSequence
     LDA $43
     BEQ Bank1_Label_837C
@@ -235,7 +235,7 @@ Bank1_Label_83D3:
     STY World2ScreenStreamOffset
     RTS
 
-Bank1_Func_83DD:
+World2_AdvanceStreamedScreenRow:
     INC World2ScreenRowIndex
     LDA World2ScreenRowIndex
     CMP #$0E

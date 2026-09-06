@@ -5,9 +5,9 @@
 Bank3_RunEnding:
     LDX #$7F
     TXS
-    JSR Bank3_Func_80DA
+    JSR Bank3_DisableRenderingForUpdate
     LDA #$03
-    JSR Bank3_Func_81AA
+    JSR Bank3_SelectChrBank
     JSR Bank3_Func_9152
     LDA #$84
     STA $00
@@ -45,23 +45,23 @@ Bank3_Label_8AB9:
     LDA PpuCtrlShadow
     AND #$E0
     STA PpuCtrlShadow
-    JSR Bank3_Func_80FD
+    JSR Bank3_EnableNmiAndRendering
 
 Bank3_Label_8ADD:
-    JSR Bank3_Func_8F5A
+    JSR Shell_WaitForNextFrame
     LDA a:AudioMusicState
     BNE Bank3_Label_8ADD
     LDA #$C4
     STA FrameCounter
 
 Bank3_Label_8AE9:
-    JSR Bank3_Func_8F5A
+    JSR Shell_WaitForNextFrame
     LDA FrameCounter
     BNE Bank3_Label_8AE9
-    JSR Bank3_Func_80DA
+    JSR Bank3_DisableRenderingForUpdate
     LDA $3B
     BPL Bank3_Label_8AFA
-    JMP Bank3_Func_8048
+    JMP Bank3_EnterShell
 
 Bank3_Label_8AFA:
     JSR Bank3_Func_9152
@@ -76,10 +76,10 @@ Bank3_Label_8AFA:
     ORA #$10
     STA PpuCtrlShadow
     JSR Bank3_Func_91A1
-    JSR Bank3_Func_80FD
+    JSR Bank3_EnableNmiAndRendering
 
 Bank3_Label_8B18:
-    JSR Bank3_Func_8F5A
+    JSR Shell_WaitForNextFrame
     JSR Bank3_Func_8B8A
     JSR Bank3_Func_91EE
     LDA $4B

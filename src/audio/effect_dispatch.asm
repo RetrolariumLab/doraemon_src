@@ -64,16 +64,16 @@ Bank3_Label_9887:
     PHA
     RTS
 
-Bank3_Func_9894:
+AudioEffect_UpdateTimedStop:
     DEC a:AudioEffectWork0
-    BNE Bank3_Func_98A1
+    BNE AudioEffect_NoOp
 
 Audio_StopCurrentEffect:
     LDA #$00
     STA a:AudioCurrentEffectPriority
     STA a:AudioEffectRetriggerLock
 
-Bank3_Func_98A1:
+AudioEffect_NoOp:
     RTS
 
 Audio_ResetEffects:
@@ -95,7 +95,7 @@ Audio_ResetEffects:
     STA a:APU_STATUS
     RTS
 
-Bank3_Func_98CF:
+AudioEffect_InitNoiseSweep:
     LDA #$18
     STA a:AudioEffectTimers+$03
     LDA #$00
@@ -111,12 +111,12 @@ Bank3_Func_98CF:
     STA a:AudioEffectWork2
     RTS
 
-Bank3_Func_98F1:
+AudioEffect_UpdateNoiseSweepSlow:
     LDX a:AudioEffectWork1
     BEQ Bank3_Label_9921
     DEX
     BEQ Bank3_Label_98FC
-    JMP Bank3_Func_9894
+    JMP AudioEffect_UpdateTimedStop
 
 Bank3_Label_98FC:
     DEC a:AudioEffectWork0
@@ -149,12 +149,12 @@ Bank3_Label_9921:
 Bank3_Label_9939:
     RTS
 
-Bank3_Func_993A:
+AudioEffect_UpdateNoiseSweepFast:
     LDX a:AudioEffectWork1
     BEQ Bank3_Label_9921
     DEX
     BEQ Bank3_Label_9945
-    JMP Bank3_Func_9894
+    JMP AudioEffect_UpdateTimedStop
 
 Bank3_Label_9945:
     DEC a:AudioEffectWork0
@@ -173,7 +173,7 @@ Bank3_Label_9945:
     STA a:AudioEffectWork0
     RTS
 
-Bank3_Func_996A:
+AudioEffect_InitTriangleNoiseBurst:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03
@@ -189,13 +189,13 @@ Bank3_Func_996A:
     STA a:APU_NOISE_HI
     RTS
 
-Bank3_Func_998C:
+AudioEffect_InitPulse2PitchSequenceLong:
     LDY #$60
     LDA #$17
     LDX #$00
     BEQ Bank3_Label_999A
 
-Bank3_Func_9994:
+AudioEffect_InitPulse2PitchSequenceShort:
     LDY #$08
     LDA #$01
     LDX #$05
@@ -206,10 +206,10 @@ Bank3_Label_999A:
     STX a:AudioEffectWork2
     LDA #$01
     STA a:AudioEffectWork1
-    JSR Bank3_Func_99AE
-    JMP Bank3_Func_9C31
+    JSR AudioEffect_InitNoiseOnset
+    JMP AudioEffect_UpdatePulse2PitchSequence
 
-Bank3_Func_99AE:
+AudioEffect_InitNoiseOnset:
     LDA #$08
     STA a:AudioEffectTimers+$03
     LDA #$01
@@ -222,7 +222,7 @@ Bank3_Func_99AE:
 Bank3_Label_99C2:
     RTS
 
-Bank3_Func_99C3:
+AudioEffect_InitPulse1AlternatingBurst:
     LDA #$48
     STA a:AudioEffectTimers
     STA a:AudioEffectTimers+$01
@@ -233,10 +233,10 @@ Bank3_Func_99C3:
     LDA #$04
     STA a:AudioEffectWork1
 
-Bank3_Func_99DB:
+AudioEffect_UpdatePulse1AlternatingBurst:
     LDA a:AudioEffectWork1
     BNE Bank3_Label_99E3
-    JMP Bank3_Func_9894
+    JMP AudioEffect_UpdateTimedStop
 
 Bank3_Label_99E3:
     DEC a:AudioEffectWork0
@@ -272,7 +272,7 @@ Bank3_Label_9A15:
     LDA #$08
     JMP Apu_WritePulse1Timer
 
-Bank3_Func_9A1A:
+AudioEffect_InitPulse1Sequence:
     LDA #$4A
     STA $2D
     LDA #$9E
@@ -285,8 +285,8 @@ Bank3_Func_9A1A:
     LDA #$83
     STA a:AudioEffectWork2
 
-Bank3_Func_9A34:
-    JSR Bank3_Func_9A6B
+AudioEffect_UpdatePulse1Sequence:
+    JSR AudioEffect_GateSequenceStep
     LDX #$00
     LDA a:AudioEffectWork1
     STA a:AudioEffectTimers,X
@@ -300,7 +300,7 @@ Bank3_Func_9A34:
     STA a:APU_PL1_SWEEP,X
     LDY #$00
     LDA ($2D),Y
-    BEQ Bank3_Func_9A64
+    BEQ AudioEffect_AdvanceSequencePointer
     ASL A
     TAY
     LDA a:$A30F,Y
@@ -309,7 +309,7 @@ Bank3_Func_9A34:
     ORA #$08
     STA a:APU_PL1_HI,X
 
-Bank3_Func_9A64:
+AudioEffect_AdvanceSequencePointer:
     INC $2D
     BNE Bank3_Label_9A6A
     INC $2E
@@ -317,7 +317,7 @@ Bank3_Func_9A64:
 Bank3_Label_9A6A:
     RTS
 
-Bank3_Func_9A6B:
+AudioEffect_GateSequenceStep:
     DEC a:AudioEffectWork0
     BNE Bank3_Label_9A81
     LDA a:AudioEffectWork1
@@ -335,7 +335,7 @@ Bank3_Label_9A81:
 Bank3_Label_9A83:
     RTS
 
-Bank3_Func_9A84:
+AudioEffect_InitPulse1FixedTone:
     LDA #$04
     STA a:AudioEffectTimers
     STA a:AudioEffectWork0
@@ -347,7 +347,7 @@ Bank3_Func_9A84:
     LDA #$38
     JMP Apu_WritePulse1Timer
 
-Bank3_Func_9A9C:
+AudioEffect_InitPulse2FixedToneA:
     LDA #$0A
     STA a:AudioEffectTimers+$01
     STA a:AudioEffectWork0
@@ -358,7 +358,7 @@ Bank3_Func_9A9C:
     LDA #$08
     JMP Apu_WritePulse2Timer
 
-Bank3_Func_9AB2:
+AudioEffect_InitPulse1ToneWithTriangleLease:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectWork0
@@ -370,7 +370,7 @@ Bank3_Func_9AB2:
     LDA #$38
     JMP Apu_WritePulse1Timer
 
-Bank3_Func_9ACB:
+AudioEffect_InitNoisePeriodRamp:
     LDA #$10
     STA a:AudioEffectTimers+$03
     STA a:AudioEffectWork1
@@ -381,7 +381,7 @@ Bank3_Func_9ACB:
     LDA #$08
     STA a:APU_NOISE_HI
 
-Bank3_Func_9AE2:
+AudioEffect_UpdateNoisePeriodRamp:
     LDA a:AudioEffectWork0
     STA a:APU_NOISE_LO
     LDA a:AudioEffectWork0
@@ -399,7 +399,7 @@ Bank3_Label_9AF7:
 Bank3_Label_9AFA:
     RTS
 
-Bank3_Func_9AFB:
+AudioEffect_InitIndexedTonalSequenceAlt:
     LDA #$53
     STA $2D
     LDA #$9E
@@ -407,7 +407,7 @@ Bank3_Func_9AFB:
     LDA #$01
     STA a:AudioEffectWork0
 
-Bank3_Func_9B08:
+AudioEffect_UpdateIndexedTonalSequenceAlt:
     DEC a:AudioEffectWork0
     BNE Bank3_Label_9AFA
     LDY #$00
@@ -419,12 +419,12 @@ Bank3_Func_9B08:
     STA a:AudioEffectTimers+$01
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03
-    JSR Bank3_Func_9A64
+    JSR AudioEffect_AdvanceSequencePointer
     LDX #$00
-    JSR Bank3_Func_9B2F
-    JSR Bank3_Func_9B2F
+    JSR AudioEffect_WriteIndexedTonalEvent
+    JSR AudioEffect_WriteIndexedTonalEvent
 
-Bank3_Func_9B2F:
+AudioEffect_WriteIndexedTonalEvent:
     LDY #$00
     LDA ($2D),Y
     BEQ Bank3_Label_9B5A
@@ -455,9 +455,9 @@ Bank3_Label_9B5A:
     INX
     INX
     INX
-    JMP Bank3_Func_9A64
+    JMP AudioEffect_AdvanceSequencePointer
 
-Bank3_Func_9B61:
+AudioEffect_InitPulse2FixedToneB:
     LDA #$18
     STA a:AudioEffectTimers+$01
     LDA #$10
@@ -470,7 +470,7 @@ Bank3_Func_9B61:
     LDA #$19
     JMP Apu_WritePulse2Timer
 
-Bank3_Func_9B7C:
+AudioEffect_InitPulse2FixedToneC:
     LDA #$08
     STA a:AudioEffectTimers+$01
     STA a:AudioEffectWork0
@@ -481,7 +481,7 @@ Bank3_Func_9B7C:
     LDA #$08
     JMP Apu_WritePulse2Timer
 
-Bank3_Func_9B92:
+AudioEffect_InitNoiseVolumeSweep:
     LDA #$18
     STA a:AudioEffectTimers+$03
     LDA #$04
@@ -491,7 +491,7 @@ Bank3_Func_9B92:
     LDA #$00
     STA a:AudioEffectWork1
 
-Bank3_Func_9BA6:
+AudioEffect_UpdateNoiseVolumeSweep:
     LDA a:AudioEffectWork0
     CMP #$10
     BEQ Bank3_Label_9BD2
@@ -521,7 +521,7 @@ Bank3_Label_9BD2:
     STA a:APU_NOISE_VOL
     JMP Audio_StopCurrentEffect
 
-Bank3_Func_9BDA:
+AudioEffect_InitPulse2ThreeStep:
     LDA #$03
     STA a:AudioEffectWork1
     LDA #$FF
@@ -529,7 +529,7 @@ Bank3_Func_9BDA:
     LDA #$00
     STA a:AudioEffectWork0
 
-Bank3_Func_9BE9:
+AudioEffect_UpdatePulse2ThreeStep:
     LDA a:AudioEffectWork0
     BNE Bank3_Label_9C15
     LDA a:AudioEffectWork1

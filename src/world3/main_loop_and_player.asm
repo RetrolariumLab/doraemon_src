@@ -86,19 +86,19 @@ Bank2_Label_834C:
     TXS
     LDA $DC
     BNE Bank2_Label_836B
-    JSR Bank2_Func_80DA
+    JSR Bank2_DisableRenderingForUpdate
     LDA #$02
     STA $28
-    JSR Bank2_Func_8053
+    JSR Bank2_CallShellStatusScreen
     LDA #$00
     STA PpuCtrlShadow
-    JSR Bank2_Func_80FD
+    JSR Bank2_EnableNmiAndRendering
     LDA #$5A
     STA World3FrameWaitCounter
     JSR World3_WaitFrames
 
 Bank2_Label_836B:
-    JSR Bank2_Func_80DA
+    JSR Bank2_DisableRenderingForUpdate
     JSR Bank2_Func_A1F4
     JSR Bank2_Func_A213
     LDA $DC
@@ -188,7 +188,7 @@ Bank2_Label_840D:
     LDA CombinedControllerButtons
     AND #$30
     BEQ Bank2_Label_8419
-    JMP Bank2_Func_8048
+    JMP Bank2_EnterShell
 
 Bank2_Label_8416:
     JMP Bank2_Label_A26D
@@ -263,7 +263,7 @@ Bank2_Label_847B:
 Bank2_Label_847F:
     LDA Controller2Buttons
     BEQ Bank2_Label_847F
-    JMP Bank2_Func_8048
+    JMP Bank2_EnterShell
 
 Bank2_Label_8486:
     RTS
@@ -580,11 +580,11 @@ Bank2_Label_867A:
     RTS
 
 Bank2_Func_8689:
-    JSR Bank2_Func_80DA
+    JSR Bank2_DisableRenderingForUpdate
     LDA #$90
     STA PpuCtrlShadow
     LDA #$02
-    JSR Bank2_Func_81AA
+    JSR Bank2_SelectChrBank
     JSR World3_DisableRendering
     LDX #$AE
     LDY #$BC
@@ -598,7 +598,7 @@ Bank2_Func_8689:
     STA $00
     JSR World3_FillAttributeTables
     JSR World3_HideAllSprites
-    JSR Bank2_Func_80FD
+    JSR Bank2_EnableNmiAndRendering
     JSR World3_EnableRendering
     RTS
 

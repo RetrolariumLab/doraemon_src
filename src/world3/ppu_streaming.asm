@@ -226,7 +226,7 @@ Bank2_Func_A733:
     JSR Bank2_Func_A863
     JSR World3_DisableRendering
     LDA #$02
-    JSR Bank2_Func_81AA
+    JSR Bank2_SelectChrBank
     LDA #$90
     STA PpuCtrlShadow
     JSR Bank2_Func_A8EB

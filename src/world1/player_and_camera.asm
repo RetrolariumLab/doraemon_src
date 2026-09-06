@@ -472,7 +472,7 @@ Bank0_Label_885F:
     AND #$01
     ORA #$10
     STA World1PlayerMetasprite
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     LDA $97
     CMP #$3C
     BNE Bank0_Label_8878
@@ -486,12 +486,12 @@ Bank0_Label_8878:
     STA $97
 
 Bank0_Label_8880:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     DEC $97
     BNE Bank0_Label_8880
     LDA DemoModeActive
     BEQ Bank0_Label_888E
-    JMP Bank0_Func_8048
+    JMP Bank0_EnterShell
 
 Bank0_Label_888E:
     RTS

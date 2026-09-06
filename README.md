@@ -116,6 +116,9 @@ make maps               # describe all CadEditor-backed regions as JSON
 make validate-maps      # validate map/table sizes and CRCs
 make quality-check      # formatting, lint, and unit tests
 make reconstruction-inventory # measure semantic naming and typed-data progress
+make validate-common-runtime # validate duplicated reset/NMI/mapper services
+make validate-core-dispatch-roles # validate non-audio indirect target roles
+make validate-audio-effects # validate request roles, channel leases, and handlers
 make validate-audio-music # validate music commands, channel RAM, and helpers
 make validate-audio-arbitration # validate effect/music ownership of APU channels
 make validate-audio-streams # round-trip all header-reachable music streams

@@ -16,10 +16,10 @@ World3_UpdatePlayerState:
 World3_PlayerStateHandlerTable:
     .byte $39, $A2, $35, $A3, $3C, $A3, $E9, $A2, $3A, $A2
 
-Bank2_Func_A239:
+World3_PlayerState_Frozen:
     RTS
 
-Bank2_Func_A23A:
+World3_PlayerState_Dying:
     INC $93
     LDA $93
     AND #$07
@@ -108,10 +108,10 @@ Bank2_Label_A2AA:
 Bank2_Label_A2BE:
     LDA $DC
     BEQ Bank2_Label_A2C5
-    JMP Bank2_Func_8048
+    JMP Bank2_EnterShell
 
 Bank2_Label_A2C5:
-    JSR Bank2_Func_8065
+    JSR Bank2_CallShellGameOver
 
 Bank2_Label_A2C8:
     LDA CombinedControllerButtons
@@ -135,7 +135,7 @@ Bank2_Label_A2D8:
     STA PlayerHealthCapacityIndex
     RTS
 
-Bank2_Func_A2E9:
+World3_PlayerState_DamageRecovery:
     JSR Bank2_Func_A3B4
     JSR World3_TryFirePlayerProjectile
     LDY $9B
@@ -177,12 +177,12 @@ Bank2_Label_A31E:
     RTS
     .byte $04, $03, $03, $02, $02, $02, $00
 
-Bank2_Func_A335:
+World3_PlayerState_ControlledMovement:
     JSR Bank2_Func_A3B4
     JSR World3_TryFirePlayerProjectile
     RTS
 
-Bank2_Func_A33C:
+World3_PlayerState_AlternateMovement:
     JSR Bank2_Func_A343
     JSR World3_TryFirePlayerProjectile
     RTS

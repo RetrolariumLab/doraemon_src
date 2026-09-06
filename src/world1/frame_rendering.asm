@@ -12,7 +12,7 @@ Bank0_Func_95CB:
     JSR World1_Audio_QueueEffect
 
 Bank0_Label_95DB:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     JSR Bank0_Func_8490
     LDA World1PressedButtons
     AND #$10
@@ -24,7 +24,7 @@ Bank0_Label_95EC:
     RTS
 
 Bank0_Func_95ED:
-    JSR Bank0_Func_8131
+    JSR Bank0_HideAllSprites
     JSR Bank0_WaitForVblank
     LDA #$01
     STA NmiOamDmaRequest
@@ -36,7 +36,7 @@ Bank0_Func_95ED:
     ORA #$80
     STA PpuCtrlShadow
     STA a:PPU_CTRL
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     LDA PpuMaskShadow
     ORA #$18
     STA PpuMaskShadow
@@ -52,7 +52,7 @@ Bank0_Func_9614:
     STA PpuMaskShadow
     LDA #$01
     STA NmiOamDmaRequest
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     LDA #$00
     STA NmiOamDmaRequest
     RTS

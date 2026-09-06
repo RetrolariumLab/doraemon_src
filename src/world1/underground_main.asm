@@ -82,8 +82,8 @@ Bank0_Label_CDE3:
     LDX #$7F
     TXS
 
-Bank0_Label_CE55:
-    JSR Bank0_Func_94F1
+Bank0_World1UndergroundFrameLoop:
+    JSR World1_WaitForNextFrame
     JSR Bank0_Func_8490
     JSR Bank0_Func_95CB
     JSR Bank0_Func_9B54
@@ -104,7 +104,7 @@ Bank0_Label_CE55:
     BCS Bank0_Label_CEAB
     CMP #$E0
     BCS Bank0_Label_CEC2
-    JMP Bank0_Label_CE55
+    JMP Bank0_World1UndergroundFrameLoop
 
 Bank0_Label_CE90:
     JSR Bank0_Func_884C
@@ -115,7 +115,7 @@ Bank0_Label_CE90:
     JMP Bank0_Label_CDDD
 
 Bank0_Label_CE9E:
-    JSR Bank0_Func_8065
+    JSR Bank0_CallShellGameOver
     LDA #$02
     STA PlayerLives
     JSR Bank0_Func_C92F
@@ -133,7 +133,7 @@ Bank0_Label_CEAB:
 
 Bank0_Label_CEBB:
     LDA $00
-    BMI Bank0_Label_CE55
+    BMI Bank0_World1UndergroundFrameLoop
     JMP World1_ReturnFromUndergroundToCity
 
 Bank0_Label_CEC2:
@@ -152,7 +152,7 @@ Bank0_Label_CEC2:
     JSR Bank0_Func_9614
     JSR World1_PrefillMapViewport
     JSR Bank0_Func_95ED
-    JMP Bank0_Label_CE55
+    JMP Bank0_World1UndergroundFrameLoop
 
 Bank0_Label_CEE5:
     DEC World1UndergroundVerticalPage
@@ -170,7 +170,7 @@ Bank0_Label_CEE5:
     JSR Bank0_Func_9614
     JSR World1_PrefillMapViewport
     JSR Bank0_Func_95ED
-    JMP Bank0_Label_CE55
+    JMP Bank0_World1UndergroundFrameLoop
 
 World1_TrackUndergroundHorizontalCamera:
     LDA #$00

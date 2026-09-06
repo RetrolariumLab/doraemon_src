@@ -79,8 +79,8 @@ Bank1_Label_8923:
     BNE Bank1_Label_8940
     LDA #$01
     STA $28
-    JSR Bank1_Func_8053
-    JSR Bank1_Func_80FD
+    JSR Bank1_CallShellStatusScreen
+    JSR Bank1_EnableNmiAndRendering
     LDX #$5A
 
 Bank1_Label_893A:
@@ -91,17 +91,17 @@ Bank1_Label_893A:
 Bank1_Label_8940:
     JSR Bank1_Func_8711
     LDA #$01
-    JSR Bank1_Func_81AA
+    JSR Bank1_SelectChrBank
     JSR Bank1_Func_8ADF
     LDA PpuCtrlShadow
     AND #$E7
     ORA #$11
     STA PpuCtrlShadow
-    JSR Bank1_Func_80FD
+    JSR Bank1_EnableNmiAndRendering
     JSR World2_ClearEntityPools
 
 Bank1_World2FrameLoop:
-    JSR Bank1_Func_8A39
+    JSR World2_WaitForNextFrame
     JSR Bank1_Func_8B3B
     JSR Bank1_Func_8B4C
     JSR World2_UpdatePlayerAndInventory
@@ -147,7 +147,7 @@ Bank1_Label_89AC:
     JMP Bank1_Label_88B7
 
 Bank1_Label_89BA:
-    JSR Bank1_Func_8065
+    JSR Bank1_CallShellGameOver
     LDA #$00
     LDX #$06
 
@@ -171,7 +171,7 @@ Bank1_Label_89D7:
     BEQ Bank1_Label_89DE
 
 Bank1_Label_89DB:
-    JMP Bank1_Func_8048
+    JMP Bank1_EnterShell
 
 Bank1_Label_89DE:
     LDA $41
@@ -209,7 +209,7 @@ Bank1_Label_8A0B:
     JMP Bank1_World2FrameLoop
 
 Bank1_Func_8A1A:
-    JSR Bank1_Func_8A39
+    JSR World2_WaitForNextFrame
 
 Bank1_Func_8A1D:
     JSR Bank1_Func_8A94
@@ -223,9 +223,9 @@ Bank1_Func_8A1D:
 Bank1_Func_8A32:
     LDA World2InventoryState+$06
     STA $38
-    JMP Bank1_Func_808D
+    JMP Bank1_EnterWorld2ToWorld3Transition
 
-Bank1_Func_8A39:
+World2_WaitForNextFrame:
     LDA FrameCounter
 
 Bank1_Label_8A3B:
@@ -362,14 +362,14 @@ Bank1_Func_8ADF:
     STA $67
 
 Bank1_Label_8B14:
-    JSR Bank1_Func_8371
+    JSR World2_AdvanceScreenStage
     JSR World2_DecodeScreenRow15
-    JSR Bank1_Func_8471
-    JSR Bank1_Func_84C1
-    JSR Bank1_Func_84E1
-    JSR Bank1_Func_8578
-    JSR Bank1_Func_85A5
-    JSR Bank1_Func_85F7
+    JSR World2_PrepareRowTransferAddresses
+    JSR World2_ReadVerticalAttributeColumn
+    JSR World2_ExpandVerticalMetatileColumn
+    JSR World2_UploadVerticalTileColumnsA
+    JSR World2_MergeVerticalAttributes
+    JSR World2_UploadVerticalTileColumnsBAndAttributes
     LDA $3F
     CLC
     ADC #$10

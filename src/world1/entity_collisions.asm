@@ -426,7 +426,7 @@ Bank0_Func_94EB:
     BNE Bank0_Func_94EB
     RTS
 
-Bank0_Func_94F1:
+World1_WaitForNextFrame:
     LDA FrameCounter
 
 Bank0_Label_94F3:

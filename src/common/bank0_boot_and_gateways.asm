@@ -2,86 +2,86 @@
 ; Bank 0 reset, NMI, input, mapper switching, and cross-bank gateways
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_8000:
-    JSR Bank0_Func_80F0
+Bank0_EnterWorld1:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$00
-    JSR Bank0_Func_81B2
-    JMP Bank0_Func_8271
+    JSR Bank0_SelectPrgBank
+    JMP Bank0_PrimaryEntryDispatch
 
-Bank0_Func_800B:
-    JSR Bank0_Func_80F0
+Bank0_EnterWorld2:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$01
-    JSR Bank0_Func_81B2
-    JMP Bank0_Func_8271
+    JSR Bank0_SelectPrgBank
+    JMP Bank0_PrimaryEntryDispatch
 
-Bank0_Func_8016:
-    JSR Bank0_Func_80F0
+Bank0_EnterWorld3:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$02
-    JSR Bank0_Func_81B2
-    JMP Bank0_Func_8271
+    JSR Bank0_SelectPrgBank
+    JMP Bank0_PrimaryEntryDispatch
     .byte $4C, $74, $82
 
-Bank0_Func_8024:
-    JSR Bank0_Func_80F0
+Bank0_EnterWorld1Demo:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$00
-    JSR Bank0_Func_81B2
-    JMP Bank0_Func_8277
+    JSR Bank0_SelectPrgBank
+    JMP Bank0_SecondaryEntryDispatch
 
-Bank0_Func_802F:
-    JSR Bank0_Func_80F0
+Bank0_EnterWorld2Demo:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$01
-    JSR Bank0_Func_81B2
-    JMP Bank0_Func_8277
+    JSR Bank0_SelectPrgBank
+    JMP Bank0_SecondaryEntryDispatch
 
-Bank0_Func_803A:
-    JSR Bank0_Func_80F0
+Bank0_EnterWorld3Demo:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$02
-    JSR Bank0_Func_81B2
-    JMP Bank0_Func_8277
+    JSR Bank0_SelectPrgBank
+    JMP Bank0_SecondaryEntryDispatch
     .byte $4C, $7A, $82
 
-Bank0_Func_8048:
-    JSR Bank0_Func_80F0
+Bank0_EnterShell:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$03
-    JSR Bank0_Func_81B2
-    JMP Bank0_Func_8271
+    JSR Bank0_SelectPrgBank
+    JMP Bank0_PrimaryEntryDispatch
 
-Bank0_Func_8053:
-    JSR Bank0_Func_80F0
+Bank0_CallShellStatusScreen:
+    JSR Bank0_DisableNmiAndRendering
     LDA MapperSelection
     PHA
     LDA #$03
-    JSR Bank0_Func_81B2
-    JSR Bank0_Func_8277
+    JSR Bank0_SelectPrgBank
+    JSR Bank0_SecondaryEntryDispatch
     PLA
-    JMP Bank0_Func_81B2
+    JMP Bank0_SelectPrgBank
 
-Bank0_Func_8065:
-    JSR Bank0_Func_80F0
+Bank0_CallShellGameOver:
+    JSR Bank0_DisableNmiAndRendering
     LDA MapperSelection
     PHA
     LDA #$03
-    JSR Bank0_Func_81B2
-    JSR Bank0_Func_827D
+    JSR Bank0_SelectPrgBank
+    JSR World1_Audio_UpdateFrameWithExtraLifeCue
     PLA
-    JMP Bank0_Func_81B2
+    JMP Bank0_SelectPrgBank
 
-Bank0_Func_8077:
-    JSR Bank0_Func_80F0
+Bank0_EnterEnding:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$03
-    JSR Bank0_Func_81B2
+    JSR Bank0_SelectPrgBank
     JMP Bank0_Label_8280
 
-Bank0_Func_8082:
-    JSR Bank0_Func_80F0
+Bank0_EnterWorld1ToWorld2Transition:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$03
-    JSR Bank0_Func_81B2
+    JSR Bank0_SelectPrgBank
     JMP Bank0_Label_8283
 
-Bank0_Func_808D:
-    JSR Bank0_Func_80F0
+Bank0_EnterWorld2ToWorld3Transition:
+    JSR Bank0_DisableNmiAndRendering
     LDA #$03
-    JSR Bank0_Func_81B2
+    JSR Bank0_SelectPrgBank
     JMP Bank0_Label_8286
 
 Bank0_Reset:
@@ -108,8 +108,8 @@ Bank0_Label_80AC:
     LDA #$06
     STA PpuMaskShadow
     STA a:PPU_MASK
-    JSR Bank0_Func_80DA
-    JMP Bank0_Func_8048
+    JSR Bank0_DisableRenderingForUpdate
+    JMP Bank0_EnterShell
 
 Bank0_WaitForVblank:
     LDA a:PPU_STATUS
@@ -120,7 +120,7 @@ Bank0_Label_80D4:
     BMI Bank0_Label_80D4
     RTS
 
-Bank0_Func_80DA:
+Bank0_DisableRenderingForUpdate:
     JSR Bank0_WaitForVblank
     LDA #$00
     STA NmiOamDmaRequest
@@ -132,16 +132,16 @@ Bank0_Func_80DA:
     STA a:PPU_MASK
     RTS
 
-Bank0_Func_80F0:
-    JSR Bank0_Func_80DA
+Bank0_DisableNmiAndRendering:
+    JSR Bank0_DisableRenderingForUpdate
     LDA PpuCtrlShadow
     AND #$7F
     STA PpuCtrlShadow
     STA a:PPU_CTRL
     RTS
 
-Bank0_Func_80FD:
-    JSR Bank0_Func_8131
+Bank0_EnableNmiAndRendering:
+    JSR Bank0_HideAllSprites
     JSR Bank0_WaitForVblank
     LDA #$01
     STA NmiOamDmaRequest
@@ -164,7 +164,7 @@ Bank0_Func_80FD:
     STA a:PPU_MASK
     RTS
 
-Bank0_Func_8131:
+Bank0_HideAllSprites:
     LDA #$F0
     LDX #$00
 
@@ -192,7 +192,7 @@ Bank0_Nmi:
     JSR Bank0_WriteMapper
 
 Bank0_Label_8158:
-    JSR Bank0_Func_8274
+    JSR Bank0_NmiFrameDispatch
     LDA #$01
     STA a:JOYPAD1
     LDA #$00
@@ -232,7 +232,7 @@ Bank0_Label_8197:
     DEC Controller2MicrophoneEdgeTimer
 
 Bank0_Label_819D:
-    JSR Bank0_Func_827A
+    JSR Bank0_AudioFrameDispatch
     DEC NmiBusy
 
 Bank0_Label_81A2:
@@ -244,14 +244,14 @@ Bank0_Label_81A2:
     PLA
     RTI
 
-Bank0_Func_81AA:
+Bank0_SelectChrBank:
     ASL A
     ASL A
     AND #$0C
     STA ChrSelectionBits
     LDA MapperSelection
 
-Bank0_Func_81B2:
+Bank0_SelectPrgBank:
     AND #$03
     ORA ChrSelectionBits
     STA MapperSelection
@@ -380,14 +380,14 @@ Bank0_ExtraLifeScoreThresholds:
 Bank0_MapperValueTable:
     .byte $00, $10, $20, $30, $01, $11, $21, $31, $02, $12, $22, $32, $03, $13, $23, $33
 
-Bank0_Func_8271:
+Bank0_PrimaryEntryDispatch:
     JMP Bank0_World1Main
 
-Bank0_Func_8274:
-    JMP Bank0_Func_84D9
+Bank0_NmiFrameDispatch:
+    JMP World1_NmiFrameServices
 
-Bank0_Func_8277:
+Bank0_SecondaryEntryDispatch:
     JMP World1_DemoEntry
 
-Bank0_Func_827A:
-    JMP Bank0_Func_827D
+Bank0_AudioFrameDispatch:
+    JMP World1_Audio_UpdateFrameWithExtraLifeCue

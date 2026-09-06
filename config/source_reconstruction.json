@@ -41,9 +41,12 @@
       "status": "complete",
       "evidence": [
         "config/bank_gateways.json",
+        "config/common_runtime.json",
+        "docs/common_runtime.md",
         "docs/runtime_evidence.md",
         "scenarios/runtime_scenarios.json",
         "scripts/bank_gateways.py",
+        "scripts/common_runtime.py",
         "scripts/runtime/capture_architecture.lua",
         "scripts/runtime/run_runtime_scenarios.py",
         "scripts/runtime/validate_runtime_scenarios.py"
@@ -73,13 +76,21 @@
       "id": "semantic_naming",
       "status": "partial",
       "evidence": [
+        "config/audio_effects.json",
+        "config/core_dispatch_roles.json",
         "config/reconstruction_inventory.json",
         "config/symbols.json",
         "src/memory/ram.inc",
+        "docs/audio_effects.md",
+        "docs/core_dispatch_roles.md",
         "docs/reconstruction_inventory.md",
         "docs/subsystems.md",
         "docs/unknowns.md",
-        "scripts/reconstruction_inventory.py"
+        "scripts/audio_effects.py",
+        "scripts/core_dispatch_roles.py",
+        "scripts/reconstruction_inventory.py",
+        "tests/test_audio_effects.py",
+        "tests/test_core_dispatch_roles.py"
       ]
     },
     {
@@ -219,16 +230,20 @@
       "status": "partial",
       "evidence": [
         "config/audio_dispatch.json",
+        "config/audio_effects.json",
         "config/audio_music.json",
         "config/audio_arbitration.json",
         "data/audio/music_streams.json",
+        "docs/audio_effects.md",
         "docs/audio_arbitration.md",
         "docs/audio_music.md",
         "docs/subsystems.md",
         "scripts/audio_dispatch.py",
+        "scripts/audio_effects.py",
         "scripts/audio_music.py",
         "scripts/audio_arbitration.py",
         "scripts/audio_streams.py",
+        "tests/test_audio_effects.py",
         "tests/test_audio_arbitration.py",
         "tests/test_audio_music.py",
         "tests/test_audio_streams.py"

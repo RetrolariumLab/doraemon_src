@@ -34,7 +34,10 @@ RUNTIME_LUA := scripts/runtime/capture_architecture.lua
 RUNTIME_TRACE_DIR := build/runtime/traces
 RUNTIME_SCREENSHOT_DIR := build/runtime/screens
 BANK_GATEWAYS := config/bank_gateways.json
+COMMON_RUNTIME := config/common_runtime.json
+CORE_DISPATCH_ROLES := config/core_dispatch_roles.json
 AUDIO_DISPATCH := config/audio_dispatch.json
+AUDIO_EFFECTS := config/audio_effects.json
 AUDIO_MUSIC := config/audio_music.json
 AUDIO_ARBITRATION := config/audio_arbitration.json
 AUDIO_STREAM_AUTHORING := data/audio/music_streams.json
@@ -103,7 +106,10 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	source-audit source-release-audit source-check trace-runtime \
 	reconstruction-inventory validate-reconstruction-inventory \
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
-	audio-dispatch validate-audio-dispatch object-pools validate-object-pools \
+	common-runtime validate-common-runtime \
+	core-dispatch-roles validate-core-dispatch-roles \
+	audio-dispatch validate-audio-dispatch audio-effects validate-audio-effects \
+	object-pools validate-object-pools \
 	audio-music validate-audio-music \
 	audio-arbitration validate-audio-arbitration \
 	audio-streams validate-audio-streams \
@@ -257,16 +263,30 @@ runtime-architecture: validate-bank-gateways trace-runtime validate-runtime
 
 bank-gateways: $(PRG_ASSET)
 	$(PYTHON) scripts/bank_gateways.py --prg "$(PRG_ASSET)" \
-		--manifest "$(BANK_GATEWAYS)" --source-root src --pretty
+		--manifest "$(BANK_GATEWAYS)" --source-root src \
+		--symbols "$(SYMBOLS)" --pretty
 
 validate-bank-gateways: $(PRG_ASSET)
 	$(PYTHON) scripts/bank_gateways.py --prg "$(PRG_ASSET)" \
-		--manifest "$(BANK_GATEWAYS)" --source-root src
+		--manifest "$(BANK_GATEWAYS)" --source-root src --symbols "$(SYMBOLS)"
+
+common-runtime validate-common-runtime: $(PRG_ASSET)
+	$(PYTHON) scripts/common_runtime.py --prg "$(PRG_ASSET)" \
+		--manifest "$(COMMON_RUNTIME)" --symbols "$(SYMBOLS)"
+
+core-dispatch-roles validate-core-dispatch-roles:
+	$(PYTHON) scripts/core_dispatch_roles.py --roles "$(CORE_DISPATCH_ROLES)" \
+		--streaming "$(WORLD2_STREAMING)" \
+		--object-dispatch "$(OBJECT_DISPATCH)" --symbols "$(SYMBOLS)"
 
 audio-dispatch validate-audio-dispatch: $(PRG_ASSET)
 	$(PYTHON) scripts/audio_dispatch.py --prg "$(PRG_ASSET)" \
 		--manifest "$(AUDIO_DISPATCH)" \
 		--code-entries config/prg_code_entries.txt
+
+audio-effects validate-audio-effects:
+	$(PYTHON) scripts/audio_effects.py validate --catalog "$(AUDIO_EFFECTS)" \
+		--dispatch "$(AUDIO_DISPATCH)" --symbols "$(SYMBOLS)"
 
 audio-music validate-audio-music: $(PRG_ASSET)
 	$(PYTHON) scripts/audio_music.py --prg "$(PRG_ASSET)" \
@@ -519,8 +539,10 @@ validate-maps: $(ROM)
 	$(PYTHON) scripts/map_data.py --image "$(ROM)" --validate
 
 release-check: quality-check disassembly-check verify validate-maps \
-	validate-reconstruction-inventory \
-	validate-audio-dispatch validate-audio-music validate-audio-arbitration \
+	validate-reconstruction-inventory validate-common-runtime \
+	validate-core-dispatch-roles \
+	validate-audio-dispatch validate-audio-effects validate-audio-music \
+	validate-audio-arbitration \
 	validate-audio-streams \
 	validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world1-metasprites \

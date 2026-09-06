@@ -41,6 +41,17 @@ class GatewayTests(unittest.TestCase):
                 Counter({(3, 0x8053, "JSR"): 1}),
             )
 
+    def test_collects_semantically_named_gateway_call(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "engine.asm").write_text(
+                "    JMP Bank2_EnterShell\n", encoding="utf-8"
+            )
+            self.assertEqual(
+                GATEWAYS.source_calls(root, {0x8048}, {"EnterShell": 0x8048}),
+                Counter({(2, 0x8048, "JMP"): 1}),
+            )
+
     def test_rejects_mismatched_bank_qualified_call(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

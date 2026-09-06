@@ -69,7 +69,7 @@ Bank0_Label_D3CB:
     TXS
 
 Bank0_Label_D429:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     JSR Bank0_Func_8490
     JSR Bank0_Func_95CB
     JSR Bank0_Func_9B54
@@ -101,7 +101,7 @@ Bank0_Func_D465:
     JMP Bank0_Label_D3BF
 
 Bank0_Label_D46F:
-    JSR Bank0_Func_8065
+    JSR Bank0_CallShellGameOver
     LDA #$02
     STA PlayerLives
     JSR Bank0_Func_C92F
@@ -224,7 +224,7 @@ Bank0_Func_D4EE:
     STA $9E
 
 Bank0_Label_D54D:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     LDA #$00
     STA a:World1EntityType
     LDA $9E
@@ -276,7 +276,7 @@ Bank0_Label_D598:
     STA $9F
 
 Bank0_Label_D5B2:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     JSR Bank0_Func_8490
     JSR Bank0_Func_95CB
     JSR Bank0_Func_9B54
@@ -310,7 +310,7 @@ Bank0_Label_D5E5:
     STA $9C
 
 Bank0_Label_D601:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     JSR Bank0_Func_8490
     JSR World1_UpdateUndergroundPlayer
     LDA FrameCounter
@@ -353,7 +353,7 @@ Bank0_Label_D619:
     STA a:AudioMusicState
 
 Bank0_Label_D65D:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     JSR Bank0_Func_8490
     JSR Bank0_Func_9B54
     LDA FrameCounter
@@ -366,7 +366,7 @@ Bank0_Label_D65D:
     STA World1PlayerMetasprite
     LDA a:AudioMusicState
     BNE Bank0_Label_D65D
-    JMP Bank0_Func_8082
+    JMP Bank0_EnterWorld1ToWorld2Transition
 
 Bank0_Func_D67A:
     LDA a:World1EntityRenderFlags

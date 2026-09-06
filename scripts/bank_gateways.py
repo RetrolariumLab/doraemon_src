@@ -14,10 +14,8 @@ from typing import Any
 
 BANK_SIZE = 0x8000
 CPU_BASE = 0x8000
-CALL_RE = re.compile(
-    r"^\s+(JSR|JMP) Bank([0-3])_(?:Func|Label)_([0-9A-F]{4})",
-    re.MULTILINE,
-)
+CALL_RE = re.compile(r"^\s+(JSR|JMP) Bank([0-3])_([A-Za-z0-9_]+)", re.MULTILINE)
+NEUTRAL_SUFFIX_RE = re.compile(r"(?:Func|Label)_([0-9A-F]{4})$")
 
 
 def number(value: str | int) -> int:
@@ -29,15 +27,24 @@ def load_json(path: Path) -> dict[str, Any]:
 
 
 def source_calls(
-    source_root: Path, gateway_addresses: set[int]
+    source_root: Path,
+    gateway_addresses: set[int],
+    gateway_symbols: dict[str, int] | None = None,
 ) -> Counter[tuple[int, int, str]]:
+    semantic = gateway_symbols or {}
     calls: Counter[tuple[int, int, str]] = Counter()
     for path in sorted(source_root.rglob("*.asm")):
         file_match = re.fullmatch(r"bank_([0-3])", path.stem)
         file_bank = int(file_match.group(1)) if file_match else None
         matches = CALL_RE.findall(path.read_text(encoding="utf-8"))
-        for instruction, symbol_bank, address_text in matches:
-            address = int(address_text, 16)
+        for instruction, symbol_bank, suffix in matches:
+            neutral = NEUTRAL_SUFFIX_RE.fullmatch(suffix)
+            if neutral:
+                address = int(neutral.group(1), 16)
+            elif suffix in semantic:
+                address = semantic[suffix]
+            else:
+                continue
             if address not in gateway_addresses:
                 continue
             source_bank = int(symbol_bank)
@@ -77,7 +84,10 @@ def possible_edges(
 
 
 def validate(
-    prg: bytes, document: dict[str, Any], source_root: Path
+    prg: bytes,
+    document: dict[str, Any],
+    source_root: Path,
+    symbols: dict[str, Any] | None = None,
 ) -> tuple[list[str], dict[str, Any]]:
     errors: list[str] = []
     if len(prg) != 4 * BANK_SIZE:
@@ -110,7 +120,23 @@ def validate(
         if slices[0][offset : offset + len(expected)] != expected:
             errors.append(f"gateway bytes differ at ${address:04X}")
 
-    actual_calls = source_calls(source_root, set(gateways))
+    symbol_addresses = {
+        str(item["symbol"]): address
+        for address, item in gateways.items()
+        if "symbol" in item
+    }
+    if symbols is not None:
+        declared = {
+            (int(item["bank"]), number(item["address"]), str(item["name"]))
+            for item in symbols["symbols"]
+        }
+        for suffix, address in symbol_addresses.items():
+            for bank in range(4):
+                name = f"Bank{bank}_{suffix}"
+                if (bank, address, name) not in declared:
+                    errors.append(f"gateway symbol missing: {name} at ${address:04X}")
+
+    actual_calls = source_calls(source_root, set(gateways), symbol_addresses)
     declared_calls = expected_calls(document)
     if actual_calls != declared_calls:
         errors.append(
@@ -136,11 +162,15 @@ def main() -> int:
     parser.add_argument("--prg", required=True, type=Path)
     parser.add_argument("--manifest", required=True, type=Path)
     parser.add_argument("--source-root", default=Path("src/banks"), type=Path)
+    parser.add_argument("--symbols", type=Path)
     parser.add_argument("--pretty", action="store_true")
     args = parser.parse_args()
     try:
         errors, report = validate(
-            args.prg.read_bytes(), load_json(args.manifest), args.source_root
+            args.prg.read_bytes(),
+            load_json(args.manifest),
+            args.source_root,
+            load_json(args.symbols) if args.symbols else None,
         )
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"[ERROR] bank gateway audit failed: {exc}")

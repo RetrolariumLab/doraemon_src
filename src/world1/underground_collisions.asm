@@ -213,7 +213,7 @@ World1_EnterManhole:
     STA World1PlayerDirection
 
 Bank0_Label_D283:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
@@ -224,7 +224,7 @@ Bank0_Label_D283:
     LDX #$0A
 
 Bank0_Label_D297:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     DEX
     BNE Bank0_Label_D297
     LDX #$00
@@ -232,7 +232,7 @@ Bank0_Label_D297:
     JSR World1_Audio_QueueEffect
 
 Bank0_Label_D2A4:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     TXA
     LSR A
     LSR A
@@ -328,7 +328,7 @@ Bank0_Label_D33C:
     LDX #$00
 
 Bank0_Label_D364:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     TXA
     LSR A
     LSR A
@@ -342,7 +342,7 @@ Bank0_Label_D364:
     BNE Bank0_Label_D364
     LDX #$7F
     TXS
-    JMP Bank0_Label_82C1
+    JMP Bank0_World1CityFrameLoop
 
 World1_CityReturnProfiles:
     .byte $E0

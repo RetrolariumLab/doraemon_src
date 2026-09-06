@@ -2,7 +2,7 @@
 ; Shell PPU updates, text drawing, and presentation data
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank3_Func_8FF2:
+Shell_NmiFrameServices:
     LDA $09
     ASL A
     TAX

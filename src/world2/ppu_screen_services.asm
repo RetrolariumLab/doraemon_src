@@ -36,7 +36,7 @@ Bank1_Label_846E:
     LDX #$10
     RTS
 
-Bank1_Func_8471:
+World2_PrepareRowTransferAddresses:
     LDA $3F
     CLC
     ADC #$10
@@ -77,7 +77,7 @@ Bank1_Label_8494:
     STA $4A
     RTS
 
-Bank1_Func_84AB:
+World2_ExpandHorizontalMetatileRow:
     LDX #$00
     STX $53
 
@@ -92,7 +92,7 @@ Bank1_Label_84AF:
     BNE Bank1_Label_84AF
     RTS
 
-Bank1_Func_84C1:
+World2_ReadVerticalAttributeColumn:
     LDY #$00
     LDX $4A
 
@@ -112,7 +112,7 @@ Bank1_Label_84C5:
     BNE Bank1_Label_84C5
     RTS
 
-Bank1_Func_84E1:
+World2_ExpandVerticalMetatileColumn:
     LDX #$00
     STX $53
 
@@ -191,7 +191,7 @@ Bank1_Label_855D:
     INX
     RTS
 
-Bank1_Func_8578:
+World2_UploadVerticalTileColumnsA:
     LDA PpuCtrlShadow
     ORA #$04
     STA a:PPU_CTRL
@@ -215,7 +215,7 @@ Bank1_Label_858D:
     STA a:PPU_CTRL
     RTS
 
-Bank1_Func_85A5:
+World2_MergeVerticalAttributes:
     LDX #$00
     STX $4E
     LDA $48
@@ -271,7 +271,7 @@ Bank1_Label_85EF:
     RTS
     .byte $FC, $F3
 
-Bank1_Func_85F7:
+World2_UploadVerticalTileColumnsBAndAttributes:
     LDA PpuCtrlShadow
     ORA #$04
     STA a:PPU_CTRL
@@ -312,7 +312,7 @@ Bank1_Label_8621:
     STA a:PPU_CTRL
     RTS
 
-Bank1_Func_8641:
+World2_UploadHorizontalTileRowsB:
     LDX $48
     LDA $49
     STA a:PPU_ADDR
@@ -330,7 +330,7 @@ Bank1_Label_864F:
     BNE Bank1_Label_864F
     RTS
 
-Bank1_Func_8660:
+World2_ReadAndMergeHorizontalAttributes:
     LDX $4A
     LDA $4B
     STA a:PPU_ADDR
@@ -398,7 +398,7 @@ Bank1_Label_86C1:
     RTS
     .byte $FC, $CF
 
-Bank1_Func_86C9:
+World2_UploadHorizontalTileRowsA:
     LDA $48
     AND #$D0
     TAX
@@ -418,7 +418,7 @@ Bank1_Label_86DA:
     BNE Bank1_Label_86DA
     RTS
 
-Bank1_Func_86EB:
+World2_UploadHorizontalAttributes:
     LDX $4A
     LDA $4B
     STA a:PPU_ADDR
@@ -444,9 +444,9 @@ Bank1_Func_870A:
     RTS
 
 Bank1_Func_8711:
-    JSR Bank1_Func_80DA
+    JSR Bank1_DisableRenderingForUpdate
     JSR Bank1_WaitForVblank
-    JSR Bank1_Func_80F0
+    JSR Bank1_DisableNmiAndRendering
     JSR World2_UploadDefaultBackgroundPalette
     LDA #$10
     STA PpuCtrlShadow
@@ -454,8 +454,8 @@ Bank1_Func_8711:
     LDA #$00
     STA $40
     STA $3F
-    JSR Bank1_Func_8131
-    JSR Bank1_Func_80DA
+    JSR Bank1_HideAllSprites
+    JSR Bank1_DisableRenderingForUpdate
     JSR World2_UploadDefaultBackgroundPalette
     LDA #$20
     LDX #$00

@@ -33,14 +33,14 @@ Bank0_Label_CB7D:
     STA $97
 
 Bank0_Label_CB88:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     DEC $97
     BNE Bank0_Label_CB88
     LDA #$50
     STA $97
 
 Bank0_Label_CB93:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     LDA #$31
     JSR World1_AddEncodedScore
     LDA FrameCounter
@@ -170,7 +170,7 @@ World1_EnterAnywhereDoor:
     STA World1PlayerRenderFlags
 
 Bank0_Label_CCC8:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     LDA #$00
     STA World1ScreenDeltaX
     STA World1ScreenDeltaY
@@ -185,7 +185,7 @@ Bank0_Label_CCDC:
 
 Bank0_Label_CCDD:
     PHA
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     PLA
     SEC
     SBC #$01
@@ -211,7 +211,7 @@ Bank0_Label_CD04:
 
 Bank0_Label_CD05:
     PHA
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     PLA
     SEC
     SBC #$01
@@ -269,19 +269,19 @@ Bank0_Label_CD42:
     STA World1PlayerMetasprite
     STA World1PlayerDirection
     JSR World1_RefreshObjectSpawnMask
-    JSR Bank0_Func_80DA
+    JSR Bank0_DisableRenderingForUpdate
     JSR World1_PrefillMapViewport
     JSR Bank0_Func_843B
     JSR Bank0_Func_95ED
     LDX #$0A
 
 Bank0_Label_CD7D:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     DEX
     BNE Bank0_Label_CD7D
     LDX #$7F
     TXS
-    JMP Bank0_Label_82C1
+    JMP Bank0_World1CityFrameLoop
     .byte $B0, $86, $70, $60, $1C, $C2, $70, $60, $02, $A4, $70, $60, $70, $20, $70, $60
     .byte $B8, $5C, $70, $40, $8C, $8C, $70, $60, $1D, $5C, $70, $40, $0C, $D8, $70, $60
     .byte $80, $05, $06, $FF, $80, $01, $02, $80, $00, $05, $04, $07

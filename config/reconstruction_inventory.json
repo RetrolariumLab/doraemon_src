@@ -4,58 +4,58 @@
     "source_labels": {
       "module_count": 115,
       "total": {
-        "global_labels": 3336,
-        "semantic_labels": 642,
-        "neutral_routine_labels": 562,
-        "neutral_local_labels": 2132
+        "global_labels": 3337,
+        "semantic_labels": 913,
+        "neutral_routine_labels": 294,
+        "neutral_local_labels": 2130
       },
       "by_bank": {
         "0": {
-          "global_labels": 1010,
-          "semantic_labels": 189,
-          "neutral_routine_labels": 134,
-          "neutral_local_labels": 687
+          "global_labels": 1011,
+          "semantic_labels": 256,
+          "neutral_routine_labels": 70,
+          "neutral_local_labels": 685
         },
         "1": {
           "global_labels": 879,
-          "semantic_labels": 164,
-          "neutral_routine_labels": 156,
+          "semantic_labels": 229,
+          "neutral_routine_labels": 91,
           "neutral_local_labels": 559
         },
         "2": {
           "global_labels": 1090,
-          "semantic_labels": 227,
-          "neutral_routine_labels": 180,
+          "semantic_labels": 294,
+          "neutral_routine_labels": 113,
           "neutral_local_labels": 683
         },
         "3": {
           "global_labels": 357,
-          "semantic_labels": 62,
-          "neutral_routine_labels": 92,
+          "semantic_labels": 134,
+          "neutral_routine_labels": 20,
           "neutral_local_labels": 203
         }
       }
     },
     "evidence_backed_prg_symbols": {
       "total": {
-        "semantic_code_symbols": 522,
+        "semantic_code_symbols": 793,
         "operand_symbols": 110
       },
       "by_bank": {
         "0": {
-          "semantic_code_symbols": 154,
+          "semantic_code_symbols": 221,
           "operand_symbols": 33
         },
         "1": {
-          "semantic_code_symbols": 130,
+          "semantic_code_symbols": 195,
           "operand_symbols": 32
         },
         "2": {
-          "semantic_code_symbols": 181,
+          "semantic_code_symbols": 248,
           "operand_symbols": 43
         },
         "3": {
-          "semantic_code_symbols": 57,
+          "semantic_code_symbols": 129,
           "operand_symbols": 2
         }
       }
@@ -63,24 +63,24 @@
     "indirect_code_entries": {
       "total": {
         "entries": 354,
-        "semantic_symbols": 198
+        "semantic_symbols": 354
       },
       "by_bank": {
         "0": {
           "entries": 84,
-          "semantic_symbols": 48
+          "semantic_symbols": 84
         },
         "1": {
           "entries": 97,
-          "semantic_symbols": 60
+          "semantic_symbols": 97
         },
         "2": {
           "entries": 106,
-          "semantic_symbols": 65
+          "semantic_symbols": 106
         },
         "3": {
           "entries": 67,
-          "semantic_symbols": 25
+          "semantic_symbols": 67
         }
       }
     },

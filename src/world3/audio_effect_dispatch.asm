@@ -104,16 +104,16 @@ Bank2_Label_BF11:
     PHA
     RTS
 
-Bank2_Func_BF1E:
+World3_AudioEffect_UpdateTimedStop:
     DEC a:AudioEffectWork0
-    BNE Bank2_Func_BF2B
+    BNE World3_AudioEffect_NoOp
 
 World3_Audio_StopCurrentEffect:
     LDA #$00
     STA a:AudioCurrentEffectPriority
     STA a:AudioEffectRetriggerLock
 
-Bank2_Func_BF2B:
+World3_AudioEffect_NoOp:
     RTS
 
 World3_Audio_ResetEffects:
@@ -135,7 +135,7 @@ World3_Audio_ResetEffects:
     STA a:APU_STATUS
     RTS
 
-Bank2_Func_BF59:
+World3_AudioEffect_InitNoiseSweep:
     LDA #$18
     STA a:AudioEffectTimers+$03
     LDA #$00
@@ -151,12 +151,12 @@ Bank2_Func_BF59:
     STA a:AudioEffectWork2
     RTS
 
-Bank2_Func_BF7B:
+World3_AudioEffect_UpdateNoiseSweepSlow:
     LDX a:AudioEffectWork1
     BEQ Bank2_Label_BFAB
     DEX
     BEQ Bank2_Label_BF86
-    JMP Bank2_Func_BF1E
+    JMP World3_AudioEffect_UpdateTimedStop
 
 Bank2_Label_BF86:
     DEC a:AudioEffectWork0
@@ -189,12 +189,12 @@ Bank2_Label_BFAB:
 Bank2_Label_BFC3:
     RTS
 
-Bank2_Func_BFC4:
+World3_AudioEffect_UpdateNoiseSweepFast:
     LDX a:AudioEffectWork1
     BEQ Bank2_Label_BFAB
     DEX
     BEQ Bank2_Label_BFCF
-    JMP Bank2_Func_BF1E
+    JMP World3_AudioEffect_UpdateTimedStop
 
 Bank2_Label_BFCF:
     DEC a:AudioEffectWork0
@@ -213,7 +213,7 @@ Bank2_Label_BFCF:
     STA a:AudioEffectWork0
     RTS
 
-Bank2_Func_BFF4:
+World3_AudioEffect_InitTriangleNoiseBurst:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03

@@ -9,12 +9,15 @@ both controllers, and restores PPU shadows.
 
 Runtime traces establish `$8271` as the top-level chapter entry and show `$8274`
 and `$827A` called from NMI in every active bank. `$8277` is used both by the
-World 1 attract path and by short calls into bank-3 presentation code. The
-lower-level responsibilities behind the two NMI entries remain to be split.
+World 1 attract path and by short calls into bank-3 presentation code. All
+sixteen targets now have semantic names and a machine-checked relation to their
+bank-local jump stubs.
 For gameplay banks, the title's attract loop selects PRG 0, 1, or 2 through
 `$8024/$802F/$803A`; the bank-local `$8277` gateways then enter
 `World1_DemoEntry`, `World2_DemoEntry`, or `World3_DemoEntry`. Bank 3's `$8277`
 remains a distinct callable presentation gateway.
+The copied reset/NMI/PPU/mapper routines and all sixteen bank-local dispatch
+stubs now have evidence-backed names; see `docs/common_runtime.md`.
 
 ## World 1 / bank 0
 
@@ -35,6 +38,9 @@ Bank0_World1Main
 The A-button dispatcher distinguishes object type 2 (door) from type 1
 (manhole). The tracked start-area scenario executes the manhole branch and
 side-view initializer in that order while PRG0/CHR0 stays selected.
+The city loop at `$82C1` and side-view loop at `$CE55` each execute exactly once
+per emulated frame in their tracked scenarios; the latter begins only after the
+accepted manhole transition and side-view initialization.
 
 ## World 2 / bank 1
 
@@ -112,11 +118,16 @@ cross-bank sound service.
 
 `config/audio_dispatch.json` records the complete indirect edge set, while
 `make validate-audio-dispatch` proves the ROM tables and Ghidra seed registry
-remain synchronized. `config/audio_music.json` and `docs/audio_music.md` record
-the shared command grammar and RAM ABI; `make validate-audio-music` verifies
-all 68 bank-local command targets and the common helper contracts. The
-state-aware `make validate-audio-streams` gate additionally proves all 26
-headers and 10,016 header-reachable stream bytes round-trip losslessly.
+remain synchronized. `config/audio_effects.json` joins all 93 effect requests
+to 26 structural synthesis roles and all 145 unique handlers, including their
+timer leases, APU writes, shared updates, and no-lease exceptions. Every audio
+effect indirect entry and all sixteen bank-local effect helpers now have an
+evidence-backed source symbol.
+`config/audio_music.json` and `docs/audio_music.md` record the shared command
+grammar and RAM ABI; `make validate-audio-music` verifies all 68 bank-local
+command targets and the common helper contracts. The state-aware
+`make validate-audio-streams` gate additionally proves all 26 headers and
+10,016 header-reachable stream bytes round-trip losslessly.
 
 ## Object storage and lifecycle
 

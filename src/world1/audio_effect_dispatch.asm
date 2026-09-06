@@ -104,16 +104,16 @@ Bank0_Label_E419:
     PHA
     RTS
 
-Bank0_Func_E426:
+World1_AudioEffect_UpdateTimedStop:
     DEC a:AudioEffectWork0
-    BNE Bank0_Func_E433
+    BNE World1_AudioEffect_NoOp
 
 World1_Audio_StopCurrentEffect:
     LDA #$00
     STA a:AudioCurrentEffectPriority
     STA a:AudioEffectRetriggerLock
 
-Bank0_Func_E433:
+World1_AudioEffect_NoOp:
     RTS
 
 World1_Audio_ResetEffects:
@@ -135,7 +135,7 @@ World1_Audio_ResetEffects:
     STA a:APU_STATUS
     RTS
 
-Bank0_Func_E461:
+World1_AudioEffect_InitNoiseSweep:
     LDA #$18
     STA a:AudioEffectTimers+$03
     LDA #$00
@@ -151,12 +151,12 @@ Bank0_Func_E461:
     STA a:AudioEffectWork2
     RTS
 
-Bank0_Func_E483:
+World1_AudioEffect_UpdateNoiseSweepSlow:
     LDX a:AudioEffectWork1
     BEQ Bank0_Label_E4B3
     DEX
     BEQ Bank0_Label_E48E
-    JMP Bank0_Func_E426
+    JMP World1_AudioEffect_UpdateTimedStop
 
 Bank0_Label_E48E:
     DEC a:AudioEffectWork0
@@ -189,12 +189,12 @@ Bank0_Label_E4B3:
 Bank0_Label_E4CB:
     RTS
 
-Bank0_Func_E4CC:
+World1_AudioEffect_UpdateNoiseSweepFast:
     LDX a:AudioEffectWork1
     BEQ Bank0_Label_E4B3
     DEX
     BEQ Bank0_Label_E4D7
-    JMP Bank0_Func_E426
+    JMP World1_AudioEffect_UpdateTimedStop
 
 Bank0_Label_E4D7:
     DEC a:AudioEffectWork0
@@ -213,7 +213,7 @@ Bank0_Label_E4D7:
     STA a:AudioEffectWork0
     RTS
 
-Bank0_Func_E4FC:
+World1_AudioEffect_InitTriangleNoiseBurst:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03
@@ -229,13 +229,13 @@ Bank0_Func_E4FC:
     STA a:APU_NOISE_HI
     RTS
 
-Bank0_Func_E51E:
+World1_AudioEffect_InitPulse2PitchSequenceLong:
     LDY #$60
     LDA #$17
     LDX #$00
     BEQ Bank0_Label_E52C
 
-Bank0_Func_E526:
+World1_AudioEffect_InitPulse2PitchSequenceShort:
     LDY #$08
     LDA #$01
     LDX #$05
@@ -246,10 +246,10 @@ Bank0_Label_E52C:
     STX a:AudioEffectWork2
     LDA #$01
     STA a:AudioEffectWork1
-    JSR Bank0_Func_E540
-    JMP Bank0_Func_E7C3
+    JSR World1_AudioEffect_InitNoiseOnset
+    JMP World1_AudioEffect_UpdatePulse2PitchSequence
 
-Bank0_Func_E540:
+World1_AudioEffect_InitNoiseOnset:
     LDA #$08
     STA a:AudioEffectTimers+$03
     LDA #$01
@@ -262,7 +262,7 @@ Bank0_Func_E540:
 Bank0_Label_E554:
     RTS
 
-Bank0_Func_E555:
+World1_AudioEffect_InitPulse1AlternatingBurst:
     LDA #$48
     STA a:AudioEffectTimers
     STA a:AudioEffectTimers+$01
@@ -273,10 +273,10 @@ Bank0_Func_E555:
     LDA #$04
     STA a:AudioEffectWork1
 
-Bank0_Func_E56D:
+World1_AudioEffect_UpdatePulse1AlternatingBurst:
     LDA a:AudioEffectWork1
     BNE Bank0_Label_E575
-    JMP Bank0_Func_E426
+    JMP World1_AudioEffect_UpdateTimedStop
 
 Bank0_Label_E575:
     DEC a:AudioEffectWork0
@@ -312,7 +312,7 @@ Bank0_Label_E5A7:
     LDA #$08
     JMP World1_Apu_WritePulse1Timer
 
-Bank0_Func_E5AC:
+World1_AudioEffect_InitPulse1Sequence:
     LDA #$6F
     STA $2D
     LDA #$E9
@@ -325,8 +325,8 @@ Bank0_Func_E5AC:
     LDA #$83
     STA a:AudioEffectWork2
 
-Bank0_Func_E5C6:
-    JSR Bank0_Func_E5FD
+World1_AudioEffect_UpdatePulse1Sequence:
+    JSR World1_AudioEffect_GateSequenceStep
     LDX #$00
     LDA a:AudioEffectWork1
     STA a:AudioEffectTimers,X
@@ -340,7 +340,7 @@ Bank0_Func_E5C6:
     STA a:APU_PL1_SWEEP,X
     LDY #$00
     LDA ($2D),Y
-    BEQ Bank0_Func_E5F6
+    BEQ World1_AudioEffect_AdvanceSequencePointer
     ASL A
     TAY
     LDA a:$EE34,Y
@@ -349,7 +349,7 @@ Bank0_Func_E5C6:
     ORA #$08
     STA a:APU_PL1_HI,X
 
-Bank0_Func_E5F6:
+World1_AudioEffect_AdvanceSequencePointer:
     INC $2D
     BNE Bank0_Label_E5FC
     INC $2E
@@ -357,7 +357,7 @@ Bank0_Func_E5F6:
 Bank0_Label_E5FC:
     RTS
 
-Bank0_Func_E5FD:
+World1_AudioEffect_GateSequenceStep:
     DEC a:AudioEffectWork0
     BNE Bank0_Label_E613
     LDA a:AudioEffectWork1
@@ -375,7 +375,7 @@ Bank0_Label_E613:
 Bank0_Label_E615:
     RTS
 
-Bank0_Func_E616:
+World1_AudioEffect_InitPulse1FixedTone:
     LDA #$04
     STA a:AudioEffectTimers
     STA a:AudioEffectWork0
@@ -387,7 +387,7 @@ Bank0_Func_E616:
     LDA #$38
     JMP World1_Apu_WritePulse1Timer
 
-Bank0_Func_E62E:
+World1_AudioEffect_InitPulse2FixedToneA:
     LDA #$0A
     STA a:AudioEffectTimers+$01
     STA a:AudioEffectWork0
@@ -398,7 +398,7 @@ Bank0_Func_E62E:
     LDA #$08
     JMP World1_Apu_WritePulse2Timer
 
-Bank0_Func_E644:
+World1_AudioEffect_InitPulse1ToneWithTriangleLease:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectWork0
@@ -410,7 +410,7 @@ Bank0_Func_E644:
     LDA #$38
     JMP World1_Apu_WritePulse1Timer
 
-Bank0_Func_E65D:
+World1_AudioEffect_InitNoisePeriodRamp:
     LDA #$10
     STA a:AudioEffectTimers+$03
     STA a:AudioEffectWork1
@@ -421,7 +421,7 @@ Bank0_Func_E65D:
     LDA #$08
     STA a:APU_NOISE_HI
 
-Bank0_Func_E674:
+World1_AudioEffect_UpdateNoisePeriodRamp:
     LDA a:AudioEffectWork0
     STA a:APU_NOISE_LO
     LDA a:AudioEffectWork0

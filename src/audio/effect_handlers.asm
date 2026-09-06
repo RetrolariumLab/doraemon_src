@@ -2,7 +2,7 @@
 ; Remaining audio-effect handlers and APU write helpers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank3_Func_9C1D:
+AudioEffect_InitPulse2PitchSequenceBase:
     LDY #$14
     LDA #$04
     LDX #$03
@@ -14,7 +14,7 @@ Bank3_Label_9C23:
     LDA #$01
     STA a:AudioEffectWork1
 
-Bank3_Func_9C31:
+AudioEffect_UpdatePulse2PitchSequence:
     DEC a:AudioEffectWork1
     BNE Bank3_Label_9C5C
     LDA a:AudioEffectWork0
@@ -46,7 +46,7 @@ Bank3_Label_9C5D:
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $30, $10  ; rom-asset .byte
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $40, $A  ; rom-asset .byte
 
-Bank3_Func_9CAA:
+AudioEffect_InitTrianglePitchDescent:
     LDA #$10
     STA a:AudioEffectTimers+$02
     LDA #$40
@@ -56,7 +56,7 @@ Bank3_Func_9CAA:
     LDA #$30
     STA a:AudioEffectWork2
 
-Bank3_Func_9CBE:
+AudioEffect_UpdateTrianglePitchDescent:
     LDY #$01
     LDX a:AudioEffectWork0
     LDA #$08
@@ -72,7 +72,7 @@ Bank3_Func_9CBE:
 Bank3_Label_9CDA:
     RTS
 
-Bank3_Func_9CDB:
+AudioEffect_InitPulse2TwoTone:
     LDA #$0E
     STA a:AudioEffectTimers+$01
     LDA #$06
@@ -85,7 +85,7 @@ Bank3_Func_9CDB:
     LDA #$89
     JMP Apu_WritePulse2Timer
 
-Bank3_Func_9CF6:
+AudioEffect_UpdatePulse2TwoTone:
     DEC a:AudioEffectWork0
     BNE Bank3_Label_9D1B
     LDA a:AudioEffectWork1
@@ -107,13 +107,13 @@ Bank3_Label_9D18:
 Bank3_Label_9D1B:
     RTS
 
-Bank3_Func_9D1C:
+AudioEffect_InitPulse2PitchSequenceWide:
     LDY #$34
     LDA #$0C
     LDX #$18
     JMP Bank3_Label_9C23
 
-Bank3_Func_9D25:
+AudioEffect_InitPulse2VolumeFade:
     LDA #$20
     STA a:AudioEffectTimers+$01
     LDA #$1F
@@ -127,7 +127,7 @@ Bank3_Func_9D25:
     LDA #$01
     STA a:AudioEffectWork1
 
-Bank3_Func_9D42:
+AudioEffect_UpdatePulse2VolumeFade:
     DEC a:AudioEffectWork1
     BNE Bank3_Label_9D5D
     LDA #$04
@@ -143,7 +143,7 @@ Bank3_Label_9D5D:
     RTS
     .byte $00
 
-Bank3_Func_9D5F:
+AudioEffect_InitPulse1Alternator:
     LDA #$00
 
 Bank3_Label_9D61:
@@ -151,7 +151,7 @@ Bank3_Label_9D61:
     LDA #$01
     STA a:AudioEffectWork1
 
-Bank3_Func_9D69:
+AudioEffect_UpdatePulse1Alternator:
     DEC a:AudioEffectWork1
     BNE Bank3_Label_9D8E
     LDA a:AudioEffectWork0
@@ -170,16 +170,16 @@ Bank3_Func_9D69:
 Bank3_Label_9D8E:
     RTS
 
-Bank3_Func_9D8F:
+AudioEffect_InitPulse1NoiseRise:
     LDA #$00
     STA a:AudioEffectWork2
     LDA #$08
     JMP Bank3_Label_9D61
 
-Bank3_Func_9D99:
-    JSR Bank3_Func_9D69
+AudioEffect_UpdatePulse1NoiseRise:
+    JSR AudioEffect_UpdatePulse1Alternator
 
-Bank3_Func_9D9C:
+AudioEffect_UpdateNoiseRise:
     LDA #$00
     STA a:APU_NOISE_VOL
     LDA a:AudioEffectWork2
@@ -203,14 +203,14 @@ Bank3_Label_9DB6:
 Bank3_Label_9DC3:
     RTS
 
-Bank3_Func_9DC4:
+AudioEffect_InitPulse1NoiseDecay:
     LDA #$0F
     STA a:AudioEffectWork2
     LDA #$10
     JMP Bank3_Label_9D61
 
-Bank3_Func_9DCE:
-    JSR Bank3_Func_9D69
+AudioEffect_UpdatePulse1NoiseDecay:
+    JSR AudioEffect_UpdatePulse1Alternator
     LDA a:AudioEffectWork2
     LSR A
     BCS Bank3_Label_9DEB
@@ -229,7 +229,7 @@ Bank3_Label_9DEB:
     DEC a:AudioEffectWork2
     RTS
 
-Bank3_Func_9DEF:
+AudioEffect_InitPulsePairNoiseTail:
     LDA #$1F
     LDX #$AB
     JSR Apu_WritePulse1ControlSweep

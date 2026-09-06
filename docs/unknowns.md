@@ -132,7 +132,11 @@
 - Known: effects update before music; four channel timers suppress the matching
   music APU write paths while logical stream time continues. Track-start reset
   is the unguarded exception; see `config/audio_arbitration.json`.
-- Unknown: semantic identities for individual effects and whether
+- Known: all 93 request IDs map through their priority permutations to 145
+  semantic init/update handlers. Their 26 structural roles, timer leases, APU
+  channel writes, shared targets, and no-lease exceptions are validated by
+  `config/audio_effects.json`.
+- Unknown: exact gameplay identities for individual effects and whether
   header-unreachable bytes adjacent to the proven spans contain dormant music
   material or unrelated tables.
 

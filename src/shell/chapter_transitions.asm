@@ -19,9 +19,9 @@ Bank3_Label_8C45:
     TXS
     LDA #$00
     STA a:AudioMusicState
-    JSR Bank3_Func_80DA
+    JSR Bank3_DisableRenderingForUpdate
     LDA #$03
-    JSR Bank3_Func_81AA
+    JSR Bank3_SelectChrBank
     JSR Bank3_Func_9152
     LDA #$BC
     STA $00
@@ -71,10 +71,10 @@ Bank3_Label_8C6E:
     JSR Audio_QueueEffect
     LDA #$00
     STA FrameCounter
-    JSR Bank3_Func_80FD
+    JSR Bank3_EnableNmiAndRendering
 
 Bank3_Label_8CC1:
-    JSR Bank3_Func_8F5A
+    JSR Shell_WaitForNextFrame
     JSR Bank3_Func_8CE6
     JSR Bank3_Func_8D3A
     JSR Bank3_Func_8DB1
@@ -85,13 +85,13 @@ Bank3_Label_8CC1:
     LDA $08
     BMI Bank3_Label_8CE3
     BNE Bank3_Label_8CE0
-    JMP Bank3_Func_800B
+    JMP Bank3_EnterWorld2
 
 Bank3_Label_8CE0:
-    JMP Bank3_Func_8016
+    JMP Bank3_EnterWorld3
 
 Bank3_Label_8CE3:
-    JMP Bank3_Func_8000
+    JMP Bank3_EnterWorld1
 
 Bank3_Func_8CE6:
     LDA #$01
@@ -285,7 +285,7 @@ Bank3_Label_8E07:
     .byte $35, $15, $0F, $26, $30, $15, $0F, $26, $21, $15, $01, $26, $29, $15, $00, $10
     .byte $20, $AD, $80, $01, $D0, $FB, $60
 
-Bank3_Func_8F5A:
+Shell_WaitForNextFrame:
     LDA FrameCounter
 
 Bank3_Label_8F5C:

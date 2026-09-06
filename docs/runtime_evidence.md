@@ -64,13 +64,20 @@ Runtime probes also identify each chapter's long-lived execution path:
 
 | Scenario | Main entry | First frame-loop iteration | Steady selector |
 | --- | --- | --- | --- |
+| World 1 city | bank 0 `$828E`, frame 744 | bank 0 `$82C1`, frame 878 | `$00` |
+| World 1 underground | bank 0 `$828E`, frame 744 | bank 0 `$CE55`, frame 1039 | `$00` |
 | World 2 cave | bank 1 `$88A4`, frame 186 | bank 1 `$8959`, frame 295 | `$05` |
 | World 3 underwater | bank 2 `$82F6`, frame 194 | bank 2 `$838E`, frame 338 | `$0A` |
 
-Both frame-loop probes recur once per emulated frame for the remainder of their
-900-frame scenarios. The World 3 dispatch target initially sat behind the build
-string at `$827D-$82AC`; the runtime entry plus the bank-2 `$8271 -> $82F6` jump
-establishes the exact code/data boundary used by the disassembly pipeline.
+All four gameplay-loop probes recur exactly once per emulated frame: 323
+consecutive city frames, 362 consecutive underground frames, 606 World 2
+frames, and 563 World 3 frames in their dedicated scenarios. The underground
+scenario additionally records 99 consecutive city-loop frames before the
+manhole transition and requires the ordered city-loop -> manhole -> side-view
+initializer -> underground-loop path. The World 3 dispatch target initially sat
+behind the build string at `$827D-$82AC`; the runtime entry plus the bank-2
+`$8271 -> $82F6` jump establishes the exact code/data boundary used by the
+disassembly pipeline.
 
 ## World 2 terminal sentinel
 

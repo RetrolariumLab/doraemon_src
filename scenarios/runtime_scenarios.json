@@ -44,11 +44,31 @@
         "dispatch": "8271",
         "steady_selector": "00"
       },
+      "expected_probes": [
+        {
+          "name": "world1_main_entry",
+          "bank": 0
+        },
+        {
+          "name": "world1_city_frame_loop",
+          "bank": 0
+        }
+      ],
+      "recurring_frame_loops": [
+        {
+          "name": "world1_city_frame_loop",
+          "bank": 0,
+          "minimum_frames": 300,
+          "maximum_frame_gap": 1
+        }
+      ],
       "checks": [
         "mapper-bus-conflict",
         "observed-inputs",
         "chapter-bank-entry",
-        "chapter-steady-state"
+        "chapter-steady-state",
+        "probe-sequence",
+        "recurring-frame-loops"
       ]
     },
     {
@@ -80,13 +100,46 @@
         }
       ],
       "expected_probes": [
-        "world1_manhole_entered",
-        "world1_sideview_init"
+        {
+          "name": "world1_main_entry",
+          "bank": 0
+        },
+        {
+          "name": "world1_city_frame_loop",
+          "bank": 0
+        },
+        {
+          "name": "world1_manhole_entered",
+          "bank": 0
+        },
+        {
+          "name": "world1_sideview_init",
+          "bank": 0
+        },
+        {
+          "name": "world1_underground_frame_loop",
+          "bank": 0
+        }
+      ],
+      "recurring_frame_loops": [
+        {
+          "name": "world1_city_frame_loop",
+          "bank": 0,
+          "minimum_frames": 90,
+          "maximum_frame_gap": 1
+        },
+        {
+          "name": "world1_underground_frame_loop",
+          "bank": 0,
+          "minimum_frames": 300,
+          "maximum_frame_gap": 1
+        }
       ],
       "checks": [
         "mapper-bus-conflict",
         "observed-inputs",
-        "probe-sequence"
+        "probe-sequence",
+        "recurring-frame-loops"
       ]
     },
     {
@@ -134,12 +187,21 @@
           "bank": 1
         }
       ],
+      "recurring_frame_loops": [
+        {
+          "name": "world2_frame_loop",
+          "bank": 1,
+          "minimum_frames": 500,
+          "maximum_frame_gap": 1
+        }
+      ],
       "checks": [
         "mapper-bus-conflict",
         "observed-inputs",
         "chapter-bank-entry",
         "chapter-steady-state",
-        "probe-sequence"
+        "probe-sequence",
+        "recurring-frame-loops"
       ]
     },
     {
@@ -263,12 +325,21 @@
           "bank": 2
         }
       ],
+      "recurring_frame_loops": [
+        {
+          "name": "world3_frame_loop",
+          "bank": 2,
+          "minimum_frames": 500,
+          "maximum_frame_gap": 1
+        }
+      ],
       "checks": [
         "mapper-bus-conflict",
         "observed-inputs",
         "chapter-bank-entry",
         "chapter-steady-state",
-        "probe-sequence"
+        "probe-sequence",
+        "recurring-frame-loops"
       ]
     },
     {

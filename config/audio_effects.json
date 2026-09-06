@@ -1,0 +1,497 @@
+{
+  "schema_version": 1,
+  "channels": [
+    "pulse-1",
+    "pulse-2",
+    "triangle",
+    "noise"
+  ],
+  "roles": [
+    {
+      "id": "reset",
+      "init_handler": "ResetEffects",
+      "update_handler": "NoOp",
+      "timer_leases": [],
+      "apu_channels": [
+        "pulse-1",
+        "pulse-2",
+        "triangle",
+        "noise"
+      ],
+      "description": "clear effect state, timers, and APU channel state"
+    },
+    {
+      "id": "pulse2_fixed_tone_c",
+      "init_handler": "InitPulse2FixedToneC",
+      "update_handler": "UpdateTimedStop",
+      "timer_leases": [
+        "pulse-2"
+      ],
+      "apu_channels": [
+        "pulse-2"
+      ],
+      "description": "start the short third fixed pulse-2 register preset"
+    },
+    {
+      "id": "triangle_noise_burst",
+      "init_handler": "InitTriangleNoiseBurst",
+      "update_handler": "StopCurrentEffect",
+      "timer_leases": [
+        "triangle",
+        "noise"
+      ],
+      "apu_channels": [
+        "triangle",
+        "noise"
+      ],
+      "description": "write simultaneous triangle and noise presets for four frames"
+    },
+    {
+      "id": "pulse2_fixed_tone_a",
+      "init_handler": "InitPulse2FixedToneA",
+      "update_handler": "UpdateTimedStop",
+      "timer_leases": [
+        "pulse-2"
+      ],
+      "apu_channels": [
+        "pulse-2"
+      ],
+      "description": "start the first fixed pulse-2 register preset"
+    },
+    {
+      "id": "pulse2_pitch_sequence_long",
+      "init_handler": "InitPulse2PitchSequenceLong",
+      "update_handler": "UpdatePulse2PitchSequence",
+      "timer_leases": [
+        "pulse-2",
+        "noise"
+      ],
+      "apu_channels": [
+        "pulse-2",
+        "noise"
+      ],
+      "description": "run the long descending pulse-2 period sequence with a noise onset"
+    },
+    {
+      "id": "pulse2_pitch_sequence_short",
+      "init_handler": "InitPulse2PitchSequenceShort",
+      "update_handler": "UpdatePulse2PitchSequence",
+      "timer_leases": [
+        "pulse-2",
+        "noise"
+      ],
+      "apu_channels": [
+        "pulse-2",
+        "noise"
+      ],
+      "description": "run the short pulse-2 period sequence with a noise onset"
+    },
+    {
+      "id": "pulse1_alternating_burst",
+      "init_handler": "InitPulse1AlternatingBurst",
+      "update_handler": "UpdatePulse1AlternatingBurst",
+      "timer_leases": [
+        "pulse-1",
+        "pulse-2",
+        "triangle",
+        "noise"
+      ],
+      "apu_channels": [
+        "pulse-1"
+      ],
+      "description": "alternate two pulse-1 timer presets before a sustained tail"
+    },
+    {
+      "id": "pulse1_fixed_tone",
+      "init_handler": "InitPulse1FixedTone",
+      "update_handler": "UpdateTimedStop",
+      "timer_leases": [
+        "pulse-1"
+      ],
+      "apu_channels": [
+        "pulse-1"
+      ],
+      "description": "start the fixed pulse-1 register preset"
+    },
+    {
+      "id": "pulse1_tone_triangle_lease",
+      "init_handler": "InitPulse1ToneWithTriangleLease",
+      "update_handler": "UpdateTimedStop",
+      "timer_leases": [
+        "triangle"
+      ],
+      "apu_channels": [
+        "pulse-1"
+      ],
+      "description": "write pulse-1 while deliberately leasing the triangle timer slot"
+    },
+    {
+      "id": "noise_period_ramp",
+      "init_handler": "InitNoisePeriodRamp",
+      "update_handler": "UpdateNoisePeriodRamp",
+      "timer_leases": [
+        "noise"
+      ],
+      "apu_channels": [
+        "noise"
+      ],
+      "description": "increase the noise period nibble until the duration expires"
+    },
+    {
+      "id": "indexed_tonal_sequence_alt",
+      "init_handler": "InitIndexedTonalSequenceAlt",
+      "update_handler": "UpdateIndexedTonalSequenceAlt",
+      "timer_leases": [
+        "pulse-1",
+        "pulse-2",
+        "triangle",
+        "noise"
+      ],
+      "apu_channels": [
+        "pulse-1",
+        "pulse-2",
+        "triangle"
+      ],
+      "description": "interpret alternate duration data through indexed tonal-register writes while leasing all timers"
+    },
+    {
+      "id": "pulse2_fixed_tone_b",
+      "init_handler": "InitPulse2FixedToneB",
+      "update_handler": "UpdateTimedStop",
+      "timer_leases": [
+        "pulse-2"
+      ],
+      "apu_channels": [
+        "pulse-2"
+      ],
+      "description": "start the second fixed pulse-2 register preset"
+    },
+    {
+      "id": "noise_sweep_slow",
+      "init_handler": "InitNoiseSweep",
+      "update_handler": "UpdateNoiseSweepSlow",
+      "timer_leases": [
+        "noise"
+      ],
+      "apu_channels": [
+        "noise"
+      ],
+      "description": "run the shared noise sweep with its longer second phase"
+    },
+    {
+      "id": "noise_volume_sweep",
+      "init_handler": "InitNoiseVolumeSweep",
+      "update_handler": "UpdateNoiseVolumeSweep",
+      "timer_leases": [
+        "noise"
+      ],
+      "apu_channels": [
+        "noise"
+      ],
+      "description": "decrease then increase the noise volume envelope"
+    },
+    {
+      "id": "pulse2_three_step",
+      "init_handler": "InitPulse2ThreeStep",
+      "update_handler": "UpdatePulse2ThreeStep",
+      "timer_leases": [
+        "pulse-2"
+      ],
+      "apu_channels": [
+        "pulse-2"
+      ],
+      "description": "emit three pulse-2 period presets at four-frame intervals"
+    },
+    {
+      "id": "pulse2_pitch_sequence_base",
+      "init_handler": "InitPulse2PitchSequenceBase",
+      "update_handler": "UpdatePulse2PitchSequence",
+      "timer_leases": [
+        "pulse-2"
+      ],
+      "apu_channels": [
+        "pulse-2"
+      ],
+      "description": "run the base pulse-2 period-table descent"
+    },
+    {
+      "id": "pulse1_sequence",
+      "init_handler": "InitPulse1Sequence",
+      "update_handler": "UpdatePulse1Sequence",
+      "timer_leases": [
+        "pulse-1"
+      ],
+      "apu_channels": [
+        "pulse-1"
+      ],
+      "description": "interpret the primary duration and note sequence on pulse 1"
+    },
+    {
+      "id": "triangle_pitch_descent",
+      "init_handler": "InitTrianglePitchDescent",
+      "update_handler": "UpdateTrianglePitchDescent",
+      "timer_leases": [
+        "triangle"
+      ],
+      "apu_channels": [
+        "triangle"
+      ],
+      "description": "decrease the triangle timer period to a fixed threshold"
+    },
+    {
+      "id": "pulse2_two_tone",
+      "init_handler": "InitPulse2TwoTone",
+      "update_handler": "UpdatePulse2TwoTone",
+      "timer_leases": [
+        "pulse-2"
+      ],
+      "apu_channels": [
+        "pulse-2"
+      ],
+      "description": "switch once between two pulse-2 timer and sweep presets"
+    },
+    {
+      "id": "pulse2_pitch_sequence_wide",
+      "init_handler": "InitPulse2PitchSequenceWide",
+      "update_handler": "UpdatePulse2PitchSequence",
+      "timer_leases": [
+        "pulse-2"
+      ],
+      "apu_channels": [
+        "pulse-2"
+      ],
+      "description": "run the wide-range pulse-2 period-table descent"
+    },
+    {
+      "id": "pulse2_volume_fade",
+      "init_handler": "InitPulse2VolumeFade",
+      "update_handler": "UpdatePulse2VolumeFade",
+      "timer_leases": [
+        "pulse-2"
+      ],
+      "apu_channels": [
+        "pulse-2"
+      ],
+      "description": "step the pulse-2 volume through a three-entry fade table"
+    },
+    {
+      "id": "pulse1_alternator",
+      "init_handler": "InitPulse1Alternator",
+      "update_handler": "UpdatePulse1Alternator",
+      "timer_leases": [],
+      "apu_channels": [
+        "pulse-1"
+      ],
+      "description": "alternate pulse-1 presets without acquiring an effect timer lease"
+    },
+    {
+      "id": "noise_sweep_fast",
+      "init_handler": "InitNoiseSweep",
+      "update_handler": "UpdateNoiseSweepFast",
+      "timer_leases": [
+        "noise"
+      ],
+      "apu_channels": [
+        "noise"
+      ],
+      "description": "run the shared noise sweep with its shorter second phase"
+    },
+    {
+      "id": "shell_pulse1_noise_rise",
+      "init_handler": "InitPulse1NoiseRise",
+      "update_handler": "UpdatePulse1NoiseRise",
+      "timer_leases": [],
+      "apu_channels": [
+        "pulse-1",
+        "noise"
+      ],
+      "description": "combine the pulse-1 alternator with an increasing noise period"
+    },
+    {
+      "id": "shell_pulse1_noise_decay",
+      "init_handler": "InitPulse1NoiseDecay",
+      "update_handler": "UpdatePulse1NoiseDecay",
+      "timer_leases": [],
+      "apu_channels": [
+        "pulse-1",
+        "noise"
+      ],
+      "description": "combine the pulse-1 alternator with a decreasing noise period"
+    },
+    {
+      "id": "shell_pulse_pair_noise_tail",
+      "init_handler": "InitPulsePairNoiseTail",
+      "update_handler": "UpdateNoiseRise",
+      "timer_leases": [],
+      "apu_channels": [
+        "pulse-1",
+        "pulse-2",
+        "noise"
+      ],
+      "description": "initialize both pulse channels and continue through the noise-rise entry"
+    }
+  ],
+  "drivers": [
+    {
+      "name": "world1-audio",
+      "bank": 0,
+      "symbol_prefix": "World1_",
+      "system_symbols": {
+        "ResetEffects": "World1_Audio_ResetEffects",
+        "StopCurrentEffect": "World1_Audio_StopCurrentEffect"
+      },
+      "helpers": {
+        "InitNoiseOnset": "0xE540",
+        "AdvanceSequencePointer": "0xE5F6",
+        "GateSequenceStep": "0xE5FD",
+        "WriteIndexedTonalEvent": "0xE6C1"
+      },
+      "request_roles": [
+        "reset",
+        "pulse2_fixed_tone_c",
+        "triangle_noise_burst",
+        "pulse2_fixed_tone_a",
+        "pulse2_pitch_sequence_long",
+        "pulse2_pitch_sequence_short",
+        "pulse1_alternating_burst",
+        "pulse1_fixed_tone",
+        "pulse1_tone_triangle_lease",
+        "noise_period_ramp",
+        "indexed_tonal_sequence_alt",
+        "pulse2_fixed_tone_b",
+        "noise_sweep_slow",
+        "noise_volume_sweep",
+        "pulse2_three_step",
+        "pulse2_pitch_sequence_base",
+        "pulse1_sequence",
+        "triangle_pitch_descent",
+        "pulse2_two_tone",
+        "pulse2_pitch_sequence_wide",
+        "pulse2_volume_fade",
+        "pulse1_alternator",
+        "pulse1_alternator",
+        "pulse1_alternator",
+        "pulse1_alternator",
+        "noise_sweep_fast"
+      ]
+    },
+    {
+      "name": "world2-audio",
+      "bank": 1,
+      "symbol_prefix": "World2_",
+      "system_symbols": {
+        "ResetEffects": "World2_Audio_ResetEffects",
+        "StopCurrentEffect": "World2_Audio_StopCurrentEffect"
+      },
+      "helpers": {
+        "InitNoiseOnset": "0xA963",
+        "AdvanceSequencePointer": "0xAA19",
+        "GateSequenceStep": "0xAA20",
+        "WriteIndexedTonalEvent": "0xAACC"
+      },
+      "request_roles": [
+        "reset",
+        "pulse2_fixed_tone_c",
+        "triangle_noise_burst",
+        "pulse2_fixed_tone_a",
+        "pulse2_pitch_sequence_long",
+        "pulse2_pitch_sequence_short",
+        "pulse1_alternating_burst",
+        "pulse1_tone_triangle_lease",
+        "noise_period_ramp",
+        "indexed_tonal_sequence_alt",
+        "pulse2_fixed_tone_b",
+        "pulse2_three_step",
+        "pulse2_pitch_sequence_base",
+        "pulse1_sequence",
+        "triangle_pitch_descent"
+      ]
+    },
+    {
+      "name": "world3-audio",
+      "bank": 2,
+      "symbol_prefix": "World3_",
+      "system_symbols": {
+        "ResetEffects": "World3_Audio_ResetEffects",
+        "StopCurrentEffect": "World3_Audio_StopCurrentEffect"
+      },
+      "helpers": {
+        "InitNoiseOnset": "0xC038",
+        "AdvanceSequencePointer": "0xC0EE",
+        "GateSequenceStep": "0xC0F5",
+        "WriteIndexedTonalEvent": "0xC1B9"
+      },
+      "request_roles": [
+        "reset",
+        "pulse2_fixed_tone_c",
+        "triangle_noise_burst",
+        "pulse2_fixed_tone_a",
+        "pulse2_pitch_sequence_long",
+        "pulse2_pitch_sequence_short",
+        "pulse1_alternating_burst",
+        "pulse1_fixed_tone",
+        "pulse1_tone_triangle_lease",
+        "noise_period_ramp",
+        "indexed_tonal_sequence_alt",
+        "pulse2_fixed_tone_b",
+        "noise_sweep_slow",
+        "noise_volume_sweep",
+        "pulse2_three_step",
+        "pulse2_pitch_sequence_base",
+        "pulse1_sequence",
+        "triangle_pitch_descent",
+        "pulse2_two_tone",
+        "pulse2_pitch_sequence_wide",
+        "pulse2_volume_fade",
+        "pulse1_alternator",
+        "pulse1_alternator",
+        "pulse1_alternator",
+        "pulse1_alternator",
+        "noise_sweep_fast"
+      ]
+    },
+    {
+      "name": "shell-audio",
+      "bank": 3,
+      "symbol_prefix": "",
+      "system_symbols": {
+        "ResetEffects": "Audio_ResetEffects",
+        "StopCurrentEffect": "Audio_StopCurrentEffect"
+      },
+      "helpers": {
+        "InitNoiseOnset": "0x99AE",
+        "AdvanceSequencePointer": "0x9A64",
+        "GateSequenceStep": "0x9A6B",
+        "WriteIndexedTonalEvent": "0x9B2F"
+      },
+      "request_roles": [
+        "reset",
+        "pulse2_fixed_tone_c",
+        "triangle_noise_burst",
+        "pulse2_fixed_tone_a",
+        "pulse2_pitch_sequence_long",
+        "pulse2_pitch_sequence_short",
+        "pulse1_alternating_burst",
+        "pulse1_fixed_tone",
+        "pulse1_tone_triangle_lease",
+        "noise_period_ramp",
+        "indexed_tonal_sequence_alt",
+        "pulse2_fixed_tone_b",
+        "noise_sweep_slow",
+        "noise_volume_sweep",
+        "pulse2_three_step",
+        "pulse2_pitch_sequence_base",
+        "pulse1_sequence",
+        "triangle_pitch_descent",
+        "pulse2_two_tone",
+        "pulse2_pitch_sequence_wide",
+        "pulse2_volume_fade",
+        "pulse1_alternator",
+        "shell_pulse1_noise_rise",
+        "shell_pulse1_noise_decay",
+        "shell_pulse_pair_noise_tail",
+        "noise_sweep_fast"
+      ]
+    }
+  ]
+}

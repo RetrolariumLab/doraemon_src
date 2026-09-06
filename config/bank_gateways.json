@@ -10,6 +10,7 @@
     {
       "address": "0x8000",
       "kind": "switch-jump",
+      "symbol": "EnterWorld1",
       "target_prg": 0,
       "dispatch": "0x8271",
       "bytes": "20f080a90020b2814c7182"
@@ -17,6 +18,7 @@
     {
       "address": "0x800b",
       "kind": "switch-jump",
+      "symbol": "EnterWorld2",
       "target_prg": 1,
       "dispatch": "0x8271",
       "bytes": "20f080a90120b2814c7182"
@@ -24,6 +26,7 @@
     {
       "address": "0x8016",
       "kind": "switch-jump",
+      "symbol": "EnterWorld3",
       "target_prg": 2,
       "dispatch": "0x8271",
       "bytes": "20f080a90220b2814c7182"
@@ -38,6 +41,7 @@
     {
       "address": "0x8024",
       "kind": "switch-jump",
+      "symbol": "EnterWorld1Demo",
       "target_prg": 0,
       "dispatch": "0x8277",
       "bytes": "20f080a90020b2814c7782"
@@ -45,6 +49,7 @@
     {
       "address": "0x802f",
       "kind": "switch-jump",
+      "symbol": "EnterWorld2Demo",
       "target_prg": 1,
       "dispatch": "0x8277",
       "bytes": "20f080a90120b2814c7782"
@@ -52,6 +57,7 @@
     {
       "address": "0x803a",
       "kind": "switch-jump",
+      "symbol": "EnterWorld3Demo",
       "target_prg": 2,
       "dispatch": "0x8277",
       "bytes": "20f080a90220b2814c7782"
@@ -66,6 +72,7 @@
     {
       "address": "0x8048",
       "kind": "switch-jump",
+      "symbol": "EnterShell",
       "target_prg": 3,
       "dispatch": "0x8271",
       "bytes": "20f080a90320b2814c7182"
@@ -73,6 +80,7 @@
     {
       "address": "0x8053",
       "kind": "switch-call-restore",
+      "symbol": "CallShellStatusScreen",
       "target_prg": 3,
       "dispatch": "0x8277",
       "bytes": "20f080a51748a90320b281207782684cb281"
@@ -80,6 +88,7 @@
     {
       "address": "0x8065",
       "kind": "switch-call-restore",
+      "symbol": "CallShellGameOver",
       "target_prg": 3,
       "dispatch": "0x827d",
       "bytes": "20f080a51748a90320b281207d82684cb281"
@@ -87,6 +96,7 @@
     {
       "address": "0x8077",
       "kind": "switch-jump",
+      "symbol": "EnterEnding",
       "target_prg": 3,
       "dispatch": "0x8280",
       "bytes": "20f080a90320b2814c8082"
@@ -94,6 +104,7 @@
     {
       "address": "0x8082",
       "kind": "switch-jump",
+      "symbol": "EnterWorld1ToWorld2Transition",
       "target_prg": 3,
       "dispatch": "0x8283",
       "bytes": "20f080a90320b2814c8382"
@@ -101,6 +112,7 @@
     {
       "address": "0x808d",
       "kind": "switch-jump",
+      "symbol": "EnterWorld2ToWorld3Transition",
       "target_prg": 3,
       "dispatch": "0x8286",
       "bytes": "20f080a90320b2814c8682"

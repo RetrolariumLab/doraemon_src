@@ -38,7 +38,10 @@ Replace neutral address-based names for all major routines, indirect-dispatch
 targets, and key RAM state with evidence-backed roles. Local branch labels are
 lower priority and remain address-qualified where their role is not material.
 Progress is measured per bank by a machine-audited reconstruction inventory,
-not inferred from module names.
+not inferred from module names. All 354 indirect entries and all sixteen bank
+gateway targets are semantic. Runtime now proves and names the four gameplay
+loops (city, underground, World 2, and World 3) at exactly one iteration per
+emulated frame; 294 probable routine entries remain neutral.
 
 ### 6. RAM and object systems - Partial
 

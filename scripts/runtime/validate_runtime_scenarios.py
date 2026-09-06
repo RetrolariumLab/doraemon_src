@@ -192,6 +192,37 @@ def probe_sequence(scenario: dict[str, object], rows: list[dict[str, str]]) -> b
     return False
 
 
+def recurring_frame_loops(
+    scenario: dict[str, object], rows: list[dict[str, str]]
+) -> bool:
+    expected = scenario.get("recurring_frame_loops")
+    if not isinstance(expected, list) or not expected:
+        return False
+    for item in expected:
+        if not isinstance(item, dict):
+            raise ValueError("recurring_frame_loops entries must be objects")
+        name = str(item["name"])
+        bank = int(item["bank"])
+        minimum_frames = int(item["minimum_frames"])
+        maximum_frame_gap = int(item.get("maximum_frame_gap", 1))
+        frames = [
+            int(row["frame"])
+            for row in rows
+            if row["event"] == "probe"
+            and row["detail"] == name
+            and int(row["bank"]) == bank
+        ]
+        if len(frames) < minimum_frames or len(frames) != len(set(frames)):
+            return False
+        if any(
+            following - current < 1
+            or following - current > maximum_frame_gap
+            for current, following in zip(frames, frames[1:])
+        ):
+            return False
+    return True
+
+
 def observed_memory_patches(
     scenario: dict[str, object], rows: list[dict[str, str]]
 ) -> bool:
@@ -246,6 +277,7 @@ def validate_check(
         "chapter-bank-entry": lambda: chapter_bank_entry(scenario, rows),
         "chapter-steady-state": lambda: chapter_steady_state(scenario, rows),
         "probe-sequence": lambda: probe_sequence(scenario, rows),
+        "recurring-frame-loops": lambda: recurring_frame_loops(scenario, rows),
         "observed-memory-patches": lambda: observed_memory_patches(scenario, rows),
         "world2-terminal-screen": lambda: world2_terminal_screen(rows),
     }

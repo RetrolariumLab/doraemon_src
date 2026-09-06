@@ -39,7 +39,7 @@ Bank2_Label_AE4E:
     LDA #$5A
     STA World3FrameWaitCounter
     JSR World3_WaitFrames
-    JMP Bank2_Func_8077
+    JMP Bank2_EnterEnding
 
 Bank2_Func_AE5D:
     LDA $02
@@ -164,11 +164,11 @@ Bank2_Label_AF6C:
     JMP Bank2_Label_AF6C
 
 Bank2_Func_AF6F:
-    JSR Bank2_Func_80DA
+    JSR Bank2_DisableRenderingForUpdate
     LDA #$90
     STA PpuCtrlShadow
     LDA #$02
-    JSR Bank2_Func_81AA
+    JSR Bank2_SelectChrBank
     JSR World3_DisableRendering
     LDX #$EE
     LDY #$BD
@@ -182,7 +182,7 @@ Bank2_Func_AF6F:
     STA $00
     JSR World3_FillAttributeTables
     JSR World3_HideAllSprites
-    JSR Bank2_Func_80FD
+    JSR Bank2_EnableNmiAndRendering
     JSR World3_EnableRendering
     LDX #$C6
     LDY #$AF

@@ -3,6 +3,78 @@
   "symbols": [
     {
       "bank": 0,
+      "address": "0x8000",
+      "name": "Bank0_EnterWorld1",
+      "evidence": "validated-common-gateway-switches-to-prg0-chapter-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0x800B",
+      "name": "Bank0_EnterWorld2",
+      "evidence": "validated-common-gateway-switches-to-prg1-chapter-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0x8016",
+      "name": "Bank0_EnterWorld3",
+      "evidence": "validated-common-gateway-switches-to-prg2-chapter-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0x8024",
+      "name": "Bank0_EnterWorld1Demo",
+      "evidence": "validated-common-gateway-switches-to-prg0-demo-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0x802F",
+      "name": "Bank0_EnterWorld2Demo",
+      "evidence": "validated-common-gateway-switches-to-prg1-demo-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0x803A",
+      "name": "Bank0_EnterWorld3Demo",
+      "evidence": "validated-common-gateway-switches-to-prg2-demo-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0x8048",
+      "name": "Bank0_EnterShell",
+      "evidence": "validated-common-gateway-switches-to-prg3-main-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0x8053",
+      "name": "Bank0_CallShellStatusScreen",
+      "evidence": "validated-switch-call-restore-gateway-to-shell-status-screen"
+    },
+    {
+      "bank": 0,
+      "address": "0x8065",
+      "name": "Bank0_CallShellGameOver",
+      "evidence": "validated-switch-call-restore-gateway-to-shell-game-over"
+    },
+    {
+      "bank": 0,
+      "address": "0x8077",
+      "name": "Bank0_EnterEnding",
+      "evidence": "validated-common-gateway-switches-to-shell-ending"
+    },
+    {
+      "bank": 0,
+      "address": "0x8082",
+      "name": "Bank0_EnterWorld1ToWorld2Transition",
+      "evidence": "validated-common-gateway-switches-to-world1-transition"
+    },
+    {
+      "bank": 0,
+      "address": "0x808D",
+      "name": "Bank0_EnterWorld2ToWorld3Transition",
+      "evidence": "validated-common-gateway-switches-to-world2-transition"
+    },
+    {
+      "bank": 0,
       "address": "0x8098",
       "name": "Bank0_Reset",
       "evidence": "reset-vector"
@@ -15,9 +87,45 @@
     },
     {
       "bank": 0,
+      "address": "0x80DA",
+      "name": "Bank0_DisableRenderingForUpdate",
+      "evidence": "waits-for-vblank-clears-rendering-bits-and-oam-dma-request"
+    },
+    {
+      "bank": 0,
+      "address": "0x80F0",
+      "name": "Bank0_DisableNmiAndRendering",
+      "evidence": "disables-rendering-then-clears-ppu-nmi-enable"
+    },
+    {
+      "bank": 0,
+      "address": "0x80FD",
+      "name": "Bank0_EnableNmiAndRendering",
+      "evidence": "hides-sprites-enables-nmi-oam-dma-and-background-sprite-rendering"
+    },
+    {
+      "bank": 0,
+      "address": "0x8131",
+      "name": "Bank0_HideAllSprites",
+      "evidence": "fills-entire-oam-buffer-with-offscreen-f0"
+    },
+    {
+      "bank": 0,
       "address": "0x813C",
       "name": "Bank0_Nmi",
       "evidence": "nmi-vector"
+    },
+    {
+      "bank": 0,
+      "address": "0x81AA",
+      "name": "Bank0_SelectChrBank",
+      "evidence": "maps-low-two-input-bits-to-chr-selector-and-falls-through"
+    },
+    {
+      "bank": 0,
+      "address": "0x81B2",
+      "name": "Bank0_SelectPrgBank",
+      "evidence": "combines-prg-selector-with-preserved-chr-bits-and-writes-mapper"
     },
     {
       "bank": 0,
@@ -58,6 +166,36 @@
     },
     {
       "bank": 0,
+      "address": "0x8271",
+      "name": "Bank0_PrimaryEntryDispatch",
+      "evidence": "validated-bank0-dispatch-to-runtime-proven-world1-main"
+    },
+    {
+      "bank": 0,
+      "address": "0x8274",
+      "name": "Bank0_NmiFrameDispatch",
+      "evidence": "bank0-nmi-dispatch-to-world1-frame-services"
+    },
+    {
+      "bank": 0,
+      "address": "0x8277",
+      "name": "Bank0_SecondaryEntryDispatch",
+      "evidence": "validated-bank0-dispatch-to-world1-demo-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0x827A",
+      "name": "Bank0_AudioFrameDispatch",
+      "evidence": "bank0-nmi-dispatch-to-world1-audio-frame-service"
+    },
+    {
+      "bank": 0,
+      "address": "0x827D",
+      "name": "World1_Audio_UpdateFrameWithExtraLifeCue",
+      "evidence": "nmi-target-requeues-effect-10-while-extra-life-counter-is-active-then-updates-effects-and-music"
+    },
+    {
+      "bank": 0,
       "address": "0x8288",
       "name": "World1_Audio_UpdateFrame",
       "evidence": "effect-update-followed-by-tail-call-to-music-update"
@@ -70,9 +208,21 @@
     },
     {
       "bank": 0,
+      "address": "0x82C1",
+      "name": "Bank0_World1CityFrameLoop",
+      "evidence": "runtime-probe-executes-once-per-frame-for-323-consecutive-world1-city-frames"
+    },
+    {
+      "bank": 0,
       "address": "0x8451",
       "name": "World1_DemoEntry",
       "evidence": "bank-zero-8277-target-initializes-demo-mode-world-one-state"
+    },
+    {
+      "bank": 0,
+      "address": "0x84D9",
+      "name": "World1_NmiFrameServices",
+      "evidence": "bank0-nmi-target-drains-map-or-command-ppu-updates-applies-scroll-and-composes-the-next-oam-frame"
     },
     {
       "bank": 0,
@@ -185,6 +335,12 @@
       "address": "0x8EA0",
       "name": "World1_InitializeEntityPosition",
       "evidence": "common-placement-coordinate-to-camera-relative-entity-position-initializer"
+    },
+    {
+      "bank": 0,
+      "address": "0x94F1",
+      "name": "World1_WaitForNextFrame",
+      "evidence": "spins-until-the-nmi-owned-frame-counter-changes-and-gates-both-world1-gameplay-loops"
     },
     {
       "bank": 0,
@@ -389,6 +545,12 @@
       "address": "0xCDB5",
       "name": "Bank0_InitWorld1SideView",
       "evidence": "world1-underground-runtime-probe"
+    },
+    {
+      "bank": 0,
+      "address": "0xCE55",
+      "name": "Bank0_World1UndergroundFrameLoop",
+      "evidence": "runtime-probe-executes-once-per-frame-for-362-consecutive-world1-underground-frames"
     },
     {
       "bank": 0,
@@ -1158,6 +1320,78 @@
     },
     {
       "bank": 1,
+      "address": "0x8000",
+      "name": "Bank1_EnterWorld1",
+      "evidence": "validated-common-gateway-switches-to-prg0-chapter-entry"
+    },
+    {
+      "bank": 1,
+      "address": "0x800B",
+      "name": "Bank1_EnterWorld2",
+      "evidence": "validated-common-gateway-switches-to-prg1-chapter-entry"
+    },
+    {
+      "bank": 1,
+      "address": "0x8016",
+      "name": "Bank1_EnterWorld3",
+      "evidence": "validated-common-gateway-switches-to-prg2-chapter-entry"
+    },
+    {
+      "bank": 1,
+      "address": "0x8024",
+      "name": "Bank1_EnterWorld1Demo",
+      "evidence": "validated-common-gateway-switches-to-prg0-demo-entry"
+    },
+    {
+      "bank": 1,
+      "address": "0x802F",
+      "name": "Bank1_EnterWorld2Demo",
+      "evidence": "validated-common-gateway-switches-to-prg1-demo-entry"
+    },
+    {
+      "bank": 1,
+      "address": "0x803A",
+      "name": "Bank1_EnterWorld3Demo",
+      "evidence": "validated-common-gateway-switches-to-prg2-demo-entry"
+    },
+    {
+      "bank": 1,
+      "address": "0x8048",
+      "name": "Bank1_EnterShell",
+      "evidence": "validated-common-gateway-switches-to-prg3-main-entry"
+    },
+    {
+      "bank": 1,
+      "address": "0x8053",
+      "name": "Bank1_CallShellStatusScreen",
+      "evidence": "validated-switch-call-restore-gateway-to-shell-status-screen"
+    },
+    {
+      "bank": 1,
+      "address": "0x8065",
+      "name": "Bank1_CallShellGameOver",
+      "evidence": "validated-switch-call-restore-gateway-to-shell-game-over"
+    },
+    {
+      "bank": 1,
+      "address": "0x8077",
+      "name": "Bank1_EnterEnding",
+      "evidence": "validated-common-gateway-switches-to-shell-ending"
+    },
+    {
+      "bank": 1,
+      "address": "0x8082",
+      "name": "Bank1_EnterWorld1ToWorld2Transition",
+      "evidence": "validated-common-gateway-switches-to-world1-transition"
+    },
+    {
+      "bank": 1,
+      "address": "0x808D",
+      "name": "Bank1_EnterWorld2ToWorld3Transition",
+      "evidence": "validated-common-gateway-switches-to-world2-transition"
+    },
+    {
+      "bank": 1,
       "address": "0x8098",
       "name": "Bank1_Reset",
       "evidence": "reset-vector"
@@ -1170,9 +1404,45 @@
     },
     {
       "bank": 1,
+      "address": "0x80DA",
+      "name": "Bank1_DisableRenderingForUpdate",
+      "evidence": "waits-for-vblank-clears-rendering-bits-and-oam-dma-request"
+    },
+    {
+      "bank": 1,
+      "address": "0x80F0",
+      "name": "Bank1_DisableNmiAndRendering",
+      "evidence": "disables-rendering-then-clears-ppu-nmi-enable"
+    },
+    {
+      "bank": 1,
+      "address": "0x80FD",
+      "name": "Bank1_EnableNmiAndRendering",
+      "evidence": "hides-sprites-enables-nmi-oam-dma-and-background-sprite-rendering"
+    },
+    {
+      "bank": 1,
+      "address": "0x8131",
+      "name": "Bank1_HideAllSprites",
+      "evidence": "fills-entire-oam-buffer-with-offscreen-f0"
+    },
+    {
+      "bank": 1,
       "address": "0x813C",
       "name": "Bank1_Nmi",
       "evidence": "nmi-vector"
+    },
+    {
+      "bank": 1,
+      "address": "0x81AA",
+      "name": "Bank1_SelectChrBank",
+      "evidence": "maps-low-two-input-bits-to-chr-selector-and-falls-through"
+    },
+    {
+      "bank": 1,
+      "address": "0x81B2",
+      "name": "Bank1_SelectPrgBank",
+      "evidence": "combines-prg-selector-with-preserved-chr-bits-and-writes-mapper"
     },
     {
       "bank": 1,
@@ -1213,6 +1483,48 @@
     },
     {
       "bank": 1,
+      "address": "0x8271",
+      "name": "Bank1_PrimaryEntryDispatch",
+      "evidence": "validated-bank1-dispatch-to-runtime-proven-world2-main"
+    },
+    {
+      "bank": 1,
+      "address": "0x8274",
+      "name": "Bank1_NmiFrameDispatch",
+      "evidence": "bank1-nmi-dispatch-to-world2-frame-services"
+    },
+    {
+      "bank": 1,
+      "address": "0x8277",
+      "name": "Bank1_SecondaryEntryDispatch",
+      "evidence": "validated-bank1-dispatch-to-world2-demo-entry"
+    },
+    {
+      "bank": 1,
+      "address": "0x827A",
+      "name": "Bank1_AudioFrameDispatch",
+      "evidence": "bank1-nmi-dispatch-to-world2-audio-frame-service"
+    },
+    {
+      "bank": 1,
+      "address": "0x829F",
+      "name": "World2_NmiFrameServices",
+      "evidence": "bank1-nmi-target-dispatches-forward-reverse-or-row-screen-streaming-and-applies-pending-palette-state"
+    },
+    {
+      "bank": 1,
+      "address": "0x8365",
+      "name": "World2_ScreenService_NoOp",
+      "evidence": "shared-empty-target-of-three-screen-service-dispatch-tables"
+    },
+    {
+      "bank": 1,
+      "address": "0x8371",
+      "name": "World2_AdvanceScreenStage",
+      "evidence": "advances-stage-sequence-and-arms-row-delay"
+    },
+    {
+      "bank": 1,
       "address": "0x837D",
       "name": "World2_AdvanceStageSequence",
       "evidence": "advances-16-row-screen-state-and-selects-next-stage-sequence-token"
@@ -1231,6 +1543,12 @@
     },
     {
       "bank": 1,
+      "address": "0x83DD",
+      "name": "World2_AdvanceStreamedScreenRow",
+      "evidence": "advances-row-consumes-row13-branch-command-and-wraps-screen"
+    },
+    {
+      "bank": 1,
       "address": "0x8405",
       "name": "World2_DecodeScreenRow16",
       "evidence": "expands-compressed-screen-tokens-until-at-least-16-output-cells"
@@ -1243,9 +1561,75 @@
     },
     {
       "bank": 1,
+      "address": "0x8471",
+      "name": "World2_PrepareRowTransferAddresses",
+      "evidence": "derives-nametable-and-attribute-addresses-from-vertical-scroll"
+    },
+    {
+      "bank": 1,
+      "address": "0x84AB",
+      "name": "World2_ExpandHorizontalMetatileRow",
+      "evidence": "expands-sixteen-metatiles-into-tile-and-palette-buffers"
+    },
+    {
+      "bank": 1,
+      "address": "0x84C1",
+      "name": "World2_ReadVerticalAttributeColumn",
+      "evidence": "reads-eight-attribute-bytes-at-eight-byte-ppu-stride"
+    },
+    {
+      "bank": 1,
+      "address": "0x84E1",
+      "name": "World2_ExpandVerticalMetatileColumn",
+      "evidence": "expands-fifteen-metatiles-at-sixteen-byte-buffer-stride"
+    },
+    {
+      "bank": 1,
       "address": "0x84FC",
       "name": "World2_ExpandMetatileToTransferBuffers",
       "evidence": "metatile-id-to-palette-and-four-chr-tile-expansion"
+    },
+    {
+      "bank": 1,
+      "address": "0x8578",
+      "name": "World2_UploadVerticalTileColumnsA",
+      "evidence": "uploads-first-two-vertical-tile-columns-with-ppu-increment32"
+    },
+    {
+      "bank": 1,
+      "address": "0x85A5",
+      "name": "World2_MergeVerticalAttributes",
+      "evidence": "merges-fifteen-palette-selectors-into-attribute-buffer"
+    },
+    {
+      "bank": 1,
+      "address": "0x85F7",
+      "name": "World2_UploadVerticalTileColumnsBAndAttributes",
+      "evidence": "uploads-second-tile-column-pair-and-eight-attributes"
+    },
+    {
+      "bank": 1,
+      "address": "0x8641",
+      "name": "World2_UploadHorizontalTileRowsB",
+      "evidence": "uploads-second-pair-of-sixteen-tile-rows"
+    },
+    {
+      "bank": 1,
+      "address": "0x8660",
+      "name": "World2_ReadAndMergeHorizontalAttributes",
+      "evidence": "reads-and-merges-eight-attributes-for-sixteen-metatiles"
+    },
+    {
+      "bank": 1,
+      "address": "0x86C9",
+      "name": "World2_UploadHorizontalTileRowsA",
+      "evidence": "uploads-first-pair-of-sixteen-tile-rows"
+    },
+    {
+      "bank": 1,
+      "address": "0x86EB",
+      "name": "World2_UploadHorizontalAttributes",
+      "evidence": "uploads-eight-merged-attribute-bytes"
     },
     {
       "bank": 1,
@@ -1333,6 +1717,12 @@
       "address": "0x8959",
       "name": "Bank1_World2FrameLoop",
       "evidence": "world2-cave-runtime-frame-loop"
+    },
+    {
+      "bank": 1,
+      "address": "0x8A39",
+      "name": "World2_WaitForNextFrame",
+      "evidence": "spins-until-the-nmi-owned-frame-counter-changes-before-each-runtime-proven-world2-loop-iteration"
     },
     {
       "bank": 1,
@@ -2162,6 +2552,78 @@
     },
     {
       "bank": 2,
+      "address": "0x8000",
+      "name": "Bank2_EnterWorld1",
+      "evidence": "validated-common-gateway-switches-to-prg0-chapter-entry"
+    },
+    {
+      "bank": 2,
+      "address": "0x800B",
+      "name": "Bank2_EnterWorld2",
+      "evidence": "validated-common-gateway-switches-to-prg1-chapter-entry"
+    },
+    {
+      "bank": 2,
+      "address": "0x8016",
+      "name": "Bank2_EnterWorld3",
+      "evidence": "validated-common-gateway-switches-to-prg2-chapter-entry"
+    },
+    {
+      "bank": 2,
+      "address": "0x8024",
+      "name": "Bank2_EnterWorld1Demo",
+      "evidence": "validated-common-gateway-switches-to-prg0-demo-entry"
+    },
+    {
+      "bank": 2,
+      "address": "0x802F",
+      "name": "Bank2_EnterWorld2Demo",
+      "evidence": "validated-common-gateway-switches-to-prg1-demo-entry"
+    },
+    {
+      "bank": 2,
+      "address": "0x803A",
+      "name": "Bank2_EnterWorld3Demo",
+      "evidence": "validated-common-gateway-switches-to-prg2-demo-entry"
+    },
+    {
+      "bank": 2,
+      "address": "0x8048",
+      "name": "Bank2_EnterShell",
+      "evidence": "validated-common-gateway-switches-to-prg3-main-entry"
+    },
+    {
+      "bank": 2,
+      "address": "0x8053",
+      "name": "Bank2_CallShellStatusScreen",
+      "evidence": "validated-switch-call-restore-gateway-to-shell-status-screen"
+    },
+    {
+      "bank": 2,
+      "address": "0x8065",
+      "name": "Bank2_CallShellGameOver",
+      "evidence": "validated-switch-call-restore-gateway-to-shell-game-over"
+    },
+    {
+      "bank": 2,
+      "address": "0x8077",
+      "name": "Bank2_EnterEnding",
+      "evidence": "validated-common-gateway-switches-to-shell-ending"
+    },
+    {
+      "bank": 2,
+      "address": "0x8082",
+      "name": "Bank2_EnterWorld1ToWorld2Transition",
+      "evidence": "validated-common-gateway-switches-to-world1-transition"
+    },
+    {
+      "bank": 2,
+      "address": "0x808D",
+      "name": "Bank2_EnterWorld2ToWorld3Transition",
+      "evidence": "validated-common-gateway-switches-to-world2-transition"
+    },
+    {
+      "bank": 2,
       "address": "0x8098",
       "name": "Bank2_Reset",
       "evidence": "reset-vector"
@@ -2174,9 +2636,45 @@
     },
     {
       "bank": 2,
+      "address": "0x80DA",
+      "name": "Bank2_DisableRenderingForUpdate",
+      "evidence": "waits-for-vblank-clears-rendering-bits-and-oam-dma-request"
+    },
+    {
+      "bank": 2,
+      "address": "0x80F0",
+      "name": "Bank2_DisableNmiAndRendering",
+      "evidence": "disables-rendering-then-clears-ppu-nmi-enable"
+    },
+    {
+      "bank": 2,
+      "address": "0x80FD",
+      "name": "Bank2_EnableNmiAndRendering",
+      "evidence": "hides-sprites-enables-nmi-oam-dma-and-background-sprite-rendering"
+    },
+    {
+      "bank": 2,
+      "address": "0x8131",
+      "name": "Bank2_HideAllSprites",
+      "evidence": "fills-entire-oam-buffer-with-offscreen-f0"
+    },
+    {
+      "bank": 2,
       "address": "0x813C",
       "name": "Bank2_Nmi",
       "evidence": "nmi-vector"
+    },
+    {
+      "bank": 2,
+      "address": "0x81AA",
+      "name": "Bank2_SelectChrBank",
+      "evidence": "maps-low-two-input-bits-to-chr-selector-and-falls-through"
+    },
+    {
+      "bank": 2,
+      "address": "0x81B2",
+      "name": "Bank2_SelectPrgBank",
+      "evidence": "combines-prg-selector-with-preserved-chr-bits-and-writes-mapper"
     },
     {
       "bank": 2,
@@ -2214,6 +2712,30 @@
       "address": "0x8261",
       "name": "Bank2_MapperValueTable",
       "evidence": "mapper-write-index"
+    },
+    {
+      "bank": 2,
+      "address": "0x8271",
+      "name": "Bank2_PrimaryEntryDispatch",
+      "evidence": "validated-bank2-dispatch-to-runtime-proven-world3-main"
+    },
+    {
+      "bank": 2,
+      "address": "0x8274",
+      "name": "Bank2_NmiFrameDispatch",
+      "evidence": "bank2-nmi-dispatch-to-world3-frame-services"
+    },
+    {
+      "bank": 2,
+      "address": "0x8277",
+      "name": "Bank2_SecondaryEntryDispatch",
+      "evidence": "validated-bank2-dispatch-to-world3-demo-entry"
+    },
+    {
+      "bank": 2,
+      "address": "0x827A",
+      "name": "Bank2_AudioFrameDispatch",
+      "evidence": "bank2-nmi-dispatch-to-world3-audio-frame-service"
     },
     {
       "bank": 2,
@@ -2833,9 +3355,39 @@
     },
     {
       "bank": 2,
+      "address": "0xA239",
+      "name": "World3_PlayerState_Frozen",
+      "evidence": "state-zero-no-update-rts"
+    },
+    {
+      "bank": 2,
+      "address": "0xA23A",
+      "name": "World3_PlayerState_Dying",
+      "evidence": "state-four-death-animation-life-loss-and-room-restart"
+    },
+    {
+      "bank": 2,
       "address": "0xA28D",
       "name": "World3_ExitPunishmentRoom",
       "evidence": "clears-punishment-state-restores-saved-room-player-state-and-music"
+    },
+    {
+      "bank": 2,
+      "address": "0xA2E9",
+      "name": "World3_PlayerState_DamageRecovery",
+      "evidence": "state-three-timed-knockback-then-restores-state-one"
+    },
+    {
+      "bank": 2,
+      "address": "0xA335",
+      "name": "World3_PlayerState_ControlledMovement",
+      "evidence": "state-one-controlled-movement-and-projectile-input"
+    },
+    {
+      "bank": 2,
+      "address": "0xA33C",
+      "name": "World3_PlayerState_AlternateMovement",
+      "evidence": "state-two-alternate-movement-and-projectile-input"
     },
     {
       "bank": 2,
@@ -3549,6 +4101,78 @@
     },
     {
       "bank": 3,
+      "address": "0x8000",
+      "name": "Bank3_EnterWorld1",
+      "evidence": "validated-common-gateway-switches-to-prg0-chapter-entry"
+    },
+    {
+      "bank": 3,
+      "address": "0x800B",
+      "name": "Bank3_EnterWorld2",
+      "evidence": "validated-common-gateway-switches-to-prg1-chapter-entry"
+    },
+    {
+      "bank": 3,
+      "address": "0x8016",
+      "name": "Bank3_EnterWorld3",
+      "evidence": "validated-common-gateway-switches-to-prg2-chapter-entry"
+    },
+    {
+      "bank": 3,
+      "address": "0x8024",
+      "name": "Bank3_EnterWorld1Demo",
+      "evidence": "validated-common-gateway-switches-to-prg0-demo-entry"
+    },
+    {
+      "bank": 3,
+      "address": "0x802F",
+      "name": "Bank3_EnterWorld2Demo",
+      "evidence": "validated-common-gateway-switches-to-prg1-demo-entry"
+    },
+    {
+      "bank": 3,
+      "address": "0x803A",
+      "name": "Bank3_EnterWorld3Demo",
+      "evidence": "validated-common-gateway-switches-to-prg2-demo-entry"
+    },
+    {
+      "bank": 3,
+      "address": "0x8048",
+      "name": "Bank3_EnterShell",
+      "evidence": "validated-common-gateway-switches-to-prg3-main-entry"
+    },
+    {
+      "bank": 3,
+      "address": "0x8053",
+      "name": "Bank3_CallShellStatusScreen",
+      "evidence": "validated-switch-call-restore-gateway-to-shell-status-screen"
+    },
+    {
+      "bank": 3,
+      "address": "0x8065",
+      "name": "Bank3_CallShellGameOver",
+      "evidence": "validated-switch-call-restore-gateway-to-shell-game-over"
+    },
+    {
+      "bank": 3,
+      "address": "0x8077",
+      "name": "Bank3_EnterEnding",
+      "evidence": "validated-common-gateway-switches-to-shell-ending"
+    },
+    {
+      "bank": 3,
+      "address": "0x8082",
+      "name": "Bank3_EnterWorld1ToWorld2Transition",
+      "evidence": "validated-common-gateway-switches-to-world1-transition"
+    },
+    {
+      "bank": 3,
+      "address": "0x808D",
+      "name": "Bank3_EnterWorld2ToWorld3Transition",
+      "evidence": "validated-common-gateway-switches-to-world2-transition"
+    },
+    {
+      "bank": 3,
       "address": "0x8098",
       "name": "Bank3_Reset",
       "evidence": "reset-vector"
@@ -3561,9 +4185,45 @@
     },
     {
       "bank": 3,
+      "address": "0x80DA",
+      "name": "Bank3_DisableRenderingForUpdate",
+      "evidence": "waits-for-vblank-clears-rendering-bits-and-oam-dma-request"
+    },
+    {
+      "bank": 3,
+      "address": "0x80F0",
+      "name": "Bank3_DisableNmiAndRendering",
+      "evidence": "disables-rendering-then-clears-ppu-nmi-enable"
+    },
+    {
+      "bank": 3,
+      "address": "0x80FD",
+      "name": "Bank3_EnableNmiAndRendering",
+      "evidence": "hides-sprites-enables-nmi-oam-dma-and-background-sprite-rendering"
+    },
+    {
+      "bank": 3,
+      "address": "0x8131",
+      "name": "Bank3_HideAllSprites",
+      "evidence": "fills-entire-oam-buffer-with-offscreen-f0"
+    },
+    {
+      "bank": 3,
       "address": "0x813C",
       "name": "Bank3_Nmi",
       "evidence": "nmi-vector"
+    },
+    {
+      "bank": 3,
+      "address": "0x81AA",
+      "name": "Bank3_SelectChrBank",
+      "evidence": "maps-low-two-input-bits-to-chr-selector-and-falls-through"
+    },
+    {
+      "bank": 3,
+      "address": "0x81B2",
+      "name": "Bank3_SelectPrgBank",
+      "evidence": "combines-prg-selector-with-preserved-chr-bits-and-writes-mapper"
     },
     {
       "bank": 3,
@@ -3604,6 +4264,30 @@
     },
     {
       "bank": 3,
+      "address": "0x8271",
+      "name": "Bank3_PrimaryEntryDispatch",
+      "evidence": "validated-bank3-dispatch-to-shell-main"
+    },
+    {
+      "bank": 3,
+      "address": "0x8274",
+      "name": "Bank3_NmiFrameDispatch",
+      "evidence": "bank3-nmi-dispatch-to-shell-frame-services"
+    },
+    {
+      "bank": 3,
+      "address": "0x8277",
+      "name": "Bank3_SecondaryEntryDispatch",
+      "evidence": "validated-bank3-callable-status-screen-dispatch"
+    },
+    {
+      "bank": 3,
+      "address": "0x827A",
+      "name": "Bank3_AudioFrameDispatch",
+      "evidence": "bank3-nmi-dispatch-to-shell-audio-frame-service"
+    },
+    {
+      "bank": 3,
       "address": "0x827D",
       "name": "Bank3_GameOverDispatch",
       "evidence": "call-restore-gateway-target"
@@ -3634,9 +4318,21 @@
     },
     {
       "bank": 3,
+      "address": "0x828F",
+      "name": "Bank3_ShellMain",
+      "evidence": "bank3-primary-dispatch-target-initializes-title-presentation-score-display-audio-and-attract-selection"
+    },
+    {
+      "bank": 3,
       "address": "0x8415",
       "name": "Shell_WaitForStartOrRunAttract",
       "evidence": "title-input-timeout-falls-through-attract-presentation-and-rotates-three-demo-gateways"
+    },
+    {
+      "bank": 3,
+      "address": "0x87CB",
+      "name": "Shell_ShowStatusScreen",
+      "evidence": "callable-bank3-secondary-target-draws-current-lives-and-working-score-for-chapter-status-presentation"
     },
     {
       "bank": 3,
@@ -3661,6 +4357,18 @@
       "address": "0x8C43",
       "name": "Bank3_World2ToWorld3Transition",
       "evidence": "world2-gateway-target-and-bank2-exit"
+    },
+    {
+      "bank": 3,
+      "address": "0x8F5A",
+      "name": "Shell_WaitForNextFrame",
+      "evidence": "spins-until-the-nmi-owned-frame-counter-changes-for-title-and-presentation-animation-steps"
+    },
+    {
+      "bank": 3,
+      "address": "0x8FF2",
+      "name": "Shell_NmiFrameServices",
+      "evidence": "bank3-nmi-target-selects-one-of-three-presentation-ppu-and-scroll-service-paths"
     },
     {
       "bank": 3,
@@ -3902,6 +4610,924 @@
       "address": "0xBDBC",
       "name": "EndingCredits_Text",
       "evidence": "embedded-ascii"
+    },
+    {
+      "bank": 0,
+      "address": "0xE433",
+      "name": "World1_AudioEffect_NoOp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE70E",
+      "name": "World1_AudioEffect_InitPulse2FixedToneC",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE426",
+      "name": "World1_AudioEffect_UpdateTimedStop",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE4FC",
+      "name": "World1_AudioEffect_InitTriangleNoiseBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE62E",
+      "name": "World1_AudioEffect_InitPulse2FixedToneA",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE51E",
+      "name": "World1_AudioEffect_InitPulse2PitchSequenceLong",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE7C3",
+      "name": "World1_AudioEffect_UpdatePulse2PitchSequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE526",
+      "name": "World1_AudioEffect_InitPulse2PitchSequenceShort",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE555",
+      "name": "World1_AudioEffect_InitPulse1AlternatingBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE56D",
+      "name": "World1_AudioEffect_UpdatePulse1AlternatingBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE616",
+      "name": "World1_AudioEffect_InitPulse1FixedTone",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE644",
+      "name": "World1_AudioEffect_InitPulse1ToneWithTriangleLease",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE65D",
+      "name": "World1_AudioEffect_InitNoisePeriodRamp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE674",
+      "name": "World1_AudioEffect_UpdateNoisePeriodRamp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE68D",
+      "name": "World1_AudioEffect_InitIndexedTonalSequenceAlt",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE69A",
+      "name": "World1_AudioEffect_UpdateIndexedTonalSequenceAlt",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE6F3",
+      "name": "World1_AudioEffect_InitPulse2FixedToneB",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE461",
+      "name": "World1_AudioEffect_InitNoiseSweep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE483",
+      "name": "World1_AudioEffect_UpdateNoiseSweepSlow",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE724",
+      "name": "World1_AudioEffect_InitNoiseVolumeSweep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE738",
+      "name": "World1_AudioEffect_UpdateNoiseVolumeSweep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE76C",
+      "name": "World1_AudioEffect_InitPulse2ThreeStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE77B",
+      "name": "World1_AudioEffect_UpdatePulse2ThreeStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE7AF",
+      "name": "World1_AudioEffect_InitPulse2PitchSequenceBase",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE5AC",
+      "name": "World1_AudioEffect_InitPulse1Sequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE5C6",
+      "name": "World1_AudioEffect_UpdatePulse1Sequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE83C",
+      "name": "World1_AudioEffect_InitTrianglePitchDescent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE850",
+      "name": "World1_AudioEffect_UpdateTrianglePitchDescent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE86D",
+      "name": "World1_AudioEffect_InitPulse2TwoTone",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE888",
+      "name": "World1_AudioEffect_UpdatePulse2TwoTone",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE8AE",
+      "name": "World1_AudioEffect_InitPulse2PitchSequenceWide",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE8B7",
+      "name": "World1_AudioEffect_InitPulse2VolumeFade",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE8D4",
+      "name": "World1_AudioEffect_UpdatePulse2VolumeFade",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE8F0",
+      "name": "World1_AudioEffect_InitPulse1Alternator",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE8FA",
+      "name": "World1_AudioEffect_UpdatePulse1Alternator",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE4CC",
+      "name": "World1_AudioEffect_UpdateNoiseSweepFast",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE540",
+      "name": "World1_AudioEffect_InitNoiseOnset",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE5F6",
+      "name": "World1_AudioEffect_AdvanceSequencePointer",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE5FD",
+      "name": "World1_AudioEffect_GateSequenceStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 0,
+      "address": "0xE6C1",
+      "name": "World1_AudioEffect_WriteIndexedTonalEvent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA8F1",
+      "name": "World2_AudioEffect_NoOp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAB19",
+      "name": "World2_AudioEffect_InitPulse2FixedToneC",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA8E4",
+      "name": "World2_AudioEffect_UpdateTimedStop",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA91F",
+      "name": "World2_AudioEffect_InitTriangleNoiseBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAA39",
+      "name": "World2_AudioEffect_InitPulse2FixedToneA",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA941",
+      "name": "World2_AudioEffect_InitPulse2PitchSequenceLong",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAB86",
+      "name": "World2_AudioEffect_UpdatePulse2PitchSequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA949",
+      "name": "World2_AudioEffect_InitPulse2PitchSequenceShort",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA978",
+      "name": "World2_AudioEffect_InitPulse1AlternatingBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA990",
+      "name": "World2_AudioEffect_UpdatePulse1AlternatingBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAA4F",
+      "name": "World2_AudioEffect_InitPulse1ToneWithTriangleLease",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAA68",
+      "name": "World2_AudioEffect_InitNoisePeriodRamp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAA7F",
+      "name": "World2_AudioEffect_UpdateNoisePeriodRamp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAA98",
+      "name": "World2_AudioEffect_InitIndexedTonalSequenceAlt",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAAA5",
+      "name": "World2_AudioEffect_UpdateIndexedTonalSequenceAlt",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAAFE",
+      "name": "World2_AudioEffect_InitPulse2FixedToneB",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAB2F",
+      "name": "World2_AudioEffect_InitPulse2ThreeStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAB3E",
+      "name": "World2_AudioEffect_UpdatePulse2ThreeStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAB72",
+      "name": "World2_AudioEffect_InitPulse2PitchSequenceBase",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA9CF",
+      "name": "World2_AudioEffect_InitPulse1Sequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA9E9",
+      "name": "World2_AudioEffect_UpdatePulse1Sequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xABFF",
+      "name": "World2_AudioEffect_InitTrianglePitchDescent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAC13",
+      "name": "World2_AudioEffect_UpdateTrianglePitchDescent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xA963",
+      "name": "World2_AudioEffect_InitNoiseOnset",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAA19",
+      "name": "World2_AudioEffect_AdvanceSequencePointer",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAA20",
+      "name": "World2_AudioEffect_GateSequenceStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 1,
+      "address": "0xAACC",
+      "name": "World2_AudioEffect_WriteIndexedTonalEvent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xBF2B",
+      "name": "World3_AudioEffect_NoOp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC206",
+      "name": "World3_AudioEffect_InitPulse2FixedToneC",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xBF1E",
+      "name": "World3_AudioEffect_UpdateTimedStop",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xBFF4",
+      "name": "World3_AudioEffect_InitTriangleNoiseBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC126",
+      "name": "World3_AudioEffect_InitPulse2FixedToneA",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC016",
+      "name": "World3_AudioEffect_InitPulse2PitchSequenceLong",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC2BB",
+      "name": "World3_AudioEffect_UpdatePulse2PitchSequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC01E",
+      "name": "World3_AudioEffect_InitPulse2PitchSequenceShort",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC04D",
+      "name": "World3_AudioEffect_InitPulse1AlternatingBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC065",
+      "name": "World3_AudioEffect_UpdatePulse1AlternatingBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC10E",
+      "name": "World3_AudioEffect_InitPulse1FixedTone",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC13C",
+      "name": "World3_AudioEffect_InitPulse1ToneWithTriangleLease",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC155",
+      "name": "World3_AudioEffect_InitNoisePeriodRamp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC16C",
+      "name": "World3_AudioEffect_UpdateNoisePeriodRamp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC185",
+      "name": "World3_AudioEffect_InitIndexedTonalSequenceAlt",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC192",
+      "name": "World3_AudioEffect_UpdateIndexedTonalSequenceAlt",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC1EB",
+      "name": "World3_AudioEffect_InitPulse2FixedToneB",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xBF59",
+      "name": "World3_AudioEffect_InitNoiseSweep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xBF7B",
+      "name": "World3_AudioEffect_UpdateNoiseSweepSlow",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC21C",
+      "name": "World3_AudioEffect_InitNoiseVolumeSweep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC230",
+      "name": "World3_AudioEffect_UpdateNoiseVolumeSweep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC264",
+      "name": "World3_AudioEffect_InitPulse2ThreeStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC273",
+      "name": "World3_AudioEffect_UpdatePulse2ThreeStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC2A7",
+      "name": "World3_AudioEffect_InitPulse2PitchSequenceBase",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC0A4",
+      "name": "World3_AudioEffect_InitPulse1Sequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC0BE",
+      "name": "World3_AudioEffect_UpdatePulse1Sequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC334",
+      "name": "World3_AudioEffect_InitTrianglePitchDescent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC348",
+      "name": "World3_AudioEffect_UpdateTrianglePitchDescent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC365",
+      "name": "World3_AudioEffect_InitPulse2TwoTone",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC380",
+      "name": "World3_AudioEffect_UpdatePulse2TwoTone",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC3A6",
+      "name": "World3_AudioEffect_InitPulse2PitchSequenceWide",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC3AF",
+      "name": "World3_AudioEffect_InitPulse2VolumeFade",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC3CC",
+      "name": "World3_AudioEffect_UpdatePulse2VolumeFade",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC3E8",
+      "name": "World3_AudioEffect_InitPulse1Alternator",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC3F2",
+      "name": "World3_AudioEffect_UpdatePulse1Alternator",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xBFC4",
+      "name": "World3_AudioEffect_UpdateNoiseSweepFast",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC038",
+      "name": "World3_AudioEffect_InitNoiseOnset",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC0EE",
+      "name": "World3_AudioEffect_AdvanceSequencePointer",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC0F5",
+      "name": "World3_AudioEffect_GateSequenceStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 2,
+      "address": "0xC1B9",
+      "name": "World3_AudioEffect_WriteIndexedTonalEvent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x98A1",
+      "name": "AudioEffect_NoOp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9B7C",
+      "name": "AudioEffect_InitPulse2FixedToneC",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9894",
+      "name": "AudioEffect_UpdateTimedStop",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x996A",
+      "name": "AudioEffect_InitTriangleNoiseBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9A9C",
+      "name": "AudioEffect_InitPulse2FixedToneA",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x998C",
+      "name": "AudioEffect_InitPulse2PitchSequenceLong",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9C31",
+      "name": "AudioEffect_UpdatePulse2PitchSequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9994",
+      "name": "AudioEffect_InitPulse2PitchSequenceShort",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x99C3",
+      "name": "AudioEffect_InitPulse1AlternatingBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x99DB",
+      "name": "AudioEffect_UpdatePulse1AlternatingBurst",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9A84",
+      "name": "AudioEffect_InitPulse1FixedTone",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9AB2",
+      "name": "AudioEffect_InitPulse1ToneWithTriangleLease",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9ACB",
+      "name": "AudioEffect_InitNoisePeriodRamp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9AE2",
+      "name": "AudioEffect_UpdateNoisePeriodRamp",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9AFB",
+      "name": "AudioEffect_InitIndexedTonalSequenceAlt",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9B08",
+      "name": "AudioEffect_UpdateIndexedTonalSequenceAlt",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9B61",
+      "name": "AudioEffect_InitPulse2FixedToneB",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x98CF",
+      "name": "AudioEffect_InitNoiseSweep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x98F1",
+      "name": "AudioEffect_UpdateNoiseSweepSlow",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9B92",
+      "name": "AudioEffect_InitNoiseVolumeSweep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9BA6",
+      "name": "AudioEffect_UpdateNoiseVolumeSweep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9BDA",
+      "name": "AudioEffect_InitPulse2ThreeStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9BE9",
+      "name": "AudioEffect_UpdatePulse2ThreeStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9C1D",
+      "name": "AudioEffect_InitPulse2PitchSequenceBase",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9A1A",
+      "name": "AudioEffect_InitPulse1Sequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9A34",
+      "name": "AudioEffect_UpdatePulse1Sequence",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9CAA",
+      "name": "AudioEffect_InitTrianglePitchDescent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9CBE",
+      "name": "AudioEffect_UpdateTrianglePitchDescent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9CDB",
+      "name": "AudioEffect_InitPulse2TwoTone",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9CF6",
+      "name": "AudioEffect_UpdatePulse2TwoTone",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9D1C",
+      "name": "AudioEffect_InitPulse2PitchSequenceWide",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9D25",
+      "name": "AudioEffect_InitPulse2VolumeFade",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9D42",
+      "name": "AudioEffect_UpdatePulse2VolumeFade",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9D5F",
+      "name": "AudioEffect_InitPulse1Alternator",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9D69",
+      "name": "AudioEffect_UpdatePulse1Alternator",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9D8F",
+      "name": "AudioEffect_InitPulse1NoiseRise",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9D99",
+      "name": "AudioEffect_UpdatePulse1NoiseRise",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9DC4",
+      "name": "AudioEffect_InitPulse1NoiseDecay",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9DCE",
+      "name": "AudioEffect_UpdatePulse1NoiseDecay",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9DEF",
+      "name": "AudioEffect_InitPulsePairNoiseTail",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9D9C",
+      "name": "AudioEffect_UpdateNoiseRise",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x993A",
+      "name": "AudioEffect_UpdateNoiseSweepFast",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x99AE",
+      "name": "AudioEffect_InitNoiseOnset",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9A64",
+      "name": "AudioEffect_AdvanceSequencePointer",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9A6B",
+      "name": "AudioEffect_GateSequenceStep",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
+    },
+    {
+      "bank": 3,
+      "address": "0x9B2F",
+      "name": "AudioEffect_WriteIndexedTonalEvent",
+      "evidence": "audio-effect-request-role-and-observed-channel-contract"
     }
   ],
   "memory_symbols": [

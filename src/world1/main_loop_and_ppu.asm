@@ -2,7 +2,7 @@
 ; World 1 initialization, main frame loop, and queued PPU writes
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_827D:
+World1_Audio_UpdateFrameWithExtraLifeCue:
     LDA ExtraLifeSoundCounter
 
 Bank0_Label_8280 = * + 1  ; overlapping entry $8280
@@ -42,8 +42,8 @@ Bank0_Label_829F:
     JSR Bank0_Func_843B
     JSR Bank0_Func_95ED
 
-Bank0_Label_82C1:
-    JSR Bank0_Func_94F1
+Bank0_World1CityFrameLoop:
+    JSR World1_WaitForNextFrame
     JSR Bank0_Func_8490
     JSR Bank0_Func_95CB
     JSR Bank0_Func_9B54
@@ -60,7 +60,7 @@ Bank0_Label_82C1:
     JSR World1_CommitScoreAndCheckExtraLife
     LDA World1PlayerDamageState
     BMI Bank0_Label_82F5
-    JMP Bank0_Label_82C1
+    JMP Bank0_World1CityFrameLoop
 
 Bank0_Label_82F5:
     JSR Bank0_Func_884C
@@ -69,7 +69,7 @@ Bank0_Label_82F5:
     JMP Bank0_Label_829F
 
 Bank0_Label_82FF:
-    JSR Bank0_Func_8065
+    JSR Bank0_CallShellGameOver
     LDA #$02
     STA PlayerLives
     JSR Bank0_Func_C92F
@@ -220,17 +220,17 @@ Bank0_Func_83E8:
     STA World1PpuScrollXLatched
     STA World1PpuScrollYLatched
     STA $51
-    JSR Bank0_Func_8131
+    JSR Bank0_HideAllSprites
     LDA #$5B
     STA FrameCounter
     LDA DemoModeActive
     BNE Bank0_Label_841D
-    JSR Bank0_Func_8053
+    JSR Bank0_CallShellStatusScreen
     JSR Bank0_Func_95ED
     LDX #$5A
 
 Bank0_Label_8417:
-    JSR Bank0_Func_94F1
+    JSR World1_WaitForNextFrame
     DEX
     BNE Bank0_Label_8417
 
@@ -243,7 +243,7 @@ Bank0_Label_841D:
     ORA #$10
     STA PpuCtrlShadow
     LDA #$00
-    JSR Bank0_Func_81AA
+    JSR Bank0_SelectChrBank
     JSR World1_RefreshObjectSpawnMask
     JSR Bank0_Func_8362
     RTS
@@ -334,9 +334,9 @@ Bank0_Label_84CB:
     JMP Bank0_Label_8494
 
 Bank0_Label_84D6:
-    JMP Bank0_Func_8048
+    JMP Bank0_EnterShell
 
-Bank0_Func_84D9:
+World1_NmiFrameServices:
     LDA NmiOamDmaRequest
     BNE Bank0_Label_84E0
     JMP Bank0_Label_856B
@@ -411,7 +411,7 @@ Bank0_Label_8531:
     AND #$01
     ORA $0A
     STA PpuCtrlShadow
-    JSR Bank0_Func_8131
+    JSR Bank0_HideAllSprites
     LDA #$00
     STA World1OamWriteIndex
     LDA $51

@@ -3,9 +3,9 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank3_ShowGameOver:
-    JSR Bank3_Func_80DA
+    JSR Bank3_DisableRenderingForUpdate
     LDA #$03
-    JSR Bank3_Func_81AA
+    JSR Bank3_SelectChrBank
     JSR Bank3_Func_9152
     LDA #$21
     STA a:PPU_ADDR
@@ -33,7 +33,7 @@ Bank3_Label_8A2E:
     STA $09
     LDA #$04
     STA a:AudioMusicState
-    JSR Bank3_Func_80FD
+    JSR Bank3_EnableNmiAndRendering
 
 Bank3_Label_8A5B:
     JSR Bank3_Func_84D2
@@ -46,7 +46,7 @@ Bank3_Label_8A5B:
     STA $3B
 
 Bank3_Label_8A6D:
-    JMP Bank3_Func_828F
+    JMP Bank3_ShellMain
 
 Bank3_Label_8A70:
     LDA #$00
@@ -54,6 +54,6 @@ Bank3_Label_8A70:
     LDA $00
     AND #$0F
     BEQ Bank3_Label_8A6D
-    JSR Bank3_Func_80DA
+    JSR Bank3_DisableRenderingForUpdate
     RTS
     .byte $47, $41, $4D, $45, $00, $4F, $56, $45, $52

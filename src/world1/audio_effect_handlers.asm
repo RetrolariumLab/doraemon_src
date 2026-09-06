@@ -2,7 +2,7 @@
 ; World 1 remaining audio-effect handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_E68D:
+World1_AudioEffect_InitIndexedTonalSequenceAlt:
     LDA #$78
     STA $2D
     LDA #$E9
@@ -10,7 +10,7 @@ Bank0_Func_E68D:
     LDA #$01
     STA a:AudioEffectWork0
 
-Bank0_Func_E69A:
+World1_AudioEffect_UpdateIndexedTonalSequenceAlt:
     DEC a:AudioEffectWork0
     BNE Bank0_Label_E68C
     LDY #$00
@@ -22,11 +22,13 @@ Bank0_Func_E69A:
     STA a:AudioEffectTimers+$01
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03
-    JSR Bank0_Func_E5F6
+    JSR World1_AudioEffect_AdvanceSequencePointer
     LDX #$00
     .byte $20, $C1
     INC Controller1ButtonsAlt
     CMP ($E6,X)
+
+World1_AudioEffect_WriteIndexedTonalEvent:
     LDY #$00
     LDA ($2D),Y
     BEQ Bank0_Label_E6EC
@@ -57,9 +59,9 @@ Bank0_Label_E6EC:
     INX
     INX
     INX
-    JMP Bank0_Func_E5F6
+    JMP World1_AudioEffect_AdvanceSequencePointer
 
-Bank0_Func_E6F3:
+World1_AudioEffect_InitPulse2FixedToneB:
     LDA #$18
     STA a:AudioEffectTimers+$01
     LDA #$10
@@ -72,7 +74,7 @@ Bank0_Func_E6F3:
     LDA #$19
     JMP World1_Apu_WritePulse2Timer
 
-Bank0_Func_E70E:
+World1_AudioEffect_InitPulse2FixedToneC:
     LDA #$08
     STA a:AudioEffectTimers+$01
     STA a:AudioEffectWork0
@@ -83,7 +85,7 @@ Bank0_Func_E70E:
     LDA #$08
     JMP World1_Apu_WritePulse2Timer
 
-Bank0_Func_E724:
+World1_AudioEffect_InitNoiseVolumeSweep:
     LDA #$18
     STA a:AudioEffectTimers+$03
     LDA #$04
@@ -93,7 +95,7 @@ Bank0_Func_E724:
     LDA #$00
     STA a:AudioEffectWork1
 
-Bank0_Func_E738:
+World1_AudioEffect_UpdateNoiseVolumeSweep:
     LDA a:AudioEffectWork0
     CMP #$10
     BEQ Bank0_Label_E764
@@ -123,7 +125,7 @@ Bank0_Label_E764:
     STA a:APU_NOISE_VOL
     JMP World1_Audio_StopCurrentEffect
 
-Bank0_Func_E76C:
+World1_AudioEffect_InitPulse2ThreeStep:
     LDA #$03
     STA a:AudioEffectWork1
     LDA #$FF
@@ -131,7 +133,7 @@ Bank0_Func_E76C:
     LDA #$00
     STA a:AudioEffectWork0
 
-Bank0_Func_E77B:
+World1_AudioEffect_UpdatePulse2ThreeStep:
     LDA a:AudioEffectWork0
     BNE Bank0_Label_E7A7
     LDA a:AudioEffectWork1
@@ -157,7 +159,7 @@ Bank0_Label_E7A7:
     RTS
     .incbin "assets/generated/audio/sfx/prg3-tone-low.bin", $0, $4  ; rom-asset .byte
 
-Bank0_Func_E7AF:
+World1_AudioEffect_InitPulse2PitchSequenceBase:
     LDY #$14
     LDA #$04
     LDX #$03
@@ -169,7 +171,7 @@ Bank0_Label_E7B5:
     LDA #$01
     STA a:AudioEffectWork1
 
-Bank0_Func_E7C3:
+World1_AudioEffect_UpdatePulse2PitchSequence:
     DEC a:AudioEffectWork1
     BNE Bank0_Label_E7EE
     LDA a:AudioEffectWork0
@@ -203,7 +205,7 @@ World1_AudioEffectPitchPeriods:
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $30, $10  ; rom-asset .byte
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $40, $A  ; rom-asset .byte
 
-Bank0_Func_E83C:
+World1_AudioEffect_InitTrianglePitchDescent:
     LDA #$10
     STA a:AudioEffectTimers+$02
     LDA #$40
@@ -213,7 +215,7 @@ Bank0_Func_E83C:
     LDA #$30
     STA a:AudioEffectWork2
 
-Bank0_Func_E850:
+World1_AudioEffect_UpdateTrianglePitchDescent:
     LDY #$01
     LDX a:AudioEffectWork0
     LDA #$08
@@ -229,7 +231,7 @@ Bank0_Func_E850:
 Bank0_Label_E86C:
     RTS
 
-Bank0_Func_E86D:
+World1_AudioEffect_InitPulse2TwoTone:
     LDA #$0E
     STA a:AudioEffectTimers+$01
     LDA #$06
@@ -242,7 +244,7 @@ Bank0_Func_E86D:
     LDA #$89
     JMP World1_Apu_WritePulse2Timer
 
-Bank0_Func_E888:
+World1_AudioEffect_UpdatePulse2TwoTone:
     DEC a:AudioEffectWork0
     BNE Bank0_Label_E8AD
     LDA a:AudioEffectWork1
@@ -264,13 +266,13 @@ Bank0_Label_E8AA:
 Bank0_Label_E8AD:
     RTS
 
-Bank0_Func_E8AE:
+World1_AudioEffect_InitPulse2PitchSequenceWide:
     LDY #$34
     LDA #$0C
     LDX #$18
     JMP Bank0_Label_E7B5
 
-Bank0_Func_E8B7:
+World1_AudioEffect_InitPulse2VolumeFade:
     LDA #$20
     STA a:AudioEffectTimers+$01
     LDA #$1F
@@ -284,7 +286,7 @@ Bank0_Func_E8B7:
     LDA #$01
     STA a:AudioEffectWork1
 
-Bank0_Func_E8D4:
+World1_AudioEffect_UpdatePulse2VolumeFade:
     DEC a:AudioEffectWork1
     BNE Bank0_Label_E94F
     LDA #$04
@@ -297,13 +299,13 @@ Bank0_Func_E8D4:
     JMP World1_Audio_StopCurrentEffect
     .byte $00
 
-Bank0_Func_E8F0:
+World1_AudioEffect_InitPulse1Alternator:
     LDA #$00
     STA a:AudioEffectWork0
     LDA #$01
     STA a:AudioEffectWork1
 
-Bank0_Func_E8FA:
+World1_AudioEffect_UpdatePulse1Alternator:
     DEC a:AudioEffectWork1
     BNE Bank0_Label_E91F
     LDA a:AudioEffectWork0

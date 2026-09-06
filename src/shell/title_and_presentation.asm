@@ -18,7 +18,7 @@ Audio_UpdateFrame:
     JSR Audio_UpdateEffects
     JMP Audio_UpdateMusic
 
-Bank3_Func_828F:
+Bank3_ShellMain:
     LDA #$00
     STA a:PPU_CTRL
     STA a:PPU_MASK
@@ -29,9 +29,9 @@ Bank3_Func_828F:
     TXS
     LDA #$00
     STA a:$0180
-    JSR Bank3_Func_80DA
+    JSR Bank3_DisableRenderingForUpdate
     LDA #$03
-    JSR Bank3_Func_81AA
+    JSR Bank3_SelectChrBank
     JSR Bank3_Func_9152
     LDA #$86
     STA $01
@@ -135,7 +135,7 @@ Bank3_Label_832E:
     STA a:$4017
     LDA #$01
     STA a:AudioMusicState
-    JSR Bank3_Func_80FD
+    JSR Bank3_EnableNmiAndRendering
 
 Bank3_Label_8373:
     JSR Bank3_Func_83C5
@@ -193,7 +193,7 @@ Bank3_Func_83C5:
     RTS
 
 Bank3_Label_83CD:
-    JSR Bank3_Func_80DA
+    JSR Bank3_DisableRenderingForUpdate
     LDA #$00
     STA ExtraLifeScoreThresholdIndex
     STA ExtraLifeSoundCounter
@@ -222,7 +222,7 @@ Bank3_Label_83F9:
     STA $3B
     LDX $3C
     BNE Bank3_Label_8404
-    JMP Bank3_Func_8000
+    JMP Bank3_EnterWorld1
 
 Bank3_Label_8404:
     LDA #$04
@@ -231,10 +231,10 @@ Bank3_Label_8404:
     STA PlayerLives
     DEX
     BNE Bank3_Label_8412
-    JMP Bank3_Func_800B
+    JMP Bank3_EnterWorld2
 
 Bank3_Label_8412:
-    JMP Bank3_Func_8016
+    JMP Bank3_EnterWorld3
 
 Shell_WaitForStartOrRunAttract:
     LDA #$00
@@ -321,20 +321,20 @@ Bank3_Label_84AF:
     STX $3B
     TAX
     BNE Bank3_Label_84B7
-    JMP Bank3_Func_8024
+    JMP Bank3_EnterWorld1Demo
 
 Bank3_Label_84B7:
     DEX
     BNE Bank3_Label_84BD
-    JMP Bank3_Func_802F
+    JMP Bank3_EnterWorld2Demo
 
 Bank3_Label_84BD:
-    JMP Bank3_Func_803A
+    JMP Bank3_EnterWorld3Demo
     .byte $BC, $B1, $BC, $B5, $BC, $B9, $50, $86, $70, $86, $90, $86, $D0, $86, $29, $87
     .byte $62, $87
 
 Bank3_Func_84D2:
-    JSR Bank3_Func_8F5A
+    JSR Shell_WaitForNextFrame
     LDA Controller1Buttons
     ORA Controller1ButtonsAlt
     AND #$20
@@ -372,7 +372,7 @@ Bank3_Func_84FC:
     STA a:AudioMusicState
     LDA #$01
     STA $09
-    JSR Bank3_Func_80DA
+    JSR Bank3_DisableRenderingForUpdate
     JSR Bank3_Func_9152
     LDA #$48
     STA $00
@@ -443,7 +443,7 @@ Bank3_Label_8561:
     STA PpuScrollXShadow
     LDA #$01
     STA a:AudioMusicState
-    JSR Bank3_Func_80FD
+    JSR Bank3_EnableNmiAndRendering
     JMP Bank3_Label_83BA
 
 Bank3_Func_858D:
@@ -570,7 +570,7 @@ Bank3_Label_861B:
     .byte $01, $50, $AC, $14, $01, $58, $C0, $0C, $00, $50, $C0, $0C, $40, $58, $D4, $09
     .byte $01, $50, $D4, $0A, $01, $58, $DC, $19, $01, $50, $DC, $1A, $01, $58, $00
 
-Bank3_Func_87CB:
+Shell_ShowStatusScreen:
     LDA #$FF
     JSR Bank3_Func_8F63
     LDA PpuCtrlShadow
@@ -591,7 +591,7 @@ Bank3_Func_87CB:
     STA $01
     JSR Bank3_Func_8F84
     LDA #$03
-    JSR Bank3_Func_81AA
+    JSR Bank3_SelectChrBank
     LDA PpuCtrlShadow
     AND #$E7
     STA PpuCtrlShadow
