@@ -34,8 +34,28 @@
     },
     {
       "address": "0x001D",
-      "size": 4,
-      "name": "ControllerShiftState"
+      "size": 1,
+      "name": "Controller2Buttons"
+    },
+    {
+      "address": "0x001E",
+      "size": 1,
+      "name": "Controller2ButtonsAlt"
+    },
+    {
+      "address": "0x001F",
+      "size": 1,
+      "name": "Controller1Buttons"
+    },
+    {
+      "address": "0x0020",
+      "size": 1,
+      "name": "Controller1ButtonsAlt"
+    },
+    {
+      "address": "0x02AA",
+      "size": 1,
+      "name": "AudioMusicState"
     }
   ]
 }

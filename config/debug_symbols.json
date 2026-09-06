@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "rom_sha256": "6ed579c9c98a1f2db52fd3d2488a491953073e8ace1e3c1dc5884669cecca274",
+  "mesen": {
+    "format": "cc65-dbg-v2",
+    "prg_segments": [
+      {
+        "bank": 0,
+        "name": "PRG0",
+        "start": "0x8000",
+        "size": "0x8000",
+        "output_offset": "0x0010"
+      },
+      {
+        "bank": 1,
+        "name": "PRG1",
+        "start": "0x8000",
+        "size": "0x8000",
+        "output_offset": "0x8010"
+      },
+      {
+        "bank": 2,
+        "name": "PRG2",
+        "start": "0x8000",
+        "size": "0x8000",
+        "output_offset": "0x10010"
+      },
+      {
+        "bank": 3,
+        "name": "PRG3",
+        "start": "0x8000",
+        "size": "0x8000",
+        "output_offset": "0x18010"
+      }
+    ]
+  },
+  "fceux": {
+    "format": "banked-nl",
+    "rom_filename": "doraemon.nes",
+    "prg_bank_size": "0x4000",
+    "prg_bank_count": 8
+  },
+  "required_program_symbols": [
+    {
+      "bank": 0,
+      "address": "0x8098",
+      "name": "Bank0_Reset"
+    },
+    {
+      "bank": 0,
+      "address": "0x813C",
+      "name": "Bank0_Nmi"
+    },
+    {
+      "bank": 0,
+      "address": "0x81BB",
+      "name": "Bank0_WriteMapper"
+    },
+    {
+      "bank": 0,
+      "address": "0x82C1",
+      "name": "Bank0_World1CityFrameLoop"
+    },
+    {
+      "bank": 0,
+      "address": "0xCE55",
+      "name": "Bank0_World1UndergroundFrameLoop"
+    },
+    {
+      "bank": 1,
+      "address": "0x8098",
+      "name": "Bank1_Reset"
+    },
+    {
+      "bank": 1,
+      "address": "0x813C",
+      "name": "Bank1_Nmi"
+    },
+    {
+      "bank": 1,
+      "address": "0x81BB",
+      "name": "Bank1_WriteMapper"
+    },
+    {
+      "bank": 1,
+      "address": "0x8959",
+      "name": "Bank1_World2FrameLoop"
+    },
+    {
+      "bank": 2,
+      "address": "0x8098",
+      "name": "Bank2_Reset"
+    },
+    {
+      "bank": 2,
+      "address": "0x813C",
+      "name": "Bank2_Nmi"
+    },
+    {
+      "bank": 2,
+      "address": "0x81BB",
+      "name": "Bank2_WriteMapper"
+    },
+    {
+      "bank": 2,
+      "address": "0x838E",
+      "name": "Bank2_World3FrameLoop"
+    },
+    {
+      "bank": 3,
+      "address": "0x8098",
+      "name": "Bank3_Reset"
+    },
+    {
+      "bank": 3,
+      "address": "0x813C",
+      "name": "Bank3_Nmi"
+    },
+    {
+      "bank": 3,
+      "address": "0x81BB",
+      "name": "Bank3_WriteMapper"
+    },
+    {
+      "bank": 3,
+      "address": "0x8B18",
+      "name": "Bank3_EndingCreditsFrameLoop"
+    }
+  ],
+  "required_ram_symbols": [
+    {
+      "address": "0x0015",
+      "name": "NmiBusy"
+    },
+    {
+      "address": "0x0016",
+      "name": "FrameCounter"
+    },
+    {
+      "address": "0x0017",
+      "name": "MapperSelection"
+    },
+    {
+      "address": "0x0019",
+      "name": "PpuCtrlShadow"
+    },
+    {
+      "address": "0x001A",
+      "name": "PpuMaskShadow"
+    },
+    {
+      "address": "0x001F",
+      "name": "Controller1Buttons"
+    },
+    {
+      "address": "0x02AA",
+      "name": "AudioMusicState"
+    }
+  ],
+  "expected_metrics": {
+    "source_file_count": 128,
+    "linker_symbol_count": 3657,
+    "configured_prg_symbol_count": 914,
+    "configured_memory_symbol_count": 280,
+    "fceux_prg_label_count": 3347,
+    "fceux_labels_by_bank": [
+      524,
+      489,
+      878,
+      3,
+      926,
+      164,
+      359,
+      4
+    ],
+    "fceux_shared_ram_label_count": 83
+  }
+}

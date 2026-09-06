@@ -180,10 +180,12 @@ registered unknown, not necessarily a dedicated visual editor.
 
 ### 11. Source Reconstruction 1.0 - Planned
 
-Resolve or explicitly classify remaining release-scope unknowns, generate and
-live-validate linker-derived debugger symbols, refresh all eight runtime
+Resolve or explicitly classify remaining release-scope unknowns, live-validate
+the generated linker-derived Mesen/FCEUX symbols, refresh all eight runtime
 scenarios, run one clean aggregate `source-1-audit`, and prepare the audited
-release commit.
+release commit. Static symbol generation is complete: the gate checks all four
+linker segments, 3,657 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
+labels, and required Reset/NMI/mapper/chapter-loop probes.
 
 ## Deferred to Source Reconstruction 2.0
 

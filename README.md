@@ -123,6 +123,7 @@ make validate-audio-music # validate music commands, channel RAM, and helpers
 make validate-audio-arbitration # validate effect/music ownership of APU channels
 make validate-audio-streams # round-trip all header-reachable music streams
 make validate-shell-text # round-trip title/help/ending text and presentation data
+make validate-debug-symbols # verify ld65 symbols and generated FCEUX name lists
 make source-audit       # validate reconstruction milestones and evidence
 make runtime-architecture # capture and validate reset/NMI/mapper evidence
 make source-check       # complete project and reconstruction development gate
@@ -159,7 +160,8 @@ data/world2/metasprites.json lossless editable World 2 metasprite catalog
 data/world3/object_catalog.json lossless editable World 3 object/type catalog
 data/world3/metasprites.json lossless editable World 3 sprite/palette catalog
 config/symbols.json         bank-qualified semantic symbol registry
-config/debugger_*.json      initial Mesen watches and breakpoints
+config/debug_symbols.json   linker/debugger export contract and pinned inventory
+config/debugger_*.json      checked bank-qualified breakpoints and RAM watches
 docs/                       architecture, formats, evidence, and roadmap
 docs/ram_fields.md          proved shared RAM layout and ownership notes
 docs/world3_dormant_code.md statically recovered but unreferenced code islands
@@ -171,6 +173,7 @@ scripts/project.py          identity, split, bank report, and source policy
 scripts/run_ghidra.py       deterministic per-bank headless analysis
 scripts/generate_disassembly.py  Ghidra facts to canonical ca65 source
 scripts/map_data.py         CadEditor region validator
+scripts/debug_symbols.py    ld65 debugger validator and FCEUX name-list exporter
 scripts/world2_enemy_handlers.py World 2 enemy handler graph validator
 scripts/world2_enemy_identities.py World 2 enemy identity and boss validator
 scripts/world2_metasprites.py World 2 sprite validator/editor/renderer

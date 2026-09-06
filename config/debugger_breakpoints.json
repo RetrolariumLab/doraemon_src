@@ -1,30 +1,108 @@
 {
   "schema_version": 1,
-  "notes": "Bank-qualified CPU breakpoints for the original Japanese revision",
+  "notes": "Bank-qualified linker symbols for reset, NMI, mapper writes, and the five proved frame loops",
   "breakpoints": [
     {
-      "bank": "any",
+      "bank": 0,
       "address": "0x8098",
       "type": "execute",
-      "name": "Reset"
+      "symbol": "Bank0_Reset"
     },
     {
-      "bank": "any",
+      "bank": 1,
+      "address": "0x8098",
+      "type": "execute",
+      "symbol": "Bank1_Reset"
+    },
+    {
+      "bank": 2,
+      "address": "0x8098",
+      "type": "execute",
+      "symbol": "Bank2_Reset"
+    },
+    {
+      "bank": 3,
+      "address": "0x8098",
+      "type": "execute",
+      "symbol": "Bank3_Reset"
+    },
+    {
+      "bank": 0,
       "address": "0x813C",
       "type": "execute",
-      "name": "Nmi"
+      "symbol": "Bank0_Nmi"
     },
     {
-      "bank": "any",
+      "bank": 1,
+      "address": "0x813C",
+      "type": "execute",
+      "symbol": "Bank1_Nmi"
+    },
+    {
+      "bank": 2,
+      "address": "0x813C",
+      "type": "execute",
+      "symbol": "Bank2_Nmi"
+    },
+    {
+      "bank": 3,
+      "address": "0x813C",
+      "type": "execute",
+      "symbol": "Bank3_Nmi"
+    },
+    {
+      "bank": 0,
       "address": "0x81BB",
       "type": "execute",
-      "name": "WriteMapper"
+      "symbol": "Bank0_WriteMapper"
     },
     {
-      "bank": "any",
-      "address": "0x81C1",
-      "type": "write",
-      "name": "MapperBusConflictWrite"
+      "bank": 1,
+      "address": "0x81BB",
+      "type": "execute",
+      "symbol": "Bank1_WriteMapper"
+    },
+    {
+      "bank": 2,
+      "address": "0x81BB",
+      "type": "execute",
+      "symbol": "Bank2_WriteMapper"
+    },
+    {
+      "bank": 3,
+      "address": "0x81BB",
+      "type": "execute",
+      "symbol": "Bank3_WriteMapper"
+    },
+    {
+      "bank": 0,
+      "address": "0x82C1",
+      "type": "execute",
+      "symbol": "Bank0_World1CityFrameLoop"
+    },
+    {
+      "bank": 0,
+      "address": "0xCE55",
+      "type": "execute",
+      "symbol": "Bank0_World1UndergroundFrameLoop"
+    },
+    {
+      "bank": 1,
+      "address": "0x8959",
+      "type": "execute",
+      "symbol": "Bank1_World2FrameLoop"
+    },
+    {
+      "bank": 2,
+      "address": "0x838E",
+      "type": "execute",
+      "symbol": "Bank2_World3FrameLoop"
+    },
+    {
+      "bank": 3,
+      "address": "0x8B18",
+      "type": "execute",
+      "symbol": "Bank3_EndingCreditsFrameLoop"
     }
   ]
 }

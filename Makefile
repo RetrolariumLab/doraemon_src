@@ -15,6 +15,10 @@ ROM := $(BUILD_DIR)/doraemon.nes
 LABELS := $(BUILD_DIR)/doraemon.lbl
 MAP := $(BUILD_DIR)/doraemon.map
 DEBUG := $(BUILD_DIR)/doraemon.dbg
+DEBUG_SYMBOLS := config/debug_symbols.json
+DEBUG_BREAKPOINTS := config/debugger_breakpoints.json
+DEBUG_WATCHES := config/debugger_watches.json
+DEBUG_SYMBOL_DIR := build/debugger
 BANK_SOURCES := src/banks/bank_0.asm src/banks/bank_1.asm \
 	src/banks/bank_2.asm src/banks/bank_3.asm
 SEMANTIC_SOURCES := $(wildcard src/common/*.asm src/shell/*.asm \
@@ -106,6 +110,7 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	ghidra-bootstrap ghidra-status ghidra-inspect ghidra-analyze disassemble \
 	disassembly-check maps validate-maps release-check check clean \
 	source-audit source-release-audit source-check trace-runtime \
+	debug-symbols validate-debug-symbols \
 	reconstruction-inventory validate-reconstruction-inventory \
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
 	common-runtime validate-common-runtime \
@@ -545,7 +550,22 @@ maps: $(ROM)
 validate-maps: $(ROM)
 	$(PYTHON) scripts/map_data.py --image "$(ROM)" --validate
 
+debug-symbols: $(ROM)
+	$(PYTHON) scripts/debug_symbols.py generate --dbg "$(DEBUG)" \
+		--rom "$(ROM)" --symbols "$(SYMBOLS)" \
+		--contract "$(DEBUG_SYMBOLS)" \
+		--breakpoints "$(DEBUG_BREAKPOINTS)" --watches "$(DEBUG_WATCHES)" \
+		--output-dir "$(DEBUG_SYMBOL_DIR)"
+
+validate-debug-symbols: debug-symbols
+	$(PYTHON) scripts/debug_symbols.py validate --dbg "$(DEBUG)" \
+		--rom "$(ROM)" --symbols "$(SYMBOLS)" \
+		--contract "$(DEBUG_SYMBOLS)" \
+		--breakpoints "$(DEBUG_BREAKPOINTS)" --watches "$(DEBUG_WATCHES)" \
+		--output-dir "$(DEBUG_SYMBOL_DIR)"
+
 release-check: quality-check disassembly-check verify validate-maps \
+	validate-debug-symbols \
 	validate-reconstruction-inventory validate-common-runtime \
 	validate-core-dispatch-roles \
 	validate-audio-dispatch validate-audio-effects validate-audio-music \

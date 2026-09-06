@@ -78,19 +78,25 @@
       "evidence": [
         "config/audio_effects.json",
         "config/core_dispatch_roles.json",
+        "config/debug_symbols.json",
+        "config/debugger_breakpoints.json",
+        "config/debugger_watches.json",
         "config/reconstruction_inventory.json",
         "config/symbols.json",
         "src/memory/ram.inc",
         "docs/audio_effects.md",
         "docs/core_dispatch_roles.md",
+        "docs/debugger_workflow.md",
         "docs/reconstruction_inventory.md",
         "docs/subsystems.md",
         "docs/unknowns.md",
         "scripts/audio_effects.py",
         "scripts/core_dispatch_roles.py",
+        "scripts/debug_symbols.py",
         "scripts/reconstruction_inventory.py",
         "tests/test_audio_effects.py",
-        "tests/test_core_dispatch_roles.py"
+        "tests/test_core_dispatch_roles.py",
+        "tests/test_debug_symbols.py"
       ]
     },
     {
@@ -377,6 +383,7 @@
   ],
   "required_targets": [
     "verify",
+    "validate-debug-symbols",
     "source-audit",
     "source-release-audit",
     "source-check"
