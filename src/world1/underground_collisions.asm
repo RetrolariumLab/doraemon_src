@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World1_CheckUndergroundGroundSupport:
-    LDA $9B
+    LDA World1UndergroundFinaleFloorActive
     BEQ Bank0_Label_D11D
     LDA World1PlayerY
     CMP #$C6
@@ -56,7 +56,7 @@ World1_IntegrateUndergroundVerticalMotion:
 Bank0_Label_D165:
     LDA World1PlayerYVelocity
     BMI Bank0_Label_D186
-    LDA $9B
+    LDA World1UndergroundFinaleFloorActive
     BEQ Bank0_Label_D173
     LDA World1PlayerY
     CMP #$C6

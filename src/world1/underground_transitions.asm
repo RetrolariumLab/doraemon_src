@@ -2,7 +2,7 @@
 ; World 1 underground room changes, completion paths, and entity updates
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_D3A9:
+World1_EnterUndergroundFinale:
     LDX #$00
 
 Bank0_Label_D3AB:
@@ -44,7 +44,7 @@ Bank0_Label_D3CB:
     STA World1PlayerAirborne
     STA World1PlayerYVelocity
     STA World1PlayerXSubpixel
-    STA $9B
+    STA World1UndergroundFinaleFloorActive
     STA a:AudioMusicControl
     STA World1EnemyFreezeActive
     STA World1EnemyFreezeTimer
@@ -88,13 +88,13 @@ Bank0_Label_D429:
     ORA World1CameraTileY
     BEQ Bank0_Label_D462
     LDA World1PlayerDamageState
-    BMI Bank0_Func_D465
+    BMI World1_HandleFinalePlayerDeath
     JMP Bank0_Label_D429
 
 Bank0_Label_D462:
-    JMP Bank0_Func_D4EE
+    JMP World1_RunBullRoboFinale
 
-Bank0_Func_D465:
+World1_HandleFinalePlayerDeath:
     JSR World1_PlayPlayerDeathSequence
     DEC PlayerLives
     BMI Bank0_Label_D46F
@@ -182,7 +182,7 @@ Bank0_Label_D4E3:
     JSR World1_ApplyCameraDeltaToEntities
     RTS
 
-Bank0_Func_D4EE:
+World1_RunBullRoboFinale:
     JSR World1_ClearEntitySlots10_29
     LDA #$06
     STA a:AudioMusicState
@@ -192,7 +192,7 @@ Bank0_Func_D4EE:
     STA World1EnemyFreezeTimer
     STA World1InvulnerabilityTimer
     LDA #$01
-    STA $9B
+    STA World1UndergroundFinaleFloorActive
     JSR World1_ClearEntitySlots10_29
     JSR World1_ClearEntitySlots00_09
     JSR World1_RefreshObjectSpawnMask
@@ -219,16 +219,16 @@ Bank0_Func_D4EE:
     LDA #$00
     STA a:World1EntityDamageTimerOrAcceleration
     LDA #$07
-    STA $9C
+    STA World1BullRoboSequenceCounter
     LDA #$00
-    STA $9E
+    STA World1BullRoboRevealTimer
 
 Bank0_Label_D54D:
     JSR World1_WaitForNextFrame
     LDA #$00
     STA a:World1EntityType
-    LDA $9E
-    AND $9C
+    LDA World1BullRoboRevealTimer
+    AND World1BullRoboSequenceCounter
     BNE Bank0_Label_D560
     LDA #$0F
     STA a:World1EntityType
@@ -247,16 +247,16 @@ Bank0_Label_D560:
     JSR World1_CommitScoreAndCheckExtraLife
     LDA World1PlayerDamageState
     BMI Bank0_Label_D594
-    DEC $9E
+    DEC World1BullRoboRevealTimer
     BEQ Bank0_Label_D598
-    LDA $9E
+    LDA World1BullRoboRevealTimer
     AND #$3F
     BNE Bank0_Label_D54D
-    LSR $9C
+    LSR World1BullRoboSequenceCounter
     JMP Bank0_Label_D54D
 
 Bank0_Label_D594:
-    JMP Bank0_Func_D465
+    JMP World1_HandleFinalePlayerDeath
 
 World1_NoOpBullRoboScriptedState:
     RTS
@@ -265,7 +265,7 @@ Bank0_Label_D598:
     LDA #$0E
     STA a:World1EntityType
     LDA #$00
-    STA $9D
+    STA World1BullRoboJumpPhase
     STA $98
     LDA #$38
     STA a:World1EntityMetasprite
@@ -273,7 +273,7 @@ Bank0_Label_D598:
     AND #$3F
     CLC
     ADC #$20
-    STA $9F
+    STA World1BullRoboAttackTimer
 
 Bank0_Label_D5B2:
     JSR World1_WaitForNextFrame
@@ -288,7 +288,7 @@ Bank0_Label_D5B2:
     JSR World1_ScanPlayerContacts
     JSR World1_CullOffscreenEntities
     JSR World1_CommitScoreAndCheckExtraLife
-    JSR Bank0_Func_D67A
+    JSR World1_UpdateBullRoboBoss
     LDA a:World1EntityType
     BEQ Bank0_Label_D5E5
     LDA World1PlayerDamageState
@@ -307,7 +307,7 @@ Bank0_Label_D5E5:
     LDA #$00
     STA a:World1EntityPositionHigh
     LDA #$A0
-    STA $9C
+    STA World1BullRoboSequenceCounter
 
 Bank0_Label_D601:
     JSR World1_WaitForNextFrame
@@ -316,14 +316,14 @@ Bank0_Label_D601:
     LDA FrameCounter
     AND #$03
     BNE Bank0_Label_D619
-    LDA $9C
+    LDA World1BullRoboSequenceCounter
     CMP #$14
     BCC Bank0_Label_D619
-    JSR Bank0_Func_D770
+    JSR World1_SpawnBullRoboExplosion
 
 Bank0_Label_D619:
     JSR World1_UpdatePlayerProjectiles
-    DEC $9C
+    DEC World1BullRoboSequenceCounter
     BNE Bank0_Label_D601
     JSR World1_ClearEntitySlots30_37
     JSR World1_ClearEntitySlots10_29
@@ -368,7 +368,7 @@ Bank0_Label_D65D:
     BNE Bank0_Label_D65D
     JMP Bank0_EnterWorld1ToWorld2Transition
 
-Bank0_Func_D67A:
+World1_UpdateBullRoboBoss:
     LDA a:World1EntityRenderFlags
     AND #$8F
     STA a:World1EntityRenderFlags
@@ -380,12 +380,12 @@ Bank0_Func_D67A:
 Bank0_Label_D68C:
     LDA a:World1EntityPrimaryBehavior
     BEQ Bank0_Label_D6D4
-    LDA $9D
+    LDA World1BullRoboJumpPhase
     CMP #$18
     BEQ Bank0_Label_D6BD
     AND #$80
     STA $00
-    LDA $9D
+    LDA World1BullRoboJumpPhase
     LSR A
     ORA $00
     LSR A
@@ -395,13 +395,13 @@ Bank0_Label_D68C:
     STA a:World1EntityY
     LDA #$3B
     STA a:World1EntityMetasprite
-    LDA $9D
+    LDA World1BullRoboJumpPhase
     BMI Bank0_Label_D6B8
     LDA #$3A
     STA a:World1EntityMetasprite
 
 Bank0_Label_D6B8:
-    INC $9D
+    INC World1BullRoboJumpPhase
     JMP Bank0_Label_D718
 
 Bank0_Label_D6BD:
@@ -413,7 +413,7 @@ Bank0_Label_D6BD:
     AND #$3F
     CLC
     ADC #$40
-    STA $9F
+    STA World1BullRoboAttackTimer
     JMP Bank0_Label_D718
 
 Bank0_Label_D6D4:
@@ -443,12 +443,12 @@ Bank0_Label_D6F7:
     STA a:World1EntitySecondaryBehavior
 
 Bank0_Label_D706:
-    DEC $9F
+    DEC World1BullRoboAttackTimer
     BPL Bank0_Label_D718
     LDA #$01
     STA a:World1EntityPrimaryBehavior
     LDA #$EC
-    STA $9D
+    STA World1BullRoboJumpPhase
     LDA #$3A
     STA a:World1EntityMetasprite
 

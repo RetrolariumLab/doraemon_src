@@ -1577,6 +1577,168 @@
       "evidence": "validated-world1-frame-mechanics-programmer-face-bonus-wrapper"
     },
     {
+      "bank": 0,
+      "address": "0x8934",
+      "name": "World1_FaceEntityTowardPlayer",
+      "evidence": "validated-world1-entity-helper-horizontal-facing-and-metasprite-selection"
+    },
+    {
+      "bank": 0,
+      "address": "0x8952",
+      "name": "World1_ReverseEntityDirectionAndMove",
+      "evidence": "validated-world1-entity-helper-horizontal-direction-toggle-and-motion-fallthrough"
+    },
+    {
+      "bank": 0,
+      "address": "0x895A",
+      "name": "World1_MoveEntityInStoredDirection",
+      "evidence": "validated-world1-entity-helper-stored-eight-way-direction-motion"
+    },
+    {
+      "bank": 0,
+      "address": "0x8962",
+      "name": "World1_MoveEntityInDirection",
+      "evidence": "validated-world1-entity-helper-eight-way-unit-vector-motion"
+    },
+    {
+      "bank": 0,
+      "address": "0x8987",
+      "name": "World1_DirectionTowardPlayer",
+      "evidence": "validated-world1-entity-helper-player-relative-delta-to-eight-way-direction"
+    },
+    {
+      "bank": 0,
+      "address": "0x8AD4",
+      "name": "World1_ConvertEntityPositionToMapTile",
+      "evidence": "validated-world1-entity-helper-packed-screen-position-to-world-map-tile-conversion"
+    },
+    {
+      "bank": 0,
+      "address": "0x8B31",
+      "name": "World1_LookupMapTileAtOffset",
+      "evidence": "validated-world1-entity-helper-offset-map-tile-lookup-with-preserved-entity-index"
+    },
+    {
+      "bank": 0,
+      "address": "0x8B45",
+      "name": "World1_TestEntityDirectionCollision",
+      "evidence": "validated-world1-entity-helper-eight-way-cardinal-and-diagonal-collision-dispatch"
+    },
+    {
+      "bank": 0,
+      "address": "0x8B65",
+      "name": "World1_TestEntityCollisionDown",
+      "evidence": "validated-world1-entity-helper-three-probe-bottom-edge-collision"
+    },
+    {
+      "bank": 0,
+      "address": "0x8B80",
+      "name": "World1_TestEntityCollisionRight",
+      "evidence": "validated-world1-entity-helper-two-probe-right-edge-collision"
+    },
+    {
+      "bank": 0,
+      "address": "0x8B94",
+      "name": "World1_TestEntityCollisionUp",
+      "evidence": "validated-world1-entity-helper-three-probe-top-edge-collision"
+    },
+    {
+      "bank": 0,
+      "address": "0x8BAF",
+      "name": "World1_TestEntityCollisionLeft",
+      "evidence": "validated-world1-entity-helper-two-probe-left-edge-collision"
+    },
+    {
+      "bank": 0,
+      "address": "0x9065",
+      "name": "World1_TrySpawnDirectionalEnemyProjectile",
+      "evidence": "validated-world1-entity-helper-random-corresponding-slot-directional-projectile-spawn"
+    },
+    {
+      "bank": 0,
+      "address": "0x90B0",
+      "name": "World1_TrySpawnRandomArcProjectile",
+      "evidence": "validated-world1-entity-helper-free-slot-random-arc-projectile-spawn"
+    },
+    {
+      "bank": 0,
+      "address": "0x9130",
+      "name": "World1_TrySpawnAimedEnemyProjectile",
+      "evidence": "validated-world1-entity-helper-fixed-point-player-aimed-projectile-spawn"
+    },
+    {
+      "bank": 0,
+      "address": "0x91BF",
+      "name": "World1_ComputeAimedProjectileSlope",
+      "evidence": "validated-world1-entity-helper-eight-bit-minor-over-major-restoring-division"
+    },
+    {
+      "bank": 0,
+      "address": "0x91E3",
+      "name": "World1_AbortProjectileSpawnIfSourceOffscreen",
+      "evidence": "validated-world1-entity-helper-visible-source-guard-with-caller-unwind"
+    },
+    {
+      "bank": 0,
+      "address": "0xD3A9",
+      "name": "World1_EnterUndergroundFinale",
+      "evidence": "validated-world1-final-routine-persistence-swap-and-vertical-finale-entry"
+    },
+    {
+      "bank": 0,
+      "address": "0xD465",
+      "name": "World1_HandleFinalePlayerDeath",
+      "evidence": "validated-world1-final-routine-life-loss-game-over-and-city-return"
+    },
+    {
+      "bank": 0,
+      "address": "0xD4EE",
+      "name": "World1_RunBullRoboFinale",
+      "evidence": "validated-world1-final-routine-bull-robo-reveal-combat-defeat-and-transition-sequence"
+    },
+    {
+      "bank": 0,
+      "address": "0xD67A",
+      "name": "World1_UpdateBullRoboBoss",
+      "evidence": "validated-world1-final-routine-bull-robo-hop-patrol-and-projectile-controller"
+    },
+    {
+      "bank": 0,
+      "address": "0xD770",
+      "name": "World1_SpawnBullRoboExplosion",
+      "evidence": "validated-world1-final-routine-randomized-post-defeat-explosion-spawn"
+    },
+    {
+      "bank": 0,
+      "address": "0xDE12",
+      "name": "World1_TestEntityMapCollisionAtOffset",
+      "evidence": "validated-world1-final-routine-screen-offset-to-map-cell-solid-tile-test"
+    },
+    {
+      "bank": 0,
+      "address": "0xDE8E",
+      "name": "World1_EntityDistanceToPlayer",
+      "evidence": "validated-world1-final-routine-chebyshev-distance-to-player"
+    },
+    {
+      "bank": 0,
+      "address": "0xE10A",
+      "name": "World1_ReverseEntityDirectionAndMoveTwice",
+      "evidence": "validated-world1-final-routine-direction-reversal-with-two-step-fallthrough"
+    },
+    {
+      "bank": 0,
+      "address": "0xE11A",
+      "name": "World1_MoveEntityTwiceInStoredDirection",
+      "evidence": "validated-world1-final-routine-two-step-stored-direction-motion"
+    },
+    {
+      "bank": 0,
+      "address": "0xE127",
+      "name": "World1_SnapEntityYToTileBoundary",
+      "evidence": "validated-world1-final-routine-scroll-relative-eight-pixel-y-alignment"
+    },
+    {
       "bank": 1,
       "address": "0x8000",
       "name": "Bank1_EnterWorld1",
@@ -6600,6 +6762,46 @@
         0
       ],
       "evidence": "per-update-camera-pixel-budget-derived-from-player-distance-outside-room-tracking-band"
+    },
+    {
+      "address": "0x009B",
+      "name": "World1UndergroundFinaleFloorActive",
+      "banks": [
+        0
+      ],
+      "evidence": "nonzero-enables-the-artificial-y-c6-floor-used-only-by-the-vertical-finale-room"
+    },
+    {
+      "address": "0x009C",
+      "name": "World1BullRoboSequenceCounter",
+      "banks": [
+        0
+      ],
+      "evidence": "reveal-blink-mask-then-post-defeat-explosion-countdown-in-the-scripted-boss-sequence"
+    },
+    {
+      "address": "0x009D",
+      "name": "World1BullRoboJumpPhase",
+      "banks": [
+        0
+      ],
+      "evidence": "signed-hop-phase-integrated-into-bull-robo-y-and-reset-for-each-attack"
+    },
+    {
+      "address": "0x009E",
+      "name": "World1BullRoboRevealTimer",
+      "banks": [
+        0
+      ],
+      "evidence": "decrementing-reveal-phase-counter-masked-to-blink-the-scripted-boss"
+    },
+    {
+      "address": "0x009F",
+      "name": "World1BullRoboAttackTimer",
+      "banks": [
+        0
+      ],
+      "evidence": "randomized-patrol-countdown-that-triggers-the-next-bull-robo-hop-and-shot"
     },
     {
       "address": "0x00B2",

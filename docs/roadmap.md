@@ -45,7 +45,12 @@ emulated frame. The Bank 3 shell pass removes its final sixteen neutral routine
 entries. The first World 1 core pass removes another twenty initialization,
 input, pause, and frame-render entries. A second pass names twenty-three motion,
 collision, damage, reward, timed-powerup, and PPU-preparation routines; 231
-probable routine entries remain, including 27 in Bank 0.
+probable routine entries remained. A third World 1 pass names seventeen
+direction, map-probe, collision-edge, and projectile-construction helpers; 214
+probable routine entries remained. The final World 1 pass names the ten
+remaining underground-finale and handler-local entries plus five boss/finale
+RAM fields. Bank 0 now has no neutral routine entries; all 204 remaining
+routine entries are in Banks 1 and 2.
 
 ### 6. RAM and object systems - Partial
 
@@ -188,15 +193,17 @@ Resolve or explicitly classify remaining release-scope unknowns, live-validate
 the generated linker-derived Mesen/FCEUX symbols, refresh all eight runtime
 scenarios, run one clean aggregate `source-1-audit`, and prepare the audited
 release commit. Static symbol generation is complete: the gate checks all four
-linker segments, 3,665 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
+linker segments, 3,670 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
 labels, and required Reset/NMI/mapper/chapter-loop probes.
 
 The first post-review naming slice is also complete: all sixteen Bank 3 shell
 routine entries now have behavioral names backed by a machine-checked
 caller/RAM contract. World 1 now also has a machine-checked twenty-routine
-initialization/input/render slice and a twenty-three-routine frame-mechanics
-slice. Remaining naming is concentrated in deeper entity handlers and chapter
-transition helpers, with the largest populations in Banks 1 and 2.
+initialization/input/render slice, a twenty-three-routine frame-mechanics
+slice, and a seventeen-routine entity-helper slice. The final ten Bank 0
+entries now have machine-checked underground-finale, Bull Robo, collision,
+distance, motion, and alignment contracts. The remaining neutral routine
+population is confined to Banks 1 and 2.
 
 ## Deferred to Source Reconstruction 2.0
 

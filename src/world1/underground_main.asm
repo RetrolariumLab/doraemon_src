@@ -64,7 +64,7 @@ Bank0_Label_CDE3:
     LDA #$00
     STA World1UndergroundVerticalPage
     LDA #$00
-    STA $9B
+    STA World1UndergroundFinaleFloorActive
     JSR World1_DisableGameplayRendering
     LDA #$EF
     STA World1MapDataPointer

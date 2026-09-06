@@ -40,7 +40,7 @@ Bank0_Label_E180:
 Bank0_Label_E181:
     TAY
     PHP
-    JSR Bank0_Func_90B0
+    JSR World1_TrySpawnRandomArcProjectile
     PLP
     BNE Bank0_Label_E180
     INC a:World1EntitySecondaryBehavior,X
@@ -66,18 +66,18 @@ Bank0_Label_E1A2:
 Bank0_Label_E1A8:
     TAY
     PHP
-    JSR Bank0_Func_8987
+    JSR World1_DirectionTowardPlayer
     PHA
-    JSR Bank0_Func_8962
-    JSR Bank0_Func_8AD4
+    JSR World1_MoveEntityInDirection
+    JSR World1_ConvertEntityPositionToMapTile
     PLA
     PHA
-    JSR Bank0_Func_8B45
+    JSR World1_TestEntityDirectionCollision
     BCC Bank0_Label_E1C2
     PLA
     PHA
     EOR #$04
-    JSR Bank0_Func_8962
+    JSR World1_MoveEntityInDirection
 
 Bank0_Label_E1C2:
     PLA
@@ -110,13 +110,13 @@ World1_UpdateHerimeda:
     LDA a:World1EntityPrimaryBehavior,X
     AND #$3F
     BNE Bank0_Label_E1FB
-    JSR Bank0_Func_8987
+    JSR World1_DirectionTowardPlayer
     STA a:World1EntitySecondaryBehavior,X
 
 Bank0_Label_E1FB:
     LDA a:World1EntitySecondaryBehavior,X
     ORA #$01
-    JSR Bank0_Func_8962
+    JSR World1_MoveEntityInDirection
     LDA FrameCounter
     AND #$01
     ORA #$6C
@@ -128,7 +128,7 @@ Bank0_Label_E1FB:
     STA a:World1EntityMetasprite,X
     LDA a:World1EntityActionCooldown,X
     BNE Bank0_Label_E22A
-    JSR Bank0_Func_9130
+    JSR World1_TrySpawnAimedEnemyProjectile
     JSR World1_RandomByte
     AND #$1F
     ADC #$50
@@ -155,11 +155,11 @@ Bank0_Label_E25B:
     LDA a:World1EntitySecondaryBehavior,X
     AND #$08
     BNE Bank0_Label_E285
-    JSR Bank0_Func_9130
+    JSR World1_TrySpawnAimedEnemyProjectile
     LDA FrameCounter
     AND #$1F
     BNE Bank0_Label_E2DB
-    JSR Bank0_Func_8934
+    JSR World1_FaceEntityTowardPlayer
     JSR World1_RandomByte
     CMP #$20
     BCS Bank0_Label_E2DB
@@ -167,24 +167,24 @@ Bank0_Label_E25B:
     .byte $BD, $80, $05, $09, $08, $9D, $80, $05, $A9, $FA, $9D, $50, $05
 
 Bank0_Label_E285:
-    JSR Bank0_Func_895A
-    JSR Bank0_Func_8AD4
+    JSR World1_MoveEntityInStoredDirection
+    JSR World1_ConvertEntityPositionToMapTile
     LDA a:World1EntitySecondaryBehavior,X
-    JSR Bank0_Func_8B45
+    JSR World1_TestEntityDirectionCollision
     BCC Bank0_Label_E296
-    JSR Bank0_Func_8952
+    JSR World1_ReverseEntityDirectionAndMove
 
 Bank0_Label_E296:
     LDA a:World1EntityPrimaryBehavior,X
     JSR World1_MoveEntityYByA
-    JSR Bank0_Func_8AD4
+    JSR World1_ConvertEntityPositionToMapTile
     LDA a:World1EntityPrimaryBehavior,X
     BMI Bank0_Label_E2C0
     LDA #$00
-    JSR Bank0_Func_8B45
+    JSR World1_TestEntityDirectionCollision
     BCC Bank0_Label_E2D1
     LDA #$01
-    JSR Bank0_Func_E127
+    JSR World1_SnapEntityYToTileBoundary
     LDA #$00
     STA a:World1EntitySecondaryBehavior,X
     LDA #$14
@@ -197,10 +197,10 @@ Bank0_Label_E2BF:
 
 Bank0_Label_E2C0:
     LDA #$04
-    JSR Bank0_Func_8B45
+    JSR World1_TestEntityDirectionCollision
     BCC Bank0_Label_E2D1
     LDA #$11
-    JSR Bank0_Func_E127
+    JSR World1_SnapEntityYToTileBoundary
     LDA #$00
     STA a:World1EntityPrimaryBehavior,X
 
@@ -215,9 +215,9 @@ Bank0_Label_E2DA:
 
 Bank0_Label_E2DB:
     INC a:World1EntityY,X
-    JSR Bank0_Func_8AD4
+    JSR World1_ConvertEntityPositionToMapTile
     DEC a:World1EntityY,X
-    JSR Bank0_Func_8B65
+    JSR World1_TestEntityCollisionDown
     BCS Bank0_Label_E2F6
     LDA a:World1EntitySecondaryBehavior,X
     ORA #$08
@@ -226,12 +226,12 @@ Bank0_Label_E2DB:
     STA a:World1EntityPrimaryBehavior,X
 
 Bank0_Label_E2F6:
-    JSR Bank0_Func_895A
-    JSR Bank0_Func_8AD4
+    JSR World1_MoveEntityInStoredDirection
+    JSR World1_ConvertEntityPositionToMapTile
     LDA a:World1EntitySecondaryBehavior,X
-    JSR Bank0_Func_8B45
+    JSR World1_TestEntityDirectionCollision
     BCC Bank0_Label_E307
-    JSR Bank0_Func_8952
+    JSR World1_ReverseEntityDirectionAndMove
 
 Bank0_Label_E307:
     LDA FrameCounter

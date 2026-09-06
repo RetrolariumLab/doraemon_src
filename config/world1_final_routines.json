@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "routines": [
+    {
+      "address": "0xD3A9",
+      "end_address": "0xD3BE",
+      "size": 22,
+      "crc32": "28ab15fe",
+      "name": "World1_EnterUndergroundFinale",
+      "role": "swap-city-and-underground-persistence-masks-then-enter-the-vertical-finale-room",
+      "callers": [
+        {
+          "address": "0xCD32",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0xD465",
+      "end_address": "0xD47B",
+      "size": 23,
+      "crc32": "5b3debdd",
+      "name": "World1_HandleFinalePlayerDeath",
+      "role": "run-player-death-decrement-lives-and-return-to-city-through-game-over-when-required",
+      "callers": [
+        {
+          "address": "0xD594",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0xD4EE",
+      "end_address": "0xD679",
+      "size": 396,
+      "crc32": "c9039688",
+      "name": "World1_RunBullRoboFinale",
+      "role": "orchestrate-bull-robo-reveal-combat-defeat-explosions-and-world2-transition",
+      "callers": [
+        {
+          "address": "0xD462",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0xD67A",
+      "end_address": "0xD76F",
+      "size": 246,
+      "crc32": "5019d057",
+      "name": "World1_UpdateBullRoboBoss",
+      "role": "update-bull-robo-hop-patrol-facing-and-randomized-projectile-attack",
+      "callers": [
+        {
+          "address": "0xD5D6",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xD770",
+      "end_address": "0xD7A4",
+      "size": 53,
+      "crc32": "ea18751d",
+      "name": "World1_SpawnBullRoboExplosion",
+      "role": "spawn-a-randomized-impact-entity-around-the-defeated-bull-robo",
+      "callers": [
+        {
+          "address": "0xD616",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xDE12",
+      "end_address": "0xDE8D",
+      "size": 124,
+      "crc32": "3287f721",
+      "name": "World1_TestEntityMapCollisionAtOffset",
+      "role": "convert-an-entity-relative-screen-offset-to-a-map-cell-and-test-solid-tile-42",
+      "callers": [
+        {
+          "address": "0xDD88",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xDF47",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xDF66",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xDE8E",
+      "end_address": "0xDEBA",
+      "size": 45,
+      "crc32": "95a3b2f8",
+      "name": "World1_EntityDistanceToPlayer",
+      "role": "return-the-chebyshev-distance-between-the-current-entity-and-player",
+      "callers": [
+        {
+          "address": "0xDD68",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xDDAB",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xE052",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xE10A",
+      "end_address": "0xE119",
+      "size": 16,
+      "crc32": "9d2bb755",
+      "name": "World1_ReverseEntityDirectionAndMoveTwice",
+      "role": "toggle-facing-and-direction-bits-then-fall-through-to-two-step-motion",
+      "callers": [
+        {
+          "address": "0xE078",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xE0D4",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xE11A",
+      "end_address": "0xE126",
+      "size": 13,
+      "crc32": "a1406d2a",
+      "name": "World1_MoveEntityTwiceInStoredDirection",
+      "role": "apply-two-unit-steps-in-the-current-entity-eight-way-direction",
+      "callers": [
+        {
+          "address": "0xE064",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xE0C0",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xE127",
+      "end_address": "0xE141",
+      "size": 27,
+      "crc32": "88384f82",
+      "name": "World1_SnapEntityYToTileBoundary",
+      "role": "align-an-entity-y-edge-to-an-eight-pixel-boundary-relative-to-fine-scroll",
+      "callers": [
+        {
+          "address": "0xE092",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xE0AE",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xE2AD",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xE2C9",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x0075",
+      "name": "World1PlayerX"
+    },
+    {
+      "address": "0x0076",
+      "name": "World1PlayerY"
+    },
+    {
+      "address": "0x009B",
+      "name": "World1UndergroundFinaleFloorActive"
+    },
+    {
+      "address": "0x009C",
+      "name": "World1BullRoboSequenceCounter"
+    },
+    {
+      "address": "0x009D",
+      "name": "World1BullRoboJumpPhase"
+    },
+    {
+      "address": "0x009E",
+      "name": "World1BullRoboRevealTimer"
+    },
+    {
+      "address": "0x009F",
+      "name": "World1BullRoboAttackTimer"
+    },
+    {
+      "address": "0x0400",
+      "name": "World1EntityType",
+      "size": 48
+    },
+    {
+      "address": "0x0430",
+      "name": "World1EntityMetasprite",
+      "size": 48
+    },
+    {
+      "address": "0x0460",
+      "name": "World1EntityRenderFlags",
+      "size": 48
+    },
+    {
+      "address": "0x0490",
+      "name": "World1EntityPositionHigh",
+      "size": 48
+    },
+    {
+      "address": "0x04C0",
+      "name": "World1EntityX",
+      "size": 48
+    },
+    {
+      "address": "0x04F0",
+      "name": "World1EntityY",
+      "size": 48
+    },
+    {
+      "address": "0x0520",
+      "name": "World1EntitySourceObjectId",
+      "size": 48
+    },
+    {
+      "address": "0x0550",
+      "name": "World1EntityPrimaryBehavior",
+      "size": 48
+    },
+    {
+      "address": "0x0580",
+      "name": "World1EntitySecondaryBehavior",
+      "size": 48
+    },
+    {
+      "address": "0x05B0",
+      "name": "World1EntityHealthOrVelocity",
+      "size": 48
+    },
+    {
+      "address": "0x05E0",
+      "name": "World1EntityDamageTimerOrAcceleration",
+      "size": 48
+    },
+    {
+      "address": "0x0680",
+      "name": "World1CollectedObjectBits",
+      "size": 16
+    },
+    {
+      "address": "0x0690",
+      "name": "World1SavedCityObjectBits",
+      "size": 16
+    },
+    {
+      "address": "0x06A0",
+      "name": "World1SavedUndergroundObjectBits",
+      "size": 16
+    }
+  ]
+}

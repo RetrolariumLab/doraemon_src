@@ -80,7 +80,7 @@ World1_EnemyScoreRewardCodes:
     .byte $41, $42, $42, $45, $41, $42, $55, $48, $55, $31, $55, $55, $55, $21, $55, $55
     .byte $20, $D4, $8A, $BD, $80, $05, $4C, $45, $8B
 
-Bank0_Func_8934:
+World1_FaceEntityTowardPlayer:
     SEC
     LDA a:World1EntityX,X
     SBC World1PlayerX
@@ -103,17 +103,17 @@ Bank0_Label_894E:
     STA a:World1EntityMetasprite,X
     RTS
 
-Bank0_Func_8952:
+World1_ReverseEntityDirectionAndMove:
     LDA a:World1EntitySecondaryBehavior,X
     EOR #$04
     STA a:World1EntitySecondaryBehavior,X
 
-Bank0_Func_895A:
+World1_MoveEntityInStoredDirection:
     LDA a:World1EntitySecondaryBehavior,X
     AND #$07
-    JMP Bank0_Func_8962
+    JMP World1_MoveEntityInDirection
 
-Bank0_Func_8962:
+World1_MoveEntityInDirection:
     PHA
     AND #$07
     PHA
@@ -128,7 +128,7 @@ Bank0_Func_8962:
     RTS
     .byte $00, $01, $01, $01, $00, $FF, $FF, $FF, $01, $01, $00, $FF, $FF, $FF, $00, $01
 
-Bank0_Func_8987:
+World1_DirectionTowardPlayer:
     LDA a:World1EntityPositionHigh,X
     STA $00
     LDA a:World1EntityX,X

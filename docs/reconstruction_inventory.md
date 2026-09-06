@@ -10,13 +10,13 @@ evidence manifests. Any change requires an intentional snapshot update.
 
 | Bank | Global labels | Semantic labels | Neutral routines | Neutral locals | Semantic indirect entries |
 | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0 | 1,011 | 299 | 27 | 685 | 84 / 84 |
+| 0 | 1,011 | 326 | 0 | 685 | 84 / 84 |
 | 1 | 879 | 229 | 91 | 559 | 97 / 97 |
 | 2 | 1,090 | 294 | 113 | 683 | 106 / 106 |
 | 3 | 363 | 161 | 0 | 202 | 67 / 67 |
-| Total | 3,343 | 983 | 231 | 2,129 | 354 / 354 |
+| Total | 3,343 | 1,010 | 204 | 2,129 | 354 / 354 |
 
-The neutral population now separates 231 probable routine entries from 2,129
+The neutral population now separates 204 probable routine entries from 2,129
 local branch labels. The common runtime naming pass removed 88 neutral routine
 names by proving copied reset/NMI/mapper services, cross-bank gateways, and
 bank-local dispatches. A second pass named all 19 previously neutral non-audio
@@ -51,11 +51,23 @@ The next World 1 pass names twenty-three frame-mechanics routines spanning
 transient and player-projectile motion, both collision directions, damage and
 reward resolution, timed powerups, death presentation, and PPU preparation.
 The corresponding contract covers 1,591 executable bytes and 66 direct
-callers. Only 27 probable neutral routine entries remain in Bank 0.
+callers. At that checkpoint, 27 probable neutral routine entries remained in
+Bank 0.
 
-The symbol registry currently contains 862 evidence-backed code symbols and
-111 operand/table symbols. RAM coverage contains 288 unique aliases: 83 shared
-symbols plus 93 Bank 0, 39 Bank 1, 65 Bank 2, and 8 Bank 3 scoped symbols.
+The World 1 entity-helper pass names seventeen direction, coordinate,
+collision-probe, and projectile-construction routines. Its contract covers 877
+bytes, 88 direct callers, and 244 bytes of player/camera/entity RAM.
+
+The final Bank 0 pass names the remaining ten routine entries: underground
+finale entry/death handling, the Bull Robo scripted controller and explosion
+spawner, plus five handler-local collision, distance, movement, and alignment
+helpers. Its contract covers 965 bytes, 19 direct callers, and five newly named
+finale RAM fields. Bank 0 now has zero neutral routine entries; the remaining
+204 are entirely in Banks 1 and 2.
+
+The symbol registry currently contains 889 evidence-backed code symbols and
+111 operand/table symbols. RAM coverage contains 293 unique aliases: 83 shared
+symbols plus 98 Bank 0, 39 Bank 1, 65 Bank 2, and 8 Bank 3 scoped symbols.
 
 Typed PRG ranges cover 65,796 bytes in 57 non-overlapping regions. Bank 3 now
 separates exact title, game-over, chapter-help, ending-opening, active-credit,

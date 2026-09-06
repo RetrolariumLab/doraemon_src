@@ -105,6 +105,11 @@ World1UndergroundAxisScrollCoarse = $0089
 World1UndergroundAxisScrollFine = $008A
 World1UndergroundVerticalPage = $008B
 World1UndergroundAxisScrollBudget = $008C
+World1UndergroundFinaleFloorActive = $009B
+World1BullRoboSequenceCounter = $009C
+World1BullRoboJumpPhase = $009D
+World1BullRoboRevealTimer = $009E
+World1BullRoboAttackTimer = $009F
 World1InvulnerabilityTimer = $00B2
 
 ; World 3 punishment-room state

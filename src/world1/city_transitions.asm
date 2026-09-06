@@ -234,7 +234,7 @@ Bank0_Label_CD1F:
     BPL Bank0_Label_CD42
     CMP #$FF
     BNE Bank0_Label_CD35
-    JMP Bank0_Func_D3A9
+    JMP World1_EnterUndergroundFinale
 
 Bank0_Label_CD35:
     JSR World1_RandomByte

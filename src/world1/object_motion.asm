@@ -66,7 +66,7 @@ Bank0_Label_8ABF:
     STA a:World1EntityPositionHigh,X
     RTS
 
-Bank0_Func_8AD4:
+World1_ConvertEntityPositionToMapTile:
     LDA a:World1EntityPositionHigh,X
     AND #$03
     STA $00
@@ -121,7 +121,7 @@ Bank0_Func_8AD4:
     STA $01
     RTS
 
-Bank0_Func_8B31:
+World1_LookupMapTileAtOffset:
     CLC
     ADC $00
     STA $02
@@ -137,33 +137,33 @@ Bank0_Func_8B31:
     TAX
     RTS
 
-Bank0_Func_8B45:
+World1_TestEntityDirectionCollision:
     AND #$07
     TAY
-    BEQ Bank0_Func_8B65
+    BEQ World1_TestEntityCollisionDown
     DEY
     BEQ Bank0_Label_8BC3
     DEY
-    BEQ Bank0_Func_8B80
+    BEQ World1_TestEntityCollisionRight
     DEY
     BEQ Bank0_Label_8BCC
     DEY
-    BEQ Bank0_Func_8B94
+    BEQ World1_TestEntityCollisionUp
     DEY
     BEQ Bank0_Label_8BD5
     DEY
-    BEQ Bank0_Func_8BAF
-    JSR Bank0_Func_8B65
+    BEQ World1_TestEntityCollisionLeft
+    JSR World1_TestEntityCollisionDown
     BCS Bank0_Label_8B64
-    JSR Bank0_Func_8BAF
+    JSR World1_TestEntityCollisionLeft
 
 Bank0_Label_8B64:
     RTS
 
-Bank0_Func_8B65:
+World1_TestEntityCollisionDown:
     LDA #$00
     LDY $9A
-    JSR Bank0_Func_8B31
+    JSR World1_LookupMapTileAtOffset
     JSR World1_ReadMapTileAndStepRight
     CMP #$42
     BCS Bank0_Label_8B7F
@@ -176,10 +176,10 @@ Bank0_Func_8B65:
 Bank0_Label_8B7F:
     RTS
 
-Bank0_Func_8B80:
+World1_TestEntityCollisionRight:
     LDA $99
     LDY #$01
-    JSR Bank0_Func_8B31
+    JSR World1_LookupMapTileAtOffset
     JSR World1_ReadMapTileAndStepDown
     CMP #$42
     BCS Bank0_Label_8B93
@@ -189,10 +189,10 @@ Bank0_Func_8B80:
 Bank0_Label_8B93:
     RTS
 
-Bank0_Func_8B94:
+World1_TestEntityCollisionUp:
     LDA #$00
     LDY #$01
-    JSR Bank0_Func_8B31
+    JSR World1_LookupMapTileAtOffset
     JSR World1_ReadMapTileAndStepRight
     CMP #$42
     BCS Bank0_Label_8BAE
@@ -205,10 +205,10 @@ Bank0_Func_8B94:
 Bank0_Label_8BAE:
     RTS
 
-Bank0_Func_8BAF:
+World1_TestEntityCollisionLeft:
     LDA #$00
     LDY #$01
-    JSR Bank0_Func_8B31
+    JSR World1_LookupMapTileAtOffset
     JSR World1_ReadMapTileAndStepDown
     CMP #$42
     BCS Bank0_Label_8BC2
@@ -219,25 +219,25 @@ Bank0_Label_8BC2:
     RTS
 
 Bank0_Label_8BC3:
-    JSR Bank0_Func_8B65
+    JSR World1_TestEntityCollisionDown
     BCS Bank0_Label_8BCB
-    JSR Bank0_Func_8B80
+    JSR World1_TestEntityCollisionRight
 
 Bank0_Label_8BCB:
     RTS
 
 Bank0_Label_8BCC:
-    JSR Bank0_Func_8B94
+    JSR World1_TestEntityCollisionUp
     BCS Bank0_Label_8BD4
-    JSR Bank0_Func_8B80
+    JSR World1_TestEntityCollisionRight
 
 Bank0_Label_8BD4:
     RTS
 
 Bank0_Label_8BD5:
-    JSR Bank0_Func_8BAF
+    JSR World1_TestEntityCollisionLeft
     BCS Bank0_Label_8BDD
-    JSR Bank0_Func_8B94
+    JSR World1_TestEntityCollisionUp
 
 Bank0_Label_8BDD:
     RTS

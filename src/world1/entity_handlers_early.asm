@@ -22,7 +22,7 @@ Bank0_Label_DBEF:
     BEQ Bank0_Label_DC04
     LDA World1PlayerDamageState
     BNE Bank0_Label_DC07
-    JSR Bank0_Func_8987
+    JSR World1_DirectionTowardPlayer
 
 Bank0_Label_DC04:
     STA a:World1EntitySecondaryBehavior,X
@@ -37,13 +37,13 @@ Bank0_Label_DC07:
 Bank0_Label_DC12:
     LDA a:World1EntitySecondaryBehavior,X
     BMI Bank0_Label_DC1A
-    JSR Bank0_Func_8962
+    JSR World1_MoveEntityInDirection
 
 Bank0_Label_DC1A:
     DEC a:World1EntityPrimaryBehavior,X
     LDA a:World1EntityActionCooldown,X
     BNE Bank0_Label_DC2F
-    JSR Bank0_Func_9130
+    JSR World1_TrySpawnAimedEnemyProjectile
     JSR World1_RandomByte
     AND #$1F
     ADC #$20
@@ -59,7 +59,7 @@ World1_InitializeEntityDirection:
     PHA
     LDA $01
     PHA
-    JSR Bank0_Func_8987
+    JSR World1_DirectionTowardPlayer
     STA a:World1EntitySecondaryBehavior,X
     PLA
     STA $01
@@ -77,7 +77,7 @@ World1_UpdateSuneraa:
     STA a:World1EntityPrimaryBehavior,X
     LDA World1PlayerDamageState
     BNE Bank0_Label_DC75
-    JSR Bank0_Func_8987
+    JSR World1_DirectionTowardPlayer
     SEC
     SBC a:World1EntitySecondaryBehavior,X
     AND #$07
@@ -92,8 +92,8 @@ Bank0_Label_DC72:
 
 Bank0_Label_DC75:
     LDA a:World1EntitySecondaryBehavior,X
-    JSR Bank0_Func_8962
-    JSR Bank0_Func_8962
+    JSR World1_MoveEntityInDirection
+    JSR World1_MoveEntityInDirection
     DEC a:World1EntityPrimaryBehavior,X
     LDA a:World1EntitySecondaryBehavior,X
     AND #$04
@@ -115,7 +115,7 @@ Bank0_Label_DC8E:
     STA a:World1EntityMetasprite,X
     LDA a:World1EntityActionCooldown,X
     BNE Bank0_Label_DCAE
-    JSR Bank0_Func_9130
+    JSR World1_TrySpawnAimedEnemyProjectile
     JSR World1_RandomByte
     AND #$1F
     ADC #$50
@@ -145,7 +145,7 @@ World1_UpdateMekanosso:
     LDA a:World1EntitySecondaryBehavior,X
     AND #$07
     BNE Bank0_Label_DCEA
-    JSR Bank0_Func_8987
+    JSR World1_DirectionTowardPlayer
     JMP Bank0_Label_DCE7
 
 Bank0_Label_DCE1:
@@ -158,14 +158,14 @@ Bank0_Label_DCE7:
 
 Bank0_Label_DCEA:
     LDA a:World1EntityPrimaryBehavior,X
-    JSR Bank0_Func_8962
-    JSR Bank0_Func_8AD4
+    JSR World1_MoveEntityInDirection
+    JSR World1_ConvertEntityPositionToMapTile
     LDA a:World1EntityPrimaryBehavior,X
-    JSR Bank0_Func_8B45
+    JSR World1_TestEntityDirectionCollision
     BCC Bank0_Label_DD16
     LDA a:World1EntityPrimaryBehavior,X
     EOR #$04
-    JSR Bank0_Func_8962
+    JSR World1_MoveEntityInDirection
     LDA #$00
     STA a:World1EntityPrimaryBehavior,X
     JSR World1_RandomByte
@@ -183,7 +183,7 @@ Bank0_Label_DD16:
     AND #$3F
     CMP #$08
     BNE Bank0_Label_DD28
-    JSR Bank0_Func_9130
+    JSR World1_TrySpawnAimedEnemyProjectile
 
 Bank0_Label_DD28:
     RTS
@@ -198,7 +198,7 @@ World1_UpdateGozuraCity:
     BEQ Bank0_Label_DD40
     BMI Bank0_Label_DD40
     AND #$07
-    JSR Bank0_Func_8962
+    JSR World1_MoveEntityInDirection
 
 Bank0_Label_DD40:
     LDA a:World1EntitySecondaryBehavior,X
@@ -219,12 +219,12 @@ Bank0_Label_DD40:
     STA a:World1EntitySecondaryBehavior,X
     LDA #$00
     STA a:World1EntityPrimaryBehavior,X
-    JSR Bank0_Func_DE8E
+    JSR World1_EntityDistanceToPlayer
     CMP #$60
     BCS Bank0_Label_DDA5
     CMP #$28
     BCC Bank0_Label_DDA5
-    JSR Bank0_Func_8987
+    JSR World1_DirectionTowardPlayer
     ORA #$08
     STA a:World1EntityPrimaryBehavior,X
     AND #$07
@@ -233,7 +233,7 @@ Bank0_Label_DD40:
     STA $A0
     LDA a:$DDCB,Y
     STA $A2
-    JSR Bank0_Func_DE12
+    JSR World1_TestEntityMapCollisionAtOffset
     JSR World1_ReadMapTileAndStepRight
     CMP #$42
     BCS Bank0_Label_DDA0
@@ -252,12 +252,12 @@ Bank0_Label_DDA5:
     LDA World1CameraTileY
     CMP #$50
     BCS Bank0_Label_DDBA
-    JSR Bank0_Func_DE8E
+    JSR World1_EntityDistanceToPlayer
     CMP #$30
     BCS Bank0_Label_DDBA
     LDA a:World1EntityPrimaryBehavior,X
     BNE Bank0_Label_DDBA
-    JSR Bank0_Func_90B0
+    JSR World1_TrySpawnRandomArcProjectile
 
 Bank0_Label_DDBA:
     RTS
@@ -293,13 +293,13 @@ Bank0_Label_DE04:
     JSR World1_FrameRandomByte
     CMP #$10
     BCS Bank0_Label_DE11
-    JSR Bank0_Func_90B0
-    JSR Bank0_Func_9130
+    JSR World1_TrySpawnRandomArcProjectile
+    JSR World1_TrySpawnAimedEnemyProjectile
 
 Bank0_Label_DE11:
     RTS
 
-Bank0_Func_DE12:
+World1_TestEntityMapCollisionAtOffset:
     LDA a:World1EntityPositionHigh,X
     STA $A4
     LDA PpuScrollXShadow
@@ -372,7 +372,7 @@ Bank0_Label_DE6D:
     CMP #$42
     RTS
 
-Bank0_Func_DE8E:
+World1_EntityDistanceToPlayer:
     LDA a:World1EntityPositionHigh,X
     AND #$0F
     BNE Bank0_Label_DEB8

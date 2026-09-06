@@ -5,15 +5,15 @@
       "module_count": 119,
       "total": {
         "global_labels": 3343,
-        "semantic_labels": 983,
-        "neutral_routine_labels": 231,
+        "semantic_labels": 1010,
+        "neutral_routine_labels": 204,
         "neutral_local_labels": 2129
       },
       "by_bank": {
         "0": {
           "global_labels": 1011,
-          "semantic_labels": 299,
-          "neutral_routine_labels": 27,
+          "semantic_labels": 326,
+          "neutral_routine_labels": 0,
           "neutral_local_labels": 685
         },
         "1": {
@@ -38,12 +38,12 @@
     },
     "evidence_backed_prg_symbols": {
       "total": {
-        "semantic_code_symbols": 862,
+        "semantic_code_symbols": 889,
         "operand_symbols": 111
       },
       "by_bank": {
         "0": {
-          "semantic_code_symbols": 264,
+          "semantic_code_symbols": 291,
           "operand_symbols": 33
         },
         "1": {
@@ -85,15 +85,15 @@
       }
     },
     "ram_aliases": {
-      "unique_symbols": 288,
+      "unique_symbols": 293,
       "shared": {
         "symbols": 83,
         "bytes": 155
       },
       "bank_scoped": {
         "0": {
-          "symbols": 93,
-          "bytes": 982
+          "symbols": 98,
+          "bytes": 987
         },
         "1": {
           "symbols": 39,
@@ -110,8 +110,8 @@
       },
       "effective_by_bank": {
         "0": {
-          "symbols": 176,
-          "bytes": 1137
+          "symbols": 181,
+          "bytes": 1142
         },
         "1": {
           "symbols": 122,

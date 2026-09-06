@@ -2,7 +2,7 @@
 ; World 1 underground transient-object allocation and positioning
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank0_Func_D770:
+World1_SpawnBullRoboExplosion:
     LDX #$00
 
 Bank0_Label_D772:

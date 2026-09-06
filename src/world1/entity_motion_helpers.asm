@@ -94,10 +94,10 @@ World1_ReadEntityCenterCollisionProperty:
     LDA a:$DADA,Y
     RTS
 
-Bank0_Func_9065:
-    JSR Bank0_Func_8987
+World1_TrySpawnDirectionalEnemyProjectile:
+    JSR World1_DirectionTowardPlayer
     STA $AA
-    JSR Bank0_Func_91E3
+    JSR World1_AbortProjectileSpawnIfSourceOffscreen
     LDA a:World1EntityType+$0A,X
     BNE Bank0_Label_90AF
     JSR World1_FrameRandomByte
@@ -129,7 +129,7 @@ Bank0_Func_9065:
 Bank0_Label_90AF:
     RTS
 
-Bank0_Func_90B0:
+World1_TrySpawnRandomArcProjectile:
     LDY #$0A
 
 Bank0_Label_90B2:
@@ -142,7 +142,7 @@ Bank0_Label_90B2:
     RTS
 
 Bank0_Label_90BE:
-    JSR Bank0_Func_91E3
+    JSR World1_AbortProjectileSpawnIfSourceOffscreen
     LDA #$02
     STA a:World1EntityType+$0A,Y
     LDA #$32
@@ -189,10 +189,10 @@ Bank0_Label_912E:
     SEC
     RTS
 
-Bank0_Func_9130:
+World1_TrySpawnAimedEnemyProjectile:
     LDA a:World1EntityType+$0A,X
     BNE Bank0_Label_912E
-    JSR Bank0_Func_91E3
+    JSR World1_AbortProjectileSpawnIfSourceOffscreen
     LDA #$00
     STA $AD
     LDA a:World1EntityX,X
@@ -235,7 +235,7 @@ Bank0_Label_9172:
     STA $AE
 
 Bank0_Label_917A:
-    JSR Bank0_Func_91BF
+    JSR World1_ComputeAimedProjectileSlope
     LDA #$03
     STA a:World1EntityType+$0A,X
     LDA #$31
@@ -265,7 +265,7 @@ Bank0_Label_917A:
     CLC
     RTS
 
-Bank0_Func_91BF:
+World1_ComputeAimedProjectileSlope:
     LDA #$00
     STA $AF
     LDA #$08
@@ -296,7 +296,7 @@ Bank0_Label_91DB:
     BNE Bank0_Label_91D6
     RTS
 
-Bank0_Func_91E3:
+World1_AbortProjectileSpawnIfSourceOffscreen:
     LDA a:World1EntityPositionHigh,X
     AND #$0F
     BNE Bank0_Label_91FD

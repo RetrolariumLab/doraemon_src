@@ -62,6 +62,8 @@ WORLD1_CAMERA_ENTITIES := config/world1_camera_entities.json
 WORLD1_PLAYER_CONTROLS := config/world1_player_controls.json
 WORLD1_CORE_ROUTINES := config/world1_core_routines.json
 WORLD1_FRAME_MECHANICS := config/world1_frame_mechanics.json
+WORLD1_ENTITY_HELPERS := config/world1_entity_helpers.json
+WORLD1_FINAL_ROUTINES := config/world1_final_routines.json
 WORLD1_WEAPONS := config/world1_weapons.json
 WORLD1_WEAPON_AUTHORING := data/world1/weapons.json
 WORLD1_UNDERGROUND_ROOMS := config/world1_underground_rooms.json
@@ -134,6 +136,8 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	world1-camera-entities validate-world1-camera-entities \
 	world1-core-routines validate-world1-core-routines \
 	world1-frame-mechanics validate-world1-frame-mechanics \
+	world1-entity-helpers validate-world1-entity-helpers \
+	world1-final-routines validate-world1-final-routines \
 	world1-player-controls validate-world1-player-controls \
 	world1-weapons validate-world1-weapons \
 	world1-underground-rooms validate-world1-underground-rooms \
@@ -388,6 +392,20 @@ validate-world1-frame-mechanics: $(PRG_ASSET) ghidra-analyze
 		--manifest "$(WORLD1_FRAME_MECHANICS)" --symbols "$(SYMBOLS)" \
 		--facts "$(GHIDRA_FACTS_DIR)/bank_0.tsv"
 
+world1-entity-helpers: validate-world1-entity-helpers
+
+validate-world1-entity-helpers: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_ENTITY_HELPERS)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_0.tsv"
+
+world1-final-routines: validate-world1-final-routines
+
+validate-world1-final-routines: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD1_FINAL_ROUTINES)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_0.tsv"
+
 world1-player-controls validate-world1-player-controls: $(PRG_ASSET)
 	$(PYTHON) scripts/world1_player_controls.py --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD1_PLAYER_CONTROLS)" \
@@ -609,6 +627,8 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-world1-camera-entities \
 	validate-world1-core-routines \
 	validate-world1-frame-mechanics \
+	validate-world1-entity-helpers \
+	validate-world1-final-routines \
 	validate-world1-player-controls \
 	validate-world1-weapons \
 	validate-world1-underground-rooms \
