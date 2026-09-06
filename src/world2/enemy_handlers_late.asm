@@ -149,27 +149,27 @@ Bank1_Label_A073:
     STA $67
     JSR World2_RenderEnemyCompositePart
     JSR World2_RenderEnemyCompositePart
-    LDA $60
+    LDA World2MetaspriteOriginX
     CLC
     ADC #$10
-    STA $60
-    LDA $61
+    STA World2MetaspriteOriginX
+    LDA World2MetaspriteOriginY
     SEC
     SBC #$20
-    STA $61
+    STA World2MetaspriteOriginY
     JSR World2_RenderEnemyCompositePart
 
 World2_RenderEnemyCompositePart:
     LDA $67
     JSR World2_RenderEnemyMetaspriteIndex
-    LDA $60
+    LDA World2MetaspriteOriginX
     SEC
     SBC #$10
-    STA $60
-    LDA $61
+    STA World2MetaspriteOriginX
+    LDA World2MetaspriteOriginY
     CLC
     ADC #$08
-    STA $61
+    STA World2MetaspriteOriginY
     INC $67
     RTS
 

@@ -313,8 +313,8 @@
       "bank": 1,
       "start": "0x92EC",
       "end": "0x9660",
-      "path": "world2/collision_and_spawning.asm",
-      "responsibility": "World 2 collision tests, object spawning, and frame services"
+      "path": "world2/collision_and_inventory_rendering.asm",
+      "responsibility": "World 2 metatile collision, player/inventory sprite composition, and OAM services"
     },
     {
       "bank": 1,

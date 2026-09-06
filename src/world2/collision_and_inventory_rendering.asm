@@ -1,15 +1,15 @@
 ; Doraemon PRG bank 1 $92EC-$9660
-; World 2 collision tests, object spawning, and frame services
+; World 2 metatile collision, player/inventory sprite composition, and OAM services
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank1_Func_92EC:
-    STA $94
+World2_RenderSlot2VerticalAttackSegment:
+    STA World2OamY
     LDA a:$9326,X
     PHA
     AND #$0F
     CLC
     ADC #$9F
-    STA $95
+    STA World2OamTile
     PLA
     BPL Bank1_Label_9300
     LDA #$82
@@ -19,19 +19,19 @@ Bank1_Label_9300:
     LDA #$02
 
 Bank1_Label_9302:
-    STA $96
-    LDA $60
-    JMP Bank1_Func_96BA
+    STA World2OamAttributes
+    LDA World2MetaspriteOriginX
+    JMP World2_SetSpriteXBeforeFlickerEmit
 
-Bank1_Func_9309:
+World2_PrepareSlot2HorizontalAttackSegment:
     LDA World2InventoryY+$02
-    STA $94
+    STA World2OamY
     LDA a:$9326,X
     PHA
     AND #$0F
     CLC
     ADC #$A9
-    STA $95
+    STA World2OamTile
     PLA
     BPL Bank1_Label_931F
     LDA #$42
@@ -41,8 +41,8 @@ Bank1_Label_931F:
     LDA #$02
 
 Bank1_Label_9321:
-    STA $96
-    LDA $60
+    STA World2OamAttributes
+    LDA World2MetaspriteOriginX
     RTS
     .byte $00, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $00, $02, $03, $82, $00
     .byte $00, $00, $00, $00, $00, $04, $03, $84, $00, $00, $00, $00, $00, $05, $06, $07
@@ -94,24 +94,24 @@ Bank1_Label_9388:
 World2_CollisionBitMasks:
     .byte $80, $40, $20, $10, $08, $04, $02, $01
 
-Bank1_Func_93B7:
-    JSR Bank1_Func_9606
-    JSR Bank1_Func_9573
-    JSR Bank1_Func_95B4
-    JSR Bank1_Func_9534
-    JSR Bank1_Func_94FE
-    JSR Bank1_Func_9530
-    JSR Bank1_Func_93EC
-    JSR Bank1_Func_94BB
-    JMP Bank1_Func_9450
+World2_RenderPlayerAndInventory:
+    JSR World2_RenderPlayer
+    JSR World2_RenderInventorySlot0
+    JSR World2_RenderInventorySlot1
+    JSR World2_RenderInventorySlot2Or5
+    JSR World2_RenderInventorySlot3
+    JSR World2_RenderInventorySlot5
+    JSR World2_RenderPlayerDamageEffect
+    JSR World2_RenderInventorySlot6
+    JMP World2_RenderInventorySlot4
 
-Bank1_Func_93D2:
+World2_FindFreeOamEntry:
     LDY #$00
 
 Bank1_Label_93D4:
     LDA a:OamBuffer,Y
     CMP #$F8
-    BEQ Bank1_Func_93E3
+    BEQ World2_ReturnOamAvailable
     INY
     INY
     INY
@@ -120,20 +120,20 @@ Bank1_Label_93D4:
     SEC
     RTS
 
-Bank1_Func_93E3:
+World2_ReturnOamAvailable:
     CLC
     RTS
 
-Bank1_Func_93E5:
-    JSR Bank1_Func_94FE
-    JSR Bank1_Func_9534
+World2_RenderPriorityInventorySlots2And3:
+    JSR World2_RenderInventorySlot3
+    JSR World2_RenderInventorySlot2Or5
     RTS
 
-Bank1_Func_93EC:
+World2_RenderPlayerDamageEffect:
     LDA World2PlayerDamageEffect
     BEQ Bank1_Label_942F
     AND #$01
-    LDX $42
+    LDX World2ScrollDirection
     BEQ Bank1_Label_941A
     DEX
     BEQ Bank1_Label_9408
@@ -144,7 +144,7 @@ Bank1_Func_93EC:
     CLC
     ADC #$18
     STA $68
-    JMP Bank1_Func_9430
+    JMP World2_RenderTwoSpriteEffectAtProbePosition
 
 Bank1_Label_9408:
     CLC
@@ -156,7 +156,7 @@ Bank1_Label_9408:
     SEC
     SBC #$10
     STA $68
-    JMP Bank1_Func_9430
+    JMP World2_RenderTwoSpriteEffectAtProbePosition
 
 Bank1_Label_941A:
     CLC
@@ -170,17 +170,17 @@ Bank1_Label_941A:
     CLC
     ADC #$10
     STA $67
-    JSR Bank1_Func_9430
+    JSR World2_RenderTwoSpriteEffectAtProbePosition
 
 Bank1_Label_942F:
     RTS
 
-Bank1_Func_9430:
+World2_RenderTwoSpriteEffectAtProbePosition:
     LDA $67
-    STA $60
+    STA World2MetaspriteOriginX
     STX $67
     LDA $68
-    STA $61
+    STA World2MetaspriteOriginY
     LDA #$00
     CPX #$02
     BCC Bank1_Label_9446
@@ -189,25 +189,25 @@ Bank1_Func_9430:
     LDA #$80
 
 Bank1_Label_9446:
-    STA $62
-    JSR Bank1_Func_93D2
+    STA World2MetaspriteAttributes
+    JSR World2_FindFreeOamEntry
     BCS Bank1_Label_9498
     JMP Bank1_Label_946F
 
-Bank1_Func_9450:
+World2_RenderInventorySlot4:
     LDX #$04
     LDA World2InventoryState,X
     BEQ Bank1_Label_9498
     CMP #$03
     BEQ Bank1_Label_9498
-    JSR Bank1_Func_93D2
+    JSR World2_FindFreeOamEntry
     BCS Bank1_Label_9498
     LDA #$00
-    STA $62
+    STA World2MetaspriteAttributes
     LDA World2InventoryX,X
-    STA $60
+    STA World2MetaspriteOriginX
     LDA World2InventoryY,X
-    STA $61
+    STA World2MetaspriteOriginY
     LDA #$00
     STA $67
 
@@ -216,25 +216,25 @@ Bank1_Label_946F:
     ASL A
     ASL A
     TAX
-    JSR Bank1_Func_9477
+    JSR World2_RenderTwoSpriteEffectRow
 
-Bank1_Func_9477:
-    JSR Bank1_Func_9499
+World2_RenderTwoSpriteEffectRow:
+    JSR World2_EmitEffectTableSprite
     LDA $67
     CMP #$04
     BCS Bank1_Label_9486
-    LDA $62
+    LDA World2MetaspriteAttributes
     EOR #$40
-    STA $62
+    STA World2MetaspriteAttributes
 
 Bank1_Label_9486:
-    JSR Bank1_Func_9499
+    JSR World2_EmitEffectTableSprite
     LDA $67
     CMP #$04
     BCS Bank1_Label_9495
-    LDA $62
+    LDA World2MetaspriteAttributes
     EOR #$40
-    STA $62
+    STA World2MetaspriteAttributes
 
 Bank1_Label_9495:
     JMP Bank1_Label_9560
@@ -242,97 +242,97 @@ Bank1_Label_9495:
 Bank1_Label_9498:
     RTS
 
-Bank1_Func_9499:
-    LDA $61
-    STA $94
+World2_EmitEffectTableSprite:
+    LDA World2MetaspriteOriginY
+    STA World2OamY
     LDA a:$978D,X
-    STA $95
-    LDA $62
-    STA $96
-    LDA $60
-    STA $97
+    STA World2OamTile
+    LDA World2MetaspriteAttributes
+    STA World2OamAttributes
+    LDA World2MetaspriteOriginX
+    STA World2OamX
     LDA a:$978D,X
     BEQ Bank1_Label_94B2
-    JSR Bank1_Func_96C8
+    JSR World2_EmitOamEntry
 
 Bank1_Label_94B2:
     INX
-    LDA $97
+    LDA World2OamX
     CLC
     ADC #$08
-    STA $60
+    STA World2MetaspriteOriginX
     RTS
 
-Bank1_Func_94BB:
+World2_RenderInventorySlot6:
     LDA World2InventoryState+$06
     BEQ Bank1_Label_94FD
     CMP #$03
     BEQ Bank1_Label_94FD
-    JSR Bank1_Func_93E3
+    JSR World2_ReturnOamAvailable
     BCS Bank1_Label_94FD
     LDA World2InventoryX+$06
-    STA $97
+    STA World2OamX
     LDA World2InventoryY+$06
-    STA $94
+    STA World2OamY
     LDA #$3E
-    STA $95
+    STA World2OamTile
     LDX #$00
-    JSR Bank1_Func_94ED
-    JSR Bank1_Func_94ED
-    LDA $97
+    JSR World2_EmitInventorySlot6Sprite
+    JSR World2_EmitInventorySlot6Sprite
+    LDA World2OamX
     SEC
     SBC #$10
-    STA $97
-    LDA $94
+    STA World2OamX
+    LDA World2OamY
     CLC
     ADC #$08
-    STA $94
-    JSR Bank1_Func_94ED
+    STA World2OamY
+    JSR World2_EmitInventorySlot6Sprite
 
-Bank1_Func_94ED:
+World2_EmitInventorySlot6Sprite:
     LDA a:$97A5,X
-    STA $96
-    JSR Bank1_Func_96C8
-    LDA $97
+    STA World2OamAttributes
+    JSR World2_EmitOamEntry
+    LDA World2OamX
     CLC
     ADC #$08
-    STA $97
+    STA World2OamX
     INX
 
 Bank1_Label_94FD:
     RTS
 
-Bank1_Func_94FE:
+World2_RenderInventorySlot3:
     LDX #$03
     LDA World2InventoryState,X
     BEQ Bank1_Label_956E
     CMP #$03
     BEQ Bank1_Label_956E
-    JSR Bank1_Func_93E3
+    JSR World2_ReturnOamAvailable
     BCS Bank1_Label_956E
     LDA World2InventoryX,X
-    STA $97
+    STA World2OamX
     LDA World2InventoryY,X
-    STA $94
+    STA World2OamY
     LDA #$01
-    STA $96
+    STA World2OamAttributes
     LDA #$EA
-    STA $95
-    JSR Bank1_Func_96C8
-    LDA $97
+    STA World2OamTile
+    JSR World2_EmitOamEntry
+    LDA World2OamX
     CLC
     ADC #$08
-    STA $97
-    LDA $96
+    STA World2OamX
+    LDA World2OamAttributes
     ORA #$40
-    STA $96
-    JMP Bank1_Func_96C8
+    STA World2OamAttributes
+    JMP World2_EmitOamEntry
 
-Bank1_Func_9530:
+World2_RenderInventorySlot5:
     LDX #$05
     BNE Bank1_Label_9536
 
-Bank1_Func_9534:
+World2_RenderInventorySlot2Or5:
     LDX #$02
 
 Bank1_Label_9536:
@@ -340,41 +340,41 @@ Bank1_Label_9536:
     BEQ Bank1_Label_956E
     CMP #$03
     BEQ Bank1_Label_956E
-    JSR Bank1_Func_93D2
+    JSR World2_FindFreeOamEntry
     BCS Bank1_Label_956E
     LDA a:$956D,X
-    STA $62
+    STA World2MetaspriteAttributes
     LDA World2InventoryX,X
-    STA $60
+    STA World2MetaspriteOriginX
     LDA World2InventoryY,X
-    STA $61
+    STA World2MetaspriteOriginY
     TXA
     ASL A
     ASL A
     CLC
     ADC #$94
     TAX
-    JSR Bank1_Func_955A
+    JSR World2_RenderTwoSpriteInventoryRow
 
-Bank1_Func_955A:
-    JSR Bank1_Func_966B
-    JSR Bank1_Func_966B
+World2_RenderTwoSpriteInventoryRow:
+    JSR World2_EmitInventorySprite
+    JSR World2_EmitInventorySprite
 
 Bank1_Label_9560:
-    LDA $60
+    LDA World2MetaspriteOriginX
     SEC
     SBC #$10
-    STA $60
-    LDA $61
+    STA World2MetaspriteOriginX
+    LDA World2MetaspriteOriginY
     CLC
     ADC #$08
-    STA $61
+    STA World2MetaspriteOriginY
 
 Bank1_Label_956E:
     RTS
     .byte $01, $01, $00, $00
 
-Bank1_Func_9573:
+World2_RenderInventorySlot0:
     LDA World2InventoryState
     BEQ Bank1_Label_956E
     LDY #$30
@@ -388,9 +388,9 @@ Bank1_Func_9573:
 
 Bank1_Label_9586:
     LDA World2InventoryX
-    STA $60
+    STA World2MetaspriteOriginX
     LDA World2InventoryY
-    STA $61
+    STA World2MetaspriteOriginY
     JMP Bank1_Label_95F8
 
 Bank1_Label_9591:
@@ -402,13 +402,13 @@ Bank1_Label_9591:
 
 Bank1_Label_959A:
     TAX
-    LDA a:$0200,X
-    STA $60
+    LDA a:World2PlayerXHistory,X
+    STA World2MetaspriteOriginX
     STA World2InventoryX
-    LDA a:$0230,X
-    STA $61
+    LDA a:World2PlayerYHistory,X
+    STA World2MetaspriteOriginY
     STA World2InventoryY
-    LDA $42
+    LDA World2ScrollDirection
     ASL A
     CLC
     ADC #$12
@@ -418,7 +418,7 @@ Bank1_Label_959A:
 Bank1_Label_95B3:
     RTS
 
-Bank1_Func_95B4:
+World2_RenderInventorySlot1:
     LDA World2InventoryState+$01
     BEQ Bank1_Label_95B3
     LDY #$18
@@ -432,9 +432,9 @@ Bank1_Func_95B4:
 
 Bank1_Label_95C7:
     LDA World2InventoryX+$01
-    STA $60
+    STA World2MetaspriteOriginX
     LDA World2InventoryY+$01
-    STA $61
+    STA World2MetaspriteOriginY
     JMP Bank1_Label_95F8
 
 Bank1_Label_95D2:
@@ -446,13 +446,13 @@ Bank1_Label_95D2:
 
 Bank1_Label_95DB:
     TAX
-    LDA a:$0200,X
-    STA $60
+    LDA a:World2PlayerXHistory,X
+    STA World2MetaspriteOriginX
     STA World2InventoryX+$01
-    LDA a:$0230,X
-    STA $61
+    LDA a:World2PlayerYHistory,X
+    STA World2MetaspriteOriginY
     STA World2InventoryY+$01
-    LDA $42
+    LDA World2ScrollDirection
     ASL A
     CLC
     ADC #$0A
@@ -466,7 +466,7 @@ Bank1_Label_95F1:
 
 Bank1_Label_95F8:
     LDA #$21
-    STA $62
+    STA World2MetaspriteAttributes
     TXA
     STA $98
     ASL A
@@ -475,10 +475,10 @@ Bank1_Label_95F8:
     TAX
     BNE Bank1_Label_965B
 
-Bank1_Func_9606:
+World2_RenderPlayer:
     LDY #$00
     LDA #$00
-    STA $62
+    STA World2MetaspriteAttributes
     LDA World2PlayerDefeated
     BNE Bank1_Label_9619
     LDX World2PlayerDamageTimer
@@ -499,7 +499,7 @@ Bank1_Label_9619:
     BNE Bank1_Label_964C
 
 Bank1_Label_9628:
-    LDA $42
+    LDA World2ScrollDirection
     BEQ Bank1_Label_963D
     TAX
     LDA World2FrameCounter
@@ -533,10 +533,10 @@ Bank1_Label_964C:
     ASL A
     TAX
     LDA World2PlayerX
-    STA $60
+    STA World2MetaspriteOriginX
     LDA World2PlayerY
-    STA $61
+    STA World2MetaspriteOriginY
 
 Bank1_Label_965B:
-    JSR Bank1_Func_9661
-    JSR Bank1_Func_9661
+    JSR World2_RenderMetaspriteRow
+    JSR World2_RenderMetaspriteRow

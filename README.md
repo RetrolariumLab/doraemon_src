@@ -131,6 +131,9 @@ make validate-world1-final-routines # validate final Bank 0 routine/RAM naming
 make validate-world2-frame-core # validate World 2 frame/stage core naming
 make validate-world2-player-systems # validate World 2 player/inventory/fire naming
 make validate-world2-screen-core # validate World 2 NMI/screen/PPU core naming
+make validate-world2-projectile-runtime # validate World 2 projectile/attack runtime
+make validate-world2-sprite-runtime # validate World 2 player/inventory/OAM renderer
+make validate-world2-final-routines # validate final Bank 1 routine/RAM naming
 make validate-debug-symbols # verify ld65 symbols and generated FCEUX name lists
 make source-audit       # validate reconstruction milestones and evidence
 make runtime-architecture # capture and validate reset/NMI/mapper evidence

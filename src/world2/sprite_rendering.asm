@@ -2,88 +2,88 @@
 ; World 2 metasprite composition, OAM placement, and entity spawning
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank1_Func_9661:
-    JSR Bank1_Func_9688
-    JSR Bank1_Func_9688
+World2_RenderMetaspriteRow:
+    JSR World2_EmitDirectionalMetaspriteSprite
+    JSR World2_EmitDirectionalMetaspriteSprite
     JMP Bank1_Label_9560
 
 Bank1_Label_966A:
     RTS
 
-Bank1_Func_966B:
-    LDA $61
-    STA $94
+World2_EmitInventorySprite:
+    LDA World2MetaspriteOriginY
+    STA World2OamY
     LDA a:$96E1,X
-    STA $95
-    LDA $62
-    STA $96
-    LDA $60
-    STA $97
+    STA World2OamTile
+    LDA World2MetaspriteAttributes
+    STA World2OamAttributes
+    LDA World2MetaspriteOriginX
+    STA World2OamX
     INX
-    JSR Bank1_Func_96C8
-    LDA $97
+    JSR World2_EmitOamEntry
+    LDA World2OamX
     CLC
     ADC #$08
-    STA $60
+    STA World2MetaspriteOriginX
     RTS
 
-Bank1_Func_9688:
-    LDA $61
-    STA $94
+World2_EmitDirectionalMetaspriteSprite:
+    LDA World2MetaspriteOriginY
+    STA World2OamY
     LDA a:$96E1,X
     BPL Bank1_Label_969B
     AND #$7F
-    STA $95
-    LDA $62
+    STA World2OamTile
+    LDA World2MetaspriteAttributes
     ORA #$40
     BNE Bank1_Label_969F
 
 Bank1_Label_969B:
-    STA $95
-    LDA $62
+    STA World2OamTile
+    LDA World2MetaspriteAttributes
 
 Bank1_Label_969F:
-    STA $96
-    LDA $60
-    STA $97
+    STA World2OamAttributes
+    LDA World2MetaspriteOriginX
+    STA World2OamX
     INX
-    JSR Bank1_Func_96BC
-    LDA $97
+    JSR World2_EmitFlickerSelectedOamEntry
+    LDA World2OamX
     CLC
     ADC #$08
-    STA $60
+    STA World2MetaspriteOriginX
     RTS
 
-Bank1_Func_96B1:
-    STA $95
+World2_PreparePlayerProjectileSprite:
+    STA World2OamTile
     LDA #$02
-    STA $96
+    STA World2OamAttributes
     LDA a:World2PlayerProjectileX,X
 
-Bank1_Func_96BA:
-    STA $97
+World2_SetSpriteXBeforeFlickerEmit:
+    STA World2OamX
 
-Bank1_Func_96BC:
+World2_EmitFlickerSelectedOamEntry:
     TYA
     EOR World2SpriteFlickerPhase
     TAY
-    JSR Bank1_Func_96C8
+    JSR World2_EmitOamEntry
     TYA
     EOR World2SpriteFlickerPhase
     TAY
     RTS
 
-Bank1_Func_96C8:
-    LDA $94
+World2_EmitOamEntry:
+    LDA World2OamY
     STA a:OamBuffer,Y
     INY
-    LDA $95
+    LDA World2OamTile
     STA a:OamBuffer,Y
     INY
-    LDA $96
+    LDA World2OamAttributes
     STA a:OamBuffer,Y
     INY
-    LDA $97
+    LDA World2OamX
     STA a:OamBuffer,Y
     INY
     RTS
@@ -275,7 +275,7 @@ Bank1_Label_98CB:
     RTS
 
 Bank1_Label_98D6:
-    LDA $42
+    LDA World2ScrollDirection
     BEQ Bank1_Label_98DE
     LDA #$01
     BNE Bank1_Label_98E0
@@ -289,7 +289,7 @@ Bank1_Label_98E0:
     STA a:World2EnemyState,X
     LDA $75
     STA a:World2EnemyX,X
-    LDA $42
+    LDA World2ScrollDirection
     STA a:World2EnemyBehaviorParameter,X
     JSR World2_ClearEnemyCombatCounters
     LDX $75

@@ -16,8 +16,8 @@
 .include "../world2/player_weapons.asm"
 ; $8F4B-$92EB: World 2 enemy and projectile behavior handlers
 .include "../world2/enemies_and_projectiles.asm"
-; $92EC-$9660: World 2 collision tests, object spawning, and frame services
-.include "../world2/collision_and_spawning.asm"
+; $92EC-$9660: World 2 metatile collision, player/inventory sprite composition, and OAM services
+.include "../world2/collision_and_inventory_rendering.asm"
 ; $9661-$98F7: World 2 metasprite composition, OAM placement, and entity spawning
 .include "../world2/sprite_rendering.asm"
 ; $98F8-$9B45: World 2 entity-pool clearing, enemy traversal, and collision dispatch

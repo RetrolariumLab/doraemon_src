@@ -97,7 +97,7 @@ Bank1_Label_8CD6:
     RTS
 
 World2_UpdateDetachedInventorySlot2To6:
-    LDY $42
+    LDY World2ScrollDirection
     BEQ Bank1_Label_8CEE
     DEY
     BEQ Bank1_Label_8CE5
@@ -113,7 +113,7 @@ Bank1_Label_8CE5:
     RTS
 
 Bank1_Label_8CEE:
-    LDA $45
+    LDA World2HorizontalTransitionDelay
     BNE Bank1_Label_8D00
     DEC World2InventoryX,X
     BNE Bank1_Label_8D00
@@ -145,7 +145,7 @@ World2_UpdateInventorySlot1:
 
 Bank1_Label_8D1A:
     TAX
-    LDA a:$0200,X
+    LDA a:World2PlayerXHistory,X
     CMP World2InventoryX+$01
     BEQ Bank1_Label_8D2B
     BCS Bank1_Label_8D28
@@ -157,7 +157,7 @@ Bank1_Label_8D28:
     INY
 
 Bank1_Label_8D2B:
-    LDA a:$0230,X
+    LDA a:World2PlayerYHistory,X
     CMP World2InventoryY+$01
     BEQ Bank1_Label_8D3B
     BCS Bank1_Label_8D38
@@ -196,7 +196,7 @@ Bank1_Label_8D5D:
     RTS
 
 World2_UpdateDetachedInventorySlot1:
-    LDY $42
+    LDY World2ScrollDirection
     BEQ Bank1_Label_8D75
     DEY
     BEQ Bank1_Label_8D6C
@@ -212,7 +212,7 @@ Bank1_Label_8D6C:
     RTS
 
 Bank1_Label_8D75:
-    LDA $45
+    LDA World2HorizontalTransitionDelay
     BNE Bank1_Label_8D87
     DEC World2InventoryX+$01
     BNE Bank1_Label_8D87
@@ -244,7 +244,7 @@ World2_UpdateInventorySlot0:
 
 Bank1_Label_8DA1:
     TAX
-    LDA a:$0200,X
+    LDA a:World2PlayerXHistory,X
     CMP World2InventoryX
     BEQ Bank1_Label_8DB2
     BCS Bank1_Label_8DAF
@@ -256,7 +256,7 @@ Bank1_Label_8DAF:
     INY
 
 Bank1_Label_8DB2:
-    LDA a:$0230,X
+    LDA a:World2PlayerYHistory,X
     CMP World2InventoryY
     BEQ Bank1_Label_8DC2
     BCS Bank1_Label_8DBF
@@ -295,7 +295,7 @@ Bank1_Label_8DE4:
     RTS
 
 World2_UpdateDetachedInventorySlot0:
-    LDY $42
+    LDY World2ScrollDirection
     BEQ Bank1_Label_8DFC
     DEY
     BEQ Bank1_Label_8DF3
@@ -311,7 +311,7 @@ Bank1_Label_8DF3:
     RTS
 
 Bank1_Label_8DFC:
-    LDA $45
+    LDA World2HorizontalTransitionDelay
     BNE Bank1_Label_8E0E
     DEC World2InventoryX
     BNE Bank1_Label_8E0E
@@ -334,19 +334,19 @@ World2_RecordPlayerPositionHistory:
 
 Bank1_Label_8E16:
     LDA World2PlayerX
-    CMP a:$0200,X
+    CMP a:World2PlayerXHistory,X
     BNE Bank1_Label_8E25
     LDA World2PlayerY
-    CMP a:$0230,X
+    CMP a:World2PlayerYHistory,X
     BNE Bank1_Label_8E25
     RTS
 
 Bank1_Label_8E25:
     LDX World2PlayerHistoryWriteIndex
     LDA World2PlayerX
-    STA a:$0200,X
+    STA a:World2PlayerXHistory,X
     LDA World2PlayerY
-    STA a:$0230,X
+    STA a:World2PlayerYHistory,X
     INX
     TXA
     CMP #$30
@@ -482,18 +482,18 @@ Bank1_Label_8EED:
 
 Bank1_Label_8EF6:
     TAY
-    LDA a:$0200,Y
+    LDA a:World2PlayerXHistory,Y
     CLC
     ADC #$04
     STA a:World2PlayerProjectileX,X
-    LDA a:$0230,Y
+    LDA a:World2PlayerYHistory,Y
     CLC
     ADC #$08
     STA a:World2PlayerProjectileY,X
     JMP Bank1_Label_8F40
 
 Bank1_Label_8F0C:
-    JSR Bank1_Func_8F4B
+    JSR World2_TryStartInventorySlot0Projectile
     LDA DemoModeActive
     BNE Bank1_Label_8F19
     LDA World2InventoryState+$02
@@ -501,7 +501,7 @@ Bank1_Label_8F0C:
     BNE Bank1_Label_8F1C
 
 Bank1_Label_8F19:
-    JMP Bank1_Func_8F80
+    JMP World2_StartInventorySlot2Attack
 
 Bank1_Label_8F1C:
     LDX #$03

@@ -7,7 +7,7 @@ Bank1_World2Main:
     TXS
     LDA #$00
     STA World2InventoryState+$06
-    STA $A3
+    STA World2InventorySlot5PickupCount
     STA World2MicrophoneAttackUsed
     STA DemoModeActive
 
@@ -30,7 +30,7 @@ Bank1_Label_88B7:
     LDA #$00
     STA World2MicrophoneHoldCounter
     STA World2ScrollY
-    STA $44
+    STA World2VerticalTransitionDelay
     STA World2ScrollX
     STA World2TakkonDefeatStreak
     STA World2StageBranchCooldown
@@ -40,15 +40,15 @@ Bank1_Label_88B7:
     STA World2SpriteFlickerPhase
     STA World2CompanionFireCounter
     STA World2CompanionFirePhase
-    STA $6A
-    STA $6F
-    STA $45
-    STA $42
-    STA $43
+    STA World2InventorySlot2AttackActive
+    STA World2InventorySlot0ProjectileActive
+    STA World2HorizontalTransitionDelay
+    STA World2ScrollDirection
+    STA World2PendingScrollDirection
     STA World2PlayerDamageTimer
-    STA $9C
+    STA World2PlayerHazardContact
     STA World2InventoryDropHitCounter
-    STA $A1
+    STA World2InventorySlot0ProjectileAimPhase
     STA World2InventoryState
     STA World2InventoryState+$01
     STA World2ScrollingActive
@@ -109,12 +109,12 @@ Bank1_World2FrameLoop:
     JSR World2_UpdateEnemies
     JSR World2_UpdateEnemyProjectiles
     JSR World2_UpdateBossEncounter
-    JSR Bank1_Func_8FA2
+    JSR World2_ScanPlayerHazardContacts
     JSR World2_CheckStageBranch
     JSR World2_UpdateInventorySpawns
     JSR World2_RenderFrame
     JSR World2_UpdateMicrophoneAttackAndExtraLifeSound
-    JSR Bank1_Func_A612
+    JSR World2_CheckChapterCompletionExit
     LDA World2ChapterComplete
     BNE Bank1_Label_89D1
     LDA World2StageComplete
@@ -213,12 +213,12 @@ World2_WaitAndRenderFrame:
 
 World2_RenderFrame:
     JSR World2_HideAllSpriteBuffers
-    JSR Bank1_Func_91CD
-    JSR Bank1_Func_93E5
-    JSR Bank1_Func_A304
-    JSR Bank1_Func_A2CA
-    JSR Bank1_Func_93B7
-    JMP Bank1_Func_A753
+    JSR World2_RenderProjectilesAndInventoryAttacks
+    JSR World2_RenderPriorityInventorySlots2And3
+    JSR World2_RenderEnemies
+    JSR World2_RenderEnemyProjectiles
+    JSR World2_RenderPlayerAndInventory
+    JMP World2_RenderHud
 
 World2_EnterWorld3:
     LDA World2InventoryState+$06
@@ -328,10 +328,10 @@ World2_ResetAudioHardware:
     RTS
 
 World2_LoadInitialPlayerHealth:
-    STX $76
+    STX World2SavedEntitySlot
     LDX PlayerHealthCapacityIndex
     LDA a:$8AD8,X
-    LDX $76
+    LDX World2SavedEntitySlot
     RTS
     .byte $18, $14, $10, $0C, $08
 
@@ -350,9 +350,9 @@ World2_InitializeStagePresentation:
     STA World2ScreenRowIndex
     LDA #$00
     STA World2ScrollY
-    STA $44
+    STA World2VerticalTransitionDelay
     STA World2ScrollX
-    STA $42
+    STA World2ScrollDirection
     STA World2ScrollingActive
     LDA #$F0
     STA World2ScrollX
@@ -481,19 +481,19 @@ World2_UpdatePlayerAndInventory:
     ROL A
     BCS Bank1_Label_8BDF
     LDA #$00
-    STA $9C
+    STA World2PlayerHazardContact
 
 Bank1_Label_8BDF:
-    LDA $9C
+    LDA World2PlayerHazardContact
     BEQ Bank1_Label_8C3B
     STA $B0
     LDA #$00
-    STA $9C
+    STA World2PlayerHazardContact
     LDA World2InventoryState+$04
     CMP #$03
     BEQ Bank1_Label_8C18
     LDA #$00
-    STA $6A
+    STA World2InventorySlot2AttackActive
     LDA #$0C
     JSR World2_Audio_QueueEffectWithPriority
     LDA #$78

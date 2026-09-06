@@ -27,7 +27,7 @@ Bank1_Label_9B64:
     CMP a:World2EnemyX,X
     LDA #$00
     ROL A
-    STA $63
+    STA World2MetaspriteFlipMask
     LDA $98
     JMP World2_RenderEnemyMetaspriteIndex
 
@@ -141,7 +141,7 @@ World2_RenderMidron:
     LSR A
     TAX
     LDA a:$9C28,X
-    LDX $76
+    LDX World2SavedEntitySlot
     JMP World2_RenderEnemyMetaspriteIndex
     .byte $04, $05, $06, $05
 
@@ -278,14 +278,14 @@ Bank1_Label_9CF7:
     LDA a:World2EnemyPhaseCounter,X
     CMP #$54
     BCS Bank1_Label_9D00
-    INC $63
+    INC World2MetaspriteFlipMask
 
 Bank1_Label_9D00:
     LDA $98
     JMP World2_RenderEnemyMetaspriteIndex
 
 World2_UpdateGurinko:
-    JSR Bank1_Func_9DE4
+    JSR World2_ApplyScrollingTwiceToEnemy
     LDA a:World2EnemyState,X
     BEQ Bank1_Label_9D35
     INC a:World2EnemyPhaseCounter,X

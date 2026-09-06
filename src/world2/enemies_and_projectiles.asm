@@ -2,49 +2,49 @@
 ; World 2 enemy and projectile behavior handlers
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank1_Func_8F4B:
+World2_TryStartInventorySlot0Projectile:
     LDA World2InventoryState
     CMP #$03
     BNE Bank1_Label_8F7F
-    LDA $6F
+    LDA World2InventorySlot0ProjectileActive
     BNE Bank1_Label_8F7F
-    INC $6F
+    INC World2InventorySlot0ProjectileActive
     LDA World2InventoryX
     CLC
     ADC #$04
-    STA $70
+    STA World2InventorySlot0ProjectileX
     LDA World2InventoryY
     CLC
     ADC #$0A
-    STA $71
-    LDA $42
+    STA World2InventorySlot0ProjectileY
+    LDA World2ScrollDirection
     BEQ Bank1_Label_8F7B
-    LDA $A1
+    LDA World2InventorySlot0ProjectileAimPhase
     EOR #$01
-    STA $A1
+    STA World2InventorySlot0ProjectileAimPhase
     BEQ Bank1_Label_8F76
     LDA #$0B
-    STA $72
+    STA World2InventorySlot0ProjectileDirection
     RTS
 
 Bank1_Label_8F76:
     LDA #$05
-    STA $72
+    STA World2InventorySlot0ProjectileDirection
     RTS
 
 Bank1_Label_8F7B:
     LDA #$02
-    STA $72
+    STA World2InventorySlot0ProjectileDirection
 
 Bank1_Label_8F7F:
     RTS
 
-Bank1_Func_8F80:
-    LDA $6A
+World2_StartInventorySlot2Attack:
+    LDA World2InventorySlot2AttackActive
     BNE Bank1_Label_8FA1
     LDA #$0A
     JSR World2_Audio_QueueEffectWithPriority
-    INC $6A
+    INC World2InventorySlot2AttackActive
     LDA World2PlayerX
     CLC
     ADC #$04
@@ -54,16 +54,16 @@ Bank1_Func_8F80:
     ADC #$08
     STA World2InventoryY+$02
     LDA #$00
-    STA $6B
-    LDA $42
-    STA $6E
+    STA World2InventorySlot2AttackPhase
+    LDA World2ScrollDirection
+    STA World2InventorySlot2AttackDirection
 
 Bank1_Label_8FA1:
     RTS
 
-Bank1_Func_8FA2:
+World2_ScanPlayerHazardContacts:
     LDA #$00
-    STA $9C
+    STA World2PlayerHazardContact
     LDA World2PlayerDamageTimer
     BNE Bank1_Label_8FA1
     LDA World2PlayerX
@@ -78,7 +78,7 @@ Bank1_Func_8FA2:
     BEQ Bank1_Label_8FC3
     LDA World2StageIndex
     ORA #$80
-    STA $9C
+    STA World2PlayerHazardContact
 
 Bank1_Label_8FC3:
     LDA World2PlayerDamageTimer
@@ -111,7 +111,7 @@ Bank1_Label_8FD8:
     BCC Bank1_Label_9006
     CMP #$10
     BCS Bank1_Label_9006
-    INC $9C
+    INC World2PlayerHazardContact
     LDA a:World2EnemyState,X
     CMP #$10
     BCS Bank1_Label_9009
@@ -144,7 +144,7 @@ Bank1_Label_900B:
     BCC Bank1_Label_9032
     CMP #$0E
     BCS Bank1_Label_9032
-    INC $9C
+    INC World2PlayerHazardContact
     LDA #$00
     STA a:World2EnemyProjectileY,X
 
@@ -154,8 +154,8 @@ Bank1_Label_9032:
     RTS
 
 World2_UpdatePlayerProjectiles:
-    JSR Bank1_Func_9177
-    JSR Bank1_Func_912F
+    JSR World2_UpdateInventorySlot2Attack
+    JSR World2_UpdateInventorySlot0Projectile
     LDX #$06
 
 Bank1_Label_903E:
@@ -166,7 +166,7 @@ Bank1_Label_903E:
 Bank1_Label_9046:
     INC a:World2PlayerProjectileState,X
     BMI Bank1_Label_9071
-    LDY $42
+    LDY World2ScrollDirection
     BEQ Bank1_Label_909F
     DEY
     BEQ Bank1_Label_9074
@@ -174,11 +174,11 @@ Bank1_Label_9046:
     BEQ Bank1_Label_9067
     CMP #$01
     BEQ Bank1_Label_9061
-    JSR Bank1_Func_90DF
+    JSR World2_MovePlayerProjectileDownLeft
     JMP Bank1_Label_9093
 
 Bank1_Label_9061:
-    JSR Bank1_Func_90E5
+    JSR World2_MovePlayerProjectileDownRight
     JMP Bank1_Label_9093
 
 Bank1_Label_9067:
@@ -196,11 +196,11 @@ Bank1_Label_9074:
     BEQ Bank1_Label_9089
     CMP #$01
     BEQ Bank1_Label_9083
-    JSR Bank1_Func_90D9
+    JSR World2_MovePlayerProjectileUpRight
     JMP Bank1_Label_9093
 
 Bank1_Label_9083:
-    JSR Bank1_Func_90EB
+    JSR World2_MovePlayerProjectileUpLeft
     JMP Bank1_Label_9093
 
 Bank1_Label_9089:
@@ -222,11 +222,11 @@ Bank1_Label_909F:
     BEQ Bank1_Label_90B4
     CMP #$01
     BEQ Bank1_Label_90AE
-    JSR Bank1_Func_90E5
+    JSR World2_MovePlayerProjectileDownRight
     JMP Bank1_Label_9093
 
 Bank1_Label_90AE:
-    JSR Bank1_Func_90D9
+    JSR World2_MovePlayerProjectileUpRight
     JMP Bank1_Label_9093
 
 Bank1_Label_90B4:
@@ -256,23 +256,23 @@ Bank1_Label_90D2:
 Bank1_Label_90D8:
     RTS
 
-Bank1_Func_90D9:
-    JSR Bank1_Func_90FF
-    JMP Bank1_Func_910D
+World2_MovePlayerProjectileUpRight:
+    JSR World2_MovePlayerProjectileRight
+    JMP World2_MovePlayerProjectileUp
 
-Bank1_Func_90DF:
-    JSR Bank1_Func_90F1
-    JMP Bank1_Func_911B
+World2_MovePlayerProjectileDownLeft:
+    JSR World2_MovePlayerProjectileLeft
+    JMP World2_MovePlayerProjectileDown
 
-Bank1_Func_90E5:
-    JSR Bank1_Func_90FF
-    JMP Bank1_Func_911B
+World2_MovePlayerProjectileDownRight:
+    JSR World2_MovePlayerProjectileRight
+    JMP World2_MovePlayerProjectileDown
 
-Bank1_Func_90EB:
-    JSR Bank1_Func_90F1
-    JMP Bank1_Func_910D
+World2_MovePlayerProjectileUpLeft:
+    JSR World2_MovePlayerProjectileLeft
+    JMP World2_MovePlayerProjectileUp
 
-Bank1_Func_90F1:
+World2_MovePlayerProjectileLeft:
     LDA a:World2PlayerProjectileX,X
     SEC
     SBC #$02
@@ -281,7 +281,7 @@ Bank1_Func_90F1:
     BCC Bank1_Label_9129
     RTS
 
-Bank1_Func_90FF:
+World2_MovePlayerProjectileRight:
     LDA a:World2PlayerProjectileX,X
     CLC
     ADC #$02
@@ -290,7 +290,7 @@ Bank1_Func_90FF:
     BCS Bank1_Label_9129
     RTS
 
-Bank1_Func_910D:
+World2_MovePlayerProjectileUp:
     LDA a:World2PlayerProjectileY,X
     SEC
     SBC #$02
@@ -299,7 +299,7 @@ Bank1_Func_910D:
     BCC Bank1_Label_9129
     RTS
 
-Bank1_Func_911B:
+World2_MovePlayerProjectileDown:
     LDA a:World2PlayerProjectileY,X
     CLC
     ADC #$02
@@ -313,26 +313,26 @@ Bank1_Label_9129:
     STA a:World2PlayerProjectileState,X
     RTS
 
-Bank1_Func_912F:
-    LDA $6F
+World2_UpdateInventorySlot0Projectile:
+    LDA World2InventorySlot0ProjectileActive
     BEQ Bank1_Label_916E
-    INC $6F
-    LDA $6F
+    INC World2InventorySlot0ProjectileActive
+    LDA World2InventorySlot0ProjectileActive
     CMP #$96
     BCS Bank1_Label_9172
-    LDX $72
-    LDA $70
+    LDX World2InventorySlot0ProjectileDirection
+    LDA World2InventorySlot0ProjectileX
     CLC
     ADC a:$97AD,X
-    STA $70
+    STA World2InventorySlot0ProjectileX
     CMP #$F8
     BCS Bank1_Label_9172
     STA $67
-    LDA $71
+    LDA World2InventorySlot0ProjectileY
     CLC
     ADC a:$97A9,X
     STA $68
-    STA $71
+    STA World2InventorySlot0ProjectileY
     CMP #$E0
     BCS Bank1_Label_9172
     JSR World2_TestMetatileCollision
@@ -340,28 +340,28 @@ Bank1_Func_912F:
     LDA World2FrameCounter
     AND #$07
     BNE Bank1_Label_916E
-    LDA $72
+    LDA World2InventorySlot0ProjectileDirection
     CMP #$08
     BEQ Bank1_Label_916E
     BCS Bank1_Label_916F
-    INC $72
+    INC World2InventorySlot0ProjectileDirection
 
 Bank1_Label_916E:
     RTS
 
 Bank1_Label_916F:
-    DEC $72
+    DEC World2InventorySlot0ProjectileDirection
     RTS
 
 Bank1_Label_9172:
     LDA #$00
-    STA $6F
+    STA World2InventorySlot0ProjectileActive
     RTS
 
-Bank1_Func_9177:
-    LDA $6A
+World2_UpdateInventorySlot2Attack:
+    LDA World2InventorySlot2AttackActive
     BEQ Bank1_Label_91A3
-    JSR Bank1_Func_9190
+    JSR World2_MoveInventorySlot2Attack
     LDA World2InventoryX+$02
     STA $67
     LDA World2InventoryY+$02
@@ -369,15 +369,15 @@ Bank1_Func_9177:
     JSR World2_TestMetatileCollision
     BEQ Bank1_Label_918F
     LDA #$00
-    STA $6A
+    STA World2InventorySlot2AttackActive
 
 Bank1_Label_918F:
     RTS
 
-Bank1_Func_9190:
-    LDA $6E
+World2_MoveInventorySlot2Attack:
+    LDA World2InventorySlot2AttackDirection
     BNE Bank1_Label_91A4
-    INC $6B
+    INC World2InventorySlot2AttackPhase
     LDA World2InventoryX+$02
     CMP #$F8
     BCS Bank1_Label_91C8
@@ -392,7 +392,7 @@ Bank1_Label_91A3:
 Bank1_Label_91A4:
     CMP #$02
     BNE Bank1_Label_91B8
-    INC $6B
+    INC World2InventorySlot2AttackPhase
     LDA World2InventoryY+$02
     CMP #$F9
     BCS Bank1_Label_91C8
@@ -403,7 +403,7 @@ Bank1_Label_91A4:
     RTS
 
 Bank1_Label_91B8:
-    INC $6B
+    INC World2InventorySlot2AttackPhase
     LDA World2InventoryY+$02
     CMP #$10
     BCC Bank1_Label_91C8
@@ -415,14 +415,14 @@ Bank1_Label_91B8:
 
 Bank1_Label_91C8:
     LDA #$00
-    STA $6A
+    STA World2InventorySlot2AttackActive
 
 Bank1_Label_91CC:
     RTS
 
-Bank1_Func_91CD:
-    JSR Bank1_Func_9220
-    JSR Bank1_Func_9208
+World2_RenderProjectilesAndInventoryAttacks:
+    JSR World2_RenderInventorySlot2Attack
+    JSR World2_RenderInventorySlot0Projectile
     LDY #$D8
     LDX #$06
 
@@ -430,9 +430,9 @@ Bank1_Label_91D7:
     LDA a:World2PlayerProjectileState,X
     BEQ Bank1_Label_91E6
     LDA a:World2PlayerProjectileY,X
-    STA $94
+    STA World2OamY
     LDA #$3D
-    JSR Bank1_Func_96B1
+    JSR World2_PreparePlayerProjectileSprite
 
 Bank1_Label_91E6:
     DEX
@@ -444,8 +444,8 @@ Bank1_Label_91ED:
     LDA a:World2PlayerProjectileState,X
     BEQ Bank1_Label_9204
     LDA a:World2PlayerProjectileY,X
-    STA $94
-    LDA $42
+    STA World2OamY
+    LDA World2ScrollDirection
     BEQ Bank1_Label_91FF
     LDA #$3B
     BNE Bank1_Label_9201
@@ -454,33 +454,33 @@ Bank1_Label_91FF:
     LDA #$3A
 
 Bank1_Label_9201:
-    JSR Bank1_Func_96B1
+    JSR World2_PreparePlayerProjectileSprite
 
 Bank1_Label_9204:
     DEX
     BPL Bank1_Label_91ED
     RTS
 
-Bank1_Func_9208:
-    LDA $6F
+World2_RenderInventorySlot0Projectile:
+    LDA World2InventorySlot0ProjectileActive
     BEQ Bank1_Label_921F
     LDY #$E4
-    LDA $71
-    STA $94
+    LDA World2InventorySlot0ProjectileY
+    STA World2OamY
     LDA #$3C
-    STA $95
+    STA World2OamTile
     LDA #$03
-    STA $96
-    LDA $70
-    JMP Bank1_Func_96BA
+    STA World2OamAttributes
+    LDA World2InventorySlot0ProjectileX
+    JMP World2_SetSpriteXBeforeFlickerEmit
 
 Bank1_Label_921F:
     RTS
 
-Bank1_Func_9220:
-    LDA $6A
+World2_RenderInventorySlot2Attack:
+    LDA World2InventorySlot2AttackActive
     BEQ Bank1_Label_91CC
-    LDA $6B
+    LDA World2InventorySlot2AttackPhase
     LSR A
     CMP #$08
     BCC Bank1_Label_922D
@@ -496,13 +496,13 @@ Bank1_Label_922D:
     ADC $69
     TAX
     LDY #$B8
-    LDA $6E
+    LDA World2InventorySlot2AttackDirection
     BEQ Bank1_Label_9242
     JMP Bank1_Label_9295
 
 Bank1_Label_9242:
     LDA World2InventoryX+$02
-    STA $60
+    STA World2MetaspriteOriginX
     LDA #$20
     STA $6D
     LDA #$04
@@ -517,7 +517,7 @@ Bank1_Label_924E:
     BCC Bank1_Label_9261
     CMP #$10
     BCC Bank1_Label_9261
-    JSR Bank1_Func_92EC
+    JSR World2_RenderSlot2VerticalAttackSegment
 
 Bank1_Label_9261:
     LDA $6D
@@ -541,7 +541,7 @@ Bank1_Label_9275:
     BCS Bank1_Label_9288
     CMP #$E0
     BCS Bank1_Label_9288
-    JSR Bank1_Func_92EC
+    JSR World2_RenderSlot2VerticalAttackSegment
 
 Bank1_Label_9288:
     LDA $6D
@@ -555,7 +555,7 @@ Bank1_Label_9288:
 
 Bank1_Label_9295:
     LDA World2InventoryX+$02
-    STA $60
+    STA World2MetaspriteOriginX
     LDA #$20
     STA $6D
     LDA #$04
@@ -564,14 +564,14 @@ Bank1_Label_9295:
 Bank1_Label_92A1:
     LDA a:$9326,X
     BEQ Bank1_Label_92B6
-    LDA $60
+    LDA World2MetaspriteOriginX
     SEC
     SBC $6D
     BCC Bank1_Label_92B6
-    JSR Bank1_Func_9309
+    JSR World2_PrepareSlot2HorizontalAttackSegment
     SEC
     SBC $6D
-    JSR Bank1_Func_96BA
+    JSR World2_SetSpriteXBeforeFlickerEmit
 
 Bank1_Label_92B6:
     LDA $6D
@@ -593,10 +593,10 @@ Bank1_Label_92CA:
     CLC
     ADC $6D
     BCS Bank1_Label_92DF
-    JSR Bank1_Func_9309
+    JSR World2_PrepareSlot2HorizontalAttackSegment
     CLC
     ADC $6D
-    JSR Bank1_Func_96BA
+    JSR World2_SetSpriteXBeforeFlickerEmit
 
 Bank1_Label_92DF:
     LDA $6D

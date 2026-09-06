@@ -2,7 +2,7 @@
 ; World 2 scrolling, stage progress, and boss-state services
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank1_Func_A612:
+World2_CheckChapterCompletionExit:
     LDA World2CurrentScreenId
     CMP #$7F
     BNE Bank1_Label_A62A
@@ -42,7 +42,7 @@ Bank1_Label_A649:
     LDA World2InventoryState+$05
     CMP #$03
     BNE Bank1_Label_A65E
-    INC $A3
+    INC World2InventorySlot5PickupCount
     DEC PlayerHealthCapacityIndex
     JSR World2_LoadInitialPlayerHealth
     STA PlayerHealth
@@ -87,7 +87,7 @@ Bank1_Label_A677:
     JMP Bank1_Label_A69A
 
 Bank1_Label_A690:
-    LDA $A3
+    LDA World2InventorySlot5PickupCount
     CMP #$02
     BEQ Bank1_Label_A69A
 
@@ -193,19 +193,19 @@ World2_StageBranchReturnOverrides:
     .byte $00, $00, $00, $3C, $32, $44, $50, $42, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00
 
-Bank1_Func_A753:
+World2_RenderHud:
     LDY #$00
-    STY $96
+    STY World2OamAttributes
     LDA PlayerHealthCapacityIndex
     ASL A
     ASL A
     CLC
     ADC #$50
-    STA $94
+    STA World2OamY
     LDA #$EC
-    STA $97
+    STA World2OamX
     LDA #$04
-    STA $0A
+    STA World2HudHealthTiles
     LDA PlayerHealth
     STA $98
     LDX #$07
@@ -217,7 +217,7 @@ Bank1_Label_A76E:
     BCC Bank1_Label_A780
     STA $98
     LDA #$FF
-    STA $0A,X
+    STA World2HudHealthTiles,X
     DEX
     BPL Bank1_Label_A76E
     BMI Bank1_Label_A78F
@@ -225,13 +225,13 @@ Bank1_Label_A76E:
 Bank1_Label_A780:
     CLC
     ADC #$FF
-    STA $0A,X
+    STA World2HudHealthTiles,X
     DEX
     BMI Bank1_Label_A78F
     LDA #$FB
 
 Bank1_Label_A78A:
-    STA $0A,X
+    STA World2HudHealthTiles,X
     DEX
     BPL Bank1_Label_A78A
 
@@ -239,45 +239,45 @@ Bank1_Label_A78F:
     LDX PlayerHealthCapacityIndex
 
 Bank1_Label_A791:
-    LDA $0A,X
-    STA $95
-    JSR Bank1_Func_A7FA
+    LDA World2HudHealthTiles,X
+    STA World2OamTile
+    JSR World2_EmitHudSpriteToFreeOamEntry
     BEQ Bank1_Label_A7F9
-    LDA $94
+    LDA World2OamY
     CLC
     ADC #$08
-    STA $94
+    STA World2OamY
     INX
     CPX #$08
     BNE Bank1_Label_A791
     LDA #$E6
-    STA $97
+    STA World2OamX
     LDA #$32
-    STA $94
+    STA World2OamY
     LDA #$FA
-    STA $95
-    JSR Bank1_Func_A7FA
+    STA World2OamTile
+    JSR World2_EmitHudSpriteToFreeOamEntry
     BEQ Bank1_Label_A7F9
     LDA #$F0
-    STA $97
+    STA World2OamX
     LDA PlayerLives
     ORA #$F0
-    STA $95
-    JSR Bank1_Func_A7FA
+    STA World2OamTile
+    JSR World2_EmitHudSpriteToFreeOamEntry
     BEQ Bank1_Label_A7F9
     LDA #$18
-    STA $94
+    STA World2OamY
     LDA #$5C
-    STA $97
+    STA World2OamX
     LDX #$00
 
 Bank1_Label_A7D0:
     LDA a:ScoreDigitsWorking,X
     BNE Bank1_Label_A7E1
-    LDA $97
+    LDA World2OamX
     CLC
     ADC #$08
-    STA $97
+    STA World2OamX
     INX
     CPX #$06
     BNE Bank1_Label_A7D0
@@ -285,12 +285,12 @@ Bank1_Label_A7D0:
 Bank1_Label_A7E1:
     LDA a:ScoreDigitsWorking,X
     ORA #$F0
-    STA $95
-    JSR Bank1_Func_A7FA
-    LDA $97
+    STA World2OamTile
+    JSR World2_EmitHudSpriteToFreeOamEntry
+    LDA World2OamX
     CLC
     ADC #$08
-    STA $97
+    STA World2OamX
     BEQ Bank1_Label_A7F9
     INX
     CPX #$07
@@ -299,16 +299,16 @@ Bank1_Label_A7E1:
 Bank1_Label_A7F9:
     RTS
 
-Bank1_Func_A7FA:
+World2_EmitHudSpriteToFreeOamEntry:
     LDA a:OamBuffer,Y
     CMP #$F8
     BNE Bank1_Label_A804
-    JMP Bank1_Func_96C8
+    JMP World2_EmitOamEntry
 
 Bank1_Label_A804:
     INY
     INY
     INY
     INY
-    BNE Bank1_Func_A7FA
+    BNE World2_EmitHudSpriteToFreeOamEntry
     RTS

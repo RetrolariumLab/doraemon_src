@@ -36,10 +36,10 @@ Bank1_Label_991A:
 
 Bank1_Label_991D:
     BPL Bank1_Label_9922
-    JMP Bank1_Func_99F6
+    JMP World2_UpdatePendingEnemySpawn
 
 Bank1_Label_9922:
-    STX $76
+    STX World2SavedEntitySlot
     CMP #$70
     BCC Bank1_Label_9946
     JSR World2_ApplyScrollingToEnemy
@@ -59,7 +59,7 @@ Bank1_Label_993F:
     BEQ Bank1_Label_991A
 
 Bank1_Label_9946:
-    STA $9F
+    STA World2CurrentEnemyStateIndex
     ASL A
     TAX
     LDA #$99
@@ -70,7 +70,7 @@ Bank1_Label_9946:
     PHA
     LDA a:$A570,X
     PHA
-    LDX $76
+    LDX World2SavedEntitySlot
     LDA a:World2EnemyX,X
     STA $67
     LDA a:World2EnemyY,X
@@ -78,15 +78,15 @@ Bank1_Label_9946:
     RTS
 
 World2_EnemyUpdateDispatchContinuation:
-    LDX $76
-    LDY $9F
+    LDX World2SavedEntitySlot
+    LDY World2CurrentEnemyStateIndex
     LDA a:World2EnemyState,X
     BEQ Bank1_Label_991A
     LDA a:World2EnemyX,X
     STA $98
     LDA a:World2EnemyY,X
     STA $99
-    JSR Bank1_Func_9A46
+    JSR World2_TestCurrentEnemyAgainstPlayerAttacks
     BCC Bank1_Label_99E0
     INC a:World2EnemyDamageCounter,X
     LDA a:World2EnemyState,X
@@ -162,7 +162,7 @@ Bank1_Label_99E0:
     JSR World2_SpawnEnemyProjectile
     JMP Bank1_Label_9A3F
 
-Bank1_Func_99F6:
+World2_UpdatePendingEnemySpawn:
     DEC a:World2EnemyPhaseCounter,X
     BNE Bank1_Label_9A3F
     LDA #$00
@@ -214,8 +214,8 @@ Bank1_Label_9A3F:
 Bank1_Label_9A45:
     RTS
 
-Bank1_Func_9A46:
-    STX $9A
+World2_TestCurrentEnemyAgainstPlayerAttacks:
+    STX World2EnemyCollisionSlot
     LDA DemoModeActive
     BNE Bank1_Label_9A52
     LDA World2InventoryState+$02
@@ -223,17 +223,17 @@ Bank1_Func_9A46:
     BNE Bank1_Label_9A5A
 
 Bank1_Label_9A52:
-    JSR Bank1_Func_9ABE
+    JSR World2_TestSlot2AttackEnemyCollision
     BCC Bank1_Label_9A5A
 
 Bank1_Label_9A57:
-    LDX $9A
+    LDX World2EnemyCollisionSlot
     RTS
 
 Bank1_Label_9A5A:
-    LDA $6F
+    LDA World2InventorySlot0ProjectileActive
     BEQ Bank1_Label_9A63
-    JSR Bank1_Func_9A9B
+    JSR World2_TestSlot0ProjectileEnemyCollision
     BCS Bank1_Label_9A57
 
 Bank1_Label_9A63:
@@ -280,11 +280,11 @@ Bank1_Label_9A97:
     CLC
 
 Bank1_Label_9A98:
-    LDX $9A
+    LDX World2EnemyCollisionSlot
     RTS
 
-Bank1_Func_9A9B:
-    LDA $71
+World2_TestSlot0ProjectileEnemyCollision:
+    LDA World2InventorySlot0ProjectileY
     SEC
     SBC $99
     BCC Bank1_Label_9AA8
@@ -299,7 +299,7 @@ Bank1_Label_9AA8:
 Bank1_Label_9AAC:
     LDA $98
     SEC
-    SBC $70
+    SBC World2InventorySlot0ProjectileX
     BCC Bank1_Label_9AB9
     CMP #$15
     BCS Bank1_Label_9ABC
@@ -314,10 +314,10 @@ Bank1_Label_9ABC:
     CLC
     RTS
 
-Bank1_Func_9ABE:
-    LDA $6A
+World2_TestSlot2AttackEnemyCollision:
+    LDA World2InventorySlot2AttackActive
     BEQ Bank1_Label_9A97
-    LDA $42
+    LDA World2ScrollDirection
     BEQ Bank1_Label_9AF8
     LDA $99
     SEC
@@ -335,22 +335,22 @@ Bank1_Label_9AD3:
     BCC Bank1_Label_9AD1
 
 Bank1_Label_9AD7:
-    LDA $6B
+    LDA World2InventorySlot2AttackPhase
     CMP #$10
     BCC Bank1_Label_9ADF
     LDA #$10
 
 Bank1_Label_9ADF:
     ASL A
-    STA $9B
+    STA World2AttackCollisionHalfExtent
     LDA World2InventoryX+$02
     SEC
-    SBC $9B
+    SBC World2AttackCollisionHalfExtent
     SBC #$10
     CMP $98
     BCS Bank1_Label_9AD1
-    ADC $9B
-    ADC $9B
+    ADC World2AttackCollisionHalfExtent
+    ADC World2AttackCollisionHalfExtent
     ADC #$08
     CMP $98
     BCS Bank1_Label_9B2A
@@ -373,22 +373,22 @@ Bank1_Label_9B05:
     BCC Bank1_Label_9B03
 
 Bank1_Label_9B09:
-    LDA $6B
+    LDA World2InventorySlot2AttackPhase
     CMP #$10
     BCC Bank1_Label_9B11
     LDA #$10
 
 Bank1_Label_9B11:
     ASL A
-    STA $9B
+    STA World2AttackCollisionHalfExtent
     LDA World2InventoryY+$02
     SEC
-    SBC $9B
+    SBC World2AttackCollisionHalfExtent
     SBC #$10
     CMP $99
     BCS Bank1_Label_9B03
-    ADC $9B
-    ADC $9B
+    ADC World2AttackCollisionHalfExtent
+    ADC World2AttackCollisionHalfExtent
     ADC #$08
     CMP $99
     BCS Bank1_Label_9B2A
@@ -396,7 +396,7 @@ Bank1_Label_9B11:
 
 Bank1_Label_9B2A:
     LDA #$00
-    STA $6A
+    STA World2InventorySlot2AttackActive
     RTS
 
 World2_UpdateAnkodori:

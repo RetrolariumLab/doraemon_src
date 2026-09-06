@@ -20,14 +20,14 @@ Bank1_PostSwitchWorld3TransitionEntry:
 World2_NmiFrameServices:
     LDA World2ScrollingActive
     BEQ World2_CommitNmiPpuState
-    LDX $42
+    LDX World2ScrollDirection
     BEQ Bank1_Label_8302
     DEX
     BEQ Bank1_Label_82D7
-    LDX $44
+    LDX World2VerticalTransitionDelay
     BEQ Bank1_Label_82B6
     DEX
-    STX $44
+    STX World2VerticalTransitionDelay
     BNE Bank1_Label_82B6
     JSR World2_BeginScreenTransitionRows
 
@@ -55,10 +55,10 @@ Bank1_Label_82C0:
     RTS
 
 Bank1_Label_82D7:
-    LDX $44
+    LDX World2VerticalTransitionDelay
     BEQ Bank1_Label_82E3
     DEX
-    STX $44
+    STX World2VerticalTransitionDelay
     BNE Bank1_Label_82E3
     JSR World2_BeginScreenTransitionRows
 
@@ -85,10 +85,10 @@ Bank1_Label_82EB:
     RTS
 
 Bank1_Label_8302:
-    LDX $45
+    LDX World2HorizontalTransitionDelay
     BEQ Bank1_Label_8335
     DEX
-    STX $45
+    STX World2HorizontalTransitionDelay
     LDA PpuCtrlShadow
     PHA
     LDA World2ScrollX
@@ -122,13 +122,13 @@ Bank1_Label_8335:
     PLA
 
 Bank1_Label_8343:
-    LDX $44
+    LDX World2VerticalTransitionDelay
     BEQ Bank1_Label_8353
     DEX
-    STX $44
+    STX World2VerticalTransitionDelay
     BNE Bank1_Label_8350
-    LDA $43
-    STA $42
+    LDA World2PendingScrollDirection
+    STA World2ScrollDirection
 
 Bank1_Label_8350:
     JMP Bank1_Label_8280
@@ -152,19 +152,19 @@ World2_ScreenService_NoOp:
     RTS
 
 World2_BeginScreenTransitionRows:
-    LDA $43
-    STA $42
+    LDA World2PendingScrollDirection
+    STA World2ScrollDirection
     LDA #$0F
-    STA $45
+    STA World2HorizontalTransitionDelay
     INC World2ScreenRowIndex
     RTS
 
 World2_AdvanceScreenStage:
     JSR World2_AdvanceStageSequence
-    LDA $43
+    LDA World2PendingScrollDirection
     BEQ Bank1_Label_837C
     LDA #$0F
-    STA $44
+    STA World2VerticalTransitionDelay
 
 Bank1_Label_837C:
     RTS
@@ -189,7 +189,7 @@ Bank1_Label_838B:
     CMP #$F7
     BCS Bank1_Label_83A3
     AND #$03
-    STA $43
+    STA World2PendingScrollDirection
     LDA #$0F
     STA World2ScreenRowIndex
     RTS
@@ -248,9 +248,9 @@ World2_AdvanceStreamedScreenRow:
     BCS Bank1_Label_83FE
     TXA
     AND #$03
-    STA $43
+    STA World2PendingScrollDirection
     LDA #$0F
-    STA $44
+    STA World2VerticalTransitionDelay
     INC World2StageSequenceOffset
 
 Bank1_Label_83FD:

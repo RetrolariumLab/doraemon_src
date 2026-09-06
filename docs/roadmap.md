@@ -55,7 +55,14 @@ fifteen frame/render/stage routines and ten RAM fields, reducing the current
 total to 189. The player/inventory/fire pass names thirteen more routines and
 nine RAM fields, reducing the current total to 176 (63 in Bank 1 and 113 in
 Bank 2). The screen/NMI/PPU pass removes six more Bank 1 entries, reducing the
-current total to 170 (57 in Bank 1 and 113 in Bank 2).
+current total to 170 (57 in Bank 1 and 113 in Bank 2). The projectile-runtime
+pass names seventeen hazard, player-projectile, and inventory-attack routines
+plus nine zero-page fields, reducing the total to 153. The sprite-runtime pass
+names another 27 player, inventory, metasprite, and OAM routines plus nine RAM
+symbols, reducing the total to 126. The final Bank 1 pass names its remaining
+thirteen enemy collision/rendering, chapter-exit, and HUD routines plus
+nineteen RAM symbols. The current total is 113, all in Bank 2; Banks 0, 1, and
+3 have no neutral routine entries.
 
 ### 6. RAM and object systems - Partial
 
@@ -106,6 +113,14 @@ classified as 19 unique update targets and 18 unique render targets, including d
   shared and no-op paths. All direct enemies, two Gangan variants, three bosses,
   and their internal helpers now have evidence-backed identities; boss tables,
   helper-spawn relationships, scores, and the four-Takkon item rule are enforced.
+The projectile runtime additionally pins the complete seven-slot player
+projectile motion path, the player hazard accumulator, both inventory-owned
+attacks, their rendering paths, and nine private zero-page fields across 768
+executable bytes and 23 direct edges.
+The complete World 2 player/inventory sprite chain is now pinned from its
+priority ordering and 48-sample companion history through two-sprite row
+composition to the four-byte OAM writer: 27 routines, 864 executable bytes,
+54 direct edges, and 103 RAM bytes.
 World 3's initial thirteen-record persistent registry, randomized type groups,
 and low-type behavior pointers are now exact. All sixteen low-type behavior
 streams are decoded into a lossless editable format. Its full 32-type catalog,
@@ -198,7 +213,7 @@ Resolve or explicitly classify remaining release-scope unknowns, live-validate
 the generated linker-derived Mesen/FCEUX symbols, refresh all eight runtime
 scenarios, run one clean aggregate `source-1-audit`, and prepare the audited
 release commit. Static symbol generation is complete: the gate checks all four
-linker segments, 3,691 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
+linker segments, 3,728 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
 labels, and required Reset/NMI/mapper/chapter-loop probes.
 
 The first post-review naming slice is also complete: all sixteen Bank 3 shell
@@ -217,6 +232,13 @@ position history, movement, repeated fire, companion shots, and damage state.
 The screen-core slice adds the NMI PPU commit, screen-service dispatch,
 transition-row setup, PPU address helper, nametable initialization, and the
 post-switch overlay entry used by the World 3 gateway.
+The projectile-runtime slice adds the player hazard scanner, all directional
+player-projectile helpers, both inventory attacks, and their render paths.
+The following sprite-runtime slice names the player and seven-slot inventory
+renderer, metasprite row composition, flicker-selected OAM emission, and both
+48-byte player-position history rings. The final Bank 1 slice closes packed
+enemy activation, attack collision, enemy/projectile rendering, terminal exit,
+and HUD composition. Bank 1 now has no neutral routine entries.
 
 ## Deferred to Source Reconstruction 2.0
 

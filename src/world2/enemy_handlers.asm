@@ -5,7 +5,7 @@
 World2_ApplyScrollingToEnemy:
     LDA World2ScrollingActive
     BEQ Bank1_Label_A114
-    LDY $42
+    LDY World2ScrollDirection
     BEQ Bank1_Label_A103
     DEY
     BEQ Bank1_Label_A0F4
@@ -28,7 +28,7 @@ Bank1_Label_A102:
     RTS
 
 Bank1_Label_A103:
-    LDA $45
+    LDA World2HorizontalTransitionDelay
     BNE Bank1_Label_A114
     DEC a:World2EnemyX,X
     LDA a:World2EnemyX,X
@@ -41,10 +41,10 @@ Bank1_Label_A111:
 Bank1_Label_A114:
     RTS
 
-Bank1_Func_A115:
+World2_ApplyScrollingToEnemyProjectile:
     LDA World2ScrollingActive
     BEQ Bank1_Label_A114
-    LDY $42
+    LDY World2ScrollDirection
     BEQ Bank1_Label_A131
     DEY
     BEQ Bank1_Label_A126
@@ -60,7 +60,7 @@ Bank1_Label_A126:
     RTS
 
 Bank1_Label_A131:
-    LDA $45
+    LDA World2HorizontalTransitionDelay
     BNE Bank1_Label_A13F
     DEC a:World2EnemyProjectileX,X
     BNE Bank1_Label_A13F
@@ -75,31 +75,31 @@ Bank1_Label_A13F:
 World2_SpawnEnemyProjectile:
     LDA World2PlayerDamageTimer
     BNE Bank1_Label_A13F
-    STX $79
+    STX World2EnemyProjectileSourceSlot
     LDA World2PlayerX
     CLC
     ADC #$04
-    STA $A6
+    STA World2EnemyProjectileTargetX
     LDA World2PlayerY
     ADC #$08
-    STA $A7
+    STA World2EnemyProjectileTargetY
     LDA World2ScrollingActive
     BEQ Bank1_Label_A17E
-    LDA $42
+    LDA World2ScrollDirection
     BEQ Bank1_Label_A173
     CMP #$01
     BEQ Bank1_Label_A169
     LDA World2PlayerY
     CLC
     ADC #$1F
-    STA $A7
+    STA World2EnemyProjectileTargetY
     JMP Bank1_Label_A170
 
 Bank1_Label_A169:
     LDA World2PlayerY
     SEC
     SBC #$1F
-    STA $A7
+    STA World2EnemyProjectileTargetY
 
 Bank1_Label_A170:
     JMP Bank1_Label_A17E
@@ -112,13 +112,13 @@ Bank1_Label_A173:
     LDA #$FF
 
 Bank1_Label_A17C:
-    STA $A6
+    STA World2EnemyProjectileTargetX
 
 Bank1_Label_A17E:
     LDA a:World2EnemyX,X
-    STA $77
+    STA World2EnemyProjectileSourceX
     LDA a:World2EnemyY,X
-    STA $78
+    STA World2EnemyProjectileSourceY
     LDY #$05
 
 Bank1_Label_A18A:
@@ -129,12 +129,12 @@ Bank1_Label_A18A:
     RTS
 
 Bank1_Label_A193:
-    LDA $77
+    LDA World2EnemyProjectileSourceX
     CLC
     ADC #$04
     STA a:World2EnemyProjectileX,Y
     SEC
-    SBC $A6
+    SBC World2EnemyProjectileTargetX
     LDX #$03
     BCS Bank1_Label_A1A5
     DEX
@@ -142,12 +142,12 @@ Bank1_Label_A193:
 
 Bank1_Label_A1A5:
     STA a:World2EnemyProjectileMotionX,Y
-    LDA $78
+    LDA World2EnemyProjectileSourceY
     CLC
     ADC #$04
     STA a:World2EnemyProjectileY,Y
     SEC
-    SBC $A7
+    SBC World2EnemyProjectileTargetY
     BCS Bank1_Label_A1B9
     DEX
     DEX
@@ -166,7 +166,7 @@ Bank1_Label_A1C5:
     STA a:World2EnemyProjectileFlags,Y
     LDA #$00
     STA a:World2EnemyProjectileLifetime,Y
-    LDX $79
+    LDX World2EnemyProjectileSourceSlot
     RTS
 
 World2_UpdateEnemyProjectiles:
@@ -177,7 +177,7 @@ Bank1_Label_A1D3:
     BEQ Bank1_Label_A233
     LDA a:World2EnemyProjectileFlags,X
     BPL Bank1_Label_A21B
-    JSR Bank1_Func_A115
+    JSR World2_ApplyScrollingToEnemyProjectile
     LDA a:World2EnemyProjectileY,X
     BEQ Bank1_Label_A233
     LDA a:World2EnemyProjectileX,X
@@ -207,7 +207,7 @@ Bank1_Label_A213:
     JMP Bank1_Label_A2BE
 
 Bank1_Label_A21B:
-    JSR Bank1_Func_A115
+    JSR World2_ApplyScrollingToEnemyProjectile
     LDA a:World2EnemyProjectileY,X
     BEQ Bank1_Label_A233
     INC a:World2EnemyProjectileLifetime,X
@@ -308,7 +308,7 @@ Bank1_Label_A2BE:
     RTS
     .byte $01, $FF, $01, $FF, $01, $01, $FF, $FF
 
-Bank1_Func_A2CA:
+World2_RenderEnemyProjectiles:
     LDX #$05
 
 Bank1_Label_A2CC:
@@ -320,7 +320,7 @@ Bank1_Label_A2CC:
     TAY
     LDA a:World2EnemyProjectileY,X
     BEQ Bank1_Label_A300
-    STA $94
+    STA World2OamY
     LDA a:World2EnemyState
     CMP #$12
     BNE Bank1_Label_A2E5
@@ -340,19 +340,19 @@ Bank1_Label_A2E7:
 
 Bank1_Label_A2F1:
     PLA
-    STA $95
+    STA World2OamTile
     LDA #$01
-    STA $96
+    STA World2OamAttributes
     LDA a:World2EnemyProjectileX,X
-    STA $97
-    JSR Bank1_Func_96BC
+    STA World2OamX
+    JSR World2_EmitFlickerSelectedOamEntry
 
 Bank1_Label_A300:
     DEX
     BPL Bank1_Label_A2CC
     RTS
 
-Bank1_Func_A304:
+World2_RenderEnemies:
     LDY #$48
     LDX #$06
 
@@ -364,12 +364,12 @@ Bank1_Label_A308:
     BCC Bank1_Label_A330
     PHA
     LDA #$00
-    STA $63
+    STA World2MetaspriteFlipMask
     LDA a:World2EnemyX,X
-    STA $60
+    STA World2MetaspriteOriginX
     LDA a:World2EnemyY,X
-    STA $61
-    STX $76
+    STA World2MetaspriteOriginY
+    STX World2SavedEntitySlot
     PLA
     AND #$0F
     CLC
@@ -380,12 +380,12 @@ Bank1_Label_A308:
 Bank1_Label_A330:
     PHA
     LDA #$00
-    STA $63
+    STA World2MetaspriteFlipMask
     LDA a:World2EnemyX,X
-    STA $60
+    STA World2MetaspriteOriginX
     LDA a:World2EnemyY,X
-    STA $61
-    STX $76
+    STA World2MetaspriteOriginY
+    STX World2SavedEntitySlot
     PLA
     ASL A
     TAX
@@ -397,11 +397,11 @@ Bank1_Label_A330:
     PHA
     LDA a:$A548,X
     PHA
-    LDX $76
+    LDX World2SavedEntitySlot
     RTS
 
 World2_EnemyRenderDispatchContinuation:
-    LDX $76
+    LDX World2SavedEntitySlot
 
 Bank1_Label_A357:
     DEX
@@ -409,50 +409,50 @@ Bank1_Label_A357:
     RTS
 
 World2_RenderEnemyMetaspriteIndex:
-    STX $64
+    STX World2MetaspriteSavedSlot
     TAX
     LDA a:World2_MetaspriteDescriptors,X
     PHA
     AND #$03
-    STA $62
+    STA World2MetaspriteAttributes
     PLA
     AND #$3C
-    STA $65
+    STA World2MetaspriteAttributeIndex
     TXA
     ASL A
     ASL A
     TAX
-    LDA $60
+    LDA World2MetaspriteOriginX
     PHA
-    JSR Bank1_Func_A389
-    LDA $61
+    JSR World2_RenderEnemyMetaspriteRow
+    LDA World2MetaspriteOriginY
     CMP #$F8
     BEQ Bank1_Label_A380
     CLC
     ADC #$08
-    STA $61
+    STA World2MetaspriteOriginY
 
 Bank1_Label_A380:
     PLA
-    STA $60
-    JSR Bank1_Func_A389
-    LDX $64
+    STA World2MetaspriteOriginX
+    JSR World2_RenderEnemyMetaspriteRow
+    LDX World2MetaspriteSavedSlot
     RTS
 
-Bank1_Func_A389:
-    JSR Bank1_Func_A38C
+World2_RenderEnemyMetaspriteRow:
+    JSR World2_RenderEnemyMetaspritePiece
 
-Bank1_Func_A38C:
+World2_RenderEnemyMetaspritePiece:
     TXA
-    EOR $63
+    EOR World2MetaspriteFlipMask
     TAX
     PHA
     LDA a:World2_MetaspriteTileQuads,X
-    STA $66
-    LDA $65
-    EOR $63
+    STA World2MetaspriteTile
+    LDA World2MetaspriteAttributeIndex
+    EOR World2MetaspriteFlipMask
     TAX
-    LDA $63
+    LDA World2MetaspriteFlipMask
     BEQ Bank1_Label_A3A7
     LDA a:World2_MetaspriteOamAttributes,X
     EOR #$40
@@ -462,35 +462,35 @@ Bank1_Label_A3A7:
     LDA a:World2_MetaspriteOamAttributes,X
 
 Bank1_Label_A3AA:
-    ORA $62
-    STA $62
+    ORA World2MetaspriteAttributes
+    STA World2MetaspriteAttributes
     PLA
-    EOR $63
+    EOR World2MetaspriteFlipMask
     TAX
     INX
-    INC $65
-    LDA $61
-    STA $94
-    LDA $66
-    STA $95
-    LDA $62
-    STA $96
-    LDA $62
+    INC World2MetaspriteAttributeIndex
+    LDA World2MetaspriteOriginY
+    STA World2OamY
+    LDA World2MetaspriteTile
+    STA World2OamTile
+    LDA World2MetaspriteAttributes
+    STA World2OamAttributes
+    LDA World2MetaspriteAttributes
     AND #$03
-    STA $62
-    LDA $60
-    STA $97
+    STA World2MetaspriteAttributes
+    LDA World2MetaspriteOriginX
+    STA World2OamX
     PHA
-    LDA $66
+    LDA World2MetaspriteTile
     BEQ Bank1_Label_A3D3
-    JSR Bank1_Func_96BC
+    JSR World2_EmitFlickerSelectedOamEntry
 
 Bank1_Label_A3D3:
     PLA
     CLC
     LDA #$08
-    ADC $60
-    STA $60
+    ADC World2MetaspriteOriginX
+    STA World2MetaspriteOriginX
     RTS
 
 World2_MetaspriteTileQuads:

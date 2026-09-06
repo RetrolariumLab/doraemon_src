@@ -11,12 +11,12 @@ evidence manifests. Any change requires an intentional snapshot update.
 | Bank | Global labels | Semantic labels | Neutral routines | Neutral locals | Semantic indirect entries |
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 0 | 1,011 | 326 | 0 | 685 | 84 / 84 |
-| 1 | 879 | 263 | 57 | 559 | 97 / 97 |
+| 1 | 879 | 320 | 0 | 559 | 97 / 97 |
 | 2 | 1,090 | 294 | 113 | 683 | 106 / 106 |
 | 3 | 363 | 161 | 0 | 202 | 67 / 67 |
-| Total | 3,343 | 1,044 | 170 | 2,129 | 354 / 354 |
+| Total | 3,343 | 1,101 | 113 | 2,129 | 354 / 354 |
 
-The neutral population now separates 170 probable routine entries from 2,129
+The neutral population now separates 113 probable routine entries from 2,129
 local branch labels. The common runtime naming pass removed 88 neutral routine
 names by proving copied reset/NMI/mapper services, cross-bank gateways, and
 bank-local dispatches. A second pass named all 19 previously neutral non-audio
@@ -75,11 +75,23 @@ The World 2 player-system pass names thirteen more routines and nine RAM
 fields across movement, firing, player history, damage state, and all seven
 inventory slots. The subsequent screen-core pass names five NMI/PPU routines,
 one post-switch overlay entry, and the scroll-coordinate pair. Bank 1 now has
-57 neutral routine entries.
+57 neutral routine entries. The projectile-runtime pass then names seventeen
+more entries across hazard scanning, seven player-projectile slots, and both
+inventory-owned attacks. Its exact contract covers 768 executable bytes, 23
+direct edges, and nine Bank 1-private RAM fields. Bank 1 now has 40 neutral
+routine entries. The sprite-runtime pass names another 27 entries across the
+player, all seven inventory slots, metasprite composition, and final OAM
+emission. It covers 864 executable bytes, 54 direct edges, and nine RAM
+symbols covering the 48-sample position-history pair plus renderer staging.
+Bank 1 now has 13 neutral routine entries. The final Bank 1 pass names the
+remaining enemy activation/collision, projectile/enemy rendering, metasprite,
+chapter-exit, and HUD entries. It covers 796 executable bytes, 19 direct
+edges, and 19 RAM symbols. Bank 1 now has zero neutral routine entries; all
+113 remaining entries are confined to Bank 2.
 
-The symbol registry currently contains 923 evidence-backed code symbols and
-111 operand/table symbols. RAM coverage contains 314 unique aliases: 83 shared
-symbols plus 98 Bank 0, 60 Bank 1, 65 Bank 2, and 8 Bank 3 scoped symbols.
+The symbol registry currently contains 980 evidence-backed code symbols and
+111 operand/table symbols. RAM coverage contains 351 unique aliases: 83 shared
+symbols plus 98 Bank 0, 97 Bank 1, 65 Bank 2, and 8 Bank 3 scoped symbols.
 
 Typed PRG ranges cover 65,796 bytes in 57 non-overlapping regions. Bank 3 now
 separates exact title, game-over, chapter-help, ending-opening, active-credit,

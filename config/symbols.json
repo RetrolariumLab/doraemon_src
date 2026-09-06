@@ -3175,6 +3175,348 @@
       "evidence": "validated-world2-screen-core-disable-rendering-load-palette-and-clear-nametable"
     },
     {
+      "bank": 1,
+      "address": "0x8F4B",
+      "name": "World2_TryStartInventorySlot0Projectile",
+      "evidence": "validated-world2-projectile-runtime-slot0-projectile-start-and-alternating-aim"
+    },
+    {
+      "bank": 1,
+      "address": "0x8F80",
+      "name": "World2_StartInventorySlot2Attack",
+      "evidence": "validated-world2-projectile-runtime-slot2-attack-start-position-and-direction"
+    },
+    {
+      "bank": 1,
+      "address": "0x8FA2",
+      "name": "World2_ScanPlayerHazardContacts",
+      "evidence": "validated-world2-projectile-runtime-map-enemy-and-enemy-projectile-contact-scan"
+    },
+    {
+      "bank": 1,
+      "address": "0x90D9",
+      "name": "World2_MovePlayerProjectileUpRight",
+      "evidence": "validated-world2-projectile-runtime-composed-right-and-up-axis-motion"
+    },
+    {
+      "bank": 1,
+      "address": "0x90DF",
+      "name": "World2_MovePlayerProjectileDownLeft",
+      "evidence": "validated-world2-projectile-runtime-composed-left-and-down-axis-motion"
+    },
+    {
+      "bank": 1,
+      "address": "0x90E5",
+      "name": "World2_MovePlayerProjectileDownRight",
+      "evidence": "validated-world2-projectile-runtime-composed-right-and-down-axis-motion"
+    },
+    {
+      "bank": 1,
+      "address": "0x90EB",
+      "name": "World2_MovePlayerProjectileUpLeft",
+      "evidence": "validated-world2-projectile-runtime-composed-left-and-up-axis-motion"
+    },
+    {
+      "bank": 1,
+      "address": "0x90F1",
+      "name": "World2_MovePlayerProjectileLeft",
+      "evidence": "validated-world2-projectile-runtime-left-axis-step-and-bound"
+    },
+    {
+      "bank": 1,
+      "address": "0x90FF",
+      "name": "World2_MovePlayerProjectileRight",
+      "evidence": "validated-world2-projectile-runtime-right-axis-step-and-bound"
+    },
+    {
+      "bank": 1,
+      "address": "0x910D",
+      "name": "World2_MovePlayerProjectileUp",
+      "evidence": "validated-world2-projectile-runtime-up-axis-step-and-bound"
+    },
+    {
+      "bank": 1,
+      "address": "0x911B",
+      "name": "World2_MovePlayerProjectileDown",
+      "evidence": "validated-world2-projectile-runtime-down-axis-step-and-shared-deactivation-tail"
+    },
+    {
+      "bank": 1,
+      "address": "0x912F",
+      "name": "World2_UpdateInventorySlot0Projectile",
+      "evidence": "validated-world2-projectile-runtime-slot0-projectile-motion-animation-collision-and-lifetime"
+    },
+    {
+      "bank": 1,
+      "address": "0x9177",
+      "name": "World2_UpdateInventorySlot2Attack",
+      "evidence": "validated-world2-projectile-runtime-slot2-attack-motion-and-map-contact"
+    },
+    {
+      "bank": 1,
+      "address": "0x9190",
+      "name": "World2_MoveInventorySlot2Attack",
+      "evidence": "validated-world2-projectile-runtime-slot2-axis-growth-and-screen-bounds"
+    },
+    {
+      "bank": 1,
+      "address": "0x91CD",
+      "name": "World2_RenderProjectilesAndInventoryAttacks",
+      "evidence": "validated-world2-projectile-runtime-seven-projectiles-and-two-inventory-attacks-render"
+    },
+    {
+      "bank": 1,
+      "address": "0x9208",
+      "name": "World2_RenderInventorySlot0Projectile",
+      "evidence": "validated-world2-projectile-runtime-slot0-fixed-metasprite-workspace"
+    },
+    {
+      "bank": 1,
+      "address": "0x9220",
+      "name": "World2_RenderInventorySlot2Attack",
+      "evidence": "validated-world2-projectile-runtime-slot2-phase-expanded-multi-sprite-render"
+    },
+    {
+      "bank": 1,
+      "address": "0x92EC",
+      "name": "World2_RenderSlot2VerticalAttackSegment",
+      "evidence": "validated-world2-sprite-runtime-signed-vertical-slot2-segment-decoder"
+    },
+    {
+      "bank": 1,
+      "address": "0x9309",
+      "name": "World2_PrepareSlot2HorizontalAttackSegment",
+      "evidence": "validated-world2-sprite-runtime-signed-horizontal-slot2-segment-decoder"
+    },
+    {
+      "bank": 1,
+      "address": "0x93B7",
+      "name": "World2_RenderPlayerAndInventory",
+      "evidence": "validated-world2-sprite-runtime-player-effect-and-seven-inventory-slot-frame-order"
+    },
+    {
+      "bank": 1,
+      "address": "0x93D2",
+      "name": "World2_FindFreeOamEntry",
+      "evidence": "validated-world2-sprite-runtime-hidden-y-marker-scan-and-carry-result"
+    },
+    {
+      "bank": 1,
+      "address": "0x93E3",
+      "name": "World2_ReturnOamAvailable",
+      "evidence": "validated-world2-sprite-runtime-carry-clear-return-preserving-current-oam-index"
+    },
+    {
+      "bank": 1,
+      "address": "0x93E5",
+      "name": "World2_RenderPriorityInventorySlots2And3",
+      "evidence": "validated-world2-sprite-runtime-pre-enemy-priority-pass-for-slots-two-and-three"
+    },
+    {
+      "bank": 1,
+      "address": "0x93EC",
+      "name": "World2_RenderPlayerDamageEffect",
+      "evidence": "validated-world2-sprite-runtime-directional-player-damage-effect-placement"
+    },
+    {
+      "bank": 1,
+      "address": "0x9430",
+      "name": "World2_RenderTwoSpriteEffectAtProbePosition",
+      "evidence": "validated-world2-sprite-runtime-effect-origin-variant-and-oam-allocation"
+    },
+    {
+      "bank": 1,
+      "address": "0x9450",
+      "name": "World2_RenderInventorySlot4",
+      "evidence": "validated-world2-sprite-runtime-slot4-two-sprite-effect-row"
+    },
+    {
+      "bank": 1,
+      "address": "0x9477",
+      "name": "World2_RenderTwoSpriteEffectRow",
+      "evidence": "validated-world2-sprite-runtime-two-effect-tiles-with-mirrored-attributes"
+    },
+    {
+      "bank": 1,
+      "address": "0x9499",
+      "name": "World2_EmitEffectTableSprite",
+      "evidence": "validated-world2-sprite-runtime-one-effect-table-tile-emitter"
+    },
+    {
+      "bank": 1,
+      "address": "0x94BB",
+      "name": "World2_RenderInventorySlot6",
+      "evidence": "validated-world2-sprite-runtime-slot6-three-fixed-tile-layout"
+    },
+    {
+      "bank": 1,
+      "address": "0x94ED",
+      "name": "World2_EmitInventorySlot6Sprite",
+      "evidence": "validated-world2-sprite-runtime-slot6-indexed-attribute-sprite-emitter"
+    },
+    {
+      "bank": 1,
+      "address": "0x94FE",
+      "name": "World2_RenderInventorySlot3",
+      "evidence": "validated-world2-sprite-runtime-slot3-two-mirrored-fixed-tiles"
+    },
+    {
+      "bank": 1,
+      "address": "0x9530",
+      "name": "World2_RenderInventorySlot5",
+      "evidence": "validated-world2-sprite-runtime-slot5-wrapper-into-shared-row-renderer"
+    },
+    {
+      "bank": 1,
+      "address": "0x9534",
+      "name": "World2_RenderInventorySlot2Or5",
+      "evidence": "validated-world2-sprite-runtime-shared-slot2-or-slot5-two-sprite-layout"
+    },
+    {
+      "bank": 1,
+      "address": "0x955A",
+      "name": "World2_RenderTwoSpriteInventoryRow",
+      "evidence": "validated-world2-sprite-runtime-two-inventory-tiles-and-next-row-origin"
+    },
+    {
+      "bank": 1,
+      "address": "0x9573",
+      "name": "World2_RenderInventorySlot0",
+      "evidence": "validated-world2-sprite-runtime-slot0-own-or-47-sample-delayed-player-position"
+    },
+    {
+      "bank": 1,
+      "address": "0x95B4",
+      "name": "World2_RenderInventorySlot1",
+      "evidence": "validated-world2-sprite-runtime-slot1-own-or-23-sample-delayed-player-position"
+    },
+    {
+      "bank": 1,
+      "address": "0x9606",
+      "name": "World2_RenderPlayer",
+      "evidence": "validated-world2-sprite-runtime-flight-damage-defeat-frame-selection-and-two-by-two-composition"
+    },
+    {
+      "bank": 1,
+      "address": "0x9661",
+      "name": "World2_RenderMetaspriteRow",
+      "evidence": "validated-world2-sprite-runtime-two-direction-aware-tiles-per-row"
+    },
+    {
+      "bank": 1,
+      "address": "0x966B",
+      "name": "World2_EmitInventorySprite",
+      "evidence": "validated-world2-sprite-runtime-inventory-tile-emitter-and-x-advance"
+    },
+    {
+      "bank": 1,
+      "address": "0x9688",
+      "name": "World2_EmitDirectionalMetaspriteSprite",
+      "evidence": "validated-world2-sprite-runtime-tile-high-bit-flip-and-flicker-buffer-emission"
+    },
+    {
+      "bank": 1,
+      "address": "0x96B1",
+      "name": "World2_PreparePlayerProjectileSprite",
+      "evidence": "validated-world2-sprite-runtime-projectile-tile-attributes-and-x-fallthrough"
+    },
+    {
+      "bank": 1,
+      "address": "0x96BA",
+      "name": "World2_SetSpriteXBeforeFlickerEmit",
+      "evidence": "validated-world2-sprite-runtime-x-stage-and-fallthrough-to-flicker-emitter"
+    },
+    {
+      "bank": 1,
+      "address": "0x96BC",
+      "name": "World2_EmitFlickerSelectedOamEntry",
+      "evidence": "validated-world2-sprite-runtime-oam-index-half-selection-and-restoration"
+    },
+    {
+      "bank": 1,
+      "address": "0x96C8",
+      "name": "World2_EmitOamEntry",
+      "evidence": "validated-world2-sprite-runtime-four-byte-y-tile-attributes-x-oam-write"
+    },
+    {
+      "bank": 1,
+      "address": "0x99F6",
+      "name": "World2_UpdatePendingEnemySpawn",
+      "evidence": "validated-world2-final-routines-packed-entry-position-and-runtime-state-activation"
+    },
+    {
+      "bank": 1,
+      "address": "0x9A46",
+      "name": "World2_TestCurrentEnemyAgainstPlayerAttacks",
+      "evidence": "validated-world2-final-routines-all-player-attack-pools-against-current-enemy"
+    },
+    {
+      "bank": 1,
+      "address": "0x9A9B",
+      "name": "World2_TestSlot0ProjectileEnemyCollision",
+      "evidence": "validated-world2-final-routines-slot0-projectile-current-enemy-overlap"
+    },
+    {
+      "bank": 1,
+      "address": "0x9ABE",
+      "name": "World2_TestSlot2AttackEnemyCollision",
+      "evidence": "validated-world2-final-routines-axis-aligned-slot2-reach-and-hit-consumption"
+    },
+    {
+      "bank": 1,
+      "address": "0x9DE4",
+      "name": "World2_ApplyScrollingTwiceToEnemy",
+      "evidence": "validated-world2-final-routines-first-scroll-call-falls-through-to-shared-second-call"
+    },
+    {
+      "bank": 1,
+      "address": "0xA115",
+      "name": "World2_ApplyScrollingToEnemyProjectile",
+      "evidence": "validated-world2-final-routines-projectile-scroll-translation-and-edge-deactivation"
+    },
+    {
+      "bank": 1,
+      "address": "0xA2CA",
+      "name": "World2_RenderEnemyProjectiles",
+      "evidence": "validated-world2-final-routines-six-projectile-state-dependent-fixed-oam-render"
+    },
+    {
+      "bank": 1,
+      "address": "0xA304",
+      "name": "World2_RenderEnemies",
+      "evidence": "validated-world2-final-routines-seven-enemy-defeat-or-active-render-dispatch"
+    },
+    {
+      "bank": 1,
+      "address": "0xA389",
+      "name": "World2_RenderEnemyMetaspriteRow",
+      "evidence": "validated-world2-final-routines-two-quadrant-row-composition-by-fallthrough"
+    },
+    {
+      "bank": 1,
+      "address": "0xA38C",
+      "name": "World2_RenderEnemyMetaspritePiece",
+      "evidence": "validated-world2-final-routines-one-tile-attribute-quadrant-and-x-advance"
+    },
+    {
+      "bank": 1,
+      "address": "0xA612",
+      "name": "World2_CheckChapterCompletionExit",
+      "evidence": "validated-world2-final-routines-terminal-screen-exit-zone-and-stopped-scroll"
+    },
+    {
+      "bank": 1,
+      "address": "0xA753",
+      "name": "World2_RenderHud",
+      "evidence": "validated-world2-final-routines-health-capacity-current-health-lives-and-score-oam-composition"
+    },
+    {
+      "bank": 1,
+      "address": "0xA7FA",
+      "name": "World2_EmitHudSpriteToFreeOamEntry",
+      "evidence": "validated-world2-final-routines-hidden-record-scan-and-staged-hud-oam-emission"
+    },
+    {
       "bank": 2,
       "address": "0x8000",
       "name": "Bank2_EnterWorld1",
@@ -6318,6 +6660,305 @@
     }
   ],
   "memory_symbols": [
+    {
+      "address": "0x000A",
+      "name": "World2HudHealthTiles",
+      "size": 8,
+      "banks": [
+        1
+      ],
+      "evidence": "eight-health-tile-staging-bytes-consumed-by-the-world2-hud-renderer"
+    },
+    {
+      "address": "0x0042",
+      "name": "World2ScrollDirection",
+      "banks": [
+        1
+      ],
+      "evidence": "active-stage-direction-selects-nmi-screen-service-player-aim-and-world-relative-motion"
+    },
+    {
+      "address": "0x0043",
+      "name": "World2PendingScrollDirection",
+      "banks": [
+        1
+      ],
+      "evidence": "decoded-from-f0-through-f3-stage-commands-and-committed-at-screen-transition"
+    },
+    {
+      "address": "0x0044",
+      "name": "World2VerticalTransitionDelay",
+      "banks": [
+        1
+      ],
+      "evidence": "fifteen-step-delay-before-vertical-screen-row-transition-and-direction-commit"
+    },
+    {
+      "address": "0x0045",
+      "name": "World2HorizontalTransitionDelay",
+      "banks": [
+        1
+      ],
+      "evidence": "fifteen-step-horizontal-prefetch-delay-that-gates-world-relative-entity-motion"
+    },
+    {
+      "address": "0x0063",
+      "name": "World2MetaspriteFlipMask",
+      "banks": [
+        1
+      ],
+      "evidence": "xored-with-enemy-quadrant-index-and-attribute-index-for-horizontal-mirroring"
+    },
+    {
+      "address": "0x0064",
+      "name": "World2MetaspriteSavedSlot",
+      "banks": [
+        1
+      ],
+      "evidence": "preserves-current-enemy-slot-while-x-indexes-metasprite-tables"
+    },
+    {
+      "address": "0x0065",
+      "name": "World2MetaspriteAttributeIndex",
+      "banks": [
+        1
+      ],
+      "evidence": "descriptor-derived-and-per-piece-advanced-oam-attribute-table-index"
+    },
+    {
+      "address": "0x0066",
+      "name": "World2MetaspriteTile",
+      "banks": [
+        1
+      ],
+      "evidence": "one-quadrant-tile-staged-before-zero-tile-suppression-and-oam-emission"
+    },
+    {
+      "address": "0x0076",
+      "name": "World2SavedEntitySlot",
+      "banks": [
+        1
+      ],
+      "evidence": "preserves-the-active-slot-across-enemy-dispatch-metasprite-and-health-table-indexing"
+    },
+    {
+      "address": "0x0077",
+      "name": "World2EnemyProjectileSourceX",
+      "banks": [
+        1
+      ],
+      "evidence": "current-enemy-x-saved-while-a-free-enemy-projectile-slot-is-selected"
+    },
+    {
+      "address": "0x0078",
+      "name": "World2EnemyProjectileSourceY",
+      "banks": [
+        1
+      ],
+      "evidence": "current-enemy-y-saved-while-a-free-enemy-projectile-slot-is-selected"
+    },
+    {
+      "address": "0x0079",
+      "name": "World2EnemyProjectileSourceSlot",
+      "banks": [
+        1
+      ],
+      "evidence": "restores-the-source-enemy-x-index-after-projectile-slot-and-motion-calculation"
+    },
+    {
+      "address": "0x009A",
+      "name": "World2EnemyCollisionSlot",
+      "banks": [
+        1
+      ],
+      "evidence": "preserves-the-current-enemy-slot-across-all-player-attack-collision-scans"
+    },
+    {
+      "address": "0x009B",
+      "name": "World2AttackCollisionHalfExtent",
+      "banks": [
+        1
+      ],
+      "evidence": "slot-two-attack-phase-clamped-and-doubled-for-axis-aligned-collision-reach"
+    },
+    {
+      "address": "0x009F",
+      "name": "World2CurrentEnemyStateIndex",
+      "banks": [
+        1
+      ],
+      "evidence": "preserves-current-enemy-state-for-damage-threshold-attack-period-and-score-lookups"
+    },
+    {
+      "address": "0x00A3",
+      "name": "World2InventorySlot5PickupCount",
+      "banks": [
+        1
+      ],
+      "evidence": "counts-two-slot-five-health-capacity-upgrades-and-gates-further-spawns"
+    },
+    {
+      "address": "0x00A6",
+      "name": "World2EnemyProjectileTargetX",
+      "banks": [
+        1
+      ],
+      "evidence": "scroll-adjusted-player-x-target-used-to-derive-enemy-projectile-motion"
+    },
+    {
+      "address": "0x00A7",
+      "name": "World2EnemyProjectileTargetY",
+      "banks": [
+        1
+      ],
+      "evidence": "scroll-adjusted-player-y-target-used-to-derive-enemy-projectile-motion"
+    },
+    {
+      "address": "0x0060",
+      "name": "World2MetaspriteOriginX",
+      "banks": [
+        1
+      ],
+      "evidence": "shared-player-inventory-enemy-and-presentation-metasprite-origin-x"
+    },
+    {
+      "address": "0x0061",
+      "name": "World2MetaspriteOriginY",
+      "banks": [
+        1
+      ],
+      "evidence": "shared-player-inventory-enemy-and-presentation-metasprite-origin-y"
+    },
+    {
+      "address": "0x0062",
+      "name": "World2MetaspriteAttributes",
+      "banks": [
+        1
+      ],
+      "evidence": "base-oam-attributes-propagated-through-world2-metasprite-composition"
+    },
+    {
+      "address": "0x0094",
+      "name": "World2OamY",
+      "banks": [
+        1
+      ],
+      "evidence": "staged-y-byte-copied-to-the-first-byte-of-one-oam-record"
+    },
+    {
+      "address": "0x0095",
+      "name": "World2OamTile",
+      "banks": [
+        1
+      ],
+      "evidence": "staged-tile-byte-copied-to-the-second-byte-of-one-oam-record"
+    },
+    {
+      "address": "0x0096",
+      "name": "World2OamAttributes",
+      "banks": [
+        1
+      ],
+      "evidence": "staged-attribute-byte-copied-to-the-third-byte-of-one-oam-record"
+    },
+    {
+      "address": "0x0097",
+      "name": "World2OamX",
+      "banks": [
+        1
+      ],
+      "evidence": "staged-x-byte-copied-to-the-fourth-byte-of-one-oam-record"
+    },
+    {
+      "address": "0x0200",
+      "name": "World2PlayerXHistory",
+      "size": 48,
+      "banks": [
+        1
+      ],
+      "evidence": "48-entry-x-ring-written-on-player-motion-and-read-by-active-inventory-slots-zero-and-one"
+    },
+    {
+      "address": "0x0230",
+      "name": "World2PlayerYHistory",
+      "size": 48,
+      "banks": [
+        1
+      ],
+      "evidence": "48-entry-y-ring-written-on-player-motion-and-read-by-active-inventory-slots-zero-and-one"
+    },
+    {
+      "address": "0x006A",
+      "name": "World2InventorySlot2AttackActive",
+      "banks": [
+        1
+      ],
+      "evidence": "set-by-slot2-attack-start-tested-by-update-render-and-enemy-contact-paths"
+    },
+    {
+      "address": "0x006B",
+      "name": "World2InventorySlot2AttackPhase",
+      "banks": [
+        1
+      ],
+      "evidence": "incremented-during-slot2-axis-growth-and-used-as-render-and-collision-reach"
+    },
+    {
+      "address": "0x006E",
+      "name": "World2InventorySlot2AttackDirection",
+      "banks": [
+        1
+      ],
+      "evidence": "latched-from-player-direction-and-selects-horizontal-or-vertical-slot2-motion"
+    },
+    {
+      "address": "0x006F",
+      "name": "World2InventorySlot0ProjectileActive",
+      "banks": [
+        1
+      ],
+      "evidence": "nonzero-lifetime-counter-for-slot0-projectile-update-render-and-enemy-contact"
+    },
+    {
+      "address": "0x0070",
+      "name": "World2InventorySlot0ProjectileX",
+      "banks": [
+        1
+      ],
+      "evidence": "slot0-projectile-horizontal-position-used-by-motion-render-and-enemy-contact"
+    },
+    {
+      "address": "0x0071",
+      "name": "World2InventorySlot0ProjectileY",
+      "banks": [
+        1
+      ],
+      "evidence": "slot0-projectile-vertical-position-used-by-motion-render-and-enemy-contact"
+    },
+    {
+      "address": "0x0072",
+      "name": "World2InventorySlot0ProjectileDirection",
+      "banks": [
+        1
+      ],
+      "evidence": "indexes-slot0-motion-deltas-and-oscillates-toward-or-away-from-direction-eight"
+    },
+    {
+      "address": "0x009C",
+      "name": "World2PlayerHazardContact",
+      "banks": [
+        1
+      ],
+      "evidence": "accumulated-by-map-enemy-and-projectile-contact-scan-and-consumed-by-player-damage-path"
+    },
+    {
+      "address": "0x00A1",
+      "name": "World2InventorySlot0ProjectileAimPhase",
+      "banks": [
+        1
+      ],
+      "evidence": "toggles-between-the-two-horizontal-slot0-diagonal-start-directions"
+    },
     {
       "address": "0x003F",
       "name": "World2ScrollX",

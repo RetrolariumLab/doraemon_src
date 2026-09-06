@@ -89,9 +89,9 @@ Bank1_Label_9DDC:
     JMP World2_RenderEnemyMetaspriteIndex
 
 World2_UpdateGanganStraight:
-    JSR Bank1_Func_9DE4
+    JSR World2_ApplyScrollingTwiceToEnemy
 
-Bank1_Func_9DE4:
+World2_ApplyScrollingTwiceToEnemy:
     JSR World2_ApplyScrollingToEnemy
 
 World2_UpdateTakkon:
@@ -104,9 +104,9 @@ World2_RenderGangan:
     LSR A
     TAX
     LDA a:$9E02,X
-    STA $63
+    STA World2MetaspriteFlipMask
     LDA a:$9DFE,X
-    LDX $76
+    LDX World2SavedEntitySlot
     JMP World2_RenderEnemyMetaspriteIndex
     .byte $11, $11, $12, $12, $00, $01, $01, $00
 
