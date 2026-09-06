@@ -5,31 +5,31 @@
 World3_DemoEntry:
     LDX #$7F
     TXS
-    JSR Bank2_Func_B1FE
-    JSR Bank2_Func_8689
+    JSR World3_InitializeHardwareAndRam
+    JSR World3_InitializeVideo
     JSR World3_InitializeRoomObjectRegistry
     LDA #$00
     STA World1FlashLightCarryFlag
-    STA $38
+    STA World3PassingHoopCarryFlag
     LDA #$03
     STA PlayerLives
 
 Bank2_Label_82C3:
     LDA #$01
-    STA $DC
+    STA World3AttractModeActive
     LDX #$00
     LDY #$02
-    STX $DD
-    STY $DE
+    STX World3AttractFrameCounterLow
+    STY World3AttractFrameCounterHigh
     LDA PlayerLives
     AND #$03
     TAX
     LDA a:$82EA,X
-    STA $DF
+    STA World3CurrentRoom
     LDA a:$82EE,X
-    STA $8C
+    STA World3PlayerX
     LDA a:$82F2,X
-    STA $8D
+    STA World3PlayerY
     LDA #$02
     STA PlayerHealthCapacityIndex
     JMP Bank2_Label_8328
@@ -40,26 +40,26 @@ Bank2_World3Main:
     BPL Bank2_Label_8314
     LDX #$7F
     TXS
-    JSR Bank2_Func_B1FE
-    JSR Bank2_Func_8689
+    JSR World3_InitializeHardwareAndRam
+    JSR World3_InitializeVideo
     JSR World3_InitializeRoomObjectRegistry
     LDA #$00
-    STA $DC
+    STA World3AttractModeActive
     LDA #$00
-    STA $DF
+    STA World3CurrentRoom
     JSR Bank2_Func_A2D4
     JMP Bank2_Label_8328
 
 Bank2_Label_8314:
     LDX #$7F
     TXS
-    JSR Bank2_Func_B1FE
-    JSR Bank2_Func_8689
+    JSR World3_InitializeHardwareAndRam
+    JSR World3_InitializeVideo
     JSR World3_InitializeRoomObjectRegistry
     LDA #$00
-    STA $DC
+    STA World3AttractModeActive
     LDA #$00
-    STA $DF
+    STA World3CurrentRoom
 
 Bank2_Label_8328:
     LDA #$80
@@ -67,11 +67,11 @@ Bank2_Label_8328:
     LDA #$80
     STA $4C
     LDA #$00
-    STA $4F
+    STA World3ChapterCompletionDelay
     LDA #$00
-    STA $D0
+    STA World3Room16MicrophoneEventComplete
     LDA #$00
-    STA $E0
+    STA World3DebugControlsEnabled
     LDA Controller1Buttons
     CMP #$FA
     BNE Bank2_Label_834C
@@ -79,12 +79,12 @@ Bank2_Label_8328:
     CMP #$C5
     BNE Bank2_Label_834C
     LDA #$01
-    STA $E0
+    STA World3DebugControlsEnabled
 
 Bank2_Label_834C:
     LDX #$7F
     TXS
-    LDA $DC
+    LDA World3AttractModeActive
     BNE Bank2_Label_836B
     JSR Bank2_DisableRenderingForUpdate
     LDA #$02
@@ -101,87 +101,87 @@ Bank2_Label_836B:
     JSR Bank2_DisableRenderingForUpdate
     JSR Bank2_Func_A1F4
     JSR Bank2_Func_A213
-    LDA $DC
+    LDA World3AttractModeActive
     BNE Bank2_Label_837B
-    JSR Bank2_Func_850B
+    JSR World3_InitializePlayerRoomAndPosition
 
 Bank2_Label_837B:
-    LDA $DF
+    LDA World3CurrentRoom
     AND #$07
-    STA $89
-    LDA $DF
+    STA World3RoomColumn
+    LDA World3CurrentRoom
     LSR A
     LSR A
     LSR A
-    STA $8A
+    STA World3RoomRow
     JSR Bank2_Func_8BF3
-    JSR Bank2_Func_A733
+    JSR World3_LoadCurrentRoom
 
 Bank2_World3FrameLoop:
     LDX #$7F
     TXS
     LDA #$00
     STA World3FrameWaitCounter
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3F
     BNE Bank2_Label_839E
-    JSR Bank2_Func_B406
+    JSR World3_RenderScoreAndLives
 
 Bank2_Label_839E:
-    LDA $4F
+    LDA World3ChapterCompletionDelay
     BNE Bank2_Label_83A5
     JSR Bank2_Func_AF30
 
 Bank2_Label_83A5:
     JSR World3_UpdateTransientSpawns
     JSR Bank2_Func_879B
-    LDA $4F
+    LDA World3ChapterCompletionDelay
     BNE Bank2_Label_83B5
     JSR World3_UpdatePlayerState
     JSR World3_UpdatePlayerProjectiles
 
 Bank2_Label_83B5:
     JSR World3_UpdateEntities
-    JSR Bank2_Func_A601
-    LDA $4F
+    JSR World3_RenderPlayer
+    LDA World3ChapterCompletionDelay
     BNE Bank2_Label_83C2
     JSR World3_RenderPlayerProjectiles
 
 Bank2_Label_83C2:
     JSR World3_RenderEntities
     JSR World3_CommitScoreAndCheckExtraLife
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3F
     BEQ Bank2_Label_83D1
-    JSR Bank2_Func_B406
+    JSR World3_RenderScoreAndLives
 
 Bank2_Label_83D1:
-    JSR Bank2_Func_B460
+    JSR World3_RenderHealth
     JSR Bank2_Func_9192
     JSR World3_CheckPunishmentRoomEntry
     JSR World3_CheckPunishmentRoomExit
-    JSR Bank2_Func_8487
-    JSR Bank2_Func_859A
-    JSR Bank2_Func_8581
+    JSR World3_UpdateRoom16MicrophoneEvent
+    JSR World3_UpdatePause
+    JSR World3_RestoreRoomMusicAfterBossDelay
     LDA ExtraLifeSoundCounter
     BEQ Bank2_Label_83F3
     LDA #$00
     STA ExtraLifeSoundCounter
     LDA #$10
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
 
 Bank2_Label_83F3:
-    JSR Bank2_Func_8427
+    JSR World3_UpdateDebugAndMicrophoneHooks
     LDA #$01
     STA NmiOamDmaRequest
     LDA #$01
     STA World3FrameWaitCounter
     JSR World3_WaitFrames
-    LDA $DC
+    LDA World3AttractModeActive
     BEQ Bank2_Label_8419
-    DEC $DD
+    DEC World3AttractFrameCounterLow
     BNE Bank2_Label_840D
-    DEC $DE
+    DEC World3AttractFrameCounterHigh
     BEQ Bank2_Label_8416
 
 Bank2_Label_840D:
@@ -194,34 +194,34 @@ Bank2_Label_8416:
     JMP Bank2_Label_A26D
 
 Bank2_Label_8419:
-    LDA $4F
+    LDA World3ChapterCompletionDelay
     BEQ Bank2_Label_8424
-    DEC $4F
+    DEC World3ChapterCompletionDelay
     BNE Bank2_Label_8424
     JMP Bank2_Func_AE12
 
 Bank2_Label_8424:
     JMP Bank2_World3FrameLoop
 
-Bank2_Func_8427:
-    LDA $E0
+World3_UpdateDebugAndMicrophoneHooks:
+    LDA World3DebugControlsEnabled
     BNE Bank2_Label_844E
-    LDA $DF
+    LDA World3CurrentRoom
     BNE Bank2_Label_8486
-    LDA $8C
+    LDA World3PlayerX
     CMP #$25
     BNE Bank2_Label_8486
-    LDA $8D
+    LDA World3PlayerY
     CMP #$BB
     BNE Bank2_Label_8486
     LDA Controller2MicrophoneEdgeTimer
     BNE Bank2_Label_8443
     LDA #$00
-    STA $CF
+    STA World3MicrophoneHoldCounter
 
 Bank2_Label_8443:
-    INC $CF
-    LDA $CF
+    INC World3MicrophoneHoldCounter
+    LDA World3MicrophoneHoldCounter
     CMP #$3C
     BNE Bank2_Label_8486
     JMP Bank2_Label_FC00
@@ -230,25 +230,25 @@ Bank2_Label_844E:
     LDA Controller2Buttons
     AND #$02
     BEQ Bank2_Label_8457
-    JSR Bank2_Func_A619
+    JSR World3_EnterRoomLeft
 
 Bank2_Label_8457:
     LDA Controller2Buttons
     AND #$01
     BEQ Bank2_Label_8460
-    JSR Bank2_Func_A63A
+    JSR World3_EnterRoomRight
 
 Bank2_Label_8460:
     LDA Controller2Buttons
     AND #$08
     BEQ Bank2_Label_8469
-    JSR Bank2_Func_A65D
+    JSR World3_EnterRoomAbove
 
 Bank2_Label_8469:
     LDA Controller2Buttons
     AND #$04
     BEQ Bank2_Label_8472
-    JSR Bank2_Func_A688
+    JSR World3_EnterRoomBelow
 
 Bank2_Label_8472:
     LDA Controller2Buttons
@@ -268,43 +268,43 @@ Bank2_Label_847F:
 Bank2_Label_8486:
     RTS
 
-Bank2_Func_8487:
-    LDA $CE
+World3_UpdateRoom16MicrophoneEvent:
+    LDA World3Room16MicrophoneEventActive
     BEQ Bank2_Label_849E
     LDX #$78
     LDY #$80
-    JSR Bank2_Func_A71A
+    JSR World3_SetMetaspriteOriginFromXY
     LDA #$00
-    STA $7A
+    STA World3MetaspriteRenderFlags
     LDA #$B8
-    STA $79
+    STA World3MetaspriteIndex
     JSR World3_ComposeMetasprite
     RTS
 
 Bank2_Label_849E:
-    LDA $D0
+    LDA World3Room16MicrophoneEventComplete
     BNE Bank2_Label_8502
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$16
     BNE Bank2_Label_8502
     LDA Controller2MicrophoneEdgeTimer
     BNE Bank2_Label_84B0
     LDA #$00
-    STA $CF
+    STA World3MicrophoneHoldCounter
 
 Bank2_Label_84B0:
-    INC $CF
-    LDA $CF
+    INC World3MicrophoneHoldCounter
+    LDA World3MicrophoneHoldCounter
     CMP #$3C
     BNE Bank2_Label_8502
     LDA #$0A
-    JSR Bank2_Func_A5EB
-    JSR Bank2_Func_86C4
+    JSR World3_QueueEffectPreserveXY
+    JSR World3_RunPaletteFlash
     LDA #$01
-    STA $CE
-    STA $D0
+    STA World3Room16MicrophoneEventActive
+    STA World3Room16MicrophoneEventComplete
     LDA #$00
-    STA $9A
+    STA World3FollowerActive
     LDX #$00
     LDY #$00
 
@@ -341,10 +341,10 @@ Bank2_Label_8502:
     RTS
     .byte $58, $58, $98, $98, $60, $A0, $60, $A0
 
-Bank2_Func_850B:
-    LDA $DF
+World3_InitializePlayerRoomAndPosition:
+    LDA World3CurrentRoom
     BEQ Bank2_Label_8526
-    JSR Bank2_Func_8541
+    JSR World3_LoadRoomFromPassingHoop
     CMP #$27
     BEQ Bank2_Label_852F
     CMP #$28
@@ -353,31 +353,31 @@ Bank2_Func_850B:
     BEQ Bank2_Label_852F
     CMP #$3C
     BEQ Bank2_Label_8538
-    JSR Bank2_Func_855A
+    JSR World3_ChoosePassablePlayerPosition
     RTS
 
 Bank2_Label_8526:
     LDA #$80
-    STA $8C
+    STA World3PlayerX
     LDA #$80
-    STA $8D
+    STA World3PlayerY
     RTS
 
 Bank2_Label_852F:
     LDA #$30
-    STA $8C
+    STA World3PlayerX
     LDA #$40
-    STA $8D
+    STA World3PlayerY
     RTS
 
 Bank2_Label_8538:
     LDA #$30
-    STA $8C
+    STA World3PlayerX
     LDA #$B0
-    STA $8D
+    STA World3PlayerY
     RTS
 
-Bank2_Func_8541:
+World3_LoadRoomFromPassingHoop:
     LDY #$00
 
 Bank2_Label_8543:
@@ -392,37 +392,37 @@ Bank2_Label_8543:
 
 Bank2_Label_8554:
     LDA a:World3RoomObjectRoom,Y
-    STA $DF
+    STA World3CurrentRoom
     RTS
 
-Bank2_Func_855A:
+World3_ChoosePassablePlayerPosition:
     JSR Bank2_Func_928D
     STA $46
     JSR Bank2_Func_9299
     STA $47
-    JSR Bank2_Func_9EC3
-    BCC Bank2_Func_855A
-    JSR Bank2_Func_9EFB
-    BCC Bank2_Func_855A
-    JSR Bank2_Func_9F37
-    BCC Bank2_Func_855A
-    JSR Bank2_Func_9F71
-    BCC Bank2_Func_855A
+    JSR World3_ProbeEntityLeftEdge
+    BCC World3_ChoosePassablePlayerPosition
+    JSR World3_ProbeEntityRightEdge
+    BCC World3_ChoosePassablePlayerPosition
+    JSR World3_ProbeEntityTopEdge
+    BCC World3_ChoosePassablePlayerPosition
+    JSR World3_ProbeEntityBottomEdge
+    BCC World3_ChoosePassablePlayerPosition
     LDA $46
-    STA $8C
+    STA World3PlayerX
     LDA $47
-    STA $8D
+    STA World3PlayerY
     RTS
 
-Bank2_Func_8581:
-    LDA $A6
+World3_RestoreRoomMusicAfterBossDelay:
+    LDA World3BossMusicRestoreDelay
     BEQ Bank2_Label_8599
-    DEC $A6
+    DEC World3BossMusicRestoreDelay
     BNE Bank2_Label_8599
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3F
     BEQ Bank2_Label_8599
-    LDA $A5
+    LDA World3RoomMusicTrack
     STA a:AudioMusicState
     LDA #$00
     STA a:AudioMusicControl
@@ -430,31 +430,31 @@ Bank2_Func_8581:
 Bank2_Label_8599:
     RTS
 
-Bank2_Func_859A:
-    JSR Bank2_Func_A5F7
+World3_UpdatePause:
+    JSR World3_ReadActivePlayerButtons
     AND #$10
     BNE Bank2_Label_85A4
-    STA $64
+    STA World3PauseInputLatch
 
 Bank2_Label_85A3:
     RTS
 
 Bank2_Label_85A4:
-    LDA $64
+    LDA World3PauseInputLatch
     BNE Bank2_Label_85A3
-    INC $64
+    INC World3PauseInputLatch
     LDA #$01
     STA a:AudioMusicControl
     LDA #$06
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
 
 Bank2_Label_85B4:
-    JSR Bank2_Func_A5F7
+    JSR World3_ReadActivePlayerButtons
     AND #$10
     BNE Bank2_Label_85B4
 
 Bank2_Label_85BB:
-    JSR Bank2_Func_A5F7
+    JSR World3_ReadActivePlayerButtons
     AND #$10
     BEQ Bank2_Label_85BB
     LDA #$00
@@ -464,7 +464,7 @@ Bank2_Label_85BB:
 World3_CheckPunishmentRoomExit:
     LDA World3PunishmentRoomActive
     BEQ Bank2_Label_85FC
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$12
     BNE Bank2_Label_85FC
     LDA World3PunishmentDorayakiRemaining
@@ -485,10 +485,10 @@ Bank2_Label_85E2:
 
 Bank2_Label_85EC:
     LDA #$0A
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
     LDA #$01
     STA a:AudioMusicControl
-    JSR Bank2_Func_86C4
+    JSR World3_RunPaletteFlash
     JSR World3_ExitPunishmentRoom
 
 Bank2_Label_85FC:
@@ -505,29 +505,29 @@ World3_CheckPunishmentRoomEntry:
     LDA #$01
     STA World3PunishmentRoomActive
     LDA #$0A
-    JSR Bank2_Func_A5EB
-    JSR Bank2_Func_86C4
-    JSR Bank2_Func_866C
+    JSR World3_QueueEffectPreserveXY
+    JSR World3_RunPaletteFlash
+    JSR World3_ClearPersistentObjectStates
     JSR World3_SaveRoomObjectsState0
     JSR World3_SaveRoomObjectsState1
-    LDA $DF
+    LDA World3CurrentRoom
     STA World3PunishmentReturnRoom
     LDA #$12
-    STA $DF
+    STA World3CurrentRoom
     JSR Bank2_Func_A213
-    JSR Bank2_Func_A733
+    JSR World3_LoadCurrentRoom
     LDY #$00
 
 Bank2_Label_8630:
-    LDA a:$008C,Y
+    LDA a:World3PlayerX,Y
     STA a:World3PunishmentSavedPlayerState,Y
     INY
     CPY #$12
     BNE Bank2_Label_8630
     LDA #$80
-    STA $8C
+    STA World3PlayerX
     LDA #$A8
-    STA $8D
+    STA World3PlayerY
     LDA #$14
     STA World3PunishmentDorayakiRemaining
     LDA #$03
@@ -537,7 +537,7 @@ Bank2_Label_864C:
     RTS
 
 World3_DormantUpdateState55ForRoomBands:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$2D
     BCC Bank2_Label_8667
     CMP #$30
@@ -558,7 +558,7 @@ Bank2_Label_8667:
 Bank2_Label_866B:
     RTS
 
-Bank2_Func_866C:
+World3_ClearPersistentObjectStates:
     LDY #$00
 
 Bank2_Label_866E:
@@ -576,10 +576,10 @@ Bank2_Label_867A:
     CPY #$0D
     BNE Bank2_Label_867A
     LDA #$00
-    STA $9A
+    STA World3FollowerActive
     RTS
 
-Bank2_Func_8689:
+World3_InitializeVideo:
     JSR Bank2_DisableRenderingForUpdate
     LDA #$90
     STA PpuCtrlShadow
@@ -602,14 +602,14 @@ Bank2_Func_8689:
     JSR World3_EnableRendering
     RTS
 
-Bank2_Func_86BB:
-    LDA $73
+World3_ToggleOamBufferHalf:
+    LDA World3OamBufferHalf
     EOR #$40
-    STA $73
-    STA $74
+    STA World3OamBufferHalf
+    STA World3OamWriteIndex
     RTS
 
-Bank2_Func_86C4:
+World3_RunPaletteFlash:
     STX $44
     STY $45
     LDA #$0C
@@ -625,13 +625,13 @@ Bank2_Label_86D6:
     TAX
     LDA a:$8723,X
     TAX
-    JSR Bank2_Func_8700
+    JSR World3_SetFlashPaletteColors
     LDA #$04
     STA World3FrameWaitCounter
     JSR World3_WaitFrames
     LDA $47
     LDX $48
-    JSR Bank2_Func_8700
+    JSR World3_SetFlashPaletteColors
     LDA #$04
     STA World3FrameWaitCounter
     JSR World3_WaitFrames
@@ -641,7 +641,7 @@ Bank2_Label_86D6:
     LDY $45
     RTS
 
-Bank2_Func_8700:
+World3_SetFlashPaletteColors:
     STA a:World3PaletteShadow
     STA a:World3PaletteShadow+$04
     STA a:World3PaletteShadow+$08
@@ -657,7 +657,7 @@ Bank2_Func_8700:
     RTS
     .byte $30, $25, $30, $30, $30, $30, $30, $30, $30, $30, $30, $30, $26, $30, $30, $27
 
-Bank2_Func_8733:
+World3_DefeatActiveCombatEntities:
     LDY #$00
 
 Bank2_Label_8735:

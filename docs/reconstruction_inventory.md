@@ -12,11 +12,11 @@ evidence manifests. Any change requires an intentional snapshot update.
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 0 | 1,011 | 326 | 0 | 685 | 84 / 84 |
 | 1 | 879 | 320 | 0 | 559 | 97 / 97 |
-| 2 | 1,090 | 294 | 113 | 683 | 106 / 106 |
+| 2 | 1,092 | 351 | 58 | 683 | 106 / 106 |
 | 3 | 363 | 161 | 0 | 202 | 67 / 67 |
-| Total | 3,343 | 1,101 | 113 | 2,129 | 354 / 354 |
+| Total | 3,345 | 1,158 | 58 | 2,129 | 354 / 354 |
 
-The neutral population now separates 113 probable routine entries from 2,129
+The neutral population now separates 58 probable routine entries from 2,129
 local branch labels. The common runtime naming pass removed 88 neutral routine
 names by proving copied reset/NMI/mapper services, cross-bank gateways, and
 bank-local dispatches. A second pass named all 19 previously neutral non-audio
@@ -89,9 +89,24 @@ chapter-exit, and HUD entries. It covers 796 executable bytes, 19 direct
 edges, and 19 RAM symbols. Bank 1 now has zero neutral routine entries; all
 113 remaining entries are confined to Bank 2.
 
-The symbol registry currently contains 980 evidence-backed code symbols and
-111 operand/table symbols. RAM coverage contains 351 unique aliases: 83 shared
-symbols plus 98 Bank 0, 97 Bank 1, 65 Bank 2, and 8 Bank 3 scoped symbols.
+The first World 3 core pass names eighteen initialization, room/player setup,
+pause, palette, object-reset, OAM, and HUD routines. Its machine contract
+covers 938 executable bytes, 42 direct calls, and 22 Bank 2-private RAM
+fields. The following collision/rendering pass names another twenty-two
+routines covering entity metasprite submission, player/entity/projectile edge
+probes, the shared terrain-point readers, and final-room/Passing Hoop/boss
+terrain overrides. Its exact contract covers 808 executable bytes, 50 direct
+calls, and 20 Bank 2-private RAM symbols spanning 21 bytes. The room-runtime
+pass then names fifteen input/audio, player-render, directional-transition,
+persistence-policy, room-reload, music-selection, and palette-fade routines.
+Its exact contract covers 607 executable bytes, 76 direct calls, and ten RAM
+bytes; it also names the 64-byte room-music-class and four-byte track tables.
+Bank 2 now contains the complete remaining population of 58 neutral routine
+entries.
+
+The symbol registry currently contains 1,035 evidence-backed code symbols and
+113 operand/table symbols. RAM coverage contains 403 unique aliases: 83 shared
+symbols plus 98 Bank 0, 97 Bank 1, 117 Bank 2, and 8 Bank 3 scoped symbols.
 
 Typed PRG ranges cover 65,796 bytes in 57 non-overlapping regions. Bank 3 now
 separates exact title, game-over, chapter-help, ending-opening, active-credit,

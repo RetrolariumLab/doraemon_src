@@ -39,7 +39,7 @@ Bank2_Func_AB53:
     LSR A
     LSR A
     LSR A
-    CMP $8A
+    CMP World3RoomRow
     BEQ Bank2_Label_AB7F
     BCC Bank2_Label_AB75
     LDA $3E
@@ -60,7 +60,7 @@ Bank2_Label_AB7C:
 Bank2_Label_AB7F:
     LDA $3E
     AND #$07
-    CMP $89
+    CMP World3RoomColumn
     BEQ Bank2_Label_AB9D
     BCC Bank2_Label_AB93
     LDA $3E
@@ -106,12 +106,12 @@ Bank2_Label_ABB8:
 
 Bank2_Func_ABF9:
     LDA #$00
-    STA $51
+    STA World3FormationActive
     LDX #$00
 
 Bank2_Label_ABFF:
     LDA a:World3EncounterRoomList,X
-    CMP $DF
+    CMP World3CurrentRoom
     BEQ Bank2_Label_AC0C
     INX
     CPX #$08
@@ -120,25 +120,25 @@ Bank2_Label_ABFF:
 
 Bank2_Label_AC0C:
     LDA #$00
-    STA $51
+    STA World3FormationActive
     JSR World3_FindFreeEntitySlot
     BCC Bank2_Label_AC6B
 
 World3_CreateDragonFormationTypes0ATo0B:
     LDA #$00
-    STA $51
+    STA World3FormationActive
     LDA #$00
     STA $C9
     STA $CA
 
 Bank2_Func_AC1F:
     LDA #$00
-    STA $51
+    STA World3FormationActive
     CPX #$06
     BCS Bank2_Label_AC6B
     STX $C8
     LDA #$01
-    STA $51
+    STA World3FormationActive
     LDY #$00
 
 Bank2_Label_AC2F:
@@ -303,8 +303,8 @@ Bank2_Label_AD58:
     JMP Bank2_Label_AD79
 
 Bank2_Label_AD75:
-    LDX $8C
-    LDY $8D
+    LDX World3PlayerX
+    LDY World3PlayerY
 
 Bank2_Label_AD79:
     JSR Bank2_Func_AB3B

@@ -3,10 +3,10 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World3_RenderEntities:
-    LDA $51
+    LDA World3FormationActive
     BNE Bank2_Label_9D25
-    INC $52
-    LDA $52
+    INC World3EntityRenderOrderPhase
+    LDA World3EntityRenderOrderPhase
     AND #$01
     BNE Bank2_Label_9D37
 
@@ -17,7 +17,7 @@ Bank2_Label_9D25:
     STA $06
 
 Bank2_Label_9D2D:
-    JSR Bank2_Func_9D49
+    JSR World3_RenderEntitySlot
     INC $07
     DEC $06
     BNE Bank2_Label_9D2D
@@ -30,13 +30,13 @@ Bank2_Label_9D37:
     STA $06
 
 Bank2_Label_9D3F:
-    JSR Bank2_Func_9D49
+    JSR World3_RenderEntitySlot
     DEC $07
     DEC $06
     BNE Bank2_Label_9D3F
     RTS
 
-Bank2_Func_9D49:
+World3_RenderEntitySlot:
     LDX $07
     LDA a:World3EntityState,X
     BEQ Bank2_Label_9DCC
@@ -46,7 +46,7 @@ Bank2_Func_9D49:
     BEQ Bank2_Label_9D71
     CMP #$01
     BNE Bank2_Label_9D67
-    LDA $CB
+    LDA World3StopwatchActive
     BEQ Bank2_Label_9D71
     LDA a:World3EntityType,X
     CMP #$10
@@ -55,32 +55,32 @@ Bank2_Func_9D49:
 Bank2_Label_9D67:
     LDA a:World3EntityRenderFlags,X
     ORA #$40
-    STA $7A
+    STA World3MetaspriteRenderFlags
     JMP Bank2_Label_9D76
 
 Bank2_Label_9D71:
     LDA a:World3EntityRenderFlags,X
-    STA $7A
+    STA World3MetaspriteRenderFlags
 
 Bank2_Label_9D76:
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityRenderFlagsByType,Y
-    ORA $7A
-    STA $7A
+    ORA World3MetaspriteRenderFlags
+    STA World3MetaspriteRenderFlags
     LDA a:World3EntityState,X
     CMP #$04
     BNE Bank2_Label_9D8E
-    LDA $7A
+    LDA World3MetaspriteRenderFlags
     AND #$DF
-    STA $7A
+    STA World3MetaspriteRenderFlags
 
 Bank2_Label_9D8E:
     LDA a:World3EntityState,X
     CMP #$05
     BNE Bank2_Label_9DAE
     LDA a:World3EntityMetasprite,X
-    STA $79
+    STA World3MetaspriteIndex
     LDA a:World3EntityY,X
     SEC
     SBC #$08
@@ -89,22 +89,22 @@ Bank2_Label_9D8E:
     SEC
     SBC #$08
     TAX
-    JSR Bank2_Func_A71A
+    JSR World3_SetMetaspriteOriginFromXY
     JMP Bank2_Label_9DC9
 
 Bank2_Label_9DAE:
-    JSR Bank2_Func_9DCD
+    JSR World3_EntityRenderHookNoOp
     LDA a:World3EntityMetasprite,X
     CLC
     ADC a:World3EntityMetaspriteVariantBit1,X
     CLC
     ADC a:World3EntityMetaspriteVariantBit0,X
-    STA $79
+    STA World3MetaspriteIndex
     LDA a:World3EntityY,X
     TAY
     LDA a:World3EntityX,X
     TAX
-    JSR Bank2_Func_A71A
+    JSR World3_SetMetaspriteOriginFromXY
 
 Bank2_Label_9DC9:
     JSR World3_ComposeMetasprite
@@ -112,7 +112,7 @@ Bank2_Label_9DC9:
 Bank2_Label_9DCC:
     RTS
 
-Bank2_Func_9DCD:
+World3_EntityRenderHookNoOp:
     RTS
 
 World3_DormantFaceType03TowardPlayer:
@@ -121,7 +121,7 @@ World3_DormantFaceType03TowardPlayer:
     BNE Bank2_Label_9DE4
     LDY #$00
     LDA a:World3EntityX,X
-    CMP $8C
+    CMP World3PlayerX
     BCS Bank2_Label_9DE0
     LDY #$02
 
@@ -132,8 +132,8 @@ Bank2_Label_9DE0:
 Bank2_Label_9DE4:
     RTS
 
-Bank2_Func_9DE5:
-    LDA $8D
+World3_ProbePlayerLeftEdge:
+    LDA World3PlayerY
     STA $00
     LDA #$03
     STA $01
@@ -143,12 +143,12 @@ Bank2_Func_9DE5:
     STA $00
 
 Bank2_Label_9DF4:
-    LDA $8C
+    LDA World3PlayerX
     CLC
     ADC #$02
     TAX
     LDY $00
-    JSR Bank2_Func_A019
+    JSR World3_TestPlayerTerrainPoint
     BCC Bank2_Label_9E39
     LDA $00
     CLC
@@ -156,10 +156,10 @@ Bank2_Label_9DF4:
     STA $00
     DEC $01
     BNE Bank2_Label_9DF4
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
-Bank2_Func_9E0F:
-    LDA $8D
+World3_ProbePlayerRightEdge:
+    LDA World3PlayerY
     STA $00
     LDA #$03
     STA $01
@@ -169,12 +169,12 @@ Bank2_Func_9E0F:
     STA $00
 
 Bank2_Label_9E1E:
-    LDA $8C
+    LDA World3PlayerX
     CLC
     ADC #$0E
     TAX
     LDY $00
-    JSR Bank2_Func_A019
+    JSR World3_TestPlayerTerrainPoint
     BCC Bank2_Label_9E39
     LDA $00
     CLC
@@ -182,14 +182,14 @@ Bank2_Label_9E1E:
     STA $00
     DEC $01
     BNE Bank2_Label_9E1E
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
 Bank2_Label_9E39:
     CLC
     RTS
 
-Bank2_Func_9E3B:
-    LDA $8C
+World3_ProbePlayerTopEdge:
+    LDA World3PlayerX
     STA $00
     LDA #$02
     STA $01
@@ -200,11 +200,11 @@ Bank2_Func_9E3B:
 
 Bank2_Label_9E4A:
     LDX $00
-    LDA $8D
+    LDA World3PlayerY
     CLC
     ADC #$02
     TAY
-    JSR Bank2_Func_A019
+    JSR World3_TestPlayerTerrainPoint
     BCC Bank2_Label_9E39
     LDA $00
     CLC
@@ -212,10 +212,10 @@ Bank2_Label_9E4A:
     STA $00
     DEC $01
     BNE Bank2_Label_9E4A
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
-Bank2_Func_9E65:
-    LDA $8C
+World3_ProbePlayerBottomEdge:
+    LDA World3PlayerX
     STA $00
     LDA #$02
     STA $01
@@ -226,11 +226,11 @@ Bank2_Func_9E65:
 
 Bank2_Label_9E74:
     LDX $00
-    LDA $8D
+    LDA World3PlayerY
     CLC
     ADC #$16
     TAY
-    JSR Bank2_Func_A019
+    JSR World3_TestPlayerTerrainPoint
     BCC Bank2_Label_9E39
     LDA $00
     CLC
@@ -238,10 +238,10 @@ Bank2_Label_9E74:
     STA $00
     DEC $01
     BNE Bank2_Label_9E74
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
-Bank2_Func_9E8F:
-    LDA $8C
+World3_ProbePlayerHorizontalMidline:
+    LDA World3PlayerX
     STA $00
     LDA #$02
     STA $01
@@ -252,11 +252,11 @@ Bank2_Func_9E8F:
 
 Bank2_Label_9E9E:
     LDX $00
-    LDA $8D
+    LDA World3PlayerY
     CLC
     ADC #$0C
     TAY
-    JSR Bank2_Func_A019
+    JSR World3_TestPlayerTerrainPoint
     BCC Bank2_Label_9E39
     LDA $00
     CLC
@@ -264,15 +264,15 @@ Bank2_Label_9E9E:
     STA $00
     DEC $01
     BNE Bank2_Label_9E9E
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
-Bank2_Func_9EB9:
+World3_ProbeCurrentEntityLeftEdge:
     LDA a:World3EntityX,X
     STA $46
     LDA a:World3EntityY,X
     STA $47
 
-Bank2_Func_9EC3:
+World3_ProbeEntityLeftEdge:
     STX $44
     LDA $47
     STA $00
@@ -289,7 +289,7 @@ Bank2_Label_9ED4:
     ADC #$02
     TAX
     LDY $00
-    JSR Bank2_Func_A009
+    JSR World3_TestEntityTerrainPoint
     BCC Bank2_Label_9F29
     LDA $00
     CLC
@@ -298,15 +298,15 @@ Bank2_Label_9ED4:
     DEC $01
     BNE Bank2_Label_9ED4
     LDX $44
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
-Bank2_Func_9EF1:
+World3_ProbeCurrentEntityRightEdge:
     LDA a:World3EntityX,X
     STA $46
     LDA a:World3EntityY,X
     STA $47
 
-Bank2_Func_9EFB:
+World3_ProbeEntityRightEdge:
     STX $44
     LDA $47
     STA $00
@@ -323,7 +323,7 @@ Bank2_Label_9F0C:
     ADC #$0E
     TAX
     LDY $00
-    JSR Bank2_Func_A009
+    JSR World3_TestEntityTerrainPoint
     BCC Bank2_Label_9F29
     LDA $00
     CLC
@@ -332,20 +332,20 @@ Bank2_Label_9F0C:
     DEC $01
     BNE Bank2_Label_9F0C
     LDX $44
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
 Bank2_Label_9F29:
     LDX $44
     CLC
     RTS
 
-Bank2_Func_9F2D:
+World3_ProbeCurrentEntityTopEdge:
     LDA a:World3EntityX,X
     STA $46
     LDA a:World3EntityY,X
     STA $47
 
-Bank2_Func_9F37:
+World3_ProbeEntityTopEdge:
     STX $44
     LDA $46
     STA $00
@@ -363,7 +363,7 @@ Bank2_Label_9F4A:
     ADC #$02
     TAY
     LDX $00
-    JSR Bank2_Func_A009
+    JSR World3_TestEntityTerrainPoint
     BCC Bank2_Label_9F29
     LDA $00
     CLC
@@ -372,15 +372,15 @@ Bank2_Label_9F4A:
     DEC $01
     BNE Bank2_Label_9F4A
     LDX $44
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
-Bank2_Func_9F67:
+World3_ProbeCurrentEntityBottomEdge:
     LDA a:World3EntityX,X
     STA $46
     LDA a:World3EntityY,X
     STA $47
 
-Bank2_Func_9F71:
+World3_ProbeEntityBottomEdge:
     STX $44
     LDA $46
     STA $00
@@ -397,7 +397,7 @@ Bank2_Label_9F82:
     ADC #$16
     TAY
     LDX $00
-    JSR Bank2_Func_A009
+    JSR World3_TestEntityTerrainPoint
     BCC Bank2_Label_9F29
     LDA $00
     CLC
@@ -406,7 +406,7 @@ Bank2_Label_9F82:
     DEC $01
     BNE Bank2_Label_9F82
     LDX $44
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
 World3_DormantProbeEntityLowerEdge:
     LDA a:World3EntityX,X
@@ -429,7 +429,7 @@ Bank2_Label_9FBA:
     ADC #$08
     TAY
     LDX $00
-    JSR Bank2_Func_A009
+    JSR World3_TestEntityTerrainPoint
     BCC Bank2_Label_9FD7
     LDA $00
     CLC
@@ -438,14 +438,14 @@ Bank2_Label_9FBA:
     DEC $01
     BNE Bank2_Label_9FBA
     LDX $44
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
 Bank2_Label_9FD7:
     LDX $44
     CLC
     RTS
 
-Bank2_Func_9FDB:
+World3_ProbeProjectileCenterline:
     STX $44
     LDA $46
     STA $00
@@ -462,7 +462,7 @@ Bank2_Label_9FEC:
     ADC #$08
     TAY
     LDX $00
-    JSR Bank2_Func_A019
+    JSR World3_TestPlayerTerrainPoint
     BCC Bank2_Label_9FD7
     LDA $00
     CLC
@@ -471,64 +471,64 @@ Bank2_Label_9FEC:
     DEC $01
     BNE Bank2_Label_9FEC
     LDX $44
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
-Bank2_Func_A009:
+World3_TestEntityTerrainPoint:
     JSR Bank2_Func_A0C4
-    STA $9E
+    STA World3TerrainTile
     CMP #$26
     BCS Bank2_Label_A031
     CMP #$01
     BEQ Bank2_Label_A031
-    JMP Bank2_Func_A035
+    JMP World3_ReturnTerrainPassable
 
-Bank2_Func_A019:
+World3_TestPlayerTerrainPoint:
     JSR Bank2_Func_A0C4
-    STA $9E
+    STA World3TerrainTile
     CMP #$26
-    BCC Bank2_Func_A035
-    JSR Bank2_Func_A061
-    BCS Bank2_Func_A035
-    JSR Bank2_Func_A050
-    BCS Bank2_Func_A035
-    JSR Bank2_Func_A039
-    BCS Bank2_Func_A035
+    BCC World3_ReturnTerrainPassable
+    JSR World3_ApplyDefeatedBossTerrainOverrides
+    BCS World3_ReturnTerrainPassable
+    JSR World3_ApplyPassingHoopTerrainOverride
+    BCS World3_ReturnTerrainPassable
+    JSR World3_ApplyFinalRoomTerrainOverride
+    BCS World3_ReturnTerrainPassable
 
 Bank2_Label_A031:
-    LDA $9E
+    LDA World3TerrainTile
     CLC
     RTS
 
-Bank2_Func_A035:
-    LDA $9E
+World3_ReturnTerrainPassable:
+    LDA World3TerrainTile
     SEC
     RTS
 
-Bank2_Func_A039:
-    LDA $A1
+World3_ApplyFinalRoomTerrainOverride:
+    LDA World3FinalCompanionsFreed
     BEQ Bank2_Label_A031
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3C
     BNE Bank2_Label_A031
-    LDA $9E
+    LDA World3TerrainTile
     CMP #$26
     BCC Bank2_Label_A031
     CMP #$2A
-    BCC Bank2_Func_A035
+    BCC World3_ReturnTerrainPassable
     JMP Bank2_Label_A031
 
-Bank2_Func_A050:
-    LDA $9F
+World3_ApplyPassingHoopTerrainOverride:
+    LDA World3PassingHoopPortalActive
     BEQ Bank2_Label_A031
-    LDA $9E
+    LDA World3TerrainTile
     CMP #$26
     BCC Bank2_Label_A031
     CMP #$2A
-    BCC Bank2_Func_A035
+    BCC World3_ReturnTerrainPassable
     JMP Bank2_Label_A031
 
-Bank2_Func_A061:
-    LDA $DF
+World3_ApplyDefeatedBossTerrainOverrides:
+    LDA World3CurrentRoom
     CMP #$27
     BEQ Bank2_Label_A072
     CMP #$28
@@ -540,22 +540,22 @@ Bank2_Label_A06F:
     JMP Bank2_Label_A031
 
 Bank2_Label_A072:
-    LDA $58
+    LDA World3BossRoom27Defeated
     BEQ Bank2_Label_A06F
     JMP Bank2_Label_A087
 
 Bank2_Label_A079:
-    LDA $59
+    LDA World3BossRoom28Defeated
     BEQ Bank2_Label_A06F
     JMP Bank2_Label_A087
 
 Bank2_Label_A080:
-    LDA $5A
+    LDA World3BossRoom34Defeated
     BEQ Bank2_Label_A06F
     JMP Bank2_Label_A087
 
 Bank2_Label_A087:
-    LDA $9E
+    LDA World3TerrainTile
     CMP #$26
     BCC Bank2_Label_A031
     CMP #$2A
@@ -585,6 +585,6 @@ Bank2_Label_A087:
     JMP Bank2_Label_A031
 
 Bank2_Label_A0C0:
-    LDA $9E
+    LDA World3TerrainTile
     SEC
     RTS

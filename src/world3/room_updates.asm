@@ -56,14 +56,14 @@ Bank2_Label_A8FA:
     RTS
 
 Bank2_Func_A904:
-    LDA $DF
+    LDA World3CurrentRoom
     AND #$F8
     LSR A
     LSR A
     CLC
     ADC #$E6
     STA $85
-    LDA $DF
+    LDA World3CurrentRoom
     AND #$07
     ASL A
     ASL A
@@ -241,9 +241,9 @@ Bank2_Label_AA26:
     RTS
 
 Bank2_Func_AA2A:
-    LDA $8C
+    LDA World3PlayerX
     STA $00
-    LDA $8D
+    LDA World3PlayerY
     STA $01
     LDA #$00
     STA $04

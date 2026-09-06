@@ -110,7 +110,7 @@ Bank2_Label_A168:
     STA $46
     LDA a:World3PlayerProjectileY,X
     STA $47
-    JSR Bank2_Func_9FDB
+    JSR World3_ProbeProjectileCenterline
     BCS Bank2_Label_A19B
     LDX $07
     LDA #$02
@@ -120,7 +120,7 @@ Bank2_Label_A168:
     LDA #$A0
     STA a:World3PlayerProjectileMetasprite,X
     LDA #$02
-    JSR Bank2_Func_A5DF
+    JSR World3_QueuePriorityEffectPreserveXY
     JMP Bank2_Label_A1C0
 
 Bank2_Label_A19B:
@@ -162,14 +162,14 @@ Bank2_Label_A1CF:
     LDA a:World3PlayerProjectileState,X
     BEQ Bank2_Label_A1ED
     LDA a:World3PlayerProjectileMetasprite,X
-    STA $79
+    STA World3MetaspriteIndex
     LDA a:World3PlayerProjectileY,X
     TAY
     LDA a:World3PlayerProjectileX,X
     TAX
-    JSR Bank2_Func_A71A
+    JSR World3_SetMetaspriteOriginFromXY
     LDA #$00
-    STA $7A
+    STA World3MetaspriteRenderFlags
     JSR World3_ComposeMetasprite
 
 Bank2_Label_A1ED:
@@ -183,12 +183,12 @@ Bank2_Func_A1F4:
     TXA
 
 Bank2_Label_A1F7:
-    STA $8E,X
+    STA World3PlayerState,X
     INX
     CPX #$10
     BNE Bank2_Label_A1F7
     LDA #$01
-    STA $8E
+    STA World3PlayerState
     LDA #$0E
     STA $97
     LDA #$07
@@ -196,7 +196,7 @@ Bank2_Label_A1F7:
     LDA #$01
     STA $95
     LDA #$03
-    STA $90
+    STA World3PlayerMetaspriteBase
     RTS
 
 Bank2_Func_A213:

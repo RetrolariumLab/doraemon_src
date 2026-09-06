@@ -89,10 +89,10 @@ Bank2_Label_8BEA:
     RTS
 
 Bank2_Func_8BF3:
-    LDA $38
+    LDA World3PassingHoopCarryFlag
     BEQ Bank2_Label_8C24
     LDA #$00
-    STA $38
+    STA World3PassingHoopCarryFlag
     LDY #$00
 
 Bank2_Label_8BFD:
@@ -110,17 +110,17 @@ Bank2_Label_8C0E:
     STA a:World3RoomObjectRoom,Y
     LDA #$01
     STA a:World3RoomObjectState,Y
-    STA $9A
-    LDA $8C
+    STA World3FollowerActive
+    LDA World3PlayerX
     STA a:World3RoomObjectX,Y
-    LDA $8D
+    LDA World3PlayerY
     STA a:World3RoomObjectY,Y
 
 Bank2_Label_8C24:
     RTS
 
 Bank2_Func_8C25:
-    LDX $DF
+    LDX World3CurrentRoom
     LDA a:$8C6D,X
     BEQ Bank2_Label_8C6C
     TAX
@@ -128,7 +128,7 @@ Bank2_Func_8C25:
 
 Bank2_Label_8C2F:
     LDA a:World3RoomObjectRoom,Y
-    CMP $DF
+    CMP World3CurrentRoom
     BNE Bank2_Label_8C67
     LDA a:World3RoomObjectType,Y
     CMP #$18
@@ -172,7 +172,7 @@ World3_MaterializeRoomObjects:
 
 Bank2_Label_8CB1:
     LDA a:World3RoomObjectRoom,Y
-    CMP $DF
+    CMP World3CurrentRoom
     BNE Bank2_Label_8CF0
     JSR World3_ClearEntitySlot
     LDA #$01
@@ -191,9 +191,9 @@ Bank2_Label_8CB1:
     LDA a:World3RoomObjectState,Y
     STA a:World3EntityPersistentState,X
     BEQ Bank2_Label_8CEF
-    LDA $8C
+    LDA World3PlayerX
     STA a:World3EntityX,X
-    LDA $8D
+    LDA World3PlayerY
     STA a:World3EntityY,X
 
 Bank2_Label_8CEF:
@@ -246,7 +246,7 @@ Bank2_Label_8D29:
     BNE Bank2_Label_8D4C
     JSR Bank2_Func_8D52
     BCS Bank2_Label_8D46
-    LDA $DF
+    LDA World3CurrentRoom
     STA a:World3RoomObjectRoom,Y
     LDA a:World3EntityX,X
     STA a:World3RoomObjectX,Y
@@ -265,7 +265,7 @@ Bank2_Label_8D4C:
 
 Bank2_Func_8D52:
     STX $3F
-    LDA $9A
+    LDA World3FollowerActive
     BEQ Bank2_Label_8DA4
     LDX #$00
 
@@ -283,7 +283,7 @@ Bank2_Label_8D5A:
 
 Bank2_Label_8D71:
     LDA a:World3RoomObjectRoom,X
-    CMP $8B
+    CMP World3TransitionTargetRoom
     BNE Bank2_Label_8D81
     LDA a:World3RoomObjectType,X
     CMP #$18
@@ -297,11 +297,11 @@ Bank2_Label_8D81:
     LDA $40
     CMP #$02
     BCS Bank2_Label_8DA4
-    LDA $8B
+    LDA World3TransitionTargetRoom
     STA a:World3RoomObjectRoom,Y
-    LDA $8C
+    LDA World3PlayerX
     STA a:World3RoomObjectX,Y
-    LDA $8D
+    LDA World3PlayerY
     STA a:World3RoomObjectY,Y
     LDX $3F
     SEC
@@ -344,16 +344,16 @@ Bank2_Label_8DC3:
     RTS
 
 World3_UpdateTransientSpawns:
-    LDA $8E
+    LDA World3PlayerState
     CMP #$04
     BEQ Bank2_Label_8DC3
-    LDA $CB
+    LDA World3StopwatchActive
     BNE Bank2_Label_8DC3
     LDA World3TransientSpawnScheduleLoaded
     BNE Bank2_Label_8E26
     LDA #$01
     STA World3TransientSpawnScheduleLoaded
-    LDX $DF
+    LDX World3CurrentRoom
     LDA a:World3_TransientSpawnType0ByRoom,X
     STA World3TransientSpawnType
     LDA a:World3_TransientSpawnType1ByRoom,X

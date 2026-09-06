@@ -2,22 +2,22 @@
 ; World 3 HUD composition, number rendering, and presentation tables
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_B406:
+World3_RenderScoreAndLives:
     LDY #$00
     LDA #$5C
-    STA $83
+    STA World3OamX
     LDA #$18
-    STA $80
+    STA World3OamY
     LDA #$00
-    STA $82
+    STA World3OamAttributes
 
 Bank2_Label_B414:
     LDA a:ScoreDigitsWorking,Y
     BNE Bank2_Label_B425
-    LDA $83
+    LDA World3OamX
     CLC
     ADC #$08
-    STA $83
+    STA World3OamX
     INY
     CPY #$06
     BNE Bank2_Label_B414
@@ -26,56 +26,56 @@ Bank2_Label_B425:
     LDA a:ScoreDigitsWorking,Y
     AND #$0F
     ORA #$30
-    STA $81
+    STA World3OamTile
     JSR World3_AppendOamEntry
-    LDA $83
+    LDA World3OamX
     CLC
     ADC #$08
-    STA $83
+    STA World3OamX
     INY
     CPY #$07
     BNE Bank2_Label_B425
     LDA #$32
-    STA $80
+    STA World3OamY
     LDA #$E6
-    STA $83
+    STA World3OamX
     LDA #$00
-    STA $82
+    STA World3OamAttributes
     LDA #$3A
-    STA $81
+    STA World3OamTile
     JSR World3_AppendOamEntry
     LDA #$F0
-    STA $83
+    STA World3OamX
     LDA PlayerLives
     AND #$0F
     ORA #$30
-    STA $81
+    STA World3OamTile
     JSR World3_AppendOamEntry
     RTS
 
-Bank2_Func_B460:
+World3_RenderHealth:
     LDA PlayerHealthCapacityIndex
     ASL A
     ASL A
     CLC
     ADC #$50
-    STA $80
+    STA World3OamY
     LDA #$EC
-    STA $83
+    STA World3OamX
     LDA #$00
-    STA $82
+    STA World3OamAttributes
     LDA #$04
     STA $0A
     LDA PlayerHealth
-    STA $81
+    STA World3OamTile
     LDY #$07
 
 Bank2_Label_B47B:
-    LDA $81
+    LDA World3OamTile
     SEC
     SBC #$04
     BCC Bank2_Label_B48E
-    STA $81
+    STA World3OamTile
     LDA #$3F
     STA a:$000A,Y
     DEY
@@ -100,19 +100,19 @@ Bank2_Label_B49F:
 
 Bank2_Label_B4A1:
     LDA a:$000A,Y
-    STA $81
+    STA World3OamTile
     JSR World3_AppendOamEntry
-    LDA $80
+    LDA World3OamY
     CLC
     ADC #$08
-    STA $80
+    STA World3OamY
     INY
     CPY #$08
     BNE Bank2_Label_B4A1
     RTS
 
 World3_ComposeMetasprite:
-    LDA $7A
+    LDA World3MetaspriteRenderFlags
     AND #$40
     BEQ Bank2_Label_B4C4
     LDA FrameCounter
@@ -122,62 +122,62 @@ World3_ComposeMetasprite:
     RTS
 
 Bank2_Label_B4C4:
-    LDA $7A
+    LDA World3MetaspriteRenderFlags
     BPL Bank2_Label_B4DA
     LDA FrameCounter
     AND #$08
     BEQ Bank2_Label_B4DA
-    LDA $7A
+    LDA World3MetaspriteRenderFlags
     ASL A
     ASL A
     AND #$80
-    ORA $7A
+    ORA World3MetaspriteRenderFlags
     LSR A
     LSR A
-    STA $7A
+    STA World3MetaspriteRenderFlags
 
 Bank2_Label_B4DA:
-    LDX $79
+    LDX World3MetaspriteIndex
     TXA
     ASL A
     TAY
     LDA #$00
     ADC #$B6
-    STA $7C
+    STA World3MetaspriteDataPointer+$01
     LDA #$D7
-    STA $7B
+    STA World3MetaspriteDataPointer
     INY
-    LDA ($7B),Y
+    LDA (World3MetaspriteDataPointer),Y
     CMP #$04
     BCS Bank2_Label_B532
     PHA
     DEY
-    LDA ($7B),Y
+    LDA (World3MetaspriteDataPointer),Y
     TAX
     ASL A
     TAY
     LDA #$00
     ADC #$B6
-    STA $7C
+    STA World3MetaspriteDataPointer+$01
     LDA #$D7
-    STA $7B
-    LDA ($7B),Y
+    STA World3MetaspriteDataPointer
+    LDA (World3MetaspriteDataPointer),Y
     PHA
     INY
-    LDA ($7B),Y
-    STA $7C
+    LDA (World3MetaspriteDataPointer),Y
+    STA World3MetaspriteDataPointer+$01
     PLA
-    STA $7B
+    STA World3MetaspriteDataPointer
     LDY #$00
-    LDA ($7B),Y
+    LDA (World3MetaspriteDataPointer),Y
     INY
-    STA $7F
-    LDA ($7B),Y
+    STA World3MetaspritePiecesRemaining
+    LDA (World3MetaspriteDataPointer),Y
     INY
-    STA $7D
-    LDA ($7B),Y
+    STA World3MetaspriteXMirrorExtent
+    LDA (World3MetaspriteDataPointer),Y
     INY
-    STA $7E
+    STA World3MetaspriteYMirrorExtent
     PLA
     BEQ Bank2_Label_B529
     CMP #$02
@@ -197,58 +197,58 @@ Bank2_Label_B52F:
 Bank2_Label_B532:
     PHA
     DEY
-    LDA ($7B),Y
-    STA $7B
+    LDA (World3MetaspriteDataPointer),Y
+    STA World3MetaspriteDataPointer
     PLA
-    STA $7C
+    STA World3MetaspriteDataPointer+$01
     LDY #$00
-    LDA ($7B),Y
+    LDA (World3MetaspriteDataPointer),Y
     INY
-    STA $7F
+    STA World3MetaspritePiecesRemaining
     INY
     INY
 
 Bank2_Label_B544:
-    LDA ($7B),Y
+    LDA (World3MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     CLC
-    ADC $77
-    STA $80
-    LDA $78
+    ADC World3MetaspriteOriginY
+    STA World3OamY
+    LDA World3MetaspriteOriginYHigh
     ADC #$00
     AND #$03
     BNE Bank2_Label_B590
-    LDA $80
+    LDA World3OamY
     CMP #$F0
     BCS Bank2_Label_B590
     TXA
     AND #$80
-    STA $82
-    LDA ($7B),Y
+    STA World3OamAttributes
+    LDA (World3MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     CLC
-    ADC $75
-    STA $83
-    LDA $76
+    ADC World3MetaspriteOriginX
+    STA World3OamX
+    LDA World3MetaspriteOriginXHigh
     ADC #$00
     AND #$03
     BNE Bank2_Label_B591
     TXA
     AND #$80
     LSR A
-    ORA $82
-    STA $82
-    LDA ($7B),Y
+    ORA World3OamAttributes
+    STA World3OamAttributes
+    LDA (World3MetaspriteDataPointer),Y
     INY
-    STA $81
-    LDA $7A
+    STA World3OamTile
+    LDA World3MetaspriteRenderFlags
     AND #$23
-    ORA $82
-    STA $82
+    ORA World3OamAttributes
+    STA World3OamAttributes
     JSR World3_AppendOamEntry
     JMP Bank2_Label_B592
 
@@ -259,58 +259,58 @@ Bank2_Label_B591:
     INY
 
 Bank2_Label_B592:
-    DEC $7F
+    DEC World3MetaspritePiecesRemaining
     BNE Bank2_Label_B544
     CLC
     RTS
 
 Bank2_Label_B598:
-    LDA ($7B),Y
+    LDA (World3MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     SEC
-    SBC $7E
+    SBC World3MetaspriteYMirrorExtent
     EOR #$FF
     CLC
     ADC #$01
     CLC
-    ADC $77
-    STA $80
-    LDA $78
+    ADC World3MetaspriteOriginY
+    STA World3OamY
+    LDA World3MetaspriteOriginYHigh
     ADC #$00
     AND #$03
     BNE Bank2_Label_B5EE
-    LDA $80
+    LDA World3OamY
     CMP #$F0
     BCS Bank2_Label_B5EE
     TXA
     AND #$80
-    STA $82
-    LDA ($7B),Y
+    STA World3OamAttributes
+    LDA (World3MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     CLC
-    ADC $75
-    STA $83
-    LDA $76
+    ADC World3MetaspriteOriginX
+    STA World3OamX
+    LDA World3MetaspriteOriginXHigh
     ADC #$00
     AND #$03
     BNE Bank2_Label_B5EF
     TXA
     AND #$80
     LSR A
-    ORA $82
-    STA $82
-    LDA ($7B),Y
+    ORA World3OamAttributes
+    STA World3OamAttributes
+    LDA (World3MetaspriteDataPointer),Y
     INY
-    STA $81
-    LDA $7A
+    STA World3OamTile
+    LDA World3MetaspriteRenderFlags
     AND #$23
-    ORA $82
+    ORA World3OamAttributes
     EOR #$80
-    STA $82
+    STA World3OamAttributes
     JSR World3_AppendOamEntry
     JMP Bank2_Label_B5F0
 
@@ -321,58 +321,58 @@ Bank2_Label_B5EF:
     INY
 
 Bank2_Label_B5F0:
-    DEC $7F
+    DEC World3MetaspritePiecesRemaining
     BNE Bank2_Label_B598
     CLC
     RTS
 
 Bank2_Label_B5F6:
-    LDA ($7B),Y
+    LDA (World3MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     CLC
-    ADC $77
-    STA $80
-    LDA $78
+    ADC World3MetaspriteOriginY
+    STA World3OamY
+    LDA World3MetaspriteOriginYHigh
     ADC #$00
     AND #$03
     BNE Bank2_Label_B64C
-    LDA $80
+    LDA World3OamY
     CMP #$F0
     BCS Bank2_Label_B64C
     TXA
     AND #$80
-    STA $82
-    LDA ($7B),Y
+    STA World3OamAttributes
+    LDA (World3MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     SEC
-    SBC $7D
+    SBC World3MetaspriteXMirrorExtent
     EOR #$FF
     CLC
     ADC #$01
     CLC
-    ADC $75
-    STA $83
-    LDA $76
+    ADC World3MetaspriteOriginX
+    STA World3OamX
+    LDA World3MetaspriteOriginXHigh
     ADC #$00
     AND #$03
     BNE Bank2_Label_B64D
     TXA
     AND #$80
     LSR A
-    ORA $82
-    STA $82
-    LDA ($7B),Y
+    ORA World3OamAttributes
+    STA World3OamAttributes
+    LDA (World3MetaspriteDataPointer),Y
     INY
-    STA $81
-    LDA $7A
+    STA World3OamTile
+    LDA World3MetaspriteRenderFlags
     AND #$23
-    ORA $82
+    ORA World3OamAttributes
     EOR #$40
-    STA $82
+    STA World3OamAttributes
     JSR World3_AppendOamEntry
     JMP Bank2_Label_B64E
 
@@ -383,63 +383,63 @@ Bank2_Label_B64D:
     INY
 
 Bank2_Label_B64E:
-    DEC $7F
+    DEC World3MetaspritePiecesRemaining
     BNE Bank2_Label_B5F6
     CLC
     RTS
 
 Bank2_Label_B654:
-    LDA ($7B),Y
+    LDA (World3MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     SEC
-    SBC $7E
+    SBC World3MetaspriteYMirrorExtent
     EOR #$FF
     CLC
     ADC #$01
     CLC
-    ADC $77
-    STA $80
-    LDA $78
+    ADC World3MetaspriteOriginY
+    STA World3OamY
+    LDA World3MetaspriteOriginYHigh
     ADC #$00
     AND #$03
     BNE Bank2_Label_B6B2
-    LDA $80
+    LDA World3OamY
     CMP #$F0
     BCS Bank2_Label_B6B2
     TXA
     AND #$80
-    STA $82
-    LDA ($7B),Y
+    STA World3OamAttributes
+    LDA (World3MetaspriteDataPointer),Y
     INY
     TAX
     AND #$7F
     SEC
-    SBC $7D
+    SBC World3MetaspriteXMirrorExtent
     EOR #$FF
     CLC
     ADC #$01
     CLC
-    ADC $75
-    STA $83
-    LDA $76
+    ADC World3MetaspriteOriginX
+    STA World3OamX
+    LDA World3MetaspriteOriginXHigh
     ADC #$00
     AND #$03
     BNE Bank2_Label_B6B3
     TXA
     AND #$80
     LSR A
-    ORA $82
-    STA $82
-    LDA ($7B),Y
+    ORA World3OamAttributes
+    STA World3OamAttributes
+    LDA (World3MetaspriteDataPointer),Y
     INY
-    STA $81
-    LDA $7A
+    STA World3OamTile
+    LDA World3MetaspriteRenderFlags
     AND #$23
-    ORA $82
+    ORA World3OamAttributes
     EOR #$C0
-    STA $82
+    STA World3OamAttributes
     JSR World3_AppendOamEntry
     JMP Bank2_Label_B6B4
 
@@ -450,7 +450,7 @@ Bank2_Label_B6B3:
     INY
 
 Bank2_Label_B6B4:
-    DEC $7F
+    DEC World3MetaspritePiecesRemaining
     BNE Bank2_Label_B654
     CLC
     RTS

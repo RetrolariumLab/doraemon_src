@@ -1,0 +1,509 @@
+{
+  "schema_version": 1,
+  "bank": 2,
+  "routines": [
+    {
+      "address": "0x9D49",
+      "end_address": "0x9DCC",
+      "size": 132,
+      "crc32": "ebb50a8b",
+      "name": "World3_RenderEntitySlot",
+      "role": "classify-one-active-entity-render-state-compose-its-metasprite-index-position-and-flags-and-emit-it",
+      "callers": [
+        {
+          "address": "0x9D2D",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9D3F",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9DCD",
+      "end_address": "0x9DCD",
+      "size": 1,
+      "crc32": "9fb08ed5",
+      "name": "World3_EntityRenderHookNoOp",
+      "role": "provide-the-current-no-op-per-entity-render-hook-before-metasprite-selection",
+      "callers": [
+        {
+          "address": "0x9DAE",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9DE5",
+      "end_address": "0x9E0E",
+      "size": 42,
+      "crc32": "14b4bbfc",
+      "name": "World3_ProbePlayerLeftEdge",
+      "role": "require-three-terrain-points-along-the-player-left-edge-to-be-passable",
+      "callers": [
+        {
+          "address": "0xA49E",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9E0F",
+      "end_address": "0x9E3A",
+      "size": 44,
+      "crc32": "23bafe3c",
+      "name": "World3_ProbePlayerRightEdge",
+      "role": "require-three-terrain-points-along-the-player-right-edge-to-be-passable",
+      "callers": [
+        {
+          "address": "0xA4B4",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9E3B",
+      "end_address": "0x9E64",
+      "size": 42,
+      "crc32": "6123d721",
+      "name": "World3_ProbePlayerTopEdge",
+      "role": "require-two-terrain-points-across-the-player-top-edge-to-be-passable",
+      "callers": [
+        {
+          "address": "0xA354",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA4EE",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9E65",
+      "end_address": "0x9E8E",
+      "size": 42,
+      "crc32": "d1a85852",
+      "name": "World3_ProbePlayerBottomEdge",
+      "role": "require-two-terrain-points-across-the-player-bottom-edge-to-be-passable",
+      "callers": [
+        {
+          "address": "0xA42E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA52F",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9E8F",
+      "end_address": "0x9EB8",
+      "size": 42,
+      "crc32": "b5273796",
+      "name": "World3_ProbePlayerHorizontalMidline",
+      "role": "require-two-terrain-points-across-the-player-y-plus-0c-horizontal-line-to-be-passable",
+      "callers": [
+        {
+          "address": "0xA35E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA4F8",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9EB9",
+      "end_address": "0x9EC2",
+      "size": 10,
+      "crc32": "f495b0f1",
+      "name": "World3_ProbeCurrentEntityLeftEdge",
+      "role": "stage-the-current-entity-position-and-fall-through-to-the-left-edge-probe",
+      "callers": [
+        {
+          "address": "0x9AA1",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9EC3",
+      "end_address": "0x9EF0",
+      "size": 46,
+      "crc32": "f3c954be",
+      "name": "World3_ProbeEntityLeftEdge",
+      "role": "require-two-entity-terrain-points-along-the-staged-left-edge-to-be-passable",
+      "callers": [
+        {
+          "address": "0x8564",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x92AF",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9EF1",
+      "end_address": "0x9EFA",
+      "size": 10,
+      "crc32": "f495b0f1",
+      "name": "World3_ProbeCurrentEntityRightEdge",
+      "role": "stage-the-current-entity-position-and-fall-through-to-the-right-edge-probe",
+      "callers": [
+        {
+          "address": "0x9A72",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9EFB",
+      "end_address": "0x9F2C",
+      "size": 50,
+      "crc32": "3aafc4a4",
+      "name": "World3_ProbeEntityRightEdge",
+      "role": "require-two-entity-terrain-points-along-the-staged-right-edge-to-be-passable",
+      "callers": [
+        {
+          "address": "0x8569",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x92B4",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9F2D",
+      "end_address": "0x9F36",
+      "size": 10,
+      "crc32": "f495b0f1",
+      "name": "World3_ProbeCurrentEntityTopEdge",
+      "role": "stage-the-current-entity-position-and-fall-through-to-the-top-edge-probe",
+      "callers": [
+        {
+          "address": "0x9AD0",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9F37",
+      "end_address": "0x9F66",
+      "size": 48,
+      "crc32": "6d15e455",
+      "name": "World3_ProbeEntityTopEdge",
+      "role": "require-two-entity-terrain-points-across-the-staged-top-edge-to-be-passable",
+      "callers": [
+        {
+          "address": "0x856E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x92B9",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9F67",
+      "end_address": "0x9F70",
+      "size": 10,
+      "crc32": "f495b0f1",
+      "name": "World3_ProbeCurrentEntityBottomEdge",
+      "role": "stage-the-current-entity-position-and-fall-through-to-the-bottom-edge-probe",
+      "callers": [
+        {
+          "address": "0x9AF7",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9F71",
+      "end_address": "0x9F9E",
+      "size": 46,
+      "crc32": "06cf8a8d",
+      "name": "World3_ProbeEntityBottomEdge",
+      "role": "require-two-entity-terrain-points-across-the-staged-bottom-edge-to-be-passable",
+      "callers": [
+        {
+          "address": "0x8573",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x92BE",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9FDB",
+      "end_address": "0xA008",
+      "size": 46,
+      "crc32": "d780bbec",
+      "name": "World3_ProbeProjectileCenterline",
+      "role": "require-two-player-terrain-points-across-the-staged-projectile-centerline-to-be-passable",
+      "callers": [
+        {
+          "address": "0xA17D",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA009",
+      "end_address": "0xA018",
+      "size": 16,
+      "crc32": "a6f2900d",
+      "name": "World3_TestEntityTerrainPoint",
+      "role": "sample-one-map-point-and-return-passable-for-tile-ids-below-26-hex-except-one",
+      "callers": [
+        {
+          "address": "0x9EDC",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9F14",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9F52",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9F8A",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9FC2",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA019",
+      "end_address": "0xA034",
+      "size": 28,
+      "crc32": "db16d6b5",
+      "name": "World3_TestPlayerTerrainPoint",
+      "role": "sample-one-map-point-and-combine-the-base-passability-rule-with-three-world-state-overrides",
+      "callers": [
+        {
+          "address": "0x9DFC",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9E26",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9E52",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9E7C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9EA6",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9FF4",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA035",
+      "end_address": "0xA038",
+      "size": 4,
+      "crc32": "f6517e72",
+      "name": "World3_ReturnTerrainPassable",
+      "role": "return-the-last-sampled-terrain-tile-with-carry-set",
+      "callers": [
+        {
+          "address": "0x9E0C",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9E36",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9E62",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9E8C",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9EB6",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9EEE",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9F26",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9F64",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9F9C",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0x9FD4",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0xA006",
+          "mnemonic": "JMP"
+        },
+        {
+          "address": "0xA016",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0xA039",
+      "end_address": "0xA04F",
+      "size": 23,
+      "crc32": "87ead211",
+      "name": "World3_ApplyFinalRoomTerrainOverride",
+      "role": "make-tiles-26-through-29-passable-in-room-3c-after-the-three-companions-are-freed",
+      "callers": [
+        {
+          "address": "0xA02C",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA050",
+      "end_address": "0xA060",
+      "size": 17,
+      "crc32": "ef04742c",
+      "name": "World3_ApplyPassingHoopTerrainOverride",
+      "role": "make-tiles-26-through-29-passable-while-the-passing-hoop-portal-is-active",
+      "callers": [
+        {
+          "address": "0xA027",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA061",
+      "end_address": "0xA0C3",
+      "size": 99,
+      "crc32": "8cfbea62",
+      "name": "World3_ApplyDefeatedBossTerrainOverrides",
+      "role": "make-the-room-specific-post-boss-tile-ranges-passable-after-the-room-27-28-or-34-formation-is-defeated",
+      "callers": [
+        {
+          "address": "0xA022",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x0051",
+      "name": "World3FormationActive"
+    },
+    {
+      "address": "0x0052",
+      "name": "World3EntityRenderOrderPhase"
+    },
+    {
+      "address": "0x0075",
+      "name": "World3MetaspriteOriginX"
+    },
+    {
+      "address": "0x0076",
+      "name": "World3MetaspriteOriginXHigh"
+    },
+    {
+      "address": "0x0077",
+      "name": "World3MetaspriteOriginY"
+    },
+    {
+      "address": "0x0078",
+      "name": "World3MetaspriteOriginYHigh"
+    },
+    {
+      "address": "0x0079",
+      "name": "World3MetaspriteIndex"
+    },
+    {
+      "address": "0x007A",
+      "name": "World3MetaspriteRenderFlags"
+    },
+    {
+      "address": "0x007B",
+      "name": "World3MetaspriteDataPointer",
+      "size": 2
+    },
+    {
+      "address": "0x007D",
+      "name": "World3MetaspriteXMirrorExtent"
+    },
+    {
+      "address": "0x007E",
+      "name": "World3MetaspriteYMirrorExtent"
+    },
+    {
+      "address": "0x007F",
+      "name": "World3MetaspritePiecesRemaining"
+    },
+    {
+      "address": "0x0080",
+      "name": "World3OamY"
+    },
+    {
+      "address": "0x0081",
+      "name": "World3OamTile"
+    },
+    {
+      "address": "0x0082",
+      "name": "World3OamAttributes"
+    },
+    {
+      "address": "0x0083",
+      "name": "World3OamX"
+    },
+    {
+      "address": "0x009E",
+      "name": "World3TerrainTile"
+    },
+    {
+      "address": "0x009F",
+      "name": "World3PassingHoopPortalActive"
+    },
+    {
+      "address": "0x00A0",
+      "name": "World3PassingHoopBoundaryPresent"
+    },
+    {
+      "address": "0x00A1",
+      "name": "World3FinalCompanionsFreed"
+    }
+  ]
+}

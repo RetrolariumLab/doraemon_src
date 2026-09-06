@@ -3,19 +3,19 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World3_AppendOamEntry:
-    LDA $74
+    LDA World3OamWriteIndex
     ASL A
     TAX
-    LDA $80
+    LDA World3OamY
     STA a:OamBuffer,X
-    LDA $81
+    LDA World3OamTile
     STA a:$0301,X
-    LDA $82
+    LDA World3OamAttributes
     STA a:$0302,X
-    LDA $83
+    LDA World3OamX
     STA a:$0303,X
-    INC $74
-    INC $74
+    INC World3OamWriteIndex
+    INC World3OamWriteIndex
     RTS
 
 World3_MetaspriteIndex:

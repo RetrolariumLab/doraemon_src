@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World3_UpdatePlayerState:
-    LDA $8E
+    LDA World3PlayerState
     ASL A
     TAX
     LDA a:$A22F,X
@@ -24,9 +24,9 @@ World3_PlayerState_Dying:
     LDA $93
     AND #$07
     BNE Bank2_Label_A248
-    LDA $91
+    LDA World3PlayerAnimationFrame
     EOR #$01
-    STA $91
+    STA World3PlayerAnimationFrame
 
 Bank2_Label_A248:
     LDY $97
@@ -38,17 +38,17 @@ Bank2_Label_A250:
     LDA a:$A563,Y
     BMI Bank2_Label_A25B
     CLC
-    ADC $8D
+    ADC World3PlayerY
     JMP Bank2_Label_A262
 
 Bank2_Label_A25B:
     CLC
-    ADC $8D
+    ADC World3PlayerY
     BCS Bank2_Label_A262
     LDA #$00
 
 Bank2_Label_A262:
-    STA $8D
+    STA World3PlayerY
     CMP #$F0
     BCC Bank2_Label_A28C
 
@@ -65,7 +65,7 @@ Bank2_Label_A26D:
     LDA PlayerLives
     BEQ Bank2_Label_A2BE
     DEC PlayerLives
-    LDA $DC
+    LDA World3AttractModeActive
     BEQ Bank2_Func_A285
     JMP Bank2_Label_82C3
 
@@ -83,30 +83,30 @@ World3_ExitPunishmentRoom:
     JSR World3_SaveRoomObjectsState0
     JSR World3_SaveRoomObjectsState1
     LDA World3PunishmentReturnRoom
-    STA $DF
-    LDA $DF
+    STA World3CurrentRoom
+    LDA World3CurrentRoom
     CMP #$11
     BNE Bank2_Label_A2A5
     LDA #$01
-    STA $9F
+    STA World3PassingHoopPortalActive
 
 Bank2_Label_A2A5:
-    JSR Bank2_Func_A733
+    JSR World3_LoadCurrentRoom
     LDY #$00
 
 Bank2_Label_A2AA:
     LDA a:World3PunishmentSavedPlayerState,Y
-    STA a:$008C,Y
+    STA a:World3PlayerX,Y
     INY
     CPY #$12
     BNE Bank2_Label_A2AA
     JSR Bank2_Func_A213
-    LDA $A5
+    LDA World3RoomMusicTrack
     STA a:AudioMusicState
     RTS
 
 Bank2_Label_A2BE:
-    LDA $DC
+    LDA World3AttractModeActive
     BEQ Bank2_Label_A2C5
     JMP Bank2_EnterShell
 
@@ -143,12 +143,12 @@ World3_PlayerState_DamageRecovery:
     STA $43
     BNE Bank2_Label_A308
     LDA #$01
-    STA $8E
+    STA World3PlayerState
     LDY $95
     LDA a:$A485,Y
-    STA $90
+    STA World3PlayerMetaspriteBase
     LDA #$00
-    STA $91
+    STA World3PlayerAnimationFrame
     RTS
 
 Bank2_Label_A308:
@@ -161,9 +161,9 @@ Bank2_Label_A30E:
     DEC $43
     BNE Bank2_Label_A30E
     LDA #$00
-    STA $91
+    STA World3PlayerAnimationFrame
     LDA #$0B
-    STA $90
+    STA World3PlayerMetaspriteBase
     RTS
 
 Bank2_Label_A31E:
@@ -171,9 +171,9 @@ Bank2_Label_A31E:
     DEC $43
     BNE Bank2_Label_A31E
     LDA #$01
-    STA $91
+    STA World3PlayerAnimationFrame
     LDA #$0B
-    STA $90
+    STA World3PlayerMetaspriteBase
     RTS
     .byte $04, $03, $03, $02, $02, $02, $00
 
@@ -191,14 +191,14 @@ Bank2_Func_A343:
     LDY $97
     LDA a:$A39C,Y
     BPL Bank2_Label_A35E
-    LDA $8A
+    LDA World3RoomRow
     BNE Bank2_Label_A354
-    LDA $8D
+    LDA World3PlayerY
     CMP #$08
     BCC Bank2_Label_A359
 
 Bank2_Label_A354:
-    JSR Bank2_Func_9E3B
+    JSR World3_ProbePlayerTopEdge
     BCS Bank2_Label_A35E
 
 Bank2_Label_A359:
@@ -207,17 +207,17 @@ Bank2_Label_A359:
     RTS
 
 Bank2_Label_A35E:
-    JSR Bank2_Func_9E8F
-    LDA $9E
+    JSR World3_ProbePlayerHorizontalMidline
+    LDA World3TerrainTile
     CMP #$00
     BNE Bank2_Label_A37B
     LDA #$01
-    STA $8E
+    STA World3PlayerState
     LDY $95
     LDA a:$A485,Y
-    STA $90
+    STA World3PlayerMetaspriteBase
     LDA #$00
-    STA $91
+    STA World3PlayerAnimationFrame
     LDA #$0E
     STA $97
     RTS
@@ -238,10 +238,10 @@ Bank2_Label_A392:
     INC $97
 
 Bank2_Label_A394:
-    LDA $8D
+    LDA World3PlayerY
     CLC
     ADC $08
-    STA $8D
+    STA World3PlayerY
     RTS
     .byte $FC, $FD, $FD, $FE, $FE, $FE, $FF, $FF, $FF, $FF, $00, $00, $00, $00, $01, $01
     .byte $01, $01, $02, $02, $02, $03, $03, $04
@@ -257,7 +257,7 @@ Bank2_Func_A3B4:
     STA $92
     LDY $95
     LDA a:$A485,Y
-    STA $90
+    STA World3PlayerMetaspriteBase
 
 Bank2_Label_A3CB:
     JMP Bank2_Label_A3E0
@@ -267,16 +267,16 @@ Bank2_Label_A3CE:
     LDA $93
     AND $94
     BNE Bank2_Label_A3E0
-    LDA $91
+    LDA World3PlayerAnimationFrame
     BNE Bank2_Label_A3DE
     LDA #$03
-    STA $91
+    STA World3PlayerAnimationFrame
 
 Bank2_Label_A3DE:
-    DEC $91
+    DEC World3PlayerAnimationFrame
 
 Bank2_Label_A3E0:
-    JSR Bank2_Func_A5F7
+    JSR World3_ReadActivePlayerButtons
     AND #$08
     BNE Bank2_Label_A3F2
     LDA #$07
@@ -301,7 +301,7 @@ Bank2_Label_A3FF:
     BNE Bank2_Label_A40C
     LDY $95
     LDA a:$A485,Y
-    STA $90
+    STA World3PlayerMetaspriteBase
 
 Bank2_Label_A40C:
     LDA #$03
@@ -326,26 +326,26 @@ Bank2_Label_A427:
 
 Bank2_Label_A42B:
     JSR Bank2_Func_A4CE
-    JSR Bank2_Func_9E65
+    JSR World3_ProbePlayerBottomEdge
     BCS Bank2_Label_A449
-    JSR Bank2_Func_A5F7
+    JSR World3_ReadActivePlayerButtons
     AND #$03
     BNE Bank2_Label_A449
     LDA $92
     BNE Bank2_Label_A446
     LDA #$08
-    STA $90
+    STA World3PlayerMetaspriteBase
     LDA #$00
-    STA $91
+    STA World3PlayerAnimationFrame
 
 Bank2_Label_A446:
     JMP Bank2_Label_A457
 
 Bank2_Label_A449:
-    JSR Bank2_Func_A5F7
+    JSR World3_ReadActivePlayerButtons
     AND #$02
     BNE Bank2_Label_A45E
-    JSR Bank2_Func_A5F7
+    JSR World3_ReadActivePlayerButtons
     AND #$01
     BNE Bank2_Label_A471
 
@@ -358,7 +358,7 @@ Bank2_Label_A45E:
     LDA $92
     BNE Bank2_Label_A466
     LDA #$00
-    STA $90
+    STA World3PlayerMetaspriteBase
 
 Bank2_Label_A466:
     LDA #$00
@@ -371,7 +371,7 @@ Bank2_Label_A471:
     LDA $92
     BNE Bank2_Label_A479
     LDA #$03
-    STA $90
+    STA World3PlayerMetaspriteBase
 
 Bank2_Label_A479:
     LDA #$01
@@ -402,37 +402,37 @@ Bank2_Label_A49D:
     RTS
 
 Bank2_Func_A49E:
-    JSR Bank2_Func_9DE5
+    JSR World3_ProbePlayerLeftEdge
     BCS Bank2_Label_A4A8
     LDA #$00
     STA $96
     RTS
 
 Bank2_Label_A4A8:
-    DEC $8C
+    DEC World3PlayerX
     BNE Bank2_Label_A4B3
     LDA #$EC
-    STA $8C
-    JSR Bank2_Func_A619
+    STA World3PlayerX
+    JSR World3_EnterRoomLeft
 
 Bank2_Label_A4B3:
     RTS
 
 Bank2_Func_A4B4:
-    JSR Bank2_Func_9E0F
+    JSR World3_ProbePlayerRightEdge
     BCS Bank2_Label_A4BE
     LDA #$00
     STA $96
     RTS
 
 Bank2_Label_A4BE:
-    INC $8C
-    LDA $8C
+    INC World3PlayerX
+    LDA World3PlayerX
     CMP #$F0
     BNE Bank2_Label_A4CD
     LDA #$04
-    STA $8C
-    JSR Bank2_Func_A63A
+    STA World3PlayerX
+    JSR World3_EnterRoomRight
 
 Bank2_Label_A4CD:
     RTS
@@ -461,36 +461,36 @@ Bank2_Label_A4E3:
     JSR Bank2_Func_A4EE
 
 Bank2_Func_A4EE:
-    JSR Bank2_Func_9E3B
+    JSR World3_ProbePlayerTopEdge
     BCS Bank2_Label_A4F8
     LDA #$0E
     STA $97
     RTS
 
 Bank2_Label_A4F8:
-    JSR Bank2_Func_9E8F
-    LDA $9E
+    JSR World3_ProbePlayerHorizontalMidline
+    LDA World3TerrainTile
     CMP #$14
     BNE Bank2_Label_A50F
     LDA #$02
-    STA $8E
+    STA World3PlayerState
     LDA #$00
     STA $97
     LDA #$0C
-    JSR Bank2_Func_A5DF
+    JSR World3_QueuePriorityEffectPreserveXY
     RTS
 
 Bank2_Label_A50F:
-    LDA $8D
+    LDA World3PlayerY
     CLC
     ADC $A7
-    STA $8D
+    STA World3PlayerY
     CMP #$08
     BCS Bank2_Label_A526
-    LDA $8A
+    LDA World3RoomRow
     BNE Bank2_Label_A527
     LDA #$00
-    STA $8D
+    STA World3PlayerY
     LDA #$0E
     STA $97
 
@@ -499,19 +499,19 @@ Bank2_Label_A526:
 
 Bank2_Label_A527:
     LDA #$D0
-    STA $8D
-    JSR Bank2_Func_A65D
+    STA World3PlayerY
+    JSR World3_EnterRoomAbove
     RTS
 
 Bank2_Label_A52F:
-    JSR Bank2_Func_9E65
+    JSR World3_ProbePlayerBottomEdge
     BCS Bank2_Label_A539
     LDA #$00
     STA $96
     RTS
 
 Bank2_Label_A539:
-    JSR Bank2_Func_A5F7
+    JSR World3_ReadActivePlayerButtons
     AND #$04
     BNE Bank2_Label_A550
     INC $98
@@ -524,22 +524,22 @@ Bank2_Label_A539:
     STA $A7
 
 Bank2_Label_A550:
-    LDA $8D
+    LDA World3PlayerY
     CLC
     ADC $A7
-    STA $8D
+    STA World3PlayerY
     CMP #$D4
     BCC Bank2_Label_A562
     LDA #$0C
-    STA $8D
-    JSR Bank2_Func_A688
+    STA World3PlayerY
+    JSR World3_EnterRoomBelow
 
 Bank2_Label_A562:
     RTS
     .byte $FE, $FE, $FE, $FE, $FF, $FF, $FF, $FF, $00, $00, $00, $00, $00, $00, $02
 
 World3_TryFirePlayerProjectile:
-    JSR Bank2_Func_A5F7
+    JSR World3_ReadActivePlayerButtons
     AND #$80
     BNE Bank2_Label_A57C
     STA $63
@@ -556,9 +556,9 @@ Bank2_Label_A57C:
     LDA $95
     CLC
     ADC #$09
-    STA $90
+    STA World3PlayerMetaspriteBase
     LDA #$00
-    STA $91
+    STA World3PlayerAnimationFrame
     LDA #$00
     STA $93
     LDX #$00
@@ -574,14 +574,14 @@ Bank2_Label_A597:
 Bank2_Label_A5A2:
     LDA $95
     BNE Bank2_Label_A5B1
-    LDA $8C
+    LDA World3PlayerX
     CMP #$12
     BCC Bank2_Label_A5DE
     LDY #$F8
     JMP Bank2_Label_A5B9
 
 Bank2_Label_A5B1:
-    LDA $8C
+    LDA World3PlayerX
     CMP #$EE
     BCS Bank2_Label_A5DE
     LDY #$08
@@ -589,9 +589,9 @@ Bank2_Label_A5B1:
 Bank2_Label_A5B9:
     TYA
     CLC
-    ADC $8C
+    ADC World3PlayerX
     STA a:World3PlayerProjectileX,X
-    LDA $8D
+    LDA World3PlayerY
     CLC
     ADC #$08
     STA a:World3PlayerProjectileY,X
@@ -604,7 +604,7 @@ Bank2_Label_A5B9:
     LDA #$01
     STA a:World3PlayerProjectileState,X
     LDA #$19
-    JSR Bank2_Func_A5DF
+    JSR World3_QueuePriorityEffectPreserveXY
 
 Bank2_Label_A5DE:
     RTS

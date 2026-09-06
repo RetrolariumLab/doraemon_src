@@ -62,7 +62,17 @@ names another 27 player, inventory, metasprite, and OAM routines plus nine RAM
 symbols, reducing the total to 126. The final Bank 1 pass names its remaining
 thirteen enemy collision/rendering, chapter-exit, and HUD routines plus
 nineteen RAM symbols. The current total is 113, all in Bank 2; Banks 0, 1, and
-3 have no neutral routine entries.
+3 have no neutral routine entries. The first Bank 2 core pass names eighteen
+entry/frame support routines and twenty-two RAM fields spanning initialization,
+room/player state, pause, boss/music timing, palette effects, OAM buffering,
+and the World 3 HUD. The next Bank 2 pass names twenty-two entity-rendering,
+terrain-probe, and special-room override routines plus twenty RAM symbols.
+Its machine contract covers 808 executable bytes and 50 direct calls. The next
+Bank 2 pass names fifteen input/audio, player-render, directional-transition,
+persistence-policy, room-reload, music-selection, and palette-fade routines
+plus ten RAM bytes and two music tables. Its contract covers 607 executable
+bytes and 76 direct calls. The remaining 58 neutral routine entries are
+confined to the World 3 gameplay subsystems in Bank 2.
 
 ### 6. RAM and object systems - Partial
 
@@ -213,7 +223,7 @@ Resolve or explicitly classify remaining release-scope unknowns, live-validate
 the generated linker-derived Mesen/FCEUX symbols, refresh all eight runtime
 scenarios, run one clean aggregate `source-1-audit`, and prepare the audited
 release commit. Static symbol generation is complete: the gate checks all four
-linker segments, 3,728 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
+linker segments, 3,782 ld65 symbols, eight FCEUX PRG name lists, 83 shared RAM
 labels, and required Reset/NMI/mapper/chapter-loop probes.
 
 The first post-review naming slice is also complete: all sixteen Bank 3 shell
@@ -238,7 +248,18 @@ The following sprite-runtime slice names the player and seven-slot inventory
 renderer, metasprite row composition, flicker-selected OAM emission, and both
 48-byte player-position history rings. The final Bank 1 slice closes packed
 enemy activation, attack collision, enemy/projectile rendering, terminal exit,
-and HUD composition. Bank 1 now has no neutral routine entries.
+and HUD composition. Bank 1 now has no neutral routine entries. The first
+Bank 2 slice connects the World 3 loop to hardware/RAM initialization, start
+room and position selection, pause and microphone hooks, persistent-state
+reset, palette flash, double-buffered OAM composition, and all HUD paths.
+The second Bank 2 slice names the entity render adapter, all player/entity/
+projectile terrain edge probes, the common terrain samplers, and the final-room,
+Passing Hoop, and defeated-boss collision overrides. Seventy-three neutral
+routine entries remained, all in Bank 2. The third Bank 2 slice connects all
+four room edges to the persistence transaction and complete room rebuild,
+names the attract-safe input and register-preserving audio wrappers, player
+renderer, palette fade, and two-stage room music selection. Fifty-eight
+neutral routine entries remain, all in Bank 2.
 
 ## Deferred to Source Reconstruction 2.0
 

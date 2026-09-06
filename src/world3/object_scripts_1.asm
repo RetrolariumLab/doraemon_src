@@ -32,7 +32,7 @@ World3_ExecuteBehaviorCommand:
     BNE World3_BehaviorMoveXNegative
 
 World3_BehaviorMoveXPositive:
-    JSR Bank2_Func_9EF1
+    JSR World3_ProbeCurrentEntityRightEdge
     BCC Bank2_Label_9A84
     LDA a:World3EntityX,X
     CLC
@@ -60,7 +60,7 @@ Bank2_Label_9A98:
     BNE World3_BehaviorMoveXPositive
 
 World3_BehaviorMoveXNegative:
-    JSR Bank2_Func_9EB9
+    JSR World3_ProbeCurrentEntityLeftEdge
     BCC Bank2_Label_9AB3
     LDA a:World3EntityX,X
     SEC
@@ -88,7 +88,7 @@ Bank2_Label_9AC7:
     BNE World3_BehaviorMoveYPositive
 
 World3_BehaviorMoveYNegative:
-    JSR Bank2_Func_9F2D
+    JSR World3_ProbeCurrentEntityTopEdge
     BCC Bank2_Label_9AE2
     LDA a:World3EntityY,X
     SEC
@@ -113,7 +113,7 @@ Bank2_Label_9AEE:
     BNE World3_BehaviorMoveYNegative
 
 World3_BehaviorMoveYPositive:
-    JSR Bank2_Func_9F67
+    JSR World3_ProbeCurrentEntityBottomEdge
     BCC Bank2_Label_9B09
     LDA a:World3EntityY,X
     CLC
@@ -364,7 +364,7 @@ Bank2_Label_9C94:
 Bank2_Label_9CA3:
     INC a:World3EntityScriptOffset,X
     LDA a:World3EntityX,X
-    CMP $8C
+    CMP World3PlayerX
     BCS Bank2_Label_9CB3
     INC a:World3EntityScriptOffset,X
     JMP World3_ExecuteBehaviorCommand
@@ -379,7 +379,7 @@ Bank2_Label_9CB3:
 Bank2_Label_9CBF:
     INC a:World3EntityScriptOffset,X
     LDA a:World3EntityY,X
-    CMP $8D
+    CMP World3PlayerY
     BCS Bank2_Label_9CCF
     INC a:World3EntityScriptOffset,X
     JMP World3_ExecuteBehaviorCommand

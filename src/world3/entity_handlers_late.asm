@@ -113,7 +113,7 @@ Bank2_Label_972C:
 
 Bank2_Label_972E:
     LDA a:World3EncounterRoomList,Y
-    CMP $DF
+    CMP World3CurrentRoom
     BNE Bank2_Label_973A
     LDA #$FF
     STA a:World3EncounterRoomList,Y
@@ -125,10 +125,10 @@ Bank2_Label_973A:
     LDA #$01
     STA a:AudioMusicControl
     LDA #$04
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
     LDA #$28
-    STA $A6
-    JSR Bank2_Func_86C4
+    STA World3BossMusicRestoreDelay
+    JSR World3_RunPaletteFlash
     LDY #$0A
     LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
@@ -145,7 +145,7 @@ Bank2_Label_9764:
     JSR World3_PositionEnabledPersistentEntity
     LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_97AE
-    LDA $9F
+    LDA World3PassingHoopPortalActive
     BNE Bank2_Label_97AE
     STX $44
     LDA a:World3EntityY,X
@@ -161,7 +161,7 @@ Bank2_Label_9764:
     BCC Bank2_Label_97AC
     CMP #$2A
     BCS Bank2_Label_97AC
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3C
     BEQ Bank2_Label_97AC
     CMP #$27
@@ -171,11 +171,11 @@ Bank2_Label_9764:
     CMP #$34
     BEQ Bank2_Label_97AC
     LDA #$13
-    JSR Bank2_Func_A5EB
-    JSR Bank2_Func_86C4
+    JSR World3_QueueEffectPreserveXY
+    JSR World3_RunPaletteFlash
     JSR Bank2_Func_97AF
     LDA #$01
-    STA $9F
+    STA World3PassingHoopPortalActive
 
 Bank2_Label_97AC:
     LDX $44
@@ -185,7 +185,7 @@ Bank2_Label_97AE:
 
 Bank2_Func_97AF:
     LDA #$00
-    STA $A0
+    STA World3PassingHoopBoundaryPresent
     LDX #$00
     LDY #$60
     STX $46
@@ -195,7 +195,7 @@ Bank2_Func_97AF:
     BNE Bank2_Label_97CA
     JSR Bank2_Func_97E2
     LDA #$01
-    STA $A0
+    STA World3PassingHoopBoundaryPresent
     RTS
 
 Bank2_Label_97CA:
@@ -208,7 +208,7 @@ Bank2_Label_97CA:
     BNE Bank2_Label_97E1
     JSR Bank2_Func_97E2
     LDA #$01
-    STA $A0
+    STA World3PassingHoopBoundaryPresent
     RTS
 
 Bank2_Label_97E1:
@@ -289,8 +289,8 @@ Bank2_Label_985B:
 
 Bank2_Label_985C:
     LDA #$0A
-    JSR Bank2_Func_A5EB
-    JSR Bank2_Func_86C4
+    JSR World3_QueueEffectPreserveXY
+    JSR World3_RunPaletteFlash
     LDA a:World3EntityType,Y
     CMP #$17
     BEQ Bank2_Label_9895
@@ -328,7 +328,7 @@ Bank2_Label_9895:
 
 Bank2_Label_98A1:
     LDA a:World3RoomObjectRoom,Y
-    CMP $DF
+    CMP World3CurrentRoom
     BNE Bank2_Label_98AF
     LDA a:World3RoomObjectType,Y
     CMP $3E
@@ -351,7 +351,7 @@ Bank2_Label_98BA:
     JMP Bank2_Label_98BA
 
 Bank2_Label_98C5:
-    LDA $DF
+    LDA World3CurrentRoom
     STA a:World3EncounterRoomList,Y
     JSR World3_FindFreeEntitySlot
     BCC Bank2_Label_98E2
@@ -454,11 +454,11 @@ World3_PositionEnabledPersistentEntity:
 Bank2_Label_9976:
     TYA
     CLC
-    ADC $8C
+    ADC World3PlayerX
     STA a:World3EntityX,X
     CMP #$F4
     BCC Bank2_Label_9986
-    LDA $8C
+    LDA World3PlayerX
     STA a:World3EntityX,X
 
 Bank2_Label_9986:
@@ -469,7 +469,7 @@ Bank2_Label_9986:
     CLC
     ADC #$04
     CLC
-    ADC $8D
+    ADC World3PlayerY
     STA a:World3EntityY,X
 
 Bank2_Label_9998:
@@ -485,7 +485,7 @@ World3_UpdateTypes1CTo1FCompanions:
 Bank2_Label_99A4:
     LDY #$00
     LDA a:World3EntityX,X
-    CMP $8C
+    CMP World3PlayerX
     BCS Bank2_Label_99AF
     LDY #$02
 
@@ -508,8 +508,8 @@ Bank2_Label_99C5:
     STA $3C
     LDA a:World3EntityY,X
     STA $3D
-    LDX $8C
-    LDY $8D
+    LDX World3PlayerX
+    LDY World3PlayerY
     TXA
     SEC
     SBC $3C

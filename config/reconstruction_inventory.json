@@ -4,9 +4,9 @@
     "source_labels": {
       "module_count": 119,
       "total": {
-        "global_labels": 3343,
-        "semantic_labels": 1101,
-        "neutral_routine_labels": 113,
+        "global_labels": 3345,
+        "semantic_labels": 1158,
+        "neutral_routine_labels": 58,
         "neutral_local_labels": 2129
       },
       "by_bank": {
@@ -23,9 +23,9 @@
           "neutral_local_labels": 559
         },
         "2": {
-          "global_labels": 1090,
-          "semantic_labels": 294,
-          "neutral_routine_labels": 113,
+          "global_labels": 1092,
+          "semantic_labels": 351,
+          "neutral_routine_labels": 58,
           "neutral_local_labels": 683
         },
         "3": {
@@ -38,8 +38,8 @@
     },
     "evidence_backed_prg_symbols": {
       "total": {
-        "semantic_code_symbols": 980,
-        "operand_symbols": 111
+        "semantic_code_symbols": 1035,
+        "operand_symbols": 113
       },
       "by_bank": {
         "0": {
@@ -51,8 +51,8 @@
           "operand_symbols": 32
         },
         "2": {
-          "semantic_code_symbols": 248,
-          "operand_symbols": 43
+          "semantic_code_symbols": 303,
+          "operand_symbols": 45
         },
         "3": {
           "semantic_code_symbols": 155,
@@ -85,7 +85,7 @@
       }
     },
     "ram_aliases": {
-      "unique_symbols": 351,
+      "unique_symbols": 403,
       "shared": {
         "symbols": 83,
         "bytes": 155
@@ -100,8 +100,8 @@
           "bytes": 573
         },
         "2": {
-          "symbols": 65,
-          "bytes": 740
+          "symbols": 117,
+          "bytes": 793
         },
         "3": {
           "symbols": 8,
@@ -118,8 +118,8 @@
           "bytes": 728
         },
         "2": {
-          "symbols": 148,
-          "bytes": 895
+          "symbols": 200,
+          "bytes": 948
         },
         "3": {
           "symbols": 91,

@@ -21,8 +21,8 @@ Bank2_Label_AE2B:
     LDA #$00
     STA World3FrameWaitCounter
     LDA #$00
-    STA $74
-    JSR Bank2_Func_A601
+    STA World3OamWriteIndex
+    JSR World3_RenderPlayer
     JSR World3_RenderEntities
     JSR Bank2_Func_AE5D
     LDA #$01
@@ -92,13 +92,13 @@ Bank2_Func_AE5D:
 
 Bank2_Label_AEBF:
     LDA #$6C
-    STA $8C
+    STA World3PlayerX
     LDA #$78
-    STA $8D
+    STA World3PlayerY
     LDA #$0D
-    STA $90
+    STA World3PlayerMetaspriteBase
     LDA #$00
-    STA $91
+    STA World3PlayerAnimationFrame
     LDY #$00
 
 Bank2_Label_AED1:
@@ -127,7 +127,7 @@ Bank2_Label_AEEC:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
 Bank2_Func_AF30:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3F
     BNE Bank2_Label_AF50
     INC $50
@@ -136,11 +136,11 @@ Bank2_Func_AF30:
     BNE Bank2_Label_AF50
     LDX #$70
     LDY #$74
-    JSR Bank2_Func_A71A
+    JSR World3_SetMetaspriteOriginFromXY
     LDA #$00
-    STA $7A
+    STA World3MetaspriteRenderFlags
     LDA #$AC
-    STA $79
+    STA World3MetaspriteIndex
     JSR World3_ComposeMetasprite
 
 Bank2_Label_AF50:
@@ -194,7 +194,7 @@ Bank2_Func_AF6F:
     STY $03
     LDA #$20
     STA $04
-    JSR Bank2_Func_B1F1
+    JSR World3_CopyBytes
     LDA #$01
     STA NmiOamDmaRequest
     LDA #$07
@@ -221,7 +221,7 @@ World3_NmiFrameServices:
     LDA #$00
     STA NmiOamDmaRequest
     JSR World3_HideAllSprites
-    JSR Bank2_Func_86BB
+    JSR World3_ToggleOamBufferHalf
 
 Bank2_Label_B008:
     DEC World3FrameWaitCounter

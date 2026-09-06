@@ -22,7 +22,7 @@ World3_UpdateType04Skull:
     RTS
 
 Bank2_Label_9338:
-    LDY $DF
+    LDY World3CurrentRoom
     LDA a:World3_Type04SkullTrackingEnabledByRoom,Y
     BEQ Bank2_Label_936B
     INC a:World3EntityFrameCounter,X
@@ -34,8 +34,8 @@ Bank2_Label_9338:
     STA $3C
     LDA a:World3EntityY,X
     STA $3D
-    LDX $8C
-    LDY $8D
+    LDX World3PlayerX
+    LDY World3PlayerY
     JSR Bank2_Func_AB3B
     JSR Bank2_Func_AB47
     LDX $3E
@@ -116,39 +116,39 @@ Bank2_Label_9403:
     RTS
 
 Bank2_Label_9415:
-    LDA $DF
+    LDA World3CurrentRoom
     STA $40
-    LDA $8C
+    LDA World3PlayerX
     SEC
     SBC #$78
     JSR World3_AbsoluteValue8
     STA $41
-    LDA $8D
+    LDA World3PlayerY
     SEC
     SBC #$78
     JSR World3_AbsoluteValue8
     CMP $41
     BCS Bank2_Label_9449
-    LDA $8C
+    LDA World3PlayerX
     CMP #$78
     BCS Bank2_Label_943E
-    LDA $89
+    LDA World3RoomColumn
     BEQ Bank2_Label_9475
     DEC $40
     JMP Bank2_Label_946A
 
 Bank2_Label_943E:
-    LDA $89
+    LDA World3RoomColumn
     CMP #$07
     BEQ Bank2_Label_9475
     INC $40
     JMP Bank2_Label_946A
 
 Bank2_Label_9449:
-    LDA $8D
+    LDA World3PlayerY
     CMP #$78
     BCS Bank2_Label_945D
-    LDA $8A
+    LDA World3RoomRow
     BEQ Bank2_Label_9475
     LDA $40
     SEC
@@ -157,7 +157,7 @@ Bank2_Label_9449:
     JMP Bank2_Label_946A
 
 Bank2_Label_945D:
-    LDA $8A
+    LDA World3RoomRow
     CMP #$07
     BEQ Bank2_Label_9475
     LDA $40
@@ -174,28 +174,28 @@ Bank2_Label_946A:
 
 Bank2_Label_9475:
     STX $3E
-    LDA $DF
+    LDA World3CurrentRoom
     SEC
     SBC #$01
     AND #$3F
     TAX
     LDA a:World3_GhostRelocationBlockedByRoom,X
     BEQ Bank2_Label_94B6
-    LDA $DF
+    LDA World3CurrentRoom
     CLC
     ADC #$01
     AND #$3F
     TAX
     LDA a:World3_GhostRelocationBlockedByRoom,X
     BEQ Bank2_Label_94B6
-    LDA $DF
+    LDA World3CurrentRoom
     SEC
     SBC #$08
     AND #$3F
     TAX
     LDA a:World3_GhostRelocationBlockedByRoom,X
     BEQ Bank2_Label_94B6
-    LDA $DF
+    LDA World3CurrentRoom
     CLC
     ADC #$08
     AND #$3F
@@ -218,7 +218,7 @@ Bank2_Label_94B8:
 
 Bank2_Label_94BA:
     LDA a:World3RoomObjectRoom,X
-    CMP $DF
+    CMP World3CurrentRoom
     BNE Bank2_Label_94C9
     LDA a:World3RoomObjectType,X
     CMP a:World3EntityType,Y
@@ -283,14 +283,14 @@ Bank2_Label_9512:
     LDA a:World3EntityFollowAnchorFlag,X
     STA $A3
     LDA #$12
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
     LDA #$04
     STA a:World3EntityState,Y
     LDA a:World3EntityPersistentState,Y
     BEQ Bank2_Label_954F
     LDA #$00
     STA a:World3EntityPersistentState,Y
-    STA $9A
+    STA World3FollowerActive
     RTS
 
 Bank2_Label_954A:
@@ -321,7 +321,7 @@ World3_UpdateType0ADragonHead:
     AND #$1F
     BNE Bank2_Label_95A1
     LDA #$11
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
 
 Bank2_Label_95A1:
     JSR Bank2_Func_AD21
@@ -334,7 +334,7 @@ World3_UpdateType0CPoseidonUpperLeft:
     AND #$1F
     BNE Bank2_Label_95B1
     LDA #$11
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
 
 Bank2_Label_95B1:
     LDA a:World3EntityFollowAnchorFlag,X
@@ -353,11 +353,11 @@ Bank2_Label_95B9:
     STA $3C
     LDA a:World3EntityY,X
     STA $3D
-    LDA $8C
+    LDA World3PlayerX
     CLC
     ADC #$08
     TAX
-    LDA $8D
+    LDA World3PlayerY
     SEC
     SBC #$0C
     TAY

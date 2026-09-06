@@ -3729,6 +3729,48 @@
     },
     {
       "bank": 2,
+      "address": "0x8427",
+      "name": "World3_UpdateDebugAndMicrophoneHooks",
+      "evidence": "validated-world3-frame-core-debug-room-navigation-and-room-zero-microphone-hold-hook"
+    },
+    {
+      "bank": 2,
+      "address": "0x8487",
+      "name": "World3_UpdateRoom16MicrophoneEvent",
+      "evidence": "validated-world3-frame-core-room16-object-relocation-and-active-marker"
+    },
+    {
+      "bank": 2,
+      "address": "0x850B",
+      "name": "World3_InitializePlayerRoomAndPosition",
+      "evidence": "validated-world3-frame-core-passing-hoop-room-and-fixed-or-random-passable-position"
+    },
+    {
+      "bank": 2,
+      "address": "0x8541",
+      "name": "World3_LoadRoomFromPassingHoop",
+      "evidence": "validated-world3-frame-core-type19-persistent-object-room-loader"
+    },
+    {
+      "bank": 2,
+      "address": "0x855A",
+      "name": "World3_ChoosePassablePlayerPosition",
+      "evidence": "validated-world3-frame-core-random-coordinate-four-probe-rejection-loop"
+    },
+    {
+      "bank": 2,
+      "address": "0x8581",
+      "name": "World3_RestoreRoomMusicAfterBossDelay",
+      "evidence": "validated-world3-frame-core-boss-delay-room-music-restore"
+    },
+    {
+      "bank": 2,
+      "address": "0x859A",
+      "name": "World3_UpdatePause",
+      "evidence": "validated-world3-frame-core-start-edge-latch-music-stop-and-resume"
+    },
+    {
+      "bank": 2,
       "address": "0x85C8",
       "name": "World3_CheckPunishmentRoomExit",
       "evidence": "exits-room-12-after-twenty-dorayaki-or-after-type-06-schedule-and-active-entities-are-exhausted"
@@ -3744,6 +3786,42 @@
       "address": "0x864D",
       "name": "World3_DormantUpdateState55ForRoomBands",
       "evidence": "complete-unreferenced-routine-selectively-writes-14-to-0055-from-room-number-bands"
+    },
+    {
+      "bank": 2,
+      "address": "0x866C",
+      "name": "World3_ClearPersistentObjectStates",
+      "evidence": "validated-world3-frame-core-active-and-room-object-persistence-reset"
+    },
+    {
+      "bank": 2,
+      "address": "0x8689",
+      "name": "World3_InitializeVideo",
+      "evidence": "validated-world3-frame-core-chr-palette-nametable-attribute-and-rendering-initialization"
+    },
+    {
+      "bank": 2,
+      "address": "0x86BB",
+      "name": "World3_ToggleOamBufferHalf",
+      "evidence": "validated-world3-frame-core-zero-or-40-oam-half-toggle-and-write-index-reset"
+    },
+    {
+      "bank": 2,
+      "address": "0x86C4",
+      "name": "World3_RunPaletteFlash",
+      "evidence": "validated-world3-frame-core-twelve-step-four-frame-palette-flash"
+    },
+    {
+      "bank": 2,
+      "address": "0x8700",
+      "name": "World3_SetFlashPaletteColors",
+      "evidence": "validated-world3-frame-core-shared-backdrop-palette-seven-and-full-palette-queue"
+    },
+    {
+      "bank": 2,
+      "address": "0x8733",
+      "name": "World3_DefeatActiveCombatEntities",
+      "evidence": "validated-world3-frame-core-active-state-normalization-and-low-type-defeat"
     },
     {
       "bank": 2,
@@ -4285,15 +4363,147 @@
     },
     {
       "bank": 2,
+      "address": "0x9D49",
+      "name": "World3_RenderEntitySlot",
+      "evidence": "validated-world3-collision-rendering-state-position-flags-and-metasprite-composition"
+    },
+    {
+      "bank": 2,
+      "address": "0x9DCD",
+      "name": "World3_EntityRenderHookNoOp",
+      "evidence": "validated-world3-collision-rendering-current-one-byte-no-op-render-hook"
+    },
+    {
+      "bank": 2,
       "address": "0x9DCE",
       "name": "World3_DormantFaceType03TowardPlayer",
       "evidence": "complete-unreferenced-routine-selects-type-03-metasprite-variant-bit1-from-player-relative-x"
     },
     {
       "bank": 2,
+      "address": "0x9DE5",
+      "name": "World3_ProbePlayerLeftEdge",
+      "evidence": "validated-world3-collision-rendering-three-point-player-left-edge-probe"
+    },
+    {
+      "bank": 2,
+      "address": "0x9E0F",
+      "name": "World3_ProbePlayerRightEdge",
+      "evidence": "validated-world3-collision-rendering-three-point-player-right-edge-probe"
+    },
+    {
+      "bank": 2,
+      "address": "0x9E3B",
+      "name": "World3_ProbePlayerTopEdge",
+      "evidence": "validated-world3-collision-rendering-two-point-player-top-edge-probe"
+    },
+    {
+      "bank": 2,
+      "address": "0x9E65",
+      "name": "World3_ProbePlayerBottomEdge",
+      "evidence": "validated-world3-collision-rendering-two-point-player-bottom-edge-probe"
+    },
+    {
+      "bank": 2,
+      "address": "0x9E8F",
+      "name": "World3_ProbePlayerHorizontalMidline",
+      "evidence": "validated-world3-collision-rendering-two-point-player-y-plus-0c-probe"
+    },
+    {
+      "bank": 2,
+      "address": "0x9EB9",
+      "name": "World3_ProbeCurrentEntityLeftEdge",
+      "evidence": "validated-world3-collision-rendering-current-position-wrapper-and-left-edge-fallthrough"
+    },
+    {
+      "bank": 2,
+      "address": "0x9EC3",
+      "name": "World3_ProbeEntityLeftEdge",
+      "evidence": "validated-world3-collision-rendering-two-point-staged-entity-left-edge-probe"
+    },
+    {
+      "bank": 2,
+      "address": "0x9EF1",
+      "name": "World3_ProbeCurrentEntityRightEdge",
+      "evidence": "validated-world3-collision-rendering-current-position-wrapper-and-right-edge-fallthrough"
+    },
+    {
+      "bank": 2,
+      "address": "0x9EFB",
+      "name": "World3_ProbeEntityRightEdge",
+      "evidence": "validated-world3-collision-rendering-two-point-staged-entity-right-edge-probe"
+    },
+    {
+      "bank": 2,
+      "address": "0x9F2D",
+      "name": "World3_ProbeCurrentEntityTopEdge",
+      "evidence": "validated-world3-collision-rendering-current-position-wrapper-and-top-edge-fallthrough"
+    },
+    {
+      "bank": 2,
+      "address": "0x9F37",
+      "name": "World3_ProbeEntityTopEdge",
+      "evidence": "validated-world3-collision-rendering-two-point-staged-entity-top-edge-probe"
+    },
+    {
+      "bank": 2,
+      "address": "0x9F67",
+      "name": "World3_ProbeCurrentEntityBottomEdge",
+      "evidence": "validated-world3-collision-rendering-current-position-wrapper-and-bottom-edge-fallthrough"
+    },
+    {
+      "bank": 2,
+      "address": "0x9F71",
+      "name": "World3_ProbeEntityBottomEdge",
+      "evidence": "validated-world3-collision-rendering-two-point-staged-entity-bottom-edge-probe"
+    },
+    {
+      "bank": 2,
       "address": "0x9F9F",
       "name": "World3_DormantProbeEntityLowerEdge",
       "evidence": "complete-unreferenced-two-column-terrain-probe-at-entity-y-plus-08"
+    },
+    {
+      "bank": 2,
+      "address": "0x9FDB",
+      "name": "World3_ProbeProjectileCenterline",
+      "evidence": "validated-world3-collision-rendering-two-point-projectile-centerline-probe"
+    },
+    {
+      "bank": 2,
+      "address": "0xA009",
+      "name": "World3_TestEntityTerrainPoint",
+      "evidence": "validated-world3-collision-rendering-base-entity-tile-passability-rule"
+    },
+    {
+      "bank": 2,
+      "address": "0xA019",
+      "name": "World3_TestPlayerTerrainPoint",
+      "evidence": "validated-world3-collision-rendering-player-tile-rule-and-three-world-state-overrides"
+    },
+    {
+      "bank": 2,
+      "address": "0xA035",
+      "name": "World3_ReturnTerrainPassable",
+      "evidence": "validated-world3-collision-rendering-carry-set-passable-return"
+    },
+    {
+      "bank": 2,
+      "address": "0xA039",
+      "name": "World3_ApplyFinalRoomTerrainOverride",
+      "evidence": "validated-world3-collision-rendering-final-room-freed-companion-opening"
+    },
+    {
+      "bank": 2,
+      "address": "0xA050",
+      "name": "World3_ApplyPassingHoopTerrainOverride",
+      "evidence": "validated-world3-collision-rendering-active-passing-hoop-opening"
+    },
+    {
+      "bank": 2,
+      "address": "0xA061",
+      "name": "World3_ApplyDefeatedBossTerrainOverrides",
+      "evidence": "validated-world3-collision-rendering-room-27-28-34-defeat-gated-openings"
     },
     {
       "bank": 2,
@@ -4363,9 +4573,113 @@
     },
     {
       "bank": 2,
+      "address": "0xA5DF",
+      "name": "World3_QueuePriorityEffectPreserveXY",
+      "evidence": "validated-world3-room-runtime-priority-effect-wrapper-preserving-x-and-y"
+    },
+    {
+      "bank": 2,
+      "address": "0xA5EB",
+      "name": "World3_QueueEffectPreserveXY",
+      "evidence": "validated-world3-room-runtime-effect-wrapper-preserving-x-and-y"
+    },
+    {
+      "bank": 2,
+      "address": "0xA5F7",
+      "name": "World3_ReadActivePlayerButtons",
+      "evidence": "validated-world3-room-runtime-controller-read-suppressed-during-attract-mode"
+    },
+    {
+      "bank": 2,
+      "address": "0xA601",
+      "name": "World3_RenderPlayer",
+      "evidence": "validated-world3-room-runtime-player-metasprite-selection-position-and-composition"
+    },
+    {
+      "bank": 2,
+      "address": "0xA619",
+      "name": "World3_EnterRoomLeft",
+      "evidence": "validated-world3-room-runtime-left-grid-transition-and-room-reload"
+    },
+    {
+      "bank": 2,
+      "address": "0xA63A",
+      "name": "World3_EnterRoomRight",
+      "evidence": "validated-world3-room-runtime-right-grid-transition-and-room-reload"
+    },
+    {
+      "bank": 2,
+      "address": "0xA65D",
+      "name": "World3_EnterRoomAbove",
+      "evidence": "validated-world3-room-runtime-upward-grid-transition-and-room-reload"
+    },
+    {
+      "bank": 2,
+      "address": "0xA688",
+      "name": "World3_EnterRoomBelow",
+      "evidence": "validated-world3-room-runtime-downward-grid-transition-and-room-reload"
+    },
+    {
+      "bank": 2,
+      "address": "0xA6B5",
+      "name": "World3_ResetPersistentObjectsForFinalRoomEntry",
+      "evidence": "validated-world3-room-runtime-clears-persistent-followers-before-room-3f"
+    },
+    {
+      "bank": 2,
+      "address": "0xA6BF",
+      "name": "World3_ResetPersistentObjectsForActiveBossRoom",
+      "evidence": "validated-world3-room-runtime-clears-persistent-followers-for-undefeated-room-27-28-34-bosses"
+    },
+    {
+      "bank": 2,
+      "address": "0xA6E6",
+      "name": "World3_DropFollowerBeforeCrowdedRoom",
+      "evidence": "validated-world3-room-runtime-drops-active-follower-when-target-room-has-three-persistent-objects"
+    },
+    {
+      "bank": 2,
+      "address": "0xA71A",
+      "name": "World3_SetMetaspriteOriginFromXY",
+      "evidence": "validated-world3-room-runtime-stages-low-coordinates-and-wrap-high-markers"
+    },
+    {
+      "bank": 2,
+      "address": "0xA733",
+      "name": "World3_LoadCurrentRoom",
+      "evidence": "validated-world3-room-runtime-complete-palette-object-collision-hud-and-music-room-reload"
+    },
+    {
+      "bank": 2,
+      "address": "0xA7E5",
+      "name": "World3_SelectRoomMusicTrack",
+      "evidence": "validated-world3-room-runtime-room-class-to-music-track-selection"
+    },
+    {
+      "bank": 2,
+      "address": "0xA7F1",
+      "name": "World3_RoomMusicClassByRoom",
+      "operand_symbol": true,
+      "evidence": "64-room-map-selecting-one-of-four-world3-music-classes"
+    },
+    {
+      "bank": 2,
+      "address": "0xA831",
+      "name": "World3_MusicTrackByRoomClass",
+      "operand_symbol": true,
+      "evidence": "four-entry-room-music-class-to-audio-track-table"
+    },
+    {
+      "bank": 2,
       "address": "0xA835",
       "name": "World3_LoadRoomPalette",
       "evidence": "room-selector-times-32-copy-of-complete-ppu-palette"
+    },
+    {
+      "bank": 2,
+      "address": "0xA863",
+      "name": "World3_FadePaletteToBlack",
+      "evidence": "validated-world3-room-runtime-stepwise-palette-darkening-with-three-frame-uploads"
     },
     {
       "bank": 2,
@@ -4576,6 +4890,18 @@
     },
     {
       "bank": 2,
+      "address": "0xB1F1",
+      "name": "World3_CopyBytes",
+      "evidence": "validated-world3-frame-core-indirect-source-and-destination-counted-copy"
+    },
+    {
+      "bank": 2,
+      "address": "0xB1FE",
+      "name": "World3_InitializeHardwareAndRam",
+      "evidence": "validated-world3-frame-core-rendering-random-zero-page-scroll-and-audio-initialization"
+    },
+    {
+      "bank": 2,
       "address": "0xB25B",
       "name": "World3_HideAllSprites",
       "evidence": "writes-offscreen-y-f4-to-all-sixty-four-oam-records"
@@ -4667,6 +4993,24 @@
       "name": "World3_RoomPaletteSelector",
       "operand_symbol": true,
       "evidence": "64-room-selector-table-indexing-eleven-32-byte-palettes"
+    },
+    {
+      "bank": 2,
+      "address": "0xB3FF",
+      "name": "World3_RenderHud",
+      "evidence": "validated-world3-frame-core-score-lives-and-health-render-wrapper"
+    },
+    {
+      "bank": 2,
+      "address": "0xB406",
+      "name": "World3_RenderScoreAndLives",
+      "evidence": "validated-world3-frame-core-leading-zero-score-and-lives-oam-composition"
+    },
+    {
+      "bank": 2,
+      "address": "0xB460",
+      "name": "World3_RenderHealth",
+      "evidence": "validated-world3-frame-core-health-capacity-tile-and-oam-composition"
     },
     {
       "bank": 2,
@@ -7695,6 +8039,423 @@
         2
       ],
       "evidence": "room-number-saved-before-forced-room-12-entry-and-restored-on-exit"
+    },
+    {
+      "address": "0x0038",
+      "name": "World3PassingHoopCarryFlag",
+      "banks": [
+        2
+      ],
+      "evidence": "copied-from-world2-inventory-slot-six-and-consumed-to-place-the-type-19-passing-hoop-at-the-player-position"
+    },
+    {
+      "address": "0x004F",
+      "name": "World3ChapterCompletionDelay",
+      "banks": [
+        2
+      ],
+      "evidence": "loaded-with-46-hex-after-the-final-formation-defeat-and-counted-down-before-the-ending-transition"
+    },
+    {
+      "address": "0x0058",
+      "name": "World3BossRoom27Defeated",
+      "banks": [
+        2
+      ],
+      "evidence": "set-after-defeating-the-type-eight-formation-in-room-27-and-gates-room-reentry"
+    },
+    {
+      "address": "0x0059",
+      "name": "World3BossRoom28Defeated",
+      "banks": [
+        2
+      ],
+      "evidence": "set-after-defeating-the-type-eight-formation-in-room-28-and-gates-room-reentry"
+    },
+    {
+      "address": "0x005A",
+      "name": "World3BossRoom34Defeated",
+      "banks": [
+        2
+      ],
+      "evidence": "set-after-defeating-the-type-eight-formation-in-room-34-and-gates-room-reentry"
+    },
+    {
+      "address": "0x0064",
+      "name": "World3PauseInputLatch",
+      "banks": [
+        2
+      ],
+      "evidence": "set-on-the-first-start-held-frame-and-cleared-after-start-release-to-prevent-repeat-pausing"
+    },
+    {
+      "address": "0x0073",
+      "name": "World3OamBufferHalf",
+      "banks": [
+        2
+      ],
+      "evidence": "toggles-by-40-hex-each-nmi-between-the-two-32-sprite-oam-composition-halves"
+    },
+    {
+      "address": "0x0074",
+      "name": "World3OamWriteIndex",
+      "banks": [
+        2
+      ],
+      "evidence": "initialized-from-the-current-oam-half-and-advanced-by-two-for-each-four-byte-oam-entry"
+    },
+    {
+      "address": "0x0089",
+      "name": "World3RoomColumn",
+      "banks": [
+        2
+      ],
+      "evidence": "low-three-bits-of-the-current-room-and-horizontal-eight-by-eight-room-grid-coordinate"
+    },
+    {
+      "address": "0x008A",
+      "name": "World3RoomRow",
+      "banks": [
+        2
+      ],
+      "evidence": "current-room-divided-by-eight-and-vertical-eight-by-eight-room-grid-coordinate"
+    },
+    {
+      "address": "0x008C",
+      "name": "World3PlayerX",
+      "banks": [
+        2
+      ],
+      "evidence": "world3-player-x-coordinate-used-by-movement-collision-rendering-spawns-and-room-persistence"
+    },
+    {
+      "address": "0x008D",
+      "name": "World3PlayerY",
+      "banks": [
+        2
+      ],
+      "evidence": "world3-player-y-coordinate-used-by-movement-collision-rendering-spawns-and-room-persistence"
+    },
+    {
+      "address": "0x00A5",
+      "name": "World3RoomMusicTrack",
+      "banks": [
+        2
+      ],
+      "evidence": "room-table-selected-music-id-restored-after-boss-delay-and-on-punishment-room-exit"
+    },
+    {
+      "address": "0x00A6",
+      "name": "World3BossMusicRestoreDelay",
+      "banks": [
+        2
+      ],
+      "evidence": "loaded-with-28-hex-after-boss-defeat-and-counted-down-before-restoring-room-music"
+    },
+    {
+      "address": "0x00CE",
+      "name": "World3Room16MicrophoneEventActive",
+      "banks": [
+        2
+      ],
+      "evidence": "set-when-the-room-16-microphone-event-triggers-and-selects-its-fixed-screen-marker"
+    },
+    {
+      "address": "0x00CF",
+      "name": "World3MicrophoneHoldCounter",
+      "banks": [
+        2
+      ],
+      "evidence": "counts-consecutive-microphone-edge-timer-frames-to-3c-hex-for-both-world3-hooks"
+    },
+    {
+      "address": "0x00D0",
+      "name": "World3Room16MicrophoneEventComplete",
+      "banks": [
+        2
+      ],
+      "evidence": "one-shot-latch-set-with-the-room-16-microphone-event-to-prevent-retriggering"
+    },
+    {
+      "address": "0x00DC",
+      "name": "World3AttractModeActive",
+      "banks": [
+        2
+      ],
+      "evidence": "one-for-world3-demo-entry-disables-player-input-and-score-awards-and-enables-the-attract-timeout"
+    },
+    {
+      "address": "0x00DD",
+      "name": "World3AttractFrameCounterLow",
+      "banks": [
+        2
+      ],
+      "evidence": "low-byte-countdown-decremented-each-world3-attract-frame-before-returning-to-the-shell"
+    },
+    {
+      "address": "0x00DE",
+      "name": "World3AttractFrameCounterHigh",
+      "banks": [
+        2
+      ],
+      "evidence": "high-byte-countdown-decremented-on-low-byte-wrap-before-world3-attract-mode-exits"
+    },
+    {
+      "address": "0x00DF",
+      "name": "World3CurrentRoom",
+      "banks": [
+        2
+      ],
+      "evidence": "zero-through-3f-room-index-used-by-map-object-palette-spawn-and-transition-systems"
+    },
+    {
+      "address": "0x00E0",
+      "name": "World3DebugControlsEnabled",
+      "banks": [
+        2
+      ],
+      "evidence": "set-only-by-the-fa-c5-two-controller-entry-code-and-enables-controller-two-room-navigation"
+    },
+    {
+      "address": "0x0051",
+      "name": "World3FormationActive",
+      "banks": [
+        2
+      ],
+      "evidence": "set-while-a-multi-entity-boss-formation-owns-the-active-pool-and-forces-forward-render-order"
+    },
+    {
+      "address": "0x0052",
+      "name": "World3EntityRenderOrderPhase",
+      "banks": [
+        2
+      ],
+      "evidence": "incremented-each-non-formation-render-frame-and-bit-zero-selects-forward-or-reverse-slot-traversal"
+    },
+    {
+      "address": "0x0075",
+      "name": "World3MetaspriteOriginX",
+      "banks": [
+        2
+      ],
+      "evidence": "low-byte-x-origin-consumed-by-every-world3-metasprite-piece"
+    },
+    {
+      "address": "0x0076",
+      "name": "World3MetaspriteOriginXHigh",
+      "banks": [
+        2
+      ],
+      "evidence": "high-x-overflow-marker-used-to-cull-world3-metasprite-pieces"
+    },
+    {
+      "address": "0x0077",
+      "name": "World3MetaspriteOriginY",
+      "banks": [
+        2
+      ],
+      "evidence": "low-byte-y-origin-consumed-by-every-world3-metasprite-piece"
+    },
+    {
+      "address": "0x0078",
+      "name": "World3MetaspriteOriginYHigh",
+      "banks": [
+        2
+      ],
+      "evidence": "high-y-overflow-marker-used-to-cull-world3-metasprite-pieces"
+    },
+    {
+      "address": "0x0079",
+      "name": "World3MetaspriteIndex",
+      "banks": [
+        2
+      ],
+      "evidence": "indexes-the-188-entry-direct-pointer-or-flip-alias-table-before-world3-oam-composition"
+    },
+    {
+      "address": "0x007A",
+      "name": "World3MetaspriteRenderFlags",
+      "banks": [
+        2
+      ],
+      "evidence": "combines-flicker-mirror-and-low-oam-attribute-bits-for-world3-metasprite-composition"
+    },
+    {
+      "address": "0x007B",
+      "name": "World3MetaspriteDataPointer",
+      "size": 2,
+      "banks": [
+        2
+      ],
+      "evidence": "little-endian-pointer-resolved-from-the-world3-metasprite-index"
+    },
+    {
+      "address": "0x007D",
+      "name": "World3MetaspriteXMirrorExtent",
+      "banks": [
+        2
+      ],
+      "evidence": "metasprite-header-x-extent-subtracted-while-horizontally-mirroring-piece-offsets"
+    },
+    {
+      "address": "0x007E",
+      "name": "World3MetaspriteYMirrorExtent",
+      "banks": [
+        2
+      ],
+      "evidence": "metasprite-header-y-extent-subtracted-while-vertically-mirroring-piece-offsets"
+    },
+    {
+      "address": "0x007F",
+      "name": "World3MetaspritePiecesRemaining",
+      "banks": [
+        2
+      ],
+      "evidence": "loaded-from-the-metasprite-header-and-decremented-after-each-three-byte-piece"
+    },
+    {
+      "address": "0x0080",
+      "name": "World3OamY",
+      "banks": [
+        2
+      ],
+      "evidence": "staged-oam-y-byte-written-by-world3-append-oam-entry"
+    },
+    {
+      "address": "0x0081",
+      "name": "World3OamTile",
+      "banks": [
+        2
+      ],
+      "evidence": "staged-oam-tile-byte-written-by-world3-append-oam-entry"
+    },
+    {
+      "address": "0x0082",
+      "name": "World3OamAttributes",
+      "banks": [
+        2
+      ],
+      "evidence": "staged-oam-attribute-byte-written-by-world3-append-oam-entry"
+    },
+    {
+      "address": "0x0083",
+      "name": "World3OamX",
+      "banks": [
+        2
+      ],
+      "evidence": "staged-oam-x-byte-written-by-world3-append-oam-entry"
+    },
+    {
+      "address": "0x009E",
+      "name": "World3TerrainTile",
+      "banks": [
+        2
+      ],
+      "evidence": "last-map-sample-retained-across-player-passability-override-tests-and-carry-return"
+    },
+    {
+      "address": "0x009F",
+      "name": "World3PassingHoopPortalActive",
+      "banks": [
+        2
+      ],
+      "evidence": "set-when-the-enabled-type-19-passing-hoop-opens-and-makes-tiles-26-through-29-passable"
+    },
+    {
+      "address": "0x00A0",
+      "name": "World3PassingHoopBoundaryPresent",
+      "banks": [
+        2
+      ],
+      "evidence": "set-when-room-edge-scans-find-a-tile-26-passing-hoop-boundary-and-used-to-retire-the-active-portal"
+    },
+    {
+      "address": "0x00A1",
+      "name": "World3FinalCompanionsFreed",
+      "banks": [
+        2
+      ],
+      "evidence": "set-after-all-three-types-1c-through-1e-are-active-in-room-3c-and-opens-the-final-room-terrain"
+    },
+    {
+      "address": "0x0049",
+      "name": "World3AudioSavedX",
+      "banks": [
+        2
+      ],
+      "evidence": "x-register-preserved-across-both-world3-effect-queue-wrappers"
+    },
+    {
+      "address": "0x004A",
+      "name": "World3AudioSavedY",
+      "banks": [
+        2
+      ],
+      "evidence": "y-register-preserved-across-both-world3-effect-queue-wrappers"
+    },
+    {
+      "address": "0x008B",
+      "name": "World3TransitionTargetRoom",
+      "banks": [
+        2
+      ],
+      "evidence": "adjacent-room-index-staged-for-follower-transfer-and-entry-policy-before-current-room-commit"
+    },
+    {
+      "address": "0x008E",
+      "name": "World3PlayerState",
+      "banks": [
+        2
+      ],
+      "evidence": "zero-through-four-index-selecting-the-five-entry-world3-player-state-handler-table"
+    },
+    {
+      "address": "0x008F",
+      "name": "World3PlayerMetasprite",
+      "banks": [
+        2
+      ],
+      "evidence": "sum-of-player-base-pose-and-animation-frame-submitted-to-the-metasprite-renderer"
+    },
+    {
+      "address": "0x0090",
+      "name": "World3PlayerMetaspriteBase",
+      "banks": [
+        2
+      ],
+      "evidence": "state-direction-and-action-selected-base-added-to-player-animation-frame-for-rendering"
+    },
+    {
+      "address": "0x0091",
+      "name": "World3PlayerAnimationFrame",
+      "banks": [
+        2
+      ],
+      "evidence": "small-animation-offset-added-to-the-player-metasprite-base-each-render"
+    },
+    {
+      "address": "0x009A",
+      "name": "World3FollowerActive",
+      "banks": [
+        2
+      ],
+      "evidence": "global-latch-set-while-one-persistent-type-18-through-1f-object-follows-the-player"
+    },
+    {
+      "address": "0x00CB",
+      "name": "World3StopwatchActive",
+      "banks": [
+        2
+      ],
+      "evidence": "set-by-type-10-stopwatch-pickup-and-suspends-ordinary-entity-updates-until-expiry"
+    },
+    {
+      "address": "0x00CC",
+      "name": "World3StopwatchTimer",
+      "banks": [
+        2
+      ],
+      "evidence": "increments-during-active-stopwatch-freeze-and-resumes-music-and-entities-after-78-hex-frames"
     },
     {
       "address": "0x0041",

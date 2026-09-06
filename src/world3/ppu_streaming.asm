@@ -2,24 +2,24 @@
 ; World 3 audio wrappers, nametable streaming, and PPU update preparation
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_A5DF:
-    STX $49
-    STY $4A
+World3_QueuePriorityEffectPreserveXY:
+    STX World3AudioSavedX
+    STY World3AudioSavedY
     JSR World3_Audio_QueueEffectWithPriority
-    LDX $49
-    LDY $4A
+    LDX World3AudioSavedX
+    LDY World3AudioSavedY
     RTS
 
-Bank2_Func_A5EB:
-    STX $49
-    STY $4A
+World3_QueueEffectPreserveXY:
+    STX World3AudioSavedX
+    STY World3AudioSavedY
     JSR World3_Audio_QueueEffect
-    LDX $49
-    LDY $4A
+    LDX World3AudioSavedX
+    LDY World3AudioSavedY
     RTS
 
-Bank2_Func_A5F7:
-    LDA $DC
+World3_ReadActivePlayerButtons:
+    LDA World3AttractModeActive
     BNE Bank2_Label_A5FE
     LDA CombinedControllerButtons
     RTS
@@ -28,117 +28,117 @@ Bank2_Label_A5FE:
     LDA #$00
     RTS
 
-Bank2_Func_A601:
-    LDX $8C
-    LDY $8D
-    JSR Bank2_Func_A71A
-    LDA $90
+World3_RenderPlayer:
+    LDX World3PlayerX
+    LDY World3PlayerY
+    JSR World3_SetMetaspriteOriginFromXY
+    LDA World3PlayerMetaspriteBase
     CLC
-    ADC $91
-    STA $8F
-    STA $79
+    ADC World3PlayerAnimationFrame
+    STA World3PlayerMetasprite
+    STA World3MetaspriteIndex
     LDA #$00
-    STA $7A
+    STA World3MetaspriteRenderFlags
     JSR World3_ComposeMetasprite
     RTS
 
-Bank2_Func_A619:
-    LDA $89
+World3_EnterRoomLeft:
+    LDA World3RoomColumn
     BEQ Bank2_Label_A639
-    DEC $89
-    LDA $DF
-    STA $8B
-    DEC $8B
-    JSR Bank2_Func_A6E6
-    JSR Bank2_Func_A6B5
-    JSR Bank2_Func_A6BF
+    DEC World3RoomColumn
+    LDA World3CurrentRoom
+    STA World3TransitionTargetRoom
+    DEC World3TransitionTargetRoom
+    JSR World3_DropFollowerBeforeCrowdedRoom
+    JSR World3_ResetPersistentObjectsForFinalRoomEntry
+    JSR World3_ResetPersistentObjectsForActiveBossRoom
     JSR World3_SaveRoomObjectsState0
-    DEC $DF
+    DEC World3CurrentRoom
     JSR World3_SaveRoomObjectsState1
-    JSR Bank2_Func_A733
+    JSR World3_LoadCurrentRoom
 
 Bank2_Label_A639:
     RTS
 
-Bank2_Func_A63A:
-    LDA $89
+World3_EnterRoomRight:
+    LDA World3RoomColumn
     CMP #$07
     BEQ Bank2_Label_A65C
-    INC $89
-    LDA $DF
-    STA $8B
-    INC $8B
-    JSR Bank2_Func_A6E6
-    JSR Bank2_Func_A6B5
-    JSR Bank2_Func_A6BF
+    INC World3RoomColumn
+    LDA World3CurrentRoom
+    STA World3TransitionTargetRoom
+    INC World3TransitionTargetRoom
+    JSR World3_DropFollowerBeforeCrowdedRoom
+    JSR World3_ResetPersistentObjectsForFinalRoomEntry
+    JSR World3_ResetPersistentObjectsForActiveBossRoom
     JSR World3_SaveRoomObjectsState0
-    INC $DF
+    INC World3CurrentRoom
     JSR World3_SaveRoomObjectsState1
-    JSR Bank2_Func_A733
+    JSR World3_LoadCurrentRoom
 
 Bank2_Label_A65C:
     RTS
 
-Bank2_Func_A65D:
-    LDA $8A
+World3_EnterRoomAbove:
+    LDA World3RoomRow
     BEQ Bank2_Label_A687
-    DEC $8A
-    LDA $DF
-    STA $8B
-    LDA $8B
+    DEC World3RoomRow
+    LDA World3CurrentRoom
+    STA World3TransitionTargetRoom
+    LDA World3TransitionTargetRoom
     SEC
     SBC #$08
-    STA $8B
-    JSR Bank2_Func_A6E6
-    JSR Bank2_Func_A6B5
-    JSR Bank2_Func_A6BF
+    STA World3TransitionTargetRoom
+    JSR World3_DropFollowerBeforeCrowdedRoom
+    JSR World3_ResetPersistentObjectsForFinalRoomEntry
+    JSR World3_ResetPersistentObjectsForActiveBossRoom
     JSR World3_SaveRoomObjectsState0
-    LDA $DF
+    LDA World3CurrentRoom
     SEC
     SBC #$08
-    STA $DF
+    STA World3CurrentRoom
     JSR World3_SaveRoomObjectsState1
-    JSR Bank2_Func_A733
+    JSR World3_LoadCurrentRoom
 
 Bank2_Label_A687:
     RTS
 
-Bank2_Func_A688:
-    LDA $8A
+World3_EnterRoomBelow:
+    LDA World3RoomRow
     CMP #$07
     BEQ Bank2_Label_A6B4
-    INC $8A
-    LDA $DF
-    STA $8B
-    LDA $8B
+    INC World3RoomRow
+    LDA World3CurrentRoom
+    STA World3TransitionTargetRoom
+    LDA World3TransitionTargetRoom
     CLC
     ADC #$08
-    STA $8B
-    JSR Bank2_Func_A6E6
-    JSR Bank2_Func_A6B5
-    JSR Bank2_Func_A6BF
+    STA World3TransitionTargetRoom
+    JSR World3_DropFollowerBeforeCrowdedRoom
+    JSR World3_ResetPersistentObjectsForFinalRoomEntry
+    JSR World3_ResetPersistentObjectsForActiveBossRoom
     JSR World3_SaveRoomObjectsState0
-    LDA $DF
+    LDA World3CurrentRoom
     CLC
     ADC #$08
-    STA $DF
+    STA World3CurrentRoom
     JSR World3_SaveRoomObjectsState1
-    JSR Bank2_Func_A733
+    JSR World3_LoadCurrentRoom
 
 Bank2_Label_A6B4:
     RTS
 
-Bank2_Func_A6B5:
-    LDA $8B
+World3_ResetPersistentObjectsForFinalRoomEntry:
+    LDA World3TransitionTargetRoom
     CMP #$3F
     BNE Bank2_Label_A6BE
-    JSR Bank2_Func_866C
+    JSR World3_ClearPersistentObjectStates
 
 Bank2_Label_A6BE:
     RTS
 
-Bank2_Func_A6BF:
-    LDA $8B
+World3_ResetPersistentObjectsForActiveBossRoom:
+    LDA World3TransitionTargetRoom
     CMP #$27
     BEQ Bank2_Label_A6CE
     CMP #$28
@@ -150,30 +150,30 @@ Bank2_Label_A6CD:
     RTS
 
 Bank2_Label_A6CE:
-    LDA $58
+    LDA World3BossRoom27Defeated
     BNE Bank2_Label_A6CD
-    JSR Bank2_Func_866C
+    JSR World3_ClearPersistentObjectStates
     RTS
 
 Bank2_Label_A6D6:
-    LDA $59
+    LDA World3BossRoom28Defeated
     BNE Bank2_Label_A6CD
-    JSR Bank2_Func_866C
+    JSR World3_ClearPersistentObjectStates
     RTS
 
 Bank2_Label_A6DE:
-    LDA $5A
+    LDA World3BossRoom34Defeated
     BNE Bank2_Label_A6CD
-    JSR Bank2_Func_866C
+    JSR World3_ClearPersistentObjectStates
     RTS
 
-Bank2_Func_A6E6:
+World3_DropFollowerBeforeCrowdedRoom:
     LDY #$00
     STY $3E
 
 Bank2_Label_A6EA:
     LDA a:World3RoomObjectRoom,Y
-    CMP $8B
+    CMP World3TransitionTargetRoom
     BNE Bank2_Label_A6FA
     LDA a:World3RoomObjectType,Y
     CMP #$18
@@ -187,10 +187,10 @@ Bank2_Label_A6FA:
     LDA $3E
     CMP #$03
     BCC Bank2_Label_A719
-    LDA $9A
+    LDA World3FollowerActive
     BEQ Bank2_Label_A719
     LDA #$00
-    STA $9A
+    STA World3FollowerActive
     LDY #$00
 
 Bank2_Label_A70F:
@@ -203,27 +203,27 @@ Bank2_Label_A70F:
 Bank2_Label_A719:
     RTS
 
-Bank2_Func_A71A:
+World3_SetMetaspriteOriginFromXY:
     LDA #$00
     CPX #$F8
     BCC Bank2_Label_A722
     LDA #$03
 
 Bank2_Label_A722:
-    STX $75
-    STA $76
+    STX World3MetaspriteOriginX
+    STA World3MetaspriteOriginXHigh
     LDA #$00
     CPY #$F8
     BCC Bank2_Label_A72E
     LDA #$03
 
 Bank2_Label_A72E:
-    STY $77
-    STA $78
+    STY World3MetaspriteOriginY
+    STA World3MetaspriteOriginYHigh
     RTS
 
-Bank2_Func_A733:
-    JSR Bank2_Func_A863
+World3_LoadCurrentRoom:
+    JSR World3_FadePaletteToBlack
     JSR World3_DisableRendering
     LDA #$02
     JSR Bank2_SelectChrBank
@@ -237,14 +237,14 @@ Bank2_Func_A733:
     JSR World3_MaterializeRoomObjects
     JSR Bank2_Func_AB53
     JSR Bank2_Func_ABF9
-    LDA $A1
+    LDA World3FinalCompanionsFreed
     BEQ Bank2_Label_A761
     JSR Bank2_Func_8817
 
 Bank2_Label_A761:
-    LDA $51
+    LDA World3FormationActive
     BNE Bank2_Label_A78B
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$27
     BEQ Bank2_Label_A776
     CMP #$28
@@ -254,22 +254,22 @@ Bank2_Label_A761:
     JMP Bank2_Label_A79C
 
 Bank2_Label_A776:
-    LDA $58
+    LDA World3BossRoom27Defeated
     BNE Bank2_Label_A78B
     JMP Bank2_Label_A79C
 
 Bank2_Label_A77D:
-    LDA $59
+    LDA World3BossRoom28Defeated
     BNE Bank2_Label_A78B
     JMP Bank2_Label_A79C
 
 Bank2_Label_A784:
-    LDA $5A
+    LDA World3BossRoom34Defeated
     BNE Bank2_Label_A78B
     JMP Bank2_Label_A79C
 
 Bank2_Label_A78B:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$27
     BEQ Bank2_Label_A799
     CMP #$28
@@ -281,39 +281,39 @@ Bank2_Label_A799:
     JSR Bank2_Func_875C
 
 Bank2_Label_A79C:
-    LDA $9F
+    LDA World3PassingHoopPortalActive
     BEQ Bank2_Label_A7AB
     JSR Bank2_Func_97AF
-    LDA $A0
+    LDA World3PassingHoopBoundaryPresent
     BNE Bank2_Label_A7AB
     LDA #$00
-    STA $9F
+    STA World3PassingHoopPortalActive
 
 Bank2_Label_A7AB:
-    JSR Bank2_Func_B3FF
+    JSR World3_RenderHud
     JSR World3_EnableRendering
     JSR Bank2_Func_A8B0
     LDA #$00
-    STA $73
-    STA $74
+    STA World3OamBufferHalf
+    STA World3OamWriteIndex
     LDA #$00
-    STA $CB
-    STA $CC
+    STA World3StopwatchActive
+    STA World3StopwatchTimer
     LDA #$00
-    STA $CE
-    STA $CF
-    JSR Bank2_Func_A7E5
+    STA World3Room16MicrophoneEventActive
+    STA World3MicrophoneHoldCounter
+    JSR World3_SelectRoomMusicTrack
     LDA a:AudioMusicState
     AND #$7F
-    CMP $A5
+    CMP World3RoomMusicTrack
     BEQ Bank2_Label_A7DF
     CMP #$03
     BNE Bank2_Label_A7DA
-    LDA $51
+    LDA World3FormationActive
     BNE Bank2_Label_A7DF
 
 Bank2_Label_A7DA:
-    LDA $A5
+    LDA World3RoomMusicTrack
     STA a:AudioMusicState
 
 Bank2_Label_A7DF:
@@ -321,23 +321,27 @@ Bank2_Label_A7DF:
     STA a:AudioMusicControl
     RTS
 
-Bank2_Func_A7E5:
-    LDY $DF
-    LDA a:$A7F1,Y
+World3_SelectRoomMusicTrack:
+    LDY World3CurrentRoom
+    LDA a:World3_RoomMusicClassByRoom,Y
     TAY
-    LDA a:$A831,Y
-    STA $A5
+    LDA a:World3_MusicTrackByRoomClass,Y
+    STA World3RoomMusicTrack
     RTS
+
+World3_RoomMusicClassByRoom:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $01, $01, $00, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $01, $01
     .byte $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $02, $02, $02
     .byte $01, $01, $01, $01, $01, $02, $02, $02, $01, $01, $01, $01, $01, $02, $02, $03
+
+World3_MusicTrackByRoomClass:
     .byte $01, $02, $05, $06
 
 World3_LoadRoomPalette:
     LDA #$00
     STA $40
-    LDX $DF
+    LDX World3CurrentRoom
     LDA a:World3_RoomPaletteSelector,X
     LSR A
     ROR $40
@@ -363,7 +367,7 @@ Bank2_Label_A858:
     BNE Bank2_Label_A858
     RTS
 
-Bank2_Func_A863:
+World3_FadePaletteToBlack:
     LDX #$80
     LDY #$04
     STX $00
@@ -374,7 +378,7 @@ Bank2_Func_A863:
     STY $03
     LDA #$20
     STA $04
-    JSR Bank2_Func_B1F1
+    JSR World3_CopyBytes
 
 Bank2_Label_A87A:
     LDX #$00

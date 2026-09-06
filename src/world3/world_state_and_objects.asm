@@ -30,13 +30,13 @@ Bank2_Label_8768:
     .byte $00, $00, $00, $00
 
 Bank2_Func_879B:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3C
     BEQ Bank2_Label_87A2
     RTS
 
 Bank2_Label_87A2:
-    LDA $A1
+    LDA World3FinalCompanionsFreed
     BNE Bank2_Label_8816
     LDY #$00
     LDA #$03
@@ -60,11 +60,11 @@ Bank2_Label_87C0:
     LDA $3E
     BNE Bank2_Label_8816
     LDA #$04
-    JSR Bank2_Func_A5EB
-    JSR Bank2_Func_86C4
+    JSR World3_QueueEffectPreserveXY
+    JSR World3_RunPaletteFlash
     JSR Bank2_Func_8817
     LDA #$01
-    STA $A1
+    STA World3FinalCompanionsFreed
     LDY #$00
 
 Bank2_Label_87DA:
@@ -101,13 +101,13 @@ Bank2_Label_880D:
     CPY #$0D
     BNE Bank2_Label_87F8
     LDA #$00
-    STA $9A
+    STA World3FollowerActive
 
 Bank2_Label_8816:
     RTS
 
 Bank2_Func_8817:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3C
     BNE Bank2_Label_8847
     STX $44
@@ -189,7 +189,7 @@ Bank2_Func_886F:
     BEQ Bank2_Label_886E
     CMP #$02
     BNE Bank2_Label_88AD
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3F
     BEQ Bank2_Label_886E
 
@@ -214,7 +214,7 @@ Bank2_Label_88C6:
 
 Bank2_Label_88D1:
     LDA #$03
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
 
 Bank2_Label_88D6:
     LDA a:World3EntityHitPoints,X
@@ -239,13 +239,13 @@ Bank2_Label_88EE:
     LDA #$01
     STA a:AudioMusicControl
     LDA #$04
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
     LDA #$28
-    STA $A6
-    JSR Bank2_Func_86C4
-    JSR Bank2_Func_8733
+    STA World3BossMusicRestoreDelay
+    JSR World3_RunPaletteFlash
+    JSR World3_DefeatActiveCombatEntities
     JSR Bank2_Func_875C
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$27
     BEQ Bank2_Label_8924
     CMP #$28
@@ -257,17 +257,17 @@ Bank2_Label_88EE:
 
 Bank2_Label_8924:
     LDA #$01
-    STA $58
+    STA World3BossRoom27Defeated
     JMP Bank2_Label_895C
 
 Bank2_Label_892B:
     LDA #$01
-    STA $59
+    STA World3BossRoom28Defeated
     JMP Bank2_Label_895C
 
 Bank2_Label_8932:
     LDA #$01
-    STA $5A
+    STA World3BossRoom34Defeated
     JMP Bank2_Label_895C
 
 Bank2_Label_8939:
@@ -279,13 +279,13 @@ Bank2_Label_8939:
     LDA #$01
     STA a:AudioMusicControl
     LDA #$04
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
     LDA #$28
-    STA $A6
-    JSR Bank2_Func_86C4
-    JSR Bank2_Func_8733
+    STA World3BossMusicRestoreDelay
+    JSR World3_RunPaletteFlash
+    JSR World3_DefeatActiveCombatEntities
     LDA #$46
-    STA $4F
+    STA World3ChapterCompletionDelay
 
 Bank2_Label_895C:
     LDX $5C
@@ -298,7 +298,7 @@ Bank2_Label_895C:
 
 Bank2_Label_896C:
     LDA #$03
-    JSR Bank2_Func_A5DF
+    JSR World3_QueuePriorityEffectPreserveXY
     RTS
 
 Bank2_Func_8972:
@@ -317,14 +317,14 @@ Bank2_Func_897C:
     LDA #$6C
     STA a:World3EntityMetasprite,X
     LDA #$05
-    JSR Bank2_Func_A5DF
+    JSR World3_QueuePriorityEffectPreserveXY
     RTS
 
 Bank2_Func_898C:
     STX $5B
     LDX $07
     STX $5D
-    LDX $DC
+    LDX World3AttractModeActive
     BNE Bank2_Label_8999
     JSR World3_AddEncodedScore
 
@@ -343,7 +343,7 @@ Bank2_Func_89A1:
     BNE Bank2_Label_89A0
     LDA a:World3EntityX,X
     SEC
-    SBC $8C
+    SBC World3PlayerX
     JSR World3_AbsoluteValue8
     CMP #$0D
     BCS Bank2_Label_89A0
@@ -351,7 +351,7 @@ Bank2_Func_89A1:
     SEC
     SBC #$04
     SEC
-    SBC $8D
+    SBC World3PlayerY
     JSR World3_AbsoluteValue8
     CMP #$11
     BCS Bank2_Label_89A0
@@ -380,16 +380,16 @@ Bank2_Label_89EA:
     CMP #$07
     BNE Bank2_Label_8A28
     LDA #$0A
-    JSR Bank2_Func_A5EB
-    JSR Bank2_Func_86C4
+    JSR World3_QueueEffectPreserveXY
+    JSR World3_RunPaletteFlash
     JSR Bank2_Func_897C
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$0E
-    JSR Bank2_Func_A5EB
-    LDA $DF
+    JSR World3_QueueEffectPreserveXY
+    LDA World3CurrentRoom
     CMP #$26
     BEQ Bank2_Label_8A17
     CMP #$3B
@@ -416,7 +416,7 @@ Bank2_Label_8A27:
 Bank2_Label_8A28:
     CMP #$18
     BCC Bank2_Label_8A60
-    JSR Bank2_Func_A5F7
+    JSR World3_ReadActivePlayerButtons
     AND #$40
     BNE Bank2_Label_8A36
     STA $62
@@ -427,10 +427,10 @@ Bank2_Label_8A35:
 Bank2_Label_8A36:
     LDA $62
     BNE Bank2_Label_8A35
-    LDA $9A
+    LDA World3FollowerActive
     BNE Bank2_Label_8A48
     LDA #$01
-    STA $9A
+    STA World3FollowerActive
     STA a:World3EntityPersistentState,X
     JMP Bank2_Label_8A54
 
@@ -438,13 +438,13 @@ Bank2_Label_8A48:
     LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_8A5B
     LDA #$00
-    STA $9A
+    STA World3FollowerActive
     STA a:World3EntityPersistentState,X
 
 Bank2_Label_8A54:
     INC $62
     LDA #$08
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
 
 Bank2_Label_8A5B:
     RTS
@@ -468,9 +468,9 @@ Bank2_Label_8A60:
     LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$01
-    STA $CB
+    STA World3StopwatchActive
     LDA #$00
-    STA $CC
+    STA World3StopwatchTimer
     LDA #$01
     STA a:AudioMusicControl
     RTS
@@ -484,7 +484,7 @@ Bank2_Label_8A87:
     LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$0E
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
     LDA #$08
     SEC
     SBC PlayerHealthCapacityIndex
@@ -514,9 +514,9 @@ Bank2_Label_8AB7:
     LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$13
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
     INC World3TreasurePenaltyCounter
-    JSR Bank2_Func_8733
+    JSR World3_DefeatActiveCombatEntities
     LDA #$04
     STA $A4
     RTS
@@ -528,15 +528,15 @@ Bank2_Label_8AD7:
     LDA a:World3_EntityScoreRewardCodeByType,Y
     JSR Bank2_Func_898C
     LDA #$0E
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
     INC World3TreasurePenaltyCounter
     RTS
 
 Bank2_Label_8AEC:
-    LDA $8E
+    LDA World3PlayerState
     CMP #$01
     BNE Bank2_Label_8B67
-    LDA $CB
+    LDA World3StopwatchActive
     BNE Bank2_Label_8B67
     LDA a:World3EntityType,X
     TAY
@@ -553,20 +553,20 @@ Bank2_Label_8B08:
     LDA PlayerHealth
     BNE Bank2_Label_8B4E
     LDA #$04
-    STA $8E
+    STA World3PlayerState
     LDA #$0B
-    STA $90
+    STA World3PlayerMetaspriteBase
     LDA #$00
-    STA $91
+    STA World3PlayerAnimationFrame
     LDA #$00
     STA $93
     LDA #$00
     STA $97
     LDA #$00
-    STA $9A
-    LDA $8C
+    STA World3FollowerActive
+    LDA World3PlayerX
     STA $4B
-    LDA $8D
+    LDA World3PlayerY
     STA $4C
     JSR World3_SaveRoomObjectsState0
     JSR World3_SaveRoomObjectsState1
@@ -587,17 +587,17 @@ Bank2_Label_8B36:
 
 Bank2_Label_8B4E:
     LDA #$03
-    STA $8E
+    STA World3PlayerState
     LDA #$00
     STA $9B
     LDA #$0B
-    STA $90
+    STA World3PlayerMetaspriteBase
     LDA #$00
-    STA $91
+    STA World3PlayerAnimationFrame
     LDA #$00
     STA $93
     LDA #$0F
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
 
 Bank2_Label_8B67:
     RTS

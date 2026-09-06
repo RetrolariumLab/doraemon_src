@@ -20,7 +20,7 @@ World3_SpawnInitializerTable:
     .byte $71, $90, $AA, $90, $AB, $90, $AE, $90, $AF, $90, $B2, $90, $B2, $90, $B2, $90
 
 World3_InitTransientType00TurtleOrBattleFish:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$10
     BCC Bank2_Label_8FA2
     CMP #$28
@@ -37,7 +37,7 @@ Bank2_Label_8FA2:
     RTS
 
 World3_InitTransientType01CrabOrSeahorse:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$18
     BCC Bank2_Label_8FBE
     CMP #$30
@@ -66,13 +66,13 @@ World3_InitTransientType02VolcanicRock:
     AND #$40
     BEQ Bank2_Label_8FDA
     LDA #$09
-    JSR Bank2_Func_A5EB
+    JSR World3_QueueEffectPreserveXY
 
 Bank2_Label_8FDA:
     RTS
 
 World3_InitTransientType03GyokkunOrGansuke:
-    LDY $DF
+    LDY World3CurrentRoom
     LDA a:World3_Type03GansukeMetaspriteByRoom,Y
     BEQ Bank2_Label_8FE7
     LDA #$B4
@@ -109,7 +109,7 @@ Bank2_Label_9043:
     RTS
 
 World3_InitTransientType07GenkiCandy:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$26
     BNE Bank2_Label_9051
     LDA $56
@@ -117,7 +117,7 @@ World3_InitTransientType07GenkiCandy:
     JMP Bank2_Label_905B
 
 Bank2_Label_9051:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$3B
     BNE Bank2_Label_9070
     LDA $57
@@ -140,7 +140,7 @@ Bank2_Label_9070:
     RTS
 
 World3_InitTransientType08GiantOctopus:
-    LDA $DF
+    LDA World3CurrentRoom
     CMP #$27
     BEQ Bank2_Label_9084
     CMP #$28
@@ -151,17 +151,17 @@ World3_InitTransientType08GiantOctopus:
     JMP Bank2_Func_AF51
 
 Bank2_Label_9084:
-    LDA $58
+    LDA World3BossRoom27Defeated
     BEQ Bank2_Label_9099
     JMP Bank2_Label_90A4
 
 Bank2_Label_908B:
-    LDA $59
+    LDA World3BossRoom28Defeated
     BEQ Bank2_Label_9099
     JMP Bank2_Label_90A4
 
 Bank2_Label_9092:
-    LDA $5A
+    LDA World3BossRoom34Defeated
     BEQ Bank2_Label_9099
     JMP Bank2_Label_90A4
 

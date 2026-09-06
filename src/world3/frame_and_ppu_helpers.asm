@@ -43,7 +43,7 @@ Bank2_Label_B1EA:
     LDA Controller1Buttons,X
     RTS
 
-Bank2_Func_B1F1:
+World3_CopyBytes:
     LDY #$00
     LDX $04
 
@@ -55,7 +55,7 @@ Bank2_Label_B1F5:
     BNE Bank2_Label_B1F5
     RTS
 
-Bank2_Func_B1FE:
+World3_InitializeHardwareAndRam:
     LDA #$10
     STA a:PPU_CTRL
     STA PpuCtrlShadow
@@ -351,7 +351,7 @@ World3_AttributeQuadrantClearMasks:
 World3_AttributeQuadrantSelectMasks:
     .byte $03, $0C, $30, $C0
 
-Bank2_Func_B3FF:
-    JSR Bank2_Func_B406
-    JSR Bank2_Func_B460
+World3_RenderHud:
+    JSR World3_RenderScoreAndLives
+    JSR World3_RenderHealth
     RTS

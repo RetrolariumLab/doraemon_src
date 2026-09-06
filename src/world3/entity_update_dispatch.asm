@@ -3,21 +3,21 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank2_Func_9192:
-    LDA $CB
+    LDA World3StopwatchActive
     BEQ Bank2_Label_91B2
-    INC $CC
-    LDA $CC
+    INC World3StopwatchTimer
+    LDA World3StopwatchTimer
     AND #$07
     BNE Bank2_Label_91A3
     LDA #$07
-    JSR Bank2_Func_A5DF
+    JSR World3_QueuePriorityEffectPreserveXY
 
 Bank2_Label_91A3:
-    LDA $CC
+    LDA World3StopwatchTimer
     CMP #$F0
     BNE Bank2_Label_91B2
     LDA #$00
-    STA $CB
+    STA World3StopwatchActive
     LDA #$00
     STA a:AudioMusicControl
 
@@ -70,7 +70,7 @@ Bank2_Label_9201:
     RTS
 
 World3_UpdateEntities:
-    LDA $8E
+    LDA World3PlayerState
     CMP #$04
     BEQ Bank2_Label_9201
     LDA #$00
@@ -109,7 +109,7 @@ Bank2_Label_9230:
     STA a:World3EntityY,X
 
 Bank2_Label_924D:
-    LDA $CB
+    LDA World3StopwatchActive
     BEQ Bank2_Label_925B
     LDA a:World3EntityType,X
     CMP #$10
@@ -169,23 +169,23 @@ Bank2_Func_92A5:
     STA $46
     JSR Bank2_Func_9299
     STA $47
-    JSR Bank2_Func_9EC3
+    JSR World3_ProbeEntityLeftEdge
     BCC Bank2_Func_92A5
-    JSR Bank2_Func_9EFB
+    JSR World3_ProbeEntityRightEdge
     BCC Bank2_Func_92A5
-    JSR Bank2_Func_9F37
+    JSR World3_ProbeEntityTopEdge
     BCC Bank2_Func_92A5
-    JSR Bank2_Func_9F71
+    JSR World3_ProbeEntityBottomEdge
     BCC Bank2_Func_92A5
     LDA $46
     SEC
-    SBC $8C
+    SBC World3PlayerX
     JSR World3_AbsoluteValue8
     CMP #$18
     BCS Bank2_Label_92DE
     LDA $47
     SEC
-    SBC $8D
+    SBC World3PlayerY
     JSR World3_AbsoluteValue8
     CMP #$18
     BCS Bank2_Label_92DE
