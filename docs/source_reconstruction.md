@@ -13,15 +13,16 @@ are outside the 1.0 definition of done. They may be considered only after the
 base reconstruction is complete.
 
 The immutable starting point is commit
-`499d4f8cdfa505456127d629fee58f185e79ce93` on `main`. Development takes place
-on `source-reconstruction`. The machine-readable release contract is
+`499d4f8cdfa505456127d629fee58f185e79ce93`, retained as an ancestor of the
+promoted `main` release history. The machine-readable release contract is
 `config/source_reconstruction.json`; `config/authoring_coverage.json` proves
 the five primary format families across all three chapters, while
 `config/runtime_state_coverage.json` proves the shared and chapter-local RAM
 and object-system completion metrics. `config/source_classification.json`
 assigns every PRG source byte to instructions, typed data, encoded code,
 padding, or a registered unknown. `make source-audit` rejects milestone claims
-that are out of order, lack evidence, or move the preservation baseline.
+that are out of order, lack evidence, or detach the release history from the
+preservation baseline.
 
 ## Definition of done
 

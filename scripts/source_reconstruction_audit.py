@@ -98,6 +98,31 @@ def validate_paths(
     return errors
 
 
+def validate_preservation_baseline(
+    project_root: Path, baseline: dict[str, Any]
+) -> list[str]:
+    commit = str(baseline.get("commit", ""))
+    if baseline.get("reachability") != "ancestor-of-release":
+        return ["preservation baseline reachability policy differs"]
+    if not re.fullmatch(r"[0-9a-f]{40}", commit):
+        return ["preservation baseline commit is not a full object ID"]
+
+    try:
+        resolved = git_output(
+            project_root, "rev-parse", "--verify", f"{commit}^{{commit}}"
+        )
+    except (subprocess.CalledProcessError, OSError):
+        return ["preservation baseline commit cannot be resolved"]
+    if resolved != commit:
+        return ["preservation baseline commit resolves to another object"]
+
+    try:
+        git_output(project_root, "merge-base", "--is-ancestor", commit, "HEAD")
+    except (subprocess.CalledProcessError, OSError):
+        return ["preservation baseline is not an ancestor of the release"]
+    return []
+
+
 def validate_contract_shape(document: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     target = document.get("target_rom", {})
@@ -295,14 +320,7 @@ def validate_reconstruction(
     )
 
     baseline = document.get("preservation_baseline", {})
-    commit = baseline.get("commit", "")
-    try:
-        actual = git_output(project_root, "rev-parse", baseline.get("branch", ""))
-    except (subprocess.CalledProcessError, OSError):
-        errors.append("preservation baseline branch cannot be resolved")
-    else:
-        if actual != commit:
-            errors.append("preservation baseline branch moved from its recorded commit")
+    errors.extend(validate_preservation_baseline(project_root, baseline))
     errors.extend(
         validate_paths(
             project_root,

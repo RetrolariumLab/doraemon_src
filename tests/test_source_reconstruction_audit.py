@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import json
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 from unittest import mock
@@ -156,6 +157,45 @@ class ContractHelpersTests(unittest.TestCase):
                 AUDIT.validate_clean_worktree(ROOT),
                 ["release worktree is not clean (2 changed paths)"],
             )
+
+    def test_accepts_preservation_commit_behind_promoted_main(self) -> None:
+        commit = "4" * 40
+        with mock.patch.object(
+            AUDIT, "git_output", side_effect=[commit, ""]
+        ) as git_output:
+            self.assertEqual(
+                AUDIT.validate_preservation_baseline(
+                    ROOT,
+                    {
+                        "commit": commit,
+                        "reachability": "ancestor-of-release",
+                    },
+                ),
+                [],
+            )
+        self.assertEqual(
+            git_output.call_args_list[1].args[1:],
+            ("merge-base", "--is-ancestor", commit, "HEAD"),
+        )
+
+    def test_rejects_detached_preservation_history(self) -> None:
+        commit = "4" * 40
+        with mock.patch.object(
+            AUDIT,
+            "git_output",
+            side_effect=[commit, subprocess.CalledProcessError(1, ["git"])],
+        ):
+            errors = AUDIT.validate_preservation_baseline(
+                ROOT,
+                {
+                    "commit": commit,
+                    "reachability": "ancestor-of-release",
+                },
+            )
+        self.assertEqual(
+            errors,
+            ["preservation baseline is not an ancestor of the release"],
+        )
 
     def test_rejects_semantic_module_over_line_limit(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

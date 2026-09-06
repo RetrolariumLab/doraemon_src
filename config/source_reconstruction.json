@@ -499,8 +499,8 @@
     "regional_profiles_required": false
   },
   "preservation_baseline": {
-    "branch": "main",
     "commit": "499d4f8cdfa505456127d629fee58f185e79ce93",
+    "reachability": "ancestor-of-release",
     "manifest": "assets/manifest.json",
     "verification_target": "verify"
   },
