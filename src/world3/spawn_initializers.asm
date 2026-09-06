@@ -112,7 +112,7 @@ World3_InitTransientType07GenkiCandy:
     LDA World3CurrentRoom
     CMP #$26
     BNE Bank2_Label_9051
-    LDA $56
+    LDA World3Room26GenkiCandyCollected
     BNE Bank2_Label_906B
     JMP Bank2_Label_905B
 
@@ -120,7 +120,7 @@ Bank2_Label_9051:
     LDA World3CurrentRoom
     CMP #$3B
     BNE Bank2_Label_9070
-    LDA $57
+    LDA World3Room3BGenkiCandyCollected
     BNE Bank2_Label_906B
 
 Bank2_Label_905B:
@@ -254,7 +254,7 @@ Bank2_Label_9112:
     SEC
     RTS
 
-Bank2_Func_9114:
+World3_SplitType04Skull:
     STX $3C
     JSR World3_FindFreeEntitySlot
     BCS Bank2_Label_911F

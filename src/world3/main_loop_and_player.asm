@@ -47,7 +47,7 @@ Bank2_World3Main:
     STA World3AttractModeActive
     LDA #$00
     STA World3CurrentRoom
-    JSR Bank2_Func_A2D4
+    JSR World3_ResetScoreLivesAndHealthCapacity
     JMP Bank2_Label_8328
 
 Bank2_Label_8314:
@@ -99,8 +99,8 @@ Bank2_Label_834C:
 
 Bank2_Label_836B:
     JSR Bank2_DisableRenderingForUpdate
-    JSR Bank2_Func_A1F4
-    JSR Bank2_Func_A213
+    JSR World3_InitializePlayerState
+    JSR World3_RefillHealthFromCapacity
     LDA World3AttractModeActive
     BNE Bank2_Label_837B
     JSR World3_InitializePlayerRoomAndPosition
@@ -114,7 +114,7 @@ Bank2_Label_837B:
     LSR A
     LSR A
     STA World3RoomRow
-    JSR Bank2_Func_8BF3
+    JSR World3_PlaceCarriedPassingHoop
     JSR World3_LoadCurrentRoom
 
 Bank2_World3FrameLoop:
@@ -134,7 +134,7 @@ Bank2_Label_839E:
 
 Bank2_Label_83A5:
     JSR World3_UpdateTransientSpawns
-    JSR Bank2_Func_879B
+    JSR World3_CheckFinalCompanionRescue
     LDA World3ChapterCompletionDelay
     BNE Bank2_Label_83B5
     JSR World3_UpdatePlayerState
@@ -157,7 +157,7 @@ Bank2_Label_83C2:
 
 Bank2_Label_83D1:
     JSR World3_RenderHealth
-    JSR Bank2_Func_9192
+    JSR World3_UpdateStopwatchEffect
     JSR World3_CheckPunishmentRoomEntry
     JSR World3_CheckPunishmentRoomExit
     JSR World3_UpdateRoom16MicrophoneEvent
@@ -396,9 +396,9 @@ Bank2_Label_8554:
     RTS
 
 World3_ChoosePassablePlayerPosition:
-    JSR Bank2_Func_928D
+    JSR World3_ChooseSpawnX
     STA $46
-    JSR Bank2_Func_9299
+    JSR World3_ChooseSpawnY
     STA $47
     JSR World3_ProbeEntityLeftEdge
     BCC World3_ChoosePassablePlayerPosition
@@ -514,7 +514,7 @@ World3_CheckPunishmentRoomEntry:
     STA World3PunishmentReturnRoom
     LDA #$12
     STA World3CurrentRoom
-    JSR Bank2_Func_A213
+    JSR World3_RefillHealthFromCapacity
     JSR World3_LoadCurrentRoom
     LDY #$00
 
@@ -676,7 +676,7 @@ Bank2_Label_8743:
     BCS Bank2_Label_8756
     CMP #$07
     BEQ Bank2_Label_8756
-    JSR Bank2_Func_8972
+    JSR World3_StartEntityDefeatByY
 
 Bank2_Label_8756:
     INY

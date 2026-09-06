@@ -2,7 +2,7 @@
 ; World 3 hierarchical map lookup and tile collision
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_A0C4:
+World3_LookupMapTileAtPixel:
     TXA
     LSR A
     LSR A
@@ -178,7 +178,7 @@ Bank2_Label_A1ED:
     BNE Bank2_Label_A1CF
     RTS
 
-Bank2_Func_A1F4:
+World3_InitializePlayerState:
     LDX #$00
     TXA
 
@@ -190,16 +190,16 @@ Bank2_Label_A1F7:
     LDA #$01
     STA World3PlayerState
     LDA #$0E
-    STA $97
+    STA World3PlayerVerticalMotionPhase
     LDA #$07
-    STA $94
+    STA World3PlayerAnimationMask
     LDA #$01
-    STA $95
+    STA World3PlayerHorizontalDirection
     LDA #$03
     STA World3PlayerMetaspriteBase
     RTS
 
-Bank2_Func_A213:
+World3_RefillHealthFromCapacity:
     LDA #$08
     SEC
     SBC PlayerHealthCapacityIndex

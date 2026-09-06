@@ -3,7 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 Bank2_Func_AE12:
-    JSR Bank2_Func_A1F4
+    JSR World3_InitializePlayerState
     LDA #$00
     STA $00
     LDA #$00

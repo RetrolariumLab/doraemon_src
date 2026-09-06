@@ -73,6 +73,9 @@ WORLD2_FINAL_ROUTINES := config/world2_final_routines.json
 WORLD3_FRAME_CORE := config/world3_frame_core.json
 WORLD3_COLLISION_RENDERING := config/world3_collision_rendering.json
 WORLD3_ROOM_RUNTIME := config/world3_room_runtime.json
+WORLD3_PLAYER_RUNTIME := config/world3_player_runtime.json
+WORLD3_INTERACTION_RUNTIME := config/world3_interaction_runtime.json
+WORLD3_ENTITY_RUNTIME := config/world3_entity_runtime.json
 WORLD1_WEAPONS := config/world1_weapons.json
 WORLD1_WEAPON_AUTHORING := data/world1/weapons.json
 WORLD1_UNDERGROUND_ROOMS := config/world1_underground_rooms.json
@@ -156,6 +159,9 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	world3-frame-core validate-world3-frame-core \
 	world3-collision-rendering validate-world3-collision-rendering \
 	world3-room-runtime validate-world3-room-runtime \
+	world3-player-runtime validate-world3-player-runtime \
+	world3-interaction-runtime validate-world3-interaction-runtime \
+	world3-entity-runtime validate-world3-entity-runtime \
 	world1-player-controls validate-world1-player-controls \
 	world1-weapons validate-world1-weapons \
 	world1-underground-rooms validate-world1-underground-rooms \
@@ -487,6 +493,27 @@ validate-world3-room-runtime: $(PRG_ASSET) ghidra-analyze
 		--manifest "$(WORLD3_ROOM_RUNTIME)" --symbols "$(SYMBOLS)" \
 		--facts "$(GHIDRA_FACTS_DIR)/bank_2.tsv"
 
+world3-player-runtime: validate-world3-player-runtime
+
+validate-world3-player-runtime: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD3_PLAYER_RUNTIME)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_2.tsv"
+
+world3-interaction-runtime: validate-world3-interaction-runtime
+
+validate-world3-interaction-runtime: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD3_INTERACTION_RUNTIME)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_2.tsv"
+
+world3-entity-runtime: validate-world3-entity-runtime
+
+validate-world3-entity-runtime: $(PRG_ASSET) ghidra-analyze
+	$(PYTHON) scripts/routine_contract.py --prg "$(PRG_ASSET)" \
+		--manifest "$(WORLD3_ENTITY_RUNTIME)" --symbols "$(SYMBOLS)" \
+		--facts "$(GHIDRA_FACTS_DIR)/bank_2.tsv"
+
 world1-player-controls validate-world1-player-controls: $(PRG_ASSET)
 	$(PYTHON) scripts/world1_player_controls.py --prg "$(PRG_ASSET)" \
 		--manifest "$(WORLD1_PLAYER_CONTROLS)" \
@@ -719,6 +746,9 @@ release-check: quality-check disassembly-check verify validate-maps \
 	validate-world3-frame-core \
 	validate-world3-collision-rendering \
 	validate-world3-room-runtime \
+	validate-world3-player-runtime \
+	validate-world3-interaction-runtime \
+	validate-world3-entity-runtime \
 	validate-world1-player-controls \
 	validate-world1-weapons \
 	validate-world1-underground-rooms \

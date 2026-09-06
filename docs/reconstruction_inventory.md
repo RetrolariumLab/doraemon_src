@@ -12,11 +12,11 @@ evidence manifests. Any change requires an intentional snapshot update.
 | ---: | ---: | ---: | ---: | ---: | ---: |
 | 0 | 1,011 | 326 | 0 | 685 | 84 / 84 |
 | 1 | 879 | 320 | 0 | 559 | 97 / 97 |
-| 2 | 1,092 | 351 | 58 | 683 | 106 / 106 |
+| 2 | 1,099 | 390 | 26 | 683 | 106 / 106 |
 | 3 | 363 | 161 | 0 | 202 | 67 / 67 |
-| Total | 3,345 | 1,158 | 58 | 2,129 | 354 / 354 |
+| Total | 3,352 | 1,197 | 26 | 2,129 | 354 / 354 |
 
-The neutral population now separates 58 probable routine entries from 2,129
+The neutral population now separates 26 probable routine entries from 2,129
 local branch labels. The common runtime naming pass removed 88 neutral routine
 names by proving copied reset/NMI/mapper services, cross-bank gateways, and
 bank-local dispatches. A second pass named all 19 previously neutral non-audio
@@ -101,12 +101,28 @@ pass then names fifteen input/audio, player-render, directional-transition,
 persistence-policy, room-reload, music-selection, and palette-fade routines.
 Its exact contract covers 607 executable bytes, 76 direct calls, and ten RAM
 bytes; it also names the 64-byte room-music-class and four-byte track tables.
-Bank 2 now contains the complete remaining population of 58 neutral routine
+The player-runtime pass then names thirteen map lookup, player initialization,
+health/session reset, five-state movement, and room-edge motion routines. Its
+exact contract covers 690 executable bytes, 25 direct `JSR`/`JMP` edges,
+four conditional entries, and fourteen RAM bytes; it also names the state
+dispatch and four state/movement tables. At that checkpoint, Bank 2 contained
+the complete remaining population of 45 neutral routine entries. The interaction
+pass names another nine final-companion, arena/barrier, projectile-hit,
+defeat/score, pickup, follower, and player-contact routines. Its exact contract
+covers 1,016 executable bytes, 26 direct calls, and eight RAM bytes; it also
+names the two blank-tile rows used by the PPU updates. At that checkpoint,
+Bank 2 contained the complete remaining population of 36 neutral routine
+entries. The entity-runtime
+pass names ten cross-chapter Passing Hoop, persistent-object clamp/carry,
+type-04 split, stopwatch, spawn-coordinate, and portal-opening helpers. Its
+exact contract covers 545 executable bytes, 17 direct calls or tail jumps, and
+seven established RAM fields; it also names the 64-entry room clamp table.
+Bank 2 now contains the complete remaining population of 26 neutral routine
 entries.
 
-The symbol registry currently contains 1,035 evidence-backed code symbols and
-113 operand/table symbols. RAM coverage contains 403 unique aliases: 83 shared
-symbols plus 98 Bank 0, 97 Bank 1, 117 Bank 2, and 8 Bank 3 scoped symbols.
+The symbol registry currently contains 1,066 evidence-backed code symbols and
+121 operand/table symbols. RAM coverage contains 425 unique aliases: 83 shared
+symbols plus 98 Bank 0, 97 Bank 1, 139 Bank 2, and 8 Bank 3 scoped symbols.
 
 Typed PRG ranges cover 65,796 bytes in 57 non-overlapping regions. Bank 3 now
 separates exact title, game-over, chapter-help, ending-opening, active-credit,

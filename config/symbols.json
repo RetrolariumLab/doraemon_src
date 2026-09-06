@@ -3825,6 +3825,67 @@
     },
     {
       "bank": 2,
+      "address": "0x875C",
+      "name": "World3_ClearFormationArenaTiles",
+      "evidence": "validated-world3-interaction-runtime-queue-thirteen-rows-of-eighteen-blank-tiles-for-active-or-defeated-boss-formations"
+    },
+    {
+      "bank": 2,
+      "address": "0x8787",
+      "name": "World3_BlankFormationArenaRow",
+      "operand_symbol": true,
+      "evidence": "twenty-zero-bytes-whose-first-eighteen-are-queued-for-each-formation-arena-row"
+    },
+    {
+      "bank": 2,
+      "address": "0x879B",
+      "name": "World3_CheckFinalCompanionRescue",
+      "evidence": "validated-world3-interaction-runtime-detect-three-active-companions-in-room-3c-open-barrier-and-retire-their-persistent-records"
+    },
+    {
+      "bank": 2,
+      "address": "0x8817",
+      "name": "World3_OpenFinalCompanionBarrier",
+      "evidence": "validated-world3-interaction-runtime-queue-eight-rows-of-four-blank-tiles-in-room-3c"
+    },
+    {
+      "bank": 2,
+      "address": "0x8848",
+      "name": "World3_CheckPlayerProjectilesAgainstEntity",
+      "evidence": "validated-world3-interaction-runtime-scan-both-active-player-projectiles-against-the-current-entity"
+    },
+    {
+      "bank": 2,
+      "address": "0x886F",
+      "name": "World3_ResolvePlayerProjectileEntityHit",
+      "evidence": "validated-world3-interaction-runtime-hitbox-filter-damage-boss-progression-defeat-and-score-resolution"
+    },
+    {
+      "bank": 2,
+      "address": "0x8972",
+      "name": "World3_StartEntityDefeatByY",
+      "evidence": "validated-world3-interaction-runtime-adapt-an-entity-index-in-y-to-the-defeat-animation-helper-while-preserving-x"
+    },
+    {
+      "bank": 2,
+      "address": "0x897C",
+      "name": "World3_StartEntityDefeat",
+      "evidence": "validated-world3-interaction-runtime-enter-state-five-install-explosion-metasprite-and-queue-defeat-effect"
+    },
+    {
+      "bank": 2,
+      "address": "0x898C",
+      "name": "World3_AwardEncodedScorePreserveEntityLoop",
+      "evidence": "validated-world3-interaction-runtime-skip-attract-scoring-and-preserve-x-and-the-active-entity-loop-index"
+    },
+    {
+      "bank": 2,
+      "address": "0x89A1",
+      "name": "World3_ResolvePlayerEntityContact",
+      "evidence": "validated-world3-interaction-runtime-handle-pickups-followers-treasure-flags-contact-damage-and-player-death"
+    },
+    {
+      "bank": 2,
       "address": "0x8B68",
       "name": "World3_ClearEntitySlot",
       "evidence": "clears-one-index-across-eight-slot-parallel-runtime-fields"
@@ -3834,6 +3895,25 @@
       "address": "0x8B7B",
       "name": "World3_InitializeRoomObjectRegistry",
       "evidence": "copies-static-thirteen-record-registry-and-randomizes-type-subsets"
+    },
+    {
+      "bank": 2,
+      "address": "0x8BF3",
+      "name": "World3_PlaceCarriedPassingHoop",
+      "evidence": "validated-world3-entity-runtime-consume-cross-chapter-carry-flag-and-place-type-19-persistent-record-at-the-player"
+    },
+    {
+      "bank": 2,
+      "address": "0x8C25",
+      "name": "World3_ClampPersistentObjectsAtRoomEdges",
+      "evidence": "validated-world3-entity-runtime-apply-room-indexed-left-or-right-safe-x-clamps-to-persistent-objects"
+    },
+    {
+      "bank": 2,
+      "address": "0x8C6D",
+      "name": "World3_RoomObjectHorizontalClampModeByRoom",
+      "operand_symbol": true,
+      "evidence": "64-entry-room-table-selecting-no-clamp-right-edge-clamp-or-left-edge-clamp"
     },
     {
       "bank": 2,
@@ -3852,6 +3932,12 @@
       "address": "0x8CFD",
       "name": "World3_SaveRoomObjectsState1",
       "evidence": "saves-matching-active-objects-to-persistent-records-with-state-one"
+    },
+    {
+      "bank": 2,
+      "address": "0x8D52",
+      "name": "World3_CarryPersistentObjectIntoTargetRoom",
+      "evidence": "validated-world3-entity-runtime-move-an-active-persistent-record-with-the-enabled-holding-bag-when-target-room-capacity-allows"
     },
     {
       "bank": 2,
@@ -4058,6 +4144,36 @@
     },
     {
       "bank": 2,
+      "address": "0x9114",
+      "name": "World3_SplitType04Skull",
+      "evidence": "validated-world3-entity-runtime-clone-a-hit-type-04-entity-and-halve-the-source-and-clone-behavior-selector"
+    },
+    {
+      "bank": 2,
+      "address": "0x9192",
+      "name": "World3_UpdateStopwatchEffect",
+      "evidence": "validated-world3-entity-runtime-count-240-stopwatch-frames-emit-eight-frame-ticks-and-resume-entity-music"
+    },
+    {
+      "bank": 2,
+      "address": "0x928D",
+      "name": "World3_ChooseSpawnX",
+      "evidence": "validated-world3-entity-runtime-rejection-sample-x-within-20-through-cf"
+    },
+    {
+      "bank": 2,
+      "address": "0x9299",
+      "name": "World3_ChooseSpawnY",
+      "evidence": "validated-world3-entity-runtime-rejection-sample-y-within-30-through-af"
+    },
+    {
+      "bank": 2,
+      "address": "0x92A5",
+      "name": "World3_ChoosePassableEntitySpawnPosition",
+      "evidence": "validated-world3-entity-runtime-reject-terrain-collisions-and-candidates-within-24-pixels-of-the-player"
+    },
+    {
+      "bank": 2,
       "address": "0x9202",
       "name": "World3_UpdateEntities",
       "evidence": "eight-slot-state-type-dispatch-collision-and-reward-loop"
@@ -4210,6 +4326,25 @@
       "address": "0x9759",
       "name": "World3_UpdateType19PassingHoop",
       "evidence": "type-19-tests-terrain-trigger-and-updates-room-column"
+    },
+    {
+      "bank": 2,
+      "address": "0x97AF",
+      "name": "World3_UpdatePassingHoopBoundary",
+      "evidence": "validated-world3-entity-runtime-probe-left-and-right-room-boundaries-for-tile-26-and-open-the-first-match"
+    },
+    {
+      "bank": 2,
+      "address": "0x97E2",
+      "name": "World3_OpenPassingHoopBoundary",
+      "evidence": "validated-world3-entity-runtime-queue-eight-rows-of-four-blank-tiles-at-the-passing-hoop-boundary"
+    },
+    {
+      "bank": 2,
+      "address": "0x980F",
+      "name": "World3_BlankBarrierRow",
+      "operand_symbol": true,
+      "evidence": "four-zero-tile-row-shared-by-passing-hoop-and-final-companion-barrier-openings"
     },
     {
       "bank": 2,
@@ -4507,6 +4642,12 @@
     },
     {
       "bank": 2,
+      "address": "0xA0C4",
+      "name": "World3_LookupMapTileAtPixel",
+      "evidence": "validated-world3-player-runtime-three-level-room-map-lookup-from-pixel-x-y"
+    },
+    {
+      "bank": 2,
       "address": "0xA160",
       "name": "World3_UpdatePlayerProjectiles",
       "evidence": "two-slot-projectile-motion-collision-impact-animation-and-despawn-loop"
@@ -4519,6 +4660,18 @@
     },
     {
       "bank": 2,
+      "address": "0xA1F4",
+      "name": "World3_InitializePlayerState",
+      "evidence": "validated-world3-player-runtime-clear-16-byte-player-state-and-install-controlled-movement-defaults"
+    },
+    {
+      "bank": 2,
+      "address": "0xA213",
+      "name": "World3_RefillHealthFromCapacity",
+      "evidence": "validated-world3-player-runtime-convert-inverse-capacity-index-to-four-point-health-units"
+    },
+    {
+      "bank": 2,
       "address": "0xA21D",
       "name": "World3_UpdatePlayerState",
       "evidence": "five-state-player-pointer-dispatch"
@@ -4527,6 +4680,7 @@
       "bank": 2,
       "address": "0xA22F",
       "name": "World3_PlayerStateHandlerTable",
+      "operand_symbol": true,
       "evidence": "five-slot-player-state-pointer-table"
     },
     {
@@ -4543,15 +4697,34 @@
     },
     {
       "bank": 2,
+      "address": "0xA285",
+      "name": "World3_RestartAfterDeath",
+      "evidence": "validated-world3-player-runtime-restart-current-room-or-exit-punishment-room-after-life-loss"
+    },
+    {
+      "bank": 2,
       "address": "0xA28D",
       "name": "World3_ExitPunishmentRoom",
       "evidence": "clears-punishment-state-restores-saved-room-player-state-and-music"
     },
     {
       "bank": 2,
+      "address": "0xA2D4",
+      "name": "World3_ResetScoreLivesAndHealthCapacity",
+      "evidence": "validated-world3-player-runtime-clear-score-and-install-two-lives-and-default-health-capacity"
+    },
+    {
+      "bank": 2,
       "address": "0xA2E9",
       "name": "World3_PlayerState_DamageRecovery",
       "evidence": "state-three-timed-knockback-then-restores-state-one"
+    },
+    {
+      "bank": 2,
+      "address": "0xA32E",
+      "name": "World3_DamageRecoveryStepCount",
+      "operand_symbol": true,
+      "evidence": "seven-step-counts-indexed-by-the-player-damage-recovery-phase"
     },
     {
       "bank": 2,
@@ -4562,8 +4735,77 @@
     {
       "bank": 2,
       "address": "0xA33C",
-      "name": "World3_PlayerState_AlternateMovement",
-      "evidence": "state-two-alternate-movement-and-projectile-input"
+      "name": "World3_PlayerState_ScriptedArc",
+      "evidence": "state-two-scripted-vertical-arc-and-projectile-input"
+    },
+    {
+      "bank": 2,
+      "address": "0xA343",
+      "name": "World3_UpdateScriptedPlayerArc",
+      "evidence": "validated-world3-player-runtime-scripted-vertical-arc-until-open-water-restores-controlled-movement"
+    },
+    {
+      "bank": 2,
+      "address": "0xA39C",
+      "name": "World3_ScriptedPlayerArcVerticalDelta",
+      "operand_symbol": true,
+      "evidence": "24-entry-signed-vertical-delta-curve-for-player-state-two"
+    },
+    {
+      "bank": 2,
+      "address": "0xA3B4",
+      "name": "World3_UpdateControlledPlayerMovement",
+      "evidence": "validated-world3-player-runtime-animation-ascent-passive-descent-and-horizontal-input-controller"
+    },
+    {
+      "bank": 2,
+      "address": "0xA485",
+      "name": "World3_PlayerMetaspriteBaseByDirection",
+      "operand_symbol": true,
+      "evidence": "two-entry-left-right-base-metasprite-table"
+    },
+    {
+      "bank": 2,
+      "address": "0xA487",
+      "name": "World3_ApplyHorizontalMovementRate",
+      "evidence": "validated-world3-player-runtime-alternate-one-or-two-horizontal-steps-by-rate-phase"
+    },
+    {
+      "bank": 2,
+      "address": "0xA492",
+      "name": "World3_MovePlayerHorizontally",
+      "evidence": "validated-world3-player-runtime-dispatch-active-horizontal-motion-by-facing-direction"
+    },
+    {
+      "bank": 2,
+      "address": "0xA49E",
+      "name": "World3_MovePlayerLeft",
+      "evidence": "validated-world3-player-runtime-left-edge-probe-coordinate-step-and-room-transition"
+    },
+    {
+      "bank": 2,
+      "address": "0xA4B4",
+      "name": "World3_MovePlayerRight",
+      "evidence": "validated-world3-player-runtime-right-edge-probe-coordinate-step-and-room-transition"
+    },
+    {
+      "bank": 2,
+      "address": "0xA4CE",
+      "name": "World3_ApplyVerticalMovement",
+      "evidence": "validated-world3-player-runtime-advance-vertical-phase-and-dispatch-signed-up-or-down-delta"
+    },
+    {
+      "bank": 2,
+      "address": "0xA4EE",
+      "name": "World3_MovePlayerUp",
+      "evidence": "validated-world3-player-runtime-top-probe-special-tile-state-transition-and-upper-room-edge-crossing"
+    },
+    {
+      "bank": 2,
+      "address": "0xA563",
+      "name": "World3_PlayerVerticalDeltaByPhase",
+      "operand_symbol": true,
+      "evidence": "15-entry-signed-normal-player-vertical-delta-table"
     },
     {
       "bank": 2,
@@ -8025,6 +8267,70 @@
       "evidence": "incremented-by-diamond-and-gold-pickups-and-triggers-punishment-room-at-twenty"
     },
     {
+      "address": "0x004E",
+      "name": "World3DefeatConversionCycle",
+      "banks": [
+        2
+      ],
+      "evidence": "increments-modulo-four-as-low-type-defeat-animations-convert-to-item-types"
+    },
+    {
+      "address": "0x0056",
+      "name": "World3Room26GenkiCandyCollected",
+      "banks": [
+        2
+      ],
+      "evidence": "set-on-type-seven-contact-in-room-26-and-suppresses-that-rooms-fixed-candy-spawn"
+    },
+    {
+      "address": "0x0057",
+      "name": "World3Room3BGenkiCandyCollected",
+      "banks": [
+        2
+      ],
+      "evidence": "set-on-type-seven-contact-in-room-3b-and-suppresses-that-rooms-fixed-candy-spawn"
+    },
+    {
+      "address": "0x005B",
+      "name": "World3ScoreSavedX",
+      "banks": [
+        2
+      ],
+      "evidence": "preserves-the-callers-x-register-around-attract-gated-score-awards"
+    },
+    {
+      "address": "0x005C",
+      "name": "World3ProjectileCollisionEntityIndex",
+      "banks": [
+        2
+      ],
+      "evidence": "preserves-the-current-entity-index-while-both-player-projectile-slots-are-tested"
+    },
+    {
+      "address": "0x005D",
+      "name": "World3ScoreSavedEntityLoopIndex",
+      "banks": [
+        2
+      ],
+      "evidence": "preserves-the-active-entity-loop-index-around-score-digit-updates"
+    },
+    {
+      "address": "0x0062",
+      "name": "World3FollowerToggleInputLatch",
+      "banks": [
+        2
+      ],
+      "evidence": "edge-latches-b-button-interaction-with-types-18-through-1f-until-release"
+    },
+    {
+      "address": "0x00A4",
+      "name": "World3MassDefeatConversionCountdown",
+      "banks": [
+        2
+      ],
+      "evidence": "loaded-with-four-by-the-diamond-pickup-and-decremented-as-low-type-defeat-animations-convert"
+    },
+    {
       "address": "0x0053",
       "name": "World3PunishmentRoomActive",
       "banks": [
@@ -8456,6 +8762,118 @@
         2
       ],
       "evidence": "increments-during-active-stopwatch-freeze-and-resumes-music-and-entities-after-78-hex-frames"
+    },
+    {
+      "address": "0x0061",
+      "name": "World3UpInputHoldCounter",
+      "banks": [
+        2
+      ],
+      "evidence": "counts-held-up-input-frames-and-periodically-inserts-a-neutral-ascent-frame"
+    },
+    {
+      "address": "0x0063",
+      "name": "World3FireInputLatch",
+      "banks": [
+        2
+      ],
+      "evidence": "edge-latches-player-fire-until-the-fire-button-is-released"
+    },
+    {
+      "address": "0x0092",
+      "name": "World3PlayerFiringPoseActive",
+      "banks": [
+        2
+      ],
+      "evidence": "set-when-a-player-shot-is-created-and-cleared-on-the-next-16-frame-animation-boundary"
+    },
+    {
+      "address": "0x0093",
+      "name": "World3PlayerAnimationCounter",
+      "banks": [
+        2
+      ],
+      "evidence": "free-running-player-animation-counter-driving-normal-fire-and-death-pose-cadence"
+    },
+    {
+      "address": "0x0094",
+      "name": "World3PlayerAnimationMask",
+      "banks": [
+        2
+      ],
+      "evidence": "seven-while-idle-and-three-while-moving-mask-selecting-animation-update-cadence"
+    },
+    {
+      "address": "0x0095",
+      "name": "World3PlayerHorizontalDirection",
+      "banks": [
+        2
+      ],
+      "evidence": "zero-for-left-and-one-for-right-used-by-movement-metasprites-projectiles-and-followers"
+    },
+    {
+      "address": "0x0096",
+      "name": "World3PlayerHorizontalMotionActive",
+      "banks": [
+        2
+      ],
+      "evidence": "set-while-left-or-right-input-is-active-and-cleared-by-release-or-wall-collision"
+    },
+    {
+      "address": "0x0097",
+      "name": "World3PlayerVerticalMotionPhase",
+      "banks": [
+        2
+      ],
+      "evidence": "indexes-normal-death-and-scripted-arc-vertical-delta sequences"
+    },
+    {
+      "address": "0x0098",
+      "name": "World3PlayerPassiveDescentDelay",
+      "banks": [
+        2
+      ],
+      "evidence": "delays-forced-one-pixel-descent-for-six-frames-when-down-is-not-held"
+    },
+    {
+      "address": "0x0099",
+      "name": "World3PlayerScriptedArcDelay",
+      "banks": [
+        2
+      ],
+      "evidence": "holds-scripted-arc-delta-phases-before-advancing-the-24-entry-curve"
+    },
+    {
+      "address": "0x009B",
+      "name": "World3PlayerDamageRecoveryPhase",
+      "banks": [
+        2
+      ],
+      "evidence": "indexes-the-seven-entry-knockback-step-count-table-until-controlled-movement-resumes"
+    },
+    {
+      "address": "0x009C",
+      "name": "World3PlayerHorizontalRatePhase",
+      "banks": [
+        2
+      ],
+      "evidence": "alternates-horizontal-movement-between-one-and-two-pixel-steps"
+    },
+    {
+      "address": "0x009D",
+      "name": "World3PlayerAscentRatePhase",
+      "banks": [
+        2
+      ],
+      "evidence": "alternates-upward-movement-between-one-and-two-signed-delta applications"
+    },
+    {
+      "address": "0x00A7",
+      "name": "World3PlayerVerticalDelta",
+      "banks": [
+        2
+      ],
+      "evidence": "current-signed-normal-vertical-delta-loaded-from-the-phase-table"
     },
     {
       "address": "0x0041",

@@ -100,7 +100,7 @@ Bank2_Label_9701:
     BCS Bank2_Label_9700
 
 Bank2_Label_971D:
-    JSR Bank2_Func_8972
+    JSR World3_StartEntityDefeatByY
     INY
     CPY #$08
     BEQ Bank2_Label_972C
@@ -131,7 +131,7 @@ Bank2_Label_973A:
     JSR World3_RunPaletteFlash
     LDY #$0A
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR Bank2_Func_898C
+    JSR World3_AwardEncodedScorePreserveEntityLoop
     RTS
 
 World3_UpdateType19PassingHoop:
@@ -156,7 +156,7 @@ Bank2_Label_9764:
     CLC
     ADC #$07
     TAX
-    JSR Bank2_Func_A0C4
+    JSR World3_LookupMapTileAtPixel
     CMP #$26
     BCC Bank2_Label_97AC
     CMP #$2A
@@ -173,7 +173,7 @@ Bank2_Label_9764:
     LDA #$13
     JSR World3_QueueEffectPreserveXY
     JSR World3_RunPaletteFlash
-    JSR Bank2_Func_97AF
+    JSR World3_UpdatePassingHoopBoundary
     LDA #$01
     STA World3PassingHoopPortalActive
 
@@ -183,17 +183,17 @@ Bank2_Label_97AC:
 Bank2_Label_97AE:
     RTS
 
-Bank2_Func_97AF:
+World3_UpdatePassingHoopBoundary:
     LDA #$00
     STA World3PassingHoopBoundaryPresent
     LDX #$00
     LDY #$60
     STX $46
     STY $47
-    JSR Bank2_Func_A0C4
+    JSR World3_LookupMapTileAtPixel
     CMP #$26
     BNE Bank2_Label_97CA
-    JSR Bank2_Func_97E2
+    JSR World3_OpenPassingHoopBoundary
     LDA #$01
     STA World3PassingHoopBoundaryPresent
     RTS
@@ -203,10 +203,10 @@ Bank2_Label_97CA:
     LDY #$60
     STX $46
     STY $47
-    JSR Bank2_Func_A0C4
+    JSR World3_LookupMapTileAtPixel
     CMP #$26
     BNE Bank2_Label_97E1
-    JSR Bank2_Func_97E2
+    JSR World3_OpenPassingHoopBoundary
     LDA #$01
     STA World3PassingHoopBoundaryPresent
     RTS
@@ -214,7 +214,7 @@ Bank2_Label_97CA:
 Bank2_Label_97E1:
     RTS
 
-Bank2_Func_97E2:
+World3_OpenPassingHoopBoundary:
     LDA $46
     LSR A
     LSR A
@@ -242,6 +242,8 @@ Bank2_Label_97F4:
     DEC $48
     BNE Bank2_Label_97F4
     RTS
+
+World3_BlankBarrierRow:
     .byte $00, $00, $00, $00
 
 World3_UpdateType1AKey:
@@ -443,11 +445,11 @@ Bank2_Label_9962:
 World3_PositionEnabledPersistentEntity:
     LDA a:World3EntityPersistentState,X
     BEQ Bank2_Label_9998
-    LDA $95
+    LDA World3PlayerHorizontalDirection
     ASL A
     STA a:World3EntityMetaspriteVariantBit1,X
     LDY #$F4
-    LDA $95
+    LDA World3PlayerHorizontalDirection
     BEQ Bank2_Label_9976
     LDY #$0C
 

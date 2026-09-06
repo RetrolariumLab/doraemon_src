@@ -380,6 +380,19 @@ than a second event channel.
 The queue record layout, NMI/disabled-rendering ownership split, capacity
 guard, and address calculations are described in `docs/world3_ppu_queue.md`.
 
+## World 3 interaction and progression state
+
+| Symbol | Address | Role |
+| --- | ---: | --- |
+| `World3DefeatConversionCycle` | `$004E` | Increments modulo four as low-type defeat animations convert to items |
+| `World3Room26GenkiCandyCollected` | `$0056` | Suppresses the fixed room `$26` candy after collection |
+| `World3Room3BGenkiCandyCollected` | `$0057` | Suppresses the fixed room `$3B` candy after collection |
+| `World3ScoreSavedX` | `$005B` | Preserves X around the attract-gated score updater |
+| `World3ProjectileCollisionEntityIndex` | `$005C` | Preserves the entity slot while both projectile slots are scanned |
+| `World3ScoreSavedEntityLoopIndex` | `$005D` | Preserves the active entity traversal index during score updates |
+| `World3FollowerToggleInputLatch` | `$0062` | Edge-latches B-button persistent-follower toggles |
+| `World3MassDefeatConversionCountdown` | `$00A4` | Counts four low-type conversions after the diamond mass defeat |
+
 ## World 3 punishment room
 
 | Symbol | Address | Role |

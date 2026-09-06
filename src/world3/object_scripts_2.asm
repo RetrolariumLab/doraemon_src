@@ -474,7 +474,7 @@ Bank2_Label_9FEC:
     JMP World3_ReturnTerrainPassable
 
 World3_TestEntityTerrainPoint:
-    JSR Bank2_Func_A0C4
+    JSR World3_LookupMapTileAtPixel
     STA World3TerrainTile
     CMP #$26
     BCS Bank2_Label_A031
@@ -483,7 +483,7 @@ World3_TestEntityTerrainPoint:
     JMP World3_ReturnTerrainPassable
 
 World3_TestPlayerTerrainPoint:
-    JSR Bank2_Func_A0C4
+    JSR World3_LookupMapTileAtPixel
     STA World3TerrainTile
     CMP #$26
     BCC World3_ReturnTerrainPassable

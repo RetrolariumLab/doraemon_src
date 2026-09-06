@@ -234,9 +234,9 @@ Bank2_Label_94C9:
 Bank2_Label_94D3:
     LDA $40
     STA a:World3RoomObjectRoom,X
-    JSR Bank2_Func_928D
+    JSR World3_ChooseSpawnX
     STA a:World3RoomObjectX,X
-    JSR Bank2_Func_9299
+    JSR World3_ChooseSpawnY
     STA a:World3RoomObjectY,X
     LDA #$00
     STA a:World3RoomObjectState,X

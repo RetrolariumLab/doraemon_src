@@ -116,8 +116,8 @@
         },
         {
           "address": "0xA33C",
-          "symbol": "World3_PlayerState_AlternateMovement",
-          "role": "state 2 updates alternate movement and firing"
+          "symbol": "World3_PlayerState_ScriptedArc",
+          "role": "state 2 updates the scripted vertical arc and firing"
         },
         {
           "address": "0xA2E9",

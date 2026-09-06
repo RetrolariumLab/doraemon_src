@@ -6,7 +6,7 @@ World3_UpdatePlayerState:
     LDA World3PlayerState
     ASL A
     TAX
-    LDA a:$A22F,X
+    LDA a:World3_PlayerStateHandlerTable,X
     STA $40
     LDA a:$A230,X
     STA $41
@@ -20,8 +20,8 @@ World3_PlayerState_Frozen:
     RTS
 
 World3_PlayerState_Dying:
-    INC $93
-    LDA $93
+    INC World3PlayerAnimationCounter
+    LDA World3PlayerAnimationCounter
     AND #$07
     BNE Bank2_Label_A248
     LDA World3PlayerAnimationFrame
@@ -29,13 +29,13 @@ World3_PlayerState_Dying:
     STA World3PlayerAnimationFrame
 
 Bank2_Label_A248:
-    LDY $97
+    LDY World3PlayerVerticalMotionPhase
     CPY #$0E
     BEQ Bank2_Label_A250
-    INC $97
+    INC World3PlayerVerticalMotionPhase
 
 Bank2_Label_A250:
-    LDA a:$A563,Y
+    LDA a:World3_PlayerVerticalDeltaByPhase,Y
     BMI Bank2_Label_A25B
     CLC
     ADC World3PlayerY
@@ -66,10 +66,10 @@ Bank2_Label_A26D:
     BEQ Bank2_Label_A2BE
     DEC PlayerLives
     LDA World3AttractModeActive
-    BEQ Bank2_Func_A285
+    BEQ World3_RestartAfterDeath
     JMP Bank2_Label_82C3
 
-Bank2_Func_A285:
+World3_RestartAfterDeath:
     LDA World3PunishmentRoomActive
     BNE World3_ExitPunishmentRoom
     JMP Bank2_Label_834C
@@ -100,7 +100,7 @@ Bank2_Label_A2AA:
     INY
     CPY #$12
     BNE Bank2_Label_A2AA
-    JSR Bank2_Func_A213
+    JSR World3_RefillHealthFromCapacity
     LDA World3RoomMusicTrack
     STA a:AudioMusicState
     RTS
@@ -117,10 +117,10 @@ Bank2_Label_A2C8:
     LDA CombinedControllerButtons
     AND #$10
     BEQ Bank2_Label_A2C8
-    JSR Bank2_Func_A2D4
-    JMP Bank2_Func_A285
+    JSR World3_ResetScoreLivesAndHealthCapacity
+    JMP World3_RestartAfterDeath
 
-Bank2_Func_A2D4:
+World3_ResetScoreLivesAndHealthCapacity:
     LDX #$00
     LDA #$00
 
@@ -136,28 +136,28 @@ Bank2_Label_A2D8:
     RTS
 
 World3_PlayerState_DamageRecovery:
-    JSR Bank2_Func_A3B4
+    JSR World3_UpdateControlledPlayerMovement
     JSR World3_TryFirePlayerProjectile
-    LDY $9B
-    LDA a:$A32E,Y
+    LDY World3PlayerDamageRecoveryPhase
+    LDA a:World3_DamageRecoveryStepCount,Y
     STA $43
     BNE Bank2_Label_A308
     LDA #$01
     STA World3PlayerState
-    LDY $95
-    LDA a:$A485,Y
+    LDY World3PlayerHorizontalDirection
+    LDA a:World3_PlayerMetaspriteBaseByDirection,Y
     STA World3PlayerMetaspriteBase
     LDA #$00
     STA World3PlayerAnimationFrame
     RTS
 
 Bank2_Label_A308:
-    INC $9B
-    LDA $95
+    INC World3PlayerDamageRecoveryPhase
+    LDA World3PlayerHorizontalDirection
     BEQ Bank2_Label_A31E
 
 Bank2_Label_A30E:
-    JSR Bank2_Func_A49E
+    JSR World3_MovePlayerLeft
     DEC $43
     BNE Bank2_Label_A30E
     LDA #$00
@@ -167,7 +167,7 @@ Bank2_Label_A30E:
     RTS
 
 Bank2_Label_A31E:
-    JSR Bank2_Func_A4B4
+    JSR World3_MovePlayerRight
     DEC $43
     BNE Bank2_Label_A31E
     LDA #$01
@@ -175,21 +175,23 @@ Bank2_Label_A31E:
     LDA #$0B
     STA World3PlayerMetaspriteBase
     RTS
+
+World3_DamageRecoveryStepCount:
     .byte $04, $03, $03, $02, $02, $02, $00
 
 World3_PlayerState_ControlledMovement:
-    JSR Bank2_Func_A3B4
+    JSR World3_UpdateControlledPlayerMovement
     JSR World3_TryFirePlayerProjectile
     RTS
 
-World3_PlayerState_AlternateMovement:
-    JSR Bank2_Func_A343
+World3_PlayerState_ScriptedArc:
+    JSR World3_UpdateScriptedPlayerArc
     JSR World3_TryFirePlayerProjectile
     RTS
 
-Bank2_Func_A343:
-    LDY $97
-    LDA a:$A39C,Y
+World3_UpdateScriptedPlayerArc:
+    LDY World3PlayerVerticalMotionPhase
+    LDA a:World3_ScriptedPlayerArcVerticalDelta,Y
     BPL Bank2_Label_A35E
     LDA World3RoomRow
     BNE Bank2_Label_A354
@@ -203,7 +205,7 @@ Bank2_Label_A354:
 
 Bank2_Label_A359:
     LDA #$0E
-    STA $97
+    STA World3PlayerVerticalMotionPhase
     RTS
 
 Bank2_Label_A35E:
@@ -213,29 +215,29 @@ Bank2_Label_A35E:
     BNE Bank2_Label_A37B
     LDA #$01
     STA World3PlayerState
-    LDY $95
-    LDA a:$A485,Y
+    LDY World3PlayerHorizontalDirection
+    LDA a:World3_PlayerMetaspriteBaseByDirection,Y
     STA World3PlayerMetaspriteBase
     LDA #$00
     STA World3PlayerAnimationFrame
     LDA #$0E
-    STA $97
+    STA World3PlayerVerticalMotionPhase
     RTS
 
 Bank2_Label_A37B:
-    JSR Bank2_Func_A487
-    LDY $97
-    LDA a:$A39C,Y
+    JSR World3_ApplyHorizontalMovementRate
+    LDY World3PlayerVerticalMotionPhase
+    LDA a:World3_ScriptedPlayerArcVerticalDelta,Y
     STA $08
     CMP #$04
     BEQ Bank2_Label_A394
-    LDA $99
+    LDA World3PlayerScriptedArcDelay
     BEQ Bank2_Label_A392
-    DEC $99
+    DEC World3PlayerScriptedArcDelay
     JMP Bank2_Label_A394
 
 Bank2_Label_A392:
-    INC $97
+    INC World3PlayerVerticalMotionPhase
 
 Bank2_Label_A394:
     LDA World3PlayerY
@@ -243,29 +245,31 @@ Bank2_Label_A394:
     ADC $08
     STA World3PlayerY
     RTS
+
+World3_ScriptedPlayerArcVerticalDelta:
     .byte $FC, $FD, $FD, $FE, $FE, $FE, $FF, $FF, $FF, $FF, $00, $00, $00, $00, $01, $01
     .byte $01, $01, $02, $02, $02, $03, $03, $04
 
-Bank2_Func_A3B4:
-    LDA $92
+World3_UpdateControlledPlayerMovement:
+    LDA World3PlayerFiringPoseActive
     BEQ Bank2_Label_A3CE
-    INC $93
-    LDA $93
+    INC World3PlayerAnimationCounter
+    LDA World3PlayerAnimationCounter
     AND #$0F
     BNE Bank2_Label_A3CB
     LDA #$00
-    STA $92
-    LDY $95
-    LDA a:$A485,Y
+    STA World3PlayerFiringPoseActive
+    LDY World3PlayerHorizontalDirection
+    LDA a:World3_PlayerMetaspriteBaseByDirection,Y
     STA World3PlayerMetaspriteBase
 
 Bank2_Label_A3CB:
     JMP Bank2_Label_A3E0
 
 Bank2_Label_A3CE:
-    INC $93
-    LDA $93
-    AND $94
+    INC World3PlayerAnimationCounter
+    LDA World3PlayerAnimationCounter
+    AND World3PlayerAnimationMask
     BNE Bank2_Label_A3E0
     LDA World3PlayerAnimationFrame
     BNE Bank2_Label_A3DE
@@ -280,58 +284,58 @@ Bank2_Label_A3E0:
     AND #$08
     BNE Bank2_Label_A3F2
     LDA #$07
-    STA $94
+    STA World3PlayerAnimationMask
 
 Bank2_Label_A3EB:
     LDA #$00
-    STA $61
+    STA World3UpInputHoldCounter
     JMP Bank2_Label_A42B
 
 Bank2_Label_A3F2:
-    LDA $61
+    LDA World3UpInputHoldCounter
     BEQ Bank2_Label_A3FF
-    INC $61
+    INC World3UpInputHoldCounter
     CMP #$0A
     BEQ Bank2_Label_A3EB
     JMP Bank2_Label_A42B
 
 Bank2_Label_A3FF:
-    INC $61
-    LDA $92
+    INC World3UpInputHoldCounter
+    LDA World3PlayerFiringPoseActive
     BNE Bank2_Label_A40C
-    LDY $95
-    LDA a:$A485,Y
+    LDY World3PlayerHorizontalDirection
+    LDA a:World3_PlayerMetaspriteBaseByDirection,Y
     STA World3PlayerMetaspriteBase
 
 Bank2_Label_A40C:
     LDA #$03
-    STA $94
-    LDY $97
+    STA World3PlayerAnimationMask
+    LDY World3PlayerVerticalMotionPhase
     CPY #$0E
     BNE Bank2_Label_A41D
     LDA #$00
-    STA $99
+    STA World3PlayerScriptedArcDelay
     JMP Bank2_Label_A427
 
 Bank2_Label_A41D:
-    LDA $99
+    LDA World3PlayerScriptedArcDelay
     CMP #$14
     BCS Bank2_Label_A427
-    INC $99
-    INC $99
+    INC World3PlayerScriptedArcDelay
+    INC World3PlayerScriptedArcDelay
 
 Bank2_Label_A427:
     LDA #$00
-    STA $97
+    STA World3PlayerVerticalMotionPhase
 
 Bank2_Label_A42B:
-    JSR Bank2_Func_A4CE
+    JSR World3_ApplyVerticalMovement
     JSR World3_ProbePlayerBottomEdge
     BCS Bank2_Label_A449
     JSR World3_ReadActivePlayerButtons
     AND #$03
     BNE Bank2_Label_A449
-    LDA $92
+    LDA World3PlayerFiringPoseActive
     BNE Bank2_Label_A446
     LDA #$08
     STA World3PlayerMetaspriteBase
@@ -351,61 +355,63 @@ Bank2_Label_A449:
 
 Bank2_Label_A457:
     LDA #$00
-    STA $96
+    STA World3PlayerHorizontalMotionActive
     JMP Bank2_Label_A481
 
 Bank2_Label_A45E:
-    LDA $92
+    LDA World3PlayerFiringPoseActive
     BNE Bank2_Label_A466
     LDA #$00
     STA World3PlayerMetaspriteBase
 
 Bank2_Label_A466:
     LDA #$00
-    STA $95
+    STA World3PlayerHorizontalDirection
     LDA #$01
-    STA $96
+    STA World3PlayerHorizontalMotionActive
     JMP Bank2_Label_A481
 
 Bank2_Label_A471:
-    LDA $92
+    LDA World3PlayerFiringPoseActive
     BNE Bank2_Label_A479
     LDA #$03
     STA World3PlayerMetaspriteBase
 
 Bank2_Label_A479:
     LDA #$01
-    STA $95
+    STA World3PlayerHorizontalDirection
     LDA #$01
-    STA $96
+    STA World3PlayerHorizontalMotionActive
 
 Bank2_Label_A481:
-    JSR Bank2_Func_A487
+    JSR World3_ApplyHorizontalMovementRate
     RTS
+
+World3_PlayerMetaspriteBaseByDirection:
     .byte $00, $03
 
-Bank2_Func_A487:
-    INC $9C
-    LDA $9C
+World3_ApplyHorizontalMovementRate:
+    INC World3PlayerHorizontalRatePhase
+    LDA World3PlayerHorizontalRatePhase
     AND #$01
-    BNE Bank2_Func_A492
-    JSR Bank2_Func_A492
+    BNE World3_MovePlayerHorizontally
+    JSR World3_MovePlayerHorizontally
 
-Bank2_Func_A492:
-    LDA $96
+World3_MovePlayerHorizontally:
+    LDA World3PlayerHorizontalMotionActive
     BEQ Bank2_Label_A49D
-    LDA $95
-    BEQ Bank2_Func_A49E
-    JMP Bank2_Func_A4B4
+    LDA World3PlayerHorizontalDirection
+    BEQ World3_MovePlayerLeft
+    JMP World3_MovePlayerRight
 
 Bank2_Label_A49D:
     RTS
 
-Bank2_Func_A49E:
+World3_MovePlayerLeft:
     JSR World3_ProbePlayerLeftEdge
     BCS Bank2_Label_A4A8
     LDA #$00
-    STA $96
+    STA World3PlayerHorizontalMotionActive
     RTS
 
 Bank2_Label_A4A8:
@@ -418,11 +424,11 @@ Bank2_Label_A4A8:
 Bank2_Label_A4B3:
     RTS
 
-Bank2_Func_A4B4:
+World3_MovePlayerRight:
     JSR World3_ProbePlayerRightEdge
     BCS Bank2_Label_A4BE
     LDA #$00
-    STA $96
+    STA World3PlayerHorizontalMotionActive
     RTS
 
 Bank2_Label_A4BE:
@@ -437,15 +443,15 @@ Bank2_Label_A4BE:
 Bank2_Label_A4CD:
     RTS
 
-Bank2_Func_A4CE:
-    LDY $97
+World3_ApplyVerticalMovement:
+    LDY World3PlayerVerticalMotionPhase
     CPY #$0E
     BEQ Bank2_Label_A4D6
-    INC $97
+    INC World3PlayerVerticalMotionPhase
 
 Bank2_Label_A4D6:
-    LDA a:$A563,Y
-    STA $A7
+    LDA a:World3_PlayerVerticalDeltaByPhase,Y
+    STA World3PlayerVerticalDelta
     BEQ Bank2_Label_A4E2
     BPL Bank2_Label_A52F
     JMP Bank2_Label_A4E3
@@ -454,17 +460,17 @@ Bank2_Label_A4E2:
     RTS
 
 Bank2_Label_A4E3:
-    INC $9D
-    LDA $9D
+    INC World3PlayerAscentRatePhase
+    LDA World3PlayerAscentRatePhase
     AND #$01
-    BNE Bank2_Func_A4EE
-    JSR Bank2_Func_A4EE
+    BNE World3_MovePlayerUp
+    JSR World3_MovePlayerUp
 
-Bank2_Func_A4EE:
+World3_MovePlayerUp:
     JSR World3_ProbePlayerTopEdge
     BCS Bank2_Label_A4F8
     LDA #$0E
-    STA $97
+    STA World3PlayerVerticalMotionPhase
     RTS
 
 Bank2_Label_A4F8:
@@ -475,7 +481,7 @@ Bank2_Label_A4F8:
     LDA #$02
     STA World3PlayerState
     LDA #$00
-    STA $97
+    STA World3PlayerVerticalMotionPhase
     LDA #$0C
     JSR World3_QueuePriorityEffectPreserveXY
     RTS
@@ -483,7 +489,7 @@ Bank2_Label_A4F8:
 Bank2_Label_A50F:
     LDA World3PlayerY
     CLC
-    ADC $A7
+    ADC World3PlayerVerticalDelta
     STA World3PlayerY
     CMP #$08
     BCS Bank2_Label_A526
@@ -492,7 +498,7 @@ Bank2_Label_A50F:
     LDA #$00
     STA World3PlayerY
     LDA #$0E
-    STA $97
+    STA World3PlayerVerticalMotionPhase
 
 Bank2_Label_A526:
     RTS
@@ -507,26 +513,26 @@ Bank2_Label_A52F:
     JSR World3_ProbePlayerBottomEdge
     BCS Bank2_Label_A539
     LDA #$00
-    STA $96
+    STA World3PlayerHorizontalMotionActive
     RTS
 
 Bank2_Label_A539:
     JSR World3_ReadActivePlayerButtons
     AND #$04
     BNE Bank2_Label_A550
-    INC $98
-    LDA $98
+    INC World3PlayerPassiveDescentDelay
+    LDA World3PlayerPassiveDescentDelay
     CMP #$06
     BCC Bank2_Label_A562
     LDA #$00
-    STA $98
+    STA World3PlayerPassiveDescentDelay
     LDA #$01
-    STA $A7
+    STA World3PlayerVerticalDelta
 
 Bank2_Label_A550:
     LDA World3PlayerY
     CLC
-    ADC $A7
+    ADC World3PlayerVerticalDelta
     STA World3PlayerY
     CMP #$D4
     BCC Bank2_Label_A562
@@ -536,31 +542,33 @@ Bank2_Label_A550:
 
 Bank2_Label_A562:
     RTS
+
+World3_PlayerVerticalDeltaByPhase:
     .byte $FE, $FE, $FE, $FE, $FF, $FF, $FF, $FF, $00, $00, $00, $00, $00, $00, $02
 
 World3_TryFirePlayerProjectile:
     JSR World3_ReadActivePlayerButtons
     AND #$80
     BNE Bank2_Label_A57C
-    STA $63
+    STA World3FireInputLatch
 
 Bank2_Label_A57B:
     RTS
 
 Bank2_Label_A57C:
-    LDA $63
+    LDA World3FireInputLatch
     BNE Bank2_Label_A57B
-    INC $63
+    INC World3FireInputLatch
     LDA #$01
-    STA $92
-    LDA $95
+    STA World3PlayerFiringPoseActive
+    LDA World3PlayerHorizontalDirection
     CLC
     ADC #$09
     STA World3PlayerMetaspriteBase
     LDA #$00
     STA World3PlayerAnimationFrame
     LDA #$00
-    STA $93
+    STA World3PlayerAnimationCounter
     LDX #$00
 
 Bank2_Label_A597:
@@ -572,7 +580,7 @@ Bank2_Label_A597:
     RTS
 
 Bank2_Label_A5A2:
-    LDA $95
+    LDA World3PlayerHorizontalDirection
     BNE Bank2_Label_A5B1
     LDA World3PlayerX
     CMP #$12
@@ -595,7 +603,7 @@ Bank2_Label_A5B9:
     CLC
     ADC #$08
     STA a:World3PlayerProjectileY,X
-    LDA $95
+    LDA World3PlayerHorizontalDirection
     STA a:World3PlayerProjectileDirection,X
     ASL A
     CLC

@@ -2,7 +2,7 @@
 ; World 3 entity traversal, per-type dispatch, and spawn-position selection
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_9192:
+World3_UpdateStopwatchEffect:
     LDA World3StopwatchActive
     BEQ Bank2_Label_91B2
     INC World3StopwatchTimer
@@ -38,18 +38,18 @@ Bank2_Label_91B3:
     LDA a:World3EntityType,X
     CMP #$05
     BCS Bank2_Label_91FE
-    LDA $A4
+    LDA World3MassDefeatConversionCountdown
     BEQ Bank2_Label_91DB
-    DEC $A4
+    DEC World3MassDefeatConversionCountdown
     BNE Bank2_Label_91E7
 
 Bank2_Label_91DB:
-    INC $4E
-    LDA $4E
+    INC World3DefeatConversionCycle
+    LDA World3DefeatConversionCycle
     CMP #$04
     BCC Bank2_Label_91FE
     LDA #$00
-    STA $4E
+    STA World3DefeatConversionCycle
 
 Bank2_Label_91E7:
     LDA #$01
@@ -101,7 +101,7 @@ Bank2_Label_9230:
     LDA a:World3EntityState,X
     CMP #$03
     BEQ Bank2_Label_9283
-    JSR Bank2_Func_92A5
+    JSR World3_ChoosePassableEntitySpawnPosition
     LDX $07
     LDA $46
     STA a:World3EntityX,X
@@ -135,9 +135,9 @@ Bank2_Label_9265:
 
 Bank2_Label_9279:
     LDX $07
-    JSR Bank2_Func_89A1
+    JSR World3_ResolvePlayerEntityContact
     LDX $07
-    JSR Bank2_Func_8848
+    JSR World3_CheckPlayerProjectilesAgainstEntity
 
 Bank2_Label_9283:
     INC $07
@@ -148,35 +148,35 @@ Bank2_Label_9283:
 Bank2_Label_928C:
     RTS
 
-Bank2_Func_928D:
+World3_ChooseSpawnX:
     JSR World3_RandomByte
     CMP #$20
-    BCC Bank2_Func_928D
+    BCC World3_ChooseSpawnX
     CMP #$D0
-    BCS Bank2_Func_928D
+    BCS World3_ChooseSpawnX
     RTS
 
-Bank2_Func_9299:
+World3_ChooseSpawnY:
     JSR World3_RandomByte
     CMP #$30
-    BCC Bank2_Func_9299
+    BCC World3_ChooseSpawnY
     CMP #$B0
-    BCS Bank2_Func_9299
+    BCS World3_ChooseSpawnY
     RTS
 
-Bank2_Func_92A5:
-    JSR Bank2_Func_928D
+World3_ChoosePassableEntitySpawnPosition:
+    JSR World3_ChooseSpawnX
     STA $46
-    JSR Bank2_Func_9299
+    JSR World3_ChooseSpawnY
     STA $47
     JSR World3_ProbeEntityLeftEdge
-    BCC Bank2_Func_92A5
+    BCC World3_ChoosePassableEntitySpawnPosition
     JSR World3_ProbeEntityRightEdge
-    BCC Bank2_Func_92A5
+    BCC World3_ChoosePassableEntitySpawnPosition
     JSR World3_ProbeEntityTopEdge
-    BCC Bank2_Func_92A5
+    BCC World3_ChoosePassableEntitySpawnPosition
     JSR World3_ProbeEntityBottomEdge
-    BCC Bank2_Func_92A5
+    BCC World3_ChoosePassableEntitySpawnPosition
     LDA $46
     SEC
     SBC World3PlayerX
@@ -189,7 +189,7 @@ Bank2_Func_92A5:
     JSR World3_AbsoluteValue8
     CMP #$18
     BCS Bank2_Label_92DE
-    JMP Bank2_Func_92A5
+    JMP World3_ChoosePassableEntitySpawnPosition
 
 Bank2_Label_92DE:
     RTS

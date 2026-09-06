@@ -233,13 +233,13 @@ World3_LoadCurrentRoom:
     JSR World3_LoadRoomPalette
     JSR World3_ClearPlayerProjectiles
     JSR World3_ClearEntityStorage
-    JSR Bank2_Func_8C25
+    JSR World3_ClampPersistentObjectsAtRoomEdges
     JSR World3_MaterializeRoomObjects
     JSR Bank2_Func_AB53
     JSR Bank2_Func_ABF9
     LDA World3FinalCompanionsFreed
     BEQ Bank2_Label_A761
-    JSR Bank2_Func_8817
+    JSR World3_OpenFinalCompanionBarrier
 
 Bank2_Label_A761:
     LDA World3FormationActive
@@ -278,12 +278,12 @@ Bank2_Label_A78B:
     BNE Bank2_Label_A79C
 
 Bank2_Label_A799:
-    JSR Bank2_Func_875C
+    JSR World3_ClearFormationArenaTiles
 
 Bank2_Label_A79C:
     LDA World3PassingHoopPortalActive
     BEQ Bank2_Label_A7AB
-    JSR Bank2_Func_97AF
+    JSR World3_UpdatePassingHoopBoundary
     LDA World3PassingHoopBoundaryPresent
     BNE Bank2_Label_A7AB
     LDA #$00

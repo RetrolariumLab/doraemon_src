@@ -71,8 +71,21 @@ Its machine contract covers 808 executable bytes and 50 direct calls. The next
 Bank 2 pass names fifteen input/audio, player-render, directional-transition,
 persistence-policy, room-reload, music-selection, and palette-fade routines
 plus ten RAM bytes and two music tables. Its contract covers 607 executable
-bytes and 76 direct calls. The remaining 58 neutral routine entries are
-confined to the World 3 gameplay subsystems in Bank 2.
+bytes and 76 direct calls. The player-runtime pass names thirteen hierarchical
+map lookup, player initialization/reset, state, horizontal, and vertical
+movement routines plus fourteen RAM bytes and four tables. Its exact contract
+covers 690 executable bytes, 25 direct calls or tail jumps, and four
+conditional entries. At that checkpoint, 45 neutral routine entries remained
+in the World 3 gameplay subsystems in Bank 2. The interaction-runtime pass names
+nine final-companion, arena/barrier, projectile-hit, defeat/score, pickup,
+follower, and contact routines plus eight RAM fields and two blank-tile rows.
+Its exact contract covers 1,016 executable bytes and 26 direct calls. At that
+checkpoint, the remaining 36 neutral routine entries were confined to the
+World 3 gameplay subsystems in Bank 2. The entity-runtime pass names ten Passing Hoop,
+persistent-object clamp/carry, type-04 split, stopwatch, spawn-coordinate, and
+portal-opening helpers plus the 64-entry room clamp table. Its contract covers
+545 executable bytes and 17 direct calls or tail jumps. The remaining 26
+neutral routine entries are confined to Bank 2.
 
 ### 6. RAM and object systems - Partial
 
@@ -259,7 +272,22 @@ routine entries remained, all in Bank 2. The third Bank 2 slice connects all
 four room edges to the persistence transaction and complete room rebuild,
 names the attract-safe input and register-preserving audio wrappers, player
 renderer, palette fade, and two-stage room music selection. Fifty-eight
-neutral routine entries remain, all in Bank 2.
+neutral routine entries remained, all in Bank 2. The fourth Bank 2 slice names
+the hierarchical map lookup and the complete player initialization, refill,
+restart, five-state movement, and room-edge motion path. Its contract covers
+690 executable bytes, 25 direct calls or tail jumps, four conditional entries,
+and fourteen newly named RAM bytes. Forty-five neutral routine entries remain,
+all in Bank 2. The fifth Bank 2 slice closes the full player/entity interaction
+path: final companion rescue, formation/barrier presentation, projectile
+damage, boss progression, defeat/score adapters, items, persistent follower
+toggling, contact damage, damage recovery, and death entry. Its contract covers
+1,016 executable bytes, 26 direct calls, and eight new RAM fields. Thirty-six
+neutral routine entries remain, all in Bank 2. The sixth Bank 2 slice closes
+cross-chapter Passing Hoop placement, persistent-object edge clamps and
+Holding Bag carry capacity, type-04 splitting, stopwatch expiry, passable spawn
+selection, and Passing Hoop boundary opening. Its contract covers 545 bytes
+and 17 direct calls or tail jumps. Twenty-six neutral routine entries remain,
+all in Bank 2.
 
 ## Deferred to Source Reconstruction 2.0
 

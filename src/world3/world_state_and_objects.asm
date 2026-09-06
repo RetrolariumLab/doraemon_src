@@ -2,7 +2,7 @@
 ; World 3 world-state progression, object spawning, and player interactions
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
-Bank2_Func_875C:
+World3_ClearFormationArenaTiles:
     STX $44
     STY $45
     LDA #$07
@@ -26,10 +26,12 @@ Bank2_Label_8768:
     LDX $44
     LDY $45
     RTS
+
+World3_BlankFormationArenaRow:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00
 
-Bank2_Func_879B:
+World3_CheckFinalCompanionRescue:
     LDA World3CurrentRoom
     CMP #$3C
     BEQ Bank2_Label_87A2
@@ -62,7 +64,7 @@ Bank2_Label_87C0:
     LDA #$04
     JSR World3_QueueEffectPreserveXY
     JSR World3_RunPaletteFlash
-    JSR Bank2_Func_8817
+    JSR World3_OpenFinalCompanionBarrier
     LDA #$01
     STA World3FinalCompanionsFreed
     LDY #$00
@@ -106,7 +108,7 @@ Bank2_Label_880D:
 Bank2_Label_8816:
     RTS
 
-Bank2_Func_8817:
+World3_OpenFinalCompanionBarrier:
     LDA World3CurrentRoom
     CMP #$3C
     BNE Bank2_Label_8847
@@ -136,8 +138,8 @@ Bank2_Label_8829:
 Bank2_Label_8847:
     RTS
 
-Bank2_Func_8848:
-    STX $5C
+World3_CheckPlayerProjectilesAgainstEntity:
+    STX World3ProjectileCollisionEntityIndex
     LDA #$00
     STA $05
     LDA #$02
@@ -152,7 +154,7 @@ Bank2_Label_8852:
     STA $3C
     LDA a:World3PlayerProjectileY,Y
     STA $3D
-    JSR Bank2_Func_886F
+    JSR World3_ResolvePlayerProjectileEntityHit
 
 Bank2_Label_8868:
     INC $05
@@ -162,7 +164,7 @@ Bank2_Label_8868:
 Bank2_Label_886E:
     RTS
 
-Bank2_Func_886F:
+World3_ResolvePlayerProjectileEntityHit:
     LDA a:World3EntityState,X
     CMP #$01
     BNE Bank2_Label_886E
@@ -203,7 +205,7 @@ Bank2_Label_88AD:
     LDA a:World3EntityType,X
     CMP #$04
     BNE Bank2_Label_88C6
-    JSR Bank2_Func_9114
+    JSR World3_SplitType04Skull
 
 Bank2_Label_88C6:
     LDA a:World3EntityType,X
@@ -244,7 +246,7 @@ Bank2_Label_88EE:
     STA World3BossMusicRestoreDelay
     JSR World3_RunPaletteFlash
     JSR World3_DefeatActiveCombatEntities
-    JSR Bank2_Func_875C
+    JSR World3_ClearFormationArenaTiles
     LDA World3CurrentRoom
     CMP #$27
     BEQ Bank2_Label_8924
@@ -288,12 +290,12 @@ Bank2_Label_8939:
     STA World3ChapterCompletionDelay
 
 Bank2_Label_895C:
-    LDX $5C
-    JSR Bank2_Func_897C
+    LDX World3ProjectileCollisionEntityIndex
+    JSR World3_StartEntityDefeat
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR Bank2_Func_898C
+    JSR World3_AwardEncodedScorePreserveEntityLoop
     RTS
 
 Bank2_Label_896C:
@@ -301,17 +303,17 @@ Bank2_Label_896C:
     JSR World3_QueuePriorityEffectPreserveXY
     RTS
 
-Bank2_Func_8972:
+World3_StartEntityDefeatByY:
     TXA
     PHA
     TYA
     TAX
-    JSR Bank2_Func_897C
+    JSR World3_StartEntityDefeat
     PLA
     TAX
     RTS
 
-Bank2_Func_897C:
+World3_StartEntityDefeat:
     LDA #$05
     STA a:World3EntityState,X
     LDA #$6C
@@ -320,24 +322,24 @@ Bank2_Func_897C:
     JSR World3_QueuePriorityEffectPreserveXY
     RTS
 
-Bank2_Func_898C:
-    STX $5B
+World3_AwardEncodedScorePreserveEntityLoop:
+    STX World3ScoreSavedX
     LDX $07
-    STX $5D
+    STX World3ScoreSavedEntityLoopIndex
     LDX World3AttractModeActive
     BNE Bank2_Label_8999
     JSR World3_AddEncodedScore
 
 Bank2_Label_8999:
-    LDX $5D
+    LDX World3ScoreSavedEntityLoopIndex
     STX $07
-    LDX $5B
+    LDX World3ScoreSavedX
     RTS
 
 Bank2_Label_89A0:
     RTS
 
-Bank2_Func_89A1:
+World3_ResolvePlayerEntityContact:
     LDA a:World3EntityState,X
     CMP #$01
     BNE Bank2_Label_89A0
@@ -361,11 +363,11 @@ Bank2_Func_89A1:
     LDA a:World3EntityMetasprite,X
     CMP #$20
     BEQ Bank2_Label_89E7
-    JSR Bank2_Func_897C
+    JSR World3_StartEntityDefeat
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR Bank2_Func_898C
+    JSR World3_AwardEncodedScorePreserveEntityLoop
     LDA World3PunishmentDorayakiRemaining
     BEQ Bank2_Label_89E6
     DEC World3PunishmentDorayakiRemaining
@@ -382,11 +384,11 @@ Bank2_Label_89EA:
     LDA #$0A
     JSR World3_QueueEffectPreserveXY
     JSR World3_RunPaletteFlash
-    JSR Bank2_Func_897C
+    JSR World3_StartEntityDefeat
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR Bank2_Func_898C
+    JSR World3_AwardEncodedScorePreserveEntityLoop
     LDA #$0E
     JSR World3_QueueEffectPreserveXY
     LDA World3CurrentRoom
@@ -398,17 +400,17 @@ Bank2_Label_89EA:
     JMP Bank2_Func_AF51
 
 Bank2_Label_8A17:
-    INC $56
+    INC World3Room26GenkiCandyCollected
     JMP Bank2_Label_8A1E
 
 Bank2_Label_8A1C:
-    INC $57
+    INC World3Room3BGenkiCandyCollected
 
 Bank2_Label_8A1E:
     LDA PlayerHealthCapacityIndex
     BEQ Bank2_Label_8A27
     DEC PlayerHealthCapacityIndex
-    JSR Bank2_Func_A213
+    JSR World3_RefillHealthFromCapacity
 
 Bank2_Label_8A27:
     RTS
@@ -419,13 +421,13 @@ Bank2_Label_8A28:
     JSR World3_ReadActivePlayerButtons
     AND #$40
     BNE Bank2_Label_8A36
-    STA $62
+    STA World3FollowerToggleInputLatch
 
 Bank2_Label_8A35:
     RTS
 
 Bank2_Label_8A36:
-    LDA $62
+    LDA World3FollowerToggleInputLatch
     BNE Bank2_Label_8A35
     LDA World3FollowerActive
     BNE Bank2_Label_8A48
@@ -442,7 +444,7 @@ Bank2_Label_8A48:
     STA a:World3EntityPersistentState,X
 
 Bank2_Label_8A54:
-    INC $62
+    INC World3FollowerToggleInputLatch
     LDA #$08
     JSR World3_QueueEffectPreserveXY
 
@@ -462,11 +464,11 @@ Bank2_Label_8A60:
     BCS Bank2_Label_8A5C
     CMP #$10
     BNE Bank2_Label_8A87
-    JSR Bank2_Func_897C
+    JSR World3_StartEntityDefeat
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR Bank2_Func_898C
+    JSR World3_AwardEncodedScorePreserveEntityLoop
     LDA #$01
     STA World3StopwatchActive
     LDA #$00
@@ -478,11 +480,11 @@ Bank2_Label_8A60:
 Bank2_Label_8A87:
     CMP #$11
     BNE Bank2_Label_8AB7
-    JSR Bank2_Func_897C
+    JSR World3_StartEntityDefeat
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR Bank2_Func_898C
+    JSR World3_AwardEncodedScorePreserveEntityLoop
     LDA #$0E
     JSR World3_QueueEffectPreserveXY
     LDA #$08
@@ -508,25 +510,25 @@ Bank2_Label_8AB6:
 Bank2_Label_8AB7:
     CMP #$12
     BNE Bank2_Label_8AD7
-    JSR Bank2_Func_897C
+    JSR World3_StartEntityDefeat
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR Bank2_Func_898C
+    JSR World3_AwardEncodedScorePreserveEntityLoop
     LDA #$13
     JSR World3_QueueEffectPreserveXY
     INC World3TreasurePenaltyCounter
     JSR World3_DefeatActiveCombatEntities
     LDA #$04
-    STA $A4
+    STA World3MassDefeatConversionCountdown
     RTS
 
 Bank2_Label_8AD7:
-    JSR Bank2_Func_897C
+    JSR World3_StartEntityDefeat
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR Bank2_Func_898C
+    JSR World3_AwardEncodedScorePreserveEntityLoop
     LDA #$0E
     JSR World3_QueueEffectPreserveXY
     INC World3TreasurePenaltyCounter
@@ -559,9 +561,9 @@ Bank2_Label_8B08:
     LDA #$00
     STA World3PlayerAnimationFrame
     LDA #$00
-    STA $93
+    STA World3PlayerAnimationCounter
     LDA #$00
-    STA $97
+    STA World3PlayerVerticalMotionPhase
     LDA #$00
     STA World3FollowerActive
     LDA World3PlayerX
@@ -589,13 +591,13 @@ Bank2_Label_8B4E:
     LDA #$03
     STA World3PlayerState
     LDA #$00
-    STA $9B
+    STA World3PlayerDamageRecoveryPhase
     LDA #$0B
     STA World3PlayerMetaspriteBase
     LDA #$00
     STA World3PlayerAnimationFrame
     LDA #$00
-    STA $93
+    STA World3PlayerAnimationCounter
     LDA #$0F
     JSR World3_QueueEffectPreserveXY
 
