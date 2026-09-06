@@ -13,9 +13,14 @@ base reconstruction is complete.
 
 The immutable starting point is commit
 `499d4f8cdfa505456127d629fee58f185e79ce93` on `main`. Development takes place
-on `source-reconstruction`. The machine-readable contract is
-`config/source_reconstruction.json`, and `make source-audit` rejects milestone
-claims that are out of order, lack evidence, or move the preservation baseline.
+on `source-reconstruction`. The machine-readable release contract is
+`config/source_reconstruction.json`; `config/authoring_coverage.json` proves
+the five primary format families across all three chapters, while
+`config/runtime_state_coverage.json` proves the shared and chapter-local RAM
+and object-system completion metrics. `config/source_classification.json`
+assigns every PRG source byte to instructions, typed data, encoded code,
+padding, or a registered unknown. `make source-audit` rejects milestone claims
+that are out of order, lack evidence, or move the preservation baseline.
 
 ## Definition of done
 
@@ -60,6 +65,9 @@ treated as reconstructed.
 
 ```bash
 make source-audit          # validate the active development contract
+make validate-authoring-coverage # validate all primary format families
+make validate-runtime-state-coverage # validate RAM/object completion metrics
+make validate-source-classification # classify every canonical PRG source byte
 make source-release-audit  # additionally require tag-ready status
 make source-check          # full project gate plus reconstruction audit
 make source-1-audit         # clean tag-ready gate with fresh runtime captures

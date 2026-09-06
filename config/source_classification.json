@@ -1,0 +1,956 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "listing": "build/native/doraemon.lst",
+  "base_typed_ranges": "config/prg_data_ranges.txt",
+  "prg_asset": "assets/generated/prg/doraemon.prg",
+  "policy": "every canonical PRG byte emitted by a data directive is base-typed, supplemental typed data, known encoded code, padding, or a registered unknown",
+  "classifications": [
+    {
+      "id": "common-local-dispatch-jumps",
+      "kind": "encoded-code",
+      "ranges": [
+        {
+          "bank": 0,
+          "start": "0x8021",
+          "end": "0x8023"
+        },
+        {
+          "bank": 0,
+          "start": "0x8045",
+          "end": "0x8047"
+        },
+        {
+          "bank": 1,
+          "start": "0x8021",
+          "end": "0x8023"
+        },
+        {
+          "bank": 1,
+          "start": "0x8045",
+          "end": "0x8047"
+        },
+        {
+          "bank": 2,
+          "start": "0x8021",
+          "end": "0x8023"
+        },
+        {
+          "bank": 2,
+          "start": "0x8045",
+          "end": "0x8047"
+        },
+        {
+          "bank": 3,
+          "start": "0x8021",
+          "end": "0x8023"
+        },
+        {
+          "bank": 3,
+          "start": "0x8045",
+          "end": "0x8047"
+        }
+      ],
+      "evidence": [
+        "config/bank_gateways.json",
+        "config/common_runtime.json"
+      ]
+    },
+    {
+      "id": "common-mapper-value-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 0,
+          "start": "0x8261",
+          "end": "0x8270"
+        },
+        {
+          "bank": 1,
+          "start": "0x8261",
+          "end": "0x8270"
+        },
+        {
+          "bank": 2,
+          "start": "0x8261",
+          "end": "0x8270"
+        },
+        {
+          "bank": 3,
+          "start": "0x8261",
+          "end": "0x8270"
+        }
+      ],
+      "evidence": [
+        "config/common_runtime.json",
+        "docs/architecture.md"
+      ]
+    },
+    {
+      "id": "world1-runtime-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 0,
+          "start": "0x88FD",
+          "end": "0x891A"
+        },
+        {
+          "bank": 0,
+          "start": "0x891B",
+          "end": "0x892A"
+        },
+        {
+          "bank": 0,
+          "start": "0x8977",
+          "end": "0x8986"
+        },
+        {
+          "bank": 0,
+          "start": "0x8DA4",
+          "end": "0x8DC3"
+        },
+        {
+          "bank": 0,
+          "start": "0x8E70",
+          "end": "0x8E9F"
+        },
+        {
+          "bank": 0,
+          "start": "0x8FE4",
+          "end": "0x9003"
+        },
+        {
+          "bank": 0,
+          "start": "0x9116",
+          "end": "0x912D"
+        },
+        {
+          "bank": 0,
+          "start": "0x94D4",
+          "end": "0x94EA"
+        },
+        {
+          "bank": 0,
+          "start": "0xCBF4",
+          "end": "0xCC7E"
+        },
+        {
+          "bank": 0,
+          "start": "0xD1EF",
+          "end": "0xD236"
+        },
+        {
+          "bank": 0,
+          "start": "0xD37E",
+          "end": "0xD3A8"
+        },
+        {
+          "bank": 0,
+          "start": "0xDADA",
+          "end": "0xDBD9"
+        }
+      ],
+      "evidence": [
+        "config/object_dispatch.json",
+        "config/object_placements.json",
+        "config/world1_player_controls.json",
+        "config/world1_underground_rooms.json"
+      ]
+    },
+    {
+      "id": "world1-projectile-and-metasprite-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 0,
+          "start": "0x9C83",
+          "end": "0xA380"
+        }
+      ],
+      "evidence": [
+        "config/world1_metasprites.json",
+        "config/world1_weapons.json"
+      ]
+    },
+    {
+      "id": "world1-object-placement-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 0,
+          "start": "0xD925",
+          "end": "0xD988"
+        },
+        {
+          "bank": 0,
+          "start": "0xD989",
+          "end": "0xDAD9"
+        }
+      ],
+      "evidence": [
+        "config/object_placements.json",
+        "data/world1/object_data.json"
+      ]
+    },
+    {
+      "id": "world1-audio-dispatch-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 0,
+          "start": "0xE316",
+          "end": "0xE397"
+        },
+        {
+          "bank": 0,
+          "start": "0xEB3C",
+          "end": "0xEB5D"
+        }
+      ],
+      "evidence": [
+        "config/audio_effects.json",
+        "config/audio_music.json"
+      ]
+    },
+    {
+      "id": "world2-runtime-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 1,
+          "start": "0x8831",
+          "end": "0x8890"
+        },
+        {
+          "bank": 1,
+          "start": "0x8B38",
+          "end": "0x8B3A"
+        },
+        {
+          "bank": 1,
+          "start": "0x98AB",
+          "end": "0x98C6"
+        },
+        {
+          "bank": 1,
+          "start": "0xA2C2",
+          "end": "0xA2C9"
+        }
+      ],
+      "evidence": [
+        "config/core_dispatch_roles.json",
+        "config/world2_stage_sequence.json",
+        "config/world2_enemy_handlers.json"
+      ]
+    },
+    {
+      "id": "world2-player-sprite-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 1,
+          "start": "0x96E1",
+          "end": "0x97C4"
+        }
+      ],
+      "evidence": [
+        "config/world2_sprite_runtime.json",
+        "docs/world2_metasprites.md"
+      ]
+    },
+    {
+      "id": "world2-enemy-metasprite-and-dispatch-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 1,
+          "start": "0xA3DC",
+          "end": "0xA611"
+        }
+      ],
+      "evidence": [
+        "config/world2_metasprites.json",
+        "config/object_dispatch.json",
+        "config/world2_enemy_states.json"
+      ]
+    },
+    {
+      "id": "world2-audio-dispatch-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 1,
+          "start": "0xA80B",
+          "end": "0xA855"
+        },
+        {
+          "bank": 1,
+          "start": "0xAE23",
+          "end": "0xAE44"
+        }
+      ],
+      "evidence": [
+        "config/audio_effects.json",
+        "config/audio_music.json"
+      ]
+    },
+    {
+      "id": "world3-runtime-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 2,
+          "start": "0x8787",
+          "end": "0x879A"
+        },
+        {
+          "bank": 2,
+          "start": "0x8C6D",
+          "end": "0x8CAC"
+        },
+        {
+          "bank": 2,
+          "start": "0x8EB5",
+          "end": "0x8F54"
+        },
+        {
+          "bank": 2,
+          "start": "0x8F6C",
+          "end": "0x8F8B"
+        },
+        {
+          "bank": 2,
+          "start": "0x92DF",
+          "end": "0x931E"
+        },
+        {
+          "bank": 2,
+          "start": "0x980F",
+          "end": "0x9812"
+        },
+        {
+          "bank": 2,
+          "start": "0xA22F",
+          "end": "0xA238"
+        },
+        {
+          "bank": 2,
+          "start": "0xA32E",
+          "end": "0xA334"
+        },
+        {
+          "bank": 2,
+          "start": "0xA39C",
+          "end": "0xA3B3"
+        },
+        {
+          "bank": 2,
+          "start": "0xA485",
+          "end": "0xA486"
+        },
+        {
+          "bank": 2,
+          "start": "0xA563",
+          "end": "0xA571"
+        },
+        {
+          "bank": 2,
+          "start": "0xA7F1",
+          "end": "0xA834"
+        },
+        {
+          "bank": 2,
+          "start": "0xABB9",
+          "end": "0xABF8"
+        },
+        {
+          "bank": 2,
+          "start": "0xAEF2",
+          "end": "0xAF2F"
+        },
+        {
+          "bank": 2,
+          "start": "0xAFC6",
+          "end": "0xAFE5"
+        },
+        {
+          "bank": 2,
+          "start": "0xB3F3",
+          "end": "0xB3FE"
+        }
+      ],
+      "evidence": [
+        "config/object_dispatch.json",
+        "config/world3_entity_types.json",
+        "config/world3_player_runtime.json",
+        "config/world3_formation_runtime.json",
+        "config/world3_transition_runtime.json"
+      ]
+    },
+    {
+      "id": "world3-object-behavior-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 2,
+          "start": "0xD96B",
+          "end": "0xD9AB"
+        },
+        {
+          "bank": 2,
+          "start": "0xD9AC",
+          "end": "0xD9CB"
+        },
+        {
+          "bank": 2,
+          "start": "0xD9CC",
+          "end": "0xDDF1"
+        }
+      ],
+      "evidence": [
+        "config/world3_object_data.json",
+        "config/world3_behavior.json",
+        "data/world3/behavior_streams.json"
+      ]
+    },
+    {
+      "id": "world3-audio-dispatch-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 2,
+          "start": "0xBE0E",
+          "end": "0xBE8F"
+        },
+        {
+          "bank": 2,
+          "start": "0xC634",
+          "end": "0xC655"
+        }
+      ],
+      "evidence": [
+        "config/audio_effects.json",
+        "config/audio_music.json"
+      ]
+    },
+    {
+      "id": "shell-attract-and-ending-presentation-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 3,
+          "start": "0x84C0",
+          "end": "0x84D1"
+        },
+        {
+          "bank": 3,
+          "start": "0x861C",
+          "end": "0x87CA"
+        },
+        {
+          "bank": 3,
+          "start": "0x8839",
+          "end": "0x8A16"
+        },
+        {
+          "bank": 3,
+          "start": "0x8B9B",
+          "end": "0x8C3A"
+        }
+      ],
+      "evidence": [
+        "config/shell_runtime.json",
+        "config/shell_text.json"
+      ]
+    },
+    {
+      "id": "shell-audio-dispatch-tables",
+      "kind": "typed-data",
+      "ranges": [
+        {
+          "bank": 3,
+          "start": "0x9784",
+          "end": "0x9823"
+        },
+        {
+          "bank": 3,
+          "start": "0xA017",
+          "end": "0xA038"
+        },
+        {
+          "bank": 3,
+          "start": "0xA4D5",
+          "end": "0xA4D5"
+        }
+      ],
+      "evidence": [
+        "config/audio_dispatch.json",
+        "config/audio_music.json"
+      ]
+    },
+    {
+      "id": "unused-prg-fill",
+      "kind": "padding",
+      "ranges": [
+        {
+          "bank": 2,
+          "start": "0xF6F2",
+          "end": "0xFFF9"
+        },
+        {
+          "bank": 3,
+          "start": "0xF9BC",
+          "end": "0xFFF9"
+        }
+      ],
+      "fill_byte": "0xFF",
+      "evidence": [
+        "assets/generated/prg/doraemon.prg",
+        "docs/source_layout.md"
+      ]
+    },
+    {
+      "id": "header-unreachable-audio-adjacent-data",
+      "kind": "registered-unknown",
+      "unknown_id": "AUDIO-002",
+      "ranges": [
+        {
+          "bank": 0,
+          "start": "0xEE34",
+          "end": "0xEFFA"
+        },
+        {
+          "bank": 0,
+          "start": "0xFCBF",
+          "end": "0xFFF9"
+        },
+        {
+          "bank": 1,
+          "start": "0xB11B",
+          "end": "0xB2E2"
+        },
+        {
+          "bank": 1,
+          "start": "0xB8E2",
+          "end": "0xB8FF"
+        },
+        {
+          "bank": 2,
+          "start": "0xC92C",
+          "end": "0xCAF2"
+        },
+        {
+          "bank": 3,
+          "start": "0xA30F",
+          "end": "0xA4D4"
+        },
+        {
+          "bank": 3,
+          "start": "0xADBC",
+          "end": "0xB1BB"
+        }
+      ],
+      "evidence": [
+        "docs/unknowns.md",
+        "config/audio_music.json"
+      ]
+    },
+    {
+      "id": "inline-and-dormant-directive-bytes",
+      "kind": "registered-unknown",
+      "unknown_id": "SOURCE-BYTES-001",
+      "ranges": [
+        {
+          "bank": 0,
+          "start": "0x8445",
+          "end": "0x8450"
+        },
+        {
+          "bank": 0,
+          "start": "0x892B",
+          "end": "0x8933"
+        },
+        {
+          "bank": 0,
+          "start": "0x8A40",
+          "end": "0x8A6B"
+        },
+        {
+          "bank": 0,
+          "start": "0x8D9C",
+          "end": "0x8DA3"
+        },
+        {
+          "bank": 0,
+          "start": "0x92FA",
+          "end": "0x931A"
+        },
+        {
+          "bank": 0,
+          "start": "0x9442",
+          "end": "0x9461"
+        },
+        {
+          "bank": 0,
+          "start": "0x9528",
+          "end": "0x9534"
+        },
+        {
+          "bank": 0,
+          "start": "0x9587",
+          "end": "0x95CA"
+        },
+        {
+          "bank": 0,
+          "start": "0x9BC3",
+          "end": "0x9BCA"
+        },
+        {
+          "bank": 0,
+          "start": "0xA483",
+          "end": "0xA483"
+        },
+        {
+          "bank": 0,
+          "start": "0xA7D3",
+          "end": "0xA7DA"
+        },
+        {
+          "bank": 0,
+          "start": "0xCD89",
+          "end": "0xCDB4"
+        },
+        {
+          "bank": 0,
+          "start": "0xDDBB",
+          "end": "0xDDD2"
+        },
+        {
+          "bank": 0,
+          "start": "0xE101",
+          "end": "0xE109"
+        },
+        {
+          "bank": 0,
+          "start": "0xE231",
+          "end": "0xE248"
+        },
+        {
+          "bank": 0,
+          "start": "0xE278",
+          "end": "0xE284"
+        },
+        {
+          "bank": 0,
+          "start": "0xE6BB",
+          "end": "0xE6BC"
+        },
+        {
+          "bank": 0,
+          "start": "0xE7AB",
+          "end": "0xE7AE"
+        },
+        {
+          "bank": 0,
+          "start": "0xE8EF",
+          "end": "0xE8EF"
+        },
+        {
+          "bank": 0,
+          "start": "0xE920",
+          "end": "0xE930"
+        },
+        {
+          "bank": 0,
+          "start": "0xE96F",
+          "end": "0xE9C8"
+        },
+        {
+          "bank": 0,
+          "start": "0xE9FC",
+          "end": "0xE9FC"
+        },
+        {
+          "bank": 1,
+          "start": "0x8285",
+          "end": "0x8285"
+        },
+        {
+          "bank": 1,
+          "start": "0x8287",
+          "end": "0x829E"
+        },
+        {
+          "bank": 1,
+          "start": "0x832C",
+          "end": "0x8334"
+        },
+        {
+          "bank": 1,
+          "start": "0x85F5",
+          "end": "0x85F6"
+        },
+        {
+          "bank": 1,
+          "start": "0x86C7",
+          "end": "0x86C8"
+        },
+        {
+          "bank": 1,
+          "start": "0x8ADA",
+          "end": "0x8ADE"
+        },
+        {
+          "bank": 1,
+          "start": "0x8BA2",
+          "end": "0x8BAB"
+        },
+        {
+          "bank": 1,
+          "start": "0x9326",
+          "end": "0x9376"
+        },
+        {
+          "bank": 1,
+          "start": "0x956F",
+          "end": "0x9572"
+        },
+        {
+          "bank": 1,
+          "start": "0x9C28",
+          "end": "0x9C2B"
+        },
+        {
+          "bank": 1,
+          "start": "0x9DFE",
+          "end": "0x9E05"
+        },
+        {
+          "bank": 1,
+          "start": "0x9F11",
+          "end": "0x9F2D"
+        },
+        {
+          "bank": 1,
+          "start": "0xA039",
+          "end": "0xA03C"
+        },
+        {
+          "bank": 1,
+          "start": "0xAB6E",
+          "end": "0xAB71"
+        },
+        {
+          "bank": 1,
+          "start": "0xABB5",
+          "end": "0xABFE"
+        },
+        {
+          "bank": 1,
+          "start": "0xAC56",
+          "end": "0xACAF"
+        },
+        {
+          "bank": 1,
+          "start": "0xACE3",
+          "end": "0xACE3"
+        },
+        {
+          "bank": 2,
+          "start": "0x82EA",
+          "end": "0x82F5"
+        },
+        {
+          "bank": 2,
+          "start": "0x8503",
+          "end": "0x850A"
+        },
+        {
+          "bank": 2,
+          "start": "0x8723",
+          "end": "0x8732"
+        },
+        {
+          "bank": 2,
+          "start": "0xAB39",
+          "end": "0xAB3A"
+        },
+        {
+          "bank": 2,
+          "start": "0xC2A3",
+          "end": "0xC2A6"
+        },
+        {
+          "bank": 2,
+          "start": "0xC2EA",
+          "end": "0xC333"
+        },
+        {
+          "bank": 2,
+          "start": "0xC3E7",
+          "end": "0xC3E7"
+        },
+        {
+          "bank": 2,
+          "start": "0xC418",
+          "end": "0xC440"
+        },
+        {
+          "bank": 2,
+          "start": "0xC467",
+          "end": "0xC4C0"
+        },
+        {
+          "bank": 2,
+          "start": "0xC4F4",
+          "end": "0xC4F4"
+        },
+        {
+          "bank": 3,
+          "start": "0x8D2E",
+          "end": "0x8D39"
+        },
+        {
+          "bank": 3,
+          "start": "0x8D9B",
+          "end": "0x8DB0"
+        },
+        {
+          "bank": 3,
+          "start": "0x8DF3",
+          "end": "0x8E04"
+        },
+        {
+          "bank": 3,
+          "start": "0x8E33",
+          "end": "0x8F59"
+        },
+        {
+          "bank": 3,
+          "start": "0x8F61",
+          "end": "0x8F62"
+        },
+        {
+          "bank": 3,
+          "start": "0x8FC8",
+          "end": "0x8FF1"
+        },
+        {
+          "bank": 3,
+          "start": "0x9003",
+          "end": "0x90C3"
+        },
+        {
+          "bank": 3,
+          "start": "0x90D7",
+          "end": "0x90DB"
+        },
+        {
+          "bank": 3,
+          "start": "0x9103",
+          "end": "0x9151"
+        },
+        {
+          "bank": 3,
+          "start": "0x919D",
+          "end": "0x91A0"
+        },
+        {
+          "bank": 3,
+          "start": "0x91AF",
+          "end": "0x91EC"
+        },
+        {
+          "bank": 3,
+          "start": "0x9825",
+          "end": "0x9829"
+        },
+        {
+          "bank": 3,
+          "start": "0x9C19",
+          "end": "0x9C1C"
+        },
+        {
+          "bank": 3,
+          "start": "0x9C60",
+          "end": "0x9CA9"
+        },
+        {
+          "bank": 3,
+          "start": "0x9D5E",
+          "end": "0x9D5E"
+        },
+        {
+          "bank": 3,
+          "start": "0x9E0C",
+          "end": "0x9E23"
+        },
+        {
+          "bank": 3,
+          "start": "0x9E4A",
+          "end": "0x9EA3"
+        },
+        {
+          "bank": 3,
+          "start": "0x9ED7",
+          "end": "0x9ED7"
+        }
+      ],
+      "evidence": [
+        "docs/unknowns.md",
+        "config/prg_code_entries.txt"
+      ]
+    }
+  ],
+  "expected_metrics": {
+    "prg_bytes": 131072,
+    "instruction_bytes": 47789,
+    "directive_bytes": 83283,
+    "classification_bytes": {
+      "base-typed": 66180,
+      "typed-data": 7469,
+      "encoded-code": 24,
+      "padding": 3910,
+      "registered-unknown": 5700
+    },
+    "by_bank": {
+      "0": {
+        "instruction_bytes": 16105,
+        "directive_bytes": 16663,
+        "base-typed": 11772,
+        "typed-data": 3138,
+        "encoded-code": 6,
+        "padding": 0,
+        "registered-unknown": 1747
+      },
+      "1": {
+        "instruction_bytes": 10916,
+        "directive_bytes": 21852,
+        "base-typed": 19954,
+        "typed-data": 1054,
+        "encoded-code": 6,
+        "padding": 0,
+        "registered-unknown": 838
+      },
+      "2": {
+        "instruction_bytes": 15394,
+        "directive_bytes": 17374,
+        "base-typed": 12373,
+        "typed-data": 1979,
+        "encoded-code": 6,
+        "padding": 2312,
+        "registered-unknown": 704
+      },
+      "3": {
+        "instruction_bytes": 5374,
+        "directive_bytes": 27394,
+        "base-typed": 22081,
+        "typed-data": 1298,
+        "encoded-code": 6,
+        "padding": 1598,
+        "registered-unknown": 2411
+      }
+    }
+  }
+}

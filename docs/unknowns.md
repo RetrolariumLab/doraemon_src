@@ -147,6 +147,33 @@
   and their lossless authoring contract are complete without inferred names or
   claims about unreachable data.
 
+The byte-level source classification pins the header-unreachable spans exactly:
+Bank 0 `$EE34-$EFFA` and `$FCBF-$FFF9`, Bank 1 `$B11B-$B2E2` and
+`$B8E2-$B8FF`, Bank 2 `$C92C-$CAF2`, and Bank 3 `$A30F-$A4D4` and
+`$ADBC-$B1BB`. They total 3,701 bytes and cannot silently become claimed
+music data without updating the release audit.
+
+## SOURCE-BYTES-001 - inline and dormant directive bytes
+
+- Known: the canonical listing emits 47,789 bytes as 6502 instructions and
+  83,283 bytes through data directives. All directive bytes are partitioned by
+  `config/source_classification.json`.
+- Known: 66,180 bytes belong to the original typed-range registry, another
+  7,469 bytes are tied to exact semantic table contracts, 24 bytes are the
+  proven common local-dispatch JMP encodings, and 3,910 bytes are verified
+  `$FF` bank fill.
+- Unknown: 1,999 remaining directive bytes are small inline or post-return
+  islands whose active consumer or executable status is not proved. They are
+  registered by exact bank/address ranges rather than decoded speculatively.
+  None is a registered direct or indirect entry point, and the release gate
+  prevents an unclassified byte from being added.
+
+This category deliberately includes instruction-shaped sequences after
+`RTS`/`JMP`. Some may be dormant 6502 routines or overlapping encodings; a
+future evidence-backed entry point can promote such a range to instructions.
+Source 1.0 claims preservation and explicit uncertainty, not reachability that
+the static graph and eight runtime scenarios do not demonstrate.
+
 ## TEXT-001 - post-credit presentation data
 
 - Known: the active ending loop reads 380 fixed 32-byte rows from

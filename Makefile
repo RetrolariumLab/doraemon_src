@@ -125,6 +125,9 @@ WORLD_DATA := config/world_data.json
 WORLD1_DATA_AUTHORING := data/world1/hierarchical_world.json
 WORLD3_DATA_AUTHORING := data/world3/hierarchical_world.json
 RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
+AUTHORING_COVERAGE := config/authoring_coverage.json
+RUNTIME_STATE_COVERAGE := config/runtime_state_coverage.json
+SOURCE_CLASSIFICATION := config/source_classification.json
 
 .PHONY: all build split verify verify-reference verify-built verify-header \
 	verify-prg verify-chr verify-payload verify-rom verify-assets inspect \
@@ -136,6 +139,9 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	debug-symbols validate-debug-symbols \
 	runtime-debug-symbols validate-runtime-debug-symbols \
 	reconstruction-inventory validate-reconstruction-inventory \
+	authoring-coverage validate-authoring-coverage \
+	runtime-state-coverage validate-runtime-state-coverage \
+	source-classification validate-source-classification \
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
 	common-runtime validate-common-runtime \
 	core-dispatch-roles validate-core-dispatch-roles \
@@ -295,6 +301,21 @@ source-release-audit:
 reconstruction-inventory validate-reconstruction-inventory:
 	$(PYTHON) scripts/reconstruction_inventory.py \
 		--manifest "$(RECONSTRUCTION_INVENTORY)"
+
+authoring-coverage validate-authoring-coverage:
+	$(PYTHON) scripts/authoring_coverage.py \
+		--manifest "$(AUTHORING_COVERAGE)" \
+		--reconstruction "config/source_reconstruction.json" \
+		--makefile "Makefile"
+
+runtime-state-coverage validate-runtime-state-coverage:
+	$(PYTHON) scripts/runtime_state_coverage.py \
+		--manifest "$(RUNTIME_STATE_COVERAGE)" \
+		--makefile "Makefile"
+
+source-classification validate-source-classification: $(ROM)
+	$(PYTHON) scripts/source_classification.py \
+		--manifest "$(SOURCE_CLASSIFICATION)"
 
 source-check: release-check source-audit
 
@@ -773,7 +794,9 @@ validate-debug-symbols: debug-symbols
 
 release-check: quality-check disassembly-check verify validate-maps \
 	validate-debug-symbols \
-	validate-reconstruction-inventory validate-common-runtime \
+	validate-reconstruction-inventory validate-authoring-coverage \
+	validate-runtime-state-coverage validate-source-classification \
+	validate-common-runtime \
 	validate-core-dispatch-roles \
 	validate-audio-dispatch validate-audio-effects validate-audio-music \
 	validate-audio-arbitration \

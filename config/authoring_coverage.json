@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "secondary_fixed_tables_policy": "typed-source-or-registered-unknown",
+  "secondary_fixed_table_evidence": [
+    "config/prg_data_ranges.txt",
+    "docs/unknowns.md"
+  ],
+  "families": [
+    {
+      "id": "world-maps-and-metatiles",
+      "status": "complete",
+      "components": [
+        {
+          "id": "world1-world-data",
+          "status": "complete",
+          "scope": "World 1 hierarchy, city and underground maps, and runtime decoder",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/world1/hierarchical_world.json"
+          ],
+          "contract_files": [
+            "config/world_data.json",
+            "config/world1_map_decoder.json"
+          ],
+          "documentation_files": [
+            "docs/world_data.md",
+            "docs/world1_map_decoder.md"
+          ],
+          "test_files": [
+            "tests/test_world_data.py",
+            "tests/test_world1_map_decoder.py"
+          ],
+          "validation_targets": [
+            "validate-world-data",
+            "validate-world1-map-decoder"
+          ]
+        },
+        {
+          "id": "world2-world-data",
+          "status": "complete",
+          "scope": "Compressed screens, stage flow, branch tables, metatiles, and solid flags",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/world2/compressed_screens.json",
+            "data/world2/stage_sequence.json",
+            "data/world2/stage_branches.json",
+            "data/world2/metatiles.json"
+          ],
+          "contract_files": [
+            "config/world2_streaming.json",
+            "config/world2_stage_sequence.json",
+            "config/world2_stage_branches.json",
+            "config/world2_metatiles.json"
+          ],
+          "documentation_files": [
+            "docs/world2_streaming.md",
+            "docs/world2_stage_sequence.md",
+            "docs/world2_stage_branches.md",
+            "docs/world2_metatiles.md"
+          ],
+          "test_files": [
+            "tests/test_world2_streaming.py",
+            "tests/test_world2_stage_sequence.py",
+            "tests/test_world2_stage_branches.py",
+            "tests/test_world2_metatiles.py"
+          ],
+          "validation_targets": [
+            "validate-world2-streaming",
+            "validate-world2-stage-sequence",
+            "validate-world2-stage-branches",
+            "validate-world2-metatiles"
+          ]
+        },
+        {
+          "id": "world3-world-data",
+          "status": "complete",
+          "scope": "World 3 hierarchy, underwater map, and room renderer",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/world3/hierarchical_world.json"
+          ],
+          "contract_files": [
+            "config/world_data.json",
+            "config/world3_room_rendering.json"
+          ],
+          "documentation_files": [
+            "docs/world_data.md",
+            "docs/world3_room_rendering.md"
+          ],
+          "test_files": [
+            "tests/test_world_data.py"
+          ],
+          "validation_targets": [
+            "validate-world-data",
+            "validate-world3-room-rendering"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gameplay-objects-and-collisions",
+      "status": "complete",
+      "components": [
+        {
+          "id": "world1-gameplay-data-and-collisions",
+          "status": "complete",
+          "scope": "Placements, descriptors, collision extents, tile collision, room transitions, and weapons",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/world1/object_data.json",
+            "data/world1/hierarchical_world.json",
+            "data/world1/underground_rooms.json",
+            "data/world1/weapons.json"
+          ],
+          "contract_files": [
+            "config/object_placements.json",
+            "config/world1_player_controls.json",
+            "config/world1_underground_rooms.json",
+            "config/world1_weapons.json"
+          ],
+          "documentation_files": [
+            "docs/object_formats.md",
+            "docs/world1_player_controls.md",
+            "docs/world1_underground_rooms.md",
+            "docs/world1_weapons.md"
+          ],
+          "test_files": [
+            "tests/test_object_placements.py",
+            "tests/test_world1_player_controls.py",
+            "tests/test_world1_underground_rooms.py",
+            "tests/test_world1_weapons.py"
+          ],
+          "validation_targets": [
+            "validate-object-placements",
+            "validate-world1-player-controls",
+            "validate-world1-underground-rooms",
+            "validate-world1-weapons",
+            "validate-world-data"
+          ]
+        },
+        {
+          "id": "world2-gameplay-data-and-collisions",
+          "status": "complete",
+          "scope": "Embedded spawns, enemy properties, inventory spawns, and metatile collision bitmap",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/world2/compressed_screens.json",
+            "data/world2/enemy_states.json",
+            "data/world2/inventory_spawn_screens.json",
+            "data/world2/metatiles.json"
+          ],
+          "contract_files": [
+            "config/world2_streaming.json",
+            "config/world2_enemy_states.json",
+            "config/world2_inventory.json",
+            "config/world2_metatiles.json"
+          ],
+          "documentation_files": [
+            "docs/world2_streaming.md",
+            "docs/world2_enemy_states.md",
+            "docs/world2_inventory.md",
+            "docs/world2_metatiles.md"
+          ],
+          "test_files": [
+            "tests/test_world2_streaming.py",
+            "tests/test_world2_enemy_states.py",
+            "tests/test_world2_inventory.py",
+            "tests/test_world2_metatiles.py"
+          ],
+          "validation_targets": [
+            "validate-world2-streaming",
+            "validate-world2-enemy-states",
+            "validate-world2-inventory",
+            "validate-world2-metatiles"
+          ]
+        },
+        {
+          "id": "world3-gameplay-data-and-collisions",
+          "status": "complete",
+          "scope": "Persistent objects, behaviors, transient schedules, initializer/update data, and tile collision",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/world3/object_catalog.json",
+            "data/world3/behavior_streams.json",
+            "data/world3/transient_spawns.json",
+            "data/world3/spawn_initializer_data.json",
+            "data/world3/update_handler_data.json",
+            "data/world3/hierarchical_world.json"
+          ],
+          "contract_files": [
+            "config/world3_object_data.json",
+            "config/world3_entity_types.json",
+            "config/world3_behavior.json",
+            "config/world3_transient_spawns.json",
+            "config/world3_spawn_initializers.json",
+            "config/world3_update_handlers.json",
+            "config/world3_collision_rendering.json"
+          ],
+          "documentation_files": [
+            "docs/world3_object_catalog.md",
+            "docs/world3_entity_types.md",
+            "docs/world3_behavior.md",
+            "docs/world3_transient_spawns.md",
+            "docs/world3_spawn_initializers.md",
+            "docs/world3_update_handlers.md",
+            "docs/world3_collision_rendering.md"
+          ],
+          "test_files": [
+            "tests/test_world3_object_catalog.py",
+            "tests/test_world3_entity_types.py",
+            "tests/test_world3_behavior.py",
+            "tests/test_world3_transient_spawns.py",
+            "tests/test_world3_spawn_initializers.py",
+            "tests/test_world3_update_handlers.py"
+          ],
+          "validation_targets": [
+            "validate-world3-object-catalog",
+            "validate-world3-entity-types",
+            "validate-world3-behavior",
+            "validate-world3-transient-spawns",
+            "validate-world3-spawn-initializers",
+            "validate-world3-update-handlers",
+            "validate-world3-collision-rendering",
+            "validate-world-data"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter-metasprites-and-palettes",
+      "status": "complete",
+      "components": [
+        {
+          "id": "world1-presentation",
+          "status": "complete",
+          "scope": "World 1 metasprite index/records, OAM attributes, CHR references, and twelve palettes",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/world1/metasprites.json",
+            "data/world1/palettes.json"
+          ],
+          "contract_files": [
+            "config/world1_metasprites.json",
+            "config/world1_palettes.json"
+          ],
+          "documentation_files": [
+            "docs/world1_metasprites.md",
+            "docs/world1_palettes.md"
+          ],
+          "test_files": [
+            "tests/test_world1_metasprites.py",
+            "tests/test_world1_palettes.py"
+          ],
+          "validation_targets": [
+            "validate-world1-metasprites",
+            "validate-world1-palettes"
+          ]
+        },
+        {
+          "id": "world2-presentation",
+          "status": "complete",
+          "scope": "World 2 fixed metasprites, OAM attributes, CHR references, and nine palettes",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/world2/metasprites.json",
+            "data/world2/palettes.json"
+          ],
+          "contract_files": [
+            "config/world2_metasprites.json",
+            "config/world2_palettes.json"
+          ],
+          "documentation_files": [
+            "docs/world2_metasprites.md",
+            "docs/world2_palettes.md"
+          ],
+          "test_files": [
+            "tests/test_world2_metasprites.py",
+            "tests/test_world2_palettes.py"
+          ],
+          "validation_targets": [
+            "validate-world2-metasprites",
+            "validate-world2-palettes"
+          ]
+        },
+        {
+          "id": "world3-presentation",
+          "status": "complete",
+          "scope": "World 3 sprite index/records, room selectors, CHR references, and eleven palettes",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/world3/metasprites.json"
+          ],
+          "contract_files": [
+            "config/world3_metasprites.json"
+          ],
+          "documentation_files": [
+            "docs/world3_metasprites.md"
+          ],
+          "test_files": [
+            "tests/test_world3_metasprites.py"
+          ],
+          "validation_targets": [
+            "validate-world3-metasprites"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "title-hud-and-dialogue",
+      "status": "complete",
+      "components": [
+        {
+          "id": "shell-title-hud-help-and-ending",
+          "status": "complete",
+          "scope": "Title records and score labels, game over, help/item text, ending opening, and active credits",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/shell/text.json"
+          ],
+          "contract_files": [
+            "config/shell_text.json"
+          ],
+          "documentation_files": [
+            "docs/shell_text.md"
+          ],
+          "test_files": [
+            "tests/test_shell_text.py"
+          ],
+          "validation_targets": [
+            "validate-shell-text"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audio-command-streams",
+      "status": "complete",
+      "components": [
+        {
+          "id": "four-bank-audio-command-streams",
+          "status": "complete",
+          "scope": "All 26 track headers and every byte reachable through four bank-local command grammars",
+          "lossless_roundtrip": true,
+          "authoring_files": [
+            "data/audio/music_streams.json"
+          ],
+          "contract_files": [
+            "config/audio_music.json",
+            "config/audio_effects.json",
+            "config/audio_arbitration.json"
+          ],
+          "documentation_files": [
+            "docs/audio_music.md",
+            "docs/audio_effects.md",
+            "docs/audio_arbitration.md"
+          ],
+          "test_files": [
+            "tests/test_audio_streams.py",
+            "tests/test_audio_music.py",
+            "tests/test_audio_effects.py",
+            "tests/test_audio_arbitration.py"
+          ],
+          "validation_targets": [
+            "validate-audio-streams",
+            "validate-audio-music",
+            "validate-audio-effects",
+            "validate-audio-arbitration"
+          ]
+        }
+      ]
+    }
+  ]
+}

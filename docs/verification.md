@@ -27,3 +27,9 @@ The expected identity is:
 
 `make check` also reproduces Ghidra facts, checks source formatting and policy,
 runs unit tests, validates map regions, and rebuilds the matching image.
+
+`make validate-source-classification` reads the fresh ca65 listing and proves
+byte-level ownership of all 131,072 PRG bytes. In particular it prevents raw
+`.byte` regions from being treated as semantically complete merely because
+they assemble: each is tied to a typed contract, known encoded code, verified
+padding, or an exact entry in the unknowns registry.

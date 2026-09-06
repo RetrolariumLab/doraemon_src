@@ -129,6 +129,8 @@ make validate-world1-frame-mechanics # validate World 1 motion/collision frame s
 make validate-world1-entity-helpers # validate World 1 movement/aiming helper naming
 make validate-world1-final-routines # validate final Bank 0 routine/RAM naming
 make validate-world1-palettes # validate twelve full World 1 PPU palettes
+make validate-authoring-coverage # audit all Source 1.0 primary authoring families
+make validate-runtime-state-coverage # audit RAM and object-system coverage
 make validate-world2-frame-core # validate World 2 frame/stage core naming
 make validate-world2-player-systems # validate World 2 player/inventory/fire naming
 make validate-world2-screen-core # validate World 2 NMI/screen/PPU core naming

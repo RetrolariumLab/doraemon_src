@@ -102,7 +102,7 @@ twelve direct calls or tail jumps. No neutral routine definitions remain in
 any PRG bank; address-derived local branch labels remain intentionally tracked
 as a separate readability metric.
 
-### 6. RAM and object systems - Partial
+### 6. RAM and object systems - Complete
 
 Recover shared and chapter-specific RAM, enemies, items, NPCs, projectiles,
 doors, manholes, bosses, triggers, and persistent progression state. The World
@@ -185,8 +185,13 @@ records, the ending-opening nametable, three chapter-help nametables and their
 26 item-name spans, and all 380 active credit rows are losslessly editable.
 The 3,200 bytes after the proven credit stop pointer are typed and explicitly
 registered as unclassified rather than folded into the active credits.
+The completion audit now recalculates 437 RAM symbols, all eight object-pool
+layouts and 98 slots, zero unclassified pool field bases, zero neutral routine
+definitions, and 354/354 semantically named indirect entries. Its four
+components cover common state plus every chapter-specific player, collision,
+camera, transition, rendering, and object contract.
 
-### 7. World data formats - Partial
+### 7. World data formats - Complete
 
 Complete maps, metatiles, screen sequences, collision properties, object
 placements, transitions, and their cross-references for all three worlds.
@@ -198,10 +203,11 @@ editable, including all five stage-sequence command classes and three entry
 offsets. Its exact 208-entry metatile catalog, palette selectors, renderer
 addressing, all standard-stream cross-references, and the 208 solid flags are
 now losslessly editable. The apparent dynamic selectors are resolved: `$7F` is
-a stopped terminal sentinel and `$7B` begins the collision bitmap. Remaining
-cross-references keep this workstream partial.
+a stopped terminal sentinel and `$7B` begins the collision bitmap. The primary
+coverage audit enumerates the screen, branch, transition, map-decoder, and
+collision cross-references for all three worlds.
 
-### 8. Rendering, graphics, and text - Partial
+### 8. Rendering, graphics, and text - Complete
 
 Recover PPU update paths, palettes, sprites/metasprites, CHR ownership, title,
 HUD, dialogue, item names, and ending presentation. World 1's complete
@@ -226,7 +232,10 @@ also exact and losslessly editable. World 3's 188-entry direct/alias sprite inde
 metasprites, eleven complete palette sets, and 64 room selectors are also exact
 and losslessly editable. Its NMI/disabled-rendering queue ownership, ring
 indexes, record flags, address calculators, and palette/attribute shadows are
-also documented.
+also documented. The title/HUD/help/ending authoring contract and chapter-level
+sprite, palette, CHR-reference, and PPU-path evidence now satisfy the scoped
+Source 1.0 presentation family. Exhaustive secondary graphics editors remain
+deferred.
 
 ### 9. Audio - Complete
 
@@ -243,29 +252,38 @@ effect roles. Exact in-game names for individual effects and bytes outside the
 header-reachable streams remain registered unknowns rather than release claims;
 they do not weaken the complete driver, ABI, arbitration, or stream contracts.
 
-### 10. Authoring round trips - Partial
+### 10. Authoring round trips - Complete
 
 Provide lossless decode/encode tools and tests for the primary map/metatile,
 gameplay object/collision, chapter metasprite/palette, title/HUD/dialogue, and
 audio command-stream families. Secondary fixed tables need typed source or a
 registered unknown, not necessarily a dedicated visual editor.
+`config/authoring_coverage.json` pins 11 chapter-level components, 23 unique
+authoring documents, and 30 focused validators. The aggregate audit rejects
+missing chapter coverage, non-lossless components, missing evidence, or
+validators omitted from `release-check`.
 
 ### 11. Source Reconstruction 1.0 - Planned
 
 Resolve or explicitly classify remaining release-scope unknowns, refresh all
 eight runtime scenarios, run one clean aggregate `source-1-audit`, and prepare
 the audited release commit. Debugger-symbol validation is complete: the static
-gate checks all four linker segments, 3,827 ld65 symbols, eight FCEUX PRG name
+gate checks all four linker segments, 3,828 ld65 symbols, eight FCEUX PRG name
 lists, 83 shared RAM labels, and required Reset/NMI/mapper/chapter-loop probes.
 The live gate additionally joins 14 observed program PCs across all four banks
 and five changing RAM watches to those generated names.
 
-The post-review routine pass is complete. The inventory now records 1,227
+The post-review routine pass is complete. The inventory now records 1,228
 semantic global labels, no neutral routine definitions in any bank, and all
 354 indirect code entries with evidence-backed symbols. The remaining 2,129
 address-derived labels are local branches and are tracked separately; they are
 renamed only where a behavioral role materially improves the surrounding
 routine contract.
+
+The source-byte classification is also complete. The canonical ca65 listing
+accounts for 47,789 instruction bytes and 83,283 directive bytes. Every
+directive byte is now release-gated as base/supplemental typed data, proven
+encoded code, verified fill, or one of 5,700 exact registered-unknown bytes.
 
 ## Deferred to Source Reconstruction 2.0
 

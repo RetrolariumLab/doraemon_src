@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "expected_metrics": {
+    "object_pools": {
+      "pool_count": 8,
+      "field_count": 67,
+      "slot_count": 98,
+      "lifecycle_count": 48,
+      "layout_count": 8,
+      "unclassified_field_count": 0
+    },
+    "semantic_routines": {
+      "neutral_routine_labels": 0,
+      "indirect_entries": 354,
+      "semantic_indirect_entries": 354
+    },
+    "ram_aliases": {
+      "unique_symbols": 437,
+      "shared_symbols": 83,
+      "effective_by_bank": {
+        "0": {
+          "symbols": 181,
+          "bytes": 1142
+        },
+        "1": {
+          "symbols": 180,
+          "bytes": 728
+        },
+        "2": {
+          "symbols": 234,
+          "bytes": 1014
+        },
+        "3": {
+          "symbols": 91,
+          "bytes": 164
+        }
+      }
+    }
+  },
+  "components": [
+    {
+      "id": "common-shell-audio-state",
+      "status": "complete",
+      "contract_files": [
+        "config/common_runtime.json",
+        "config/shell_runtime.json",
+        "config/audio_music.json",
+        "config/audio_arbitration.json"
+      ],
+      "documentation_files": [
+        "docs/common_runtime.md",
+        "docs/shell_runtime.md",
+        "docs/audio_music.md",
+        "docs/audio_arbitration.md",
+        "docs/ram_fields.md"
+      ],
+      "validation_targets": [
+        "validate-common-runtime",
+        "validate-shell-runtime",
+        "validate-audio-music",
+        "validate-audio-arbitration"
+      ]
+    },
+    {
+      "id": "world1-state-and-objects",
+      "status": "complete",
+      "contract_files": [
+        "config/object_pools.json",
+        "config/object_dispatch.json",
+        "config/object_placements.json",
+        "config/world1_core_routines.json",
+        "config/world1_frame_mechanics.json",
+        "config/world1_entity_helpers.json",
+        "config/world1_final_routines.json",
+        "config/world1_player_controls.json",
+        "config/world1_camera.json",
+        "config/world1_camera_entities.json",
+        "config/world1_map_decoder.json",
+        "config/world1_ppu_streaming.json",
+        "config/world1_random.json",
+        "config/world1_enemy_handlers.json",
+        "config/world1_descriptor_identities.json"
+      ],
+      "documentation_files": [
+        "docs/object_formats.md",
+        "docs/world1_player_controls.md",
+        "docs/world1_camera.md",
+        "docs/world1_camera_entities.md",
+        "docs/world1_map_decoder.md",
+        "docs/world1_ppu_streaming.md",
+        "docs/world1_enemy_handlers.md",
+        "docs/ram_fields.md"
+      ],
+      "validation_targets": [
+        "validate-object-pools",
+        "validate-object-dispatch",
+        "validate-object-placements",
+        "validate-world1-core-routines",
+        "validate-world1-frame-mechanics",
+        "validate-world1-entity-helpers",
+        "validate-world1-final-routines",
+        "validate-world1-player-controls",
+        "validate-world1-camera",
+        "validate-world1-camera-entities",
+        "validate-world1-map-decoder",
+        "validate-world1-ppu-streaming",
+        "validate-world1-random",
+        "validate-world1-enemy-handlers",
+        "validate-world1-descriptor-identities"
+      ]
+    },
+    {
+      "id": "world2-state-and-objects",
+      "status": "complete",
+      "contract_files": [
+        "config/object_pools.json",
+        "config/object_dispatch.json",
+        "config/world2_frame_core.json",
+        "config/world2_player_systems.json",
+        "config/world2_screen_core.json",
+        "config/world2_projectile_runtime.json",
+        "config/world2_sprite_runtime.json",
+        "config/world2_final_routines.json",
+        "config/world2_streaming.json",
+        "config/world2_enemy_states.json",
+        "config/world2_enemy_handlers.json",
+        "config/world2_inventory.json"
+      ],
+      "documentation_files": [
+        "docs/object_formats.md",
+        "docs/world2_player_systems.md",
+        "docs/world2_projectile_runtime.md",
+        "docs/world2_sprite_runtime.md",
+        "docs/world2_enemy_states.md",
+        "docs/world2_enemy_handlers.md",
+        "docs/world2_inventory.md",
+        "docs/ram_fields.md"
+      ],
+      "validation_targets": [
+        "validate-object-pools",
+        "validate-object-dispatch",
+        "validate-world2-frame-core",
+        "validate-world2-player-systems",
+        "validate-world2-screen-core",
+        "validate-world2-projectile-runtime",
+        "validate-world2-sprite-runtime",
+        "validate-world2-final-routines",
+        "validate-world2-streaming",
+        "validate-world2-enemy-states",
+        "validate-world2-enemy-handlers",
+        "validate-world2-inventory"
+      ]
+    },
+    {
+      "id": "world3-state-and-objects",
+      "status": "complete",
+      "contract_files": [
+        "config/object_pools.json",
+        "config/object_dispatch.json",
+        "config/world3_frame_core.json",
+        "config/world3_collision_rendering.json",
+        "config/world3_room_runtime.json",
+        "config/world3_player_runtime.json",
+        "config/world3_interaction_runtime.json",
+        "config/world3_entity_runtime.json",
+        "config/world3_room_rendering.json",
+        "config/world3_formation_runtime.json",
+        "config/world3_transition_runtime.json",
+        "config/world3_object_data.json",
+        "config/world3_behavior.json",
+        "config/world3_entity_types.json",
+        "config/world3_spawn_initializers.json",
+        "config/world3_transient_spawns.json",
+        "config/world3_update_handlers.json",
+        "config/world3_ppu_queue.json"
+      ],
+      "documentation_files": [
+        "docs/object_formats.md",
+        "docs/world3_room_runtime.md",
+        "docs/world3_player_runtime.md",
+        "docs/world3_collision_rendering.md",
+        "docs/world3_entity_runtime.md",
+        "docs/world3_formation_runtime.md",
+        "docs/world3_transition_runtime.md",
+        "docs/world3_object_catalog.md",
+        "docs/world3_behavior.md",
+        "docs/world3_transient_spawns.md",
+        "docs/world3_spawn_initializers.md",
+        "docs/world3_update_handlers.md",
+        "docs/world3_ppu_queue.md",
+        "docs/ram_fields.md"
+      ],
+      "validation_targets": [
+        "validate-object-pools",
+        "validate-object-dispatch",
+        "validate-world3-frame-core",
+        "validate-world3-collision-rendering",
+        "validate-world3-room-runtime",
+        "validate-world3-player-runtime",
+        "validate-world3-interaction-runtime",
+        "validate-world3-entity-runtime",
+        "validate-world3-room-rendering",
+        "validate-world3-formation-runtime",
+        "validate-world3-transition-runtime",
+        "validate-world3-object-data",
+        "validate-world3-behavior",
+        "validate-world3-entity-types",
+        "validate-world3-object-catalog",
+        "validate-world3-spawn-initializers",
+        "validate-world3-transient-spawns",
+        "validate-world3-update-handlers",
+        "validate-world3-ppu-queue"
+      ]
+    }
+  ]
+}

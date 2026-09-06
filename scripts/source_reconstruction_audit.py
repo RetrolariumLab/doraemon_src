@@ -66,8 +66,10 @@ def validate_milestones(
 
 def make_targets(text: str) -> set[str]:
     targets: set[str] = set()
-    for match in re.finditer(r"^([A-Za-z0-9_.-]+)\s*:(?![=])", text, re.MULTILINE):
-        targets.add(match.group(1))
+    for match in re.finditer(r"^([^\s:#=][^:#=]*)\s*:(?![=])", text, re.MULTILINE):
+        for target in match.group(1).split():
+            if re.fullmatch(r"[A-Za-z0-9_.-]+", target):
+                targets.add(target)
     return targets
 
 
@@ -111,6 +113,14 @@ def validate_contract_shape(document: dict[str, Any]) -> list[str]:
     source = document.get("source_contract", {})
     if source.get("module_manifest") != "config/source_modules.json":
         errors.append("semantic module manifest path differs")
+    if source.get("runtime_state_coverage_manifest") != (
+        "config/runtime_state_coverage.json"
+    ):
+        errors.append("runtime-state coverage manifest path differs")
+    if source.get("classification_manifest") != (
+        "config/source_classification.json"
+    ):
+        errors.append("source classification manifest path differs")
     if source.get("maximum_module_lines") != 700:
         errors.append("semantic module line limit must remain 700")
     if source.get("executable_incbin") is not False:
@@ -141,6 +151,8 @@ def validate_contract_shape(document: dict[str, Any]) -> list[str]:
         errors.append("required runtime scenarios differ")
 
     authoring = document.get("authoring_contract", {})
+    if authoring.get("coverage_manifest") != "config/authoring_coverage.json":
+        errors.append("authoring coverage manifest path differs")
     if authoring.get("lossless_roundtrip_required_for_primary_formats") is not True:
         errors.append("primary authoring formats must require lossless round trips")
     if authoring.get("required_primary_families") != [

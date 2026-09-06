@@ -153,8 +153,9 @@ undifferentiated credit tail:
 | 2 | 12,373 | 20 |
 | 3 | 22,081 | 9 |
 
-Four sections still contain explicit `Unknown:` claims: `BANK-001`,
-`WORLD-DATA-002`, `AUDIO-002`, and `TEXT-001`. `BANK-002` is now resolved by
+Five sections still contain explicit `Unknown:` claims: `BANK-001`,
+`WORLD-DATA-002`, `AUDIO-002`, `SOURCE-BYTES-001`, and `TEXT-001`.
+`BANK-002` is now resolved by
 the sixteen-entry common-runtime dispatch contract. Long sections containing
 only resolved `Known:` evidence do not inflate that count.
 

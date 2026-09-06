@@ -40,8 +40,8 @@
 | `$06B0-$06F0` | 65 | World 3 persistent objects | thirteen room records with room, type, coordinates, and saved state |
 | `$0725-$0736` | 18 | World 3 punishment player snapshot | saves `$008C-$009D` across the forced room |
 
-Only aliases used by a proven access pattern are named. Chapter-specific
-collision, camera, transition state, and remaining object semantics continue to
-be recovered incrementally.
-The field-level registry and its bank ownership are documented in
-`docs/ram_fields.md`.
+Only aliases used by a proven access pattern are named; unnamed unused bytes
+are not treated as release gaps. Chapter-specific player, collision, camera,
+transition, rendering, and active object state is covered by the contracts in
+`config/runtime_state_coverage.json`. The field-level registry and its bank
+ownership are documented in `docs/ram_fields.md`.

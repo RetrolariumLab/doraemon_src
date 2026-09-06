@@ -312,8 +312,8 @@ def command_lint(_args: argparse.Namespace) -> None:
     required = (
         "README.md", "Makefile", "assets/manifest.json", "config/linker/gnrom.cfg",
         "config/symbols.json", "config/prg_data_ranges.txt", "config/prg_code_entries.txt",
-        "config/source_modules.json",
-        "docs/verification.md",
+        "config/source_modules.json", "config/source_classification.json",
+        "docs/source_classification.md", "docs/verification.md",
         "tools/disassembly.lock.json", "src/main.asm", "scripts/asm_style.py",
         "scripts/verify_rom.py", "scripts/format_project.py",
         "scripts/generate_disassembly.py", "scripts/run_ghidra.py", "scripts/map_data.py",

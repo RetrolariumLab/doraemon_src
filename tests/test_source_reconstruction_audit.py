@@ -56,6 +56,10 @@ class ContractHelpersTests(unittest.TestCase):
             },
             "source_contract": {
                 "module_manifest": "config/source_modules.json",
+                "runtime_state_coverage_manifest": (
+                    "config/runtime_state_coverage.json"
+                ),
+                "classification_manifest": "config/source_classification.json",
                 "maximum_module_lines": 700,
                 "executable_incbin": False,
                 "physical_bank_names_are_boundaries_not_semantics": True,
@@ -81,6 +85,7 @@ class ContractHelpersTests(unittest.TestCase):
                 ],
             },
             "authoring_contract": {
+                "coverage_manifest": "config/authoring_coverage.json",
                 "lossless_roundtrip_required_for_primary_formats": True,
                 "required_primary_families": [
                     "world-maps-and-metatiles",
@@ -114,8 +119,15 @@ class ContractHelpersTests(unittest.TestCase):
         self.assertTrue(any("target ROM scope differs" in error for error in errors))
 
     def test_extracts_real_targets_but_not_variables(self) -> None:
-        text = "verify: build\nVALUE := no\nsource-audit: verify\n"
-        self.assertEqual(AUDIT.make_targets(text), {"verify", "source-audit"})
+        text = (
+            "verify validate-verify: build\n"
+            "VALUE := no\n"
+            "source-audit: verify\n"
+        )
+        self.assertEqual(
+            AUDIT.make_targets(text),
+            {"verify", "validate-verify", "source-audit"},
+        )
 
     def test_rejects_path_outside_project(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
