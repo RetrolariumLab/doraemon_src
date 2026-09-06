@@ -83,5 +83,6 @@ as an audio event while the physical source retains its adjacent data owner.
 
 `make validate-audio-streams` re-decodes the PRG state graph and checks exact
 document equality plus a 10,224-byte sparse-payload round trip. Exact effect
-identities, effect-versus-music APU arbitration, and classification of data
-outside the header-reachable spans remain open for Source 1.0.
+identities and classification of data outside the header-reachable spans remain
+open for Source 1.0. Effect-versus-music APU ownership is separately proven in
+`docs/audio_arbitration.md`.

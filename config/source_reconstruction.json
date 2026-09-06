@@ -220,12 +220,16 @@
       "evidence": [
         "config/audio_dispatch.json",
         "config/audio_music.json",
+        "config/audio_arbitration.json",
         "data/audio/music_streams.json",
+        "docs/audio_arbitration.md",
         "docs/audio_music.md",
         "docs/subsystems.md",
         "scripts/audio_dispatch.py",
         "scripts/audio_music.py",
+        "scripts/audio_arbitration.py",
         "scripts/audio_streams.py",
+        "tests/test_audio_arbitration.py",
         "tests/test_audio_music.py",
         "tests/test_audio_streams.py"
       ]

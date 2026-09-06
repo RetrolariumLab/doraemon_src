@@ -159,8 +159,9 @@ drivers now share a machine-validated 92-byte channel ABI and a structurally
 named 17-command grammar. All 68 command targets, four track-ID limits, and 980
 bytes of envelope/duration/event/stream-position helpers are exact. All 26 playable
 track headers and 10,016 header-reachable stream bytes now round-trip through
-a state-aware authoring format. Effect identities and effect/music APU
-arbitration remain open.
+a state-aware authoring format. The four effect-before-music frame paths,
+channel timer leases, guarded music writes, and track-start reset exception are
+also exact. Individual effect identities remain open.
 
 ### 10. Authoring round trips - Partial
 

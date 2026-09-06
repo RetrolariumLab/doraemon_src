@@ -142,7 +142,11 @@ ScoreDigitsWorking     = $0298
 
 AudioEffectRequestState      = $02A0
 AudioCurrentEffectPriority   = $02A1
+AudioEffectRetriggerLock     = $02A2
 AudioEffectTimers            = $02A3
+AudioEffectWork0             = $02A7
+AudioEffectWork1             = $02A8
+AudioEffectWork2             = $02A9
 AudioMusicState              = $02AA
 AudioMusicControl            = $02AB
 AudioChannelDurationCodes    = $02AC

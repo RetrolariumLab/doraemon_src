@@ -6,7 +6,7 @@ Bank0_Func_827D:
     LDA ExtraLifeSoundCounter
 
 Bank0_Label_8280 = * + 1  ; overlapping entry $8280
-    BEQ Bank0_Label_8288
+    BEQ World1_Audio_UpdateFrame
     LDA #$10
 
 Bank0_Label_8283:
@@ -15,7 +15,7 @@ Bank0_Label_8283:
 Bank0_Label_8286:
     DEC ExtraLifeSoundCounter
 
-Bank0_Label_8288:
+World1_Audio_UpdateFrame:
     JSR World1_Audio_UpdateEffects
     JMP World1_Audio_UpdateMusic
 

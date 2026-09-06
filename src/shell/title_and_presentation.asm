@@ -14,7 +14,7 @@ Bank3_World1TransitionDispatch:
 Bank3_World2TransitionDispatch:
     JMP Bank3_World2ToWorld3Transition
 
-Bank3_Func_8289:
+Audio_UpdateFrame:
     JSR Audio_UpdateEffects
     JMP Audio_UpdateMusic
 

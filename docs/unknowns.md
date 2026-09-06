@@ -129,9 +129,12 @@
 - Known: all 26 eight-byte track headers and 10,016 header-reachable stream
   bytes have state-aware boundaries and a lossless authoring round trip; see
   `data/audio/music_streams.json`.
-- Unknown: semantic identities for individual effects, exact effect versus
-  music APU arbitration, and whether header-unreachable bytes adjacent to the
-  proven spans contain dormant music material or unrelated tables.
+- Known: effects update before music; four channel timers suppress the matching
+  music APU write paths while logical stream time continues. Track-start reset
+  is the unguarded exception; see `config/audio_arbitration.json`.
+- Unknown: semantic identities for individual effects and whether
+  header-unreachable bytes adjacent to the proven spans contain dormant music
+  material or unrelated tables.
 
 ## Out-of-scope reference: Revision A
 

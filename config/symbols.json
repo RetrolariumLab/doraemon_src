@@ -58,6 +58,12 @@
     },
     {
       "bank": 0,
+      "address": "0x8288",
+      "name": "World1_Audio_UpdateFrame",
+      "evidence": "effect-update-followed-by-tail-call-to-music-update"
+    },
+    {
+      "bank": 0,
       "address": "0x828E",
       "name": "Bank0_World1Main",
       "evidence": "world1-city-runtime-entry"
@@ -1240,6 +1246,12 @@
       "address": "0x84FC",
       "name": "World2_ExpandMetatileToTransferBuffers",
       "evidence": "metatile-id-to-palette-and-four-chr-tile-expansion"
+    },
+    {
+      "bank": 1,
+      "address": "0x8704",
+      "name": "World2_Audio_UpdateFrame",
+      "evidence": "effect-update-followed-by-tail-call-to-music-update"
     },
     {
       "bank": 1,
@@ -2926,6 +2938,12 @@
     },
     {
       "bank": 2,
+      "address": "0xAFE6",
+      "name": "World3_Audio_UpdateFrame",
+      "evidence": "effect-update-then-music-update-frame-service"
+    },
+    {
+      "bank": 2,
       "address": "0xAFED",
       "name": "World3_NmiFrameServices",
       "evidence": "bank2-nmi-tail-drains-ppu-queue-applies-scroll-finalizes-requested-oam-buffer-rollover-and-advances-frame-wait"
@@ -3607,6 +3625,12 @@
       "address": "0x8286",
       "name": "Bank3_World2TransitionDispatch",
       "evidence": "world2-completion-gateway-target"
+    },
+    {
+      "bank": 3,
+      "address": "0x8289",
+      "name": "Audio_UpdateFrame",
+      "evidence": "effect-update-followed-by-tail-call-to-music-update"
     },
     {
       "bank": 3,
@@ -5026,10 +5050,30 @@
       "evidence": "all-four-priority-arbitration-routines"
     },
     {
+      "address": "0x02A2",
+      "name": "AudioEffectRetriggerLock",
+      "evidence": "equal-priority-effect-request-rejection-and-effect-stop-reset-clear"
+    },
+    {
       "address": "0x02A3",
       "name": "AudioEffectTimers",
       "size": 4,
       "evidence": "four-byte-effect-timer-array"
+    },
+    {
+      "address": "0x02A7",
+      "name": "AudioEffectWork0",
+      "evidence": "effect-private-handler-work-byte"
+    },
+    {
+      "address": "0x02A8",
+      "name": "AudioEffectWork1",
+      "evidence": "effect-private-handler-work-byte"
+    },
+    {
+      "address": "0x02A9",
+      "name": "AudioEffectWork2",
+      "evidence": "effect-private-handler-work-byte"
     },
     {
       "address": "0x02AA",

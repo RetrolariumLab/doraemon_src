@@ -205,7 +205,7 @@ Bank2_Func_AF6F:
     .byte $58, $EE, $00, $78, $58, $EF, $00, $80, $60, $FE, $00, $78, $60, $FF, $00, $80
     .byte $68, $2E, $00, $78, $68, $2F, $00, $80, $70, $E5, $00, $78, $70, $F5, $00, $80
 
-Bank2_Func_AFE6:
+World3_Audio_UpdateFrame:
     JSR World3_Audio_UpdateEffects
     JSR World3_Audio_UpdateMusic
     RTS

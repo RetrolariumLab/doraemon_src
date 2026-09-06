@@ -390,4 +390,4 @@ Bank2_Func_8277:
     JMP World3_DemoEntry
 
 Bank2_Func_827A:
-    JMP Bank2_Func_AFE6
+    JMP World3_Audio_UpdateFrame

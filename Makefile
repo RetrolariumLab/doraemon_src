@@ -36,6 +36,7 @@ RUNTIME_SCREENSHOT_DIR := build/runtime/screens
 BANK_GATEWAYS := config/bank_gateways.json
 AUDIO_DISPATCH := config/audio_dispatch.json
 AUDIO_MUSIC := config/audio_music.json
+AUDIO_ARBITRATION := config/audio_arbitration.json
 AUDIO_STREAM_AUTHORING := data/audio/music_streams.json
 OBJECT_POOLS := config/object_pools.json
 OBJECT_DISPATCH := config/object_dispatch.json
@@ -104,6 +105,7 @@ RECONSTRUCTION_INVENTORY := config/reconstruction_inventory.json
 	validate-runtime runtime-architecture bank-gateways validate-bank-gateways \
 	audio-dispatch validate-audio-dispatch object-pools validate-object-pools \
 	audio-music validate-audio-music \
+	audio-arbitration validate-audio-arbitration \
 	audio-streams validate-audio-streams \
 	object-dispatch validate-object-dispatch object-placements \
 	validate-object-placements world1-metasprites validate-world1-metasprites \
@@ -270,6 +272,10 @@ audio-music validate-audio-music: $(PRG_ASSET)
 	$(PYTHON) scripts/audio_music.py --prg "$(PRG_ASSET)" \
 		--manifest "$(AUDIO_MUSIC)" --dispatch "$(AUDIO_DISPATCH)" \
 		--symbols "$(SYMBOLS)"
+
+audio-arbitration validate-audio-arbitration: $(PRG_ASSET)
+	$(PYTHON) scripts/audio_arbitration.py --prg "$(PRG_ASSET)" \
+		--manifest "$(AUDIO_ARBITRATION)" --symbols "$(SYMBOLS)"
 
 audio-streams validate-audio-streams: $(PRG_ASSET)
 	$(PYTHON) scripts/audio_streams.py validate --prg "$(PRG_ASSET)" \
@@ -514,7 +520,8 @@ validate-maps: $(ROM)
 
 release-check: quality-check disassembly-check verify validate-maps \
 	validate-reconstruction-inventory \
-	validate-audio-dispatch validate-audio-music validate-audio-streams \
+	validate-audio-dispatch validate-audio-music validate-audio-arbitration \
+	validate-audio-streams \
 	validate-object-pools validate-object-dispatch \
 	validate-object-placements validate-world1-metasprites \
 	validate-world1-random \

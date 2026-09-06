@@ -15,10 +15,10 @@ Bank2_Func_C01E:
 
 Bank2_Label_C024:
     STY a:AudioEffectTimers+$01
-    STA a:$02A7
-    STX a:$02A9
+    STA a:AudioEffectWork0
+    STX a:AudioEffectWork2
     LDA #$01
-    STA a:$02A8
+    STA a:AudioEffectWork1
     JSR Bank2_Func_C038
     JMP Bank2_Func_C2BB
 
@@ -42,23 +42,23 @@ Bank2_Func_C04D:
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03
     LDA #$01
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$04
-    STA a:$02A8
+    STA a:AudioEffectWork1
 
 Bank2_Func_C065:
-    LDA a:$02A8
+    LDA a:AudioEffectWork1
     BNE Bank2_Label_C06D
     JMP Bank2_Func_BF1E
 
 Bank2_Label_C06D:
-    DEC a:$02A7
+    DEC a:AudioEffectWork0
     BNE Bank2_Label_C04C
-    DEC a:$02A8
+    DEC a:AudioEffectWork1
     BEQ Bank2_Label_C091
     LDA #$04
-    STA a:$02A7
-    LDA a:$02A8
+    STA a:AudioEffectWork0
+    LDA a:AudioEffectWork1
     LSR A
     BCC Bank2_Label_C08D
     LDA #$82
@@ -73,7 +73,7 @@ Bank2_Label_C08D:
 
 Bank2_Label_C091:
     LDA #$3C
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$8F
 
 Bank2_Label_C098:
@@ -91,23 +91,23 @@ Bank2_Func_C0A4:
     LDA #$C4
     STA $2E
     LDA #$01
-    STA a:$02A7
-    STA a:$02A2
+    STA a:AudioEffectWork0
+    STA a:AudioEffectRetriggerLock
     LDA #$09
-    STA a:$02A8
+    STA a:AudioEffectWork1
     LDA #$83
-    STA a:$02A9
+    STA a:AudioEffectWork2
 
 Bank2_Func_C0BE:
     JSR Bank2_Func_C0F5
     LDX #$00
-    LDA a:$02A8
+    LDA a:AudioEffectWork1
     STA a:AudioEffectTimers,X
     TXA
     ASL A
     ASL A
     TAX
-    LDA a:$02A9
+    LDA a:AudioEffectWork2
     STA a:APU_PL1_VOL,X
     LDA #$00
     STA a:APU_PL1_SWEEP,X
@@ -131,10 +131,10 @@ Bank2_Label_C0F4:
     RTS
 
 Bank2_Func_C0F5:
-    DEC a:$02A7
+    DEC a:AudioEffectWork0
     BNE Bank2_Label_C10B
-    LDA a:$02A8
-    STA a:$02A7
+    LDA a:AudioEffectWork1
+    STA a:AudioEffectWork0
     LDY #$00
     LDA ($2D),Y
     CMP #$FF
@@ -151,8 +151,8 @@ Bank2_Label_C10D:
 Bank2_Func_C10E:
     LDA #$04
     STA a:AudioEffectTimers
-    STA a:$02A7
-    STA a:$02A2
+    STA a:AudioEffectWork0
+    STA a:AudioEffectRetriggerLock
     LDA #$00
     TAX
     JSR World3_Apu_WritePulse1ControlSweep
@@ -163,7 +163,7 @@ Bank2_Func_C10E:
 Bank2_Func_C126:
     LDA #$0A
     STA a:AudioEffectTimers+$01
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$42
     LDX #$00
     JSR World3_Apu_WritePulse2ControlSweep
@@ -174,8 +174,8 @@ Bank2_Func_C126:
 Bank2_Func_C13C:
     LDA #$04
     STA a:AudioEffectTimers+$02
-    STA a:$02A7
-    STA a:$02A2
+    STA a:AudioEffectWork0
+    STA a:AudioEffectRetriggerLock
     LDA #$84
     LDX #$8A
     JSR World3_Apu_WritePulse1ControlSweep
@@ -186,24 +186,24 @@ Bank2_Func_C13C:
 Bank2_Func_C155:
     LDA #$10
     STA a:AudioEffectTimers+$03
-    STA a:$02A8
+    STA a:AudioEffectWork1
     LDA #$0C
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$04
     STA a:APU_NOISE_VOL
     LDA #$08
     STA a:APU_NOISE_HI
 
 Bank2_Func_C16C:
-    LDA a:$02A7
+    LDA a:AudioEffectWork0
     STA a:APU_NOISE_LO
-    LDA a:$02A7
+    LDA a:AudioEffectWork0
     CMP #$0F
     BEQ Bank2_Label_C17C
-    INC a:$02A7
+    INC a:AudioEffectWork0
 
 Bank2_Label_C17C:
-    DEC a:$02A8
+    DEC a:AudioEffectWork1
     BNE Bank2_Label_C184
 
 Bank2_Label_C181:
@@ -218,16 +218,16 @@ Bank2_Func_C185:
     LDA #$C4
     STA $2E
     LDA #$01
-    STA a:$02A7
+    STA a:AudioEffectWork0
 
 Bank2_Func_C192:
-    DEC a:$02A7
+    DEC a:AudioEffectWork0
     BNE Bank2_Label_C184
     LDY #$00
     LDA ($2D),Y
     CMP #$FF
     BEQ Bank2_Label_C181
-    STA a:$02A7
+    STA a:AudioEffectWork0
     STA a:AudioEffectTimers
     STA a:AudioEffectTimers+$01
     STA a:AudioEffectTimers+$02
@@ -243,7 +243,7 @@ Bank2_Func_C1B9:
     BEQ Bank2_Label_C1E4
     ASL A
     TAY
-    LDA a:$02A7
+    LDA a:AudioEffectWork0
     CPX #$08
     BEQ Bank2_Label_C1CD
     LSR A
@@ -274,8 +274,8 @@ Bank2_Func_C1EB:
     LDA #$18
     STA a:AudioEffectTimers+$01
     LDA #$10
-    STA a:$02A7
-    STA a:$02A2
+    STA a:AudioEffectWork0
+    STA a:AudioEffectRetriggerLock
     LDA #$A0
     LDX #$9B
     JSR World3_Apu_WritePulse2ControlSweep
@@ -286,7 +286,7 @@ Bank2_Func_C1EB:
 Bank2_Func_C206:
     LDA #$08
     STA a:AudioEffectTimers+$01
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$C0
     LDX #$83
     JSR World3_Apu_WritePulse2ControlSweep
@@ -300,33 +300,33 @@ Bank2_Func_C21C:
     LDA #$04
     STA a:APU_NOISE_LO
     LDA #$0F
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$00
-    STA a:$02A8
+    STA a:AudioEffectWork1
 
 Bank2_Func_C230:
-    LDA a:$02A7
+    LDA a:AudioEffectWork0
     CMP #$10
     BEQ Bank2_Label_C25C
     ORA #$10
     STA a:APU_NOISE_VOL
     LDA #$28
     STA a:APU_NOISE_HI
-    LDA a:$02A8
+    LDA a:AudioEffectWork1
     BEQ Bank2_Label_C24A
-    INC a:$02A7
+    INC a:AudioEffectWork0
     RTS
 
 Bank2_Label_C24A:
-    LDA a:$02A7
+    LDA a:AudioEffectWork0
     CMP #$02
     BCC Bank2_Label_C258
-    DEC a:$02A7
-    DEC a:$02A7
+    DEC a:AudioEffectWork0
+    DEC a:AudioEffectWork0
     RTS
 
 Bank2_Label_C258:
-    INC a:$02A8
+    INC a:AudioEffectWork1
     RTS
 
 Bank2_Label_C25C:
@@ -336,35 +336,35 @@ Bank2_Label_C25C:
 
 Bank2_Func_C264:
     LDA #$03
-    STA a:$02A8
+    STA a:AudioEffectWork1
     LDA #$FF
     STA a:AudioEffectTimers+$01
     LDA #$00
-    STA a:$02A7
+    STA a:AudioEffectWork0
 
 Bank2_Func_C273:
-    LDA a:$02A7
+    LDA a:AudioEffectWork0
     BNE Bank2_Label_C29F
-    LDA a:$02A8
+    LDA a:AudioEffectWork1
     BNE Bank2_Label_C285
     LDA #$00
     STA a:AudioEffectTimers+$01
     JMP World3_Audio_StopCurrentEffect
 
 Bank2_Label_C285:
-    DEC a:$02A8
+    DEC a:AudioEffectWork1
     LDA #$84
     LDX #$8B
     JSR World3_Apu_WritePulse2ControlSweep
-    LDY a:$02A8
+    LDY a:AudioEffectWork1
     LDX a:$C2A3,Y
     LDA #$10
     JSR World3_Apu_WritePulse2Timer
     LDA #$04
-    STA a:$02A7
+    STA a:AudioEffectWork0
 
 Bank2_Label_C29F:
-    DEC a:$02A7
+    DEC a:AudioEffectWork0
     RTS
     .incbin "assets/generated/audio/sfx/prg3-tone-low.bin", $0, $4  ; rom-asset .byte
 
@@ -375,18 +375,18 @@ Bank2_Func_C2A7:
 
 Bank2_Label_C2AD:
     STY a:AudioEffectTimers+$01
-    STA a:$02A7
-    STX a:$02A9
+    STA a:AudioEffectWork0
+    STX a:AudioEffectWork2
     LDA #$01
-    STA a:$02A8
+    STA a:AudioEffectWork1
 
 Bank2_Func_C2BB:
-    DEC a:$02A8
+    DEC a:AudioEffectWork1
     BNE Bank2_Label_C2E6
-    LDA a:$02A7
+    LDA a:AudioEffectWork0
     BMI Bank2_Label_C2E7
     CLC
-    ADC a:$02A9
+    ADC a:AudioEffectWork2
     ASL A
     TAY
     LDA #$DF
@@ -397,9 +397,9 @@ Bank2_Func_C2BB:
     LDA a:$C2EB,Y
     ORA #$88
     JSR World3_Apu_WritePulse2Timer
-    DEC a:$02A7
+    DEC a:AudioEffectWork0
     LDA #$04
-    STA a:$02A8
+    STA a:AudioEffectWork1
 
 Bank2_Label_C2E6:
     RTS
@@ -416,22 +416,22 @@ Bank2_Func_C334:
     LDA #$10
     STA a:AudioEffectTimers+$02
     LDA #$40
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$01
-    STA a:$02A8
+    STA a:AudioEffectWork1
     LDA #$30
-    STA a:$02A9
+    STA a:AudioEffectWork2
 
 Bank2_Func_C348:
     LDY #$01
-    LDX a:$02A7
+    LDX a:AudioEffectWork0
     LDA #$08
     JSR World3_Apu_WriteTriangleControlTimer
-    LDA a:$02A7
+    LDA a:AudioEffectWork0
     SEC
-    SBC a:$02A8
-    STA a:$02A7
-    CMP a:$02A9
+    SBC a:AudioEffectWork1
+    STA a:AudioEffectWork0
+    CMP a:AudioEffectWork2
     BNE Bank2_Label_C364
     JMP World3_Audio_StopCurrentEffect
 
@@ -442,8 +442,8 @@ Bank2_Func_C365:
     LDA #$0E
     STA a:AudioEffectTimers+$01
     LDA #$06
-    STA a:$02A7
-    STA a:$02A8
+    STA a:AudioEffectWork0
+    STA a:AudioEffectWork1
     LDA #$9F
     LDX #$8D
     JSR World3_Apu_WritePulse2ControlSweep
@@ -452,14 +452,14 @@ Bank2_Func_C365:
     JMP World3_Apu_WritePulse2Timer
 
 Bank2_Func_C380:
-    DEC a:$02A7
+    DEC a:AudioEffectWork0
     BNE Bank2_Label_C3A5
-    LDA a:$02A8
+    LDA a:AudioEffectWork1
     BEQ Bank2_Label_C3A2
     LDA #$08
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$00
-    STA a:$02A8
+    STA a:AudioEffectWork1
     LDA #$9F
     LDX #$8C
     JSR World3_Apu_WritePulse2ControlSweep
@@ -489,38 +489,38 @@ Bank2_Func_C3AF:
     LDA #$08
     JSR World3_Apu_WritePulse2Timer
     LDA #$02
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$01
-    STA a:$02A8
+    STA a:AudioEffectWork1
 
 Bank2_Func_C3CC:
-    DEC a:$02A8
+    DEC a:AudioEffectWork1
     BNE Bank2_Label_C447
     LDA #$04
-    STA a:$02A8
-    LDY a:$02A7
+    STA a:AudioEffectWork1
+    LDY a:AudioEffectWork0
     LDA a:$C3E7,Y
     STA a:APU_PL2_VOL
-    DEC a:$02A7
+    DEC a:AudioEffectWork0
     BPL Bank2_Label_C447
     JMP World3_Audio_StopCurrentEffect
     .byte $00
 
 Bank2_Func_C3E8:
     LDA #$00
-    STA a:$02A7
+    STA a:AudioEffectWork0
     LDA #$01
-    STA a:$02A8
+    STA a:AudioEffectWork1
 
 Bank2_Func_C3F2:
-    DEC a:$02A8
+    DEC a:AudioEffectWork1
     BNE Bank2_Label_C417
-    LDA a:$02A7
+    LDA a:AudioEffectWork0
     EOR #$04
-    STA a:$02A7
+    STA a:AudioEffectWork0
     TAY
     LDA a:$C42C,Y
-    STA a:$02A8
+    STA a:AudioEffectWork1
     LDA #$DF
     LDX a:$C429,Y
     JSR World3_Apu_WritePulse1ControlSweep

@@ -434,7 +434,7 @@ Bank1_Label_86F9:
     BNE Bank1_Label_86F9
     RTS
 
-Bank1_Func_8704:
+World2_Audio_UpdateFrame:
     JSR World2_Audio_UpdateEffects
     JMP World2_Audio_UpdateMusic
 

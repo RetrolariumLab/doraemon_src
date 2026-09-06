@@ -524,7 +524,11 @@ All four PRG banks carry their own driver code but use the same RAM layout.
 | --- | ---: | --- |
 | `AudioEffectRequestState` | `$02A0` | Pending effect index; bit 7 marks a consumed request |
 | `AudioCurrentEffectPriority` | `$02A1` | Even priority/dispatch index of the active effect |
+| `AudioEffectRetriggerLock` | `$02A2` | Rejects an equal-priority retrigger until effect stop/reset |
 | `AudioEffectTimers` | `$02A3` | Four per-frame effect countdown bytes |
+| `AudioEffectWork0` | `$02A7` | Effect-private work byte; handler-specific meaning |
+| `AudioEffectWork1` | `$02A8` | Effect-private work byte; handler-specific meaning |
+| `AudioEffectWork2` | `$02A9` | Effect-private work byte; handler-specific meaning |
 | `AudioMusicState` | `$02AA` | Music request and active-state byte |
 | `AudioMusicControl` | `$02AB` | Music reset/control state shared with transition code |
 | `AudioChannelDurationCodes` | `$02AC` | Four current seven-bit duration/articulation codes |

@@ -390,4 +390,4 @@ Bank3_Func_8277:
     JMP Bank3_Func_87CB
 
 Bank3_Func_827A:
-    JMP Bank3_Func_8289
+    JMP Audio_UpdateFrame
