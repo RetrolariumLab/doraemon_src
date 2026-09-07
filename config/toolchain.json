@@ -87,6 +87,13 @@
       "path_policy": "extracted from the canonical reference by make split",
       "size": 32768,
       "sha256": "297cc609a3cee675a616f61c1f2d5a68f05decd0b2c10e71865d7befe6187939"
+    },
+    {
+      "id": "doraemon-japan-rev-a-rom",
+      "role": "official_revision_reference_image",
+      "path_policy": "user-supplied through REVISION_REV_A_ROM",
+      "size": 163856,
+      "sha256": "c070fa0e07a4b8be107ecc2f514e4c64f5bbb2a15754b6c6214e7259a1b30920"
     }
   ]
 }
