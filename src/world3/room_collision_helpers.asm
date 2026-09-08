@@ -3,6 +3,7 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World3_StepWorkXTowardTarget:
+.if DORAEMON_REVISION = DORAEMON_REVISION_ORIGINAL
     CPX $3C
     BEQ Bank2_Label_AB46
     BCS Bank2_Label_AB44
@@ -14,8 +15,13 @@ Bank2_Label_AB44:
 
 Bank2_Label_AB46:
     RTS
+.else
+; Official Revision A bytes; their behavioral purpose is not yet proven
+    .byte $E4, $3C, $F0, $07, $B0, $03, $FF, $3C, $FF, $E6, $FF, $60
+.endif
 
 World3_StepWorkYTowardTarget:
+.if DORAEMON_REVISION = DORAEMON_REVISION_ORIGINAL
     CPY $3D
     BEQ Bank2_Label_AB52
     BCS Bank2_Label_AB50
@@ -27,8 +33,13 @@ Bank2_Label_AB50:
 
 Bank2_Label_AB52:
     RTS
+.else
+; Official Revision A bytes; their behavioral purpose is not yet proven
+    .byte $FF, $3D, $FF, $07, $FF, $03, $FF, $3F, $FF, $E6, $FF, $60
+.endif
 
 World3_AdvanceRandomEncounterRoomTowardPlayer:
+.if DORAEMON_REVISION = DORAEMON_REVISION_ORIGINAL
     JSR World3_RandomByte
     AND #$07
     TAX
@@ -36,6 +47,11 @@ World3_AdvanceRandomEncounterRoomTowardPlayer:
     CMP #$FF
     BEQ Bank2_Label_AB9D
     STA $3E
+.else
+; Revision A changes only this 14-byte prefix; the routine tail is shared
+    .byte $FF, $53, $FF, $29, $FF, $AA, $FF
+    .byte $F1, $FF, $C9, $FF, $FF, $FF, $01, $3E
+.endif
     LSR A
     LSR A
     LSR A

@@ -1,6 +1,18 @@
-; Doraemon (Japan, original revision) NES preservation entrypoint
+; Doraemon official Japanese revision source entrypoint
 
 .setcpu "6502"
+
+.include "revisions/profile_ids.inc"
+
+.ifndef DORAEMON_REVISION
+DORAEMON_REVISION = DORAEMON_REVISION_ORIGINAL
+.endif
+
+.if DORAEMON_REVISION <> DORAEMON_REVISION_ORIGINAL
+    .if DORAEMON_REVISION <> DORAEMON_REVISION_REV_A
+        .error "Unsupported Doraemon revision profile"
+    .endif
+.endif
 
 .segment "HEADER"
 
