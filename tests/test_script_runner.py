@@ -1,0 +1,40 @@
+from __future__ import annotations
+
+import unittest
+
+from scripts import run
+from scripts.build.project import validate_test_layout, validate_tool_layout
+
+
+class ScriptRunnerTests(unittest.TestCase):
+    def test_discovers_every_categorized_python_tool(self) -> None:
+        tools = run.available_tools()
+        expected_paths = sorted(
+            ".".join(path.relative_to(run.SCRIPT_ROOT).with_suffix("").parts)
+            for category in run.PUBLIC_CATEGORIES
+            for path in (run.SCRIPT_ROOT / category).rglob("*.py")
+            if path.name != "__init__.py" and "__pycache__" not in path.parts
+        )
+        self.assertEqual(tools, expected_paths)
+        self.assertEqual(len(tools), len(set(tools)))
+
+    def test_exposes_each_responsibility(self) -> None:
+        self.assertEqual(
+            {tool.split(".", 1)[0] for tool in run.available_tools()},
+            run.PUBLIC_CATEGORIES,
+        )
+
+    def test_rejects_root_and_unknown_modules(self) -> None:
+        for name in ("level_studio", "unknown.missing", "validation.__hidden"):
+            with self.subTest(name=name), self.assertRaises(SystemExit):
+                run.require_tool(name)
+
+    def test_repository_tool_layout_is_categorized(self) -> None:
+        validate_tool_layout(run.SCRIPT_ROOT.parent)
+
+    def test_repository_test_layout_mirrors_tools(self) -> None:
+        validate_test_layout(run.SCRIPT_ROOT.parent)
+
+
+if __name__ == "__main__":
+    unittest.main()
