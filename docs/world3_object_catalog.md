@@ -19,7 +19,7 @@ The 65 bytes at `$D96B-$D9AB` are five consecutive thirteen-byte columns:
 
 The authoring encoder transposes thirteen records back into these columns. It
 does not apply the runtime shuffles: the JSON represents the canonical initial
-ROM order, while `config/world3_object_data.json` independently validates the
+ROM order, while `config/authoring/world3/world3_object_data.json` independently validates the
 two shuffle multisets and fixed final slot.
 
 ## Entity type properties
@@ -43,6 +43,6 @@ manifests.
 ## Commands
 
 `make validate-world3-object-catalog` verifies the manifests and lossless JSON
-against the canonical PRG. `scripts/world3_object_catalog.py decode` regenerates
+against the canonical PRG. `scripts/validation/world3/world3_object_catalog.py decode` regenerates
 the JSON, while `encode` applies edited catalog regions to a supplied base PRG
 without changing unrelated bytes.

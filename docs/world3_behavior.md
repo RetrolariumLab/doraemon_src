@@ -53,7 +53,7 @@ opcode and operand byte. The canonical payload yields:
 - no branch or jump into an operand or outside its stream.
 
 Commands `$1n` and `$5n` are implemented by the interpreter but absent from
-the reachable canonical streams. `config/world3_behavior.json` records the
+the reachable canonical streams. `config/authoring/world3/world3_behavior.json` records the
 complete per-stream CRC, instruction count, branch count, terminator count,
 and aggregate opcode histogram.
 
@@ -66,13 +66,13 @@ The checked-in document round-trips to the exact 1,062 ROM bytes.
 Decode the canonical PRG:
 
 ```text
-python scripts/world3_behavior.py decode --prg assets/generated/prg/doraemon.prg --manifest config/world3_behavior.json --output data/world3/behavior_streams.json
+python scripts/run.py validation.world3.world3_behavior decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world3/world3_behavior.json --output data/world3/behavior_streams.json
 ```
 
 Encode an edited document to a raw stream payload:
 
 ```text
-python scripts/world3_behavior.py encode --input data/world3/behavior_streams.json --output build/world3_behavior.bin
+python scripts/run.py validation.world3.world3_behavior encode --input data/world3/behavior_streams.json --output build/world3_behavior.bin
 ```
 
 The encoder rejects wrong operand counts, overlaps, uncovered bytes, stale

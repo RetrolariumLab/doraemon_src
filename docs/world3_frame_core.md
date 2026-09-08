@@ -1,6 +1,6 @@
 # World 3 frame core
 
-`config/world3_frame_core.json` fixes eighteen formerly address-named Bank 2
+`config/reconstruction/world3/world3_frame_core.json` fixes eighteen formerly address-named Bank 2
 routine entries. The contract covers 938 executable bytes, 42 direct calls,
 and 22 Bank 2-private RAM fields.
 

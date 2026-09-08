@@ -1,6 +1,6 @@
 # World 3 transition runtime
 
-`config/world3_transition_runtime.json` fixes the final five address-named
+`config/reconstruction/world3/world3_transition_runtime.json` fixes the final five address-named
 World 3 routines. The exact contract covers 374 executable bytes, twelve
 direct calls or tail jumps, and ten Bank 2-private RAM fields. It also names
 the two blank completion-wipe sources, the eight-record debug OAM image, and

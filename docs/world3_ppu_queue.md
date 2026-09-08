@@ -39,7 +39,7 @@ tiles. They return the computed nametable or attribute PPU address in
 `World3PpuAddressHigh:World3PpuAddressLow`; the attribute helper additionally
 returns the matching RAM-shadow offset.
 
-`config/world3_ppu_queue.json` makes this model executable. The release gate
+`config/reconstruction/world3/world3_ppu_queue.json` makes this model executable. The release gate
 checks the record geometry and capacity invariant, all 15 owned RAM symbols,
 23 active or dormant PPU-path routines, and 13 code signatures against the
 canonical PRG and semantic symbol registry.

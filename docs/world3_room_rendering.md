@@ -1,6 +1,6 @@
 # World 3 room rendering
 
-`config/world3_room_rendering.json` fixes eight formerly address-named World 3
+`config/reconstruction/world3/world3_room_rendering.json` fixes eight formerly address-named World 3
 room-rendering routines. The exact contract covers 351 executable bytes and
 ten direct calls. It also fixes the current-room map pointer, the two
 hierarchical row selectors, the zero-through-29 output row, and both 32-byte

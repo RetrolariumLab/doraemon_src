@@ -1,6 +1,6 @@
 # World 3 player runtime
 
-`config/world3_player_runtime.json` fixes thirteen formerly address-named
+`config/reconstruction/world3/world3_player_runtime.json` fixes thirteen formerly address-named
 World 3 player and map-lookup entries. The exact contract covers 690 executable
 bytes, 25 direct `JSR` or `JMP` edges, and fourteen Bank 2-private RAM bytes.
 Four additional conditional branches enter adjacent routines directly and are

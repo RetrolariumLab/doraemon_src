@@ -1,6 +1,6 @@
 # World 3 formation runtime
 
-`config/world3_formation_runtime.json` fixes thirteen formerly address-named
+`config/reconstruction/world3/world3_formation_runtime.json` fixes thirteen formerly address-named
 World 3 formation, chain-motion, and encounter helpers. The exact contract
 covers 679 executable bytes and 28 direct calls. It also checks twelve
 established RAM fields and names six formation-specific scalar fields plus the

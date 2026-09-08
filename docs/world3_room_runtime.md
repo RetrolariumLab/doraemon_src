@@ -1,6 +1,6 @@
 # World 3 room runtime
 
-`config/world3_room_runtime.json` fixes fifteen formerly address-named World 3
+`config/reconstruction/world3/world3_room_runtime.json` fixes fifteen formerly address-named World 3
 routines covering input and audio wrappers, player rendering, all four room
 edges, room-entry persistence policy, full room reconstruction, music
 selection, and the palette fade. The exact contract covers 607 executable

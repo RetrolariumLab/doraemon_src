@@ -1,6 +1,6 @@
 # World 3 collision and rendering
 
-`config/world3_collision_rendering.json` fixes all twenty-two formerly
+`config/reconstruction/world3/world3_collision_rendering.json` fixes all twenty-two formerly
 address-named routine entries in `object_scripts_2.asm`. The exact contract
 covers 808 executable bytes, 50 direct calls or tail jumps, and twenty
 Bank 2-private RAM symbols covering 21 bytes.
