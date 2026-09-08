@@ -5,8 +5,8 @@ entity slots. The type selects per-type properties and the 32-slot update
 handler table at `$92DF`. Types below `$10` additionally select both a random
 spawn initializer at `$8F6C` and a packed behavior stream at `$D9AC`.
 
-`config/world3_entity_types.json` joins those three dispatch views with five
-contiguous 32-byte property columns. `scripts/world3_entity_types.py` validates
+`config/authoring/world3/world3_entity_types.json` joins those three dispatch views with five
+contiguous 32-byte property columns. `scripts/validation/world3/world3_entity_types.py` validates
 the catalog against the canonical PRG, the ordinary object-dispatch manifest,
 and the persistent registry manifest.
 
@@ -108,10 +108,10 @@ The optional Pillow-backed research renderer reproduces the type contact sheet
 from the private CHR input and decoded metasprites without tracking the image:
 
 ```text
-python -B scripts/world3_metasprites.py render-types \
+python -B scripts/run.py validation.world3.world3_metasprites render-types \
   --prg assets/generated/prg/doraemon.prg \
   --chr assets/generated/chr/doraemon.chr \
-  --manifest config/world3_metasprites.json \
-  --entity-types config/world3_entity_types.json \
+  --manifest config/authoring/world3/world3_metasprites.json \
+  --entity-types config/authoring/world3/world3_entity_types.json \
   --output build/research/world3_entity_types.png
 ```

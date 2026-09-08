@@ -1,6 +1,6 @@
 # World 3 entity runtime
 
-`config/world3_entity_runtime.json` fixes ten formerly address-named World 3
+`config/reconstruction/world3/world3_entity_runtime.json` fixes ten formerly address-named World 3
 entity-lifecycle helpers. The exact contract covers 545 executable bytes,
 17 direct calls or tail jumps, and seven already established Bank 2-private
 RAM fields. A 64-entry room table now names the horizontal clamp policy used

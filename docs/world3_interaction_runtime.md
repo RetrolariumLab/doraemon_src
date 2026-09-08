@@ -1,6 +1,6 @@
 # World 3 interaction runtime
 
-`config/world3_interaction_runtime.json` fixes nine formerly address-named
+`config/reconstruction/world3/world3_interaction_runtime.json` fixes nine formerly address-named
 World 3 interaction entries. The exact contract covers 1,016 executable bytes,
 26 direct calls, and eight Bank 2-private RAM bytes. Two blank-tile rows used
 by the arena and barrier updates are also named in the symbol registry.
