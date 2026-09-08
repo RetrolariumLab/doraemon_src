@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-import project
+from scripts.build import project
 
 
 BANK_SIZE = 0x8000

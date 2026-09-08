@@ -100,7 +100,7 @@
   ],
   "music_document": {
     "path": "data/audio/music_streams.json",
-    "decoder": "scripts/audio_streams.py",
+    "decoder": "scripts/validation/audio/audio_streams.py",
     "layout": "config/audio_music.json",
     "image": "original"
   }
