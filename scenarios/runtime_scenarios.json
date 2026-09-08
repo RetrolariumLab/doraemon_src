@@ -2,6 +2,10 @@
   "schema_version": 1,
   "status": "complete",
   "rom_sha1": "d47ebb0be5697820691065faedff277607ac10fd",
+  "rom_sha1_by_profile": {
+    "original": "d47ebb0be5697820691065faedff277607ac10fd",
+    "rev_a": "20c5e40ab706a637d0572b1549eeff9a0048a065"
+  },
   "scenarios": [
     {
       "id": "boot-title",
@@ -340,7 +344,45 @@
         "chapter-steady-state",
         "probe-sequence",
         "recurring-frame-loops"
-      ]
+      ],
+      "profile_overrides": {
+        "rev_a": {
+          "method": "enter World 3 and observe the Revision A first-frame reset through its changed collision helper",
+          "max_frames": 500,
+          "expected_probes": [
+            {
+              "name": "world3_main_entry",
+              "bank": 2
+            },
+            {
+              "name": "world3_revision_encounter_step",
+              "bank": 2
+            },
+            {
+              "name": "world3_frame_loop",
+              "bank": 2
+            }
+          ],
+          "expected_reset": {
+            "after_probe": "world3_revision_encounter_step",
+            "bank": 2,
+            "selector": "0A",
+            "maximum_frame_gap": 16
+          },
+          "post_reset": {
+            "bank": 3,
+            "selector": "0F"
+          },
+          "checks": [
+            "mapper-bus-conflict",
+            "observed-inputs",
+            "chapter-bank-entry",
+            "probe-sequence",
+            "reset-after-probe",
+            "post-reset-steady-state"
+          ]
+        }
+      }
     },
     {
       "id": "chapter-transition",
@@ -503,7 +545,46 @@
         "observed-memory-patches",
         "chapter-bank-entry",
         "probe-sequence"
-      ]
+      ],
+      "profile_overrides": {
+        "rev_a": {
+          "method": "repeat the World 3 entry as an independent Revision A reset observation; ending remains covered by the original profile",
+          "max_frames": 500,
+          "memory_patches": [],
+          "expected_probes": [
+            {
+              "name": "world3_main_entry",
+              "bank": 2
+            },
+            {
+              "name": "world3_revision_encounter_step",
+              "bank": 2
+            },
+            {
+              "name": "world3_frame_loop",
+              "bank": 2
+            }
+          ],
+          "expected_reset": {
+            "after_probe": "world3_revision_encounter_step",
+            "bank": 2,
+            "selector": "0A",
+            "maximum_frame_gap": 16
+          },
+          "post_reset": {
+            "bank": 3,
+            "selector": "0F"
+          },
+          "checks": [
+            "mapper-bus-conflict",
+            "observed-inputs",
+            "chapter-bank-entry",
+            "probe-sequence",
+            "reset-after-probe",
+            "post-reset-steady-state"
+          ]
+        }
+      }
     }
   ]
 }
