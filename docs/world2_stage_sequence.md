@@ -57,5 +57,5 @@ bytes, for 232 losslessly covered bytes in total.
 
 Run `make validate-world2-stage-sequence` to prove the decoder signatures,
 opcode partition, command counts, start offsets, CRCs, and authoring round trip.
-The `decode` and `encode` subcommands in `scripts/world2_stage_sequence.py`
+The `decode` and `encode` subcommands in `scripts/validation/world2/world2_stage_sequence.py`
 regenerate the JSON or apply edited bytes to a supplied base PRG.

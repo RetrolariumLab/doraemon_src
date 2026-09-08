@@ -1,6 +1,6 @@
 # World 2 final routines
 
-`config/world2_final_routines.json` fixes the last thirteen address-named
+`config/reconstruction/world2/world2_final_routines.json` fixes the last thirteen address-named
 routine entries in Bank 1. It covers 796 executable bytes, 19 direct calls or
 tail jumps, and nineteen Bank 1-private RAM symbols covering 26 bytes.
 

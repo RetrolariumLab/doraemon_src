@@ -15,7 +15,8 @@ state = ((token & $1F) ^ $10) + 1
 
 This maps `$D0-$DE` one-to-one onto states `$01-$0F`. The shared compressed pool
 contains 685 physical spawn bytes; overlapping selector views encounter them
-738 times. `config/world2_enemy_states.json` fixes the frequency of every token.
+738 times. `config/authoring/world2/world2_enemy_states.json` fixes the
+frequency of every token.
 
 ## Runtime domain
 
@@ -49,7 +50,7 @@ Run `make validate-world2-enemy-states` to verify token frequencies in the
 lossless screen authoring data, the normalization machine-code signature,
 runtime-state partition, property bytes and CRCs, both dispatch tables, and all
 three shared-storage relationships. The same target round-trips the editable
-state records. `config/world2_enemy_handlers.json` additionally validates all
+state records. `config/reconstruction/world2/world2_enemy_handlers.json` additionally validates all
 20 state-to-update and state-to-render edges and assigns behavior-derived
 structural names; see `docs/world2_enemy_handlers.md`. Individual enemy
 identities remain unnamed until sprite and behavior evidence supports them.

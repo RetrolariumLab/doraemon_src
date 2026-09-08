@@ -1,6 +1,6 @@
 # World 2 screen core
 
-`config/world2_screen_core.json` fixes the World 2 NMI PPU commit, RTS-based
+`config/reconstruction/world2/world2_screen_core.json` fixes the World 2 NMI PPU commit, RTS-based
 screen-service dispatch, transition-row setup, PPU-address helper, and initial
 nametable clear. It pins 115 executable bytes, nine direct callers, and the
 World 2 scroll pair plus scrolling-enable state.

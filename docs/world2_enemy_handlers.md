@@ -1,7 +1,7 @@
 # World 2 enemy handlers
 
 World 2 dispatches its enemies by runtime state through two RTS-minus-one
-tables in PRG bank 1. `config/world2_enemy_handlers.json` records every active
+tables in PRG bank 1. `config/reconstruction/world2/world2_enemy_handlers.json` records every active
 state-to-handler edge and gives each target a behavior-derived structural name.
 It deliberately does not assign character identities that sprite or external
 evidence has not established.
@@ -31,9 +31,10 @@ targets. The sharing is meaningful:
 ## Validation
 
 `make validate-world2-enemy-handlers` checks the lifecycle partition against
-`config/world2_enemy_states.json`, both exact dispatch mappings and their ROM
-bytes against `config/object_dispatch.json`, and every handler symbol against
-`config/symbols.json`. The target is part of `make release-check`.
+`config/authoring/world2/world2_enemy_states.json`, both exact dispatch
+mappings and their ROM
+bytes against `config/reconstruction/common/object_dispatch.json`, and every handler symbol against
+`config/reconstruction/symbols.json`. The target is part of `make release-check`.
 
 The original structural names described only observable motion, timing,
 projectile, and rendering behavior. The canonical identities are now resolved
