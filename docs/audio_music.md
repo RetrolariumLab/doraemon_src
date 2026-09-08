@@ -46,7 +46,7 @@ a target-minus-one `PHA`/`PHA`/`RTS` table.
 | `$EF` | 1 | Set base volume and envelope mode |
 
 The names describe direct state mutations and control flow; they do not claim
-musical intent. `config/audio_music.json` joins every opcode to all four exact
+musical intent. `config/authoring/audio/audio_music.json` joins every opcode to all four exact
 dispatch targets and their semantic source labels.
 
 ## State and validation
