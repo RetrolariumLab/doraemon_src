@@ -35,7 +35,7 @@ by `x_cell`, allowing horizontal scans to stop once the requested column has
 been passed. The underground list has only 33 records; the city list has 112,
 of which its 67-record tail satisfies the ordering invariant.
 
-`config/object_placements.json` fixes both ranges, counts, terminators, CRCs,
+`config/authoring/world1/object_placements.json` fixes both ranges, counts, terminators, CRCs,
 all thirteen descriptors, and their collision tables.
 `make validate-object-placements` proves these contracts and the sorted-tail
 invariant directly against the canonical PRG. The same command losslessly
@@ -61,7 +61,8 @@ into the enemy allocator. Each standard screen expands sixteen rows, stopping
 each row after at least fifteen cells. Because a final run is not clipped, row
 width can reach 22 cells.
 
-`config/world2_streaming.json` fixes all 119 standard selectors, 116 unique ROM
+`config/authoring/world2/world2_streaming.json` fixes all 119 standard
+selectors, 116 unique ROM
 streams, three screen-service RTS tables, 738 spawn tokens, 3,623 run tokens,
 and the final read at `$FFFA`. `make validate-world2-streaming` checks those
 invariants and every indirect dispatch target against the canonical PRG.
@@ -108,7 +109,7 @@ machine contract covers all 1,062 bytes as 532 instructions and operands, and
 `data/world3/behavior_streams.json` provides a lossless editable round trip.
 
 The full `$00-$1F` type domain is joined in
-`config/world3_entity_types.json`. Five 32-byte property columns supply hit
+`config/authoring/world3/world3_entity_types.json`. Five 32-byte property columns supply hit
 points, base metasprites, render flags, contact damage, and score reward codes.
 The catalog also proves the initializer/behavior/update dispatch cardinalities,
 partitions all types into lifecycle domains, and fixes the `$10-$13` post-defeat
@@ -131,7 +132,7 @@ initializes an active entity through the 16-entry table at `$8F6C`, and marks
 the channel complete after its last scheduled entity. The phase counters are
 not reset when a new room schedule is loaded.
 
-`config/world3_transient_spawns.json` pins the scheduler code, all table CRCs
+`config/authoring/world3/world3_transient_spawns.json` pins the scheduler code, all table CRCs
 and domains, initializer bounds, timing, and aggregate spawn budgets.
 `data/world3/transient_spawns.json` losslessly transposes the full 768-byte
 column layout into 64 editable room records. See
@@ -146,7 +147,7 @@ regions transpose losslessly through
 `docs/world3_spawn_initializers.md`.
 
 The 32-entry update dispatch is classified separately in
-`config/world3_update_handlers.json`. It covers script-only low types,
+`config/authoring/world3/world3_update_handlers.json`. It covers script-only low types,
 formation members, encounter and persistence transitions, object relocation,
 terrain-trigger behavior, pushing, and player-following derived types. Its
 three handler-owned table regions are losslessly editable in

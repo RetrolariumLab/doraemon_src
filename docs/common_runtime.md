@@ -3,7 +3,7 @@
 All four PRG banks contain the same 473 bytes at `$8098-$8270`. This is the
 interrupt-safe runtime copied into every GNROM window: reset, vblank waits,
 rendering transitions, OAM clearing, NMI/controller polling, mapper selection,
-and score handling. `config/common_runtime.json` records the exact SHA-1 of the
+and score handling. `config/reconstruction/common/common_runtime.json` records the exact SHA-1 of the
 range and ten routine boundaries.
 
 The mapper API separates CHR and PRG selection. `SelectChrBank` converts its

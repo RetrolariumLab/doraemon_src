@@ -13,7 +13,7 @@
 - Resolved: they are respectively the primary chapter/shell entry, NMI frame
   service, secondary demo/status entry, and audio frame service. All sixteen
   exact targets, their semantic symbols, and the NMI callers are validated by
-  `config/common_runtime.json`.
+  `config/reconstruction/common/common_runtime.json`.
 
 ## W2-DATA-001 - block-table overlap
 
@@ -58,7 +58,8 @@
 - Known: CadEditor disables enemy editing for all four configurations.
 - Known: World 1 city and underground placements are three-byte X/Y/type
   records, including their terminators, persistent IDs, type split, and sorted
-  city tail; `config/object_placements.json` validates both lists.
+  city tail; `config/authoring/world1/object_placements.json` validates both
+  lists.
 - Known: the World 1 high-bit path uses thirteen four-byte descriptors. Their
   four fields, placement encoding and usage, transient selectors, and five
   collision-extent tables are exact; see `docs/world1_descriptors.md`.
@@ -75,28 +76,28 @@
 - Known: World 3 begins with thirteen persistent objects stored as five
   parallel ROM arrays; the exact initial fields, two randomized type groups,
   fixed type slot, and sixteen low-type behavior pointers are validated by
-  `config/world3_object_data.json`.
+  `config/authoring/world3/world3_object_data.json`.
 - Known: all 32 World 3 type IDs are partitioned into four lifecycle domains;
   their five property tables, three dispatch views, and the `$10-$13` and
   `$1C-$1E` type transformations are validated by
-  `config/world3_entity_types.json`.
+  `config/authoring/world3/world3_entity_types.json`.
 - Known: World 3 transient entities use four independent channels per room.
   All twelve 64-byte type/count/delay columns, the delay scheduler, spawn
   budgets, initializer dispatch, and the complete 768-byte lossless authoring
-  representation are validated by `config/world3_transient_spawns.json`.
+  representation are validated by `config/authoring/world3/world3_transient_spawns.json`.
 - Known: all sixteen World 3 transient initializer slots are classified by
   structural role. Their room flag, fixed-position, and three formation data
   layouts are losslessly editable and cross-checked against scheduled type
-  frequencies and budgets by `config/world3_spawn_initializers.json`.
+  frequencies and budgets by `config/authoring/world3/world3_spawn_initializers.json`.
 - Known: all 32 World 3 update-dispatch slots are classified into 17
   structural roles. Type `$04/$05` room flags, held-motion vectors, persistent
   relocation, formation followers, encounter completion, conversion, pushing,
   and player-following paths are validated by
-  `config/world3_update_handlers.json`.
+  `config/authoring/world3/world3_update_handlers.json`.
 - Known: all 32 type bases are joined to the complete 188-entry metasprite
   index. Its 130 direct entries, 58 flip aliases, 65 variable-length records,
   eleven palettes, and 64 room selectors are losslessly editable through
-  `config/world3_metasprites.json`.
+  `config/authoring/world3/world3_metasprites.json`.
 - Known: all 32 World 3 types now have identities independently supported by
   locally rendered graphics/control flow and published enemy, item, or
   progression references. Type `$06` is the punishment-room dorayaki/skull
@@ -105,7 +106,7 @@
   exactly match two published descriptions. No standalone canonical character
   name is claimed. The three shared behavior IDs with alternate forms, bosses
   and parts, chest contents, puzzle items, drops, and companions are recorded
-  in `config/world3_entity_types.json`.
+  in `config/authoring/world3/world3_entity_types.json`.
 - Known: all thirteen World 1 descriptor identities are joined to their
   placement counts, selector roles, metasprites, interaction handlers, and
   concrete effects. This includes the dynamic three-weapon descriptor,
@@ -125,21 +126,21 @@
 
 - Known: all four banks carry independently validated local drivers. Their
   request limits, effect RTS tables, 17-command dispatch tables, and accepted
-  track-ID bounds are recorded in `config/audio_dispatch.json` and
-  `config/audio_music.json`; zero is stopped, leaving 8/6/8/4 playable tracks.
+  track-ID bounds are recorded in `config/authoring/audio/audio_dispatch.json` and
+  `config/authoring/audio/audio_music.json`; zero is stopped, leaving 8/6/8/4 playable tracks.
 - Known: all seventeen music commands now have structural semantics, operand
   widths, 68 exact bank-local targets, and a shared 92-byte channel/loop/call/
-  envelope RAM ABI; see `config/audio_music.json`.
+  envelope RAM ABI; see `config/authoring/audio/audio_music.json`.
 - Known: all 26 eight-byte track headers and 10,016 header-reachable stream
   bytes have state-aware boundaries and a lossless authoring round trip; see
   `data/audio/music_streams.json`.
 - Known: effects update before music; four channel timers suppress the matching
   music APU write paths while logical stream time continues. Track-start reset
-  is the unguarded exception; see `config/audio_arbitration.json`.
+  is the unguarded exception; see `config/authoring/audio/audio_arbitration.json`.
 - Known: all 93 request IDs map through their priority permutations to 145
   semantic init/update handlers. Their 26 structural roles, timer leases, APU
   channel writes, shared targets, and no-lease exceptions are validated by
-  `config/audio_effects.json`.
+  `config/authoring/audio/audio_effects.json`.
 - Unknown: exact gameplay identities for individual effects and whether
   header-unreachable bytes adjacent to the proven spans contain dormant music
   material or unrelated tables. These are non-blocking for Source 1.0: the
@@ -157,7 +158,7 @@ music data without updating the release audit.
 
 - Known: the canonical listing emits 47,789 bytes as 6502 instructions and
   83,283 bytes through data directives. All directive bytes are partitioned by
-  `config/source_classification.json`.
+  `config/reconstruction/source_classification.json`.
 - Known: 66,180 bytes belong to the original typed-range registry, another
   7,469 bytes are tied to exact semantic table contracts, 24 bytes are the
   proven common local-dispatch JMP encodings, and 3,910 bytes are verified

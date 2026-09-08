@@ -7,13 +7,15 @@ The build has three boundaries:
    exact reference;
 3. `build/native/doraemon.nes`, assembled by ca65/ld65.
 
-The PRG source contains no `.incbin`. CHR remains private because it is not yet
-represented by editable source structures.
+The PRG source contains no `.incbin`. The raw CHR remains a private build input,
+but Source Reconstruction 2.0 decodes all four banks into an ignored editable
+workspace and composes fixed-size tile changes back into either profile.
 
-`make verify` validates both complete images against `assets/manifest.json`,
-then independently compares header, PRG, CHR, payload, full file, and extracted
-assets. PRG mismatch diagnostics include both physical bank offset and mapped
-CPU address.
+`make verify` validates the original reference and source-built image against
+`assets/manifest.json`, then independently compares header, PRG, CHR, payload,
+full file, and extracted assets. `make verify-revisions` performs the complete
+container identity check for both official profiles. PRG mismatch diagnostics
+include both physical bank offset and mapped CPU address.
 
 The expected identity is:
 

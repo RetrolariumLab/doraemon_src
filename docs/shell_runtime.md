@@ -2,7 +2,7 @@
 
 PRG Bank 3 owns the title/attract shell, game-over and ending presentation,
 the two chapter-completion interstitials, and common shell PPU/OAM helpers.
-`config/shell_runtime.json` pins the sixteen formerly neutral routine entries
+`config/reconstruction/common/shell_runtime.json` pins the sixteen formerly neutral routine entries
 that complete the bank's routine-level naming pass.
 
 The names are based on observable contracts rather than location alone:
@@ -24,7 +24,7 @@ The names are based on observable contracts rather than location alone:
   of OAM before the credits row streamer begins.
 
 The contract validates each routine's exact PRG span and CRC32, its semantic
-entry in `config/symbols.json`, and the complete set of direct JSR/JMP callers
+entry in `config/reconstruction/symbols.json`, and the complete set of direct JSR/JMP callers
 reported by the current Bank 3 Ghidra facts. It also fixes eight Bank 3-private
 RAM fields: chapter-select index/latch, ending credit source pointer, and the
 transition completion/motion/origin/settle state.

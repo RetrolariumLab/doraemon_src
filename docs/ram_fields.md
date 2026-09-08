@@ -74,7 +74,7 @@ entry points set it. The same flag selects demo input, damage, and exit paths.
 
 These aliases are Bank 3-scoped because the gameplay banks overlay the same
 addresses with unrelated chapter state. The exact consumers are validated by
-`config/shell_runtime.json`.
+`config/reconstruction/common/shell_runtime.json`.
 
 ## World 1 camera state
 
@@ -525,12 +525,12 @@ through `$06F0`, with a 13-byte stride.
 Initialization copies this grid byte-for-byte from the matching five-array ROM
 image at `$D96B-$D9AB`, then randomizes two type-only slot groups. The exact
 initial rooms, types, coordinates, zero states, and shuffle multisets are fixed
-by `config/world3_object_data.json`.
+by `config/authoring/world3/world3_object_data.json`.
 
 The active `World3EntityType` value also indexes five complete ROM columns for
 hit points, base metasprite, render flags, contact damage, and score reward.
 Their 32-entry contents and the four lifecycle domains spanning `$00-$1F` are
-validated by `config/world3_entity_types.json` and described in
+validated by `config/authoring/world3/world3_entity_types.json` and described in
 `docs/world3_entity_types.md`.
 
 | Formation field | Address | Role |
@@ -610,8 +610,8 @@ The active four little-endian stream cursors occupy zero page `$002F-$0036` as
 the audio update and therefore remain an explicitly documented overlay rather
 than a single misleading global alias.
 
-The semantic operand mapping is machine-readable in `config/symbols.json`.
+The semantic operand mapping is machine-readable in `config/reconstruction/symbols.json`.
 `src/memory/ram.inc` supplies the ca65 definitions used by generated source.
-`config/object_pools.json` binds the chapter capacities, fields, slot groups,
+`config/reconstruction/common/object_pools.json` binds the chapter capacities, fields, slot groups,
 and lifecycle routines; `make validate-object-pools` checks that contract
 against the symbol registry.

@@ -1,7 +1,7 @@
 # Core indirect dispatch roles
 
 Two non-audio indirect domains previously had structurally known tables but
-address-only target names. `config/core_dispatch_roles.json` joins every target
+address-only target names. `config/reconstruction/common/core_dispatch_roles.json` joins every target
 to a conservative role and evidence-backed symbol.
 
 World 2 has 17 unique screen-service targets shared by three 16-slot RTS tables.

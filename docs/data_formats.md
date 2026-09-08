@@ -67,22 +67,23 @@ the shared literal store. `$F0` is unused. Repeats may deliberately overshoot
 the fifteen-cell threshold; the largest decoded row is 22 cells. The final stream
 reads through `$FFFA`, reusing the low byte of the NMI vector as data.
 
-`scripts/map_data.py` retains the CadEditor ranges as provenance for the
-editor-compatible view. `config/prg_data_ranges.txt`,
-`config/world2_streaming.json`, and `scripts/world2_streaming.py` use the exact
+`scripts/validation/map_data.py` retains the CadEditor ranges as provenance for the
+editor-compatible view. `config/reconstruction/prg_data_ranges.txt`,
+`config/authoring/world2/world2_streaming.json`, and
+`scripts/validation/world2/world2_streaming.py` use the exact
 non-overlapping runtime regions. All overlapping selector views are losslessly
 editable through `data/world2/compressed_screens.json`; see
 `docs/world2_streaming.md`.
 
-`scripts/map_data.py` validates all CadEditor-declared regions against
+`scripts/validation/map_data.py` validates all CadEditor-declared regions against
 independent CRC32 values and reports their overlap explicitly.
 
 World 1's twelve complete 32-byte PPU palettes occupy `$D7A5-$D924`. The area
 index directly selects one record; all 384 bytes round-trip through
 `data/world1/palettes.json`. See `docs/world1_palettes.md`.
 
-`config/world_data.json` proves the exact contiguous World 1 and World 3
-hierarchies and their cross-reference metrics. `scripts/world_data.py` validates
+`config/authoring/world_data.json` proves the exact contiguous World 1 and World 3
+hierarchies and their cross-reference metrics. `scripts/validation/reconstruction/world_data.py` validates
 the PRG and the lossless authoring documents at
 `data/world1/hierarchical_world.json` and
 `data/world3/hierarchical_world.json`; see `docs/world_data.md`.
@@ -91,8 +92,8 @@ World 3 initializes its persistent object registry from five contiguous
 13-byte arrays rather than from interleaved records. The arrays are room, type,
 X, Y, and state. The next 32 bytes are sixteen little-endian behavior-stream
 pointers for entity types `$00-$0F`; their targets cover `$D9CC-$DDF1`.
-`config/world3_object_data.json` fixes both layouts and their CRCs.
-`config/world3_behavior.json` additionally proves that all 1,062 behavior bytes
+`config/authoring/world3/world3_object_data.json` fixes both layouts and their CRCs.
+`config/authoring/world3/world3_behavior.json` additionally proves that all 1,062 behavior bytes
 decode without gaps or invalid control-flow targets and validates the lossless
 editable representation in `data/world3/behavior_streams.json`.
 
@@ -124,7 +125,8 @@ round-trip through `data/world3/metasprites.json`; see
 
 World 2's nine background/sprite palette sets and three chapter selector pairs
 round-trip through `data/world2/palettes.json`. Their lookup bases, stage
-commands, and code/data overlap are fixed by `config/world2_palettes.json`; see
+commands, and code/data overlap are fixed by
+`config/authoring/world2/world2_palettes.json`; see
 `docs/world2_palettes.md`.
 
 World 2 also has 17 conditional route changes stored as four parallel tables.
@@ -138,7 +140,8 @@ are documented in `docs/world2_inventory.md`.
 World 1's three weapon levels select one sound and four direction-specific
 projectile spawn profiles. The 51-byte contiguous region round-trips through
 `data/world1/weapons.json`; the level-biased sound lookup and four-field profile
-loader are fixed by `config/world1_weapons.json`. See `docs/world1_weapons.md`.
+loader are fixed by `config/authoring/world1/world1_weapons.json`. See
+`docs/world1_weapons.md`.
 
 The four music drivers expose 26 playable eight-byte track headers and 104
 channel entries. A state-aware decoder follows fixed-width commands, counted

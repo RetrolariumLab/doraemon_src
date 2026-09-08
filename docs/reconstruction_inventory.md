@@ -2,8 +2,8 @@
 
 This inventory measures semantic progress independently from physical source
 layout. Moving bytes into a `worldN/` module does not count as naming them.
-`config/reconstruction_inventory.json` pins the current snapshot, and
-`scripts/reconstruction_inventory.py` recalculates it from tracked source and
+`config/reconstruction/reconstruction_inventory.json` pins the current snapshot, and
+`scripts/validation/release/reconstruction_inventory.py` recalculates it from tracked source and
 evidence manifests. Any change requires an intentional snapshot update.
 
 ## Current snapshot

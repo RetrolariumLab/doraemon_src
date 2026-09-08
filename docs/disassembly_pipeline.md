@@ -14,7 +14,7 @@ exact mapper-66 reference
   -> clear bank-qualified typed data ranges after analysis
   -> export instruction facts
   -> propagate byte-identical common prefix facts through $8270
-  -> apply config/source_modules.json address ranges
+  -> apply config/reconstruction/source_modules.json address ranges
   -> emit bank include maps and semantic source modules
   -> assemble and compare every byte
 ```
@@ -28,7 +28,7 @@ function entries. The generator validates every fact against the corresponding
 bank bytes. Unclassified spans are emitted as `.byte`, and every internal direct
 control-flow target receives a bank-qualified label.
 
-`config/prg_code_entries.txt` records entry points that the NROM loader cannot
+`config/reconstruction/prg_code_entries.txt` records entry points that the NROM loader cannot
 discover by ordinary control flow. In bank 2, the embedded build string ends at
 `$82AC`; the dispatch table proves executable entries at `$82AD` and `$82F6`,
 and the World 3 runtime scenario directly executes `$82F6`.
