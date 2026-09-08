@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "generators": [
+    {
+      "name": "World1_FrameRandomByte",
+      "address": "0x962F",
+      "state": {
+        "name": "World1FrameRandomState",
+        "address": "0x0052",
+        "size": 2
+      },
+      "mixes_frame_counter": true,
+      "callsites": [
+        "0x9072",
+        "0x90EF",
+        "0x90FB",
+        "0x948F",
+        "0xD74E",
+        "0xD759",
+        "0xDE04"
+      ],
+      "bytes": "E6 53 C6 52 A5 16 49 F0 45 52 85 52 A5 16 49 AA 6A 6A 6A 45 53 85 53 6A 45 52 60"
+    },
+    {
+      "name": "World1_RandomByte",
+      "address": "0x964A",
+      "state": {
+        "name": "World1RandomState",
+        "address": "0x0054",
+        "size": 4
+      },
+      "mixes_frame_counter": false,
+      "callsites": [
+        "0xCD35",
+        "0xD5A8",
+        "0xD6C7",
+        "0xD78C",
+        "0xD798",
+        "0xDBF4",
+        "0xDC07",
+        "0xDC25",
+        "0xDC4E",
+        "0xDCA4",
+        "0xDD08",
+        "0xDF87",
+        "0xDFAA",
+        "0xDFE8",
+        "0xE142",
+        "0xE17A",
+        "0xE220",
+        "0xE26E"
+      ],
+      "bytes": "A5 54 2A 2A 49 41 2A 2A 49 93 65 55 85 54 2A 2A 49 12 2A 2A 65 56 85 55 65 54 E6 56 D0 09 48 A5 57 18 69 1D 85 57 68 45 57 60"
+    }
+  ]
+}
