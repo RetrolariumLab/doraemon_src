@@ -285,17 +285,22 @@ accounts for 47,789 instruction bytes and 83,283 directive bytes. Every
 directive byte is now release-gated as base/supplemental typed data, proven
 encoded code, verified fill, or one of 5,700 exact registered-unknown bytes.
 
-### 12. Revision 3 release administration - Complete
+### 12. Source 1.0 release administration - Complete
 
-The revision-3 manifest, scope, profile/runtime matrix, SHA-256 artifact and
+The project manifest, scope, profile/runtime matrix, SHA-256 artifact and
 private-input identities, pinned build/runtime toolchain, licensing inventory,
 documentation index, and pre/post-tag audits are complete. The owner-approved
 rewrite replaces 141 draft changes with 61 coherent commits after the immutable
 base; their messages and attribution satisfy the contract. The release
 candidate is `tag-ready` and awaits the clean aggregate pre-tag gate.
 
-## Deferred to Source Reconstruction 2.0
+## Source Reconstruction 2.0 - Complete
 
-Relocation builds, Revision A, translations and regional profiles, and
-exhaustive editors for secondary graphics/text tables are outside the 1.0
-definition of done.
+The two-revision shared-source build, all five fixed-capacity Studios, combined
+content composer, and direct two-profile runtime matrix are complete. The
+tag-ready acceptance boundary in `config/source_reconstruction_2_0.json` is
+closed by the aggregate `source-2-check`, which must pass on the exact release
+commit before tagging.
+
+Expanded or relocated builds, cross-bank code deduplication, and deeper unknown
+or local-label polish are deferred to Source Reconstruction 3.0.
