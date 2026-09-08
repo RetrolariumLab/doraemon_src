@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "bank": 2,
+  "routines": [
+    {
+      "address": "0x875C",
+      "end_address": "0x8786",
+      "size": 43,
+      "crc32": "cfd416dc",
+      "name": "World3_ClearFormationArenaTiles",
+      "role": "queue-thirteen-rows-of-eighteen-blank-tiles-for-an-active-or-defeated-boss-formation",
+      "callers": [
+        {
+          "address": "0x890E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA799",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x879B",
+      "end_address": "0x8816",
+      "size": 124,
+      "crc32": "2fd8458c",
+      "name": "World3_CheckFinalCompanionRescue",
+      "role": "detect-all-three-active-room-3c-companions-open-the-barrier-and-retire-their-active-and-persistent-records",
+      "callers": [
+        {
+          "address": "0x83A8",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8817",
+      "end_address": "0x8847",
+      "size": 49,
+      "crc32": "a4b9de77",
+      "name": "World3_OpenFinalCompanionBarrier",
+      "role": "queue-eight-rows-of-four-blank-tiles-to-open-the-room-3c-companion-barrier",
+      "callers": [
+        {
+          "address": "0x87D1",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA75E",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8848",
+      "end_address": "0x886E",
+      "size": 39,
+      "crc32": "1354449a",
+      "name": "World3_CheckPlayerProjectilesAgainstEntity",
+      "role": "scan-both-active-player-projectile-slots-against-the-current-entity",
+      "callers": [
+        {
+          "address": "0x9280",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x886F",
+      "end_address": "0x8971",
+      "size": 259,
+      "crc32": "d6ff9293",
+      "name": "World3_ResolvePlayerProjectileEntityHit",
+      "role": "filter-projectile-targets-resolve-hit-points-boss-progression-defeat-effects-and-score",
+      "callers": [
+        {
+          "address": "0x8865",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8972",
+      "end_address": "0x897B",
+      "size": 10,
+      "crc32": "9c182d2f",
+      "name": "World3_StartEntityDefeatByY",
+      "role": "adapt-an-entity-index-in-y-to-the-defeat-animation-helper-while-preserving-x",
+      "callers": [
+        {
+          "address": "0x8753",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x971D",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x897C",
+      "end_address": "0x898B",
+      "size": 16,
+      "crc32": "8927d9ae",
+      "name": "World3_StartEntityDefeat",
+      "role": "enter-entity-state-five-install-the-explosion-metasprite-and-queue-the-defeat-effect",
+      "callers": [
+        {
+          "address": "0x895E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8976",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x89D3",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x89F6",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A6C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A8B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8ABB",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8AD7",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x898C",
+      "end_address": "0x89A0",
+      "size": 21,
+      "crc32": "cd168536",
+      "name": "World3_AwardEncodedScorePreserveEntityLoop",
+      "role": "skip-attract-mode-scoring-and-preserve-x-and-the-active-entity-loop-index-around-the-score-update",
+      "callers": [
+        {
+          "address": "0x8968",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x89DD",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A00",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A76",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A95",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8AC5",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8AE1",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9755",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x89A1",
+      "end_address": "0x8B67",
+      "size": 455,
+      "crc32": "20e0259b",
+      "name": "World3_ResolvePlayerEntityContact",
+      "role": "resolve-pickups-follower-toggling-treasure-progress-contact-damage-damage-recovery-and-player-death",
+      "callers": [
+        {
+          "address": "0x927B",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x004E",
+      "name": "World3DefeatConversionCycle"
+    },
+    {
+      "address": "0x0056",
+      "name": "World3Room26GenkiCandyCollected"
+    },
+    {
+      "address": "0x0057",
+      "name": "World3Room3BGenkiCandyCollected"
+    },
+    {
+      "address": "0x005B",
+      "name": "World3ScoreSavedX"
+    },
+    {
+      "address": "0x005C",
+      "name": "World3ProjectileCollisionEntityIndex"
+    },
+    {
+      "address": "0x005D",
+      "name": "World3ScoreSavedEntityLoopIndex"
+    },
+    {
+      "address": "0x0062",
+      "name": "World3FollowerToggleInputLatch"
+    },
+    {
+      "address": "0x00A4",
+      "name": "World3MassDefeatConversionCountdown"
+    }
+  ]
+}
