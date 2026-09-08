@@ -1,6 +1,6 @@
 # World 1 entity helpers
 
-`config/world1_entity_helpers.json` fixes the movement, aiming, map-probe, and
+`config/reconstruction/world1/world1_entity_helpers.json` fixes the movement, aiming, map-probe, and
 enemy-projectile primitives shared by the semantically named World 1 entity
 handlers. It replaces seventeen address-only routine names with behavioral
 contracts.

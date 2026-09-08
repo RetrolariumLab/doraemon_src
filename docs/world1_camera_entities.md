@@ -47,7 +47,7 @@ Transient entities use a negative source ID and need no map-bit release.
 | `World1_ApplyCameraDeltaToEntities` | `$8750` | 168 | 7 |
 | `World1_CullOffscreenEntities` | `$87F8` | 84 | 3 |
 
-`config/world1_camera_entities.json` pins all 326 routine bytes, the complete
+`config/reconstruction/world1/world1_camera_entities.json` pins all 326 routine bytes, the complete
 13-call graph, the fallthrough edge, tracking thresholds, culling margins, and
 244 RAM bytes across the player, delta, and five entity arrays. Run:
 

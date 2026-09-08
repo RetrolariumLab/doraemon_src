@@ -1,6 +1,6 @@
 # World 1 core routines
 
-`config/world1_core_routines.json` fixes the high-level initialization, input,
+`config/reconstruction/world1/world1_core_routines.json` fixes the high-level initialization, input,
 render-state, and sprite-composition path used by both the city and underground
 loops. It replaces twenty address-only routine names with behavioral contracts.
 

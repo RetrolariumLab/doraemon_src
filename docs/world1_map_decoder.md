@@ -49,9 +49,9 @@ The holes at `$0068-$0069` are not part of this decoder contract.
 | `World1_SelectSmallBlock` | `$A79B` | 3 | Build the current small-block pointer |
 | `World1_SelectBigBlock` | `$A7B7` | 5 | Build the current big-block pointer |
 
-`config/world1_map_decoder.json` pins the exact routine bodies, all 34 direct
+`config/reconstruction/world1/world1_map_decoder.json` pins the exact routine bodies, all 34 direct
 `JSR` occurrences, RAM ownership, and the four map-pointer loads. Its validator
-also joins those facts to the lossless hierarchy in `config/world_data.json`.
+also joins those facts to the lossless hierarchy in `config/authoring/world_data.json`.
 The downstream row/column packet builders and NMI consumer are documented in
 `docs/world1_ppu_streaming.md`.
 

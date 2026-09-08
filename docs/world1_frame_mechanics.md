@@ -1,6 +1,6 @@
 # World 1 frame mechanics
 
-`config/world1_frame_mechanics.json` fixes the high-level motion, collision,
+`config/reconstruction/world1/world1_frame_mechanics.json` fixes the high-level motion, collision,
 damage, reward, and PPU preparation services shared by the city and underground
 frame loops. It replaces twenty-three address-only routine names with
 behavioral contracts.
