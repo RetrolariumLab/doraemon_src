@@ -1,12 +1,15 @@
 # Documentation Index
 
-This index is the entry point for the Source Reconstruction 1.0 evidence set.
+This index covers the tagged Source Reconstruction 1.0 evidence and the
+tag-ready Source Reconstruction 2.0 authoring release.
 
 ## Release and verification
 
-- [Release contract](release_contract.md)
+- [Project release lifecycle](release_contract.md)
 - [Source Reconstruction 1.0 boundary](source_reconstruction.md)
+- [Source Reconstruction 2.0 boundary](source_reconstruction_2_0.md)
 - [Build and byte identity](verification.md)
+- [Official revision profiles](revisions.md)
 - [Reconstruction inventory](reconstruction_inventory.md)
 - [Source-byte classification](source_classification.md)
 - [Roadmap](roadmap.md)
@@ -36,6 +39,8 @@ This index is the entry point for the Source Reconstruction 1.0 evidence set.
 - [Data formats](data_formats.md)
 - [Object formats](object_formats.md)
 - [World data](world_data.md)
+- [Doraemon Level Studio](level_studio.md)
+- [Doraemon Graphics Studio](graphics_studio.md)
 - [Shell text](shell_text.md)
 - [Audio music](audio_music.md)
 

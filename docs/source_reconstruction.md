@@ -1,10 +1,9 @@
 # Source Reconstruction 1.0
 
-The project has completed the technical reconstruction scope comparable to
-`smb1_src` and `pacman_src`, including the metadata and curated history required
-by revision 3 of the shared release contract. Exact ROM identity remains a
-permanent constraint; semantic source, runtime evidence, and editable data are
-added without replacing or weakening the preservation build.
+The project has completed its Source Reconstruction 1.0 technical scope,
+including project-owned release metadata and curated history. Exact ROM
+identity remains a permanent constraint; semantic source, runtime evidence, and
+editable data are added without replacing or weakening the preservation build.
 
 Version 1.0 targets exactly one image: the original Japanese PRG0 revision with
 payload CRC32 `BDE3AE9B`, PRG CRC32 `B00ABE1C`, and CHR CRC32 `761F994E`.
@@ -18,7 +17,7 @@ promoted `main` release history. The machine-readable release contract is
 `config/source_reconstruction.json`; `config/authoring_coverage.json` proves
 the five primary format families across all three chapters, while
 `config/runtime_state_coverage.json` proves the shared and chapter-local RAM
-and object-system completion metrics. `config/source_classification.json`
+and object-system completion metrics. `config/reconstruction/source_classification.json`
 assigns every PRG source byte to instructions, typed data, encoded code,
 padding, or a registered unknown. `make source-audit` rejects milestone claims
 that are out of order, lack evidence, or detach the release history from the

@@ -6,7 +6,7 @@ Keep every change evidence-backed and preserve the matching build.
 
 1. Use `UpperCamelCase` symbols and bank-qualified names whenever the same CPU
    address can identify different bytes in another GNROM bank.
-2. Record evidence for semantic labels in `config/symbols.json` and update the
+2. Record evidence for semantic labels in `config/reconstruction/symbols.json` and update the
    owning documentation.
 3. Keep uncertain bytes as data. Do not promote them to code only because a
    linear sweep happens to decode them.
@@ -51,4 +51,5 @@ The final release commit is titled `Complete Source Reconstruction X.Y` only
 after the complete pre-tag gate passes. Its body covers the full delta since the
 predecessor, identity/runtime evidence, aggregate result, and included/excluded
 scope. Never amend or rewrite published commits or tags. Draft-history rewrite
-requires the separate owner-approval process in the shared release contract.
+requires the separate owner-approval process documented in
+`docs/release_contract.md`.

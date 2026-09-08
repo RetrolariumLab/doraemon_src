@@ -6,9 +6,12 @@ from unittest import mock
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 SPEC = importlib.util.spec_from_file_location(
-    "release_contract", ROOT / "scripts" / "release_contract.py"
+    "release_contract", ROOT / "scripts" / "validation" / "release" / "release_contract.py"
 )
 assert SPEC is not None and SPEC.loader is not None
 CONTRACT = importlib.util.module_from_spec(SPEC)
@@ -39,6 +42,14 @@ class EvidenceTests(unittest.TestCase):
 
 
 class CommitMessageTests(unittest.TestCase):
+    def test_uses_the_requested_release_history_endpoint(self) -> None:
+        with mock.patch.object(CONTRACT, "git_output", return_value="") as output:
+            CONTRACT.commit_message_issues(ROOT, "base", "release-commit")
+        self.assertEqual(
+            output.call_args.args[-1],
+            "base..release-commit",
+        )
+
     def test_accepts_two_paragraph_message_and_trailer(self) -> None:
         body = (
             "Describe the concrete change.\n\n"

@@ -10,8 +10,6 @@ from pathlib import Path
 from typing import Any
 
 
-CONTRACT_SCHEMA = "retrolarium.source_reconstruction_release_contract"
-CONTRACT_VERSION = 3
 VALID_REQUIREMENT_STATES = {
     "satisfied",
     "not_applicable",
@@ -74,13 +72,15 @@ def validate_evidence(
     return errors
 
 
-def commit_message_issues(project_root: Path, base: str) -> list[str]:
+def commit_message_issues(
+    project_root: Path, base: str, endpoint: str = "HEAD"
+) -> list[str]:
     records = git_output(
         project_root,
         "log",
         "--reverse",
         "--format=%H%x00%P%x00%s%x00%b%x1e",
-        f"{base}..HEAD",
+        f"{base}..{endpoint}",
     )
     issues: list[str] = []
     for record in records.split("\x1e"):
@@ -190,12 +190,10 @@ def validate_release_contract(
     check_remote: bool = False,
 ) -> list[str]:
     errors: list[str] = []
-    if document.get("contract") != {
-        "schema": CONTRACT_SCHEMA,
-        "version": CONTRACT_VERSION,
-        "release_line": "1.0",
-    }:
-        errors.append("shared release contract identity differs")
+    if document.get("schema_version") != 2 or document.get("release_line") != "1.0":
+        errors.append("Source 1.0 project manifest identity differs")
+    if "contract" in document:
+        errors.append("Source 1.0 manifest contains obsolete nested metadata")
     if document.get("release") != {
         "name": "Source Reconstruction 1.0",
         "version": "1.0",
@@ -344,7 +342,27 @@ def validate_release_contract(
         errors.append("private inputs must be declared untracked")
 
     base = str(document.get("predecessor", {}).get("commit", ""))
-    history_issues = commit_message_issues(project_root, base) if base else ["missing base"]
+    history_endpoint = "HEAD"
+    try:
+        if tag and git_output(project_root, "tag", "--list", tag):
+            tagged_commit = git_output(
+                project_root, "rev-parse", f"{tag}^{{commit}}"
+            )
+            git_output(
+                project_root,
+                "merge-base",
+                "--is-ancestor",
+                tagged_commit,
+                "HEAD",
+            )
+            history_endpoint = tagged_commit
+    except (OSError, subprocess.CalledProcessError):
+        pass
+    history_issues = (
+        commit_message_issues(project_root, base, history_endpoint)
+        if base
+        else ["missing base"]
+    )
     history_status = requirements.get("source-1.commit-history", {}).get("status")
     if history_issues and history_status != "partial":
         errors.append("commit-history status must be partial while message issues remain")

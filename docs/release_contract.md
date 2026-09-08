@@ -1,10 +1,10 @@
-# Release Contract Revision 3
+# Project Release Lifecycle
 
-The project adopts
-`retrolarium.source_reconstruction_release_contract` revision 3 for the Source
-Reconstruction 1.0 release line. `config/source_reconstruction.json` is the
-machine-readable owner of release identity, scope, requirements, profiles,
-runtime coverage, toolchain, artifacts, licensing, deviations, and gates.
+`config/source_reconstruction.json` is the machine-readable owner of the Source
+Reconstruction 1.0 release identity, scope, requirements, profiles, runtime
+coverage, toolchain, artifacts, licensing, deviations, and gates. The Source
+Reconstruction 2.0 boundary is owned independently by
+`config/source_reconstruction_2_0.json` and names its 1.0 predecessor exactly.
 
 ## Accepted boundary
 
@@ -24,19 +24,15 @@ license to Hudson Soft game content.
 ## Current conformance state
 
 The source, identity, documentation, runtime, and aggregate technical gates are
-satisfied. The owner approved an explicit old-to-new map, and the draft history
-was rebuilt on `rewrite/source-1-contract3` as 61 coherent commits after the
-immutable preservation base. Every reconstructed commit has an English title,
-two substantive body paragraphs, the project author identity, and the required
-Codex trailer. Requirement `source-1.commit-history` is therefore `satisfied`,
-and the manifest is `tag-ready`.
+satisfied. The accepted Source 1.0 history contains 61 coherent commits after
+the immutable preservation base. Every reconstructed commit has an English
+title, two substantive body paragraphs, the project author identity, and the
+required Codex trailer. Requirement `source-1.commit-history` is therefore
+`satisfied`, and the published annotated tag identifies the accepted release.
 
-The old tip remains available as
-`archive/source-reconstruction-pre-squash`, and the unpublished legacy tag is
-preserved as `source-reconstruction-1.0-pre-contract3`. The rewrite candidate
-must still pass the complete pre-tag gate before the final release commit is
-created; branch promotion and canonical tag creation remain separate,
-owner-approved operations.
+Source Reconstruction 2.0 is developed as a separate sequence after that
+published predecessor. Its manifest remains `development` until every new
+requirement, clean-room gate, and history check is complete.
 
 ## Gate lifecycle
 
@@ -52,6 +48,17 @@ Additional official profiles and artifact publication have explicit false
 condition decisions. Their requirements are `not_applicable`, linked to the
 corresponding excluded scope, rather than silently omitted.
 
-The legacy tag predates revision 3 and is not presented as a revision-3
-release. Published tags are immutable; the canonical annotated tag is created
-only after explicit owner approval and a repeated full gate.
+## Source Reconstruction 2.0 inheritance
+
+`config/source_reconstruction_2_0.json` inherits the tagged 1.0 commit and adds
+the official Revision A profile plus five fixed-capacity content Studios. Its
+development audit is `make source-2-audit`; the aggregate candidate gate is
+`make source-2-check`. The latter reruns the complete 1.0 contract before the
+two-profile identity, authoring, isolated Studio smoke, and direct runtime
+matrix checks. `make source-2-pre-tag-check` adds clean-tree, tag-ready, and
+unused-tag checks; `make source-2-tag-check` validates the annotated tag on the
+same substantive `HEAD`.
+
+Earlier local candidate tags are not presented as canonical releases. Published
+tags are immutable; a canonical annotated tag is created only after explicit
+owner approval and a repeated full gate.
