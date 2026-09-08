@@ -158,8 +158,8 @@
     }
   ],
   "expected_metrics": {
-    "source_file_count": 128,
-    "linker_symbol_count": 3828,
+    "source_file_count": 129,
+    "linker_symbol_count": 3832,
     "configured_prg_symbol_count": 1218,
     "configured_memory_symbol_count": 437,
     "fceux_prg_label_count": 3361,
