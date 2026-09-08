@@ -26,6 +26,7 @@ HEX_RE = re.compile(r"0x([0-9a-fA-F]+)")
 CA65_NAME_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
 DIRECT_MEMORY_RE = re.compile(r"^(a:)?\$([0-9A-F]{2,4})(,[XY])?$")
 INDIRECT_MEMORY_RE = re.compile(r"^\(\$([0-9A-F]{2,4})(,[XY])?\)(,Y)?$")
+ORIGINAL_PROFILE_IF = ".if DORAEMON_REVISION = DORAEMON_REVISION_ORIGINAL"
 
 
 class DisassemblyError(ValueError):
@@ -266,6 +267,62 @@ def load_source_modules(path: Path) -> dict[int, list[SourceModule]]:
     return result
 
 
+def load_revision_overlay_paths(path: Path | None) -> set[PurePosixPath]:
+    if path is None:
+        return set()
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise DisassemblyError(
+            f"cannot read revision profiles {path}: {exc}"
+        ) from exc
+    if document.get("schema_version") != 1:
+        raise DisassemblyError("unsupported revision profile schema")
+    windows = document.get("comparison", {}).get("windows", [])
+    paths: set[PurePosixPath] = set()
+    for window in windows:
+        if window.get("classification") != "code":
+            continue
+        source = PurePosixPath(str(window.get("source", "")))
+        if (
+            source.is_absolute()
+            or ".." in source.parts
+            or source.suffix != ".asm"
+            or not source.parts
+            or source.parts[0] != "src"
+        ):
+            raise DisassemblyError(f"unsafe revision overlay source: {source}")
+        paths.add(PurePosixPath(*source.parts[1:]))
+    return paths
+
+
+def original_profile_projection(source: str) -> tuple[str, int]:
+    output: list[str] = []
+    state = "outside"
+    blocks = 0
+    for line in source.splitlines(keepends=True):
+        directive = line.strip()
+        if directive == ORIGINAL_PROFILE_IF:
+            if state != "outside":
+                raise DisassemblyError("nested revision source overlay")
+            state = "original"
+            blocks += 1
+            continue
+        if directive == ".else" and state == "original":
+            state = "revision"
+            continue
+        if directive == ".endif" and state == "revision":
+            state = "outside"
+            continue
+        if directive in {".else", ".endif"} and state != "outside":
+            raise DisassemblyError("malformed revision source overlay")
+        if state in {"outside", "original"}:
+            output.append(line)
+    if state != "outside":
+        raise DisassemblyError("unterminated revision source overlay")
+    return "".join(output), blocks
+
+
 def make_labels(
     bank: int, facts: dict[int, InstructionFact], known: dict[tuple[int, int], str]
 ) -> dict[int, str]:
@@ -464,7 +521,7 @@ def generate_semantic_bank(
     aggregator = PurePosixPath("banks") / f"bank_{bank}.asm"
     lines = [
         f"; Address-ordered Doraemon PRG bank {bank} semantic include map",
-        "; Generated deterministically from config/source_modules.json",
+        "; Generated deterministically from config/reconstruction/source_modules.json",
         "; Keep byte-identical through make verify",
         "",
         f'.segment "PRG{bank}"',
@@ -538,24 +595,48 @@ def build_texts(args: argparse.Namespace) -> dict[PurePosixPath, str]:
 
 def command_write(args: argparse.Namespace) -> None:
     output_dir = Path(args.output_dir)
+    overlay_paths = load_revision_overlay_paths(args.revision_profiles)
     texts = build_texts(args)
     output_dir.mkdir(parents=True, exist_ok=True)
     for relative, source in sorted(texts.items(), key=lambda item: str(item[0])):
         output = output_dir / Path(relative)
         output.parent.mkdir(parents=True, exist_ok=True)
-        if output.is_file() and output.read_text(encoding="utf-8") == source:
-            print(f"[OK] unchanged {output}")
-            continue
+        if output.is_file():
+            current = output.read_text(encoding="utf-8")
+            if current == source:
+                print(f"[OK] unchanged {output}")
+                continue
+            if relative in overlay_paths:
+                projected, blocks = original_profile_projection(current)
+                if blocks and projected == source:
+                    print(f"[OK] preserved revision overlay {output}")
+                    continue
+                if blocks:
+                    raise DisassemblyError(
+                        f"generated original profile changed beneath revision "
+                        f"overlay: {output}"
+                    )
         output.write_text(source, encoding="utf-8", newline="\n")
         print(f"[WRITE] {output} ({len(source.splitlines())} lines)")
 
 
 def command_check(args: argparse.Namespace) -> None:
     output_dir = Path(args.output_dir)
+    overlay_paths = load_revision_overlay_paths(args.revision_profiles)
     for relative, expected in build_texts(args).items():
         output = output_dir / Path(relative)
-        if not output.is_file() or output.read_text(encoding="utf-8") != expected:
+        if not output.is_file():
             raise DisassemblyError(f"generated disassembly is stale: {output}; run make disassemble")
+        current = output.read_text(encoding="utf-8")
+        if current == expected:
+            continue
+        if relative in overlay_paths:
+            projected, blocks = original_profile_projection(current)
+            if blocks and projected == expected:
+                continue
+        raise DisassemblyError(
+            f"generated disassembly is stale: {output}; run make disassemble"
+        )
     print("[OK] canonical semantic disassembly and symbolic PRG control flow")
 
 
@@ -565,6 +646,7 @@ def add_common(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--symbols", required=True)
     parser.add_argument("--modules", required=True)
     parser.add_argument("--output-dir", required=True)
+    parser.add_argument("--revision-profiles", type=Path)
 
 
 def main() -> int:

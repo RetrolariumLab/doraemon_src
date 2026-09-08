@@ -11,10 +11,11 @@ import subprocess
 import sys
 import tempfile
 
-import project
+from scripts.build import project
 
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
+RECONSTRUCTION_CONFIG = ROOT / "config" / "reconstruction"
 DEFAULT_HEADLESS = ROOT / "tools" / "ghidra" / "support" / "analyzeHeadless.bat"
 HEADLESS = Path(os.environ.get("GHIDRA_HEADLESS", DEFAULT_HEADLESS))
 SCRIPT_DIR = ROOT / "tools" / "ghidra_scripts"
@@ -85,7 +86,7 @@ def stage_bank_inputs(image: Path) -> list[Path]:
 
 
 def stage_data_ranges() -> list[Path]:
-    ranges = project.load_prg_data_ranges(ROOT / "config" / "prg_data_ranges.txt")
+    ranges = project.load_prg_data_ranges(RECONSTRUCTION_CONFIG / "prg_data_ranges.txt")
     range_dir = WORK_DIR / "ranges"
     range_dir.mkdir(parents=True, exist_ok=True)
     paths: list[Path] = []
@@ -101,7 +102,9 @@ def stage_data_ranges() -> list[Path]:
 
 
 def stage_code_entries() -> list[Path]:
-    entries = project.load_prg_code_entries(ROOT / "config" / "prg_code_entries.txt")
+    entries = project.load_prg_code_entries(
+        RECONSTRUCTION_CONFIG / "prg_code_entries.txt"
+    )
     entry_dir = WORK_DIR / "entries"
     entry_dir.mkdir(parents=True, exist_ok=True)
     paths: list[Path] = []
