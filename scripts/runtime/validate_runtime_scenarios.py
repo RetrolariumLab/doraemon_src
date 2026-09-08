@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import json
 from pathlib import Path
@@ -25,6 +26,20 @@ REQUIRED_COLUMNS = {
     "ppu_mask",
     "controller1",
 }
+
+
+def resolve_scenario(
+    scenario: dict[str, object], profile: str
+) -> dict[str, object]:
+    resolved = copy.deepcopy(scenario)
+    overrides = resolved.pop("profile_overrides", {})
+    if not isinstance(overrides, dict):
+        raise ValueError("runtime profile overrides must be an object")
+    selected = overrides.get(profile, {})
+    if not isinstance(selected, dict):
+        raise ValueError(f"runtime {profile} scenario override must be an object")
+    resolved.update(copy.deepcopy(selected))
+    return resolved
 
 
 def load_trace(path: Path) -> list[dict[str, str]]:
@@ -262,6 +277,55 @@ def world2_terminal_screen(rows: list[dict[str, str]]) -> bool:
     )
 
 
+def reset_after_probe(
+    scenario: dict[str, object], rows: list[dict[str, str]]
+) -> bool:
+    expected = scenario.get("expected_reset")
+    if not isinstance(expected, dict):
+        return False
+    probe_index = next(
+        (
+            index
+            for index, row in enumerate(rows)
+            if row["event"] == "probe"
+            and row["detail"] == str(expected["after_probe"])
+        ),
+        None,
+    )
+    if probe_index is None:
+        return False
+    probe = rows[probe_index]
+    reset = next(
+        (row for row in rows[probe_index + 1 :] if row["event"] == "reset"),
+        None,
+    )
+    if reset is None:
+        return False
+    frame_gap = int(reset["frame"]) - int(probe["frame"])
+    return (
+        int(reset["bank"]) == int(expected["bank"])
+        and reset["selector"] == str(expected["selector"])
+        and 0 <= frame_gap <= int(expected.get("maximum_frame_gap", 0))
+    )
+
+
+def post_reset_steady_state(
+    scenario: dict[str, object], rows: list[dict[str, str]]
+) -> bool:
+    expected = scenario.get("post_reset")
+    if not isinstance(expected, dict):
+        return False
+    reset_indexes = [index for index, row in enumerate(rows) if row["event"] == "reset"]
+    if len(reset_indexes) < 2:
+        return False
+    final = rows[-1]
+    return (
+        final["event"] == "trace_end"
+        and int(final["bank"]) == int(expected["bank"])
+        and final["selector"] == str(expected["selector"])
+    )
+
+
 def validate_check(
     check_id: str, scenario: dict[str, object], rows: list[dict[str, str]]
 ) -> bool:
@@ -281,6 +345,8 @@ def validate_check(
         "recurring-frame-loops": lambda: recurring_frame_loops(scenario, rows),
         "observed-memory-patches": lambda: observed_memory_patches(scenario, rows),
         "world2-terminal-screen": lambda: world2_terminal_screen(rows),
+        "reset-after-probe": lambda: reset_after_probe(scenario, rows),
+        "post-reset-steady-state": lambda: post_reset_steady_state(scenario, rows),
     }
     if check_id not in checks:
         raise ValueError(f"unknown runtime check: {check_id}")
@@ -291,10 +357,12 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scenarios", required=True, type=Path)
     parser.add_argument("--trace-dir", required=True, type=Path)
+    parser.add_argument("--profile", choices=("original", "rev_a"), default="original")
     args = parser.parse_args()
     document = json.loads(args.scenarios.read_text(encoding="utf-8"))
     failures: list[str] = []
-    for scenario in document["scenarios"]:
+    for base_scenario in document["scenarios"]:
+        scenario = resolve_scenario(base_scenario, args.profile)
         rows = load_trace(args.trace_dir / f"{scenario['id']}.csv")
         for check_id in scenario["checks"]:
             passed = validate_check(check_id, scenario, rows)

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import os
@@ -18,6 +19,29 @@ def sha1(path: Path) -> str:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def expected_rom_sha1(document: dict[str, Any], profile: str) -> str:
+    profiles = document.get("rom_sha1_by_profile")
+    if profiles is None:
+        if profile != "original":
+            raise ValueError("runtime scenario manifest has no revision profile hashes")
+        return str(document["rom_sha1"])
+    if profile not in profiles:
+        raise ValueError(f"runtime scenario manifest has no {profile} ROM hash")
+    return str(profiles[profile])
+
+
+def resolve_scenario(scenario: dict[str, Any], profile: str) -> dict[str, Any]:
+    resolved = copy.deepcopy(scenario)
+    overrides = resolved.pop("profile_overrides", {})
+    if not isinstance(overrides, dict):
+        raise ValueError("runtime profile overrides must be an object")
+    selected = overrides.get(profile, {})
+    if not isinstance(selected, dict):
+        raise ValueError(f"runtime {profile} scenario override must be an object")
+    resolved.update(copy.deepcopy(selected))
+    return resolved
 
 
 def encode_inputs(inputs: list[dict[str, Any]]) -> str:
@@ -56,6 +80,7 @@ def main() -> int:
     parser.add_argument("--output-dir", required=True, type=Path)
     parser.add_argument("--screenshot-dir", type=Path)
     parser.add_argument("--scenario", action="append", dest="selected")
+    parser.add_argument("--profile", choices=("original", "rev_a"), default="original")
     args = parser.parse_args()
 
     required = (args.fceux, args.rom, args.lua, args.scenarios)
@@ -64,9 +89,10 @@ def main() -> int:
         raise SystemExit(f"[FAIL] Missing runtime input: {', '.join(missing)}")
     document = json.loads(args.scenarios.read_text(encoding="utf-8"))
     actual_sha1 = sha1(args.rom)
-    if actual_sha1 != document["rom_sha1"]:
+    expected_sha1 = expected_rom_sha1(document, args.profile)
+    if actual_sha1 != expected_sha1:
         raise SystemExit(
-            f"[FAIL] ROM SHA-1 mismatch: expected={document['rom_sha1']}, "
+            f"[FAIL] ROM SHA-1 mismatch for {args.profile}: expected={expected_sha1}, "
             f"actual={actual_sha1}"
         )
 
@@ -79,7 +105,8 @@ def main() -> int:
     if args.screenshot_dir is not None:
         args.screenshot_dir.mkdir(parents=True, exist_ok=True)
 
-    for scenario in document["scenarios"]:
+    for base_scenario in document["scenarios"]:
+        scenario = resolve_scenario(base_scenario, args.profile)
         scenario_id = scenario["id"]
         if scenario_id not in selected:
             continue
