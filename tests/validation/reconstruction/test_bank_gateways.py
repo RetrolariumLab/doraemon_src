@@ -7,9 +7,12 @@ import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 SPEC = importlib.util.spec_from_file_location(
-    "bank_gateways", ROOT / "scripts" / "bank_gateways.py"
+    "bank_gateways", ROOT / "scripts" / "validation" / "reconstruction" / "bank_gateways.py"
 )
 assert SPEC is not None and SPEC.loader is not None
 GATEWAYS = importlib.util.module_from_spec(SPEC)

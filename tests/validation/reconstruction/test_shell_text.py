@@ -6,10 +6,13 @@ import sys
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import shell_text
+from scripts.validation.reconstruction import shell_text
 
 
 class ShellTextTests(unittest.TestCase):
