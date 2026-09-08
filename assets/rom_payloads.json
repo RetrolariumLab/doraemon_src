@@ -101,7 +101,7 @@
   "music_document": {
     "path": "data/audio/music_streams.json",
     "decoder": "scripts/validation/audio/audio_streams.py",
-    "layout": "config/audio_music.json",
+    "layout": "config/authoring/audio/audio_music.json",
     "image": "original"
   }
 }
