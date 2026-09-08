@@ -76,7 +76,7 @@ losslessly editable through `data/world1/weapons.json`; see
 | `World1_StartUndergroundJump` | `$D138` | 13 | 1 |
 | `World1_IntegrateUndergroundVerticalMotion` | `$D145` | 126 | 1 |
 
-`config/world1_player_controls.json` pins all 1,174 routine bytes, all 34 direct
+`config/reconstruction/world1/world1_player_controls.json` pins all 1,174 routine bytes, all 34 direct
 callsites, sixteen state fields, city and underground movement constants, ten
 city probes, twelve underground probes, the solid threshold, and weapon
 timing. Run:

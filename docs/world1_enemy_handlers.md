@@ -32,7 +32,7 @@ therefore reuse initializer slots 0-3.
 `World1_UpdateEntities` walks the ten update slots and masks each active type
 to five bits. The overlapping RTS-minus-one table at `$88FB` has 16 entries:
 state 0 is the inactive loop tail, and states `$01-$0F` form the catalog in
-`config/world1_enemy_handlers.json`.
+`config/reconstruction/world1/world1_enemy_handlers.json`.
 
 - States `$01-$0C` are produced directly from map placements.
 - State `$0D` has a dispatch entry sharing the state-1 handler, but no ordinary

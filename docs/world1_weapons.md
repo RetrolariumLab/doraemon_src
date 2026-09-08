@@ -31,9 +31,9 @@ runtime order, and every field is an unsigned byte. Edits can be applied to a
 base PRG with:
 
 ```text
-python scripts/world1_weapons.py encode \
+python scripts/run.py validation.world1.world1_weapons encode \
   --input data/world1/weapons.json \
-  --manifest config/world1_weapons.json \
+  --manifest config/authoring/world1/world1_weapons.json \
   --base-prg assets/generated/prg/doraemon.prg \
   --output build/world1-weapons.prg
 ```

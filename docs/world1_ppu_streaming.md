@@ -57,7 +57,7 @@ The six validated entry points are:
 - `World1_PrefillMapViewport` at `$A7DB`;
 - `World1_DrainMapPpuUpdates` at `$A87E`.
 
-`config/world1_ppu_streaming.json` pins all 1,013 routine bytes, the complete
+`config/reconstruction/world1/world1_ppu_streaming.json` pins all 1,013 routine bytes, the complete
 20-call graph, both packet layouts, queue capacity, and 92 owned RAM bytes.
 Run the focused contract with:
 

@@ -79,6 +79,6 @@ Run `make validate-world1-metasprites` to prove:
 - the pinned CHR bank and renderer code signature;
 - a byte-exact decode/encode round trip over the full catalog.
 
-For research, `scripts/world1_metasprites.py render` produces a contact sheet
+For research, `scripts/validation/world1/world1_metasprites.py render` produces a contact sheet
 of all 115 indexes. Descriptor bases are outlined in gold; the image is a build
 artifact and is not committed.

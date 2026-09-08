@@ -2,8 +2,8 @@
 
 PRG bank 0 contains two independent byte-producing pseudorandom routines.
 Their RAM ranges, exact machine-code bodies, and every direct `JSR` occurrence
-are fixed by `config/world1_random.json` and checked by
-`scripts/world1_random.py`.
+are fixed by `config/reconstruction/world1/world1_random.json` and checked by
+`scripts/validation/world1/world1_random.py`.
 
 | Routine | Address | State | Frame mixed | Direct calls |
 | --- | ---: | --- | --- | ---: |

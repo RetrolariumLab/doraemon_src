@@ -59,7 +59,7 @@ room calls up/down.
 | `World1_TrackUndergroundVerticalCamera` | `$D47C` | 114 | 1 | Y `$6E-$92` | 6 |
 
 The normal player-camera path, initial viewport prefill, and scripted movement
-all call these same routines. `config/world1_camera.json` pins all 553 routine
+all call these same routines. `config/reconstruction/world1/world1_camera.json` pins all 553 routine
 bytes, the twelve state symbols and ownership scopes, the coordinate geometry,
 the underground tracking bands, and all 18 direct callsites. Run the focused
 contract with:

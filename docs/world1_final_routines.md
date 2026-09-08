@@ -1,6 +1,6 @@
 # World 1 final routines
 
-`config/world1_final_routines.json` closes the remaining ten address-only
+`config/reconstruction/world1/world1_final_routines.json` closes the remaining ten address-only
 routine entries in Bank 0. Five routines own the vertical underground finale
 and scripted Bull Robo battle; five are entity-handler geometry and movement
 helpers.

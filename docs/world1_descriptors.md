@@ -78,7 +78,8 @@ projectile-Y table begins. These are real shared bytes, not disassembly boundary
 errors. The lossless authoring encoder requires both views of either byte to
 agree and rejects conflicting edits.
 
-`config/object_placements.json` is the canonical structural catalog. Run
+`config/authoring/world1/object_placements.json` is the canonical structural
+catalog. Run
 `make validate-object-placements` to compare the descriptors, selector table,
 collision tables, placement encoding, usage counts, and CRCs with the canonical
 PRG and to round-trip the editable representation in
