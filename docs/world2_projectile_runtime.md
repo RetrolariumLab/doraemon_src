@@ -1,6 +1,6 @@
 # World 2 projectile runtime
 
-`config/world2_projectile_runtime.json` fixes the World 2 player-projectile
+`config/reconstruction/world2/world2_projectile_runtime.json` fixes the World 2 player-projectile
 motion helpers, player hazard scan, and both inventory-owned attacks. It pins
 17 routines, 768 executable bytes, 23 direct calls or tail jumps, and nine
 Bank 1-private zero-page fields.

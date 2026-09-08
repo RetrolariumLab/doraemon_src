@@ -28,7 +28,8 @@ selects CHR bank 1 and configures 8-by-8 sprites from pattern table `$0000`.
 ## Enemy-state references
 
 The 20 ordinary enemy states directly select 45 of the 58 metasprite indexes.
-`config/world2_metasprites.json` records each exact state-to-index set,
+`config/authoring/world2/world2_metasprites.json` records each exact
+state-to-index set,
 including the six-index composite renderers for states `$12` and `$13` and
 the invisible states `$09` and `$11`.
 
@@ -61,10 +62,10 @@ enemy-reference, renderer-signature, and authoring checks. A research contact
 sheet can be generated without adding ROM-derived graphics to Git:
 
 ```text
-python -B scripts/world2_metasprites.py render \
+python -B scripts/run.py validation.world2.world2_metasprites render \
   --prg assets/generated/prg/doraemon.prg \
   --chr assets/generated/chr/doraemon.chr \
-  --manifest config/world2_metasprites.json \
+  --manifest config/authoring/world2/world2_metasprites.json \
   --palette-authoring data/world2/palettes.json \
   --palette-record 7 \
   --output build/world2_metasprites.png

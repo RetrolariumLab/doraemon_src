@@ -1,6 +1,6 @@
 # World 2 sprite runtime
 
-`config/world2_sprite_runtime.json` fixes the World 2 player and inventory
+`config/reconstruction/world2/world2_sprite_runtime.json` fixes the World 2 player and inventory
 renderer from the slot 2 attack-segment helpers through the final OAM writer.
 It pins 27 routines, 864 executable bytes, 54 direct calls or tail jumps, and
 nine Bank 1-private RAM symbols covering 103 bytes.

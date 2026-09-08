@@ -36,13 +36,13 @@ all nine sets are distinct, and every set begins with universal color `$0F`.
 chapter selector pairs. Decode the canonical data with:
 
 ```text
-python scripts/world2_palettes.py decode --prg assets/generated/prg/doraemon.prg --manifest config/world2_palettes.json --stage-authoring data/world2/stage_sequence.json --output data/world2/palettes.json
+python scripts/run.py validation.world2.world2_palettes decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world2/world2_palettes.json --stage-authoring data/world2/stage_sequence.json --output data/world2/palettes.json
 ```
 
 Apply an edited catalog to a base PRG with:
 
 ```text
-python scripts/world2_palettes.py encode --input data/world2/palettes.json --base-prg assets/generated/prg/doraemon.prg --output build/world2_palettes.prg
+python scripts/run.py validation.world2.world2_palettes encode --input data/world2/palettes.json --base-prg assets/generated/prg/doraemon.prg --output build/world2_palettes.prg
 ```
 
 `make validate-world2-palettes` verifies data CRCs, both code signatures,

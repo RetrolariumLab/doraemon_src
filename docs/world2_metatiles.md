@@ -43,13 +43,13 @@ Each record contains its palette, four CHR indexes, solid flag, and whether a
 standard ROM stream references the ID. Decode it with:
 
 ```text
-python scripts/world2_metatiles.py decode --prg assets/generated/prg/doraemon.prg --manifest config/world2_metatiles.json --screen-authoring data/world2/compressed_screens.json --output data/world2/metatiles.json
+python scripts/run.py validation.world2.world2_metatiles decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world2/world2_metatiles.json --screen-authoring data/world2/compressed_screens.json --output data/world2/metatiles.json
 ```
 
 An edited catalog can be applied to a base PRG:
 
 ```text
-python scripts/world2_metatiles.py encode --input data/world2/metatiles.json --base-prg assets/generated/prg/doraemon.prg --output build/world2_metatiles.prg
+python scripts/run.py validation.world2.world2_metatiles encode --input data/world2/metatiles.json --base-prg assets/generated/prg/doraemon.prg --output build/world2_metatiles.prg
 ```
 
 `make validate-world2-metatiles` locks all four data CRCs, the complete

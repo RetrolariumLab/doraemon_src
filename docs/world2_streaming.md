@@ -86,13 +86,13 @@ and `0030:R:F6:00`. Offsets are relative to `$BFCC`. Row records use
 Decode the canonical data:
 
 ```text
-python scripts/world2_streaming.py decode --prg assets/generated/prg/doraemon.prg --manifest config/world2_streaming.json --code-entries config/prg_code_entries.txt --output data/world2/compressed_screens.json
+python scripts/run.py validation.world2.world2_streaming decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world2/world2_streaming.json --code-entries config/reconstruction/prg_code_entries.txt --output data/world2/compressed_screens.json
 ```
 
 Encode an edited document:
 
 ```text
-python scripts/world2_streaming.py encode --input data/world2/compressed_screens.json --output build/world2_screens.bin
+python scripts/run.py validation.world2.world2_streaming encode --input data/world2/compressed_screens.json --output build/world2_screens.bin
 ```
 
 The output is the contiguous 238-byte standard pointer table followed by the

@@ -1,6 +1,6 @@
 # World 2 frame core
 
-`config/world2_frame_core.json` fixes fifteen routines at the center of the
+`config/reconstruction/world2/world2_frame_core.json` fixes fifteen routines at the center of the
 World 2 frame and stage lifecycle. The slice covers the wait/render path,
 chapter exit, boss-to-stage advance, transition delay, sprite/metatile clears,
 audio reset, initial health lookup, initial stage upload, delayed scrolling and
