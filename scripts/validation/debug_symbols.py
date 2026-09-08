@@ -408,7 +408,7 @@ def main() -> int:
         child.add_argument("--watches", required=True, type=Path)
         child.add_argument("--output-dir", required=True, type=Path)
     args = parser.parse_args()
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = Path(__file__).resolve().parents[2]
     try:
         registry = load_json(args.symbols, "symbol registry")
         contract = load_json(args.contract, "debug-symbol contract")
