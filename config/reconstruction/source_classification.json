@@ -2,7 +2,7 @@
   "schema_version": 1,
   "status": "complete",
   "listing": "build/native/doraemon.lst",
-  "base_typed_ranges": "config/prg_data_ranges.txt",
+  "base_typed_ranges": "config/reconstruction/prg_data_ranges.txt",
   "prg_asset": "assets/generated/prg/doraemon.prg",
   "policy": "every canonical PRG byte emitted by a data directive is base-typed, supplemental typed data, known encoded code, padding, or a registered unknown",
   "classifications": [
@@ -52,8 +52,8 @@
         }
       ],
       "evidence": [
-        "config/bank_gateways.json",
-        "config/common_runtime.json"
+        "config/reconstruction/common/bank_gateways.json",
+        "config/reconstruction/common/common_runtime.json"
       ]
     },
     {
@@ -82,7 +82,7 @@
         }
       ],
       "evidence": [
-        "config/common_runtime.json",
+        "config/reconstruction/common/common_runtime.json",
         "docs/architecture.md"
       ]
     },
@@ -152,10 +152,10 @@
         }
       ],
       "evidence": [
-        "config/object_dispatch.json",
-        "config/object_placements.json",
-        "config/world1_player_controls.json",
-        "config/world1_underground_rooms.json"
+        "config/reconstruction/common/object_dispatch.json",
+        "config/authoring/world1/object_placements.json",
+        "config/reconstruction/world1/world1_player_controls.json",
+        "config/authoring/world1/world1_underground_rooms.json"
       ]
     },
     {
@@ -169,8 +169,8 @@
         }
       ],
       "evidence": [
-        "config/world1_metasprites.json",
-        "config/world1_weapons.json"
+        "config/authoring/world1/world1_metasprites.json",
+        "config/authoring/world1/world1_weapons.json"
       ]
     },
     {
@@ -189,7 +189,7 @@
         }
       ],
       "evidence": [
-        "config/object_placements.json",
+        "config/authoring/world1/object_placements.json",
         "data/world1/object_data.json"
       ]
     },
@@ -209,8 +209,8 @@
         }
       ],
       "evidence": [
-        "config/audio_effects.json",
-        "config/audio_music.json"
+        "config/authoring/audio/audio_effects.json",
+        "config/authoring/audio/audio_music.json"
       ]
     },
     {
@@ -239,9 +239,9 @@
         }
       ],
       "evidence": [
-        "config/core_dispatch_roles.json",
-        "config/world2_stage_sequence.json",
-        "config/world2_enemy_handlers.json"
+        "config/reconstruction/common/core_dispatch_roles.json",
+        "config/authoring/world2/world2_stage_sequence.json",
+        "config/reconstruction/world2/world2_enemy_handlers.json"
       ]
     },
     {
@@ -255,7 +255,7 @@
         }
       ],
       "evidence": [
-        "config/world2_sprite_runtime.json",
+        "config/reconstruction/world2/world2_sprite_runtime.json",
         "docs/world2_metasprites.md"
       ]
     },
@@ -270,9 +270,9 @@
         }
       ],
       "evidence": [
-        "config/world2_metasprites.json",
-        "config/object_dispatch.json",
-        "config/world2_enemy_states.json"
+        "config/authoring/world2/world2_metasprites.json",
+        "config/reconstruction/common/object_dispatch.json",
+        "config/authoring/world2/world2_enemy_states.json"
       ]
     },
     {
@@ -291,8 +291,8 @@
         }
       ],
       "evidence": [
-        "config/audio_effects.json",
-        "config/audio_music.json"
+        "config/authoring/audio/audio_effects.json",
+        "config/authoring/audio/audio_music.json"
       ]
     },
     {
@@ -381,11 +381,11 @@
         }
       ],
       "evidence": [
-        "config/object_dispatch.json",
-        "config/world3_entity_types.json",
-        "config/world3_player_runtime.json",
-        "config/world3_formation_runtime.json",
-        "config/world3_transition_runtime.json"
+        "config/reconstruction/common/object_dispatch.json",
+        "config/authoring/world3/world3_entity_types.json",
+        "config/reconstruction/world3/world3_player_runtime.json",
+        "config/reconstruction/world3/world3_formation_runtime.json",
+        "config/reconstruction/world3/world3_transition_runtime.json"
       ]
     },
     {
@@ -409,8 +409,8 @@
         }
       ],
       "evidence": [
-        "config/world3_object_data.json",
-        "config/world3_behavior.json",
+        "config/authoring/world3/world3_object_data.json",
+        "config/authoring/world3/world3_behavior.json",
         "data/world3/behavior_streams.json"
       ]
     },
@@ -430,8 +430,8 @@
         }
       ],
       "evidence": [
-        "config/audio_effects.json",
-        "config/audio_music.json"
+        "config/authoring/audio/audio_effects.json",
+        "config/authoring/audio/audio_music.json"
       ]
     },
     {
@@ -460,8 +460,8 @@
         }
       ],
       "evidence": [
-        "config/shell_runtime.json",
-        "config/shell_text.json"
+        "config/reconstruction/common/shell_runtime.json",
+        "config/authoring/text/shell_text.json"
       ]
     },
     {
@@ -485,8 +485,8 @@
         }
       ],
       "evidence": [
-        "config/audio_dispatch.json",
-        "config/audio_music.json"
+        "config/authoring/audio/audio_dispatch.json",
+        "config/authoring/audio/audio_music.json"
       ]
     },
     {
@@ -553,7 +553,7 @@
       ],
       "evidence": [
         "docs/unknowns.md",
-        "config/audio_music.json"
+        "config/authoring/audio/audio_music.json"
       ]
     },
     {
@@ -899,7 +899,7 @@
       ],
       "evidence": [
         "docs/unknowns.md",
-        "config/prg_code_entries.txt"
+        "config/reconstruction/prg_code_entries.txt"
       ]
     }
   ],
