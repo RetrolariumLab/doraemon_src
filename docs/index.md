@@ -8,6 +8,7 @@ tag-ready Source Reconstruction 2.0 authoring release.
 - [Project release lifecycle](release_contract.md)
 - [Source Reconstruction 1.0 boundary](source_reconstruction.md)
 - [Source Reconstruction 2.0 boundary](source_reconstruction_2_0.md)
+- [Source 2.0 draft-history rewrite](source_2_history_rewrite.md)
 - [Build and byte identity](verification.md)
 - [Official revision profiles](revisions.md)
 - [Reconstruction inventory](reconstruction_inventory.md)

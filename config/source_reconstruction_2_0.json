@@ -290,6 +290,15 @@
         "tests/runtime/test_runtime_scenarios.py",
         "docs/revision_runtime.md"
       ]
+    },
+    {
+      "id": "reviewable-draft-history",
+      "kind": "documentation",
+      "summary": "Replace the unpublished draft stack with nonempty owner-oriented commits and retain an auditable old-to-new attribution map.",
+      "evidence": [
+        "docs/source_2_history_rewrite.md",
+        "CONTRIBUTING.md"
+      ]
     }
   ],
   "requirements": {
@@ -375,19 +384,26 @@
       }
     },
     "source-2.commit-history": {
-      "status": "partial",
+      "status": "satisfied",
       "evidence": {
         "targets": [
           "source-2-audit"
         ],
         "files": [
-          "CONTRIBUTING.md"
+          "CONTRIBUTING.md",
+          "docs/source_2_history_rewrite.md"
         ]
       }
     },
     "source-2.repository-structure": {
-      "status": "partial",
+      "status": "satisfied",
       "evidence": {
+        "targets": [
+          "lint",
+          "test",
+          "scaffold-check",
+          "public-command-smoke"
+        ],
         "files": [
           "config/source_reconstruction_2_0.json",
           "scripts/validation/release/source_2_audit.py",
@@ -500,6 +516,7 @@
     "docs/index.md",
     "docs/release_contract.md",
     "docs/source_reconstruction_2_0.md",
+    "docs/source_2_history_rewrite.md",
     "docs/revisions.md",
     "docs/revision_runtime.md",
     "docs/level_studio.md",
