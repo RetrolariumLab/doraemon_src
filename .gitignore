@@ -1,5 +1,5 @@
 # Build artifacts and original ROM images
-build/
+/build/
 *.o
 *.nes
 *.chr
@@ -8,6 +8,9 @@ build/
 
 # Assets extracted from a legally obtained reference image
 assets/generated/
+
+# Local editable copies used by the graphical content studios
+content/workspace/
 
 # Local research repositories
 references/
