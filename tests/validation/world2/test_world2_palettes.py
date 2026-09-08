@@ -8,10 +8,13 @@ import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import world2_palettes
+from scripts.validation.world2 import world2_palettes
 
 
 class World2PaletteTests(unittest.TestCase):

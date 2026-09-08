@@ -8,10 +8,13 @@ import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import world2_enemy_states
+from scripts.validation.world2 import world2_enemy_states
 
 
 class World2EnemyStateTests(unittest.TestCase):
