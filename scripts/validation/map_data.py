@@ -10,7 +10,7 @@ from pathlib import Path
 import sys
 import zlib
 
-import project
+from scripts.build import project
 
 
 @dataclass(frozen=True)
