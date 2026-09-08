@@ -6,10 +6,13 @@ import sys
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import world3_entity_types
+from scripts.validation.world3 import world3_entity_types
 
 
 class World3EntityTypeTests(unittest.TestCase):
