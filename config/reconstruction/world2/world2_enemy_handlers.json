@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "bank": 1,
+  "inactive_update_target": "0xA0B9",
+  "states": [
+    {
+      "state": 1,
+      "identity_symbol": "ankodori",
+      "domain": "direct_spawn",
+      "update_target": "0x9B2F",
+      "update_symbol": "World2_UpdateAnkodori",
+      "update_role": "advance phase, move left one pixel, apply scrolling, deactivate at the left edge",
+      "render_target": "0x9B46",
+      "render_symbol": "World2_RenderAnkodori",
+      "render_role": "two-frame phase-bit animation"
+    },
+    {
+      "state": 2,
+      "identity_symbol": "takkon",
+      "domain": "direct_spawn",
+      "update_target": "0x9DE7",
+      "update_symbol": "World2_UpdateTakkon",
+      "update_role": "apply chapter scrolling motion only",
+      "render_target": "0x9B58",
+      "render_symbol": "World2_RenderTakkon",
+      "render_role": "two-frame animation reflected toward the player"
+    },
+    {
+      "state": 3,
+      "identity_symbol": "midron",
+      "domain": "direct_spawn",
+      "update_target": "0x9B73",
+      "update_symbol": "World2_UpdateMidronAndJoki",
+      "update_role": "chase the player on the spawn-selected axis with collision probes",
+      "render_target": "0x9C18",
+      "render_symbol": "World2_RenderMidron",
+      "render_role": "four-frame global animation sequence"
+    },
+    {
+      "state": 4,
+      "identity_symbol": "tenkoumori",
+      "domain": "direct_spawn",
+      "update_target": "0x9C2C",
+      "update_symbol": "World2_UpdateTenkoumori",
+      "update_role": "move left while adding a cyclic vertical displacement",
+      "render_target": "0x9C85",
+      "render_symbol": "World2_RenderTenkoumori",
+      "render_role": "two-frame global animation sequence"
+    },
+    {
+      "state": 5,
+      "identity_symbol": "zenmaiuo",
+      "domain": "direct_spawn",
+      "update_target": "0x9C96",
+      "update_symbol": "World2_UpdateZenmaiuo",
+      "update_role": "move right then left while subtracting a cyclic vertical displacement",
+      "render_target": "0x9CDE",
+      "render_symbol": "World2_RenderZenmaiuo",
+      "render_role": "phase-selected static or two-frame animation"
+    },
+    {
+      "state": 6,
+      "identity_symbol": "gurinko",
+      "domain": "direct_spawn",
+      "update_target": "0x9D05",
+      "update_symbol": "World2_UpdateGurinko",
+      "update_role": "apply scrolling and a phase-gated vertical wave with collision probes",
+      "render_target": "0x9D36",
+      "render_symbol": "World2_RenderGurinko",
+      "render_role": "two-frame animation during the active half-phase"
+    },
+    {
+      "state": 7,
+      "identity_symbol": "borukka",
+      "domain": "direct_spawn",
+      "update_target": "0x9D4E",
+      "update_symbol": "World2_UpdateBorukka",
+      "update_role": "arm after seven ticks and emit randomized radial projectiles",
+      "render_target": "0x9DC9",
+      "render_symbol": "World2_RenderBorukka",
+      "render_role": "visible two-frame animation only after arming"
+    },
+    {
+      "state": 8,
+      "identity_symbol": "gangan_straight",
+      "domain": "direct_spawn",
+      "update_target": "0x9DE1",
+      "update_symbol": "World2_UpdateGanganStraight",
+      "update_role": "apply the common scrolling-motion helper twice",
+      "render_target": "0x9DEA",
+      "render_symbol": "World2_RenderGangan",
+      "render_role": "four-frame animation with alternating reflection"
+    },
+    {
+      "state": 9,
+      "identity_symbol": "buran",
+      "domain": "direct_spawn",
+      "update_target": "0x9E06",
+      "update_symbol": "World2_UpdateBuran",
+      "update_role": "shift left twelve pixels once, then apply scrolling motion",
+      "render_target": "0x9E1A",
+      "render_symbol": "World2_RenderBuranInvisible",
+      "render_role": "no-op invisible render state"
+    },
+    {
+      "state": 10,
+      "identity_symbol": "tosshin",
+      "domain": "direct_spawn",
+      "update_target": "0x9E1B",
+      "update_symbol": "World2_UpdateTosshin",
+      "update_role": "alternate timed player-directed movement on both axes",
+      "render_target": "0x9EB2",
+      "render_symbol": "World2_RenderTosshin",
+      "render_role": "two-frame global animation sequence"
+    },
+    {
+      "state": 11,
+      "identity_symbol": "kyon",
+      "domain": "direct_spawn",
+      "update_target": "0x9EBE",
+      "update_symbol": "World2_UpdateKyon",
+      "update_role": "apply a sixteen-step axis-selected motion table with collision probes",
+      "render_target": "0x9EFB",
+      "render_symbol": "World2_RenderKyon",
+      "render_role": "four-frame phase and global-counter animation"
+    },
+    {
+      "state": 12,
+      "identity_symbol": "joki",
+      "domain": "direct_spawn",
+      "update_target": "0x9B73",
+      "update_symbol": "World2_UpdateMidronAndJoki",
+      "update_role": "share the state-03 player chase and collision path",
+      "render_target": "0x9F2E",
+      "render_symbol": "World2_RenderJoki",
+      "render_role": "two-frame global animation sequence"
+    },
+    {
+      "state": 13,
+      "identity_symbol": "potta",
+      "domain": "direct_spawn",
+      "update_target": "0x9F3A",
+      "update_symbol": "World2_UpdatePotta",
+      "update_role": "delay, move down sixteen pixels, then cycle a vertical wave",
+      "render_target": "0x9F84",
+      "render_symbol": "World2_RenderPotta",
+      "render_role": "hidden during delay, then phase-selected two-frame animation"
+    },
+    {
+      "state": 14,
+      "identity_symbol": "jura",
+      "domain": "direct_spawn",
+      "update_target": "0x9F9A",
+      "update_symbol": "World2_UpdateJura",
+      "update_role": "follow a sixteen-step two-axis orbit every four frames",
+      "render_target": "0xA021",
+      "render_symbol": "World2_RenderJuraAndOroronProjectile",
+      "render_role": "four phase-selected metasprite indexes"
+    },
+    {
+      "state": 15,
+      "identity_symbol": "gangan_spiral",
+      "domain": "direct_spawn",
+      "update_target": "0x9FC5",
+      "update_symbol": "World2_UpdateGanganSpiral",
+      "update_role": "combine downward motion with the sixteen-step orbit",
+      "render_target": "0x9DEA",
+      "render_symbol": "World2_RenderGangan",
+      "render_role": "share the state-08 reflected four-frame animation"
+    },
+    {
+      "state": 16,
+      "identity_symbol": "ororon_jura_projectile",
+      "domain": "internal",
+      "update_target": "0x9FF4",
+      "update_symbol": "World2_UpdateOroronJuraProjectile",
+      "update_role": "move left three pixels with a decaying vertical arc",
+      "render_target": "0xA021",
+      "render_symbol": "World2_RenderJuraAndOroronProjectile",
+      "render_role": "share the state-0E phase-selected render path"
+    },
+    {
+      "state": 17,
+      "identity_symbol": "ororon_iwa",
+      "domain": "internal",
+      "update_target": "0xA03D",
+      "update_symbol": "World2_OroronIwaStateNoOp",
+      "update_role": "no-op internal update state",
+      "render_target": "0xA03D",
+      "render_symbol": "World2_OroronIwaStateNoOp",
+      "render_role": "no-op invisible render state"
+    },
+    {
+      "state": 18,
+      "identity_symbol": "big_robo_ship",
+      "domain": "internal",
+      "update_target": "0xA03E",
+      "update_symbol": "World2_UpdateBigRoboShip",
+      "update_role": "advance a sixteen-step orbit every four frames",
+      "render_target": "0xA06D",
+      "render_symbol": "World2_RenderBigRoboShip",
+      "render_role": "three-part composite metasprite"
+    },
+    {
+      "state": 19,
+      "identity_symbol": "centaurus",
+      "domain": "internal",
+      "update_target": "0xA048",
+      "update_symbol": "World2_UpdateCentaurus",
+      "update_role": "advance a sixteen-step orbit every two frames",
+      "render_target": "0xA063",
+      "render_symbol": "World2_RenderCentaurus",
+      "render_role": "three-part composite with a slower two-frame base"
+    },
+    {
+      "state": 20,
+      "identity_symbol": "robo_ship",
+      "domain": "internal",
+      "update_target": "0xA0A2",
+      "update_symbol": "World2_UpdateRoboShip",
+      "update_role": "move down one and left three pixels until offscreen",
+      "render_target": "0xA0B9",
+      "render_symbol": "World2_RenderRoboShip",
+      "render_role": "two-frame global animation sequence"
+    }
+  ]
+}
