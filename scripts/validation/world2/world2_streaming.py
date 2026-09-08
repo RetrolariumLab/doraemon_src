@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 import zlib
 
-import project
+from scripts.build import project
 
 
 BANK_SIZE = 0x8000

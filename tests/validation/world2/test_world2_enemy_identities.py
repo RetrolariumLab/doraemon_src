@@ -6,10 +6,13 @@ import sys
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import world2_enemy_identities
+from scripts.validation.world2 import world2_enemy_identities
 
 
 class World2EnemyIdentityTests(unittest.TestCase):

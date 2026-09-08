@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 import zlib
 
-from world3_metasprites import NES_RGB
+from scripts.validation.world3.world3_metasprites import NES_RGB
 
 
 BANK_SIZE = 0x8000
