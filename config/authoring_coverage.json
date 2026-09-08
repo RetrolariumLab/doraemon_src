@@ -3,7 +3,7 @@
   "status": "complete",
   "secondary_fixed_tables_policy": "typed-source-or-registered-unknown",
   "secondary_fixed_table_evidence": [
-    "config/prg_data_ranges.txt",
+    "config/reconstruction/prg_data_ranges.txt",
     "docs/unknowns.md"
   ],
   "families": [
@@ -20,16 +20,16 @@
             "data/world1/hierarchical_world.json"
           ],
           "contract_files": [
-            "config/world_data.json",
-            "config/world1_map_decoder.json"
+            "config/authoring/world_data.json",
+            "config/reconstruction/world1/world1_map_decoder.json"
           ],
           "documentation_files": [
             "docs/world_data.md",
             "docs/world1_map_decoder.md"
           ],
           "test_files": [
-            "tests/test_world_data.py",
-            "tests/test_world1_map_decoder.py"
+            "tests/validation/reconstruction/test_world_data.py",
+            "tests/validation/world1/test_world1_map_decoder.py"
           ],
           "validation_targets": [
             "validate-world-data",
@@ -48,10 +48,10 @@
             "data/world2/metatiles.json"
           ],
           "contract_files": [
-            "config/world2_streaming.json",
-            "config/world2_stage_sequence.json",
-            "config/world2_stage_branches.json",
-            "config/world2_metatiles.json"
+            "config/authoring/world2/world2_streaming.json",
+            "config/authoring/world2/world2_stage_sequence.json",
+            "config/authoring/world2/world2_stage_branches.json",
+            "config/authoring/world2/world2_metatiles.json"
           ],
           "documentation_files": [
             "docs/world2_streaming.md",
@@ -60,10 +60,10 @@
             "docs/world2_metatiles.md"
           ],
           "test_files": [
-            "tests/test_world2_streaming.py",
-            "tests/test_world2_stage_sequence.py",
-            "tests/test_world2_stage_branches.py",
-            "tests/test_world2_metatiles.py"
+            "tests/validation/world2/test_world2_streaming.py",
+            "tests/validation/world2/test_world2_stage_sequence.py",
+            "tests/validation/world2/test_world2_stage_branches.py",
+            "tests/validation/world2/test_world2_metatiles.py"
           ],
           "validation_targets": [
             "validate-world2-streaming",
@@ -81,15 +81,15 @@
             "data/world3/hierarchical_world.json"
           ],
           "contract_files": [
-            "config/world_data.json",
-            "config/world3_room_rendering.json"
+            "config/authoring/world_data.json",
+            "config/reconstruction/world3/world3_room_rendering.json"
           ],
           "documentation_files": [
             "docs/world_data.md",
             "docs/world3_room_rendering.md"
           ],
           "test_files": [
-            "tests/test_world_data.py"
+            "tests/validation/reconstruction/test_world_data.py"
           ],
           "validation_targets": [
             "validate-world-data",
@@ -114,10 +114,10 @@
             "data/world1/weapons.json"
           ],
           "contract_files": [
-            "config/object_placements.json",
-            "config/world1_player_controls.json",
-            "config/world1_underground_rooms.json",
-            "config/world1_weapons.json"
+            "config/authoring/world1/object_placements.json",
+            "config/reconstruction/world1/world1_player_controls.json",
+            "config/authoring/world1/world1_underground_rooms.json",
+            "config/authoring/world1/world1_weapons.json"
           ],
           "documentation_files": [
             "docs/object_formats.md",
@@ -126,10 +126,10 @@
             "docs/world1_weapons.md"
           ],
           "test_files": [
-            "tests/test_object_placements.py",
-            "tests/test_world1_player_controls.py",
-            "tests/test_world1_underground_rooms.py",
-            "tests/test_world1_weapons.py"
+            "tests/validation/reconstruction/test_object_placements.py",
+            "tests/validation/world1/test_world1_player_controls.py",
+            "tests/validation/world1/test_world1_underground_rooms.py",
+            "tests/validation/world1/test_world1_weapons.py"
           ],
           "validation_targets": [
             "validate-object-placements",
@@ -151,10 +151,10 @@
             "data/world2/metatiles.json"
           ],
           "contract_files": [
-            "config/world2_streaming.json",
-            "config/world2_enemy_states.json",
-            "config/world2_inventory.json",
-            "config/world2_metatiles.json"
+            "config/authoring/world2/world2_streaming.json",
+            "config/authoring/world2/world2_enemy_states.json",
+            "config/authoring/world2/world2_inventory.json",
+            "config/authoring/world2/world2_metatiles.json"
           ],
           "documentation_files": [
             "docs/world2_streaming.md",
@@ -163,10 +163,10 @@
             "docs/world2_metatiles.md"
           ],
           "test_files": [
-            "tests/test_world2_streaming.py",
-            "tests/test_world2_enemy_states.py",
-            "tests/test_world2_inventory.py",
-            "tests/test_world2_metatiles.py"
+            "tests/validation/world2/test_world2_streaming.py",
+            "tests/validation/world2/test_world2_enemy_states.py",
+            "tests/validation/world2/test_world2_inventory.py",
+            "tests/validation/world2/test_world2_metatiles.py"
           ],
           "validation_targets": [
             "validate-world2-streaming",
@@ -189,13 +189,13 @@
             "data/world3/hierarchical_world.json"
           ],
           "contract_files": [
-            "config/world3_object_data.json",
-            "config/world3_entity_types.json",
-            "config/world3_behavior.json",
-            "config/world3_transient_spawns.json",
-            "config/world3_spawn_initializers.json",
-            "config/world3_update_handlers.json",
-            "config/world3_collision_rendering.json"
+            "config/authoring/world3/world3_object_data.json",
+            "config/authoring/world3/world3_entity_types.json",
+            "config/authoring/world3/world3_behavior.json",
+            "config/authoring/world3/world3_transient_spawns.json",
+            "config/authoring/world3/world3_spawn_initializers.json",
+            "config/authoring/world3/world3_update_handlers.json",
+            "config/reconstruction/world3/world3_collision_rendering.json"
           ],
           "documentation_files": [
             "docs/world3_object_catalog.md",
@@ -207,12 +207,12 @@
             "docs/world3_collision_rendering.md"
           ],
           "test_files": [
-            "tests/test_world3_object_catalog.py",
-            "tests/test_world3_entity_types.py",
-            "tests/test_world3_behavior.py",
-            "tests/test_world3_transient_spawns.py",
-            "tests/test_world3_spawn_initializers.py",
-            "tests/test_world3_update_handlers.py"
+            "tests/validation/world3/test_world3_object_catalog.py",
+            "tests/validation/world3/test_world3_entity_types.py",
+            "tests/validation/world3/test_world3_behavior.py",
+            "tests/validation/world3/test_world3_transient_spawns.py",
+            "tests/validation/world3/test_world3_spawn_initializers.py",
+            "tests/validation/world3/test_world3_update_handlers.py"
           ],
           "validation_targets": [
             "validate-world3-object-catalog",
@@ -241,16 +241,16 @@
             "data/world1/palettes.json"
           ],
           "contract_files": [
-            "config/world1_metasprites.json",
-            "config/world1_palettes.json"
+            "config/authoring/world1/world1_metasprites.json",
+            "config/authoring/world1/world1_palettes.json"
           ],
           "documentation_files": [
             "docs/world1_metasprites.md",
             "docs/world1_palettes.md"
           ],
           "test_files": [
-            "tests/test_world1_metasprites.py",
-            "tests/test_world1_palettes.py"
+            "tests/validation/world1/test_world1_metasprites.py",
+            "tests/validation/world1/test_world1_palettes.py"
           ],
           "validation_targets": [
             "validate-world1-metasprites",
@@ -267,16 +267,16 @@
             "data/world2/palettes.json"
           ],
           "contract_files": [
-            "config/world2_metasprites.json",
-            "config/world2_palettes.json"
+            "config/authoring/world2/world2_metasprites.json",
+            "config/authoring/world2/world2_palettes.json"
           ],
           "documentation_files": [
             "docs/world2_metasprites.md",
             "docs/world2_palettes.md"
           ],
           "test_files": [
-            "tests/test_world2_metasprites.py",
-            "tests/test_world2_palettes.py"
+            "tests/validation/world2/test_world2_metasprites.py",
+            "tests/validation/world2/test_world2_palettes.py"
           ],
           "validation_targets": [
             "validate-world2-metasprites",
@@ -292,13 +292,13 @@
             "data/world3/metasprites.json"
           ],
           "contract_files": [
-            "config/world3_metasprites.json"
+            "config/authoring/world3/world3_metasprites.json"
           ],
           "documentation_files": [
             "docs/world3_metasprites.md"
           ],
           "test_files": [
-            "tests/test_world3_metasprites.py"
+            "tests/validation/world3/test_world3_metasprites.py"
           ],
           "validation_targets": [
             "validate-world3-metasprites"
@@ -319,13 +319,13 @@
             "data/shell/text.json"
           ],
           "contract_files": [
-            "config/shell_text.json"
+            "config/authoring/text/shell_text.json"
           ],
           "documentation_files": [
             "docs/shell_text.md"
           ],
           "test_files": [
-            "tests/test_shell_text.py"
+            "tests/validation/reconstruction/test_shell_text.py"
           ],
           "validation_targets": [
             "validate-shell-text"
@@ -346,9 +346,9 @@
             "data/audio/music_streams.json"
           ],
           "contract_files": [
-            "config/audio_music.json",
-            "config/audio_effects.json",
-            "config/audio_arbitration.json"
+            "config/authoring/audio/audio_music.json",
+            "config/authoring/audio/audio_effects.json",
+            "config/authoring/audio/audio_arbitration.json"
           ],
           "documentation_files": [
             "docs/audio_music.md",
@@ -356,10 +356,10 @@
             "docs/audio_arbitration.md"
           ],
           "test_files": [
-            "tests/test_audio_streams.py",
-            "tests/test_audio_music.py",
-            "tests/test_audio_effects.py",
-            "tests/test_audio_arbitration.py"
+            "tests/validation/audio/test_audio_streams.py",
+            "tests/validation/audio/test_audio_music.py",
+            "tests/validation/audio/test_audio_effects.py",
+            "tests/validation/audio/test_audio_arbitration.py"
           ],
           "validation_targets": [
             "validate-audio-streams",
