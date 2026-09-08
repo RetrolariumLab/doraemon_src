@@ -1,14 +1,19 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
+import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 SPEC = importlib.util.spec_from_file_location(
     "reconstruction_inventory",
-    ROOT / "scripts" / "reconstruction_inventory.py",
+    ROOT / "scripts" / "validation" / "release" / "reconstruction_inventory.py",
 )
 assert SPEC is not None and SPEC.loader is not None
 INVENTORY = importlib.util.module_from_spec(SPEC)
@@ -16,6 +21,40 @@ SPEC.loader.exec_module(INVENTORY)
 
 
 class ReconstructionInventoryTests(unittest.TestCase):
+    def test_current_project_snapshot_uses_reconstruction_owner_paths(self) -> None:
+        manifest = json.loads(
+            (
+                ROOT
+                / "config"
+                / "reconstruction"
+                / "reconstruction_inventory.json"
+            ).read_text(encoding="utf-8")
+        )
+        self.assertEqual(
+            INVENTORY.validate(INVENTORY.calculate(ROOT), manifest),
+            [],
+        )
+
+    def test_mutually_exclusive_label_definitions_count_once(self) -> None:
+        modules = {
+            "modules": [
+                {
+                    "bank": 2,
+                    "path": "conditional.asm",
+                }
+            ]
+        }
+        source = "Routine:\n.if PROFILE = 0\nLocal:\n.else\nLocal:\n.endif\n"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "src").mkdir()
+            (root / "src" / "conditional.asm").write_text(
+                source, encoding="utf-8"
+            )
+            actual = INVENTORY.source_label_metrics(root, modules)
+        self.assertEqual(actual["total"]["global_labels"], 2)
+        self.assertEqual(actual["by_bank"]["2"]["semantic_labels"], 2)
+
     def test_counts_typed_ranges_by_bank_and_kind(self) -> None:
         actual = INVENTORY.typed_data_metrics(
             "table 0 8000 8001 First\nmap 0 8002 8004 Second\n"

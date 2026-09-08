@@ -8,9 +8,9 @@ import json
 from pathlib import Path
 from typing import Any
 
-import authoring_coverage
-import object_pools
-import reconstruction_inventory
+from scripts.validation.release import authoring_coverage
+from scripts.validation.reconstruction import object_pools
+from scripts.validation.release import reconstruction_inventory
 
 
 EXPECTED_TARGETS = {
@@ -82,10 +82,16 @@ def load_json(path: Path) -> dict[str, Any]:
 def actual_metrics(project_root: Path) -> tuple[list[str], dict[str, Any]]:
     pool_errors, pool_report = object_pools.validate(
         object_pools.load_document(
-            project_root / "config" / "object_pools.json", "object pool"
+            project_root
+            / "config"
+            / "reconstruction"
+            / "common"
+            / "object_pools.json",
+            "object pool",
         ),
         object_pools.load_document(
-            project_root / "config" / "symbols.json", "symbol registry"
+            project_root / "config" / "reconstruction" / "symbols.json",
+            "symbol registry",
         ),
     )
     inventory = reconstruction_inventory.calculate(project_root)
@@ -173,7 +179,11 @@ def validate_coverage(
     errors = list(metric_errors)
     errors.extend(validate_shape(document, metrics))
     errors.extend(
-        validate_evidence(project_root, document, makefile_path.read_text(encoding="utf-8"))
+        validate_evidence(
+            project_root,
+            document,
+            authoring_coverage.read_make_interface(makefile_path),
+        )
     )
     components = document.get("components", [])
     validators = {
@@ -197,7 +207,7 @@ def main() -> int:
     )
     parser.add_argument("--makefile", type=Path, default=Path("Makefile"))
     args = parser.parse_args()
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = Path(__file__).resolve().parents[3]
 
     def resolve(path: Path) -> Path:
         return path if path.is_absolute() else project_root / path

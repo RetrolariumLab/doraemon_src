@@ -316,7 +316,7 @@ def main() -> int:
     parser.add_argument("--listing")
     parser.add_argument("--base-ranges")
     args = parser.parse_args()
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = Path(__file__).resolve().parents[3]
     manifest_path = Path(args.manifest)
     if not manifest_path.is_absolute():
         manifest_path = project_root / manifest_path

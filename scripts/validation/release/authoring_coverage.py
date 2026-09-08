@@ -5,9 +5,15 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 from pathlib import Path
 from typing import Any
+
+
+from scripts.validation.release.makefile_interface import (
+    make_rule_dependencies,
+    make_targets,
+    read_make_interface,
+)
 
 
 EXPECTED_COMPONENTS = {
@@ -135,32 +141,6 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def make_targets(text: str) -> set[str]:
-    targets: set[str] = set()
-    for match in re.finditer(r"^([^\s:#=][^:#=]*)\s*:(?![=])", text, re.MULTILINE):
-        for target in match.group(1).split():
-            if re.fullmatch(r"[A-Za-z0-9_.-]+", target):
-                targets.add(target)
-    return targets
-
-
-def make_rule_dependencies(text: str, target: str) -> set[str]:
-    lines = text.splitlines()
-    for index, line in enumerate(lines):
-        match = re.match(rf"^{re.escape(target)}\s*:(?![=])(.*)$", line)
-        if match is None:
-            continue
-        parts = [match.group(1).rstrip(" \\")]
-        while line.rstrip().endswith("\\"):
-            index += 1
-            if index >= len(lines):
-                break
-            line = lines[index]
-            parts.append(line.strip().rstrip(" \\"))
-        return set(" ".join(parts).split())
-    return set()
-
-
 def safe_project_path(project_root: Path, relative: str) -> Path | None:
     if not relative or Path(relative).is_absolute():
         return None
@@ -282,7 +262,7 @@ def validate_coverage(
         authoring["secondary_fixed_tables_policy"],
     )
     errors.extend(
-        validate_evidence(project_root, document, makefile_path.read_text(encoding="utf-8"))
+        validate_evidence(project_root, document, read_make_interface(makefile_path))
     )
     families = document.get("families", [])
     components = [
@@ -320,7 +300,7 @@ def main() -> int:
     )
     parser.add_argument("--makefile", type=Path, default=Path("Makefile"))
     args = parser.parse_args()
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = Path(__file__).resolve().parents[3]
 
     def resolve(path: Path) -> Path:
         return path if path.is_absolute() else project_root / path
