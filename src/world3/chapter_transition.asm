@@ -139,6 +139,7 @@ World3_RenderRoom3FCompletionMarker:
     AND #$10
     BNE Bank2_Label_AF50
     LDX #$70
+.if DORAEMON_REVISION = DORAEMON_REVISION_ORIGINAL
     LDY #$74
     JSR World3_SetMetaspriteOriginFromXY
     LDA #$00
@@ -158,6 +159,19 @@ World3_HaltWithDiagnosticCode:
     STA a:$0301
     LDA #$80
     STA a:OamBuffer
+.else
+; Official Revision A replaces $AF40-$AF5F with $FF; keep labels at the
+; original entry addresses because unchanged callers still reference them
+    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+
+Bank2_Label_AF50:
+    .byte $FF
+
+World3_HaltWithDiagnosticCode:
+    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF
+.endif
     STA a:$0303
     LDA #$00
     STA a:$0302

@@ -1,5 +1,5 @@
 ; Address-ordered Doraemon PRG bank 0 semantic include map
-; Generated deterministically from config/source_modules.json
+; Generated deterministically from config/reconstruction/source_modules.json
 ; Keep byte-identical through make verify
 
 .segment "PRG0"
