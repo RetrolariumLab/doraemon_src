@@ -1,0 +1,496 @@
+{
+  "schema_version": 1,
+  "bank": 0,
+  "routines": [
+    {
+      "address": "0x830C",
+      "end_address": "0x8312",
+      "size": 7,
+      "crc32": "93b35441",
+      "name": "World1_BeginNormalGame",
+      "role": "clear-working-score-when-not-in-demo-then-leave-demo-mode",
+      "callers": [
+        {
+          "address": "0x829C",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8313",
+      "end_address": "0x834D",
+      "size": 59,
+      "crc32": "7535e18b",
+      "name": "World1_InitializeDemoState",
+      "role": "initialize-demo-player-camera-health-progression-and-object-mask",
+      "callers": [
+        {
+          "address": "0x845F",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x834E",
+      "end_address": "0x8361",
+      "size": 20,
+      "crc32": "e5d3a195",
+      "name": "World1_InitializeCityMapSources",
+      "role": "load-area-palette-city-map-pointer-and-city-object-list-pointer",
+      "callers": [
+        {
+          "address": "0x8420",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8362",
+      "end_address": "0x837B",
+      "size": 26,
+      "crc32": "c571fa3c",
+      "name": "World1_ResetPlayerHealthAndPose",
+      "role": "derive-full-health-from-capacity-and-clear-damage-pose-direction-flags",
+      "callers": [
+        {
+          "address": "0x82A2",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x834A",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8437",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCAA9",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCADB",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x837C",
+      "end_address": "0x83A2",
+      "size": 39,
+      "crc32": "8f76bc34",
+      "name": "World1_ClearGameplayRamAndOam",
+      "role": "clear-oam-entity-state-attribute-cache-and-selected-working-ram-pages",
+      "callers": [
+        {
+          "address": "0x8299",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x845C",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x83A3",
+      "end_address": "0x83BC",
+      "size": 26,
+      "crc32": "9a644d28",
+      "name": "World1_ResetAudioHardware",
+      "role": "clear-audio-state-disable-dmc-and-apu-channels-and-select-four-step-mode",
+      "callers": [
+        {
+          "address": "0x8296",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x83EB",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8459",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCDC8",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x83BD",
+      "end_address": "0x83E7",
+      "size": 43,
+      "crc32": "e8ec5e11",
+      "name": "World1_LoadAreaPalette",
+      "role": "derive-32-byte-palette-record-from-area-index-and-copy-to-staging",
+      "callers": [
+        {
+          "address": "0x834E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE46",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD353",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD417",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x83E8",
+      "end_address": "0x843A",
+      "size": 83,
+      "crc32": "6782962b",
+      "name": "World1_InitializeAreaPresentation",
+      "role": "blank-rendering-show-status-delay-load-city-sources-and-select-chr",
+      "callers": [
+        {
+          "address": "0x829F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCDDD",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD3BF",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x843B",
+      "end_address": "0x8444",
+      "size": 10,
+      "crc32": "572d7038",
+      "name": "World1_StartAreaMusic",
+      "role": "map-area-index-to-music-state",
+      "callers": [
+        {
+          "address": "0x82BB",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCD75",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCDD7",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCDE0",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD35C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD420",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x8490",
+      "end_address": "0x84D8",
+      "size": 73,
+      "crc32": "ae71605c",
+      "name": "World1_UpdateInputOrDemoStream",
+      "role": "derive-pressed-buttons-or-decode-duration-input-demo-pairs-and-exit-on-end",
+      "callers": [
+        {
+          "address": "0x82C4",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x95DE",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE58",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD42C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD560",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD5B5",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD604",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD660",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x95CB",
+      "end_address": "0x95EC",
+      "size": 34,
+      "crc32": "4e98caab",
+      "name": "World1_HandlePause",
+      "role": "toggle-audio-pause-on-start-edge-and-wait-for-next-start-edge",
+      "callers": [
+        {
+          "address": "0x82C7",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE5B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD42F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD563",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD5B8",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x95ED",
+      "end_address": "0x9613",
+      "size": 39,
+      "crc32": "21acc756",
+      "name": "World1_EnableGameplayRendering",
+      "role": "hide-oam-enable-dma-and-nmi-publish-scroll-then-enable-bg-and-sprites",
+      "callers": [
+        {
+          "address": "0x82BE",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8412",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCD78",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE4F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCEDF",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCF02",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD35F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD423",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9614",
+      "end_address": "0x962E",
+      "size": 27,
+      "crc32": "b7a4f4ca",
+      "name": "World1_DisableGameplayRendering",
+      "role": "clear-bg-and-sprite-mask-after-frame-boundary-then-disable-oam-dma-request",
+      "callers": [
+        {
+          "address": "0x83E8",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x841D",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCE30",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCED9",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xCEFC",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD319",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xD400",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9674",
+      "end_address": "0x969F",
+      "size": 44,
+      "crc32": "95baac9c",
+      "name": "World1_RenderFrameSprites",
+      "role": "alternate-player-hud-and-four-entity-pool-traversal-order-by-frame-parity",
+      "callers": [
+        {
+          "address": "0x8568",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x96A0",
+      "end_address": "0x96BB",
+      "size": 28,
+      "crc32": "cda83f07",
+      "name": "World1_RenderPlayerSprite",
+      "role": "copy-player-position-metasprite-and-flags-to-composer-workspace",
+      "callers": [
+        {
+          "address": "0x967D",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x968D",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x96BC",
+      "end_address": "0x978E",
+      "size": 211,
+      "crc32": "73f79144",
+      "name": "World1_RenderHud",
+      "role": "emit-score-lives-health-meter-and-weapon-level-metasprite",
+      "callers": [
+        {
+          "address": "0x967A",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x969C",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x97D2",
+      "end_address": "0x9800",
+      "size": 47,
+      "crc32": "0bc9be78",
+      "name": "World1_RenderEntitySlot00_09",
+      "role": "load-selected-slot-zero-through-nine-into-metasprite-workspace",
+      "callers": [
+        {
+          "address": "0x97AB",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x97C6",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x984A",
+      "end_address": "0x9869",
+      "size": 32,
+      "crc32": "814ae9c7",
+      "name": "World1_RenderEntitySlot10_29",
+      "role": "load-selected-slot-ten-through-twenty-nine-into-metasprite-workspace",
+      "callers": [
+        {
+          "address": "0x9823",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x983E",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x98A8",
+      "end_address": "0x98C7",
+      "size": 32,
+      "crc32": "b21093cd",
+      "name": "World1_RenderEntitySlot30_37",
+      "role": "load-selected-slot-thirty-through-thirty-seven-into-metasprite-workspace",
+      "callers": [
+        {
+          "address": "0x9881",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x989C",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x990A",
+      "end_address": "0x9929",
+      "size": 32,
+      "crc32": "548b3a77",
+      "name": "World1_RenderEntitySlot38_47",
+      "role": "load-selected-slot-thirty-eight-through-forty-seven-into-metasprite-workspace",
+      "callers": [
+        {
+          "address": "0x98E1",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x98FE",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x0064",
+      "name": "World1PreviousButtons"
+    },
+    {
+      "address": "0x0065",
+      "name": "World1PressedButtons"
+    },
+    {
+      "address": "0x0079",
+      "name": "World1PlayerDamageState"
+    },
+    {
+      "address": "0x0050",
+      "name": "World1OamWriteIndex"
+    }
+  ]
+}
