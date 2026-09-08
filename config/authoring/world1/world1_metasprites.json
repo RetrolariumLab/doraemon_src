@@ -47,7 +47,7 @@
     "unique_tile_count": 234
   },
   "descriptor_relationship": {
-    "manifest": "config/object_placements.json",
+    "manifest": "config/authoring/world1/object_placements.json",
     "metasprite_base_field": 1,
     "descriptor_count": 13
   },
