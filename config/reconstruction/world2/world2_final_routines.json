@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "bank": 1,
+  "routines": [
+    {
+      "address": "0x99F6",
+      "end_address": "0x9A45",
+      "size": 80,
+      "crc32": "6d790be1",
+      "name": "World2_UpdatePendingEnemySpawn",
+      "role": "count-down-a-packed-pending-enemy-decode-its-entry-edge-position-and-activate-its-runtime-state",
+      "callers": [
+        {
+          "address": "0x991F",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0x9A46",
+      "end_address": "0x9A9A",
+      "size": 85,
+      "crc32": "4e53484a",
+      "name": "World2_TestCurrentEnemyAgainstPlayerAttacks",
+      "role": "test-slot-two-attack-slot-zero-projectile-and-seven-player-projectiles-against-the-current-enemy",
+      "callers": [
+        {
+          "address": "0x9978",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9A9B",
+      "end_address": "0x9ABD",
+      "size": 35,
+      "crc32": "8b3c0b75",
+      "name": "World2_TestSlot0ProjectileEnemyCollision",
+      "role": "return-carry-set-when-the-slot-zero-projectile-overlaps-the-current-enemy-box",
+      "callers": [
+        {
+          "address": "0x9A5E",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9ABE",
+      "end_address": "0x9B2E",
+      "size": 113,
+      "crc32": "5a6b9d4f",
+      "name": "World2_TestSlot2AttackEnemyCollision",
+      "role": "test-the-axis-aligned-slot-two-attack-reach-and-clear-the-attack-when-it-hits",
+      "callers": [
+        {
+          "address": "0x9A52",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0x9DE4",
+      "end_address": "0x9DE6",
+      "size": 3,
+      "crc32": "3c57b609",
+      "name": "World2_ApplyScrollingTwiceToEnemy",
+      "role": "apply-one-world-scroll-step-then-fall-through-to-the-shared-second-step",
+      "callers": [
+        {
+          "address": "0x9D05",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9DE1",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA115",
+      "end_address": "0xA13F",
+      "size": 43,
+      "crc32": "2fe8635c",
+      "name": "World2_ApplyScrollingToEnemyProjectile",
+      "role": "translate-an-enemy-projectile-with-world-scrolling-and-deactivate-it-at-the-scroll-edge",
+      "callers": [
+        {
+          "address": "0xA1DD",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA21B",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA2CA",
+      "end_address": "0xA303",
+      "size": 58,
+      "crc32": "82620106",
+      "name": "World2_RenderEnemyProjectiles",
+      "role": "render-all-six-enemy-projectiles-with-state-dependent-tiles-into-fixed-oam-regions",
+      "callers": [
+        {
+          "address": "0x8A29",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA304",
+      "end_address": "0xA35A",
+      "size": 87,
+      "crc32": "5ea4983c",
+      "name": "World2_RenderEnemies",
+      "role": "traverse-seven-enemy-slots-render-defeat-effects-or-dispatch-active-state-renderers",
+      "callers": [
+        {
+          "address": "0x8A26",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA389",
+      "end_address": "0xA38B",
+      "size": 3,
+      "crc32": "1fe5bae7",
+      "name": "World2_RenderEnemyMetaspriteRow",
+      "role": "emit-one-enemy-metasprite-piece-then-fall-through-to-emit-the-second-piece-in-the-row",
+      "callers": [
+        {
+          "address": "0xA372",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA383",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA38C",
+      "end_address": "0xA3DB",
+      "size": 80,
+      "crc32": "7c7a1d8e",
+      "name": "World2_RenderEnemyMetaspritePiece",
+      "role": "decode-one-tile-and-attribute-quadrant-emit-it-and-advance-the-enemy-metasprite-x-origin",
+      "callers": [
+        {
+          "address": "0xA389",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA612",
+      "end_address": "0xA62A",
+      "size": 25,
+      "crc32": "e92ac73c",
+      "name": "World2_CheckChapterCompletionExit",
+      "role": "set-chapter-complete-at-the-terminal-screen-exit-zone-after-scrolling-stops",
+      "callers": [
+        {
+          "address": "0x8980",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA753",
+      "end_address": "0xA7F9",
+      "size": 167,
+      "crc32": "41b0b4d8",
+      "name": "World2_RenderHud",
+      "role": "compose-health-capacity-current-health-lives-and-score-into-free-oam-entries",
+      "callers": [
+        {
+          "address": "0x8A2F",
+          "mnemonic": "JMP"
+        }
+      ]
+    },
+    {
+      "address": "0xA7FA",
+      "end_address": "0xA80A",
+      "size": 17,
+      "crc32": "0121272d",
+      "name": "World2_EmitHudSpriteToFreeOamEntry",
+      "role": "scan-for-a-hidden-oam-record-and-emit-the-staged-hud-sprite-when-space-is-found",
+      "callers": [
+        {
+          "address": "0xA795",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA7B2",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA7C1",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA7E8",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x000A",
+      "name": "World2HudHealthTiles",
+      "size": 8
+    },
+    {
+      "address": "0x0042",
+      "name": "World2ScrollDirection"
+    },
+    {
+      "address": "0x0043",
+      "name": "World2PendingScrollDirection"
+    },
+    {
+      "address": "0x0044",
+      "name": "World2VerticalTransitionDelay"
+    },
+    {
+      "address": "0x0045",
+      "name": "World2HorizontalTransitionDelay"
+    },
+    {
+      "address": "0x0063",
+      "name": "World2MetaspriteFlipMask"
+    },
+    {
+      "address": "0x0064",
+      "name": "World2MetaspriteSavedSlot"
+    },
+    {
+      "address": "0x0065",
+      "name": "World2MetaspriteAttributeIndex"
+    },
+    {
+      "address": "0x0066",
+      "name": "World2MetaspriteTile"
+    },
+    {
+      "address": "0x0076",
+      "name": "World2SavedEntitySlot"
+    },
+    {
+      "address": "0x0077",
+      "name": "World2EnemyProjectileSourceX"
+    },
+    {
+      "address": "0x0078",
+      "name": "World2EnemyProjectileSourceY"
+    },
+    {
+      "address": "0x0079",
+      "name": "World2EnemyProjectileSourceSlot"
+    },
+    {
+      "address": "0x009A",
+      "name": "World2EnemyCollisionSlot"
+    },
+    {
+      "address": "0x009B",
+      "name": "World2AttackCollisionHalfExtent"
+    },
+    {
+      "address": "0x009F",
+      "name": "World2CurrentEnemyStateIndex"
+    },
+    {
+      "address": "0x00A3",
+      "name": "World2InventorySlot5PickupCount"
+    },
+    {
+      "address": "0x00A6",
+      "name": "World2EnemyProjectileTargetX"
+    },
+    {
+      "address": "0x00A7",
+      "name": "World2EnemyProjectileTargetY"
+    }
+  ]
+}
