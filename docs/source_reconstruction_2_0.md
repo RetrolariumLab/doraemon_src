@@ -6,9 +6,8 @@ accepted cartridge family contains exactly two official Japanese revisions:
 the original release and Revision A. Both retain the original 128 KiB PRG,
 32 KiB CHR, Mapper 66 layout, and fixed ROM capacities.
 
-The technical reconstruction and editor scope is complete. The active
-candidate remains `development` until the final clean-build gate is measured.
-Its machine-readable boundary is
+The technical reconstruction, editor scope, and clean-build gate are complete.
+The active candidate is `tag-ready`. Its machine-readable boundary is
 `config/source_reconstruction_2_0.json`; the studio registry and profile matrix
 are `config/authoring/content_studios.json` and
 `config/authoring/content_authoring_profiles.json`.
@@ -34,11 +33,6 @@ Completed repository-facing work:
   disposable tracked-only clone and rejects any worktree mutation;
 - unit tests, authoring/runtime coverage audits, and byte-identical builds of
   both official revisions pass through the modular interface.
-
-Remaining release-workflow work:
-
-- prove the complete gate from an empty generated-output tree and update this
-  page and the manifest from measured final results.
 
 The unpublished draft stack has been rebuilt as 45 nonempty, owner-oriented
 commits on a separate rewrite branch. The exact dates, primary attribution,
@@ -117,9 +111,12 @@ draft refs, tags, and remote-tracking refs remain unchanged for owner review.
 
 ## Release gate
 
-The editor and reconstruction checks pass in the development workflow. They
-must be repeated through the clean-room and pre-tag gates before the manifest
-can be promoted and an annotated tag can be created.
+The complete development gate passed from an empty `build/` directory on the
+supported Windows host. It ran 595 unit and contract tests, rebuilt both
+163,856-byte cartridge profiles byte-identically, completed the six authoring
+round-trip families for each profile, exercised all five headless Studios,
+reached each of the four native audio banks for both profiles, and captured and
+validated all eight runtime scenarios directly on both revisions.
 
 ```console
 make source-2-audit
@@ -128,13 +125,13 @@ make source-2-pre-tag-check
 make source-2-tag-check
 ```
 
-`source-2-audit` currently checks the development manifest, predecessor tag,
+`source-2-audit` checks the project manifest, predecessor tag,
 two profile identities, runtime coverage, Studio registry, required commands
 and documents, licensing, private-path policy, and commit history.
-`source-2-check` is the complete development gate and begins with the full 1.0
-gate. `source-2-pre-tag-check` additionally requires tag-ready metadata, a
-clean tree, and an unused local and remote tag name. After the user creates the
-annotated tag directly on that substantive commit, `source-2-tag-check`
+`source-2-check` is the complete gate and begins with the full 1.0 gate.
+`source-2-pre-tag-check` additionally requires tag-ready metadata, a clean tree,
+and an unused local and remote tag name. After the user creates the annotated
+tag directly on the substantive release candidate, `source-2-tag-check`
 validates the same full gate and the tagged `HEAD`.
 
 ## Explicit 3.0 boundary
