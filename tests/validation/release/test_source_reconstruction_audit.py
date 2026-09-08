@@ -9,10 +9,13 @@ import unittest
 from unittest import mock
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 SPEC = importlib.util.spec_from_file_location(
     "source_reconstruction_audit",
-    ROOT / "scripts" / "source_reconstruction_audit.py",
+    ROOT / "scripts" / "validation" / "release" / "source_reconstruction_audit.py",
 )
 assert SPEC is not None and SPEC.loader is not None
 AUDIT = importlib.util.module_from_spec(SPEC)
@@ -56,11 +59,11 @@ class ContractHelpersTests(unittest.TestCase):
                 "regional_profiles_required": False,
             },
             "source_contract": {
-                "module_manifest": "config/source_modules.json",
+                "module_manifest": "config/reconstruction/source_modules.json",
                 "runtime_state_coverage_manifest": (
                     "config/runtime_state_coverage.json"
                 ),
-                "classification_manifest": "config/source_classification.json",
+                "classification_manifest": "config/reconstruction/source_classification.json",
                 "maximum_module_lines": 700,
                 "executable_incbin": False,
                 "physical_bank_names_are_boundaries_not_semantics": True,

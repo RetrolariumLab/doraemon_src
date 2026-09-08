@@ -48,6 +48,9 @@ def source_label_metrics(
 ) -> dict[str, Any]:
     by_bank = empty_bank_counts()
     paths: set[str] = set()
+    labels_by_bank: dict[str, set[str]] = {
+        str(bank): set() for bank in range(4)
+    }
     for module in modules["modules"]:
         bank = str(int(module["bank"]))
         relative = str(module["path"])
@@ -55,8 +58,11 @@ def source_label_metrics(
             raise ValueError(f"duplicate source module path: {relative}")
         paths.add(relative)
         source = project_root / "src" / relative
-        labels = LABEL_RE.findall(source.read_text(encoding="utf-8"))
-        for label in labels:
+        labels_by_bank[bank].update(
+            LABEL_RE.findall(source.read_text(encoding="utf-8"))
+        )
+    for bank, labels in labels_by_bank.items():
+        for label in sorted(labels):
             by_bank[bank]["global_labels"] += 1
             routine = NEUTRAL_ROUTINE_RE.fullmatch(label)
             local = NEUTRAL_LOCAL_RE.fullmatch(label)
@@ -227,14 +233,13 @@ def unknown_metrics(text: str) -> dict[str, Any]:
 
 
 def calculate(project_root: Path) -> dict[str, Any]:
-    modules = load_json(project_root / "config" / "source_modules.json")
-    registry = load_json(project_root / "config" / "symbols.json")
+    reconstruction = project_root / "config" / "reconstruction"
+    modules = load_json(reconstruction / "source_modules.json")
+    registry = load_json(reconstruction / "symbols.json")
     labels = source_label_metrics(project_root, modules)
     prg_symbols = prg_symbol_metrics(registry)
     code_entries = code_entry_metrics(
-        (project_root / "config" / "prg_code_entries.txt").read_text(
-            encoding="utf-8"
-        ),
+        (reconstruction / "prg_code_entries.txt").read_text(encoding="utf-8"),
         prg_symbols.pop("index"),
     )
     return {
@@ -243,9 +248,7 @@ def calculate(project_root: Path) -> dict[str, Any]:
         "indirect_code_entries": code_entries,
         "ram_aliases": ram_metrics(registry),
         "typed_prg_data": typed_data_metrics(
-            (project_root / "config" / "prg_data_ranges.txt").read_text(
-                encoding="utf-8"
-            )
+            (reconstruction / "prg_data_ranges.txt").read_text(encoding="utf-8")
         ),
         "open_unknowns": unknown_metrics(
             (project_root / "docs" / "unknowns.md").read_text(encoding="utf-8")
@@ -266,11 +269,11 @@ def main() -> int:
     parser.add_argument(
         "--manifest",
         type=Path,
-        default=Path("config/reconstruction_inventory.json"),
+        default=Path("config/reconstruction/reconstruction_inventory.json"),
     )
     parser.add_argument("--print", action="store_true", dest="print_snapshot")
     args = parser.parse_args()
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = Path(__file__).resolve().parents[3]
     try:
         actual = calculate(project_root)
         if args.print_snapshot:

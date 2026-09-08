@@ -7,10 +7,13 @@ import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 SPEC = importlib.util.spec_from_file_location(
     "authoring_coverage",
-    ROOT / "scripts" / "authoring_coverage.py",
+    ROOT / "scripts" / "validation" / "release" / "authoring_coverage.py",
 )
 assert SPEC is not None and SPEC.loader is not None
 AUDIT = importlib.util.module_from_spec(SPEC)
@@ -115,6 +118,22 @@ class AuthoringCoverageTests(unittest.TestCase):
             AUDIT.make_rule_dependencies(makefile, "release-check"),
             {"first", "validate-example", "second"},
         )
+
+    def test_reads_literal_makefile_fragments(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fragments = root / "mk"
+            fragments.mkdir()
+            (root / "Makefile").write_text(
+                "include mk/validation.mk\nroot-target:\n", encoding="utf-8"
+            )
+            (fragments / "validation.mk").write_text(
+                "fragment-target:\n", encoding="utf-8"
+            )
+            text = AUDIT.read_make_interface(root / "Makefile")
+            self.assertEqual(
+                AUDIT.make_targets(text), {"root-target", "fragment-target"}
+            )
 
     def test_evidence_must_exist_and_validator_must_be_release_gated(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

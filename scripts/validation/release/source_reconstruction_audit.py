@@ -7,12 +7,11 @@ import argparse
 import json
 import re
 import subprocess
-import sys
 from pathlib import Path
 from typing import Any
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import release_contract
+from scripts.validation.release import release_contract
+from scripts.validation.release.makefile_interface import make_targets, read_make_interface
 
 
 EXPECTED_MILESTONES = [
@@ -64,15 +63,6 @@ def validate_milestones(
         return []
 
     return []
-
-
-def make_targets(text: str) -> set[str]:
-    targets: set[str] = set()
-    for match in re.finditer(r"^([^\s:#=][^:#=]*)\s*:(?![=])", text, re.MULTILINE):
-        for target in match.group(1).split():
-            if re.fullmatch(r"[A-Za-z0-9_.-]+", target):
-                targets.add(target)
-    return targets
 
 
 def safe_project_path(project_root: Path, relative: str) -> Path | None:
@@ -138,14 +128,14 @@ def validate_contract_shape(document: dict[str, Any]) -> list[str]:
         errors.append("Source Reconstruction 1.0 target ROM scope differs")
 
     source = document.get("source_contract", {})
-    if source.get("module_manifest") != "config/source_modules.json":
+    if source.get("module_manifest") != "config/reconstruction/source_modules.json":
         errors.append("semantic module manifest path differs")
     if source.get("runtime_state_coverage_manifest") != (
         "config/runtime_state_coverage.json"
     ):
         errors.append("runtime-state coverage manifest path differs")
     if source.get("classification_manifest") != (
-        "config/source_classification.json"
+        "config/reconstruction/source_classification.json"
     ):
         errors.append("source classification manifest path differs")
     if source.get("maximum_module_lines") != 700:
@@ -347,7 +337,7 @@ def validate_reconstruction(
         )
     )
 
-    makefile = (project_root / "Makefile").read_text(encoding="utf-8")
+    makefile = read_make_interface(project_root / "Makefile")
     available_targets = make_targets(makefile)
     required_targets = document.get("required_targets", [])
     verification_target = baseline.get("verification_target", "")
@@ -383,7 +373,7 @@ def main() -> int:
     )
     parser.add_argument("--check-remote", action="store_true")
     args = parser.parse_args()
-    project_root = Path(__file__).resolve().parent.parent
+    project_root = Path(__file__).resolve().parents[3]
     manifest_path = args.manifest
     if not manifest_path.is_absolute():
         manifest_path = project_root / manifest_path
@@ -396,7 +386,7 @@ def main() -> int:
         )
         if args.phase != "development":
             document = load_json(manifest_path)
-            makefile = (project_root / "Makefile").read_text(encoding="utf-8")
+            makefile = read_make_interface(project_root / "Makefile")
             errors.extend(
                 release_contract.validate_release_contract(
                     project_root,

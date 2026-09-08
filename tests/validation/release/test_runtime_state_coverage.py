@@ -8,11 +8,14 @@ import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 SPEC = importlib.util.spec_from_file_location(
     "runtime_state_coverage",
-    ROOT / "scripts" / "runtime_state_coverage.py",
+    ROOT / "scripts" / "validation" / "release" / "runtime_state_coverage.py",
 )
 assert SPEC is not None and SPEC.loader is not None
 AUDIT = importlib.util.module_from_spec(SPEC)
