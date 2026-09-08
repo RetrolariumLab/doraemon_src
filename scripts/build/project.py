@@ -16,7 +16,7 @@ import sys
 import zlib
 
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 PRG_BANK_SIZE = 0x8000
 PRG_BANK_COUNT = 4
 PRG_DATA_KINDS = {"data", "map", "padding", "table", "text", "vectors"}
@@ -311,31 +311,125 @@ def command_clean(args: argparse.Namespace) -> None:
         print(f"[CLEAN] {target}")
 
 
+def validate_tool_layout(root: Path) -> None:
+    scripts_root = root / "scripts"
+    expected_root_files = {"__init__.py", "run.py"}
+    actual_root_files = {path.name for path in scripts_root.glob("*.py")}
+    if actual_root_files != expected_root_files:
+        raise ProjectError(
+            "scripts root must contain only package metadata and run.py: "
+            + ", ".join(sorted(actual_root_files))
+        )
+    package_dirs = {
+        scripts_root,
+        *(path.parent for path in scripts_root.rglob("*.py")),
+    }
+    missing_markers = sorted(
+        path.relative_to(root).as_posix()
+        for path in package_dirs
+        if "__pycache__" not in path.parts and not (path / "__init__.py").is_file()
+    )
+    if missing_markers:
+        raise ProjectError(
+            "Python tool directories lack __init__.py: "
+            + ", ".join(missing_markers)
+        )
+
+
+def validate_test_layout(root: Path) -> None:
+    tests_root = root / "tests"
+    expected_root_tests = {"test_script_runner.py"}
+    actual_root_tests = {path.name for path in tests_root.glob("test_*.py")}
+    if actual_root_tests != expected_root_tests:
+        raise ProjectError(
+            "tests root must contain only the script-runner contract: "
+            + ", ".join(sorted(actual_root_tests))
+        )
+
+    package_dirs = {
+        tests_root,
+        *(path.parent for path in tests_root.rglob("*.py")),
+    }
+    missing_markers = sorted(
+        path.relative_to(root).as_posix()
+        for path in package_dirs
+        if "__pycache__" not in path.parts and not (path / "__init__.py").is_file()
+    )
+    if missing_markers:
+        raise ProjectError(
+            "Python test directories lack __init__.py: "
+            + ", ".join(missing_markers)
+        )
+
+    tools_by_stem: dict[str, list[Path]] = {}
+    for tool in (root / "scripts").rglob("*.py"):
+        if tool.name in {"__init__.py", "run.py"} or "__pycache__" in tool.parts:
+            continue
+        tools_by_stem.setdefault(tool.stem, []).append(tool.parent.relative_to(root / "scripts"))
+
+    special_locations = {
+        "test_debugger_runtime.py": Path("runtime"),
+        "test_runtime_scenarios.py": Path("runtime"),
+        "test_disassembly.py": Path("workflow"),
+        "test_source_2_contract.py": Path("validation/release"),
+    }
+    mismatches: list[str] = []
+    for test in tests_root.rglob("test_*.py"):
+        if test.parent == tests_root:
+            continue
+        expected = special_locations.get(test.name)
+        if expected is None:
+            stem = test.stem.removeprefix("test_")
+            candidates = tools_by_stem.get(stem, [])
+            if len(candidates) != 1:
+                mismatches.append(
+                    f"{test.relative_to(root).as_posix()} has {len(candidates)} matching tools"
+                )
+                continue
+            expected = candidates[0]
+        actual = test.parent.relative_to(tests_root)
+        if actual != expected:
+            mismatches.append(
+                f"{test.relative_to(root).as_posix()} should be under tests/{expected.as_posix()}"
+            )
+    if mismatches:
+        raise ProjectError("test layout does not mirror scripts: " + "; ".join(mismatches))
+
+
 def command_lint(_args: argparse.Namespace) -> None:
     required = (
         "README.md", "Makefile", "assets/manifest.json", "config/linker/gnrom.cfg",
-        "config/symbols.json", "config/prg_data_ranges.txt", "config/prg_code_entries.txt",
-        "config/source_modules.json", "config/source_classification.json",
+        "config/reconstruction/symbols.json",
+        "config/reconstruction/prg_data_ranges.txt",
+        "config/reconstruction/prg_code_entries.txt",
+        "config/reconstruction/source_modules.json",
+        "config/reconstruction/source_classification.json",
         "docs/source_classification.md", "docs/verification.md",
-        "tools/disassembly.lock.json", "src/main.asm", "scripts/asm_style.py",
-        "scripts/verify_rom.py", "scripts/format_project.py",
-        "scripts/generate_disassembly.py", "scripts/run_ghidra.py", "scripts/map_data.py",
+        "tools/disassembly.lock.json", "src/main.asm", "scripts/run.py",
+        "scripts/validation/asm_style.py", "scripts/build/verify_rom.py",
+        "scripts/validation/format_project.py",
+        "scripts/workflow/generate_disassembly.py",
+        "scripts/workflow/run_ghidra.py", "scripts/validation/map_data.py",
         "tools/ghidra_scripts/ClearKnownData.java", "tools/ghidra_scripts/ApplyKnownCode.java",
     )
     missing = [name for name in required if not (ROOT / name).is_file()]
     if missing:
         raise ProjectError("missing project files: " + ", ".join(missing))
+    validate_tool_layout(ROOT)
+    validate_test_layout(ROOT)
     manifest = load_manifest(ROOT / "assets/manifest.json")
     reference = manifest.get("reference_rom")
     if not isinstance(reference, dict) or reference.get("mapper") != 66:
         raise ProjectError("manifest does not describe mapper 66")
-    load_prg_data_ranges(ROOT / "config/prg_data_ranges.txt")
-    load_prg_code_entries(ROOT / "config/prg_code_entries.txt")
-    symbols = json.loads((ROOT / "config/symbols.json").read_text(encoding="utf-8"))
+    load_prg_data_ranges(ROOT / "config/reconstruction/prg_data_ranges.txt")
+    load_prg_code_entries(ROOT / "config/reconstruction/prg_code_entries.txt")
+    symbols = json.loads(
+        (ROOT / "config/reconstruction/symbols.json").read_text(encoding="utf-8")
+    )
     if symbols.get("schema_version") != 1 or not symbols.get("symbols"):
         raise ProjectError("invalid or empty symbol registry")
     module_document = json.loads(
-        (ROOT / "config/source_modules.json").read_text(encoding="utf-8")
+        (ROOT / "config/reconstruction/source_modules.json").read_text(encoding="utf-8")
     )
     if module_document.get("schema_version") != 1:
         raise ProjectError("invalid source module registry")

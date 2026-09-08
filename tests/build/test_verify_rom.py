@@ -5,10 +5,13 @@ import sys
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import verify_rom
+from scripts.build import verify_rom
 
 
 class DifferenceTests(unittest.TestCase):
