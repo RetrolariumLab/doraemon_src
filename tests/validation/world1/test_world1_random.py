@@ -6,10 +6,13 @@ import sys
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import world1_random
+from scripts.validation.world1 import world1_random
 
 
 class World1RandomTests(unittest.TestCase):

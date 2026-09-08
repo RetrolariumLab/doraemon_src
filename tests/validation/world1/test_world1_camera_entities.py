@@ -6,10 +6,13 @@ import sys
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import world1_camera_entities
+from scripts.validation.world1 import world1_camera_entities
 
 
 class World1CameraEntityTests(unittest.TestCase):
