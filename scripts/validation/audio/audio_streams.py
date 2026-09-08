@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from audio_music import EXPECTED_COMMANDS
+from scripts.validation.audio.audio_music import EXPECTED_COMMANDS
 
 
 BANK_SIZE = 0x8000

@@ -7,10 +7,13 @@ import sys
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 SPEC = importlib.util.spec_from_file_location(
-    "audio_dispatch", ROOT / "scripts" / "audio_dispatch.py"
+    "audio_dispatch", ROOT / "scripts" / "validation" / "audio" / "audio_dispatch.py"
 )
 assert SPEC is not None and SPEC.loader is not None
 AUDIO = importlib.util.module_from_spec(SPEC)

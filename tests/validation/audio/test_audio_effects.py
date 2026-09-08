@@ -6,9 +6,12 @@ from pathlib import Path
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 SPEC = importlib.util.spec_from_file_location(
-    "audio_effects", ROOT / "scripts" / "audio_effects.py"
+    "audio_effects", ROOT / "scripts" / "validation" / "audio" / "audio_effects.py"
 )
 assert SPEC is not None and SPEC.loader is not None
 AUDIO = importlib.util.module_from_spec(SPEC)
