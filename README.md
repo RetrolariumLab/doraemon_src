@@ -7,13 +7,13 @@ tracked PRG assembly plus one private CHR input.
 
 ## Current status
 
-The completed reconstruction on `source-reconstruction` is prepared for Source
-Reconstruction 1.0 under revision 3 of the
-[release contract](docs/source_reconstruction.md). The immutable preservation
-base remains fixed at commit `499d4f8`; the promoted `main` history records
-semantic source, runtime evidence, editable primary formats, and debugger
-integration without weakening byte identity. Relocation builds are deferred to
-Source Reconstruction 2.0.
+The tagged Source Reconstruction 1.0 preservation source is the immutable
+baseline for the `tag-ready`
+[Source Reconstruction 2.0](docs/source_reconstruction_2_0.md) candidate.
+Version 2.0 adds the official Revision A profile and safe fixed-capacity
+content editing without weakening the original profile, its entrypoint, or its
+release gate. Expanded layouts, cross-bank source deduplication, and deeper
+semantic polish are deferred to Source Reconstruction 3.0.
 
 - The exact local reference is identified by complete file, header, PRG, CHR,
   and payload hashes.
@@ -68,9 +68,9 @@ CHR             32 KiB, CRC32 761F994E
 ```
 
 Revision A has PRG CRC32 `FE90D6EB` and payload CRC32 `336093EF`; its CHR is
-unchanged. Source Reconstruction 1.0 intentionally targets only the original
-PRG0 image above: Revision A, translations, regional profiles, and expanded
-mapper hacks are not release requirements.
+unchanged. Source Reconstruction 1.0 remains the original PRG0 baseline. The
+active 2.0 work adds Revision A as a separate byte-identical source profile;
+translations and expanded mapper hacks remain outside its scope.
 
 ROM images and locally extracted regions are ignored by Git.
 
@@ -95,11 +95,30 @@ command is:
 make source-check REFERENCE_ROM="Doraemon (J) (PRG0) [!].nes"
 ```
 
+The Source Reconstruction 2.0 repository audit and complete two-profile
+candidate gate are:
+
+```bash
+make source-2-audit
+make source-2-check
+```
+
+To audit and build both official Japanese revisions:
+
+```bash
+make audit-revisions
+make verify-revisions
+```
+
 See the [documentation index](docs/index.md) and
 [release-contract status](docs/release_contract.md) for the exact accepted
 scope and pre-tag verification procedure.
 
 ## Useful targets
+
+Run `make help` for the curated public interface and its profile selectors.
+The lower-level Python tool catalog is available through
+`python scripts/run.py --list`.
 
 ```bash
 make scaffold-check     # formatting, source policy, and unit tests
@@ -111,6 +130,19 @@ make split              # validate and extract private PRG/CHR regions
 make build              # assemble the complete iNES image
 make verify             # compare every image region byte-for-byte
 make bank-info          # print per-bank CRC32 values and vectors
+make audit-revisions    # classify every original-to-Rev-A byte difference
+make verify-revisions   # build and byte-verify both official revisions
+make level-studio       # edit maps from all three worlds with native graphics
+make level-content-check # validate the ignored profile-specific level workspace
+make level-content-export # encode workspace maps as fixed-size binary payloads
+make level-content-rom  # build a playable selected-revision ROM with level edits
+make level-content-roundtrip # prove canonical levels preserve both official ROMs
+make graphics-content-init # create an ignored four-bank CHR editing workspace
+make graphics-content-check # validate CHR plus six PRG graphics artifacts
+make graphics-content-rom # build a ROM with edited CHR/palettes/metasprites
+make graphics-content-roundtrip # prove canonical graphics preserve both revisions
+make graphics-studio    # edit all four CHR banks in a visual tile atlas
+make check-studios      # load all five Studios for both profiles headlessly
 make bank-gateways      # report the validated cross-bank gateway graph
 make object-pools       # validate chapter pool capacities, fields, and lifecycle API
 make object-dispatch    # validate indirect object-handler tables and code seeds
@@ -164,6 +196,10 @@ make source-audit       # validate reconstruction milestones and evidence
 make runtime-architecture # capture and validate reset/NMI/mapper evidence
 make source-check       # complete project and reconstruction development gate
 make source-1-audit     # clean tag-ready gate with fresh runtime captures
+make source-2-audit     # validate the active two-profile release contract
+make source-2-check     # complete Source Reconstruction 2.0 development gate
+make source-2-pre-tag-check # clean tag-ready gate before creating the tag
+make source-2-tag-check # repeat the full gate and validate the annotated tag
 make check              # current byte-identity and subsystem verification gate
 make clean              # remove build artifacts only
 ```
@@ -173,21 +209,16 @@ make clean              # remove build artifacts only
 ```text
 assets/manifest.json        exact reference and extraction contract
 bin/                        local ca65/ld65 toolchain and license
+Makefile                    stable build and verification interface
+mk/                         authoring, runtime, reconstruction, and validation workflows
 config/linker/gnrom.cfg     header, four PRG windows, and CHR layout
-config/prg_data_ranges.txt  bank-qualified evidence-backed data ranges
-config/prg_code_entries.txt bank-qualified evidence-backed code seeds
-config/object_pools.json machine-checked chapter entity storage contract
-config/object_dispatch.json indirect chapter object-handler tables
-config/object_placements.json World 1 placement and descriptor contract
-config/world2_enemy_states.json World 2 enemy token/state property contract
-config/world2_enemy_handlers.json World 2 state handler graph and roles
-config/world2_enemy_identities.json evidence-backed World 2 enemy roster
-config/world2_stage_sequence.json World 2 stage bytecode contract
-config/world2_metatiles.json exact World 2 metatile/render/collision contract
-config/world2_palettes.json World 2 palette lookup and upload contract
-config/world2_metasprites.json World 2 fixed metasprite and CHR contract
-config/world3_ppu_queue.json World 3 PPU ring, RAM, and code contract
-config/world3_metasprites.json World 3 metasprite and palette contract
+config/reconstruction/prg_data_ranges.txt  bank-qualified data ranges
+config/reconstruction/prg_code_entries.txt bank-qualified code seeds
+config/reconstruction/common/ shared shell, gateway, pool, and dispatch contracts
+config/authoring/world1/    World 1 fixed-capacity authoring contracts
+config/authoring/world2/    World 2 fixed-capacity authoring contracts
+config/authoring/world2/    World 2 level, enemy, palette, and sprite contracts
+config/authoring/world3/    World 3 object, behavior, and metasprite contracts
 data/world1/object_data.json lossless editable World 1 object representation
 data/world2/enemy_states.json lossless editable World 2 state properties
 data/world2/stage_sequence.json lossless editable World 2 stage sequence
@@ -196,26 +227,12 @@ data/world2/palettes.json lossless editable World 2 palette catalog
 data/world2/metasprites.json lossless editable World 2 metasprite catalog
 data/world3/object_catalog.json lossless editable World 3 object/type catalog
 data/world3/metasprites.json lossless editable World 3 sprite/palette catalog
-config/symbols.json         bank-qualified semantic symbol registry
-config/debug_symbols.json   linker/debugger export contract and pinned inventory
+config/reconstruction/     source layout, symbols, ranges, and inventories
+config/debugger/            linker/debugger export contracts and pinned inventory
 config/debugger_*.json      checked bank-qualified breakpoints and RAM watches
-config/shell_runtime.json   Bank 3 title/transition/ending routine contract
-config/world1_core_routines.json World 1 initialization/frame/render contract
-config/world1_frame_mechanics.json World 1 motion/collision frame contract
-config/world1_entity_helpers.json World 1 movement/aiming helper contract
-config/world1_final_routines.json final World 1 routine and RAM contract
-config/world2_frame_core.json World 2 frame/stage routine and RAM contract
-config/world2_player_systems.json World 2 player/inventory/fire contract
-config/world2_screen_core.json World 2 NMI/screen/PPU routine contract
-config/world3_frame_core.json World 3 initialization/frame/HUD routine contract
-config/world3_collision_rendering.json World 3 terrain/render routine contract
-config/world3_room_runtime.json World 3 room/input/player routine contract
-config/world3_player_runtime.json World 3 player movement/state routine contract
-config/world3_interaction_runtime.json World 3 combat/item/contact routine contract
-config/world3_entity_runtime.json World 3 lifecycle/spawn/portal routine contract
-config/world3_room_rendering.json World 3 hierarchical room-rendering contract
-config/world3_formation_runtime.json World 3 boss/encounter formation contract
-config/world3_transition_runtime.json World 3 completion/debug transition contract
+config/reconstruction/world1/ World 1 runtime and subsystem contracts
+config/reconstruction/world2/ World 2 runtime and subsystem contracts
+config/reconstruction/world3/ World 3 runtime and subsystem contracts
 docs/                       architecture, formats, evidence, and roadmap
 docs/ram_fields.md          proved shared RAM layout and ownership notes
 docs/world3_dormant_code.md statically recovered but unreferenced code islands
@@ -223,18 +240,19 @@ docs/world3_ppu_queue.md    World 3 NMI queue record and synchronization model
 docs/world2_enemy_handlers.md World 2 enemy handler graph and behavior roles
 docs/world2_enemy_identities.md World 2 canonical enemy/state identities
 docs/world2_metasprites.md  World 2 fixed sprite format and shared storage
-scripts/project.py          identity, split, bank report, and source policy
-scripts/run_ghidra.py       deterministic per-bank headless analysis
-scripts/generate_disassembly.py  Ghidra facts to canonical ca65 source
-scripts/map_data.py         CadEditor region validator
-scripts/debug_symbols.py    ld65 debugger validator and FCEUX name-list exporter
-scripts/shell_runtime.py    shared bank-local routine validation library
-scripts/routine_contract.py shared bank-local routine/caller/RAM validator CLI
-scripts/world2_enemy_handlers.py World 2 enemy handler graph validator
-scripts/world2_enemy_identities.py World 2 enemy identity and boss validator
-scripts/world2_metasprites.py World 2 sprite validator/editor/renderer
-scripts/world3_ppu_queue.py World 3 PPU queue and symbol validator
-scripts/verify_rom.py       focused byte-difference diagnostics
+scripts/build/project.py          identity, split, bank report, and source policy
+scripts/workflow/run_ghidra.py       deterministic per-bank headless analysis
+scripts/workflow/generate_disassembly.py  Ghidra facts to canonical ca65 source
+scripts/validation/map_data.py         CadEditor region validator
+scripts/validation/debug_symbols.py    ld65 debugger validator and FCEUX name-list exporter
+scripts/validation/reconstruction/shell_runtime.py    shared bank-local routine validation library
+scripts/validation/reconstruction/routine_contract.py shared bank-local routine/caller/RAM validator CLI
+scripts/validation/world2/world2_enemy_handlers.py World 2 enemy handler graph validator
+scripts/validation/world2/world2_enemy_identities.py World 2 enemy identity and boss validator
+scripts/validation/world2/world2_metasprites.py World 2 sprite validator/editor/renderer
+scripts/validation/world3/world3_ppu_queue.py World 3 PPU queue and symbol validator
+scripts/authoring/level_studio.py graphical editor for all three world formats
+scripts/build/verify_rom.py       focused byte-difference diagnostics
 src/banks/bank_0.asm        generated bank 0 semantic include map
 src/banks/bank_1.asm        generated bank 1 semantic include map
 src/banks/bank_2.asm        generated bank 2 semantic include map
