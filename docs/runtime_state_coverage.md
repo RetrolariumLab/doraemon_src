@@ -25,7 +25,7 @@ validator must exist and remain a prerequisite of `release-check`.
 This is not a claim that every unused byte in internal RAM has a name. The
 Source 1.0 contract requires key state and complete active object layouts, so
 aliases are added only when an access pattern establishes ownership and role.
-Bank overlays remain explicitly bank-scoped in `config/symbols.json`.
+Bank overlays remain explicitly bank-scoped in `config/reconstruction/symbols.json`.
 
 Run:
 

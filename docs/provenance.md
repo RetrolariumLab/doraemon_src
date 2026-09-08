@@ -2,9 +2,10 @@
 
 ## Exact local reference
 
-The original Japanese `PRG0` dump was inspected locally on 2026-08-31. Complete
-hashes are recorded in `assets/manifest.json`. The source build independently
-reproduces the full file.
+The original Japanese `PRG0` dump was inspected locally on 2026-08-31, and the
+Revision A image was added for Source Reconstruction 2.0. Complete hashes are
+recorded in `assets/manifest.json` and `config/revision_profiles.json`. The
+source builds independently reproduce both full files.
 
 The locally present Chinese image is a 524,304-byte mapper-4 expansion with
 262,144-byte PRG and CHR regions. It is ignored by Git and is not treated as an
@@ -12,12 +13,13 @@ original game revision.
 
 ## Published cartridge data
 
-- NES Cart Database Doraemon profile: board/chip identity and physical CRCs
+- NES Cart Database Doraemon profiles: board/chip identity, revision, and
+  physical CRCs: <https://nescartdb.com/profile/view/1493/doraemon>
 - NESdev mapper 66 documentation: GNROM bank fields and bus conflicts
 - No-Intro naming/revision metadata: original and Revision A separation
 
-The exact local dump confirms mapper 66, vertical mirroring, PRG CRC32
-`B00ABE1C`, and CHR CRC32 `761F994E`.
+The exact local dumps confirm mapper 66, vertical mirroring, original PRG CRC32
+`B00ABE1C`, Revision A PRG CRC32 `FE90D6EB`, and shared CHR CRC32 `761F994E`.
 
 ## Map evidence
 
@@ -59,7 +61,7 @@ controller byte, accepted manhole branch, and side-view initializer.
 
 These sources supply names and independent sprite/gameplay descriptions. They
 are not used to infer binary layouts. Each identity in
-`config/world3_entity_types.json` must also agree with locally rendered CHR,
+`config/authoring/world3/world3_entity_types.json` must also agree with locally rendered CHR,
 metasprite selection, dispatch behavior, formation data, or type conversion.
 Type `$06` has no standalone published character name, so its descriptive
 symbol remains structural in wording. Its role is nevertheless confirmed:

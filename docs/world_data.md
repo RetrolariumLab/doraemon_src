@@ -79,14 +79,14 @@ rows, so changing one cell does not require editing a generated assembly list.
 Decode either canonical payload:
 
 ```text
-python scripts/world_data.py decode --prg assets/generated/prg/doraemon.prg --manifest config/world_data.json --world world1 --output data/world1/hierarchical_world.json
-python scripts/world_data.py decode --prg assets/generated/prg/doraemon.prg --manifest config/world_data.json --world world3 --output data/world3/hierarchical_world.json
+python scripts/run.py validation.reconstruction.world_data decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world_data.json --world world1 --output data/world1/hierarchical_world.json
+python scripts/run.py validation.reconstruction.world_data decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world_data.json --world world3 --output data/world3/hierarchical_world.json
 ```
 
 Encode an edited document to a contiguous binary payload:
 
 ```text
-python scripts/world_data.py encode --input data/world1/hierarchical_world.json --output build/world1_data.bin
+python scripts/run.py validation.reconstruction.world_data encode --input data/world1/hierarchical_world.json --output build/world1_data.bin
 ```
 
 The encoder rejects invalid IDs, byte values, map dimensions, and noncontiguous

@@ -126,14 +126,14 @@ zero stops music and the playable counts are eight for World 1, six for World
 independently; shared structure does not imply byte identity or a callable
 cross-bank sound service.
 
-`config/audio_dispatch.json` records the complete indirect edge set, while
+`config/authoring/audio/audio_dispatch.json` records the complete indirect edge set, while
 `make validate-audio-dispatch` proves the ROM tables and Ghidra seed registry
-remain synchronized. `config/audio_effects.json` joins all 93 effect requests
+remain synchronized. `config/authoring/audio/audio_effects.json` joins all 93 effect requests
 to 26 structural synthesis roles and all 145 unique handlers, including their
 timer leases, APU writes, shared updates, and no-lease exceptions. Every audio
 effect indirect entry and all sixteen bank-local effect helpers now have an
 evidence-backed source symbol.
-`config/audio_music.json` and `docs/audio_music.md` record the shared command
+`config/authoring/audio/audio_music.json` and `docs/audio_music.md` record the shared command
 grammar and RAM ABI; `make validate-audio-music` verifies all 68 bank-local
 command targets and the common helper contracts. The state-aware
 `make validate-audio-streams` gate additionally proves all 26 headers and
@@ -166,7 +166,8 @@ through a 13-entry descriptor table at `$CC0A`. Its runtime type, metasprite,
 render flags, and primary behavior fields are joined to the placement encoding,
 the transient selector table, and five collision-extent tables. The exact 145
 placements and all descriptor contracts are validated by
-`config/object_placements.json`; see `docs/world1_descriptors.md`.
+`config/authoring/world1/object_placements.json`; see
+`docs/world1_descriptors.md`.
 
 World 2 uses three smaller pools: seven enemies, six enemy projectiles, and
 seven player projectiles. Its main frame path independently updates the enemy
@@ -185,7 +186,7 @@ Enemy states use overlapping target-minus-one tables: rendering indexes a base
 at `$A548` (reachable states `$01-$14` begin at `$A54A`), while updating indexes
 21 slots at `$A570`. The shared bytes at `$A570-$A571`, 36 unique destinations,
 and manually pushed continuations `$A355` and `$9965` are validated and supplied
-as static-analysis entry points by `config/object_dispatch.json`.
+as static-analysis entry points by `config/reconstruction/common/object_dispatch.json`.
 
 World 3 separates eight active entities from thirteen persistent room-object
 records. Room entry materializes matching records into free active slots; room
@@ -201,7 +202,7 @@ The thirteen-record registry begins as a 65-byte ROM image at `$D96B`: five
 parallel room/type/X/Y/state arrays are copied directly to `$06B0-$06F0`.
 Initialization then shuffles types in a four-slot group and an eight-slot group
 without moving rooms or coordinates; the final slot retains type `$1F`.
-`config/world3_object_data.json` validates this bootstrap representation and
+`config/authoring/world3/world3_object_data.json` validates this bootstrap representation and
 the adjacent sixteen-entry behavior-stream pointer table.
 
 Types below `$10` additionally select a behavior stream through the pointer
@@ -217,7 +218,7 @@ in `docs/world3_behavior.md`.
 
 Five contiguous 32-byte columns at `$8EB5-$8F54` provide the per-type hit
 points, base metasprite, render flags, contact damage, and score reward code.
-`config/world3_entity_types.json` joins those columns to all three type-indexed
+`config/authoring/world3/world3_entity_types.json` joins those columns to all three type-indexed
 dispatch views and proves a complete four-domain partition of `$00-$1F`.
 The catalog and its encoded type transformations are documented in
 `docs/world3_entity_types.md`.

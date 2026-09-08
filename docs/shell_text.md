@@ -1,7 +1,7 @@
 # Shell text and presentation data
 
 The fixed presentation text used by the original Japanese PRG0 image resides
-in bank 3. `config/shell_text.json` pins the consumers, exact ranges, checksums,
+in bank 3. `config/authoring/text/shell_text.json` pins the consumers, exact ranges, checksums,
 and the lossless representation in `data/shell/text.json`.
 
 ## Formats
@@ -42,9 +42,9 @@ row geometry, canonical decode, and byte-exact re-encoding. To create a patched
 PRG for research:
 
 ```text
-python -B scripts/shell_text.py encode \
+python -B scripts/run.py validation.reconstruction.shell_text encode \
   --base-prg assets/generated/prg/doraemon.prg \
-  --manifest config/shell_text.json \
+  --manifest config/authoring/text/shell_text.json \
   --input data/shell/text.json \
   --output build/doraemon-text-edit.prg
 ```

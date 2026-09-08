@@ -1,6 +1,6 @@
 # PRG source classification
 
-`config/source_classification.json` is the byte-level ownership contract for
+`config/reconstruction/source_classification.json` is the byte-level ownership contract for
 the four canonical 32 KiB PRG banks. It is evaluated from the current ca65
 listing rather than raw Ghidra facts, so copied common code and every source
 directive are measured exactly as assembled.

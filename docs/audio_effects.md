@@ -6,7 +6,7 @@ table. The stored priority is therefore both an arbitration rank and the byte
 offset of the pair. World 1, World 3, and the shell expose 26 requests; World 2
 uses a 15-request subset with its own permutation.
 
-`config/audio_effects.json` assigns all 93 request IDs to 26 conservative
+`config/authoring/audio/audio_effects.json` assigns all 93 request IDs to 26 conservative
 structural roles. Each role records its handler pair, effect-timer leases, APU
 channels actually written, and directly observed synthesis behavior. These
 names deliberately describe register and state transitions rather than

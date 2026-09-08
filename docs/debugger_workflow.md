@@ -28,10 +28,10 @@ eight 16 KiB PRG-bank files (`doraemon.nes.0.nl` through
 therefore map to pairs of FCEUX banks.
 
 The export is derived from the current linker output, not a hand-maintained
-address copy. `config/debug_symbols.json` pins segment layout, inventory counts,
+address copy. `config/debugger/debug_symbols.json` pins segment layout, inventory counts,
 and required Reset/NMI/frame-loop/RAM probes. The validator also rejects stale
-entries in `config/debugger_breakpoints.json` and
-`config/debugger_watches.json`. Only bank-independent RAM aliases are exported
+entries in `config/debugger/debugger_breakpoints.json` and
+`config/debugger/debugger_watches.json`. Only bank-independent RAM aliases are exported
 to the global FCEUX RAM list; bank-scoped aliases remain in the linker symbols.
 
 This gate proves generation and static consistency. Importing the results in a

@@ -34,10 +34,10 @@ physical bytes. PRG files contain instructions, explicit `.byte` data, or
 generated source includes only; they never include extracted binaries.
 
 Known PRG data labels can opt into operand substitution with the explicit
-`operand_symbol` flag in `config/symbols.json`. This keeps indexed table reads
+`operand_symbol` flag in `config/reconstruction/symbols.json`. This keeps indexed table reads
 symbolic without turning every generated control-flow label into a data symbol.
 
-`config/source_modules.json` is the canonical address-to-module map. It covers
+`config/reconstruction/source_modules.json` is the canonical address-to-module map. It covers
 every byte of all four banks without gaps or overlaps. The generator rejects a
 boundary through an instruction, and the reconstruction audit enforces the
 700-line limit on every declared semantic module. World 2 separates the stage
