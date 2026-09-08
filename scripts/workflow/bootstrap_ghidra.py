@@ -14,7 +14,7 @@ import urllib.request
 import zipfile
 
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[2]
 TOOLS = ROOT / "tools"
 LOCK_PATH = TOOLS / "disassembly.lock.json"
 CACHE = TOOLS / ".cache"

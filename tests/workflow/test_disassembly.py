@@ -7,16 +7,40 @@ import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import format_project
-import generate_disassembly as disasm
+from scripts.validation import format_project
+from scripts.workflow import generate_disassembly as disasm
 
 
 class FormattingTests(unittest.TestCase):
     def test_normalizes_line_endings_and_trailing_space(self) -> None:
         self.assertEqual(format_project.normalize_text("one  \r\ntwo\t \r\n"), "one\ntwo\n")
+
+
+class RevisionOverlayTests(unittest.TestCase):
+    def test_projects_the_original_branch_for_regeneration(self) -> None:
+        source = (
+            "Before:\n"
+            f"{disasm.ORIGINAL_PROFILE_IF}\n"
+            "    LDA #$01\n"
+            ".else\n"
+            "    .byte $FF, $01\n"
+            ".endif\n"
+            "After:\n"
+        )
+        projected, blocks = disasm.original_profile_projection(source)
+        self.assertEqual(projected, "Before:\n    LDA #$01\nAfter:\n")
+        self.assertEqual(blocks, 1)
+
+    def test_rejects_an_unterminated_revision_overlay(self) -> None:
+        source = f"{disasm.ORIGINAL_PROFILE_IF}\n    RTS\n"
+        with self.assertRaisesRegex(disasm.DisassemblyError, "unterminated"):
+            disasm.original_profile_projection(source)
 
 
 class InstructionFormattingTests(unittest.TestCase):
