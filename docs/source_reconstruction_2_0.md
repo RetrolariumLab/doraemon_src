@@ -6,9 +6,9 @@ accepted cartridge family contains exactly two official Japanese revisions:
 the original release and Revision A. Both retain the original 128 KiB PRG,
 32 KiB CHR, Mapper 66 layout, and fixed ROM capacities.
 
-The technical reconstruction and editor scope is complete, but the active
-candidate remains `development` while its repository and release workflows are
-finished and measured. Its machine-readable boundary is
+The technical reconstruction and editor scope is complete. The active
+candidate remains `development` until the final clean-build gate is measured.
+Its machine-readable boundary is
 `config/source_reconstruction_2_0.json`; the studio registry and profile matrix
 are `config/authoring/content_studios.json` and
 `config/authoring/content_authoring_profiles.json`.
@@ -38,9 +38,13 @@ Completed repository-facing work:
 Remaining release-workflow work:
 
 - prove the complete gate from an empty generated-output tree and update this
-  page and the manifest from measured final results;
-- prepare a separate `rewrite/*` history mapping for the legacy empty marker
-  commits. No history will be rewritten without explicit owner approval.
+  page and the manifest from measured final results.
+
+The unpublished draft stack has been rebuilt as 45 nonempty, owner-oriented
+commits on a separate rewrite branch. The exact dates, primary attribution,
+superseded marker commits, and tree-equivalence checkpoint are retained in the
+[draft-history rewrite map](source_2_history_rewrite.md). Local `main`, old
+draft refs, tags, and remote-tracking refs remain unchanged for owner review.
 
 ## Completed foundation
 
