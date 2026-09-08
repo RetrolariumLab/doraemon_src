@@ -6,10 +6,13 @@ import sys
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import world3_update_handlers
+from scripts.validation.world3 import world3_update_handlers
 
 
 class World3UpdateHandlerTests(unittest.TestCase):
