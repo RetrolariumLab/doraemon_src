@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "bank": 2,
+  "routines": [
+    {
+      "address": "0xA8B0",
+      "end_address": "0xA8EA",
+      "size": 59,
+      "crc32": "9c460239",
+      "name": "World3_FadePaletteIn",
+      "role": "restore-the-selected-room-palette-into-the-shadow-in-three-frame-steps",
+      "callers": [
+        {
+          "address": "0xA7B1",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA8EB",
+      "end_address": "0xA903",
+      "size": 25,
+      "crc32": "67f52090",
+      "name": "World3_StreamCurrentRoomBackground",
+      "role": "expand-and-queue-all-thirty-background-rows-for-the-current-room",
+      "callers": [
+        {
+          "address": "0xA742",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA904",
+      "end_address": "0xA921",
+      "size": 30,
+      "crc32": "d6338afc",
+      "name": "World3_CalculateCurrentRoomMapPointer",
+      "role": "derive-the-current-eight-by-eight-large-block-window-pointer-from-the-six-bit-room-index",
+      "callers": [
+        {
+          "address": "0xA0D0",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA8EB",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA922",
+      "end_address": "0xA945",
+      "size": 36,
+      "crc32": "99992de4",
+      "name": "World3_QueueRoomBackgroundRow",
+      "role": "expand-one-row-and-queue-its-32-tile-and-eight-attribute-bytes",
+      "callers": [
+        {
+          "address": "0xA8FA",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA946",
+      "end_address": "0xA966",
+      "size": 33,
+      "crc32": "4a88403b",
+      "name": "World3_ExpandNextRoomTileRow",
+      "role": "expand-one-row-and-advance-the-two-hierarchy-row-selectors-and-map-pointer",
+      "callers": [
+        {
+          "address": "0xA922",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA967",
+      "end_address": "0xA99B",
+      "size": 53,
+      "crc32": "dc647e2c",
+      "name": "World3_ExpandRoomTileRow",
+      "role": "expand-eight-large-block-map-cells-into-one-tile-and-attribute-transfer-row",
+      "callers": [
+        {
+          "address": "0xA946",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA99C",
+      "end_address": "0xA9C4",
+      "size": 41,
+      "crc32": "bb6008a2",
+      "name": "World3_AppendSmallBlockTilePair",
+      "role": "resolve-and-append-the-selected-two-tile-row-from-one-small-block",
+      "callers": [
+        {
+          "address": "0xA988",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA98D",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA9C5",
+      "end_address": "0xAA0E",
+      "size": 74,
+      "crc32": "21a29150",
+      "name": "World3_UpdateRoomAttributeByte",
+      "role": "pack-two-block-palette-selectors-into-the-shadow-and-current-attribute-row",
+      "callers": [
+        {
+          "address": "0xA990",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x0084",
+      "name": "World3RoomMapPointer",
+      "size": 2
+    },
+    {
+      "address": "0x0086",
+      "name": "World3RoomBigBlockRowOffset"
+    },
+    {
+      "address": "0x0087",
+      "name": "World3RoomSmallBlockRowOffset"
+    },
+    {
+      "address": "0x0088",
+      "name": "World3RoomRenderRow"
+    },
+    {
+      "address": "0x0400",
+      "name": "World3AttributeShadow",
+      "size": 128
+    },
+    {
+      "address": "0x0480",
+      "name": "World3PaletteShadow",
+      "size": 32
+    },
+    {
+      "address": "0x0705",
+      "name": "World3PaletteTarget",
+      "size": 32
+    }
+  ]
+}

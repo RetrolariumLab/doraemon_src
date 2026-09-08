@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "bank": 2,
+  "routines": [
+    {
+      "address": "0xAA2A",
+      "end_address": "0xAA51",
+      "size": 40,
+      "crc32": "c5b211fd",
+      "name": "World3_UpdateGiantOctopusTentacle",
+      "role": "walk-the-contiguous-type-08-09-chain-between-player-side-and-fixed-terminal-anchors",
+      "callers": [
+        {
+          "address": "0x9591",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAA52",
+      "end_address": "0xAA9D",
+      "size": 76,
+      "crc32": "1ec8f817",
+      "name": "World3_ConstrainGiantOctopusTentacleSegments",
+      "role": "derive-the-player-side-anchor-and-update-each-intermediate-and-terminal-segment",
+      "callers": [
+        {
+          "address": "0xAA4E",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAA9E",
+      "end_address": "0xAAA9",
+      "size": 12,
+      "crc32": "d0983942",
+      "name": "World3_LoadPreviousEntityPosition",
+      "role": "load-the-prior-contiguous-slot-position-as-the-near-segment-anchor",
+      "callers": [
+        {
+          "address": "0xAA7D",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAAAA",
+      "end_address": "0xAAB5",
+      "size": 12,
+      "crc32": "b505b355",
+      "name": "World3_LoadNextEntityPosition",
+      "role": "load-the-next-contiguous-slot-position-as-the-far-segment-anchor",
+      "callers": [
+        {
+          "address": "0xAA74",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAAB6",
+      "end_address": "0xAAF0",
+      "size": 59,
+      "crc32": "cee42ee9",
+      "name": "World3_UpdateTentacleSegmentPosition",
+      "role": "rate-gate-one-slot-adjustment-and-store-the-resulting-segment-distance-deltas",
+      "callers": [
+        {
+          "address": "0xAA9A",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAAF1",
+      "end_address": "0xAB38",
+      "size": 72,
+      "crc32": "e2450e0e",
+      "name": "World3_StepWorkPositionTowardNearestAnchor",
+      "role": "select-the-nearer-anchor-per-axis-and-step-the-work-position-one-pixel",
+      "callers": [
+        {
+          "address": "0xAACD",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAB3B",
+      "end_address": "0xAB46",
+      "size": 12,
+      "crc32": "8a6de1d1",
+      "name": "World3_StepWorkXTowardTarget",
+      "role": "move-the-3c-work-coordinate-one-pixel-toward-the-x-register-target",
+      "callers": [
+        {
+          "address": "0x9359",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x95E0",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x993D",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x99E5",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xAB09",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xAB11",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xAD79",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xADAC",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAB47",
+      "end_address": "0xAB52",
+      "size": 12,
+      "crc32": "77a9fd18",
+      "name": "World3_StepWorkYTowardTarget",
+      "role": "move-the-3d-work-coordinate-one-pixel-toward-the-y-register-target",
+      "callers": [
+        {
+          "address": "0x935C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x95E3",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x994C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x99F3",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xAB2C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xAB34",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xAD7C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xADBA",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAB53",
+      "end_address": "0xAB9D",
+      "size": 75,
+      "crc32": "8507ae48",
+      "name": "World3_AdvanceRandomEncounterRoomTowardPlayer",
+      "role": "move-one-random-occupied-encounter-slot-by-a-row-and-column-step-toward-current-room",
+      "callers": [
+        {
+          "address": "0xA754",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAB9E",
+      "end_address": "0xABB8",
+      "size": 27,
+      "crc32": "71159b6f",
+      "name": "World3_StoreEncounterRoomIfEligible",
+      "role": "commit-the-candidate-only-when-the-room-mask-allows-it-and-the-list-does-not-contain-it",
+      "callers": [
+        {
+          "address": "0xAB7C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xAB9A",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xABF9",
+      "end_address": "0xAC14",
+      "size": 28,
+      "crc32": "d056878c",
+      "name": "World3_TrySpawnDragonEncounter",
+      "role": "match-current-room-in-the-encounter-list-and-reserve-a-slot-for-the-dragon-formation",
+      "callers": [
+        {
+          "address": "0xA757",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAC1F",
+      "end_address": "0xAC6B",
+      "size": 77,
+      "crc32": "352a5e47",
+      "name": "World3_PopulateDragonFormation",
+      "role": "fill-active-slots-from-a-start-index-with-offset-type-0a-0b-formation-records",
+      "callers": [
+        {
+          "address": "0x98DF",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xAD21",
+      "end_address": "0xADD1",
+      "size": 177,
+      "crc32": "473b0b90",
+      "name": "World3_UpdateDragonFormation",
+      "role": "update-the-head-target-and-keep-each-following-type-0b-segment-within-six-pixels",
+      "callers": [
+        {
+          "address": "0x95A1",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x0051",
+      "name": "World3FormationActive"
+    },
+    {
+      "address": "0x008C",
+      "name": "World3PlayerX"
+    },
+    {
+      "address": "0x008D",
+      "name": "World3PlayerY"
+    },
+    {
+      "address": "0x00A2",
+      "name": "World3OctopusTerminalAnchorY"
+    },
+    {
+      "address": "0x00A9",
+      "name": "World3PackedRateCounterNext"
+    },
+    {
+      "address": "0x00AA",
+      "name": "World3PackedRateThreshold"
+    },
+    {
+      "address": "0x00C8",
+      "name": "World3FormationHeadSlot"
+    },
+    {
+      "address": "0x00C9",
+      "name": "World3FormationOffsetX"
+    },
+    {
+      "address": "0x00CA",
+      "name": "World3FormationOffsetY"
+    },
+    {
+      "address": "0x00DF",
+      "name": "World3CurrentRoom"
+    },
+    {
+      "address": "0x0620",
+      "name": "World3EntityCollisionScanLimit",
+      "size": 8
+    },
+    {
+      "address": "0x06F1",
+      "name": "World3EncounterRoomList",
+      "size": 8
+    }
+  ]
+}

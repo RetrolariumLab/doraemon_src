@@ -1,0 +1,502 @@
+{
+  "schema_version": 1,
+  "bank": 2,
+  "routines": [
+    {
+      "address": "0xA5DF",
+      "end_address": "0xA5EA",
+      "size": 12,
+      "crc32": "4b282362",
+      "name": "World3_QueuePriorityEffectPreserveXY",
+      "role": "queue-one-priority-audio-effect-while-preserving-the-callers-x-and-y-registers",
+      "callers": [
+        {
+          "address": "0x896E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8988",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x91A0",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA195",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA50B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA5DB",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA5EB",
+      "end_address": "0xA5F6",
+      "size": 12,
+      "crc32": "70da3eed",
+      "name": "World3_QueueEffectPreserveXY",
+      "role": "queue-one-ordinary-audio-effect-while-preserving-the-callers-x-and-y-registers",
+      "callers": [
+        {
+          "address": "0x83F0",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x84BA",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x85B1",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x85EE",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8611",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x87CB",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x88D3",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8901",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x894B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x89F0",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A05",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A58",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A9A",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8ACA",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8AE6",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8B64",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8FD7",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9535",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x959E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x95AE",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9746",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x979F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x985E",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA5F7",
+      "end_address": "0xA600",
+      "size": 10,
+      "crc32": "7c700112",
+      "name": "World3_ReadActivePlayerButtons",
+      "role": "return-combined-controller-buttons-in-gameplay-and-zero-during-world3-attract-mode",
+      "callers": [
+        {
+          "address": "0x859A",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x85B4",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x85BB",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x8A2C",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA3E0",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA433",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA449",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA450",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA539",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA572",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA601",
+      "end_address": "0xA618",
+      "size": 24,
+      "crc32": "f878d261",
+      "name": "World3_RenderPlayer",
+      "role": "compose-the-player-metasprite-index-from-base-and-animation-frame-and-submit-it-at-player-position",
+      "callers": [
+        {
+          "address": "0x83B8",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xAE36",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA619",
+      "end_address": "0xA639",
+      "size": 33,
+      "crc32": "cedab8de",
+      "name": "World3_EnterRoomLeft",
+      "role": "cross-the-left-room-edge-save-both-persistence-phases-and-load-the-adjacent-room",
+      "callers": [
+        {
+          "address": "0x8454",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA4B0",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA63A",
+      "end_address": "0xA65C",
+      "size": 35,
+      "crc32": "42ad23b4",
+      "name": "World3_EnterRoomRight",
+      "role": "cross-the-right-room-edge-save-both-persistence-phases-and-load-the-adjacent-room",
+      "callers": [
+        {
+          "address": "0x845D",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA4CA",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA65D",
+      "end_address": "0xA687",
+      "size": 43,
+      "crc32": "cd5a385d",
+      "name": "World3_EnterRoomAbove",
+      "role": "cross-the-top-room-edge-save-both-persistence-phases-and-load-the-adjacent-room",
+      "callers": [
+        {
+          "address": "0x8466",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA52B",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA688",
+      "end_address": "0xA6B4",
+      "size": 45,
+      "crc32": "fb83c278",
+      "name": "World3_EnterRoomBelow",
+      "role": "cross-the-bottom-room-edge-save-both-persistence-phases-and-load-the-adjacent-room",
+      "callers": [
+        {
+          "address": "0x846F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA55F",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA6B5",
+      "end_address": "0xA6BE",
+      "size": 10,
+      "crc32": "e7331bc6",
+      "name": "World3_ResetPersistentObjectsForFinalRoomEntry",
+      "role": "clear-active-and-room-object-persistence-before-entering-room-3f",
+      "callers": [
+        {
+          "address": "0xA628",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA64B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA671",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA69E",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA6BF",
+      "end_address": "0xA6E5",
+      "size": 39,
+      "crc32": "28768f78",
+      "name": "World3_ResetPersistentObjectsForActiveBossRoom",
+      "role": "clear-active-and-room-object-persistence-before-an-undefeated-boss-room-27-28-or-34",
+      "callers": [
+        {
+          "address": "0xA62B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA64E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA674",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA6A1",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA6E6",
+      "end_address": "0xA719",
+      "size": 52,
+      "crc32": "d871f627",
+      "name": "World3_DropFollowerBeforeCrowdedRoom",
+      "role": "drop-the-active-persistent-follower-before-entering-a-room-already-containing-three-persistent-objects",
+      "callers": [
+        {
+          "address": "0xA625",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA648",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA66E",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA69B",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA71A",
+      "end_address": "0xA732",
+      "size": 25,
+      "crc32": "951b9af2",
+      "name": "World3_SetMetaspriteOriginFromXY",
+      "role": "stage-x-and-y-as-metasprite-origins-and-mark-wrapped-negative-inputs-in-their-high-bytes",
+      "callers": [
+        {
+          "address": "0x848F",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9DA8",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x9DC6",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA1E3",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA605",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xAF42",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA733",
+      "end_address": "0xA7E4",
+      "size": 178,
+      "crc32": "bcd81cb4",
+      "name": "World3_LoadCurrentRoom",
+      "role": "fade-disable-and-rebuild-the-current-room-palette-objects-collision-hud-rendering-and-music-state",
+      "callers": [
+        {
+          "address": "0x838B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0x862B",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA2A5",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA636",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA659",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA684",
+          "mnemonic": "JSR"
+        },
+        {
+          "address": "0xA6B1",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA7E5",
+      "end_address": "0xA7F0",
+      "size": 12,
+      "crc32": "eb47433d",
+      "name": "World3_SelectRoomMusicTrack",
+      "role": "map-the-current-room-through-a-four-class-table-to-its-audio-music-track",
+      "callers": [
+        {
+          "address": "0xA7C6",
+          "mnemonic": "JSR"
+        }
+      ]
+    },
+    {
+      "address": "0xA863",
+      "end_address": "0xA8AF",
+      "size": 77,
+      "crc32": "f74f0b5f",
+      "name": "World3_FadePaletteToBlack",
+      "role": "darken-every-nonblack-palette-entry-one-level-per-three-frame-upload-until-all-are-black",
+      "callers": [
+        {
+          "address": "0xA733",
+          "mnemonic": "JSR"
+        }
+      ]
+    }
+  ],
+  "memory_symbols": [
+    {
+      "address": "0x0049",
+      "name": "World3AudioSavedX"
+    },
+    {
+      "address": "0x004A",
+      "name": "World3AudioSavedY"
+    },
+    {
+      "address": "0x008B",
+      "name": "World3TransitionTargetRoom"
+    },
+    {
+      "address": "0x008E",
+      "name": "World3PlayerState"
+    },
+    {
+      "address": "0x008F",
+      "name": "World3PlayerMetasprite"
+    },
+    {
+      "address": "0x0090",
+      "name": "World3PlayerMetaspriteBase"
+    },
+    {
+      "address": "0x0091",
+      "name": "World3PlayerAnimationFrame"
+    },
+    {
+      "address": "0x009A",
+      "name": "World3FollowerActive"
+    },
+    {
+      "address": "0x00CB",
+      "name": "World3StopwatchActive"
+    },
+    {
+      "address": "0x00CC",
+      "name": "World3StopwatchTimer"
+    }
+  ]
+}
