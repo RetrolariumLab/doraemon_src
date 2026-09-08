@@ -6,9 +6,12 @@ from pathlib import Path
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 SPEC = importlib.util.spec_from_file_location(
-    "core_dispatch_roles", ROOT / "scripts" / "core_dispatch_roles.py"
+    "core_dispatch_roles", ROOT / "scripts" / "validation" / "reconstruction" / "core_dispatch_roles.py"
 )
 assert SPEC is not None and SPEC.loader is not None
 ROLES = importlib.util.module_from_spec(SPEC)

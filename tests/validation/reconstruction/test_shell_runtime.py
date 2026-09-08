@@ -11,10 +11,13 @@ import unittest
 from unittest import mock
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import shell_runtime
+from scripts.validation.reconstruction import shell_runtime
 
 
 class ShellRuntimeTests(unittest.TestCase):

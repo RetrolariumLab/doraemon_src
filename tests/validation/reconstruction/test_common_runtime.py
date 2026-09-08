@@ -7,9 +7,12 @@ from pathlib import Path
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 SPEC = importlib.util.spec_from_file_location(
-    "common_runtime", ROOT / "scripts" / "common_runtime.py"
+    "common_runtime", ROOT / "scripts" / "validation" / "reconstruction" / "common_runtime.py"
 )
 assert SPEC is not None and SPEC.loader is not None
 RUNTIME = importlib.util.module_from_spec(SPEC)
