@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from scripts.rom_assets import read_source_text
+from scripts.build.rom_assets import read_source_text
 
 import tempfile
 import unittest

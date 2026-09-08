@@ -7,7 +7,7 @@ import argparse
 from pathlib import Path
 import sys
 
-import project
+from scripts.build import project
 
 
 REGIONS = ("header", "prg", "chr", "payload", "rom")

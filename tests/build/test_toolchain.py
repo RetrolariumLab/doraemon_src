@@ -8,9 +8,12 @@ import tempfile
 import unittest
 
 
-ROOT = Path(__file__).resolve().parent.parent
+from tests import PROJECT_ROOT
+
+
+ROOT = PROJECT_ROOT
 SPEC = importlib.util.spec_from_file_location(
-    "toolchain", ROOT / "scripts" / "toolchain.py"
+    "toolchain", ROOT / "scripts" / "build" / "toolchain.py"
 )
 assert SPEC is not None and SPEC.loader is not None
 TOOLCHAIN = importlib.util.module_from_spec(SPEC)

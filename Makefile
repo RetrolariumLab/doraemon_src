@@ -887,5 +887,5 @@ clean:
 # Extract local ROM payloads before tools inspect or assemble the source.
 .PHONY: _rom_assets
 _rom_assets:
-	$(PYTHON) scripts/rom_assets.py ensure
+	$(PYTHON) scripts/build/rom_assets.py ensure
 build lint split init build-profile build-revision build-fixed-layout init-content build-content check-content-zero-edit check-studios: _rom_assets
