@@ -1,0 +1,8 @@
+; Official Doraemon source-build profile identifiers
+
+.ifndef DORAEMON_REVISION_PROFILE_IDS
+DORAEMON_REVISION_PROFILE_IDS = 1
+
+DORAEMON_REVISION_ORIGINAL = 0
+DORAEMON_REVISION_REV_A    = 1
+.endif

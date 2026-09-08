@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "default_profile": "original",
+  "profiles": [
+    {
+      "id": "original",
+      "name": "Doraemon (Japan, original revision)",
+      "reference_rom": "Doraemon (J) (PRG0) [!].nes",
+      "entrypoint": "src/revisions/original.asm",
+      "file_size": 163856,
+      "file_sha1": "d47ebb0be5697820691065faedff277607ac10fd",
+      "file_sha256": "6ed579c9c98a1f2db52fd3d2488a491953073e8ace1e3c1dc5884669cecca274",
+      "file_crc32": "a9eb0de9",
+      "header_size": 16,
+      "header_sha1": "0d2f09f8d9874c35ee717751f521a34af0ce6384",
+      "prg_size": 131072,
+      "prg_sha1": "a03aee101b5ae0f5e13ad5af47bbeb54c964607c",
+      "prg_crc32": "b00abe1c",
+      "chr_size": 32768,
+      "chr_sha1": "779b7847a124cd5276972947e0a0762c18c76da7",
+      "chr_crc32": "761f994e",
+      "payload_sha1": "5e4119e0771bec24a46bad4e874df05521bb953c",
+      "payload_crc32": "bde3ae9b",
+      "source_assets": []
+    },
+    {
+      "id": "rev_a",
+      "name": "Doraemon (Japan, Revision A)",
+      "reference_rom": "Doraemon (Japan) (Rev A).nes",
+      "entrypoint": "src/revisions/rev_a.asm",
+      "file_size": 163856,
+      "file_sha1": "20c5e40ab706a637d0572b1549eeff9a0048a065",
+      "file_sha256": "c070fa0e07a4b8be107ecc2f514e4c64f5bbb2a15754b6c6214e7259a1b30920",
+      "file_crc32": "2768309d",
+      "header_size": 16,
+      "header_sha1": "0d2f09f8d9874c35ee717751f521a34af0ce6384",
+      "prg_size": 131072,
+      "prg_sha1": "bf3f88b746e324096e57dde9c9fdf48aaf0b051f",
+      "prg_crc32": "fe90d6eb",
+      "chr_size": 32768,
+      "chr_sha1": "779b7847a124cd5276972947e0a0762c18c76da7",
+      "chr_crc32": "761f994e",
+      "payload_sha1": "cdba5d85ef27697d35b21e1f8994ce8f4e554ca6",
+      "payload_crc32": "336093ef",
+      "source_assets": []
+    }
+  ],
+  "comparison": {
+    "base_profile": "original",
+    "candidate_profile": "rev_a",
+    "common_regions": [
+      "header",
+      "chr"
+    ],
+    "differing_regions": [
+      "prg"
+    ],
+    "prg_difference_bytes": 50,
+    "windows": [
+      {
+        "bank": 2,
+        "start": "0xAB3B",
+        "end": "0xAB60",
+        "prg_offset": "0x12B3B",
+        "size": 38,
+        "classification": "code",
+        "source": "src/world3/room_collision_helpers.asm",
+        "base_sha1": "e37ffc245aa5dfd0e666388599f9455a0c2f02fc",
+        "candidate_sha1": "39f1855eeba412227e14580d6d3c4575923181de"
+      },
+      {
+        "bank": 2,
+        "start": "0xAF40",
+        "end": "0xAF5F",
+        "prg_offset": "0x12F40",
+        "size": 32,
+        "classification": "code",
+        "source": "src/world3/chapter_transition.asm",
+        "base_sha1": "5410c6a607b0323cb8f3d5a2b0b2a999de72ea02",
+        "candidate_sha1": "9e5175008751d08f361488c9927086b276b965fa"
+      }
+    ]
+  }
+}
