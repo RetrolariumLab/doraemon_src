@@ -7,7 +7,7 @@
   },
   "release_kind": "baseline",
   "tag": "source-reconstruction-2.0",
-  "status": "development",
+  "status": "tag-ready",
   "predecessor": {
     "manifest": "config/source_reconstruction.json",
     "tag": "source-reconstruction-1.0",
@@ -370,7 +370,7 @@
       }
     },
     "source-2.aggregate-release-gate": {
-      "status": "partial",
+      "status": "satisfied",
       "evidence": {
         "targets": [
           "source-2-audit",
