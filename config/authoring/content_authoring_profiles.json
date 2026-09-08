@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "default_profile": "original",
+  "studio_manifest": "config/authoring/content_studios.json",
+  "studio_ids": [
+    "level",
+    "graphics",
+    "objects",
+    "text",
+    "sound"
+  ],
+  "profiles": [
+    {
+      "id": "original",
+      "name": "Doraemon (Japan, original revision)",
+      "status": "supported",
+      "revision_profile": "original",
+      "workspace": "content/workspace/original",
+      "output": "build/content/original",
+      "image_size": 163856,
+      "image_sha256": "6ed579c9c98a1f2db52fd3d2488a491953073e8ace1e3c1dc5884669cecca274",
+      "studios": {
+        "level": "supported",
+        "graphics": "supported",
+        "objects": "supported",
+        "text": "supported",
+        "sound": "supported"
+      }
+    },
+    {
+      "id": "rev_a",
+      "name": "Doraemon (Japan, Revision A)",
+      "status": "supported",
+      "revision_profile": "rev_a",
+      "workspace": "content/workspace/rev_a",
+      "output": "build/content/rev_a",
+      "image_size": 163856,
+      "image_sha256": "c070fa0e07a4b8be107ecc2f514e4c64f5bbb2a15754b6c6214e7259a1b30920",
+      "studios": {
+        "level": "supported",
+        "graphics": "supported",
+        "objects": "supported",
+        "text": "supported",
+        "sound": "supported"
+      }
+    }
+  ]
+}

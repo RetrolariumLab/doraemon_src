@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "workspace": "content/workspace",
+  "studios": [
+    {
+      "id": "level",
+      "name": "Level Studio",
+      "status": "supported",
+      "artifacts": [
+        "world1_hierarchical_map",
+        "world2_compressed_screens",
+        "world3_hierarchical_map"
+      ],
+      "headless_targets": [
+        "level-content-check",
+        "level-content-export",
+        "level-content-roundtrip",
+        "check-level-studio"
+      ],
+      "gui_target": "level-studio"
+    },
+    {
+      "id": "graphics",
+      "name": "Graphics Studio",
+      "status": "supported",
+      "completed_artifacts": [
+        "chr_tiles",
+        "world1_metatiles",
+        "world1_palettes",
+        "world2_metatiles",
+        "world2_palettes",
+        "world3_metatiles",
+        "world3_palettes",
+        "world1_metasprites",
+        "world2_metasprites",
+        "world3_metasprites"
+      ],
+      "headless_artifacts": [
+        "chr_tiles",
+        "world1_metatiles",
+        "world1_palettes",
+        "world2_metatiles",
+        "world2_palettes",
+        "world3_metatiles",
+        "world3_palettes",
+        "world1_metasprites",
+        "world2_metasprites",
+        "world3_metasprites"
+      ],
+      "artifacts": [
+        "chr_tiles",
+        "world1_metatiles",
+        "world2_metatiles",
+        "world3_metatiles",
+        "world1_palettes",
+        "world2_palettes",
+        "world3_palettes",
+        "world1_metasprites",
+        "world2_metasprites",
+        "world3_metasprites"
+      ],
+      "current_evidence": [
+        "config/authoring_coverage.json",
+        "scripts/authoring/graphics_artifacts.py",
+        "scripts/authoring/hierarchy_graphics_panel.py",
+        "scripts/authoring/metasprite_graphics_panel.py",
+        "scripts/authoring/graphics_studio_model.py",
+        "scripts/authoring/graphics_content_rom.py",
+        "tests/authoring/test_metasprite_graphics_panel.py"
+      ],
+      "headless_targets": [
+        "graphics-content-check",
+        "graphics-content-export",
+        "graphics-content-roundtrip",
+        "check-graphics-studio"
+      ],
+      "gui_target": "graphics-studio",
+      "missing": []
+    },
+    {
+      "id": "objects",
+      "name": "Object Studio",
+      "status": "supported",
+      "artifacts": [
+        "world1_object_placements",
+        "world1_underground_rooms",
+        "world1_weapons",
+        "world2_embedded_spawns",
+        "world2_enemy_states",
+        "world2_inventory_spawns",
+        "world3_object_catalog",
+        "world3_behavior_streams",
+        "world3_spawn_schedules",
+        "world3_spawn_initializer_data",
+        "world3_update_handler_data"
+      ],
+      "current_evidence": [
+        "config/authoring_coverage.json",
+        "docs/object_formats.md",
+        "scripts/authoring/object_artifacts.py",
+        "scripts/authoring/object_workspace.py",
+        "scripts/authoring/object_content_rom.py",
+        "scripts/authoring/object_studio.py",
+        "tests/authoring/test_object_artifacts.py",
+        "tests/authoring/test_object_content_rom.py",
+        "tests/authoring/test_object_studio.py"
+      ],
+      "headless_targets": [
+        "object-content-check",
+        "object-content-export",
+        "object-content-roundtrip",
+        "check-object-studio"
+      ],
+      "gui_target": "object-studio",
+      "missing": []
+    },
+    {
+      "id": "text",
+      "name": "Text Studio",
+      "status": "supported",
+      "artifacts": [
+        "title_hud_help_ending_text"
+      ],
+      "current_evidence": [
+        "config/authoring/text/shell_text.json",
+        "data/shell/text.json",
+        "scripts/authoring/text_studio_model.py",
+        "scripts/authoring/text_studio.py",
+        "scripts/authoring/text_content_rom.py",
+        "tests/authoring/test_text_studio_model.py",
+        "tests/authoring/test_text_content_rom.py"
+      ],
+      "headless_targets": [
+        "text-content-check",
+        "text-content-export",
+        "text-content-roundtrip",
+        "check-text-studio"
+      ],
+      "gui_target": "text-studio",
+      "missing": []
+    },
+    {
+      "id": "sound",
+      "name": "Sound Studio",
+      "status": "supported",
+      "artifacts": [
+        "four_bank_music_streams",
+        "effect_request_routing",
+        "stream_envelope_commands"
+      ],
+      "current_evidence": [
+        "config/authoring/audio/audio_music.json",
+        "config/authoring/audio/audio_effects.json",
+        "data/audio/music_streams.json",
+        "data/audio/effect_priorities.json",
+        "scripts/authoring/sound_studio_model.py",
+        "scripts/authoring/sound_studio.py",
+        "scripts/authoring/sound_studio_playback.py",
+        "scripts/authoring/sound_synth.py",
+        "scripts/authoring/sound_content_rom.py",
+        "scripts/authoring/sound_preview.py",
+        "scripts/authoring/preview_track.lua",
+        "scripts/authoring/validate_sound_preview.py",
+        "tests/authoring/test_sound_studio_model.py",
+        "tests/authoring/test_sound_content_rom.py",
+        "tests/authoring/test_sound_synth.py",
+        "tests/authoring/test_sound_preview.py",
+        "tests/authoring/test_sound_studio.py",
+        "docs/sound_studio.md"
+      ],
+      "headless_targets": [
+        "sound-content-check",
+        "sound-content-export",
+        "sound-content-roundtrip",
+        "check-sound-studio",
+        "check-sound-preview"
+      ],
+      "gui_target": "sound-studio",
+      "missing": []
+    }
+  ]
+}
