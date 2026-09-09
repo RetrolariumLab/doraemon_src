@@ -53,6 +53,9 @@ JAPANESE_PROVENANCE_PATHS = {
     "scripts/validation/world2/world2_enemy_identities.py",
     "tests/validation/world2/test_world2_enemy_identities.py",
 }
+ALLOWED_COMMIT_IDENTITIES = {
+    "Daniel Oranguthang <75395800+oranguthang@users.noreply.github.com>"
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -138,6 +141,69 @@ def validate_public_english_text(project_root: Path) -> list[str]:
                 errors.append(
                     f"non-English public text at {relative}:{line_number} "
                     f"({unicodedata.name(offending, 'unknown character')})"
+                )
+                break
+    return errors
+
+
+def validate_release_history_text(project_root: Path, base: str) -> list[str]:
+    """Check every path and blob introduced after the release predecessor."""
+    errors: list[str] = []
+    checked_for_cyrillic: set[str] = set()
+    for object_id, relative, content in release_contract.introduced_blobs(
+        project_root, base
+    ):
+        offending_path = next(
+            (
+                character
+                for character in relative
+                if "CYRILLIC" in unicodedata.name(character, "")
+            ),
+            None,
+        )
+        if offending_path is not None:
+            errors.append(f"release history has a non-English path: {relative}")
+        if object_id not in checked_for_cyrillic:
+            checked_for_cyrillic.add(object_id)
+            decoded = content.decode("utf-8", errors="ignore")
+            if any(
+                "CYRILLIC" in unicodedata.name(character, "")
+                for character in decoded
+            ):
+                errors.append(
+                    f"release history blob {object_id[:9]} contains Cyrillic text"
+                )
+                continue
+        path = Path(relative)
+        if (
+            path.name not in PUBLIC_TEXT_NAMES
+            and path.suffix.lower() not in PUBLIC_TEXT_SUFFIXES
+        ):
+            continue
+        try:
+            text = content.decode("utf-8")
+        except UnicodeDecodeError:
+            errors.append(
+                f"release history public-text blob is not UTF-8: {object_id[:9]} {relative}"
+            )
+            continue
+        for line_number, line in enumerate(text.splitlines(), start=1):
+            offending = next(
+                (
+                    character
+                    for character in line
+                    if character.isalpha()
+                    and "LATIN" not in unicodedata.name(character, "")
+                    and not is_documented_japanese_provenance(
+                        relative, line, character
+                    )
+                ),
+                None,
+            )
+            if offending is not None:
+                errors.append(
+                    f"non-English release-history text at {relative}:{line_number} "
+                    f"in {object_id[:9]}"
                 )
                 break
     return errors
@@ -457,9 +523,18 @@ def validate_source_2(
     if document.get("aggregate_gates") != EXPECTED_GATES:
         errors.append("Source 2.0 aggregate gate lifecycle differs")
 
+    history_base = str(document.get("predecessor", {}).get("commit", ""))
     history_issues = release_contract.commit_message_issues(
-        project_root, str(document.get("predecessor", {}).get("commit", ""))
+        project_root, history_base
     )
+    history_issues.extend(
+        release_contract.commit_integrity_issues(
+            project_root,
+            history_base,
+            allowed_identities=ALLOWED_COMMIT_IDENTITIES,
+        )
+    )
+    history_issues.extend(validate_release_history_text(project_root, history_base))
     history_requirement = requirements.get("source-2.commit-history", {})
     expected_history = "satisfied" if not history_issues else "partial"
     if history_requirement.get("status") != expected_history:

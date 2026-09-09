@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+import subprocess
+import tempfile
 from unittest import mock
 import unittest
 
@@ -65,6 +67,58 @@ class CommitMessageTests(unittest.TestCase):
         with mock.patch.object(CONTRACT, "git_output", return_value=record):
             issues = CONTRACT.commit_message_issues(ROOT, "base")
         self.assertEqual(len(issues), 2)
+
+
+class CommitIntegrityTests(unittest.TestCase):
+    def git(self, root: Path, *arguments: str) -> str:
+        return subprocess.run(
+            ["git", *arguments],
+            cwd=root,
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        ).stdout.strip()
+
+    def initialize_repository(self, root: Path) -> str:
+        self.git(root, "init", "--quiet")
+        self.git(root, "config", "user.name", "Release Owner")
+        self.git(root, "config", "user.email", "owner@example.com")
+        self.git(root, "config", "core.autocrlf", "false")
+        (root / "fixture.txt").write_text("base\n", encoding="utf-8")
+        self.git(root, "add", "fixture.txt")
+        self.git(root, "commit", "--quiet", "-m", "Create fixture base")
+        return self.git(root, "rev-parse", "HEAD")
+
+    def test_rejects_an_empty_release_commit(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.initialize_repository(root)
+            self.git(
+                root, "commit", "--quiet", "--allow-empty", "-m", "Empty marker"
+            )
+            issues = CONTRACT.commit_integrity_issues(
+                root,
+                base,
+                allowed_identities={"Release Owner <owner@example.com>"},
+            )
+        self.assertTrue(any("empty commit" in issue for issue in issues))
+
+    def test_returns_a_blob_removed_later_in_the_range(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            base = self.initialize_repository(root)
+            (root / "temporary.md").write_text(
+                "temporary evidence\n", encoding="utf-8"
+            )
+            expected_content = (root / "temporary.md").read_bytes()
+            self.git(root, "add", "temporary.md")
+            self.git(root, "commit", "--quiet", "-m", "Add temporary evidence")
+            expected = self.git(root, "rev-parse", "HEAD:temporary.md")
+            self.git(root, "rm", "--quiet", "temporary.md")
+            self.git(root, "commit", "--quiet", "-m", "Remove temporary evidence")
+            blobs = CONTRACT.introduced_blobs(root, base)
+        self.assertIn((expected, "temporary.md", expected_content), blobs)
 
 
 class TagStateTests(unittest.TestCase):

@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import re
 import subprocess
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -104,6 +105,175 @@ def commit_message_issues(
         if CODEX_TRAILER not in stripped.splitlines():
             issues.append(f"{short} lacks the Codex co-author trailer")
     return issues
+
+
+def _contains_non_latin_letter(value: str) -> bool:
+    return any(
+        character.isalpha()
+        and "LATIN" not in unicodedata.name(character, "")
+        for character in value
+    )
+
+
+def commit_integrity_issues(
+    project_root: Path,
+    base: str,
+    endpoint: str = "HEAD",
+    allowed_identities: set[str] | None = None,
+) -> list[str]:
+    """Check nonempty, attributed, English, date-ordered release commits."""
+    records = git_output(
+        project_root,
+        "log",
+        "--reverse",
+        "--format=%H%x00%P%x00%T%x00%an <%ae>%x00%cn <%ce>%x00%at%x00%ct%x00%B%x1e",
+        f"{base}..{endpoint}",
+    )
+    parsed: list[tuple[str, list[str], str, str, str, int, int, str]] = []
+    for record in records.split("\x1e"):
+        fields = record.strip().split("\x00", 7)
+        if len(fields) != 8:
+            continue
+        (
+            commit,
+            parents,
+            tree,
+            author,
+            committer,
+            author_time,
+            commit_time,
+            message,
+        ) = fields
+        parsed.append(
+            (
+                commit,
+                parents.split(),
+                tree,
+                author,
+                committer,
+                int(author_time),
+                int(commit_time),
+                message,
+            )
+        )
+
+    issues: list[str] = []
+    dates = {
+        commit: (author_time, commit_time)
+        for commit, _, _, _, _, author_time, commit_time, _ in parsed
+    }
+    trees = {commit: tree for commit, _, tree, _, _, _, _, _ in parsed}
+    for (
+        commit,
+        parents,
+        tree,
+        author,
+        committer,
+        author_time,
+        commit_time,
+        message,
+    ) in parsed:
+        short = commit[:9]
+        if allowed_identities is not None:
+            if author not in allowed_identities:
+                issues.append(f"{short} has an unapproved author identity")
+            if committer not in allowed_identities:
+                issues.append(f"{short} has an unapproved committer identity")
+        if _contains_non_latin_letter(f"{author}\n{committer}\n{message}"):
+            issues.append(f"{short} has non-English commit metadata")
+
+        parent_trees: list[str] = []
+        for parent in parents:
+            if parent not in trees:
+                trees[parent] = git_output(
+                    project_root, "show", "-s", "--format=%T", parent
+                )
+            parent_trees.append(trees[parent])
+            if parent not in dates:
+                parent_dates = git_output(
+                    project_root, "show", "-s", "--format=%at%x00%ct", parent
+                ).split("\x00", 1)
+                dates[parent] = (int(parent_dates[0]), int(parent_dates[1]))
+            parent_author_time, parent_commit_time = dates[parent]
+            if author_time < parent_author_time:
+                issues.append(f"{short} has an author date before its parent")
+            if commit_time < parent_commit_time:
+                issues.append(f"{short} has a commit date before its parent")
+        if len(parent_trees) == 1 and tree == parent_trees[0]:
+            issues.append(f"{short} is an empty commit")
+        elif len(parent_trees) > 1 and all(tree == value for value in parent_trees):
+            issues.append(f"{short} is an empty merge commit")
+    return issues
+
+
+def introduced_blobs(
+    project_root: Path, base: str, endpoint: str = "HEAD"
+) -> list[tuple[str, str, bytes]]:
+    """Return each blob/path pair introduced by commits in a release range."""
+    commits = git_output(
+        project_root, "rev-list", "--reverse", "--parents", f"{base}..{endpoint}"
+    ).splitlines()
+    blob_paths: set[tuple[str, str]] = set()
+    for record in commits:
+        fields = record.split()
+        commit, parents = fields[0], fields[1:]
+        for parent in parents:
+            raw = subprocess.run(
+                [
+                    "git",
+                    "diff-tree",
+                    "--no-commit-id",
+                    "--raw",
+                    "-r",
+                    "--no-renames",
+                    "-z",
+                    parent,
+                    commit,
+                ],
+                cwd=project_root,
+                check=True,
+                capture_output=True,
+            ).stdout
+            fields_raw = raw.split(b"\x00")
+            for index in range(0, len(fields_raw) - 1, 2):
+                metadata = fields_raw[index].decode("ascii")
+                path = fields_raw[index + 1].decode("utf-8")
+                metadata_fields = metadata.split()
+                if len(metadata_fields) < 5:
+                    continue
+                new_object = metadata_fields[3]
+                if new_object != "0" * 40:
+                    blob_paths.add((new_object, path))
+
+    object_ids = sorted({object_id for object_id, _ in blob_paths})
+    if not object_ids:
+        return []
+    result = subprocess.run(
+        ["git", "cat-file", "--batch"],
+        cwd=project_root,
+        check=True,
+        input=("\n".join(object_ids) + "\n").encode("ascii"),
+        capture_output=True,
+    ).stdout
+    contents: dict[str, bytes] = {}
+    offset = 0
+    for expected in object_ids:
+        newline = result.index(b"\n", offset)
+        header = result[offset:newline].decode("ascii").split()
+        object_id, object_type, size_text = header
+        size = int(size_text)
+        start = newline + 1
+        end = start + size
+        if object_type == "blob":
+            contents[object_id] = result[start:end]
+        offset = end + 1
+        if object_id != expected:
+            raise RuntimeError("git cat-file returned objects out of order")
+    return [
+        (object_id, path, contents[object_id])
+        for object_id, path in sorted(blob_paths)
+        if object_id in contents
+    ]
 
 
 def validate_toolchain(project_root: Path, contract: object) -> list[str]:
