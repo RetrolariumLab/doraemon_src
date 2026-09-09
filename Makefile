@@ -185,7 +185,8 @@ $(PRG_ASSET):
 
 verify-build-toolchain:
 	$(RUN_TOOL) build.toolchain --manifest "$(TOOLCHAIN)" \
-		--component ca65 --component ld65
+		--component ca65 --ca65 "$(CA65)" \
+		--component ld65 --ld65 "$(LD65)"
 
 verify-runtime-toolchain:
 	$(RUN_TOOL) build.toolchain --manifest "$(TOOLCHAIN)" \

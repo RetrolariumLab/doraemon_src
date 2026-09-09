@@ -122,6 +122,8 @@ The workstation-interaction follow-up adds new validation work rather than repla
 
 The documentation-corpus follow-up consolidates validator-sized world and audio fragments into seven reader-oriented chapters and adds the project-owned label-lineage and corpus audits. It does not replace an earlier draft or change reconstructed data, source code, reference images, or the restored ignored workspaces.
 
+The build-tool verification follow-up passes the selected assembler and linker paths into the pinned identity check. Its disposable build regression replaces each path with a missing unpinned executable and proves verification stops the recipe before assembly or linking. This is new review-driven validation work rather than a replacement for an earlier draft.
+
 ## Superseded drafts
 
 These drafts have no retained tree effect. They were empty release markers or changes fully superseded before the original draft tip: `84752ce`, `df16293`, `9368eb4`, `0cce7e9`, `a5ec9b9`, `277ef42`, `54ad72a`, `fc52036`, `a02dd6c`, `ec76a34`, `55c97cc`, `68260a4`, `68d07a8`.

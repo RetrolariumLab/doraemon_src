@@ -147,6 +147,17 @@
       ]
     },
     {
+      "id": "selected-build-tool-identity",
+      "kind": "validation",
+      "summary": "Verify the exact assembler and linker paths selected by Make and reject unpinned overrides before either build tool executes.",
+      "evidence": [
+        "Makefile",
+        "scripts/build/toolchain.py",
+        "tests/build/test_toolchain.py",
+        "docs/provenance.md"
+      ]
+    },
+    {
       "id": "canonical-generated-state-restoration",
       "kind": "evidence",
       "summary": "Re-split the pristine reference image and recreate both ignored profile workspaces from freshly decoded canonical data after removing local level test edits.",

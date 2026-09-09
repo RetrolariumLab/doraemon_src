@@ -4,6 +4,8 @@ import importlib.util
 import hashlib
 import json
 from pathlib import Path
+import shutil
+import subprocess
 import tempfile
 import unittest
 
@@ -63,6 +65,48 @@ class ToolchainTests(unittest.TestCase):
             )
             with self.assertRaisesRegex(TOOLCHAIN.ToolchainError, "not unique"):
                 TOOLCHAIN.load_manifest(path)
+
+    def test_make_rejects_unpinned_build_overrides_before_assembly(self) -> None:
+        make = shutil.which("make")
+        if make is None:
+            self.skipTest("make executable not found")
+        tracked = subprocess.run(
+            ["git", "ls-files", "-z"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+        ).stdout.decode("utf-8").split("\0")
+        with tempfile.TemporaryDirectory() as directory:
+            checkout = Path(directory) / "repository"
+            for relative in filter(None, tracked):
+                source = ROOT / relative
+                destination = checkout / relative
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(source, destination)
+            chr_asset = checkout / "assets/generated/chr/doraemon.chr"
+            chr_asset.parent.mkdir(parents=True, exist_ok=True)
+            chr_asset.write_bytes(b"")
+            for component in ("CA65", "LD65"):
+                with self.subTest(component=component):
+                    missing = checkout / f"unverified-{component.lower()}.exe"
+                    result = subprocess.run(
+                        [make, "build", f"{component}={missing}"],
+                        cwd=checkout,
+                        check=False,
+                        capture_output=True,
+                        text=True,
+                        encoding="utf-8",
+                        errors="replace",
+                    )
+                    output = result.stdout + result.stderr
+                    self.assertNotEqual(result.returncode, 0, output)
+                    self.assertIn(
+                        f"{component.lower()} binary is missing: {missing}", output
+                    )
+                    self.assertNotIn("--debug-info", output)
+                    self.assertFalse(
+                        (checkout / "build/native/doraemon.o").exists()
+                    )
 
 
 if __name__ == "__main__":
