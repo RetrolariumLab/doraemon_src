@@ -92,6 +92,8 @@ def main() -> int:
         "--manifest", type=Path, default=Path("config/toolchain.json")
     )
     parser.add_argument("--component", action="append", required=True)
+    parser.add_argument("--ca65", type=Path)
+    parser.add_argument("--ld65", type=Path)
     parser.add_argument("--fceux", type=Path)
     args = parser.parse_args()
     manifest_path = args.manifest
@@ -100,10 +102,15 @@ def main() -> int:
     try:
         document = load_manifest(manifest_path)
         components = component_map(document)
+        overrides = {
+            "ca65": args.ca65,
+            "ld65": args.ld65,
+            "fceux": args.fceux,
+        }
         for identifier in args.component:
             if identifier not in components:
                 raise ToolchainError(f"unknown toolchain component: {identifier}")
-            override = args.fceux if identifier == "fceux" else None
+            override = overrides.get(identifier)
             path = verify_component(ROOT, components[identifier], override)
             print(f"[OK] {identifier}: {path}")
     except (OSError, KeyError, ValueError, subprocess.SubprocessError) as exc:
