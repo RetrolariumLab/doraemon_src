@@ -147,6 +147,18 @@
       ]
     },
     {
+      "id": "canonical-generated-state-restoration",
+      "kind": "evidence",
+      "summary": "Re-split the pristine reference image and recreate both ignored profile workspaces from freshly decoded canonical data after removing local level test edits.",
+      "evidence": [
+        "assets/manifest.json",
+        "data/world1/hierarchical_world.json",
+        "data/world2/compressed_screens.json",
+        "data/world3/hierarchical_world.json",
+        "docs/source_2_history_rewrite.md"
+      ]
+    },
+    {
       "id": "three-world-level-studio",
       "kind": "tooling",
       "summary": "Edit both hierarchical worlds, render all 119 compressed cave selectors on one scrollable atlas, and assign every World 3 room its current or another native palette preset.",
