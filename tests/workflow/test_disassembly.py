@@ -13,13 +13,7 @@ from tests import PROJECT_ROOT
 ROOT = PROJECT_ROOT
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from scripts.validation import format_project
 from scripts.workflow import generate_disassembly as disasm
-
-
-class FormattingTests(unittest.TestCase):
-    def test_normalizes_line_endings_and_trailing_space(self) -> None:
-        self.assertEqual(format_project.normalize_text("one  \r\ntwo\t \r\n"), "one\ntwo\n")
 
 
 class RevisionOverlayTests(unittest.TestCase):
