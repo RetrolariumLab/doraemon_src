@@ -112,6 +112,12 @@ The table assigns each retained draft to the candidate owner sharing the largest
 | `11d67d2` | Build a lossless visual level workflow | `50b49c8`, `a6ed987`, `33a5343`, `97d1d5b`, `7dc0b28`, `5ce9c62`, `e701ef7`, `006f7c4`, `1edb400`, `4f9efc6`, `9ced528`, `ada16b3`, `014f477`, `f6b5a2c`, `4b83b30`, `99a01ca`, `5f2877d` | Regrouped by final file ownership and responsibility. |
 | `cb954bb` | Keep release metadata project-owned | `0ebca65`, `227b575`, `e8ea5bd`, `de786a6`, `4ab16f3`, `22a45bc`, `9455b9b`, `390bb2d`, `7a7415f`, `2da9f31`, `0af025d`, `3b12d79`, `d66b830`, `713615c`, `8a124fe`, `99eaf16`, `0bc865a`, `b9bca29`, `3e975be`, `bc2266f`, `febb05e`, `71636dd`, `d876647`, `4b2f634`, `1a15574`, `43eb02e` | Regrouped by final file ownership and responsibility. |
 
+## Post-rewrite verification updates
+
+Commit `d8d3f93` closes the formatter-exclusion and public-command orchestration review gaps without replacing an earlier draft. Later generated-state verification re-ran `make split` against the 163,856-byte original reference image with SHA-256 `6ed579c9c98a1f2db52fd3d2488a491953073e8ace1e3c1dc5884669cecca274` and decoded all 24 ROM-owned authoring documents. Every tracked document matched the fresh canonical decode.
+
+The only data delta was local and ignored: `content/workspace/original/levels/world1.json` and `world3.json` each contained 14 edited rows from level testing. The verified workspace root was removed and both profile workspaces were recreated through `make content-init`; all six regenerated level documents then matched their canonical SHA-256 values. A clean rebuild produced 163,856 byte-identical ROM bytes for both `original` and `rev_a`. This follow-up records new verification work and therefore has no old-draft mapping.
+
 ## Superseded drafts
 
 These drafts have no retained tree effect. They were empty release markers or changes fully superseded before the original draft tip: `84752ce`, `df16293`, `9368eb4`, `0cce7e9`, `a5ec9b9`, `277ef42`, `54ad72a`, `fc52036`, `a02dd6c`, `ec76a34`, `55c97cc`, `68260a4`, `68d07a8`.
