@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import subprocess
 import sys
 import tkinter as tk
 from tkinter import messagebox, ttk
@@ -27,6 +26,7 @@ from scripts.authoring.text_studio_model import (
     text_fields,
     value_at,
 )
+from scripts.authoring.studio_process import BuildLauncher, launch_content_build
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -39,13 +39,17 @@ class TextStudio(tk.Tk):
         document: TextDocument,
         chr_document: ChrDocument,
         project_root: Path,
+        workspace_root: Path,
         profile: str,
+        build_launcher: BuildLauncher = launch_content_build,
     ) -> None:
         super().__init__()
         self.document = document
         self.chr_document = chr_document
         self.project_root = project_root
+        self.workspace_root = workspace_root
         self.profile = profile
+        self.build_launcher = build_launcher
         self.fields: tuple[TextField, ...] = ()
         self.line_fields: tuple[TextField, ...] = ()
         self.credit_fields: tuple[TextField, ...] = ()
@@ -283,9 +287,11 @@ class TextStudio(tk.Tk):
         self.save()
         if self.document.dirty:
             return
-        subprocess.Popen(
-            ["make", "text-content-rom", f"PROFILE={self.profile}"],
-            cwd=self.project_root,
+        self.build_launcher(
+            self.project_root,
+            "text-content-rom",
+            self.profile,
+            self.workspace_root,
         )
 
     def close(self) -> None:
@@ -320,7 +326,13 @@ def main() -> int:
                 f"{sum('hex' in record for record in document.document['title_records'])} raw title records"
             )
             return 0
-        app = TextStudio(document, chr_document, project_root, args.profile)
+        app = TextStudio(
+            document,
+            chr_document,
+            project_root,
+            workspace_root,
+            args.profile,
+        )
         app.mainloop()
         return 0
     except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:

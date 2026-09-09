@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import subprocess
 import sys
 import tkinter as tk
 from tkinter import messagebox, ttk
@@ -34,6 +33,7 @@ from scripts.authoring.level_studio_rendering import (
     load_world_palettes,
 )
 from scripts.authoring.level_studio_model import HierarchicalWorldDocument, LevelWorkspace
+from scripts.authoring.studio_process import BuildLauncher, launch_content_build
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -107,14 +107,18 @@ class GraphicsStudio(tk.Tk):
         artifacts: dict[str, GraphicsArtifactDocument],
         hierarchies: dict[str, HierarchicalWorldDocument],
         project_root: Path,
+        workspace_root: Path,
         profile: str,
+        build_launcher: BuildLauncher = launch_content_build,
     ) -> None:
         super().__init__()
         self.document = document
         self.artifacts = artifacts
         self.hierarchies = hierarchies
         self.project_root = project_root
+        self.workspace_root = workspace_root
         self.profile = profile
+        self.build_launcher = build_launcher
         self.chr_bank = tk.IntVar(value=0)
         self.pattern_table = tk.IntVar(value=1)
         self.relative_tile = tk.IntVar(value=0)
@@ -746,9 +750,11 @@ class GraphicsStudio(tk.Tk):
 
     def build_rom(self) -> None:
         self.save()
-        subprocess.Popen(
-            ["make", "graphics-content-rom", f"PROFILE={self.profile}"],
-            cwd=self.project_root,
+        self.build_launcher(
+            self.project_root,
+            "graphics-content-rom",
+            self.profile,
+            self.workspace_root,
         )
 
     def close(self) -> None:
@@ -808,7 +814,12 @@ def main() -> int:
             )
             return 0
         app = GraphicsStudio(
-            document, artifacts, hierarchies, project_root, args.profile
+            document,
+            artifacts,
+            hierarchies,
+            project_root,
+            workspace_root,
+            args.profile,
         )
         app.mainloop()
         return 0

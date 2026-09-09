@@ -298,6 +298,23 @@ def validate_studios(
 ) -> list[str]:
     errors: list[str] = []
     registry = load_json(project_root / "config/authoring/content_studios.json")
+    workstation = registry.get("workstation_interaction", {})
+    if workstation.get("target") not in available_targets:
+        errors.append("Studio workstation interaction target is missing")
+    if workstation.get("platform") != "windows":
+        errors.append("Studio workstation interaction platform differs")
+    if workstation.get("profile") != "original":
+        errors.append("Studio workstation interaction profile differs")
+    for relative in workstation.get("evidence", []):
+        if release_contract.safe_project_file(project_root, relative) is None:
+            errors.append(f"Studio workstation evidence is missing: {relative}")
+    expected_actions = {
+        "level": ["window", "save", "preview", "validate", "unsaved-close"],
+        "graphics": ["window", "save", "build", "preview", "unsaved-close"],
+        "objects": ["window", "save", "build", "preview", "unsaved-close"],
+        "text": ["window", "save", "build", "preview", "unsaved-close"],
+        "sound": ["window", "save", "build", "play", "unsaved-close"],
+    }
     studios = registry.get("studios", [])
     ids = [item.get("id") for item in studios]
     if ids != list(EXPECTED_STUDIOS):
@@ -308,6 +325,8 @@ def validate_studios(
             errors.append(f"{studio_id} Studio is not supported")
         if not studio.get("artifacts"):
             errors.append(f"{studio_id} Studio has no artifacts")
+        if studio.get("workstation_actions") != expected_actions.get(studio_id):
+            errors.append(f"{studio_id} Studio workstation actions differ")
         for target in [*studio.get("headless_targets", []), studio.get("gui_target")]:
             if target not in available_targets:
                 errors.append(f"{studio_id} Studio target is missing: {target}")

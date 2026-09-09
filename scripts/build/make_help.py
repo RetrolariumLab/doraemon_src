@@ -51,6 +51,10 @@ TARGET_GROUPS = (
             ("content-rom", "compose edited content into one ROM"),
             ("content-roundtrip", "prove zero-edit identity for both profiles"),
             ("check-studios", "smoke-test all Studios and profiles headlessly"),
+            (
+                "check-studio-interactions",
+                "exercise all Studio windows on a Windows workstation",
+            ),
         ),
     ),
     (

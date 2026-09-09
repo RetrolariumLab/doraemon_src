@@ -159,6 +159,17 @@
       ]
     },
     {
+      "id": "windows-studio-interaction-smoke",
+      "kind": "validation",
+      "summary": "Create all five Studio windows on Windows and exercise isolated save, ROM build, preview or playback, validation, and unsaved-close actions in the aggregate release gate.",
+      "evidence": [
+        "config/authoring/content_studios.json",
+        "scripts/authoring/workstation_smoke.py",
+        "tests/authoring/test_workstation_smoke.py",
+        "mk/authoring.mk"
+      ]
+    },
+    {
       "id": "three-world-level-studio",
       "kind": "tooling",
       "summary": "Edit both hierarchical worlds, render all 119 compressed cave selectors on one scrollable atlas, and assign every World 3 room its current or another native palette preset.",
@@ -386,6 +397,7 @@
           "object-content-roundtrip",
           "text-content-roundtrip",
           "sound-content-roundtrip",
+          "check-studio-interactions",
           "check-sound-preview"
         ],
         "files": [
@@ -572,6 +584,7 @@
     "check-sound-preview",
     "content-roundtrip",
     "check-studios",
+    "check-studio-interactions",
     "runtime-revision-matrix",
     "source-2-audit",
     "source-2-check",

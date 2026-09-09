@@ -1,6 +1,15 @@
 {
   "schema_version": 1,
   "workspace": "content/workspace",
+  "workstation_interaction": {
+    "target": "check-studio-interactions",
+    "platform": "windows",
+    "profile": "original",
+    "evidence": [
+      "scripts/authoring/workstation_smoke.py",
+      "tests/authoring/test_workstation_smoke.py"
+    ]
+  },
   "studios": [
     {
       "id": "level",
@@ -16,6 +25,13 @@
         "level-content-export",
         "level-content-roundtrip",
         "check-level-studio"
+      ],
+      "workstation_actions": [
+        "window",
+        "save",
+        "preview",
+        "validate",
+        "unsaved-close"
       ],
       "gui_target": "level-studio"
     },
@@ -74,6 +90,13 @@
         "graphics-content-roundtrip",
         "check-graphics-studio"
       ],
+      "workstation_actions": [
+        "window",
+        "save",
+        "build",
+        "preview",
+        "unsaved-close"
+      ],
       "gui_target": "graphics-studio",
       "missing": []
     },
@@ -111,6 +134,13 @@
         "object-content-roundtrip",
         "check-object-studio"
       ],
+      "workstation_actions": [
+        "window",
+        "save",
+        "build",
+        "preview",
+        "unsaved-close"
+      ],
       "gui_target": "object-studio",
       "missing": []
     },
@@ -135,6 +165,13 @@
         "text-content-export",
         "text-content-roundtrip",
         "check-text-studio"
+      ],
+      "workstation_actions": [
+        "window",
+        "save",
+        "build",
+        "preview",
+        "unsaved-close"
       ],
       "gui_target": "text-studio",
       "missing": []
@@ -174,6 +211,13 @@
         "sound-content-roundtrip",
         "check-sound-studio",
         "check-sound-preview"
+      ],
+      "workstation_actions": [
+        "window",
+        "save",
+        "build",
+        "play",
+        "unsaved-close"
       ],
       "gui_target": "sound-studio",
       "missing": []

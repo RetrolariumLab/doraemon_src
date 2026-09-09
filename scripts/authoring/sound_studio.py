@@ -7,7 +7,6 @@ import argparse
 from dataclasses import dataclass
 import json
 from pathlib import Path
-import subprocess
 import sys
 import tkinter as tk
 from tkinter import messagebox, ttk
@@ -31,6 +30,7 @@ from scripts.authoring.sound_preview import selected_track
 from scripts.authoring.sound_studio_playback import SoundStudioPlaybackMixin
 from scripts.authoring.sound_synth import decode_track
 from scripts.authoring.sound_track_catalog import track_identity, validate_track_catalog
+from scripts.authoring.studio_process import BuildLauncher, launch_content_build
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -110,15 +110,19 @@ class SoundStudio(SoundStudioPlaybackMixin, tk.Tk):
         priorities: EffectPriorityDocument,
         effects: dict[str, Any],
         project_root: Path,
+        workspace_root: Path,
         profile: str,
         prg: bytes,
+        build_launcher: BuildLauncher = launch_content_build,
     ) -> None:
         super().__init__()
         self.music = music
         self.priorities = priorities
         self.effects = effects
         self.project_root = project_root
+        self.workspace_root = workspace_root
         self.profile = profile
+        self.build_launcher = build_launcher
         self.driver_index = tk.IntVar(value=0)
         self.segment_index = tk.IntVar(value=0)
         self.header_index = 0
@@ -126,7 +130,7 @@ class SoundStudio(SoundStudioPlaybackMixin, tk.Tk):
         self.effect_driver_index = tk.IntVar(value=0)
         self.effect_target = tk.IntVar(value=0)
         self.status = tk.StringVar()
-        self.initialize_playback(project_root, profile, prg)
+        self.initialize_playback(workspace_root, profile, prg)
         self.geometry("1180x760")
         self.minsize(900, 620)
         self.protocol("WM_DELETE_WINDOW", self.close)
@@ -464,9 +468,11 @@ class SoundStudio(SoundStudioPlaybackMixin, tk.Tk):
         self.save()
         if self.music.dirty or self.priorities.dirty:
             return
-        subprocess.Popen(
-            ["make", "sound-content-rom", f"PROFILE={self.profile}"],
-            cwd=self.project_root,
+        self.build_launcher(
+            self.project_root,
+            "sound-content-rom",
+            self.profile,
+            self.workspace_root,
         )
 
     def close(self) -> None:
@@ -516,7 +522,13 @@ def main() -> int:
             )
             return 0
         app = SoundStudio(
-            music, priorities, effects, project_root, args.profile, prg
+            music,
+            priorities,
+            effects,
+            project_root,
+            workspace_root,
+            args.profile,
+            prg,
         )
         app.mainloop()
         return 0
