@@ -22,3 +22,10 @@ memory operands; immediate values remain numeric. Low absolute addresses retain
 the ca65 `a:` size override when symbolized. An optional `size` expands a proven
 array into ca65 base-plus-offset expressions and overlapping ranges are rejected
 within each bank.
+
+`config/reconstruction/label_renames.json` is the sole old-to-new label
+registry. Its baseline is the accepted preservation predecessor. Source 2.0
+does not rename any inherited global or memory symbol at the same bank and
+address, so the current mapping is intentionally empty; newly proven symbols
+are additions to `symbols.json`, not renames. The release audit compares the
+two registries and rejects an omitted, invented, duplicated, or stale mapping.

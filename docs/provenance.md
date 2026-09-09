@@ -1,5 +1,10 @@
 # Provenance
 
+Label lineage is recorded only in
+`config/reconstruction/label_renames.json`. The registry compares inherited
+global and memory symbols with the accepted preservation predecessor; naming
+policy and evidence thresholds are described in [Naming](naming.md).
+
 ## Exact local reference
 
 The original Japanese `PRG0` dump was inspected locally on 2026-08-31, and the

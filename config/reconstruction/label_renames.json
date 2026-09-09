@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "baseline": {
+    "release": "Source Reconstruction 1.0",
+    "commit": "a992b208ec3ab03b3e4c5100bc83b932e7defcd6",
+    "registry_path": "config/symbols.json"
+  },
+  "current_registry": "config/reconstruction/symbols.json",
+  "scope": "Global and memory symbols inherited from the preservation predecessor.",
+  "renames": []
+}

@@ -256,7 +256,7 @@
       ],
       "evidence": [
         "config/reconstruction/world2/world2_sprite_runtime.json",
-        "docs/world2_metasprites.md"
+        "docs/world2_formats.md"
       ]
     },
     {

@@ -28,7 +28,7 @@ in every canonical placement.
 Each descriptor supplies the runtime type, base metasprite, render flags, and
 primary behavior. The exact table, transient selector path, per-index placement
 counts, and five related collision-extent tables are documented in
-`docs/world1_descriptors.md`.
+`docs/world1_formats.md`.
 
 The first 45 records are always scanned. Records after that prefix are ordered
 by `x_cell`, allowing horizontal scans to stop once the requested column has
@@ -68,14 +68,14 @@ and the final read at `$FFFA`. `make validate-world2-streaming` checks those
 invariants and every indirect dispatch target against the canonical PRG.
 The shared token storage and all selector row views also round-trip through
 `data/world2/compressed_screens.json` as documented in
-`docs/world2_streaming.md`.
+`docs/world2_formats.md`.
 
 Only physical tokens `$D0-$DE` occur. After their delayed negative-state phase,
 the normalization at `$9A32` maps them one-to-one to runtime states `$01-$0F`.
 States `$10-$14` are internal-only extensions of the same render/update and
 property-table domain. The exact token frequencies, transformation signature,
 three state property tables, and overlapping dispatch storage are documented in
-`docs/world2_enemy_states.md`. Their 21 row-oriented state records are losslessly
+`docs/world2_runtime.md`. Their 21 row-oriented state records are losslessly
 editable in `data/world2/enemy_states.json`.
 
 ## World 3 initial persistent registry
@@ -104,7 +104,7 @@ increasing from `$D9CC` through `$DDE0`, within the 1,062-byte stream region
 ending at `$DDF1`. `make validate-world3-object-data` proves the five initial
 arrays, shuffle groups, fixed slot, pointer table, and stream payload.
 
-The behavior bytecode is fully decoded in `docs/world3_behavior.md`. Its
+The behavior bytecode is fully decoded in `docs/world3_formats.md`. Its
 machine contract covers all 1,062 bytes as 532 instructions and operands, and
 `data/world3/behavior_streams.json` provides a lossless editable round trip.
 
@@ -114,7 +114,7 @@ points, base metasprites, render flags, contact damage, and score reward codes.
 The catalog also proves the initializer/behavior/update dispatch cardinalities,
 partitions all types into lifecycle domains, and fixes the `$10-$13` post-defeat
 and `$1C-$1E` persistent transformations. See
-`docs/world3_entity_types.md`. The row-oriented editable view in
+`docs/world3_formats.md`. The row-oriented editable view in
 `data/world3/object_catalog.json` losslessly transposes both the thirteen
 persistent records and all 32 five-property type records back into their ROM
 structure-of-arrays layouts.
@@ -136,7 +136,7 @@ not reset when a new room schedule is loaded.
 and domains, initializer bounds, timing, and aggregate spawn budgets.
 `data/world3/transient_spawns.json` losslessly transposes the full 768-byte
 column layout into 64 editable room records. See
-`docs/world3_transient_spawns.md`.
+`docs/world3_formats.md`.
 
 The 16 initializer slots are independently classified and tied back to the
 schedule's per-type record counts and spawn budgets. Initializers `$07` and
@@ -144,7 +144,7 @@ schedule's per-type record counts and spawn budgets. Initializers `$07` and
 and `$0C` expands a four-corner type `$0C-$0F` formation. Their four data
 regions transpose losslessly through
 `data/world3/spawn_initializer_data.json`; see
-`docs/world3_spawn_initializers.md`.
+`docs/world3_formats.md`.
 
 The 32-entry update dispatch is classified separately in
 `config/authoring/world3/world3_update_handlers.json`. It covers script-only low types,
@@ -152,10 +152,10 @@ formation members, encounter and persistence transitions, object relocation,
 terrain-trigger behavior, pushing, and player-following derived types. Its
 three handler-owned table regions are losslessly editable in
 `data/world3/update_handler_data.json`; see
-`docs/world3_update_handlers.md`.
+`docs/world3_formats.md`.
 
 The entity catalog's base metasprite column is cross-checked against the full
 188-entry sprite index at `$B6D7`. Every type base resolves directly to one of
 65 variable-length records; animation variants may select direct frames or
 one-level horizontal aliases. The exact relationship and editable sprite and
-palette data are documented in `docs/world3_metasprites.md`.
+palette data are documented in `docs/world3_formats.md`.

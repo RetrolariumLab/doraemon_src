@@ -48,8 +48,11 @@ JAPANESE_PROVENANCE_PATHS = {
     "config/authoring/world1/world1_enemy_identities.json",
     "config/authoring/world2/world2_enemy_identities.json",
     "docs/world1_enemy_identities.md",
+    "docs/world1_runtime.md",
     "docs/world2_enemy_identities.md",
+    "docs/world2_runtime.md",
     "docs/world3_entity_types.md",
+    "docs/world3_formats.md",
     "scripts/validation/world2/world2_enemy_identities.py",
     "tests/validation/world2/test_world2_enemy_identities.py",
 }
@@ -377,6 +380,126 @@ def validate_private_paths(project_root: Path) -> list[str]:
     return [f"private or generated path is tracked: {path}" for path in forbidden]
 
 
+def _symbol_names(document: dict[str, Any]) -> dict[tuple[object, ...], str]:
+    names: dict[tuple[object, ...], str] = {}
+    for symbol in document.get("symbols", []):
+        key = ("global", symbol.get("bank"), symbol.get("address"))
+        names[key] = str(symbol.get("name", ""))
+    for symbol in document.get("memory_symbols", []):
+        banks = tuple(symbol.get("banks", ["all"]))
+        key = ("memory", banks, symbol.get("address"))
+        names[key] = str(symbol.get("name", ""))
+    return names
+
+
+def validate_label_renames(
+    project_root: Path, predecessor: object
+) -> list[str]:
+    path = project_root / "config/reconstruction/label_renames.json"
+    if not path.is_file():
+        return ["canonical label rename registry is missing"]
+    errors: list[str] = []
+    competing = sorted(
+        item.relative_to(project_root).as_posix()
+        for item in project_root.rglob("*.json")
+        if "label" in item.stem.lower() and "rename" in item.stem.lower()
+    )
+    if competing != ["config/reconstruction/label_renames.json"]:
+        errors.append("canonical label rename registry is not unique")
+    registry = load_json(path)
+    if registry.get("schema_version") != 1:
+        errors.append("label rename registry schema differs")
+    baseline = registry.get("baseline", {})
+    predecessor_commit = (
+        predecessor.get("commit") if isinstance(predecessor, dict) else None
+    )
+    if baseline.get("commit") != predecessor_commit:
+        errors.append("label rename baseline differs from the predecessor")
+    if baseline.get("registry_path") != "config/symbols.json":
+        errors.append("label rename predecessor registry path differs")
+    if registry.get("current_registry") != "config/reconstruction/symbols.json":
+        errors.append("current label registry path differs")
+    try:
+        previous = json.loads(
+            git_output(
+                project_root,
+                "show",
+                f"{predecessor_commit}:{baseline.get('registry_path', '')}",
+            )
+        )
+    except (json.JSONDecodeError, OSError, subprocess.SubprocessError):
+        return errors + ["label rename predecessor registry is unavailable"]
+    current = load_json(project_root / str(registry.get("current_registry", "")))
+    previous_names = _symbol_names(previous)
+    current_names = _symbol_names(current)
+    expected = sorted(
+        (key, previous_names[key], current_names[key])
+        for key in previous_names.keys() & current_names.keys()
+        if previous_names[key] != current_names[key]
+    )
+    declared = registry.get("renames")
+    if not isinstance(declared, list):
+        errors.append("label rename mapping is not a list")
+    elif expected or declared:
+        errors.append("label rename mapping differs from inherited symbols")
+    return errors
+
+
+def validate_documentation_corpus(project_root: Path) -> list[str]:
+    config_path = project_root / "config/documentation_corpus.json"
+    if not config_path.is_file():
+        return ["documentation corpus contract is missing"]
+    document = load_json(config_path)
+    errors: list[str] = []
+    if document.get("schema_version") != 1:
+        errors.append("documentation corpus schema differs")
+    limit = document.get("ordinary_line_limit")
+    if not isinstance(limit, int) or limit <= 0:
+        return errors + ["documentation line limit is invalid"]
+    paths = sorted((project_root / "docs").rglob("*.md"))
+    relative_paths = [path.relative_to(project_root).as_posix() for path in paths]
+    oversized = {
+        relative
+        for path, relative in zip(paths, relative_paths)
+        if len(path.read_text(encoding="utf-8").splitlines()) > limit
+    }
+    declared_large = {
+        item.get("path")
+        for item in document.get("large_documents", [])
+        if isinstance(item, dict) and item.get("reason")
+    }
+    if oversized != declared_large:
+        errors.append("documentation size exceptions differ from the inventory")
+    prefix_groups: dict[str, list[str]] = {}
+    for relative in relative_paths:
+        prefix = Path(relative).stem.split("_", maxsplit=1)[0]
+        prefix_groups.setdefault(prefix, []).append(relative)
+    repeated = {
+        prefix: sorted(group)
+        for prefix, group in prefix_groups.items()
+        if len(group) >= 3
+    }
+    reviewed = {
+        item.get("prefix"): sorted(item.get("documents", []))
+        for item in document.get("retained_prefix_groups", [])
+        if isinstance(item, dict) and item.get("reason")
+    }
+    if repeated != reviewed:
+        errors.append("repeated documentation prefixes lack an exact review")
+    index = (project_root / "docs/index.md").read_text(encoding="utf-8")
+    indexed = {
+        "docs/" + target
+        for target in re.findall(r"\]\(([^)#]+\.md)\)", index)
+        if not target.startswith(("http://", "https://"))
+    }
+    missing = set(relative_paths) - {"docs/index.md"} - indexed
+    if missing:
+        errors.append(
+            "documentation index omits: " + ", ".join(sorted(missing))
+        )
+    return errors
+
+
 def validate_source_2(
     project_root: Path,
     manifest_path: Path,
@@ -389,6 +512,8 @@ def validate_source_2(
     errors: list[str] = []
     errors.extend(validate_manifest_identity(document))
     errors.extend(validate_public_english_text(project_root))
+    errors.extend(validate_documentation_corpus(project_root))
+    errors.extend(validate_label_renames(project_root, document.get("predecessor")))
     if document.get("release") != {
         "name": "Source Reconstruction 2.0",
         "version": "2.0",

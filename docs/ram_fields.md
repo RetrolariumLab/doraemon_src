@@ -106,7 +106,7 @@ The four directional entry points are `World1_TryScrollCameraRight`,
 `World1_TryScrollCameraLeft`, `World1_TryScrollCameraDown`, and
 `World1_TryScrollCameraUp`. Together they own 325 bytes and have 16 exhaustive
 direct callsites. Their exact bounds, wrap behavior, packet phases, routine
-bodies, and call graph are documented in `docs/world1_camera.md` and enforced
+bodies, and call graph are documented in `docs/world1_runtime.md` and enforced
 by the release gate.
 
 The underground room tracker adds a four-byte axis overlay:
@@ -132,7 +132,7 @@ player, then `World1_ApplyCameraDeltaToEntities` propagates it through all 48
 entity slots. `World1_CullOffscreenEntities` removes slots beyond the retained
 viewport margins and releases their source-map spawn bits. The three routines,
 their 13 direct calls, and their full coordinate ABI are documented in
-`docs/world1_camera_entities.md`.
+`docs/world1_runtime.md`.
 
 ## World 1 input and weapon timing
 
@@ -145,7 +145,7 @@ their 13 direct calls, and their full coordinate ABI are documented in
 The held directional mask comes from shared `CombinedControllerButtons`, while
 weapon firing consumes the `$40` edge in `World1PressedButtons`. Exact movement
 priority, screen bounds, collision probes, animation timing, and firing entry
-points are documented in `docs/world1_player_controls.md`.
+points are documented in `docs/world1_runtime.md`.
 
 ## World 1 pseudorandom state
 
@@ -176,7 +176,7 @@ The lookup at `$A6A7` consumes 8-pixel world-tile coordinates and returns the
 corresponding CHR tile. Horizontal and vertical iterator entries propagate
 cursor carries across the small-block, big-block, and map levels. The exact
 field geometry, eight entry points, 34 direct calls, and four city/underground
-map selections are machine-validated. See `docs/world1_map_decoder.md`.
+map selections are machine-validated. See `docs/world1_formats.md`.
 
 ## World 1 map-streaming PPU packets
 
@@ -199,7 +199,7 @@ The map decoder populates these buffers as camera coordinates cross tile and
 attribute phases. NMI drains at most the selected edge packet while preserving
 an independently pending tile or attribute half. Exact routine bodies, packet
 sizes, flags, queue capacity, and all direct calls are documented in
-`docs/world1_ppu_streaming.md` and enforced by the release gate.
+`docs/world1_formats.md` and enforced by the release gate.
 
 ## Shared rendering and score state
 
@@ -383,7 +383,7 @@ than a second event channel.
 | `World3PaletteTarget` | `$0705-$0724` | Selected room palette consumed by the palette-in loop |
 
 The queue record layout, NMI/disabled-rendering ownership split, capacity
-guard, and address calculations are described in `docs/world3_ppu_queue.md`.
+guard, and address calculations are described in `docs/world3_runtime.md`.
 
 ## World 3 interaction and progression state
 
@@ -481,7 +481,7 @@ The room-indexed transient scheduler uses a four-channel zero-page overlay.
 materialized, but does not clear the four phase bytes. The next frame therefore
 loads the new room's type/count/delay columns while retaining each channel's
 position in the global modulo-four cadence. See
-`docs/world3_transient_spawns.md`.
+`docs/world3_formats.md`.
 
 | Active entity field | Address | Size | Role |
 | --- | ---: | ---: | --- |
@@ -531,7 +531,7 @@ The active `World3EntityType` value also indexes five complete ROM columns for
 hit points, base metasprite, render flags, contact damage, and score reward.
 Their 32-entry contents and the four lifecycle domains spanning `$00-$1F` are
 validated by `config/authoring/world3/world3_entity_types.json` and described in
-`docs/world3_entity_types.md`.
+`docs/world3_formats.md`.
 
 | Formation field | Address | Role |
 | --- | ---: | --- |

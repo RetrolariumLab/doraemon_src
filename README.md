@@ -236,11 +236,13 @@ config/reconstruction/world2/ World 2 runtime and subsystem contracts
 config/reconstruction/world3/ World 3 runtime and subsystem contracts
 docs/                       architecture, formats, evidence, and roadmap
 docs/ram_fields.md          proved shared RAM layout and ownership notes
-docs/world3_dormant_code.md statically recovered but unreferenced code islands
-docs/world3_ppu_queue.md    World 3 NMI queue record and synchronization model
-docs/world2_enemy_handlers.md World 2 enemy handler graph and behavior roles
-docs/world2_enemy_identities.md World 2 canonical enemy/state identities
-docs/world2_metasprites.md  World 2 fixed sprite format and shared storage
+docs/world1_runtime.md      World 1 camera, player, entity, and enemy behavior
+docs/world1_formats.md      World 1 object, map, sprite, and room formats
+docs/world2_runtime.md      World 2 frame, player, projectile, and enemy behavior
+docs/world2_formats.md      World 2 screen, stage, metatile, and sprite formats
+docs/world3_runtime.md      World 3 room, entity, rendering, and queue behavior
+docs/world3_formats.md      World 3 behavior, object, spawn, and sprite formats
+docs/audio_system.md        music, effect-request, and APU ownership contracts
 scripts/build/project.py          identity, split, bank report, and source policy
 scripts/workflow/run_ghidra.py       deterministic per-bank headless analysis
 scripts/workflow/generate_disassembly.py  Ghidra facts to canonical ca65 source
