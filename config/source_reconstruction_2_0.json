@@ -130,10 +130,20 @@
     {
       "id": "disposable-public-command-smoke",
       "kind": "validation",
-      "summary": "Run the real public lint command in a disposable tracked-only clone and reject command failures or worktree mutations.",
+      "summary": "Run public commands in disposable tracked-only clones, including the actual Source 2.0 recipe with controlled recursive inputs, and verify predecessor-first orchestration and failure propagation.",
       "evidence": [
         "scripts/validation/public_command_smoke.py",
-        "tests/validation/test_public_command_smoke.py"
+        "tests/validation/test_public_command_smoke.py",
+        "mk/validation.mk"
+      ]
+    },
+    {
+      "id": "repository-relative-format-policy",
+      "kind": "validation",
+      "summary": "Apply generated-directory exclusions relative to the repository root so checkout parent names cannot disable formatting and tracked build packages remain covered.",
+      "evidence": [
+        "scripts/validation/format_project.py",
+        "tests/validation/test_format_project.py"
       ]
     },
     {
@@ -422,6 +432,8 @@
           "mk/workflow.mk",
           "scripts/build/make_help.py",
           "tests/build/test_make_help.py",
+          "scripts/validation/format_project.py",
+          "tests/validation/test_format_project.py",
           "scripts/validation/public_command_smoke.py",
           "tests/validation/test_public_command_smoke.py"
         ]

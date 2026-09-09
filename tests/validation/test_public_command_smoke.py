@@ -24,6 +24,22 @@ class PublicCommandSmokeTests(unittest.TestCase):
         ):
             public_command_smoke.run_disposable_make(ROOT, "internal-fixture")
 
+    def test_source_2_command_runs_the_predecessor_first(self) -> None:
+        result = public_command_smoke.run_controlled_source_2_check(ROOT)
+        self.assertEqual(result.returncode, 0, result.output)
+        self.assertEqual(
+            result.calls,
+            public_command_smoke.SOURCE_2_CHECK_SEQUENCE,
+        )
+
+    def test_source_2_command_propagates_subgate_failure(self) -> None:
+        result = public_command_smoke.run_controlled_source_2_check(
+            ROOT,
+            fail_target="audit-revisions",
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(result.calls, ("source-1-check", "audit-revisions"))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -14,19 +14,34 @@ TEXT_SUFFIXES = {
     ".asm", ".cfg", ".inc", ".java", ".json", ".lua", ".md", ".mk", ".py", ".txt"
 }
 TEXT_NAMES = {".editorconfig", ".gitattributes", ".gitignore", "Makefile"}
-SKIP_PARTS = {
-    ".git", ".cache", "__pycache__", "build", "fceux", "generated", "ghidra", "references"
+SKIP_ROOTS = {".git", "build", "references"}
+SKIP_PREFIXES = {
+    ("assets", "generated"),
+    ("content", "workspace"),
+    ("tools", ".cache"),
+    ("tools", "fceux"),
+    ("tools", "ghidra"),
 }
+SKIP_ANYWHERE = {"__pycache__"}
 
 
 class FormatError(ValueError):
     pass
 
 
-def project_files() -> list[Path]:
+def excluded(relative: Path) -> bool:
+    parts = relative.parts
+    return (
+        (bool(parts) and parts[0] in SKIP_ROOTS)
+        or any(parts[: len(prefix)] == prefix for prefix in SKIP_PREFIXES)
+        or any(part in SKIP_ANYWHERE for part in parts)
+    )
+
+
+def project_files(root: Path = ROOT) -> list[Path]:
     paths: list[Path] = []
-    for path in ROOT.rglob("*"):
-        if not path.is_file() or any(part in SKIP_PARTS for part in path.parts):
+    for path in root.rglob("*"):
+        if not path.is_file() or excluded(path.relative_to(root)):
             continue
         if path.suffix.lower() in TEXT_SUFFIXES or path.name in TEXT_NAMES:
             paths.append(path)
