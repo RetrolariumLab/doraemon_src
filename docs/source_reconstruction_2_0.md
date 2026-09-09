@@ -29,12 +29,16 @@ Completed repository-facing work:
   root-level executable scripts;
 - unit tests mirror the tool responsibilities under `tests/`, and repository
   lint enforces that mapping;
+- the documentation corpus uses task-oriented world and audio chapters, with
+  machine-checked size exceptions and reviewed filename-prefix groups;
+- the sole label-lineage registry compares Source 2.0 with its preservation
+  predecessor and records that no inherited global or memory labels changed;
 - `make public-command-smoke` runs the real public lint workflow inside a
   disposable tracked-only clone and rejects any worktree mutation;
 - unit tests, authoring/runtime coverage audits, and byte-identical builds of
   both official revisions pass through the modular interface.
 
-The unpublished draft stack has been rebuilt as 45 nonempty, owner-oriented
+The unpublished draft stack has been rebuilt as nonempty, owner-oriented
 commits on a separate rewrite branch. The exact dates, primary attribution,
 superseded marker commits, and tree-equivalence checkpoint are retained in the
 [draft-history rewrite map](source_2_history_rewrite.md). Local `main`, old

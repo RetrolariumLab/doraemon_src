@@ -62,7 +62,7 @@
   lists.
 - Known: the World 1 high-bit path uses thirteen four-byte descriptors. Their
   four fields, placement encoding and usage, transient selectors, and five
-  collision-extent tables are exact; see `docs/world1_descriptors.md`.
+  collision-extent tables are exact; see `docs/world1_formats.md`.
 - Known: World 2 enemy spawns are embedded in compressed screen streams; 685
   physical `$D0-$DE` bytes appear as 738 selector-view occurrences and map
   exactly to runtime states `$01-$0F`. States `$10-$14`, three property tables,
@@ -120,7 +120,7 @@
   raw bytes are now reconstructed. Their internal control flow and helper/RAM
   conventions are coherent, but no top-level caller is present in the static
   PRG graph, so they remain explicitly classified as dormant; see
-  `docs/world3_dormant_code.md`.
+  `docs/world3_runtime.md`.
 
 ## AUDIO-002 - command and stream semantics
 

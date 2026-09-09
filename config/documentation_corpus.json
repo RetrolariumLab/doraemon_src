@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "ordinary_line_limit": 600,
+  "large_documents": [
+    {
+      "path": "docs/ram_fields.md",
+      "reason": "This address-ordered evidence ledger is generated from one RAM ownership model and remains easier to audit as a single document."
+    }
+  ],
+  "retained_prefix_groups": [
+    {
+      "prefix": "source",
+      "documents": [
+        "docs/source_2_history_rewrite.md",
+        "docs/source_classification.md",
+        "docs/source_layout.md",
+        "docs/source_reconstruction.md",
+        "docs/source_reconstruction_2_0.md"
+      ],
+      "reason": "The files separately own history provenance, byte classification, physical layout, and the two release boundaries."
+    }
+  ]
+}

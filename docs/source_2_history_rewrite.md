@@ -120,6 +120,8 @@ The only data delta was local and ignored: `content/workspace/original/levels/wo
 
 The workstation-interaction follow-up adds new validation work rather than replacing an earlier draft. It retains the two-profile headless checks and adds a disposable Windows run that opens all five real Studio windows, drives each supported save/build/preview action, and verifies cancelled and confirmed unsaved-close behavior. The isolated run does not modify the restored canonical profile workspaces.
 
+The documentation-corpus follow-up consolidates validator-sized world and audio fragments into seven reader-oriented chapters and adds the project-owned label-lineage and corpus audits. It does not replace an earlier draft or change reconstructed data, source code, reference images, or the restored ignored workspaces.
+
 ## Superseded drafts
 
 These drafts have no retained tree effect. They were empty release markers or changes fully superseded before the original draft tip: `84752ce`, `df16293`, `9368eb4`, `0cce7e9`, `a5ec9b9`, `277ef42`, `54ad72a`, `fc52036`, `a02dd6c`, `ec76a34`, `55c97cc`, `68260a4`, `68d07a8`.

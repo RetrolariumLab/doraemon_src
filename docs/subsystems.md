@@ -54,7 +54,7 @@ object/update system. Runtime reaches the bank-local main entry at `$88A4` and
 then repeats the frame loop at `$8959` once per frame with PRG1/CHR1 selected.
 The 119 selector views share one globally unambiguous 16,431-byte token pool;
 its lossless authoring representation is described in
-`docs/world2_streaming.md`.
+`docs/world2_formats.md`.
 The stage terminates with a stopped `$7F` sentinel. Its adjacent 26-byte bitmap
 classifies all 208 metatiles for collision, and that bitmap is editable alongside
 the palette and CHR-tile fields.
@@ -133,7 +133,7 @@ to 26 structural synthesis roles and all 145 unique handlers, including their
 timer leases, APU writes, shared updates, and no-lease exceptions. Every audio
 effect indirect entry and all sixteen bank-local effect helpers now have an
 evidence-backed source symbol.
-`config/authoring/audio/audio_music.json` and `docs/audio_music.md` record the shared command
+`config/authoring/audio/audio_music.json` and `docs/audio_system.md` record the shared command
 grammar and RAM ABI; `make validate-audio-music` verifies all 68 bank-local
 command targets and the common helper contracts. The state-aware
 `make validate-audio-streams` gate additionally proves all 26 headers and
@@ -167,7 +167,7 @@ render flags, and primary behavior fields are joined to the placement encoding,
 the transient selector table, and five collision-extent tables. The exact 145
 placements and all descriptor contracts are validated by
 `config/authoring/world1/object_placements.json`; see
-`docs/world1_descriptors.md`.
+`docs/world1_formats.md`.
 
 World 2 uses three smaller pools: seven enemies, six enemy projectiles, and
 seven player projectiles. Its main frame path independently updates the enemy
@@ -214,18 +214,18 @@ The per-entity script offset, wait/rate counters, directions, loop state, HP,
 render flags, and persistence field are named in the complete active-pool RAM
 grid. Recursive control-flow decoding accounts for all 1,062 stream bytes as
 532 instructions; the exact opcode contract and editable form are documented
-in `docs/world3_behavior.md`.
+in `docs/world3_formats.md`.
 
 Five contiguous 32-byte columns at `$8EB5-$8F54` provide the per-type hit
 points, base metasprite, render flags, contact damage, and score reward code.
 `config/authoring/world3/world3_entity_types.json` joins those columns to all three type-indexed
 dispatch views and proves a complete four-domain partition of `$00-$1F`.
 The catalog and its encoded type transformations are documented in
-`docs/world3_entity_types.md`.
+`docs/world3_formats.md`.
 
 Those type bases feed a 188-entry metasprite index at `$B6D7`. Direct entries
 point into 65 contiguous variable-length records, while a high byte below four
 encodes an alias and reflection mode. The same renderer serves the player,
 projectiles, and all entity domains. Eleven 32-byte palette sets and their
 64-room selectors complete the World 3 sprite presentation contract; see
-`docs/world3_metasprites.md`.
+`docs/world3_formats.md`.

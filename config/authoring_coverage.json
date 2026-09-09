@@ -25,7 +25,7 @@
           ],
           "documentation_files": [
             "docs/world_data.md",
-            "docs/world1_map_decoder.md"
+            "docs/world1_formats.md"
           ],
           "test_files": [
             "tests/validation/reconstruction/test_world_data.py",
@@ -54,10 +54,7 @@
             "config/authoring/world2/world2_metatiles.json"
           ],
           "documentation_files": [
-            "docs/world2_streaming.md",
-            "docs/world2_stage_sequence.md",
-            "docs/world2_stage_branches.md",
-            "docs/world2_metatiles.md"
+            "docs/world2_formats.md"
           ],
           "test_files": [
             "tests/validation/world2/test_world2_streaming.py",
@@ -86,7 +83,7 @@
           ],
           "documentation_files": [
             "docs/world_data.md",
-            "docs/world3_room_rendering.md"
+            "docs/world3_runtime.md"
           ],
           "test_files": [
             "tests/validation/reconstruction/test_world_data.py"
@@ -121,9 +118,8 @@
           ],
           "documentation_files": [
             "docs/object_formats.md",
-            "docs/world1_player_controls.md",
-            "docs/world1_underground_rooms.md",
-            "docs/world1_weapons.md"
+            "docs/world1_runtime.md",
+            "docs/world1_formats.md"
           ],
           "test_files": [
             "tests/validation/reconstruction/test_object_placements.py",
@@ -157,10 +153,8 @@
             "config/authoring/world2/world2_metatiles.json"
           ],
           "documentation_files": [
-            "docs/world2_streaming.md",
-            "docs/world2_enemy_states.md",
-            "docs/world2_inventory.md",
-            "docs/world2_metatiles.md"
+            "docs/world2_formats.md",
+            "docs/world2_runtime.md"
           ],
           "test_files": [
             "tests/validation/world2/test_world2_streaming.py",
@@ -198,13 +192,8 @@
             "config/reconstruction/world3/world3_collision_rendering.json"
           ],
           "documentation_files": [
-            "docs/world3_object_catalog.md",
-            "docs/world3_entity_types.md",
-            "docs/world3_behavior.md",
-            "docs/world3_transient_spawns.md",
-            "docs/world3_spawn_initializers.md",
-            "docs/world3_update_handlers.md",
-            "docs/world3_collision_rendering.md"
+            "docs/world3_formats.md",
+            "docs/world3_runtime.md"
           ],
           "test_files": [
             "tests/validation/world3/test_world3_object_catalog.py",
@@ -245,8 +234,7 @@
             "config/authoring/world1/world1_palettes.json"
           ],
           "documentation_files": [
-            "docs/world1_metasprites.md",
-            "docs/world1_palettes.md"
+            "docs/world1_formats.md"
           ],
           "test_files": [
             "tests/validation/world1/test_world1_metasprites.py",
@@ -271,8 +259,7 @@
             "config/authoring/world2/world2_palettes.json"
           ],
           "documentation_files": [
-            "docs/world2_metasprites.md",
-            "docs/world2_palettes.md"
+            "docs/world2_formats.md"
           ],
           "test_files": [
             "tests/validation/world2/test_world2_metasprites.py",
@@ -295,7 +282,7 @@
             "config/authoring/world3/world3_metasprites.json"
           ],
           "documentation_files": [
-            "docs/world3_metasprites.md"
+            "docs/world3_formats.md"
           ],
           "test_files": [
             "tests/validation/world3/test_world3_metasprites.py"
@@ -351,9 +338,7 @@
             "config/authoring/audio/audio_arbitration.json"
           ],
           "documentation_files": [
-            "docs/audio_music.md",
-            "docs/audio_effects.md",
-            "docs/audio_arbitration.md"
+            "docs/audio_system.md"
           ],
           "test_files": [
             "tests/validation/audio/test_audio_streams.py",

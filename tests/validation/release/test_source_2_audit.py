@@ -84,6 +84,47 @@ class RevisionContractTests(unittest.TestCase):
 
 
 class RepositoryPolicyTests(unittest.TestCase):
+    def test_accepts_documentation_corpus_inventory(self) -> None:
+        self.assertEqual(AUDIT.validate_documentation_corpus(ROOT), [])
+
+    def test_accepts_empty_inherited_label_rename_mapping(self) -> None:
+        release = json.loads(
+            (ROOT / "config/source_reconstruction_2_0.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(
+            AUDIT.validate_label_renames(ROOT, release["predecessor"]), []
+        )
+
+    def test_rejects_unreviewed_document_prefix_cluster(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "config").mkdir()
+            (root / "docs").mkdir()
+            (root / "config/documentation_corpus.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "ordinary_line_limit": 600,
+                        "large_documents": [],
+                        "retained_prefix_groups": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (root / "docs/index.md").write_text(
+                "[One](topic_one.md)\n[Two](topic_two.md)\n"
+                "[Three](topic_three.md)\n",
+                encoding="utf-8",
+            )
+            for name in ("topic_one.md", "topic_two.md", "topic_three.md"):
+                (root / "docs" / name).write_text("# Topic\n", encoding="utf-8")
+            errors = AUDIT.validate_documentation_corpus(root)
+        self.assertIn(
+            "repeated documentation prefixes lack an exact review", errors
+        )
+
     def test_rejects_non_english_public_text(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -57,7 +57,7 @@ CadEditor. Literal IDs `$00-$CF` select 208 palette bytes at `$B9CF-$BA9E` and
 208 row-major 2x2 CHR-tile records at `$BA9F-$BDDE`; `$BDDF` is the first stage
 bytecode byte. The 208 MSB-first solid flags occupy `$BEC4-$BEDD`. The preceding
 `$FF` at `$B9CE` is preserved but not indexed by the renderer. See
-`docs/world2_metatiles.md`.
+`docs/world2_formats.md`.
 
 Each standard stream decodes sixteen rows of at least fifteen cells. Bytes
 below `$D0` are literal cells, `$D0-$EE` emit an empty cell and spawn an enemy,
@@ -73,14 +73,14 @@ editor-compatible view. `config/reconstruction/prg_data_ranges.txt`,
 `scripts/validation/world2/world2_streaming.py` use the exact
 non-overlapping runtime regions. All overlapping selector views are losslessly
 editable through `data/world2/compressed_screens.json`; see
-`docs/world2_streaming.md`.
+`docs/world2_formats.md`.
 
 `scripts/validation/map_data.py` validates all CadEditor-declared regions against
 independent CRC32 values and reports their overlap explicitly.
 
 World 1's twelve complete 32-byte PPU palettes occupy `$D7A5-$D924`. The area
 index directly selects one record; all 384 bytes round-trip through
-`data/world1/palettes.json`. See `docs/world1_palettes.md`.
+`data/world1/palettes.json`. See `docs/world1_formats.md`.
 
 `config/authoring/world_data.json` proves the exact contiguous World 1 and World 3
 hierarchies and their cross-reference metrics. `scripts/validation/reconstruction/world_data.py` validates
@@ -102,49 +102,49 @@ World 3 transient-spawn columns: type, count, and delay for four channels in
 each of 64 rooms. `data/world3/transient_spawns.json` presents them as one
 room-oriented schedule without changing their physical column order. The exact
 timing and initializer relationship are documented in
-`docs/world3_transient_spawns.md`.
+`docs/world3_formats.md`.
 
 Four smaller World 3 initializer-owned regions are also losslessly editable:
 64 room flags for type `$03` at `$8FE8`, a four-record type `$0C-$0F`
 formation at `$90F4`, an eight-record type `$0A/$0B` formation at `$AC6C`, and
 an eight-record type `$08/$09` formation at `$ACF9`. Together they account for
 152 bytes in `data/world3/spawn_initializer_data.json`; see
-`docs/world3_spawn_initializers.md`.
+`docs/world3_formats.md`.
 
 The World 3 update handlers own another 136 editable bytes: 64 type-`$04`
 tracking flags at `$936C`, four signed type-`$05` held-motion vectors at
 `$93E7`, and 64 persistent-relocation exclusion flags at `$9550`. They
 round-trip through `data/world3/update_handler_data.json`; see
-`docs/world3_update_handlers.md`.
+`docs/world3_formats.md`.
 
 World 3's shared sprite catalog has 188 direct-or-alias index entries and 65
 variable-length metasprite records. Eleven complete PPU palettes are selected
 by a 64-room table. All index, piece, tile, color, and room-selector bytes
 round-trip through `data/world3/metasprites.json`; see
-`docs/world3_metasprites.md`.
+`docs/world3_formats.md`.
 
 World 2's nine background/sprite palette sets and three chapter selector pairs
 round-trip through `data/world2/palettes.json`. Their lookup bases, stage
 commands, and code/data overlap are fixed by
 `config/authoring/world2/world2_palettes.json`; see
-`docs/world2_palettes.md`.
+`docs/world2_formats.md`.
 
 World 2 also has 17 conditional route changes stored as four parallel tables.
 They connect screen IDs and player-coordinate zones to stage-sequence offsets;
-see `docs/world2_stage_branches.md`.
+see `docs/world2_formats.md`.
 
 Seven screen IDs gate the appearance of World 2 companions and carried items.
 Their editable table and the associated three-array zero-page inventory model
-are documented in `docs/world2_inventory.md`.
+are documented in `docs/world2_formats.md`.
 
 World 1's three weapon levels select one sound and four direction-specific
 projectile spawn profiles. The 51-byte contiguous region round-trips through
 `data/world1/weapons.json`; the level-biased sound lookup and four-field profile
 loader are fixed by `config/authoring/world1/world1_weapons.json`. See
-`docs/world1_weapons.md`.
+`docs/world1_formats.md`.
 
 The four music drivers expose 26 playable eight-byte track headers and 104
 channel entries. A state-aware decoder follows fixed-width commands, counted
 loops, saved-position jumps, track-channel restarts, and single-level stream
 calls. Its 10,016 reachable bytes round-trip through
-`data/audio/music_streams.json`; see `docs/audio_music.md`.
+`data/audio/music_streams.json`; see `docs/audio_system.md`.
