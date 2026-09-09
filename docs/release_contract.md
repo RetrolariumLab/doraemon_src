@@ -54,10 +54,13 @@ corresponding excluded scope, rather than silently omitted.
 the official Revision A profile plus five fixed-capacity content Studios. Its
 development audit is `make source-2-audit`; the aggregate candidate gate is
 `make source-2-check`. The latter reruns the complete 1.0 contract before the
-two-profile identity, authoring, isolated Studio smoke, and direct runtime
-matrix checks. `make source-2-pre-tag-check` adds clean-tree, tag-ready, and
-unused-tag checks; `make source-2-tag-check` validates the annotated tag on the
-same substantive `HEAD`.
+two-profile identity, authoring, isolated headless Studio smoke, Windows
+workstation interaction smoke, and direct runtime matrix checks. The workstation
+smoke creates all five real GUI windows in a disposable workspace and exercises
+their save, build, preview or playback, validation, and unsaved-close actions.
+`make source-2-pre-tag-check` adds clean-tree, tag-ready, and unused-tag checks;
+`make source-2-tag-check` validates the annotated tag on the same substantive
+`HEAD`.
 
 Earlier local candidate tags are not presented as canonical releases. Published
 tags are immutable; a canonical annotated tag is created only after explicit

@@ -112,14 +112,19 @@ draft refs, tags, and remote-tracking refs remain unchanged for owner review.
 ## Release gate
 
 The complete development gate passed from an empty `build/` directory on the
-supported Windows host. It ran 595 unit and contract tests, rebuilt both
+supported Windows host. It ran 606 unit and contract tests, rebuilt both
 163,856-byte cartridge profiles byte-identically, completed the six authoring
-round-trip families for each profile, exercised all five headless Studios,
-reached each of the four native audio banks for both profiles, and captured and
-validated all eight runtime scenarios directly on both revisions.
+round-trip families for each profile, exercised all five Studios both headlessly
+and through real Windows GUI windows, reached each of the four native audio banks
+for both profiles, and captured and validated all eight runtime scenarios
+directly on both revisions. The GUI run uses a disposable workspace and covers
+save, applicable ROM builds, visual preview or sound playback, validation, and
+cancelled plus confirmed unsaved-close behavior without changing the retained
+canonical workspaces.
 
 ```console
 make source-2-audit
+make check-studio-interactions
 make source-2-check
 make source-2-pre-tag-check
 make source-2-tag-check

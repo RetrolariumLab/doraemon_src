@@ -118,6 +118,8 @@ Commit `d8d3f93` closes the formatter-exclusion and public-command orchestration
 
 The only data delta was local and ignored: `content/workspace/original/levels/world1.json` and `world3.json` each contained 14 edited rows from level testing. The verified workspace root was removed and both profile workspaces were recreated through `make content-init`; all six regenerated level documents then matched their canonical SHA-256 values. A clean rebuild produced 163,856 byte-identical ROM bytes for both `original` and `rev_a`. This follow-up records new verification work and therefore has no old-draft mapping.
 
+The workstation-interaction follow-up adds new validation work rather than replacing an earlier draft. It retains the two-profile headless checks and adds a disposable Windows run that opens all five real Studio windows, drives each supported save/build/preview action, and verifies cancelled and confirmed unsaved-close behavior. The isolated run does not modify the restored canonical profile workspaces.
+
 ## Superseded drafts
 
 These drafts have no retained tree effect. They were empty release markers or changes fully superseded before the original draft tip: `84752ce`, `df16293`, `9368eb4`, `0cce7e9`, `a5ec9b9`, `277ef42`, `54ad72a`, `fc52036`, `a02dd6c`, `ec76a34`, `55c97cc`, `68260a4`, `68d07a8`.

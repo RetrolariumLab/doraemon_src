@@ -32,6 +32,7 @@ class MakeHelpTests(unittest.TestCase):
             "object-studio",
             "text-studio",
             "sound-studio",
+            "check-studio-interactions",
             "runtime-revision-matrix",
             "source-2-check",
             "source-2-pre-tag-check",

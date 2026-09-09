@@ -237,3 +237,6 @@ check-text-studio: $(CHR_ASSET)
 
 check-studios: $(CHR_ASSET)
 	$(RUN_TOOL) authoring.studio_smoke --chr "$(CHR_ASSET)"
+
+check-studio-interactions: $(CHR_ASSET) $(PRG_ASSET)
+	$(RUN_TOOL) authoring.workstation_smoke --profile original

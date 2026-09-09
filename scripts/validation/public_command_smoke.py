@@ -40,6 +40,7 @@ SOURCE_2_CHECK_SEQUENCE = (
     "sound-content-roundtrip",
     "content-roundtrip",
     "check-studios",
+    "check-studio-interactions",
     "check-sound-preview",
     "check-sound-preview",
     "runtime-revision-matrix",

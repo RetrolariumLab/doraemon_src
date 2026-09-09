@@ -143,6 +143,7 @@ make graphics-content-rom # build a ROM with edited CHR/palettes/metasprites
 make graphics-content-roundtrip # prove canonical graphics preserve both revisions
 make graphics-studio    # edit all four CHR banks in a visual tile atlas
 make check-studios      # load all five Studios for both profiles headlessly
+make check-studio-interactions # exercise all five real GUIs on Windows
 make bank-gateways      # report the validated cross-bank gateway graph
 make object-pools       # validate chapter pool capacities, fields, and lifecycle API
 make object-dispatch    # validate indirect object-handler tables and code seeds

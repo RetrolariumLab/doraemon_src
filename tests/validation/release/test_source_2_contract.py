@@ -64,6 +64,28 @@ class Source2ContractTests(unittest.TestCase):
             self.assertEqual(set(profile["studios"]), set(studio_status))
             self.assertEqual(profile["studios"], studio_status)
 
+    def test_studios_declare_real_windows_interactions(self) -> None:
+        studios = self.load("config/authoring/content_studios.json")
+        interaction = studios["workstation_interaction"]
+        self.assertEqual(interaction["target"], "check-studio-interactions")
+        self.assertEqual(interaction["platform"], "windows")
+        self.assertEqual(interaction["profile"], "original")
+        actions = {
+            item["id"]: item["workstation_actions"]
+            for item in studios["studios"]
+        }
+        self.assertEqual(
+            set(actions), {"level", "graphics", "objects", "text", "sound"}
+        )
+        for studio_id, declared in actions.items():
+            self.assertIn("window", declared, studio_id)
+            self.assertIn("save", declared, studio_id)
+            self.assertIn("unsaved-close", declared, studio_id)
+        self.assertIn("validate", actions["level"])
+        self.assertIn("play", actions["sound"])
+        for studio_id in ("graphics", "objects", "text", "sound"):
+            self.assertIn("build", actions[studio_id])
+
     def test_manifest_paths_are_tracked_project_files(self) -> None:
         release = self.load("config/source_reconstruction_2_0.json")
         paths: set[str] = {

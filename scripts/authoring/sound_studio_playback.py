@@ -25,10 +25,12 @@ LANE_COLORS = ("#56b4ff", "#ffcb55", "#79e68c", "#d78cff")
 class SoundStudioPlaybackMixin:
     """UI behavior mixed into the main Tk Sound Studio window."""
 
-    def initialize_playback(self, project_root: Path, profile: str, prg: bytes) -> None:
+    def initialize_playback(
+        self, workspace_root: Path, profile: str, prg: bytes
+    ) -> None:
         self.synth_prg = prg
         self.preview_path = (
-            project_root / "content" / "workspace" / profile / "sound" / "preview.wav"
+            workspace_root / profile / "sound" / "preview.wav"
         )
         self.channel_enabled = {
             name: tk.BooleanVar(value=True) for name in CHANNEL_NAMES

@@ -96,7 +96,8 @@
 	sound-content-rom sound-preview-rom sound-content-roundtrip sound-studio check-sound-studio \
 	check-sound-preview \
 	content-init content-check content-export content-rom content-roundtrip \
-	check-level-studio check-studios source-2-audit source-2-check \
+	check-level-studio check-studios check-studio-interactions \
+	source-2-audit source-2-check \
 	source-2-pre-tag-check source-2-tag-check
 
 format:
@@ -190,6 +191,7 @@ source-2-check:
 	$(MAKE) sound-content-roundtrip
 	$(MAKE) content-roundtrip
 	$(MAKE) check-studios
+	$(MAKE) check-studio-interactions
 	$(MAKE) check-sound-preview PROFILE=original
 	$(MAKE) check-sound-preview PROFILE=rev_a
 	$(MAKE) runtime-revision-matrix
