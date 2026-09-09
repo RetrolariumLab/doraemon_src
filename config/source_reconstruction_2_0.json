@@ -294,10 +294,14 @@
     {
       "id": "reviewable-draft-history",
       "kind": "documentation",
-      "summary": "Replace the unpublished draft stack with nonempty owner-oriented commits and retain an auditable old-to-new attribution map.",
+      "summary": "Replace the unpublished draft stack with nonempty owner-oriented commits, retain an auditable old-to-new attribution map, and audit every commit and introduced blob in the release range.",
       "evidence": [
         "docs/source_2_history_rewrite.md",
-        "CONTRIBUTING.md"
+        "CONTRIBUTING.md",
+        "scripts/validation/release/release_contract.py",
+        "scripts/validation/release/source_2_audit.py",
+        "tests/validation/release/test_release_contract.py",
+        "tests/validation/release/test_source_2_audit.py"
       ]
     }
   ],
@@ -391,7 +395,9 @@
         ],
         "files": [
           "CONTRIBUTING.md",
-          "docs/source_2_history_rewrite.md"
+          "docs/source_2_history_rewrite.md",
+          "scripts/validation/release/release_contract.py",
+          "tests/validation/release/test_release_contract.py"
         ]
       }
     },

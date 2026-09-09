@@ -133,6 +133,19 @@ class RepositoryPolicyTests(unittest.TestCase):
             ["private or generated path is tracked: private/game.nes"],
         )
 
+    def test_rejects_cyrillic_in_a_removed_history_blob(self) -> None:
+        blob = (
+            "a" * 40,
+            "removed.md",
+            "\u0427\u0435\u0440\u043d\u043e\u0432\u0438\u043a\n".encode("utf-8"),
+        )
+        with mock.patch.object(
+            AUDIT.release_contract, "introduced_blobs", return_value=[blob]
+        ):
+            errors = AUDIT.validate_release_history_text(ROOT, "base")
+        self.assertEqual(len(errors), 1)
+        self.assertIn("contains Cyrillic text", errors[0])
+
 
 if __name__ == "__main__":
     unittest.main()
