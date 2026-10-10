@@ -837,9 +837,9 @@
     },
     {
       "type": 20,
-      "symbol": "suneo_chest",
-      "name": "treasure chest containing Suneo",
-      "japanese_name": "スネ夫の宝箱",
+      "symbol": "nobita_chest",
+      "name": "treasure chest containing Nobita",
+      "japanese_name": "のび太の宝箱",
       "category": "chest",
       "confidence": "confirmed",
       "base_metasprite": "0x50",
@@ -858,9 +858,9 @@
     },
     {
       "type": 21,
-      "symbol": "nobita_chest",
-      "name": "treasure chest containing Nobita",
-      "japanese_name": "のび太の宝箱",
+      "symbol": "suneo_chest",
+      "name": "treasure chest containing Suneo",
+      "japanese_name": "スネ夫の宝箱",
       "category": "chest",
       "confidence": "confirmed",
       "base_metasprite": "0x54",
@@ -1005,17 +1005,17 @@
     },
     {
       "type": 28,
-      "symbol": "suneo",
-      "name": "Suneo",
-      "japanese_name": "スネ夫",
+      "symbol": "nobita",
+      "name": "Nobita",
+      "japanese_name": "のび太",
       "category": "companion",
       "confidence": "confirmed",
       "base_metasprite": "0x90",
       "forms": [
         {
           "metasprite": "0x90",
-          "name": "Suneo",
-          "japanese_name": "スネ夫"
+          "name": "Nobita",
+          "japanese_name": "のび太"
         }
       ],
       "evidence": [
@@ -1026,17 +1026,17 @@
     },
     {
       "type": 29,
-      "symbol": "nobita",
-      "name": "Nobita",
-      "japanese_name": "のび太",
+      "symbol": "suneo",
+      "name": "Suneo",
+      "japanese_name": "スネ夫",
       "category": "companion",
       "confidence": "confirmed",
       "base_metasprite": "0x94",
       "forms": [
         {
           "metasprite": "0x94",
-          "name": "Nobita",
-          "japanese_name": "のび太"
+          "name": "Suneo",
+          "japanese_name": "スネ夫"
         }
       ],
       "evidence": [
