@@ -14,7 +14,7 @@ TEXT_SUFFIXES = {
     ".asm", ".cfg", ".inc", ".java", ".json", ".lua", ".md", ".mk", ".py", ".txt"
 }
 TEXT_NAMES = {".editorconfig", ".gitattributes", ".gitignore", "Makefile"}
-SKIP_ROOTS = {".git", "build", "references"}
+SKIP_ROOTS = {".git", ".retrolarium", "build", "hack", "references"}
 SKIP_PREFIXES = {
     ("assets", "generated"),
     ("content", "workspace"),

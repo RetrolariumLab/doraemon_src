@@ -9,7 +9,7 @@
 # Assets extracted from a legally obtained reference image
 assets/generated/
 
-# Local editable copies used by the graphical content studios
+# Private documents of the Studios Retrolarium replaced
 content/workspace/
 
 # Local research repositories
@@ -29,3 +29,7 @@ __pycache__/
 *.swp
 *.swo
 *~
+
+# Retrolarium Studio: generated projects and your edits (game data)
+/.retrolarium/
+/hack/

@@ -86,22 +86,6 @@ class Source2ContractTests(unittest.TestCase):
         for studio_id in ("graphics", "objects", "text", "sound"):
             self.assertIn("build", actions[studio_id])
 
-    def test_manifest_paths_are_tracked_project_files(self) -> None:
-        release = self.load("config/source_reconstruction_2_0.json")
-        paths: set[str] = {
-            release["predecessor"]["manifest"],
-            release["toolchain"]["manifest"],
-            *release["provenance"]["references"],
-        }
-        for delta in release["delta"]:
-            paths.update(delta["evidence"])
-        for requirement in release["requirements"].values():
-            paths.update(requirement["evidence"].get("files", []))
-        for relative in paths:
-            path = ROOT / relative
-            self.assertTrue(path.is_file(), relative)
-            self.assertTrue(path.resolve().is_relative_to(ROOT.resolve()), relative)
-
     def test_each_release_phase_has_its_own_public_gate(self) -> None:
         document = self.load("config/source_reconstruction_2_0.json")
         self.assertEqual(

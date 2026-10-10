@@ -49,16 +49,12 @@ tag-ready Source Reconstruction 2.0 authoring release.
 - [World 1 data and rendering formats](world1_formats.md)
 - [World 2 data and rendering formats](world2_formats.md)
 - [World 3 data and entity formats](world3_formats.md)
-- [Doraemon Level Studio](level_studio.md)
-- [Doraemon Graphics Studio](graphics_studio.md)
-- [Doraemon Object Studio](object_studio.md)
-- [Doraemon Text Studio](text_studio.md)
-- [Doraemon Sound Studio](sound_studio.md)
-- [Combined content composition](content_composer.md)
+- [Editing in Retrolarium](retrolarium.md)
 - [Shell text](shell_text.md)
 - [Audio system](audio_system.md)
 
 [Provenance](provenance.md) records which claims come from the local image,
 runtime traces, static analysis, or external references. [Disassembly
 workflow](disassembly_pipeline.md) explains regeneration, while [authoring
-coverage](authoring_coverage.md) and the Studio guides describe safe edits.
+coverage](authoring_coverage.md) and [editing in Retrolarium](retrolarium.md)
+describe safe edits.
