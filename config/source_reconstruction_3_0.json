@@ -84,6 +84,11 @@
       "id": "tag-bound-2x-audits",
       "kind": "validation",
       "summary": "The 2.x manifests describe their tags' trees, so their audits run at the tag in a disposable clone; the functional 2.x gate stays on HEAD."
+    },
+    {
+      "id": "object-names",
+      "kind": "source",
+      "summary": "World 3 companions $1C and $1D and their chests $14 and $15 are Nobita and Suneo, not the reverse: $1C wears Nobita's glasses."
     }
   ],
   "retrolarium": {

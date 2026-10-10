@@ -160,10 +160,10 @@ indexes `$A4`, `$A8`, and `$B4` establish those pairings.
 | `$0A-$0B` | dragon head and body (`ドラゴン`) | one head plus seven circular body segments |
 | `$0C-$0F` | four Poseidon quadrants (`ポセイドン`) | corner formation, linked movement, four matching graphics |
 | `$10-$13` | stopwatch, dorayaki, diamond, gold bar | exact item graphics and post-defeat result domain |
-| `$14-$16` | Suneo, Nobita, and Gian chests | key path transforms them to `$1C-$1E` by adding eight |
+| `$14-$16` | Nobita, Suneo, and Gian chests | key path transforms them to `$1C-$1E` by adding eight |
 | `$17` | dragon chest | key path removes it and seeds the `$0A/$0B` formation |
 | `$18-$1B` | talisman, Passing Hoop, key, Holding Bag | graphics match roles: reward, terrain, chest conversion, carrying |
-| `$1C-$1F` | Suneo, Nobita, Gian, Shizuka | character graphics and persistent follow-player path |
+| `$1C-$1F` | Nobita, Suneo, Gian, Shizuka | character graphics and persistent follow-player path |
 
 All rows converge between local graphics/control flow and at least one
 published guide. Type `$06` deliberately keeps a descriptive name rather than
@@ -502,7 +502,7 @@ back to the persistent registry.
 | `$19` | Passing Hoop checks a terrain trigger and updates a vertical room column |
 | `$1A` | key opens `$14-$16` companion chests or seeds a dragon from `$17` |
 | `$1B` | Holding Bag pushes nearby enabled persistent objects |
-| `$1C-$1F` | Suneo, Nobita, Gian, and Shizuka face/follow the player when enabled |
+| `$1C-$1F` | Nobita, Suneo, Gian, and Shizuka face/follow the player when enabled |
 
 Several persistent handlers share `World3_PositionEnabledPersistentEntity`,
 which pins an enabled object beside the player with a small vertical animation.
