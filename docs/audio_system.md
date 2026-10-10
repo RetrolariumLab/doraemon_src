@@ -1,6 +1,6 @@
 # Audio System
 
-This chapter joins the music-driver ABI, effect-request ABI, and APU arbitration rules because they share one frame service and hardware ownership boundary. `config/authoring/audio/` remains the machine-readable authority; `docs/sound_studio.md` separately documents the interactive authoring workflow.
+This chapter joins the music-driver ABI, effect-request ABI, and APU arbitration rules because they share one frame service and hardware ownership boundary. `config/authoring/audio/` remains the machine-readable authority; music and effects are edited in Retrolarium (see `docs/retrolarium.md`).
 
 ## Contents
 

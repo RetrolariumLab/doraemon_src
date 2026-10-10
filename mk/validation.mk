@@ -81,22 +81,7 @@
 	world3-metasprites validate-world3-metasprites \
 	world-data validate-world-data \
 	audit-revisions split-revision-assets build-revision verify-revision \
-	verify-revisions \
-	level-content-init level-content-check level-content-export level-content-rom \
-	level-content-roundtrip level-studio \
-	graphics-content-init graphics-content-check graphics-content-export \
-	graphics-content-rom graphics-content-roundtrip graphics-studio \
-	check-graphics-studio \
-	object-content-init object-content-check object-content-export \
-	object-content-rom object-content-roundtrip object-studio \
-	check-object-studio \
-	text-content-init text-content-check text-content-export \
-	text-content-rom text-content-roundtrip text-studio check-text-studio \
-	sound-content-init sound-content-check sound-content-export \
-	sound-content-rom sound-preview-rom sound-content-roundtrip sound-studio check-sound-studio \
-	check-sound-preview \
-	content-init content-check content-export content-rom content-roundtrip \
-	check-level-studio check-studios check-studio-interactions \
+	verify-revisions studio-check source-3-audit source-3-check \
 	source-2-audit source-2-check \
 	source-2-pre-tag-check source-2-tag-check
 
@@ -177,35 +162,50 @@ source-1-post-tag-remote-audit:
 	$(RUN_TOOL) validation.release.source_reconstruction_audit --phase post-tag \
 		--check-remote --require-clean
 
+# The 2.0 manifest describes the tree tagged source-reconstruction-2.0 (with
+# the Studios 3.0 retired), so its audits run there, by the tag's own targets
+# and tools, in a disposable clone.
+SOURCE_2_TAG ?= source-reconstruction-2.0
+SOURCE_2_AT_TAG = $(RUN_TOOL) validation.tag_audit --tag "$(SOURCE_2_TAG)" --
+
 source-2-audit:
-	$(RUN_TOOL) validation.release.source_2_audit --manifest "$(SOURCE_2_MANIFEST)"
+	$(SOURCE_2_AT_TAG) "$(MAKE)" source-2-audit
 
 source-2-check:
 	$(MAKE) source-1-check
 	$(MAKE) audit-revisions
 	$(MAKE) verify-revisions
-	$(MAKE) level-content-roundtrip
-	$(MAKE) graphics-content-roundtrip
-	$(MAKE) object-content-roundtrip
-	$(MAKE) text-content-roundtrip
-	$(MAKE) sound-content-roundtrip
-	$(MAKE) content-roundtrip
-	$(MAKE) check-studios
-	$(MAKE) check-studio-interactions
-	$(MAKE) check-sound-preview PROFILE=original
-	$(MAKE) check-sound-preview PROFILE=rev_a
 	$(MAKE) runtime-revision-matrix
 	$(MAKE) source-2-audit
 
 source-2-pre-tag-check:
 	$(MAKE) source-2-check
-	$(RUN_TOOL) validation.release.source_2_audit --manifest "$(SOURCE_2_MANIFEST)" \
+	$(SOURCE_2_AT_TAG) scripts/run.py validation.release.source_2_audit --manifest "$(SOURCE_2_MANIFEST)" \
 		--phase pre-tag --require-ready --require-clean --check-remote
 
 source-2-tag-check:
 	$(MAKE) source-2-check
-	$(RUN_TOOL) validation.release.source_2_audit --manifest "$(SOURCE_2_MANIFEST)" \
+	$(SOURCE_2_AT_TAG) scripts/run.py validation.release.source_2_audit --manifest "$(SOURCE_2_MANIFEST)" \
 		--phase post-tag --require-ready --require-clean
+
+# Retrolarium: every revision of doraemon.rlj opens in the kit and builds back
+# to its ROM, in a throwaway copy of the repository.
+RLTOOL ?= rltool
+
+studio-check:
+	$(RLTOOL) studio check doraemon.rlj
+
+# Source Reconstruction 3.0, in development until Retrolarium is tagged: the
+# source-2-check gate, then studio-check with the manifest's Retrolarium
+# section checked against the descriptor and the running kit.
+SOURCE_3_MANIFEST ?= config/source_reconstruction_3_0.json
+
+source-3-audit:
+	$(RLTOOL) studio check doraemon.rlj --release $(SOURCE_3_MANIFEST)
+
+source-3-check:
+	$(MAKE) source-2-check
+	$(MAKE) source-3-audit
 
 release-check: verify-build-toolchain quality-check disassembly-check verify validate-maps \
 	validate-debug-symbols \

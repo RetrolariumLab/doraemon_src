@@ -58,6 +58,10 @@ two-profile identity, authoring, isolated headless Studio smoke, Windows
 workstation interaction smoke, and direct runtime matrix checks. The workstation
 smoke creates all five real GUI windows in a disposable workspace and exercises
 their save, build, preview or playback, validation, and unsaved-close actions.
+Source Reconstruction 3.0 retired the Studios: the 2.0 audits now run in a
+checkout of the `source-reconstruction-2.0` tag, and `make source-2-check`
+keeps every check but the content round trips, Studio smokes and sound
+previews, which Retrolarium and `make studio-check` replace.
 `make source-2-pre-tag-check` adds clean-tree, tag-ready, and unused-tag checks;
 `make source-2-tag-check` validates the annotated tag on the same substantive
 `HEAD`.

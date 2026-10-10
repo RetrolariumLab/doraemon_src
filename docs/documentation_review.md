@@ -25,10 +25,9 @@ preserved in seven chapters:
 | [Audio system](audio_system.md) | music ABI, effect requests, and shared APU arbitration |
 
 The world chapters remain paired because runtime reconstruction and editable
-data formats have different readers and evidence owners. [Sound
-Studio](sound_studio.md) also remains separate from the audio-system chapter:
-it documents a user workflow, while the audio chapter documents cartridge
-behavior and binary formats.
+data formats have different readers and evidence owners. Editing has one
+page, [editing in Retrolarium](retrolarium.md): the studio and its kit own
+the editors, so the repository documents only how to open the game.
 
 ## Retained independent documents
 
@@ -38,8 +37,7 @@ rewrite, one classifies source bytes, one maps physical layout, and two define
 the independently accepted 1.0 and 2.0 release boundaries. Their exact paths
 and rationale are checked through `config/documentation_corpus.json`.
 
-Studio guides remain separate because each application has its own users,
-workspace, actions, and lifecycle. Architecture, subsystem, RAM, runtime,
+Architecture, subsystem, RAM, runtime,
 verification, unknown, and provenance documents likewise retain distinct
 reader tasks. The address-ordered RAM evidence ledger is the only document
 over the ordinary 600-line guideline; keeping its single machine-backed table

@@ -1,7 +1,7 @@
 # Doraemon NES source reconstruction
 
-A byte-identical ca65 reconstruction and content-authoring workspace for
-Hudson Soft's 1986 Famicom game **Doraemon** (`HFC-DO`). The repository
+A byte-identical ca65 reconstruction of Hudson Soft's 1986 Famicom game
+**Doraemon** (`HFC-DO`), edited in Retrolarium Studio. The repository
 rebuilds both known Japanese revisions from shared source, keeps private
 ROM-derived assets outside version control, and validates the result with
 static analysis, format contracts, debugger data, and emulator traces.
@@ -17,6 +17,10 @@ revision. Source Reconstruction 2.0 adds:
 - fixed-capacity level, graphics, object, text, and sound authoring;
 - five visual Studios backed by the same validated headless codecs;
 - profile-aware round trips, runtime scenarios, and release contracts.
+
+Source Reconstruction 3.0 moves editing to Retrolarium: `doraemon.rlj` opens
+both revisions in the studio, the five Studios and the content composer are
+retired, and `make studio-check` proves each revision with the kit.
 
 The cartridge uses GNROM mapper 66 with 128 KiB of PRG and 32 KiB of CHR.
 The two profiles share their header and CHR; 50 classified PRG bytes differ in
@@ -48,37 +52,14 @@ make verify-revisions
 Use `PROFILE=original` or `PROFILE=rev_a` to select one revision. Expected
 hashes and source windows are documented in [Revision profiles](docs/revisions.md)
 and declared in `assets/manifest.json` and `config/revision_profiles.json`.
-Generated ROMs, extracted private assets, editor workspaces, runtime captures,
+Generated ROMs, extracted private assets, Retrolarium edits, runtime captures,
 and build products are ignored by Git.
 
-## Content editors
+## Editing
 
-After splitting the original reference, open any Studio with the selected
-profile:
-
-```bash
-make level-studio PROFILE=original
-make graphics-studio PROFILE=original
-make object-studio PROFILE=original
-make text-studio PROFILE=original
-make sound-studio PROFILE=original
-```
-
-The Studios cover all three world formats, all four CHR banks, typed object
-data, fixed-layout presentation text, and the reachable music and effect
-streams. They write an ignored workspace and delegate serialization to
-validated codecs. Common non-GUI operations are:
-
-```bash
-make content-init PROFILE=original
-make content-check PROFILE=original
-make content-roundtrip
-make content-rom PROFILE=original
-```
-
-See [Level Studio](docs/level_studio.md), [Graphics Studio](docs/graphics_studio.md),
-[Object Studio](docs/object_studio.md), [Text Studio](docs/text_studio.md), and
-[Sound Studio](docs/sound_studio.md) for formats, capacity limits, and controls.
+Open `doraemon.rlj` in Retrolarium Studio. It asks which revision to edit,
+takes its ROM and keeps the edits in the ignored `hack/<revision>/`; see
+[editing in Retrolarium](docs/retrolarium.md).
 
 ## Verification and release gates
 
@@ -89,7 +70,8 @@ make lint            # validate style, layout, links, manifests, and policy
 make scaffold-check  # run the ROM-less repository gate
 make quality-check   # run lint and the complete Python test suite
 make check           # rebuild and validate the original reconstruction
-make source-2-audit  # reconcile the Source 2.0 manifest and evidence
+make source-2-audit  # reconcile the Source 2.0 manifest at its tag
+make studio-check   # open and rebuild every revision with the kit
 make source-2-check  # run the complete two-profile release gate
 ```
 
@@ -104,13 +86,11 @@ private-input requirements are documented in
 
 ```text
 assets/                 reference manifest and ignored extracted assets
-config/authoring/       editor schemas, capacities, and profile contracts
+config/authoring/       format, capacity, and profile contracts
 config/debugger/        bank-qualified breakpoints, watches, and inventories
 config/reconstruction/  symbols, ranges, source layout, and evidence
-content/workspace/      ignored editable content documents
 docs/                   architecture, formats, workflows, and release policy
-mk/                     authoring, runtime, workflow, and validation rules
-scripts/authoring/      headless codecs and visual Studios
+mk/                     reconstruction, runtime, workflow, and validation rules
 scripts/build/          identity, profiles, assembly, and comparison tools
 scripts/runtime/        emulator capture and runtime validation
 scripts/validation/     repository, release, and subsystem contracts

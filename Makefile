@@ -150,23 +150,7 @@ AUTHORING_COVERAGE := config/authoring_coverage.json
 RUNTIME_STATE_COVERAGE := config/runtime_state_coverage.json
 SOURCE_CLASSIFICATION := config/reconstruction/source_classification.json
 TOOLCHAIN := config/toolchain.json
-CONTENT_WORKSPACE ?= content/workspace
-LEVEL_CONTENT_OUTPUT ?= build/content
-LEVEL_CONTENT_ROM = $(LEVEL_CONTENT_OUTPUT)/$(PROFILE)/doraemon-levels.nes
-GRAPHICS_CONTENT_OUTPUT ?= build/content
-GRAPHICS_CONTENT_ROM = $(GRAPHICS_CONTENT_OUTPUT)/$(PROFILE)/doraemon-graphics.nes
-OBJECT_CONTENT_OUTPUT ?= build/content
-OBJECT_CONTENT_ROM = $(OBJECT_CONTENT_OUTPUT)/$(PROFILE)/doraemon-objects.nes
-TEXT_CONTENT_OUTPUT ?= build/content
-TEXT_CONTENT_ROM = $(TEXT_CONTENT_OUTPUT)/$(PROFILE)/doraemon-text.nes
-SOUND_CONTENT_OUTPUT ?= build/content
-SOUND_CONTENT_ROM = $(SOUND_CONTENT_OUTPUT)/$(PROFILE)/doraemon-sound.nes
-SOUND_PREVIEW_ROM = $(SOUND_CONTENT_OUTPUT)/$(PROFILE)/doraemon-sound-preview.nes
-COMBINED_CONTENT_OUTPUT ?= build/content
-COMBINED_CONTENT_ROM = $(COMBINED_CONTENT_OUTPUT)/$(PROFILE)/doraemon-content.nes
-STUDIOS ?= all
-
-MAKE_FRAGMENTS := mk/authoring.mk mk/reconstruction-world1.mk \
+MAKE_FRAGMENTS := mk/reconstruction-world1.mk \
 	mk/reconstruction-world23.mk mk/runtime.mk mk/validation.mk mk/workflow.mk
 
 all: verify
@@ -278,7 +262,7 @@ bank-info:
 	$(RUN_TOOL) build.project banks --image "$(REFERENCE_ROM)" --manifest "$(MANIFEST)"
 
 
-include mk/authoring.mk mk/reconstruction-world1.mk mk/reconstruction-world23.mk \
+include mk/reconstruction-world1.mk mk/reconstruction-world23.mk \
 	mk/runtime.mk mk/validation.mk mk/workflow.mk
 
 clean:

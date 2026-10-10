@@ -304,3 +304,14 @@ commit before tagging.
 
 Expanded or relocated builds, cross-bank code deduplication, and deeper unknown
 or local-label polish are deferred to Source Reconstruction 3.0.
+
+## Source Reconstruction 3.0 - Editing in Retrolarium
+
+Retrolarium Studio edits both revisions from `doraemon.rlj`: the three worlds'
+levels and object tables, World 3's behavior streams, graphics, palettes, text,
+music, effect routing and stream bytes, and the attract demos. The five Studios,
+the content composer, their workspace documents, smokes and sound previews are
+retired. The 2.0 manifest audits run at the `source-reconstruction-2.0` tag, and
+`make studio-check` proves both revisions with the kit. The 3.0 manifest pins
+the kit once Retrolarium publishes its tags; see
+[editing in Retrolarium](retrolarium.md).
