@@ -115,3 +115,10 @@ are not copied into this repository unless their licenses permit it.
 Original game code, graphics, music, text, and data remain property of their
 respective rights holders. This repository does not distribute ROM images or
 extracted copyrighted assets. Users must supply their own lawful references.
+
+## Trademarks
+
+This is an unofficial reconstruction, made for study and preservation. The game,
+its title and its characters are trademarks of their owners, who have not made,
+licensed or endorsed this project. It contains no part of the game: you need
+your own copy of Doraemon to build anything.
