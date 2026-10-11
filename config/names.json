@@ -1,0 +1,403 @@
+{
+  "schema": "retrolarium.names",
+  "schema_version": 1,
+  "description": "The names inside Doraemon, in English, and the lists that carry them, for Retrolarium Studio and Kit; Retrolarium keeps none of them. guard lists the names Retrolarium's own repositories must never contain.",
+  "names": {
+    "world1_enemies": {
+      "0x3E": "Giraamin",
+      "0x4C": "Kobuun",
+      "0x54": "Nezumi",
+      "0x56": "Mekanosso",
+      "0x58": "Naame",
+      "0x5C": "Suneraa",
+      "0x60": "Gozura",
+      "0x64": "Yuubou",
+      "0x6C": "Herimeda",
+      "0x70": "Dobakku"
+    },
+    "world1_objects": {
+      "0": "Manhole",
+      "1": "Anywhere Door",
+      "2": "Stopwatch",
+      "3": "Genki Candy",
+      "4": "1UP",
+      "5": "Weapon upgrade",
+      "6": "Dorayaki",
+      "7": "Rapid-Fire Drink",
+      "8": "Small Light",
+      "9": "Programmer's face",
+      "10": "Gold Bar",
+      "11": "Diamond",
+      "12": "Invulnerability"
+    },
+    "world2_enemies": {
+      "1": "Ankodori",
+      "2": "Takkon",
+      "3": "Midron",
+      "4": "Tenkoumori",
+      "5": "Zenmaiuo",
+      "6": "Gurinko",
+      "7": "Borukka",
+      "8": "Gangan (straight)",
+      "9": "Buran",
+      "10": "Tosshin",
+      "11": "Kyon",
+      "12": "Joki",
+      "13": "Potta",
+      "14": "Jura",
+      "15": "Gangan (spiral)"
+    },
+    "world3_types": {
+      "0x00": "Kame / Battle Fish",
+      "0x01": "Kani / Otoshigo",
+      "0x02": "Volcanic rock",
+      "0x03": "Gyokkun / Gansuke",
+      "0x04": "Skull",
+      "0x05": "Ghost",
+      "0x06": "Punishment swarm",
+      "0x07": "Genki Candy",
+      "0x08": "Octopus tip",
+      "0x09": "Octopus segment",
+      "0x0A": "Dragon head",
+      "0x0B": "Dragon body",
+      "0x0C": "Poseidon",
+      "0x0D": "Poseidon (right)",
+      "0x0E": "Poseidon (lower)",
+      "0x0F": "Poseidon (lower right)",
+      "0x10": "Stopwatch",
+      "0x11": "Dorayaki",
+      "0x12": "Diamond",
+      "0x13": "Gold bar",
+      "0x14": "Nobita's chest",
+      "0x15": "Suneo's chest",
+      "0x16": "Gian's chest",
+      "0x17": "Dragon chest",
+      "0x18": "Talisman",
+      "0x19": "Passing Hoop",
+      "0x1A": "Key",
+      "0x1B": "Holding Bag",
+      "0x1C": "Nobita",
+      "0x1D": "Suneo",
+      "0x1E": "Gian",
+      "0x1F": "Shizuka"
+    },
+    "sound_effects": {
+      "0:11": "Bull Robo",
+      "0:13": "Anywhere Door"
+    },
+    "music_tracks": {
+      "0:0": "City - Starting Area",
+      "0:1": "Underground - Main",
+      "0:2": "Underground - Deep Rooms",
+      "0:3": "City - Cross Area",
+      "0:4": "Underground Finale",
+      "0:5": "Bull Robo Boss",
+      "0:6": "Player Defeat",
+      "0:7": "Chapter Clear",
+      "1:0": "Cave - Part 1",
+      "1:1": "Cave - Part 2",
+      "1:2": "Cave - Part 3",
+      "1:3": "Stage Boss",
+      "1:4": "Boss Defeated",
+      "1:5": "Player Defeat",
+      "2:0": "Underwater - Upper Rooms",
+      "2:1": "Underwater - Middle Rooms",
+      "2:2": "Mid-Boss Formation",
+      "2:3": "Mid-Boss Alternate Mix",
+      "2:4": "Underwater - Lower Rooms",
+      "2:5": "Underwater - Final Room",
+      "2:6": "Chapter Clear",
+      "2:7": "Player Defeat",
+      "3:0": "Title Screen",
+      "3:1": "Ending - Opening",
+      "3:2": "Ending - Credits",
+      "3:3": "Game Over"
+    }
+  },
+  "catalogs": {
+    "world1_item_animations": [
+      {
+        "frame": 41,
+        "name": "Manhole",
+        "palette": 1
+      },
+      {
+        "frame": 37,
+        "name": "Anywhere Door",
+        "palette": 1
+      },
+      {
+        "frame": 46,
+        "name": "Stopwatch",
+        "palette": 1
+      },
+      {
+        "frame": 45,
+        "name": "Genki Candy",
+        "palette": 0
+      },
+      {
+        "frame": 47,
+        "name": "1UP",
+        "palette": 1
+      },
+      {
+        "frame": 42,
+        "name": "Shock Gun",
+        "palette": 1
+      },
+      {
+        "frame": 43,
+        "name": "Air Gun",
+        "palette": 1
+      },
+      {
+        "frame": 44,
+        "name": "Power Fan",
+        "palette": 1
+      },
+      {
+        "frame": 48,
+        "name": "Dorayaki",
+        "palette": 1
+      },
+      {
+        "frame": 52,
+        "name": "Rapid-Fire Drink",
+        "palette": 1
+      },
+      {
+        "frame": 22,
+        "name": "Small Light",
+        "palette": 1
+      },
+      {
+        "frame": 20,
+        "name": "Programmer's face",
+        "palette": 1
+      },
+      {
+        "frame": 40,
+        "name": "Gold Bar",
+        "palette": 1
+      },
+      {
+        "frame": 23,
+        "name": "Diamond",
+        "palette": 0
+      },
+      {
+        "frame": 53,
+        "name": "Invulnerability",
+        "palette": 3
+      }
+    ],
+    "world2_animations": [
+      {
+        "name": "Ankodori",
+        "frames": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "Takkon",
+        "frames": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Midron",
+        "frames": [
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "name": "Tenkoumori",
+        "frames": [
+          7,
+          8
+        ]
+      },
+      {
+        "name": "Zenmaiuo",
+        "frames": [
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "name": "Gurinko",
+        "frames": [
+          12,
+          13
+        ]
+      },
+      {
+        "name": "Borukka",
+        "frames": [
+          14,
+          15
+        ]
+      },
+      {
+        "name": "Gangan",
+        "frames": [
+          17,
+          18
+        ]
+      },
+      {
+        "name": "Jura",
+        "frames": [
+          23,
+          24,
+          25
+        ]
+      },
+      {
+        "name": "Potta",
+        "frames": [
+          30,
+          31
+        ]
+      },
+      {
+        "name": "Kyon",
+        "frames": [
+          32,
+          33,
+          34,
+          35
+        ]
+      },
+      {
+        "name": "Tosshin",
+        "frames": [
+          36,
+          37
+        ]
+      },
+      {
+        "name": "Joki",
+        "frames": [
+          38,
+          39
+        ]
+      },
+      {
+        "name": "Big Robo Ship",
+        "frames": [
+          40,
+          41,
+          42,
+          44,
+          45,
+          46
+        ]
+      },
+      {
+        "name": "Centaurus",
+        "frames": [
+          48,
+          49,
+          50,
+          52,
+          53,
+          54
+        ]
+      },
+      {
+        "name": "Robo Ship",
+        "frames": [
+          56,
+          57
+        ]
+      }
+    ],
+    "world2_state_metasprites": {
+      "1": 0,
+      "2": 2,
+      "3": 4,
+      "4": 7,
+      "5": 9,
+      "6": 12,
+      "7": 14,
+      "8": 17,
+      "10": 36,
+      "11": 32,
+      "12": 38,
+      "13": 30,
+      "14": 23,
+      "15": 17
+    },
+    "world2_invisible_states": [
+      9
+    ],
+    "world2_sound_requests": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      14,
+      15,
+      16,
+      17
+    ]
+  },
+  "guard": [
+    "Ankodori",
+    "Anywhere Door",
+    "Battle Fish",
+    "Big Robo Ship",
+    "Borukka",
+    "Bull Robo",
+    "Buran",
+    "Dobakku",
+    "Dorami",
+    "Dorayaki",
+    "Gangan",
+    "Gansuke",
+    "Genki Candy",
+    "Gian",
+    "Giraamin",
+    "Gozura",
+    "Gurinko",
+    "Gyokkun",
+    "Herimeda",
+    "Holding Bag",
+    "Joki",
+    "Kame",
+    "Kani",
+    "Kobuun",
+    "Kyon",
+    "Mekanosso",
+    "Midron",
+    "Naame",
+    "Nobita",
+    "Otoshigo",
+    "Passing Hoop",
+    "Potta",
+    "Robo Ship",
+    "Shizuka",
+    "Small Light",
+    "Suneo",
+    "Suneraa",
+    "Takkon",
+    "Tenkoumori",
+    "Tosshin",
+    "Yuubou",
+    "Zenmaiuo"
+  ]
+}
