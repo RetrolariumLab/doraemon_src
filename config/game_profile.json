@@ -1,0 +1,2369 @@
+{
+  "schema": "retrolarium.game-profile",
+  "schema_version": 1,
+  "profile_version": 1,
+  "id": "doraemon",
+  "name": "Doraemon (Famicom)",
+  "platform": "nes",
+  "capabilities": [
+    "levels",
+    "graphics",
+    "exact-round-trip"
+  ],
+  "revisions": [
+    {
+      "id": "original",
+      "name": "Doraemon (Japan, original revision)",
+      "size": 163856,
+      "sha1": "d47ebb0be5697820691065faedff277607ac10fd",
+      "sha256": "6ed579c9c98a1f2db52fd3d2488a491953073e8ace1e3c1dc5884669cecca274",
+      "container": "ines",
+      "mapper": 66
+    },
+    {
+      "id": "rev_a",
+      "name": "Doraemon (Japan, Revision A)",
+      "size": 163856,
+      "sha1": "20c5e40ab706a637d0572b1549eeff9a0048a065",
+      "sha256": "c070fa0e07a4b8be107ecc2f514e4c64f5bbb2a15754b6c6214e7259a1b30920",
+      "container": "ines",
+      "mapper": 66
+    }
+  ],
+  "resources": [
+    {
+      "id": "graphics-bundle",
+      "kind": "resource-bundle",
+      "codec": "nes.resource-bundle.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "resource_ids": [
+          "world1-hierarchy",
+          "world3-hierarchy",
+          "world3-room-palette-selectors",
+          "chr-bank-0",
+          "chr-bank-1",
+          "chr-bank-2",
+          "chr-bank-3",
+          "world1-palette-00",
+          "world1-palette-01",
+          "world1-palette-02",
+          "world1-palette-03",
+          "world1-palette-04",
+          "world1-palette-05",
+          "world1-palette-06",
+          "world1-palette-07",
+          "world1-palette-08",
+          "world1-palette-09",
+          "world1-palette-10",
+          "world1-palette-11",
+          "world3-palette-00",
+          "world3-palette-01",
+          "world3-palette-02",
+          "world3-palette-03",
+          "world3-palette-04",
+          "world3-palette-05",
+          "world3-palette-06",
+          "world3-palette-07",
+          "world3-palette-08",
+          "world3-palette-09",
+          "world3-palette-10",
+          "world2-metatiles",
+          "world2-palette-00",
+          "world2-palette-01",
+          "world2-palette-02",
+          "world2-palette-03",
+          "world2-palette-04",
+          "world2-palette-05",
+          "world2-palette-06",
+          "world2-palette-07",
+          "world2-palette-08",
+          "shell-palette-title",
+          "shell-palette-help-1",
+          "shell-palette-help-2",
+          "shell-palette-help-3",
+          "shell-palette-chapter",
+          "shell-palette-ending",
+          "shell-help-sprites-1",
+          "shell-help-sprites-2",
+          "shell-help-sprites-3",
+          "world1-city-objects",
+          "world1-underground-objects",
+          "world1-enemy-properties",
+          "world1-descriptors",
+          "world3-objects",
+          "world2-secret-screens",
+          "world3-schedule",
+          "world1-metasprites",
+          "world3-metasprites",
+          "world2-enemy-metasprites",
+          "world2-screens",
+          "world2-stage",
+          "world2-branches",
+          "world2-chapters",
+          "world1-underground-rooms",
+          "world1-city-returns",
+          "world1-weapon-sounds",
+          "world1-weapon-shots",
+          "world2-enemy-states",
+          "world3-rooms",
+          "world3-type05-motion",
+          "world3-type0c-formation",
+          "world3-type0a-formation",
+          "world3-type08-formation",
+          "world1-effect-routing",
+          "world2-effect-routing",
+          "world3-effect-routing",
+          "shell-effect-routing",
+          "world3-behavior",
+          "render-tables"
+        ]
+      }
+    },
+    {
+      "id": "world1-hierarchy",
+      "kind": "level",
+      "codec": "doraemon.hierarchy.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "world": "world1",
+        "file_offset": 10751,
+        "size": 8000
+      }
+    },
+    {
+      "id": "world3-hierarchy",
+      "kind": "level",
+      "codec": "doraemon.hierarchy.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "world": "world3",
+        "file_offset": 89602,
+        "size": 6400
+      }
+    },
+    {
+      "id": "world3-room-palette-selectors",
+      "kind": "palette-selection",
+      "codec": "doraemon.room-palette-selectors.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 77282,
+        "size": 64
+      }
+    },
+    {
+      "id": "chr-bank-0",
+      "kind": "graphics",
+      "codec": "nes.chr-2bpp.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 131088,
+        "size": 8192
+      }
+    },
+    {
+      "id": "chr-bank-1",
+      "kind": "graphics",
+      "codec": "nes.chr-2bpp.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 139280,
+        "size": 8192
+      }
+    },
+    {
+      "id": "chr-bank-2",
+      "kind": "graphics",
+      "codec": "nes.chr-2bpp.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 147472,
+        "size": 8192
+      }
+    },
+    {
+      "id": "chr-bank-3",
+      "kind": "graphics",
+      "codec": "nes.chr-2bpp.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 155664,
+        "size": 8192
+      }
+    },
+    {
+      "id": "world1-palette-00",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22453,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-01",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22485,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-02",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22517,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-03",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22549,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-04",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22581,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-05",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22613,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-06",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22645,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-07",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22677,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-08",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22709,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-09",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22741,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-10",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22773,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world1-palette-11",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22805,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-00",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81086,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-01",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81118,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-02",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81150,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-03",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81182,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-04",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81214,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-05",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81246,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-06",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81278,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-07",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81310,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-08",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81342,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-09",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81374,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world3-palette-10",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 81406,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "world2-metatiles",
+      "kind": "metatile",
+      "codec": "doraemon.world2-metatiles.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 47583,
+        "size": 1040,
+        "collision_file_offset": 48852,
+        "collision_size": 26
+      }
+    },
+    {
+      "id": "world2-palette-00",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 34737,
+        "size": 16,
+        "entries": 16
+      }
+    },
+    {
+      "id": "world2-palette-01",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 34753,
+        "size": 16,
+        "entries": 16
+      }
+    },
+    {
+      "id": "world2-palette-02",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 34769,
+        "size": 16,
+        "entries": 16
+      }
+    },
+    {
+      "id": "world2-palette-03",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 34785,
+        "size": 16,
+        "entries": 16
+      }
+    },
+    {
+      "id": "world2-palette-04",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 34801,
+        "size": 16,
+        "entries": 16
+      }
+    },
+    {
+      "id": "world2-palette-05",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 34817,
+        "size": 16,
+        "entries": 16
+      }
+    },
+    {
+      "id": "world2-palette-06",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 34833,
+        "size": 16,
+        "entries": 16
+      }
+    },
+    {
+      "id": "world2-palette-07",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 34849,
+        "size": 16,
+        "entries": 16
+      }
+    },
+    {
+      "id": "world2-palette-08",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 34865,
+        "size": 16,
+        "entries": 16
+      }
+    },
+    {
+      "id": "shell-palette-title",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 99904,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "shell-palette-help-1",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 99936,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "shell-palette-help-2",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 99968,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "shell-palette-help-3",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 100000,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "shell-palette-chapter",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 102116,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "shell-palette-ending",
+      "kind": "palette",
+      "codec": "nes.palette-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 101419,
+        "size": 32,
+        "entries": 32
+      }
+    },
+    {
+      "id": "shell-help-sprites-1",
+      "kind": "sprites",
+      "codec": "doraemon.oam-stream.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 100064,
+        "size": 89
+      }
+    },
+    {
+      "id": "shell-help-sprites-2",
+      "kind": "sprites",
+      "codec": "doraemon.oam-stream.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 100153,
+        "size": 57
+      }
+    },
+    {
+      "id": "shell-help-sprites-3",
+      "kind": "sprites",
+      "codec": "doraemon.oam-stream.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 100210,
+        "size": 105
+      }
+    },
+    {
+      "id": "world1-city-objects",
+      "kind": "objects",
+      "codec": "doraemon.world1-placements.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22937,
+        "size": 337,
+        "sorted_tail": true
+      }
+    },
+    {
+      "id": "world1-underground-objects",
+      "kind": "objects",
+      "codec": "doraemon.world1-placements.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 22837,
+        "size": 100,
+        "sorted_tail": false
+      }
+    },
+    {
+      "id": "world1-enemy-properties",
+      "kind": "objects",
+      "codec": "doraemon.world1-enemy-properties.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 3712,
+        "size": 48
+      }
+    },
+    {
+      "id": "world1-descriptors",
+      "kind": "objects",
+      "codec": "doraemon.world1-descriptors.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 19482,
+        "size": 52
+      }
+    },
+    {
+      "id": "world3-objects",
+      "kind": "objects",
+      "codec": "doraemon.world3-registry.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 88443,
+        "size": 65
+      }
+    },
+    {
+      "id": "world2-secret-screens",
+      "kind": "objects",
+      "codec": "doraemon.world2-secret-screens.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 42693,
+        "size": 7
+      }
+    },
+    {
+      "id": "world3-schedule",
+      "kind": "objects",
+      "codec": "doraemon.world3-schedule.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 87675,
+        "size": 768
+      }
+    },
+    {
+      "id": "world1-metasprites",
+      "kind": "animation",
+      "codec": "doraemon.metasprites.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 7366,
+        "size": 230,
+        "records_file_offset": 7596,
+        "records_size": 1509,
+        "records_address": 40348
+      }
+    },
+    {
+      "id": "world3-metasprites",
+      "kind": "animation",
+      "codec": "doraemon.metasprites.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 79591,
+        "size": 376,
+        "records_file_offset": 79967,
+        "records_size": 1119,
+        "records_address": 47183
+      }
+    },
+    {
+      "id": "world2-enemy-metasprites",
+      "kind": "animation",
+      "codec": "doraemon.world2-metasprites.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 41964,
+        "size": 232,
+        "descriptors_file_offset": 42196,
+        "attributes_file_offset": 42294
+      }
+    },
+    {
+      "id": "world2-screens",
+      "kind": "screen-stream",
+      "codec": "doraemon.world2-screens.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 48878,
+        "size": 16669
+      }
+    },
+    {
+      "id": "world2-stage",
+      "kind": "stage-sequence",
+      "codec": "doraemon.world2-stage.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 48623,
+        "size": 229,
+        "start_file_offset": 35656,
+        "start_size": 3
+      }
+    },
+    {
+      "id": "world2-branches",
+      "kind": "stage-branches",
+      "codec": "doraemon.world2-branches.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 42783,
+        "size": 68
+      }
+    },
+    {
+      "id": "world2-chapters",
+      "kind": "chapter-palettes",
+      "codec": "doraemon.world2-chapters.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 35766,
+        "size": 6
+      }
+    },
+    {
+      "id": "world1-underground-rooms",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 9,
+        "record_label": "Underground room {n}",
+        "tables": [
+          {
+            "file_offset": 20991,
+            "fields": [
+              {
+                "name": "camera_tile_x",
+                "label": "Camera tile X"
+              },
+              {
+                "name": "camera_tile_y",
+                "label": "Camera tile Y"
+              },
+              {
+                "name": "axis_scroll_limit",
+                "label": "Scroll limit"
+              },
+              {
+                "name": "axis_scroll_start",
+                "label": "Scroll start"
+              }
+            ]
+          },
+          {
+            "file_offset": 21027,
+            "fields": [
+              {
+                "name": "player_x",
+                "label": "Entry X"
+              },
+              {
+                "name": "player_y",
+                "label": "Entry Y"
+              },
+              {
+                "name": "negative_axis_city_return",
+                "label": "Return going back",
+                "maximum": 8,
+                "none": 255
+              },
+              {
+                "name": "positive_axis_city_return",
+                "label": "Return going on",
+                "maximum": 8,
+                "none": 255
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world1-city-returns",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 9,
+        "record_label": "City return {i}",
+        "tables": [
+          {
+            "file_offset": 21390,
+            "fields": [
+              {
+                "name": "camera_tile_x",
+                "label": "Camera tile X"
+              },
+              {
+                "name": "camera_tile_y",
+                "label": "Camera tile Y"
+              },
+              {
+                "name": "manhole_x",
+                "label": "Manhole X"
+              },
+              {
+                "name": "manhole_y",
+                "label": "Manhole Y"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world1-weapon-sounds",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 3,
+        "record_label": "Weapon level {n}",
+        "tables": [
+          {
+            "file_offset": 7315,
+            "fields": [
+              {
+                "name": "sound_effect",
+                "label": "Sound effect"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world1-weapon-shots",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 12,
+        "record_labels": [
+          "Level 1 · down",
+          "Level 1 · up",
+          "Level 1 · left",
+          "Level 1 · right",
+          "Level 2 · down",
+          "Level 2 · up",
+          "Level 2 · left",
+          "Level 2 · right",
+          "Level 3 · down",
+          "Level 3 · up",
+          "Level 3 · left",
+          "Level 3 · right"
+        ],
+        "tables": [
+          {
+            "file_offset": 7318,
+            "fields": [
+              {
+                "name": "x_offset",
+                "label": "X offset"
+              },
+              {
+                "name": "y_offset",
+                "label": "Y offset"
+              },
+              {
+                "name": "metasprite",
+                "label": "Metasprite"
+              },
+              {
+                "name": "render_flags",
+                "label": "Render flags"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world2-enemy-states",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 21,
+        "record_label": "State {hex}",
+        "tables": [
+          {
+            "file_offset": 42253,
+            "fields": [
+              {
+                "name": "attack_period",
+                "label": "Attack period"
+              }
+            ]
+          },
+          {
+            "file_offset": 42273,
+            "fields": [
+              {
+                "name": "damage_threshold",
+                "label": "Damage threshold",
+                "locked": [
+                  0
+                ]
+              }
+            ]
+          },
+          {
+            "file_offset": 42409,
+            "fields": [
+              {
+                "name": "score_reward",
+                "label": "Score reward",
+                "locked": [
+                  0
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world3-rooms",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 64,
+        "record_label": "Room {i}",
+        "tables": [
+          {
+            "file_offset": 69624,
+            "fields": [
+              {
+                "name": "type03_metasprite",
+                "label": "Type $03 metasprite",
+                "choices": [
+                  {
+                    "value": 0,
+                    "label": "Normal"
+                  },
+                  {
+                    "value": 1,
+                    "label": "Alternate"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "file_offset": 70524,
+            "fields": [
+              {
+                "name": "type04_tracking",
+                "label": "Type $04 tracks",
+                "choices": [
+                  {
+                    "value": 0,
+                    "label": "No"
+                  },
+                  {
+                    "value": 1,
+                    "label": "Yes"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "file_offset": 71008,
+            "fields": [
+              {
+                "name": "type05_blocked",
+                "label": "Type $05 stays",
+                "choices": [
+                  {
+                    "value": 0,
+                    "label": "No"
+                  },
+                  {
+                    "value": 1,
+                    "label": "Yes"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world3-type05-motion",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 4,
+        "record_label": "Held direction {n}",
+        "tables": [
+          {
+            "file_offset": 70647,
+            "columns": true,
+            "fields": [
+              {
+                "name": "delta_x",
+                "label": "Step X",
+                "signed": true
+              },
+              {
+                "name": "delta_y",
+                "label": "Step Y",
+                "signed": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world3-type0c-formation",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 4,
+        "record_label": "Member {n}",
+        "tables": [
+          {
+            "file_offset": 69892,
+            "columns": true,
+            "fields": [
+              {
+                "name": "state",
+                "label": "State"
+              },
+              {
+                "name": "x",
+                "label": "X"
+              },
+              {
+                "name": "y",
+                "label": "Y"
+              },
+              {
+                "name": "type",
+                "label": "Type"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world3-type0a-formation",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 8,
+        "record_label": "Member {n}",
+        "tables": [
+          {
+            "file_offset": 76924,
+            "columns": true,
+            "fields": [
+              {
+                "name": "state",
+                "label": "State"
+              },
+              {
+                "name": "x",
+                "label": "X"
+              },
+              {
+                "name": "y",
+                "label": "Y"
+              },
+              {
+                "name": "type",
+                "label": "Type"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world3-type08-formation",
+      "kind": "objects",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 8,
+        "record_label": "Member {n}",
+        "tables": [
+          {
+            "file_offset": 77065,
+            "columns": true,
+            "fields": [
+              {
+                "name": "state",
+                "label": "State"
+              },
+              {
+                "name": "x",
+                "label": "X"
+              },
+              {
+                "name": "y",
+                "label": "Y"
+              },
+              {
+                "name": "type",
+                "label": "Type"
+              },
+              {
+                "name": "frame_counter",
+                "label": "Frame counter"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world1-effect-routing",
+      "kind": "audio-routing",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 26,
+        "record_label": "Request {hex}",
+        "tables": [
+          {
+            "file_offset": 25382,
+            "fields": [
+              {
+                "name": "effect",
+                "label": "Plays",
+                "choices": [
+                  {
+                    "value": 0,
+                    "label": "Reset"
+                  },
+                  {
+                    "value": 4,
+                    "label": "Pulse 1 alternating burst"
+                  },
+                  {
+                    "value": 8,
+                    "label": "Pulse 1 melody"
+                  },
+                  {
+                    "value": 12,
+                    "label": "Pulse 1 alternator 4"
+                  },
+                  {
+                    "value": 16,
+                    "label": "Pulse 1 alternator 3"
+                  },
+                  {
+                    "value": 20,
+                    "label": "Pulse 1 alternator 2"
+                  },
+                  {
+                    "value": 24,
+                    "label": "Pulse 1 alternator 1"
+                  },
+                  {
+                    "value": 28,
+                    "label": "Tonal sequence on all channels"
+                  },
+                  {
+                    "value": 32,
+                    "label": "Pulse 2 pitch run, wide"
+                  },
+                  {
+                    "value": 36,
+                    "label": "Pulse 2 fade"
+                  },
+                  {
+                    "value": 40,
+                    "label": "Pulse 2 pitch run"
+                  },
+                  {
+                    "value": 44,
+                    "label": "Pulse 2 three steps"
+                  },
+                  {
+                    "value": 48,
+                    "label": "Pulse 2 two tones"
+                  },
+                  {
+                    "value": 52,
+                    "label": "Pulse 1 tone, holds the triangle"
+                  },
+                  {
+                    "value": 56,
+                    "label": "Pulse 1 tone"
+                  },
+                  {
+                    "value": 60,
+                    "label": "Noise ramp"
+                  },
+                  {
+                    "value": 64,
+                    "label": "Pulse 2 pitch run, long"
+                  },
+                  {
+                    "value": 68,
+                    "label": "Pulse 2 pitch run, short"
+                  },
+                  {
+                    "value": 72,
+                    "label": "Triangle rise"
+                  },
+                  {
+                    "value": 76,
+                    "label": "Pulse 2 tone A"
+                  },
+                  {
+                    "value": 80,
+                    "label": "Pulse 2 tone B"
+                  },
+                  {
+                    "value": 84,
+                    "label": "Pulse 2 tone C"
+                  },
+                  {
+                    "value": 88,
+                    "label": "Noise sweep, slow"
+                  },
+                  {
+                    "value": 92,
+                    "label": "Noise sweep, fast"
+                  },
+                  {
+                    "value": 96,
+                    "label": "Noise swell"
+                  },
+                  {
+                    "value": 100,
+                    "label": "Triangle and noise burst"
+                  }
+                ],
+                "unique": true,
+                "locked": [
+                  0
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world2-effect-routing",
+      "kind": "audio-routing",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 15,
+        "record_label": "Request {hex}",
+        "tables": [
+          {
+            "file_offset": 43035,
+            "fields": [
+              {
+                "name": "effect",
+                "label": "Plays",
+                "choices": [
+                  {
+                    "value": 0,
+                    "label": "Reset"
+                  },
+                  {
+                    "value": 4,
+                    "label": "Pulse 1 alternating burst"
+                  },
+                  {
+                    "value": 8,
+                    "label": "Pulse 1 melody"
+                  },
+                  {
+                    "value": 12,
+                    "label": "Tonal sequence on all channels"
+                  },
+                  {
+                    "value": 16,
+                    "label": "Pulse 2 pitch run"
+                  },
+                  {
+                    "value": 20,
+                    "label": "Pulse 2 three steps"
+                  },
+                  {
+                    "value": 24,
+                    "label": "Pulse 1 tone, holds the triangle"
+                  },
+                  {
+                    "value": 28,
+                    "label": "Pulse 2 pitch run, long"
+                  },
+                  {
+                    "value": 32,
+                    "label": "Pulse 2 pitch run, short"
+                  },
+                  {
+                    "value": 36,
+                    "label": "Triangle rise"
+                  },
+                  {
+                    "value": 40,
+                    "label": "Pulse 2 tone A"
+                  },
+                  {
+                    "value": 44,
+                    "label": "Pulse 2 tone B"
+                  },
+                  {
+                    "value": 48,
+                    "label": "Pulse 2 tone C"
+                  },
+                  {
+                    "value": 52,
+                    "label": "Noise ramp"
+                  },
+                  {
+                    "value": 56,
+                    "label": "Triangle and noise burst"
+                  }
+                ],
+                "unique": true,
+                "locked": [
+                  0
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world3-effect-routing",
+      "kind": "audio-routing",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 26,
+        "record_label": "Request {hex}",
+        "tables": [
+          {
+            "file_offset": 81438,
+            "fields": [
+              {
+                "name": "effect",
+                "label": "Plays",
+                "choices": [
+                  {
+                    "value": 0,
+                    "label": "Reset"
+                  },
+                  {
+                    "value": 4,
+                    "label": "Pulse 1 alternating burst"
+                  },
+                  {
+                    "value": 8,
+                    "label": "Pulse 1 melody"
+                  },
+                  {
+                    "value": 12,
+                    "label": "Pulse 1 alternator 4"
+                  },
+                  {
+                    "value": 16,
+                    "label": "Pulse 1 alternator 3"
+                  },
+                  {
+                    "value": 20,
+                    "label": "Pulse 1 alternator 2"
+                  },
+                  {
+                    "value": 24,
+                    "label": "Pulse 1 alternator 1"
+                  },
+                  {
+                    "value": 28,
+                    "label": "Tonal sequence on all channels"
+                  },
+                  {
+                    "value": 32,
+                    "label": "Pulse 2 pitch run, wide"
+                  },
+                  {
+                    "value": 36,
+                    "label": "Pulse 2 fade"
+                  },
+                  {
+                    "value": 40,
+                    "label": "Pulse 2 pitch run"
+                  },
+                  {
+                    "value": 44,
+                    "label": "Pulse 2 three steps"
+                  },
+                  {
+                    "value": 48,
+                    "label": "Pulse 2 two tones"
+                  },
+                  {
+                    "value": 52,
+                    "label": "Pulse 1 tone, holds the triangle"
+                  },
+                  {
+                    "value": 56,
+                    "label": "Pulse 1 tone"
+                  },
+                  {
+                    "value": 60,
+                    "label": "Noise ramp"
+                  },
+                  {
+                    "value": 64,
+                    "label": "Pulse 2 pitch run, long"
+                  },
+                  {
+                    "value": 68,
+                    "label": "Pulse 2 pitch run, short"
+                  },
+                  {
+                    "value": 72,
+                    "label": "Triangle rise"
+                  },
+                  {
+                    "value": 76,
+                    "label": "Pulse 2 tone A"
+                  },
+                  {
+                    "value": 80,
+                    "label": "Pulse 2 tone B"
+                  },
+                  {
+                    "value": 84,
+                    "label": "Pulse 2 tone C"
+                  },
+                  {
+                    "value": 88,
+                    "label": "Noise sweep, slow"
+                  },
+                  {
+                    "value": 92,
+                    "label": "Noise sweep, fast"
+                  },
+                  {
+                    "value": 96,
+                    "label": "Noise swell"
+                  },
+                  {
+                    "value": 100,
+                    "label": "Triangle and noise burst"
+                  }
+                ],
+                "unique": true,
+                "locked": [
+                  0
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "shell-effect-routing",
+      "kind": "audio-routing",
+      "codec": "nes.record-table.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "records": 26,
+        "record_label": "Request {hex}",
+        "tables": [
+          {
+            "file_offset": 104340,
+            "fields": [
+              {
+                "name": "effect",
+                "label": "Plays",
+                "choices": [
+                  {
+                    "value": 0,
+                    "label": "Reset"
+                  },
+                  {
+                    "value": 4,
+                    "label": "Pulse 1 alternating burst"
+                  },
+                  {
+                    "value": 8,
+                    "label": "Pulse 1 melody"
+                  },
+                  {
+                    "value": 12,
+                    "label": "Pulse pair and noise tail"
+                  },
+                  {
+                    "value": 16,
+                    "label": "Pulse 1 and falling noise"
+                  },
+                  {
+                    "value": 20,
+                    "label": "Pulse 1 and rising noise"
+                  },
+                  {
+                    "value": 24,
+                    "label": "Pulse 1 alternator 1"
+                  },
+                  {
+                    "value": 28,
+                    "label": "Tonal sequence on all channels"
+                  },
+                  {
+                    "value": 32,
+                    "label": "Pulse 2 pitch run, wide"
+                  },
+                  {
+                    "value": 36,
+                    "label": "Pulse 2 fade"
+                  },
+                  {
+                    "value": 40,
+                    "label": "Pulse 2 pitch run"
+                  },
+                  {
+                    "value": 44,
+                    "label": "Pulse 2 three steps"
+                  },
+                  {
+                    "value": 48,
+                    "label": "Pulse 2 two tones"
+                  },
+                  {
+                    "value": 52,
+                    "label": "Pulse 1 tone, holds the triangle"
+                  },
+                  {
+                    "value": 56,
+                    "label": "Pulse 1 tone"
+                  },
+                  {
+                    "value": 60,
+                    "label": "Noise ramp"
+                  },
+                  {
+                    "value": 64,
+                    "label": "Pulse 2 pitch run, long"
+                  },
+                  {
+                    "value": 68,
+                    "label": "Pulse 2 pitch run, short"
+                  },
+                  {
+                    "value": 72,
+                    "label": "Triangle rise"
+                  },
+                  {
+                    "value": 76,
+                    "label": "Pulse 2 tone A"
+                  },
+                  {
+                    "value": 80,
+                    "label": "Pulse 2 tone B"
+                  },
+                  {
+                    "value": 84,
+                    "label": "Pulse 2 tone C"
+                  },
+                  {
+                    "value": 88,
+                    "label": "Noise sweep, slow"
+                  },
+                  {
+                    "value": 92,
+                    "label": "Noise sweep, fast"
+                  },
+                  {
+                    "value": 96,
+                    "label": "Noise swell"
+                  },
+                  {
+                    "value": 100,
+                    "label": "Triangle and noise burst"
+                  }
+                ],
+                "unique": true,
+                "locked": [
+                  0
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "world3-behavior",
+      "kind": "behavior",
+      "codec": "doraemon.world3-behavior.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "file_offset": 88540,
+        "size": 1062,
+        "stream_sizes": [
+          40,
+          119,
+          248,
+          21,
+          96,
+          55,
+          248,
+          1,
+          14,
+          1,
+          34,
+          1,
+          130,
+          18,
+          18,
+          18
+        ]
+      }
+    },
+    {
+      "id": "demo",
+      "kind": "demo",
+      "codec": "doraemon.world1-demo.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "bank": 0,
+        "entry_cpu": 33915,
+        "reader_cpu": 33955,
+        "stream_cpu": 64703,
+        "limit_cpu": 65530
+      }
+    },
+    {
+      "id": "music",
+      "kind": "music",
+      "codec": "doraemon.music-streams.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "channel_count": 4,
+        "shared_ram": [
+          {
+            "address": "0x002F",
+            "size": 8,
+            "symbol": "AudioStreamPointers"
+          },
+          {
+            "address": "0x02AC",
+            "size": 4,
+            "symbol": "AudioChannelDurationCodes"
+          },
+          {
+            "address": "0x02B0",
+            "size": 4,
+            "symbol": "AudioChannelDurations"
+          },
+          {
+            "address": "0x02B4",
+            "size": 4,
+            "symbol": "AudioChannelBaseVolumes"
+          },
+          {
+            "address": "0x02B8",
+            "size": 4,
+            "symbol": "AudioChannelEnvelopeVolumes"
+          },
+          {
+            "address": "0x02BC",
+            "size": 4,
+            "symbol": "AudioChannelEnvelopeSteps"
+          },
+          {
+            "address": "0x02C0",
+            "size": 4,
+            "symbol": "AudioChannelFixedPitches"
+          },
+          {
+            "address": "0x02C4",
+            "size": 8,
+            "symbol": "AudioLoopStartPointers"
+          },
+          {
+            "address": "0x02CC",
+            "size": 8,
+            "symbol": "AudioLoopExitPointers"
+          },
+          {
+            "address": "0x02D4",
+            "size": 4,
+            "symbol": "AudioLoopRepeatLimits"
+          },
+          {
+            "address": "0x02D8",
+            "size": 4,
+            "symbol": "AudioLoopIterationCounts"
+          },
+          {
+            "address": "0x02DC",
+            "size": 8,
+            "symbol": "AudioSavedStreamPointers"
+          },
+          {
+            "address": "0x02E4",
+            "size": 8,
+            "symbol": "AudioStreamCallReturnPointers"
+          },
+          {
+            "address": "0x02EC",
+            "size": 3,
+            "symbol": "AudioChannelPitchOffsets"
+          },
+          {
+            "address": "0x02EF",
+            "size": 4,
+            "symbol": "AudioChannelFixedPitchFlags"
+          },
+          {
+            "address": "0x02F3",
+            "size": 3,
+            "symbol": "AudioChannelControl"
+          },
+          {
+            "address": "0x02F6",
+            "size": 1,
+            "symbol": "AudioNoiseControl"
+          },
+          {
+            "address": "0x02F7",
+            "size": 4,
+            "symbol": "AudioChannelLengthBits"
+          },
+          {
+            "address": "0x02FB",
+            "size": 1,
+            "symbol": "AudioNoisePeriodIndex"
+          },
+          {
+            "address": "0x02FC",
+            "size": 1,
+            "symbol": "AudioNoiseDuration"
+          },
+          {
+            "address": "0x02FD",
+            "size": 1,
+            "symbol": "AudioChannelIndex"
+          },
+          {
+            "address": "0x02FE",
+            "size": 1,
+            "symbol": "AudioEndedChannelCount"
+          },
+          {
+            "address": "0x02FF",
+            "size": 1,
+            "symbol": "AudioWorkByte"
+          }
+        ],
+        "overlaid_ram": [
+          {
+            "address": "0x0046",
+            "size": 3,
+            "role": "global-tonal-channel-pitch-offsets",
+            "reason": "reused-by-chapter-rendering-and-streaming-outside-audio-update"
+          }
+        ],
+        "commands": [
+          {
+            "opcode": "0xFF",
+            "operand_bytes": 0,
+            "name": "EndChannel"
+          },
+          {
+            "opcode": "0xFE",
+            "operand_bytes": 0,
+            "name": "RestoreStreamPosition"
+          },
+          {
+            "opcode": "0xFD",
+            "operand_bytes": 1,
+            "name": "BeginCountedLoop"
+          },
+          {
+            "opcode": "0xFC",
+            "operand_bytes": 0,
+            "name": "RepeatCountedLoop"
+          },
+          {
+            "opcode": "0xFB",
+            "operand_bytes": 1,
+            "name": "SelectLoopExit"
+          },
+          {
+            "opcode": "0xFA",
+            "operand_bytes": 1,
+            "name": "EnableFixedPitch"
+          },
+          {
+            "opcode": "0xF9",
+            "operand_bytes": 0,
+            "name": "DisableFixedPitch"
+          },
+          {
+            "opcode": "0xF8",
+            "operand_bytes": 1,
+            "name": "SetDutyCycle"
+          },
+          {
+            "opcode": "0xF7",
+            "operand_bytes": 0,
+            "name": "SaveStreamPosition"
+          },
+          {
+            "opcode": "0xF6",
+            "operand_bytes": 2,
+            "name": "CallStream"
+          },
+          {
+            "opcode": "0xF5",
+            "operand_bytes": 1,
+            "name": "SetGlobalPitchOffset"
+          },
+          {
+            "opcode": "0xF4",
+            "operand_bytes": 1,
+            "name": "SetChannelPitchOffset"
+          },
+          {
+            "opcode": "0xF3",
+            "operand_bytes": 0,
+            "name": "ReturnFromStream"
+          },
+          {
+            "opcode": "0xF2",
+            "operand_bytes": 0,
+            "name": "ResetLengthBits"
+          },
+          {
+            "opcode": "0xF1",
+            "operand_bytes": 0,
+            "name": "SelectTrackChannelStream"
+          },
+          {
+            "opcode": "0xF0",
+            "operand_bytes": 1,
+            "name": "LoadExtendedDuration"
+          },
+          {
+            "opcode": "0xEF",
+            "operand_bytes": 1,
+            "name": "SetEnvelopeVolume"
+          }
+        ],
+        "drivers": [
+          {
+            "bank": 0,
+            "name": "world1-audio",
+            "symbol_prefix": "World1_",
+            "track_id_min": 1,
+            "track_id_limit": 9,
+            "track_count": 8,
+            "track_header_table": "0xEFFB",
+            "music_update": "0xE9FD",
+            "routines": [
+              {
+                "address": "0xEAC0",
+                "size": 76,
+                "crc32": "8438415e",
+                "symbol": "World1_Music_UpdateVolumeEnvelope"
+              },
+              {
+                "address": "0xEC05",
+                "size": 153,
+                "crc32": "6c2db4af",
+                "symbol": "World1_Music_HandleNoteOrRest"
+              },
+              {
+                "address": "0xED6A",
+                "size": 16,
+                "crc32": "60b2c263",
+                "symbol": "World1_Music_SaveStreamPosition"
+              }
+            ]
+          },
+          {
+            "bank": 1,
+            "name": "world2-audio",
+            "symbol_prefix": "World2_",
+            "track_id_min": 1,
+            "track_id_limit": 7,
+            "track_count": 6,
+            "track_header_table": "0xB2E3",
+            "music_update": "0xACE4",
+            "routines": [
+              {
+                "address": "0xADA7",
+                "size": 76,
+                "crc32": "8438415e",
+                "symbol": "World2_Music_UpdateVolumeEnvelope"
+              },
+              {
+                "address": "0xAEEC",
+                "size": 153,
+                "crc32": "318ff2eb",
+                "symbol": "World2_Music_HandleNoteOrRest"
+              },
+              {
+                "address": "0xB051",
+                "size": 16,
+                "crc32": "60b2c263",
+                "symbol": "World2_Music_SaveStreamPosition"
+              }
+            ]
+          },
+          {
+            "bank": 2,
+            "name": "world3-audio",
+            "symbol_prefix": "World3_",
+            "track_id_min": 1,
+            "track_id_limit": 9,
+            "track_count": 8,
+            "track_header_table": "0xCAF3",
+            "music_update": "0xC4F5",
+            "routines": [
+              {
+                "address": "0xC5B8",
+                "size": 76,
+                "crc32": "8438415e",
+                "symbol": "World3_Music_UpdateVolumeEnvelope"
+              },
+              {
+                "address": "0xC6FD",
+                "size": 153,
+                "crc32": "85233df2",
+                "symbol": "World3_Music_HandleNoteOrRest"
+              },
+              {
+                "address": "0xC862",
+                "size": 16,
+                "crc32": "60b2c263",
+                "symbol": "World3_Music_SaveStreamPosition"
+              }
+            ]
+          },
+          {
+            "bank": 3,
+            "name": "shell-audio",
+            "symbol_prefix": "",
+            "track_id_min": 1,
+            "track_id_limit": 5,
+            "track_count": 4,
+            "track_header_table": "0xA4D6",
+            "music_update": "0x9ED8",
+            "routines": [
+              {
+                "address": "0x9F9B",
+                "size": 76,
+                "crc32": "8438415e",
+                "symbol": "Music_UpdateVolumeEnvelope"
+              },
+              {
+                "address": "0xA0E0",
+                "size": 153,
+                "crc32": "2cf7abe6",
+                "symbol": "Music_HandleNoteOrRest"
+              },
+              {
+                "address": "0xA245",
+                "size": 16,
+                "crc32": "60b2c263",
+                "symbol": "Music_SaveStreamPosition"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "text",
+      "kind": "text",
+      "codec": "doraemon.shell-text.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "bank": 3,
+        "game_over": {
+          "address": "0x8A7F",
+          "size": 9,
+          "crc32": "60a9a684"
+        },
+        "title_stream": {
+          "address": "0x9248",
+          "end_address": "0x9383",
+          "record_count": 13,
+          "crc32": "a0763f61",
+          "text_records": [
+            {
+              "id": "push_start_button",
+              "ppu_address": "0x21E7"
+            },
+            {
+              "id": "hiscore",
+              "ppu_address": "0x2248"
+            },
+            {
+              "id": "score",
+              "ppu_address": "0x228A"
+            },
+            {
+              "id": "hudson_copyright",
+              "ppu_address": "0x22E3"
+            },
+            {
+              "id": "license_copyright",
+              "ppu_address": "0x2322"
+            }
+          ]
+        },
+        "ending_nametable": {
+          "address": "0x9384",
+          "row_width": 32,
+          "row_count": 32,
+          "crc32": "65da79f3"
+        },
+        "chapter_help_screens": {
+          "address": "0xB1BC",
+          "size": 3072,
+          "screen_size": 1024,
+          "count": 3,
+          "crc32": "2452c0d6",
+          "screens": [
+            {
+              "id": "world1",
+              "address": "0xB1BC",
+              "text_spans": [
+                {
+                  "id": "line-1",
+                  "address": "0xB30A",
+                  "size": 5
+                },
+                {
+                  "id": "line-2",
+                  "address": "0xB310",
+                  "size": 5
+                },
+                {
+                  "id": "line-3",
+                  "address": "0xB36A",
+                  "size": 5
+                },
+                {
+                  "id": "line-4",
+                  "address": "0xB3CA",
+                  "size": 8
+                },
+                {
+                  "id": "line-5",
+                  "address": "0xB42A",
+                  "size": 9
+                },
+                {
+                  "id": "line-6",
+                  "address": "0xB434",
+                  "size": 6
+                },
+                {
+                  "id": "line-7",
+                  "address": "0xB48A",
+                  "size": 8
+                },
+                {
+                  "id": "line-8",
+                  "address": "0xB4EA",
+                  "size": 5
+                },
+                {
+                  "id": "line-9",
+                  "address": "0xB4F0",
+                  "size": 5
+                }
+              ]
+            },
+            {
+              "id": "world2",
+              "address": "0xB5BC",
+              "text_spans": [
+                {
+                  "id": "line-1",
+                  "address": "0xB72A",
+                  "size": 5
+                },
+                {
+                  "id": "line-2",
+                  "address": "0xB730",
+                  "size": 5
+                },
+                {
+                  "id": "line-3",
+                  "address": "0xB7AA",
+                  "size": 6
+                },
+                {
+                  "id": "line-4",
+                  "address": "0xB7B1",
+                  "size": 6
+                },
+                {
+                  "id": "line-5",
+                  "address": "0xB82A",
+                  "size": 8
+                },
+                {
+                  "id": "line-6",
+                  "address": "0xB8AA",
+                  "size": 5
+                },
+                {
+                  "id": "line-7",
+                  "address": "0xB8B0",
+                  "size": 5
+                }
+              ]
+            },
+            {
+              "id": "world3",
+              "address": "0xB9BC",
+              "text_spans": [
+                {
+                  "id": "line-1",
+                  "address": "0xBAEA",
+                  "size": 9
+                },
+                {
+                  "id": "line-2",
+                  "address": "0xBAF4",
+                  "size": 4
+                },
+                {
+                  "id": "line-3",
+                  "address": "0xBB4A",
+                  "size": 4
+                },
+                {
+                  "id": "line-4",
+                  "address": "0xBBAA",
+                  "size": 8
+                },
+                {
+                  "id": "line-5",
+                  "address": "0xBC0A",
+                  "size": 7
+                },
+                {
+                  "id": "line-6",
+                  "address": "0xBC6A",
+                  "size": 5
+                },
+                {
+                  "id": "line-7",
+                  "address": "0xBC70",
+                  "size": 5
+                },
+                {
+                  "id": "line-8",
+                  "address": "0xBCCA",
+                  "size": 8
+                },
+                {
+                  "id": "line-9",
+                  "address": "0xBD2A",
+                  "size": 5
+                },
+                {
+                  "id": "line-10",
+                  "address": "0xBD30",
+                  "size": 5
+                }
+              ]
+            }
+          ]
+        },
+        "ending_credits": {
+          "address": "0xBDBC",
+          "end_address": "0xED3B",
+          "row_width": 32,
+          "row_count": 380,
+          "crc32": "994bf134",
+          "source_to_tile_remap": {
+            "0x20": "0x7F",
+            "0x2E": "0x5B",
+            "0x26": "0x5F"
+          }
+        },
+        "post_credit_data": {
+          "address": "0xED3C",
+          "size": 3200,
+          "crc32": "f1c65904",
+          "classification": "typed-unclassified-presentation-data"
+        },
+        "signatures": [
+          {
+            "address": "0x82C7",
+            "purpose": "title stream pointer and upload call",
+            "size": 14,
+            "crc32": "b987c93b"
+          },
+          {
+            "address": "0x84C0",
+            "purpose": "three chapter-help nametable pointers",
+            "size": 6,
+            "crc32": "9f91744c"
+          },
+          {
+            "address": "0x8A2C",
+            "purpose": "biased nine-byte game-over text upload",
+            "size": 11,
+            "crc32": "a1516491"
+          },
+          {
+            "address": "0x8A96",
+            "purpose": "ending opening nametable pointer and four-page copy",
+            "size": 20,
+            "crc32": "a778e4da"
+          },
+          {
+            "address": "0x8AFD",
+            "purpose": "credits source pointer",
+            "size": 8,
+            "crc32": "92d0b050"
+          },
+          {
+            "address": "0x8B1E",
+            "purpose": "credits row upload and exclusive end pointer",
+            "size": 15,
+            "crc32": "07127780"
+          },
+          {
+            "address": "0x8F84",
+            "purpose": "address-count-payload PPU stream reader",
+            "size": 29,
+            "crc32": "ae42aa7d"
+          },
+          {
+            "address": "0x91EE",
+            "purpose": "32-byte credits row remap and queue",
+            "size": 28,
+            "crc32": "59a8f017"
+          }
+        ]
+      }
+    },
+    {
+      "id": "render-tables",
+      "kind": "tables",
+      "codec": "nes.byte-tables.v1",
+      "capacity_policy": "fixed",
+      "parameters": {
+        "tables": {
+          "world3_entity_metasprites": {
+            "file_offset": 69349,
+            "size": 32
+          },
+          "world3_entity_render_flags": {
+            "file_offset": 69381,
+            "size": 32
+          }
+        }
+      }
+    }
+  ]
+}

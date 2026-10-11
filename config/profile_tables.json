@@ -1,0 +1,28 @@
+{
+  "revisions": {
+    "original": {
+      "engine": "doraemon",
+      "dbg": "build/revisions/original/doraemon.dbg",
+      "offsets": "image"
+    },
+    "rev_a": {
+      "engine": "doraemon",
+      "dbg": "build/revisions/rev_a/doraemon.dbg",
+      "offsets": "image"
+    }
+  },
+  "engines": {
+    "doraemon": [
+      {
+        "name": "world3_entity_metasprites",
+        "label": "World3_EntityMetaspriteByType",
+        "size": 32
+      },
+      {
+        "name": "world3_entity_render_flags",
+        "label": "World3_EntityRenderFlagsByType",
+        "size": 32
+      }
+    ]
+  }
+}
