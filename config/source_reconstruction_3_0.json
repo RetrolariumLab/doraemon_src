@@ -89,6 +89,16 @@
       "id": "object-names",
       "kind": "source",
       "summary": "World 3 companions $1C and $1D and their chests $14 and $15 are Nobita and Suneo, not the reverse: $1C wears Nobita's glasses."
+    },
+    {
+      "id": "kit-toolchain",
+      "kind": "toolchain",
+      "summary": "The repository no longer carries ca65 and ld65: CA65 and LD65 default to the cc65 Retrolarium Kit builds and ships (the same 2.19 0fca835), still checked by size, SHA-256 and version against config/toolchain.json, and bin/ is gone."
+    },
+    {
+      "id": "shared-linter",
+      "kind": "tooling",
+      "summary": "make lint and make format run Retrolarium Kit's shared linter (rltool lint) over config/lint.json: the ca65 style for src and the text contract with two-space JSON; asm_style.py, format_project.py and their tests move to the kit. build.project lint stays here."
     }
   ],
   "retrolarium": {
@@ -373,7 +383,7 @@
       "origin": "cc65 revision 0fca835",
       "license_id_or_status": "licensed",
       "redistribution": "allowed_under_bundled_zlib_license",
-      "notes": "See bin/cc65-LICENSE.txt."
+      "notes": "Built and shipped by Retrolarium Kit with its notice; config/toolchain.json pins the binaries."
     },
     {
       "component": "external-analysis-and-runtime-tools",

@@ -85,18 +85,19 @@
 	source-2-audit source-2-check \
 	source-2-pre-tag-check source-2-tag-check
 
+# House style (config/lint.json) from Retrolarium Kit: the ca65 sources and
+# the text contract.
 format:
-	$(RUN_TOOL) validation.asm_style --fix src
-	$(RUN_TOOL) validation.format_project write
+	$(RLTOOL) lint --fix
 	$(MAKE) lint
 
 format-check: lint-asm
 
 lint-asm:
-	$(RUN_TOOL) validation.asm_style src
+	$(RLTOOL) lint --only assembly
 
 lint-source:
-	$(RUN_TOOL) validation.format_project check
+	$(RLTOOL) lint --only text
 	$(RUN_TOOL) build.project lint
 
 lint-project: lint-source

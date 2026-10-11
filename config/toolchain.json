@@ -7,14 +7,15 @@
       "version": "2.19 (Git 0fca835)",
       "source": "https://github.com/cc65/cc65",
       "source_commit": "0fca835",
-      "provenance": "bundled",
-      "path": "bin/ca65.exe",
-      "size": 721629,
-      "binary_sha256": "9109d7118ff070e78f031bee4eb776061e56b74e7c8f9f40c70fd6707ea0ac5a",
+      "provenance": "retrolarium-kit",
+      "size": 323584,
+      "binary_sha256": "779a2a266f038cfeea4cdb3cd2cf5bbef4b602bb43560c3fd9f1b45d7bc5c776",
       "version_arguments": [
         "--version"
       ],
-      "version_output_contains": "ca65 V2.19 - Git 0fca835"
+      "version_output_contains": "ca65 V2.19 - Git 0fca835",
+      "kit_tool": "nes/ca65",
+      "kit_release": "2026.10.11"
     },
     {
       "id": "ld65",
@@ -22,14 +23,15 @@
       "version": "2.19 (Git 0fca835)",
       "source": "https://github.com/cc65/cc65",
       "source_commit": "0fca835",
-      "provenance": "bundled",
-      "path": "bin/ld65.exe",
-      "size": 575874,
-      "binary_sha256": "5f68367a135c578c88744e27ba0b1234604d87ef1ff6294b46fcb031ff984db4",
+      "provenance": "retrolarium-kit",
+      "size": 202240,
+      "binary_sha256": "06720e9200c9a2a53e049413888a6a55ee023b0801a598d4b6143caae8466813",
       "version_arguments": [
         "--version"
       ],
-      "version_output_contains": "ld65 V2.19 - Git 0fca835"
+      "version_output_contains": "ld65 V2.19 - Git 0fca835",
+      "kit_tool": "nes/ld65",
+      "kit_release": "2026.10.11"
     },
     {
       "id": "fceux",

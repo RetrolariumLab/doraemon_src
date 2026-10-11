@@ -3,8 +3,9 @@
 The quality gate is intentionally dependency-free apart from the pinned local
 assembler and optional static-analysis toolchain.
 
-- `scripts/validation/asm_style.py` enforces the shared ca65 source style.
-- `scripts/validation/format_project.py` normalizes text and JSON deterministically.
+- Retrolarium Kit's shared linter (`rltool lint`, configured by
+  `config/lint.json`) enforces the ca65 source style and normalizes text and
+  JSON deterministically.
 - `scripts/build/project.py lint` enforces required files, mapper identity, four-bank
   source markers, and the no-ROM/no-PRG-binary policy.
 - unit tests exercise iNES parsing, typed bank ranges, disassembly generation,
