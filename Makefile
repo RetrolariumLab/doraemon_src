@@ -1,7 +1,11 @@
 PYTHON ?= python
 RUN_TOOL := $(PYTHON) scripts/run.py
-CA65 ?= bin/ca65.exe
-LD65 ?= bin/ld65.exe
+# cc65 from Retrolarium Kit (RLTOOL, default rltool), asked once per run; the
+# recipes' shell needs forward slashes.
+RLTOOL ?= rltool
+export RLTOOL
+CA65 ?= $(eval CA65 := $$(subst \,/,$$(shell $$(RLTOOL) build-tools path nes ca65)))$(CA65)
+LD65 ?= $(eval LD65 := $$(subst \,/,$$(shell $$(RLTOOL) build-tools path nes ld65)))$(LD65)
 REFERENCE_ROM ?= Doraemon (J) (PRG0) [!].nes
 REVISION_PROFILES := config/revision_profiles.json
 SOURCE_2_MANIFEST := config/source_reconstruction_2_0.json

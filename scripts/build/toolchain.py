@@ -6,6 +6,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
+import shlex
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -39,9 +41,28 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def kit_tool_path(spec: str) -> Path:
+    """A program Retrolarium Kit ships, as suite/tool (nes/ca65); RLTOOL
+    names the kit command (default rltool)."""
+    suite, _, tool = spec.partition("/")
+    # On Windows the command keeps its quoted paths (they may hold spaces).
+    kit = [part[1:-1] if len(part) > 1 and part[0] == part[-1] == '"' else part
+           for part in shlex.split(os.environ.get("RLTOOL", "rltool"), posix=os.name != "nt")]
+    try:
+        completed = subprocess.run([*kit, "build-tools", "path", suite, tool],
+                                   capture_output=True, text=True, check=False)
+    except OSError as exc:
+        raise ToolchainError(f"cannot run Retrolarium Kit for {spec}: {exc}") from exc
+    if completed.returncode:
+        raise ToolchainError(f"Retrolarium Kit has no {spec}: {completed.stderr.strip()}")
+    return Path(completed.stdout.strip().splitlines()[-1])
+
+
 def resolve_component_path(
     root: Path, component: dict[str, Any], override: Path | None = None
 ) -> Path:
+    if override is None and isinstance(component.get("kit_tool"), str):
+        return kit_tool_path(str(component["kit_tool"]))
     path = override if override is not None else Path(str(component["path"]))
     return path if path.is_absolute() else root / path
 

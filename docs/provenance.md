@@ -81,9 +81,10 @@ one closed path.
 size, and SHA-256. Ghidra facts are treated as classification evidence, never as
 authority over ROM bytes: the generator checks every emitted instruction byte.
 
-`config/toolchain.json` is the release toolchain contract. It pins the bundled
-ca65 and ld65 executables by upstream revision, size, version output, and
-SHA-256, and pins the external FCEUX automation executable by its source commit,
+`config/toolchain.json` is the release toolchain contract. It pins the ca65
+and ld65 executables Retrolarium Kit builds and ships (`CA65` and `LD65` default
+to `$(RLTOOL) build-tools path nes ca65` and `ld65`; the kit carries cc65's
+notice) by upstream revision, kit release, size, version output, and SHA-256, and pins the external FCEUX automation executable by its source commit,
 size, and SHA-256. `make verify-build-toolchain` verifies the exact `CA65` and
 `LD65` paths selected for the build before either executable runs; an override
 must therefore have the same pinned identity. `make verify-runtime-toolchain`
