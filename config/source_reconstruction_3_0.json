@@ -7,7 +7,7 @@
   },
   "release_kind": "retrolarium",
   "tag": "source-reconstruction-3.0",
-  "status": "development",
+  "status": "tag-ready",
   "predecessor": {
     "manifest": "config/source_reconstruction_2_0.json",
     "tag": "source-reconstruction-2.0",
@@ -18,16 +18,24 @@
     "through_inclusive": "release-commit",
     "commits": [
       {
-        "commit": "2c53aeaa86034b4115ba8414921856de5deea2ab",
-        "subject": "Retrolarium Studio descriptor"
-      },
-      {
-        "commit": "e5a20c8836703ea7f187b91599a16b79a0ef2133",
-        "subject": "Retrolarium descriptor: views come from the kit"
-      },
-      {
-        "commit": "5b2692bff45a8f2e2a00ae10570207c6c5d1c413",
+        "commit": "52368635fd4f4d03eb95374a1b01ccfd16053be2",
         "subject": "Source Reconstruction 3.0: editing moves to Retrolarium"
+      },
+      {
+        "commit": "e8eb2d5921042185d84a0494f808b55fc58a4910",
+        "subject": "Object names: Nobita is $1C, Suneo is $1D"
+      },
+      {
+        "commit": "577670b1200a5ab53f9084aef875a34cd7e57460",
+        "subject": "Build and lint with Retrolarium Kit"
+      },
+      {
+        "commit": "3df1a6f8a083046d3a6b4b085f0259267a93eb12",
+        "subject": "The game's names, profile and tables for Retrolarium"
+      },
+      {
+        "commit": "98d5d7e2f30975ec067eec711d3a4d1bccdf5ce1",
+        "subject": "README: a trademark notice"
       }
     ]
   },
@@ -68,7 +76,7 @@
     {
       "id": "retrolarium-descriptor",
       "kind": "tooling",
-      "summary": "doraemon.rlj names the game, its kit profile doraemon.v1, the revisions it builds and its asset split; the studio views come from the kit's profile."
+      "summary": "doraemon.rlj names the game, its profile doraemon.v1, the revisions it builds and its asset split; the studio views come from the kit."
     },
     {
       "id": "editing-moves-to-retrolarium",
@@ -106,6 +114,11 @@
       "summary": "config/names.json keeps the game's own names, in English, and the lists that carry them; Retrolarium Studio and Kit read them when a project opens and keep none themselves. Its guard list names what Retrolarium's repositories must never contain."
     },
     {
+      "id": "game-profile",
+      "kind": "tooling",
+      "summary": "config/game_profile.json is the game's Retrolarium profile: its revisions with their hashes and where each resource lies in each image. Retrolarium Kit reads it when it opens the repository and keeps no copy."
+    },
+    {
       "id": "profile-tables",
       "kind": "tooling",
       "summary": "config/profile_tables.json names by label the tables Retrolarium Kit reads from the image built from this source; the kit's tools/profile_tables.py turns it into profile offsets."
@@ -115,10 +128,10 @@
     "descriptor": "doraemon.rlj",
     "profile": "doraemon.v1",
     "kit": {
-      "version": null,
-      "commit": null
+      "version": "0.5.0",
+      "commit": "53622768fae796d01e38622199c2d35563333a70"
     },
-    "studio_min_version": null,
+    "studio_min_version": "0.1.0",
     "revisions": [
       "original",
       "rev_a"
