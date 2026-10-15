@@ -62,7 +62,7 @@ Bank0_CallShellGameOver:
     PHA
     LDA #$03
     JSR Bank0_SelectPrgBank
-    JSR World1_Audio_UpdateFrameWithExtraLifeCue
+    JSR Bank3_GameOverDispatch
     PLA
     JMP Bank0_SelectPrgBank
 
@@ -76,13 +76,13 @@ Bank0_EnterWorld1ToWorld2Transition:
     JSR Bank0_DisableNmiAndRendering
     LDA #$03
     JSR Bank0_SelectPrgBank
-    JMP Bank0_Label_8283
+    JMP Bank3_World1TransitionDispatch
 
 Bank0_EnterWorld2ToWorld3Transition:
     JSR Bank0_DisableNmiAndRendering
     LDA #$03
     JSR Bank0_SelectPrgBank
-    JMP Bank0_Label_8286
+    JMP Bank3_World2TransitionDispatch
 
 Bank0_Reset:
     LDX #$7F
@@ -260,8 +260,8 @@ Bank0_SelectPrgBank:
 Bank0_WriteMapper:
     LDA MapperSelection
     TAX
-    LDA a:$8261,X
-    STA a:$8261,X
+    LDA a:Bank0_MapperValueTable,X
+    STA a:Bank0_MapperValueTable,X
     NOP
     NOP
     NOP

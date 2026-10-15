@@ -10,13 +10,15 @@ World3_InitializeSpawnedEntity:
     TAY
     LDA a:World3_SpawnInitializerTable,Y
     STA $40
-    LDA a:$8F6D,Y
+    LDA a:Bank2_Label_8F6D,Y
     STA $41
     JSR World3_CallIndirect
     RTS
 
 World3_SpawnInitializerTable:
-    .byte $8C, $8F, $A3, $8F, $BF, $8F, $DB, $8F, $28, $90, $2E, $90, $2F, $90, $44, $90
+    .byte $8C
+Bank2_Label_8F6D:
+    .byte $8F, $A3, $8F, $BF, $8F, $DB, $8F, $28, $90, $2E, $90, $2F, $90, $44, $90
     .byte $71, $90, $AA, $90, $AB, $90, $AE, $90, $AF, $90, $B2, $90, $B2, $90, $B2, $90
 
 World3_InitTransientType00TurtleOrBattleFish:
@@ -217,7 +219,7 @@ Bank2_Label_90BD:
     LDY $42
     LDA #$1E
     STA a:World3EntityActivationTimer,X
-    LDA a:$8EC1
+    LDA a:Bank2_Label_8EC1
     STA a:World3EntityHitPoints,X
     INY
     CPY #$04
@@ -307,7 +309,7 @@ Bank2_Label_911F:
     STA a:World3EntityScriptRateCounter,Y
     LDA a:World3EntityBehaviorSelector,X
     STA a:World3EntityBehaviorSelector,Y
-    LDA a:$8EB9
+    LDA a:Bank2_Label_8EB9
     STA a:World3EntityHitPoints,Y
     LDX $3C
     SEC

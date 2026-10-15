@@ -51,7 +51,7 @@ Bank3_Label_9845:
     BCS Bank3_Label_9882
     LDA a:AudioCurrentEffectPriority
     BEQ Bank3_Label_986B
-    LDA a:$9784,X
+    LDA a:AudioEffect_RequestPriority,X
     CMP a:AudioCurrentEffectPriority
     BCC Bank3_Label_986B
     BNE Bank3_Label_9882
@@ -59,7 +59,7 @@ Bank3_Label_9845:
     BNE Bank3_Label_9882
 
 Bank3_Label_986B:
-    LDA a:$9784,X
+    LDA a:AudioEffect_RequestPriority,X
     STA a:AudioCurrentEffectPriority
     TAX
     LDA #$00
@@ -77,9 +77,9 @@ Bank3_Label_9882:
 Bank3_Label_9887:
     CPX #$68
     BCS Audio_StopCurrentEffect
-    LDA a:$979F,X
+    LDA a:AudioEffect_RtsDispatchTable+1,X
     PHA
-    LDA a:$979E,X
+    LDA a:AudioEffect_RtsDispatchTable,X
     PHA
     RTS
 
@@ -322,9 +322,9 @@ AudioEffect_UpdatePulse1Sequence:
     BEQ AudioEffect_AdvanceSequencePointer
     ASL A
     TAY
-    LDA a:$A30F,Y
+    LDA a:Bank3_Label_A30F,Y
     STA a:APU_PL1_LO,X
-    LDA a:$A310,Y
+    LDA a:Bank3_Label_A30F+1,Y
     ORA #$08
     STA a:APU_PL1_HI,X
 
@@ -463,9 +463,9 @@ Bank3_Label_9B44:
     STA a:APU_PL1_VOL,X
     LDA #$00
     STA a:APU_PL1_SWEEP,X
-    LDA a:$A30F,Y
+    LDA a:Bank3_Label_A30F,Y
     STA a:APU_PL1_LO,X
-    LDA a:$A310,Y
+    LDA a:Bank3_Label_A30F+1,Y
     ORA #$08
     STA a:APU_PL1_HI,X
 
@@ -563,7 +563,7 @@ Bank3_Label_9BFB:
     LDX #$8B
     JSR Apu_WritePulse2ControlSweep
     LDY a:AudioEffectWork1
-    LDX a:$9C19,Y
+    LDX a:Bank3_Label_9C19,Y
     LDA #$10
     JSR Apu_WritePulse2Timer
     LDA #$04
@@ -572,4 +572,5 @@ Bank3_Label_9BFB:
 Bank3_Label_9C15:
     DEC a:AudioEffectWork0
     RTS
+Bank3_Label_9C19:
     .byte $65, $87, $B4, $F0

@@ -367,7 +367,7 @@ World2_UpdatePlayerMovementAndFire:
     ROL A
     AND #$07
     TAY
-    LDA a:$97BD,Y
+    LDA a:Bank1_Label_97BD,Y
     BNE Bank1_Label_8E50
 
 Bank1_Label_8E4E:

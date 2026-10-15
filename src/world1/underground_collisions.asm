@@ -237,7 +237,7 @@ Bank0_Label_D2A4:
     LSR A
     LSR A
     TAY
-    LDA a:$D3A3,Y
+    LDA a:Bank0_Label_D3A2+1,Y
     CLC
     ADC World1PlayerY
     STA World1PlayerY
@@ -333,7 +333,7 @@ Bank0_Label_D364:
     LSR A
     LSR A
     TAY
-    LDA a:$D3A2,Y
+    LDA a:Bank0_Label_D3A2,Y
     CLC
     ADC World1PlayerY
     STA World1PlayerY
@@ -356,4 +356,6 @@ World1_CityReturnManholeXField:
 World1_CityReturnManholeYField:
     .byte $90, $B0, $D0, $70, $90, $92, $66, $70, $90, $3E, $68, $70, $90, $3A, $9A, $70
     .byte $90, $00, $5C, $30, $70, $DE, $00, $70, $70, $64, $34, $70, $90, $10, $26, $70
-    .byte $90, $FD, $FE, $FF, $00, $01, $02, $03
+    .byte $90
+Bank0_Label_D3A2:
+    .byte $FD, $FE, $FF, $00, $01, $02, $03

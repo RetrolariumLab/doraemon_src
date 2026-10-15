@@ -8,13 +8,15 @@ World3_UpdatePlayerState:
     TAX
     LDA a:World3_PlayerStateHandlerTable,X
     STA $40
-    LDA a:$A230,X
+    LDA a:Bank2_Label_A230,X
     STA $41
     JSR World3_CallIndirect
     RTS
 
 World3_PlayerStateHandlerTable:
-    .byte $39, $A2, $35, $A3, $3C, $A3, $E9, $A2, $3A, $A2
+    .byte $39
+Bank2_Label_A230:
+    .byte $A2, $35, $A3, $3C, $A3, $E9, $A2, $3A, $A2
 
 World3_PlayerState_Frozen:
     RTS

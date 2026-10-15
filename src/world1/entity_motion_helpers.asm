@@ -31,14 +31,16 @@ World1_UpdateOscillatingTransientEntity:
     ORA $01
     PHA
     TAY
-    LDA a:$8FE4,Y
+    LDA a:Bank0_Label_8FE4,Y
     JSR World1_MoveEntityXByA
     PLA
     TAY
-    LDA a:$8FF4,Y
+    LDA a:Bank0_Label_8FF4,Y
     JSR World1_MoveEntityYByA
     RTS
+Bank0_Label_8FE4:
     .byte $00, $00, $01, $01, $02, $01, $01, $00, $00, $00, $FF, $00, $FE, $FF, $FF, $00
+Bank0_Label_8FF4:
     .byte $02, $01, $01, $01, $00, $00, $FF, $00, $FE, $FF, $FF, $00, $00, $00, $01, $00
 
 World1_ReadEntityCenterCollisionProperty:
@@ -91,7 +93,7 @@ World1_ReadEntityCenterCollisionProperty:
     LDY $A2
     JSR World1_LookupMapTile
     LDX $A4
-    LDA a:$DADA,Y
+    LDA a:Bank0_Label_DADA,Y
     RTS
 
 World1_TrySpawnDirectionalEnemyProjectile:
@@ -166,14 +168,14 @@ Bank0_Label_90BE:
     JSR World1_FrameRandomByte
     AND #$0F
     TAX
-    LDA a:$9116,X
+    LDA a:Bank0_Label_9116,X
     STA a:World1EntityPrimaryBehavior+$0A,Y
     JSR World1_FrameRandomByte
     LSR A
     LSR A
     AND #$07
     TAX
-    LDA a:$9126,X
+    LDA a:Bank0_Label_9126,X
     STA a:World1EntityHealthOrVelocity+$0A,Y
     LDA #$00
     STA a:World1EntityDamageTimerOrAcceleration+$0A,Y
@@ -182,7 +184,9 @@ Bank0_Label_90BE:
     PLA
     TAX
     RTS
+Bank0_Label_9116:
     .byte $FC, $FD, $FE, $FF, $00, $01, $02, $03, $FF, $FE, $FF, $00, $01, $02, $04, $01
+Bank0_Label_9126:
     .byte $F9, $FA, $FB, $FC, $FC, $FD, $FD, $FE
 
 Bank0_Label_912E:

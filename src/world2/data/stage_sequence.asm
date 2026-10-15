@@ -3,7 +3,9 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World2_StageSequenceData:
-    .byte $32, $F9, $32, $01, $02, $03, $F2, $04, $04, $05, $F0, $06, $07
+    .byte $32
+Bank1_Label_BDE0:
+    .byte $F9, $32, $01, $02, $03, $F2, $04, $04, $05, $F0, $06, $07
 
 World2_CadEditorScreenRegion:
     .byte $06, $06, $08, $09, $F1, $0A, $0A, $0B, $F0, $0C, $FA, $0D, $0D, $09, $F1, $0E

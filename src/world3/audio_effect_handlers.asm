@@ -116,9 +116,9 @@ World3_AudioEffect_UpdatePulse1Sequence:
     BEQ World3_AudioEffect_AdvanceSequencePointer
     ASL A
     TAY
-    LDA a:$C92C,Y
+    LDA a:Bank2_Label_C92C,Y
     STA a:APU_PL1_LO,X
-    LDA a:$C92D,Y
+    LDA a:Bank2_Label_C92C+1,Y
     ORA #$08
     STA a:APU_PL1_HI,X
 
@@ -257,9 +257,9 @@ Bank2_Label_C1CE:
     STA a:APU_PL1_VOL,X
     LDA #$00
     STA a:APU_PL1_SWEEP,X
-    LDA a:$C92C,Y
+    LDA a:Bank2_Label_C92C,Y
     STA a:APU_PL1_LO,X
-    LDA a:$C92D,Y
+    LDA a:Bank2_Label_C92C+1,Y
     ORA #$08
     STA a:APU_PL1_HI,X
 
@@ -357,7 +357,7 @@ Bank2_Label_C285:
     LDX #$8B
     JSR World3_Apu_WritePulse2ControlSweep
     LDY a:AudioEffectWork1
-    LDX a:$C2A3,Y
+    LDX a:Bank2_Label_C2A3,Y
     LDA #$10
     JSR World3_Apu_WritePulse2Timer
     LDA #$04
@@ -366,6 +366,7 @@ Bank2_Label_C285:
 Bank2_Label_C29F:
     DEC a:AudioEffectWork0
     RTS
+Bank2_Label_C2A3:
     .byte $65, $87, $B4, $F0
 
 World3_AudioEffect_InitPulse2PitchSequenceBase:
@@ -392,9 +393,9 @@ World3_AudioEffect_UpdatePulse2PitchSequence:
     LDA #$DF
     LDX #$8C
     JSR World3_Apu_WritePulse2ControlSweep
-    LDA a:$C2EA,Y
+    LDA a:Bank2_Label_C2EA,Y
     TAX
-    LDA a:$C2EB,Y
+    LDA a:Bank2_Label_C2EA+1,Y
     ORA #$88
     JSR World3_Apu_WritePulse2Timer
     DEC a:AudioEffectWork0
@@ -406,6 +407,7 @@ Bank2_Label_C2E6:
 
 Bank2_Label_C2E7:
     JMP World3_Audio_StopCurrentEffect
+Bank2_Label_C2EA:
     .byte $00, $06, $00, $03, $00, $02, $40, $01, $C0, $00, $80, $00, $60, $00, $50, $00
     .byte $2B, $03, $35, $00, $2C, $03, $33, $06, $2B, $03, $35, $00, $2C, $03, $33, $06
     .byte $2B, $03, $35, $00, $2C, $03, $33, $06, $2B, $03, $35, $00, $2C, $03, $33, $06
@@ -499,11 +501,12 @@ World3_AudioEffect_UpdatePulse2VolumeFade:
     LDA #$04
     STA a:AudioEffectWork1
     LDY a:AudioEffectWork0
-    LDA a:$C3E7,Y
+    LDA a:Bank2_Label_C3E7,Y
     STA a:APU_PL2_VOL
     DEC a:AudioEffectWork0
     BPL Bank2_Label_C447
     JMP World3_Audio_StopCurrentEffect
+Bank2_Label_C3E7:
     .byte $00
 
 World3_AudioEffect_InitPulse1Alternator:
@@ -519,17 +522,21 @@ World3_AudioEffect_UpdatePulse1Alternator:
     EOR #$04
     STA a:AudioEffectWork0
     TAY
-    LDA a:$C42C,Y
+    LDA a:Bank2_Label_C42B+1,Y
     STA a:AudioEffectWork1
     LDA #$DF
-    LDX a:$C429,Y
+    LDX a:Bank2_Label_C429,Y
     JSR World3_Apu_WritePulse1ControlSweep
-    LDX a:$C42A,Y
-    LDA a:$C42B,Y
+    LDX a:Bank2_Label_C429+1,Y
+    LDA a:Bank2_Label_C42B,Y
     JMP World3_Apu_WritePulse1Timer
 
 Bank2_Label_C417:
     RTS
     .byte $A9, $08, $D0, $CE, $A9, $10, $D0, $CA, $4C, $F2, $C3, $4C, $1C, $C4, $4C, $F2
-    .byte $C3, $8F, $80, $FC, $08, $87, $00, $FC, $08, $8D, $80, $FC, $06, $85, $00, $FB
+    .byte $C3
+Bank2_Label_C429:
+    .byte $8F, $80
+Bank2_Label_C42B:
+    .byte $FC, $08, $87, $00, $FC, $08, $8D, $80, $FC, $06, $85, $00, $FB
     .byte $06, $8B, $80, $FC, $04, $83, $00, $FA, $04

@@ -129,7 +129,7 @@ Bank2_Label_9265:
     TAY
     LDA a:World3_EntityUpdateHandlerTable,Y
     STA $40
-    LDA a:$92E0,Y
+    LDA a:Bank2_Label_92E0,Y
     STA $41
     JSR World3_CallIndirect
 
@@ -195,7 +195,9 @@ Bank2_Label_92DE:
     RTS
 
 World3_EntityUpdateHandlerTable:
-    .byte $22, $93, $22, $93, $22, $93, $22, $93, $2D, $93, $AC, $93, $90, $95, $90, $95
+    .byte $22
+Bank2_Label_92E0:
+    .byte $93, $22, $93, $22, $93, $22, $93, $2D, $93, $AC, $93, $90, $95, $90, $95
     .byte $91, $95, $94, $95, $95, $95, $A4, $95, $A5, $95, $43, $96, $5B, $96, $8C, $96
     .byte $D6, $96, $D6, $96, $D6, $96, $D6, $96, $D6, $96, $D6, $96, $D6, $96, $D7, $96
     .byte $D8, $96, $59, $97, $13, $98, $E3, $98, $99, $99, $99, $99, $99, $99, $99, $99

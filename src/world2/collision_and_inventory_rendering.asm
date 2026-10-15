@@ -4,7 +4,7 @@
 
 World2_RenderSlot2VerticalAttackSegment:
     STA World2OamY
-    LDA a:$9326,X
+    LDA a:Bank1_Label_9326,X
     PHA
     AND #$0F
     CLC
@@ -26,7 +26,7 @@ Bank1_Label_9302:
 World2_PrepareSlot2HorizontalAttackSegment:
     LDA World2InventoryY+$02
     STA World2OamY
-    LDA a:$9326,X
+    LDA a:Bank1_Label_9326,X
     PHA
     AND #$0F
     CLC
@@ -44,6 +44,7 @@ Bank1_Label_9321:
     STA World2OamAttributes
     LDA World2MetaspriteOriginX
     RTS
+Bank1_Label_9326:
     .byte $00, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $00, $02, $03, $82, $00
     .byte $00, $00, $00, $00, $00, $04, $03, $84, $00, $00, $00, $00, $00, $05, $06, $07
     .byte $86, $85, $00, $00, $00, $00, $08, $07, $09, $87, $88, $00, $00, $00, $05, $06
@@ -245,13 +246,13 @@ Bank1_Label_9498:
 World2_EmitEffectTableSprite:
     LDA World2MetaspriteOriginY
     STA World2OamY
-    LDA a:$978D,X
+    LDA a:Bank1_Label_978D,X
     STA World2OamTile
     LDA World2MetaspriteAttributes
     STA World2OamAttributes
     LDA World2MetaspriteOriginX
     STA World2OamX
-    LDA a:$978D,X
+    LDA a:Bank1_Label_978D,X
     BEQ Bank1_Label_94B2
     JSR World2_EmitOamEntry
 
@@ -290,7 +291,7 @@ World2_RenderInventorySlot6:
     JSR World2_EmitInventorySlot6Sprite
 
 World2_EmitInventorySlot6Sprite:
-    LDA a:$97A5,X
+    LDA a:Bank1_Label_97A5,X
     STA World2OamAttributes
     JSR World2_EmitOamEntry
     LDA World2OamX
@@ -342,7 +343,7 @@ Bank1_Label_9536:
     BEQ Bank1_Label_956E
     JSR World2_FindFreeOamEntry
     BCS Bank1_Label_956E
-    LDA a:$956D,X
+    LDA a:Bank1_Label_956D,X
     STA World2MetaspriteAttributes
     LDA World2InventoryX,X
     STA World2MetaspriteOriginX
@@ -368,6 +369,7 @@ Bank1_Label_9560:
     LDA World2MetaspriteOriginY
     CLC
     ADC #$08
+Bank1_Label_956D = * + 1  ; overlapping entry $956D
     STA World2MetaspriteOriginY
 
 Bank1_Label_956E:

@@ -247,7 +247,7 @@ Bank2_Label_ACB4:
     LDA a:World3_EntityMetaspriteByType,Y
     STA a:World3EntityMetasprite,X
     LDY $42
-    LDA a:$8EBD
+    LDA a:Bank2_Label_8EBD
     STA a:World3EntityHitPoints,X
     LDA a:World3_GiantOctopusFormationFrameCounter,Y
     STA a:World3EntityFrameCounter,X

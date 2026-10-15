@@ -25,11 +25,11 @@ World2_UpdateJura:
     BNE Bank1_Label_9FC2
     LDA a:World2EnemyY,X
     CLC
-    ADC a:$A5EE,Y
+    ADC a:Bank1_Label_A5EE,Y
     STA a:World2EnemyY,X
     LDA a:World2EnemyX,X
     CLC
-    ADC a:$A5F2,Y
+    ADC a:Bank1_Label_A5F2,Y
     STA a:World2EnemyX,X
     INC a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyPhaseCounter,X
@@ -47,11 +47,11 @@ World2_UpdateGanganSpiral:
     LDY a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyY,X
     CLC
-    ADC a:$A5EE,Y
+    ADC a:Bank1_Label_A5EE,Y
     STA a:World2EnemyY,X
     LDA a:World2EnemyX,X
     CLC
-    ADC a:$A5F2,Y
+    ADC a:Bank1_Label_A5F2,Y
     STA a:World2EnemyX,X
     INC a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyPhaseCounter,X
@@ -100,8 +100,9 @@ World2_RenderJuraAndOroronProjectile:
     TAX
 
 Bank1_Label_A033:
-    LDA a:$A039,X
+    LDA a:Bank1_Label_A039,X
     JMP World2_RenderEnemyMetaspriteIndex
+Bank1_Label_A039:
     .byte $17, $18, $19, $18
 
 World2_OroronIwaStateNoOp:
@@ -198,10 +199,10 @@ World2_ApplyEnemyOrbitStep:
     LDY a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyY,X
     CLC
-    ADC a:$A5EE,Y
+    ADC a:Bank1_Label_A5EE,Y
     STA a:World2EnemyY,X
     LDA a:World2EnemyX,X
     CLC
-    ADC a:$A5F2,Y
+    ADC a:Bank1_Label_A5F2,Y
     STA a:World2EnemyX,X
     RTS

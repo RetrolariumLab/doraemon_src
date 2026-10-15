@@ -48,9 +48,9 @@ Bank1_Label_82C0:
     PHA
     LDA #$7F
     PHA
-    LDA a:$8872,X
+    LDA a:World2_ForwardScreenServiceRtsTable+1,X
     PHA
-    LDA a:$8871,X
+    LDA a:World2_ForwardScreenServiceRtsTable,X
     PHA
     RTS
 
@@ -78,9 +78,9 @@ Bank1_Label_82EB:
     PHA
     LDA #$7F
     PHA
-    LDA a:$8852,X
+    LDA a:World2_ReverseScreenServiceRtsTable+1,X
     PHA
-    LDA a:$8851,X
+    LDA a:World2_ReverseScreenServiceRtsTable,X
     PHA
     RTS
 
@@ -143,9 +143,9 @@ Bank1_Label_8353:
     PHA
 
 World2_DispatchFrameScreenService:
-    LDA a:$8832,X
+    LDA a:World2_FrameScreenServiceRtsTable+1,X
     PHA
-    LDA a:$8831,X
+    LDA a:World2_FrameScreenServiceRtsTable,X
     PHA
 
 World2_ScreenService_NoOp:
@@ -218,9 +218,9 @@ World2_SelectCompressedScreen:
     STA World2CurrentScreenId
     ASL A
     TAX
-    LDA a:$BEDE,X
+    LDA a:World2_ScreenPointerTable,X
     STA World2ScreenStreamPointer
-    LDA a:$BEDF,X
+    LDA a:World2_ScreenPointerTable+1,X
     STA World2ScreenStreamPointer+$01
     RTS
 
@@ -241,7 +241,7 @@ World2_AdvanceStreamedScreenRow:
     CMP #$0E
     BNE Bank1_Label_83FE
     LDY World2StageSequenceOffset
-    LDX a:$BDE0,Y
+    LDX a:Bank1_Label_BDE0,Y
     CPX #$F0
     BCC Bank1_Label_83FE
     CPX #$F7

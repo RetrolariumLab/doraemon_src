@@ -170,8 +170,8 @@ Bank1_Label_AE0E:
     SBC a:AudioWorkByte
     ASL A
     TAY
-    LDA a:$AE24,Y
+    LDA a:World2_MusicCommand_RtsDispatchTable+1,Y
     PHA
-    LDA a:$AE23,Y
+    LDA a:World2_MusicCommand_RtsDispatchTable,Y
     PHA
     RTS

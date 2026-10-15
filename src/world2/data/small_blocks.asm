@@ -3,7 +3,11 @@
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
 World2_MetatileTiles_00_3F:
-    .byte $00, $00, $00, $00, $01, $01, $01, $01, $01, $1C, $01, $01, $1D, $21, $01, $01
+    .byte $00
+Bank1_Label_BAA0:
+    .byte $00, $00
+Bank1_Label_BAA2:
+    .byte $00, $01, $01, $01, $01, $01, $1C, $01, $01, $1D, $21, $01, $01
     .byte $29, $2A, $01, $01, $13, $20, $20, $21, $20, $31, $21, $29, $17, $18, $00, $2A
     .byte $17, $C0, $1C, $1D, $19, $19, $1E, $1F, $19, $24, $24, $0C, $21, $08, $10, $11
     .byte $2B, $01, $08, $2B, $2B, $01, $01, $01, $1C, $1D, $0D, $0E, $1E, $25, $12, $01
@@ -21,7 +25,11 @@ World2_MetatileTiles_00_3F:
     .byte $C9, $CA, $D9, $DA, $0C, $10, $01, $10, $03, $01, $0C, $01, $44, $57, $00, $44
 
 World2_MetatileTiles_40_7F:
-    .byte $5E, $A4, $00, $1A, $00, $00, $00, $55, $56, $55, $5A, $4E, $00, $55, $55, $3E
+    .byte $5E
+Bank1_Label_BBA0:
+    .byte $A4, $00
+Bank1_Label_BBA2:
+    .byte $1A, $00, $00, $00, $55, $56, $55, $5A, $4E, $00, $55, $55, $3E
     .byte $16, $2B, $2A, $01, $2B, $01, $16, $01, $0A, $00, $01, $0B, $6F, $7F, $00, $00
     .byte $98, $A4, $00, $1A, $99, $7F, $00, $00, $14, $0C, $24, $0C, $00, $56, $00, $5A
     .byte $14, $0C, $0C, $01, $A8, $A9, $00, $1A, $B1, $19, $B1, $19, $3D, $3E, $81, $49
@@ -39,7 +47,11 @@ World2_MetatileTiles_40_7F:
     .byte $00, $5D, $00, $00, $51, $57, $5E, $52, $57, $57, $52, $57, $57, $5C, $51, $5B
 
 World2_MetatileTiles_80_BF:
-    .byte $5C, $00, $5B, $00, $60, $61, $00, $00, $61, $60, $00, $00, $A8, $A9, $00, $00
+    .byte $5C
+Bank1_Label_BCA0:
+    .byte $00, $5B
+Bank1_Label_BCA2:
+    .byte $00, $60, $61, $00, $00, $61, $60, $00, $00, $A8, $A9, $00, $00
     .byte $E4, $C1, $F4, $C1, $13, $19, $19, $24, $C1, $E5, $C1, $F5, $15, $0A, $25, $B4
     .byte $C1, $C1, $C1, $C1, $B9, $C1, $D4, $C1, $C1, $BA, $C1, $D5, $3D, $08, $4D, $4E
     .byte $00, $60, $00, $00, $01, $0F, $0F, $19, $00, $13, $09, $24, $2D, $2E, $2F, $32
@@ -57,7 +69,11 @@ World2_MetatileTiles_80_BF:
     .byte $8D, $8E, $9D, $9E, $8F, $00, $9F, $00, $AB, $AC, $BB, $BC, $AD, $AE, $BD, $BE
 
 World2_MetatileTiles_C0_CF:
-    .byte $AF, $00, $BF, $00, $00, $CC, $DB, $DC, $CD, $CE, $DD, $DE, $CF, $00, $DF, $00
+    .byte $AF
+Bank1_Label_BDA0:
+    .byte $00, $BF
+Bank1_Label_BDA2:
+    .byte $00, $00, $CC, $DB, $DC, $CD, $CE, $DD, $DE, $CF, $00, $DF, $00
     .byte $40, $9A, $C5, $CB, $43, $00, $5A, $41, $00, $00, $A6, $A7, $E0, $E3, $F0, $F3
     .byte $C9, $CA, $F6, $F7, $B8, $9A, $F8, $CB, $E0, $E1, $F0, $F1, $E2, $E3, $F2, $F3
     .byte $00, $E6, $A6, $A7, $E7, $E8, $A6, $A7, $00, $C6, $00, $D6, $C7, $C8, $D7, $D8

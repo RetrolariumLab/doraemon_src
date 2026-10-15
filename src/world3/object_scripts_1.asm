@@ -7,9 +7,9 @@ World3_RunEntityBehaviorScript:
     LDA a:World3EntityType,X
     ASL A
     TAY
-    LDA a:$D9AC,Y
+    LDA a:World3_EntityBehaviorPointerTable,Y
     STA $40
-    LDA a:$D9AD,Y
+    LDA a:World3_EntityBehaviorPointerTable+1,Y
     STA $41
     LDA a:World3EntityScriptRateCounter,X
     BEQ World3_ExecuteBehaviorCommand

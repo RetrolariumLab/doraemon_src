@@ -170,9 +170,9 @@ Bank0_Label_EB27:
     SBC a:AudioWorkByte
     ASL A
     TAY
-    LDA a:$EB3D,Y
+    LDA a:World1_MusicCommand_RtsDispatchTable+1,Y
     PHA
-    LDA a:$EB3C,Y
+    LDA a:World1_MusicCommand_RtsDispatchTable,Y
     PHA
     RTS
 

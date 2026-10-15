@@ -488,7 +488,7 @@ Bank0_Label_D725:
     JSR World1_FrameRandomByte
     AND #$07
     TAX
-    LDA a:$9126,X
+    LDA a:Bank0_Label_9126,X
     STA a:World1EntityHealthOrVelocity+$0A,Y
     LDA #$00
     STA a:World1EntityDamageTimerOrAcceleration+$0A,Y

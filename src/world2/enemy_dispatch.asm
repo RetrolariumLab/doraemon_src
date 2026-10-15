@@ -66,9 +66,9 @@ Bank1_Label_9946:
     PHA
     LDA #$64
     PHA
-    LDA a:$A571,X
+    LDA a:World2_EnemyUpdateHandlerRtsTable+1,X
     PHA
-    LDA a:$A570,X
+    LDA a:World2_EnemyUpdateHandlerRtsTable,X
     PHA
     LDX World2SavedEntitySlot
     LDA a:World2EnemyX,X

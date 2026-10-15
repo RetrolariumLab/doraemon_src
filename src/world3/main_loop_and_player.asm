@@ -24,16 +24,21 @@ Bank2_Label_82C3:
     LDA PlayerLives
     AND #$03
     TAX
-    LDA a:$82EA,X
+    LDA a:Bank2_Label_82EA,X
     STA World3CurrentRoom
-    LDA a:$82EE,X
+    LDA a:Bank2_Label_82EE,X
     STA World3PlayerX
-    LDA a:$82F2,X
+    LDA a:Bank2_Label_82F2,X
     STA World3PlayerY
     LDA #$02
     STA PlayerHealthCapacityIndex
     JMP Bank2_Label_8328
-    .byte $28, $1F, $0B, $09, $40, $08, $80, $C0, $40, $70, $A0, $A0
+Bank2_Label_82EA:
+    .byte $28, $1F, $0B, $09
+Bank2_Label_82EE:
+    .byte $40, $08, $80, $C0
+Bank2_Label_82F2:
+    .byte $40, $70, $A0, $A0
 
 Bank2_World3Main:
     LDA $3B
@@ -318,9 +323,9 @@ Bank2_Label_84CE:
     STA a:World3RoomObjectRoom,X
     LDA #$00
     STA a:World3RoomObjectState,X
-    LDA a:$8503,Y
+    LDA a:Bank2_Label_8503,Y
     STA a:World3RoomObjectX,X
-    LDA a:$8507,Y
+    LDA a:Bank2_Label_8507,Y
     STA a:World3RoomObjectY,X
     INY
 
@@ -339,7 +344,10 @@ Bank2_Label_84F7:
 
 Bank2_Label_8502:
     RTS
-    .byte $58, $58, $98, $98, $60, $A0, $60, $A0
+Bank2_Label_8503:
+    .byte $58, $58, $98, $98
+Bank2_Label_8507:
+    .byte $60, $A0, $60, $A0
 
 World3_InitializePlayerRoomAndPosition:
     LDA World3CurrentRoom
@@ -623,7 +631,7 @@ Bank2_Label_86D6:
     LDA $47
     AND #$0F
     TAX
-    LDA a:$8723,X
+    LDA a:Bank2_Label_8723,X
     TAX
     JSR World3_SetFlashPaletteColors
     LDA #$04
@@ -655,6 +663,7 @@ World3_SetFlashPaletteColors:
     LDY #$04
     JSR World3_QueuePalette
     RTS
+Bank2_Label_8723:
     .byte $30, $25, $30, $30, $30, $30, $30, $30, $30, $30, $30, $30, $26, $30, $30, $27
 
 World3_DefeatActiveCombatEntities:

@@ -192,7 +192,7 @@ World1_UpdateGozuraCity:
     LDA a:World1EntitySecondaryBehavior,X
     LSR A
     TAY
-    LDA a:$DDBB,Y
+    LDA a:Bank0_Label_DDBB,Y
     JSR World1_MoveEntityYByA
     LDA a:World1EntityPrimaryBehavior,X
     BEQ Bank0_Label_DD40
@@ -229,9 +229,9 @@ Bank0_Label_DD40:
     STA a:World1EntityPrimaryBehavior,X
     AND #$07
     TAY
-    LDA a:$DDC3,Y
+    LDA a:Bank0_Label_DDC3,Y
     STA $A0
-    LDA a:$DDCB,Y
+    LDA a:Bank0_Label_DDCB,Y
     STA $A2
     JSR World1_TestEntityMapCollisionAtOffset
     JSR World1_ReadMapTileAndStepRight
@@ -261,7 +261,11 @@ Bank0_Label_DDA5:
 
 Bank0_Label_DDBA:
     RTS
-    .byte $FD, $FE, $FF, $00, $00, $01, $02, $03, $00, $10, $10, $10, $00, $F0, $F0, $F0
+Bank0_Label_DDBB:
+    .byte $FD, $FE, $FF, $00, $00, $01, $02, $03
+Bank0_Label_DDC3:
+    .byte $00, $10, $10, $10, $00, $F0, $F0, $F0
+Bank0_Label_DDCB:
     .byte $1C, $1C, $0C, $FC, $FC, $FC, $0C, $1C
 
 World1_UpdateGozuraUnderground:

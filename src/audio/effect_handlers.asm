@@ -26,9 +26,9 @@ AudioEffect_UpdatePulse2PitchSequence:
     LDA #$DF
     LDX #$8C
     JSR Apu_WritePulse2ControlSweep
-    LDA a:$9C60,Y
+    LDA a:Bank3_Label_9C60,Y
     TAX
-    LDA a:$9C61,Y
+    LDA a:Bank3_Label_9C60+1,Y
     ORA #$88
     JSR Apu_WritePulse2Timer
     DEC a:AudioEffectWork0
@@ -40,6 +40,7 @@ Bank3_Label_9C5C:
 
 Bank3_Label_9C5D:
     JMP Audio_StopCurrentEffect
+Bank3_Label_9C60:
     .byte $00, $06, $00, $03, $00, $02, $40, $01, $C0, $00, $80, $00, $60, $00, $50, $00
     .byte $2B, $03, $35, $00, $2C, $03, $33, $06, $2B, $03, $35, $00, $2C, $03, $33, $06
     .byte $2B, $03, $35, $00, $2C, $03, $33, $06, $2B, $03, $35, $00, $2C, $03, $33, $06
@@ -133,7 +134,7 @@ AudioEffect_UpdatePulse2VolumeFade:
     LDA #$04
     STA a:AudioEffectWork1
     LDY a:AudioEffectWork0
-    LDA a:$9D5E,Y
+    LDA a:Bank3_Label_9D5E,Y
     STA a:APU_PL2_VOL
     DEC a:AudioEffectWork0
     BPL Bank3_Label_9D5D
@@ -141,6 +142,7 @@ AudioEffect_UpdatePulse2VolumeFade:
 
 Bank3_Label_9D5D:
     RTS
+Bank3_Label_9D5E:
     .byte $00
 
 AudioEffect_InitPulse1Alternator:
@@ -158,13 +160,13 @@ AudioEffect_UpdatePulse1Alternator:
     EOR #$04
     STA a:AudioEffectWork0
     TAY
-    LDA a:$9E0F,Y
+    LDA a:Bank3_Label_9E0E+1,Y
     STA a:AudioEffectWork1
     LDA #$DF
-    LDX a:$9E0C,Y
+    LDX a:Bank3_Label_9E0C,Y
     JSR Apu_WritePulse1ControlSweep
-    LDX a:$9E0D,Y
-    LDA a:$9E0E,Y
+    LDX a:Bank3_Label_9E0C+1,Y
+    LDA a:Bank3_Label_9E0E,Y
     JMP Apu_WritePulse1Timer
 
 Bank3_Label_9D8E:
@@ -242,7 +244,10 @@ AudioEffect_InitPulsePairNoiseTail:
     JSR Apu_WritePulse1Timer
     LDA #$0A
     JMP Apu_WritePulse2Timer
-    .byte $8F, $80, $FC, $08, $87, $00, $FC, $08, $8D, $80, $FC, $06, $85, $00, $FB, $06
+Bank3_Label_9E0C:
+    .byte $8F, $80
+Bank3_Label_9E0E:
+    .byte $FC, $08, $87, $00, $FC, $08, $8D, $80, $FC, $06, $85, $00, $FB, $06
     .byte $8B, $80, $FC, $04, $83, $00, $FA, $04
 
 Apu_WritePulse1ControlSweep:

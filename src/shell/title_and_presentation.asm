@@ -261,17 +261,17 @@ Bank3_Label_8426:
     LDA $3B
     ASL A
     TAX
-    LDA a:$84C0,X
+    LDA a:Bank3_Label_84C0,X
     STA $3E
-    LDA a:$84C1,X
+    LDA a:Bank3_Label_84C0+1,X
     STA $3F
     LDA #$00
     STA $40
     STA $41
     STA $42
-    LDA a:$84CC,X
+    LDA a:Bank3_Label_84CC,X
     STA $44
-    LDA a:$84CD,X
+    LDA a:Bank3_Label_84CC+1,X
     STA $45
 
 Bank3_Label_845E:
@@ -291,9 +291,9 @@ Bank3_Label_8478:
     LDA $3B
     ASL A
     TAX
-    LDA a:$84C6,X
+    LDA a:Bank3_Label_84C6,X
     STA $00
-    LDA a:$84C7,X
+    LDA a:Bank3_Label_84C6+1,X
     STA $01
     JSR Shell_CopyPaletteToStaging
     LDX #$00
@@ -330,7 +330,12 @@ Bank3_Label_84B7:
 
 Bank3_Label_84BD:
     JMP Bank3_EnterWorld3Demo
-    .byte $BC, $B1, $BC, $B5, $BC, $B9, $50, $86, $70, $86, $90, $86, $D0, $86, $29, $87
+Bank3_Label_84C0:
+    .byte $BC, $B1, $BC, $B5, $BC, $B9
+Bank3_Label_84C6:
+    .byte $50, $86, $70, $86, $90, $86
+Bank3_Label_84CC:
+    .byte $D0, $86, $29, $87
     .byte $62, $87
 
 Shell_PollTitleInputAndChapterSelect:
@@ -493,7 +498,7 @@ Shell_AdvanceAttractIntroSprites:
     LDY #$00
 
 Bank3_Label_85D1:
-    LDA a:$861C,X
+    LDA a:Bank3_Label_861C,X
     STA a:$0210,Y
     INX
     INY
@@ -542,6 +547,7 @@ Bank3_Label_85FB:
 
 Bank3_Label_861B:
     RTS
+Bank3_Label_861C:
     .byte $01, $0F, $17, $20, $01, $01, $07, $10, $01, $01, $01, $00, $01, $01, $01, $01
     .byte $01, $01, $01, $01, $01, $0F, $27, $30, $01, $15, $20, $26, $01, $15, $21, $29
     .byte $01, $15, $26, $0F, $01, $0F, $27, $30, $01, $15, $20, $36, $01, $15, $21, $30
@@ -585,9 +591,9 @@ Shell_ShowStatusScreen:
     LDA $28
     ASL A
     TAY
-    LDA a:$8839,Y
+    LDA a:Bank3_Label_8839,Y
     STA $00
-    LDA a:$883A,Y
+    LDA a:Bank3_Label_8839+1,Y
     STA $01
     JSR Shell_UploadPpuCommandStream
     LDA #$03
@@ -629,6 +635,7 @@ Bank3_Label_882B:
     CPX #$07
     BNE Bank3_Label_882B
     RTS
+Bank3_Label_8839:
     .byte $63, $88, $F0, $88, $8A, $89, $3F, $00, $20, $02, $15, $21, $30, $02, $0F, $26
     .byte $30, $02, $16, $30, $36, $02, $16, $30, $36, $02, $15, $21, $30, $02, $0F, $26
     .byte $30, $02, $16, $30, $36, $02, $16, $30, $36, $00, $20, $AC, $07, $57, $C7, $B7
@@ -649,7 +656,9 @@ Bank3_Label_882B:
     .byte $5C, $5D, $22, $4C, $08, $2C, $68, $FF, $6A, $6B, $FF, $6C, $6D, $22, $C9, $05
     .byte $CA, $B8, $C7, $B7, $CE, $23, $0A, $04, $BF, $CE, $CF, $CB, $23, $CB, $02, $55
     .byte $55, $23, $D2, $04, $00, $00, $00, $00, $23, $DB, $02, $55, $55, $23, $E3, $02
-    .byte $44, $55, $23, $EA, $04, $55, $55, $55, $55, $23, $F2, $04, $55, $55, $55, $55
+    .byte $44, $55, $23, $EA, $04, $55, $55, $55, $55, $23, $F2, $04, $55, $55, $55
+Bank3_Label_8988:
+    .byte $55
     .byte $00, $20, $AC, $07, $57, $C7, $B7, $BF, $58, $FF, $33, $21, $28, $0F, $A0, $A1
     .byte $A2, $FF, $FF, $FF, $A3, $A4, $A5, $FF, $FF, $FF, $DC, $DD, $DE, $21, $48, $0F
     .byte $B0, $B1, $B2, $FF, $FF, $FF, $B3, $B4, $B5, $FF, $FF, $FF, $EC, $ED, $EE, $21

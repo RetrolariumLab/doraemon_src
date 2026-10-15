@@ -23,8 +23,8 @@ World3_Audio_QueueEffectWithPriority:
     BMI Bank2_Label_BEA9
     STY $D2
     TAY
-    LDA a:$BE0E,X
-    CMP a:$BE0E,Y
+    LDA a:World3_AudioEffect_RequestPriority,X
+    CMP a:World3_AudioEffect_RequestPriority,Y
     BCC Bank2_Label_BEAF
     TYA
     LDY $D2
@@ -72,7 +72,7 @@ Bank2_Label_BECF:
     BCS Bank2_Label_BF0C
     LDA a:AudioCurrentEffectPriority
     BEQ Bank2_Label_BEF5
-    LDA a:$BE0E,X
+    LDA a:World3_AudioEffect_RequestPriority,X
     CMP a:AudioCurrentEffectPriority
     BCC Bank2_Label_BEF5
     BNE Bank2_Label_BF0C
@@ -80,7 +80,7 @@ Bank2_Label_BECF:
     BNE Bank2_Label_BF0C
 
 Bank2_Label_BEF5:
-    LDA a:$BE0E,X
+    LDA a:World3_AudioEffect_RequestPriority,X
     STA a:AudioCurrentEffectPriority
     TAX
     LDA #$00
@@ -98,9 +98,9 @@ Bank2_Label_BF0C:
 Bank2_Label_BF11:
     CPX #$68
     BCS World3_Audio_StopCurrentEffect
-    LDA a:$BE29,X
+    LDA a:World3_AudioEffect_RtsDispatchTable+1,X
     PHA
-    LDA a:$BE28,X
+    LDA a:World3_AudioEffect_RtsDispatchTable,X
     PHA
     RTS
 

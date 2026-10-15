@@ -103,12 +103,15 @@ World2_RenderGangan:
     LSR A
     LSR A
     TAX
-    LDA a:$9E02,X
+    LDA a:Bank1_Label_9E02,X
     STA World2MetaspriteFlipMask
-    LDA a:$9DFE,X
+    LDA a:Bank1_Label_9DFE,X
     LDX World2SavedEntitySlot
     JMP World2_RenderEnemyMetaspriteIndex
-    .byte $11, $11, $12, $12, $00, $01, $01, $00
+Bank1_Label_9DFE:
+    .byte $11, $11, $12, $12
+Bank1_Label_9E02:
+    .byte $00, $01, $01, $00
 
 World2_UpdateBuran:
     LDA a:World2EnemyPhaseCounter,X
@@ -231,7 +234,7 @@ World2_UpdateKyon:
     LDY a:World2EnemyPhaseCounter,X
     LDA $67
     CLC
-    ADC a:$A5DE,Y
+    ADC a:Bank1_Label_A5DE,Y
     STA $67
     JMP Bank1_Label_9EDC
 
@@ -239,7 +242,7 @@ Bank1_Label_9ED1:
     LDY a:World2EnemyPhaseCounter,X
     LDA $68
     CLC
-    ADC a:$A5DE,Y
+    ADC a:Bank1_Label_A5DE,Y
     STA $68
 
 Bank1_Label_9EDC:
@@ -305,7 +308,7 @@ Bank1_Label_9F58:
     LDY a:World2EnemyPhaseCounter,X
     LDA a:World2EnemyY,X
     CLC
-    ADC a:$A5DA,Y
+    ADC a:Bank1_Label_A5DA,Y
     STA a:World2EnemyY,X
     CMP #$F0
     BCS Bank1_Label_9F81

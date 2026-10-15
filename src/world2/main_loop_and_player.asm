@@ -330,7 +330,8 @@ World2_ResetAudioHardware:
 World2_LoadInitialPlayerHealth:
     STX World2SavedEntitySlot
     LDX PlayerHealthCapacityIndex
-    LDA a:$8AD8,X
+    LDA a:Bank1_Label_8AD8,X
+Bank1_Label_8AD8 = * + 1  ; overlapping entry $8AD8
     LDX World2SavedEntitySlot
     RTS
     .byte $18, $14, $10, $0C, $08
@@ -406,7 +407,7 @@ World2_UpdateStageMusicCountdown:
 
 Bank1_Label_8B58:
     LDX World2StageIndex
-    LDA a:$8BA2,X
+    LDA a:Bank1_Label_8BA2,X
     STA a:AudioMusicState
     LDA #$00
     STA World2SequenceTimer
@@ -452,6 +453,7 @@ Bank1_Label_8B92:
     STA ExtraLifeSoundCounter
     LDA #$0D
     JMP World2_Audio_QueueEffect
+Bank1_Label_8BA2:
     .byte $01, $02, $03, $01
 
 World2_InitialBackgroundPaletteIds:

@@ -227,7 +227,7 @@ Bank1_Label_A236:
     BCC Bank1_Label_A26C
     LDA a:World2EnemyProjectileX,X
     CLC
-    ADC a:$A2BE,Y
+    ADC a:Bank1_Label_A2BE,Y
     BEQ Bank1_Label_A29F
     STA a:World2EnemyProjectileX,X
     LDA a:World2EnemyProjectileStepAccumulator,X
@@ -242,7 +242,7 @@ Bank1_Label_A257:
     PHA
     LDA a:World2EnemyProjectileY,X
     CLC
-    ADC a:$A2C2,Y
+    ADC a:Bank1_Label_A2C2,Y
     STA a:World2EnemyProjectileY,X
     PLA
 
@@ -255,7 +255,7 @@ Bank1_Label_A269:
 Bank1_Label_A26C:
     LDA a:World2EnemyProjectileY,X
     CLC
-    ADC a:$A2C6,Y
+    ADC a:Bank1_Label_A2C6,Y
     STA a:World2EnemyProjectileY,X
     LDA a:World2EnemyProjectileStepAccumulator,X
     CLC
@@ -269,7 +269,7 @@ Bank1_Label_A284:
     PHA
     LDA a:World2EnemyProjectileX,X
     CLC
-    ADC a:$A2C2,Y
+    ADC a:Bank1_Label_A2C2,Y
     STA a:World2EnemyProjectileX,X
     BEQ Bank1_Label_A29E
     PLA
@@ -306,7 +306,10 @@ Bank1_Label_A2BE:
     DEX
     BPL Bank1_Label_A29B
     RTS
-    .byte $01, $FF, $01, $FF, $01, $01, $FF, $FF
+Bank1_Label_A2C2:
+    .byte $01, $FF, $01, $FF
+Bank1_Label_A2C6:
+    .byte $01, $01, $FF, $FF
 
 World2_RenderEnemyProjectiles:
     LDX #$05
@@ -393,9 +396,9 @@ Bank1_Label_A330:
     PHA
     LDA #$54
     PHA
-    LDA a:$A549,X
+    LDA a:World2_EnemyRenderHandlerRtsTable+1,X
     PHA
-    LDA a:$A548,X
+    LDA a:World2_EnemyRenderHandlerRtsTable,X
     PHA
     LDX World2SavedEntitySlot
     RTS
@@ -541,10 +544,22 @@ World2_EnemyUpdateHandlerRtsTable:
 
 World2_EnemyScoreRewardCodeByState:
     .byte $A0, $51, $52, $53, $41, $31, $55, $43, $45, $32, $45, $45, $31, $41, $41, $31
-    .byte $00, $21, $21, $21, $45, $01, $02, $03, $04, $05, $06, $07, $06, $05, $04, $03
+    .byte $00, $21, $21, $21, $45
+Bank1_Label_A5AE:
+    .byte $01, $02, $03, $04, $05, $06, $07, $06, $05, $04, $03
     .byte $02, $01, $00, $00, $00, $FF, $FE, $FD, $FC, $FB, $FA, $F9, $FA, $FB, $FC, $FD
-    .byte $FE, $FF, $00, $00, $00, $02, $04, $06, $08, $06, $04, $02, $00, $FE, $FC, $FA
-    .byte $F8, $FA, $FC, $FE, $00, $01, $01, $02, $02, $03, $03, $04, $04, $FF, $FF, $FE
-    .byte $FE, $FD, $FD, $FC, $FC, $FD, $FE, $FF, $00, $01, $02, $03, $04, $03, $02, $01
+    .byte $FE, $FF, $00, $00, $00
+Bank1_Label_A5CE:
+    .byte $02, $04, $06, $08, $06, $04, $02, $00, $FE, $FC, $FA
+    .byte $F8
+Bank1_Label_A5DA:
+    .byte $FA, $FC, $FE, $00
+Bank1_Label_A5DE:
+    .byte $01, $01, $02, $02, $03, $03, $04, $04, $FF, $FF, $FE
+    .byte $FE, $FD, $FD, $FC, $FC
+Bank1_Label_A5EE:
+    .byte $FD, $FE, $FF, $00
+Bank1_Label_A5F2:
+    .byte $01, $02, $03, $04, $03, $02, $01
     .byte $00, $FF, $FE, $FD, $FC, $FD, $FE, $FF, $00, $F8, $FA, $FB, $FC, $FD, $FE, $FF
     .byte $00, $00, $01, $02, $03, $04, $05, $06, $08

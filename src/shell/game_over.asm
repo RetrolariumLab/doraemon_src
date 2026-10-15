@@ -14,7 +14,7 @@ Bank3_ShowGameOver:
     LDX #$F7
 
 Bank3_Label_8A2E:
-    LDA a:$8988,X
+    LDA a:Bank3_Label_8988,X
     STA a:PPU_DATA
     INX
     BNE Bank3_Label_8A2E
