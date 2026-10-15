@@ -1,5 +1,10 @@
 # World 2 Runtime
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 This chapter joins the player, projectile, sprite, screen, stage, and enemy contracts that cooperate in the World 2 gameplay loop. Machine-readable routine ranges and state relationships remain authoritative in `config/reconstruction/world2/` and `config/authoring/world2/`.
 
 ## Contents

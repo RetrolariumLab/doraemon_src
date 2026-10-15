@@ -1,5 +1,10 @@
 # World 1 Runtime
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 This chapter joins the camera, player, entity, enemy, frame, and random-number contracts that cooperate in the World 1 gameplay loop. Machine-readable addresses, call graphs, byte signatures, and RAM ownership remain authoritative in `config/reconstruction/world1/`.
 
 ## Contents

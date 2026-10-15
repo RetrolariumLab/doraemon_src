@@ -1,5 +1,10 @@
 # Shell text and presentation data
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 The fixed presentation text used by the original Japanese PRG0 image resides
 in bank 3. `config/authoring/text/shell_text.json` pins the consumers, exact ranges, checksums,
 and the lossless representation in `data/shell/text.json`.

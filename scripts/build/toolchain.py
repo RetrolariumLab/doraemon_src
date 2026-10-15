@@ -115,7 +115,6 @@ def main() -> int:
     parser.add_argument("--component", action="append", required=True)
     parser.add_argument("--ca65", type=Path)
     parser.add_argument("--ld65", type=Path)
-    parser.add_argument("--fceux", type=Path)
     args = parser.parse_args()
     manifest_path = args.manifest
     if not manifest_path.is_absolute():
@@ -126,7 +125,6 @@ def main() -> int:
         overrides = {
             "ca65": args.ca65,
             "ld65": args.ld65,
-            "fceux": args.fceux,
         }
         for identifier in args.component:
             if identifier not in components:

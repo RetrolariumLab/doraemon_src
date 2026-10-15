@@ -1,5 +1,10 @@
 # Bank 3 shell runtime
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 PRG Bank 3 owns the title/attract shell, game-over and ending presentation,
 the two chapter-completion interstitials, and common shell PPU/OAM helpers.
 `config/reconstruction/common/shell_runtime.json` pins the sixteen formerly neutral routine entries

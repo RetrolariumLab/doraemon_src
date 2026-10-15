@@ -1,9 +1,9 @@
 # Provenance
 
-Label lineage is recorded only in
-`config/reconstruction/label_renames.json`. The registry compares inherited
-global and memory symbols with the accepted preservation predecessor; naming
-policy and evidence thresholds are described in [Naming](naming.md).
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
 
 ## Exact local reference
 

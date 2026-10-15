@@ -1,5 +1,10 @@
 # RAM Fields
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 This registry lists high-confidence shared RAM roles. Addresses are CPU RAM
 addresses; array symbols may be indexed by channel, digit, or sprite slot at the
 use site. Chapter-local zero-page overlays remain numeric until their lifetime

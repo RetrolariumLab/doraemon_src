@@ -1,5 +1,10 @@
 # Common reset, NMI, and bank gateways
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 All four PRG banks contain the same 473 bytes at `$8098-$8270`. This is the
 interrupt-safe runtime copied into every GNROM window: reset, vblank waits,
 rendering transitions, OAM clearing, NMI/controller polling, mapper selection,

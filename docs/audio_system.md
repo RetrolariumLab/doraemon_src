@@ -1,5 +1,10 @@
 # Audio System
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 This chapter joins the music-driver ABI, effect-request ABI, and APU arbitration rules because they share one frame service and hardware ownership boundary. `config/authoring/audio/` remains the machine-readable authority; music and effects are edited in Retrolarium (see `docs/retrolarium.md`).
 
 ## Contents

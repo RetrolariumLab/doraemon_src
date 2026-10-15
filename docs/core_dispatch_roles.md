@@ -1,5 +1,10 @@
 # Core indirect dispatch roles
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 Two non-audio indirect domains previously had structurally known tables but
 address-only target names. `config/reconstruction/common/core_dispatch_roles.json` joins every target
 to a conservative role and evidence-backed symbol.

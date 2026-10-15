@@ -1,5 +1,10 @@
 # World 2 Data and Rendering Formats
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 This chapter joins the inventory, compressed-screen, stage-sequence, branch, metatile, metasprite, and palette formats used by World 2. The `config/authoring/world2/` manifests and checked-in `data/world2/` documents remain the canonical schemas and editable representations.
 
 ## Contents

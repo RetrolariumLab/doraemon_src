@@ -39,4 +39,3 @@ __pycache__/
 
 # Payloads generated locally from the reference ROM
 /assets/generated/
-/data/audio/music_streams.json

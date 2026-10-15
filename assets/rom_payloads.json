@@ -97,11 +97,5 @@
         "original": 105513
       }
     }
-  ],
-  "music_document": {
-    "path": "data/audio/music_streams.json",
-    "decoder": "scripts/validation/audio/audio_streams.py",
-    "layout": "config/authoring/audio/audio_music.json",
-    "image": "original"
-  }
+  ]
 }
