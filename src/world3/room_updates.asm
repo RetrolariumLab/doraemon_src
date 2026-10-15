@@ -176,14 +176,14 @@ World3_UpdateRoomAttributeByte:
     LDY $00
     LDA ($02),Y
     TAX
-    LDA a:$DDF2,X
+    LDA a:World3_BlockAttributes,X
     ASL A
     ASL A
     STA $3C
     DEY
     LDA ($02),Y
     TAX
-    LDA a:$DDF2,X
+    LDA a:World3_BlockAttributes,X
     ORA $3C
     STA $3C
     ASL A

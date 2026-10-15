@@ -8,26 +8,123 @@ Shell_NmiFrameServices:
     TAX
     CPX #$06
     BCS Bank3_Label_9002
-    LDA a:$9004,X
+    LDA a:Bank3_Label_9003+1,X
     PHA
-    LDA a:$9003,X
+    LDA a:Bank3_Label_9003,X
     PHA
 
 Bank3_Label_9002:
     RTS
-    .byte $08, $90, $66, $90, $89, $90, $A5, $14, $F0, $4E, $A5, $19, $8D, $00, $20, $A5
-    .byte $1A, $8D, $01, $20, $A5, $1B, $8D, $05, $20, $A5, $1C, $8D, $05, $20, $A5, $0D
-    .byte $F0, $36, $A4, $0E, $20, $5C, $90, $A5, $0F, $0A, $2A, $29, $01, $05, $19, $8D
-    .byte $00, $20, $A5, $0F, $0A, $8D, $05, $20, $A5, $1C, $8D, $05, $20, $A4, $10, $20
-    .byte $5C, $90, $A5, $11, $0A, $2A, $29, $01, $05, $19, $8D, $00, $20, $A5, $11, $0A
-    .byte $8D, $05, $20, $A5, $1C, $8D, $05, $20, $60, $A2, $15, $CA, $D0, $FD, $EA, $EA
-    .byte $88, $D0, $F6, $60, $20, $03, $91, $20, $2C, $91, $20, $D7, $90, $A5, $19, $29
-    .byte $FC, $8D, $00, $20, $A5, $1A, $8D, $01, $20, $A5, $1B, $8D, $05, $20, $A5, $1C
-    .byte $8D, $05, $20, $20, $A1, $91, $60, $20, $AF, $91, $20, $D7, $90, $A5, $1B, $8D
-    .byte $05, $20, $A5, $1C, $8D, $05, $20, $A5, $1A, $8D, $01, $20, $A5, $42, $F0, $17
-    .byte $A5, $19, $29, $E0, $8D, $00, $20, $2C, $02, $20, $70, $FB, $2C, $02, $20, $50
-    .byte $FB, $A2, $00, $EA, $CA, $D0, $FC, $A5, $19, $29, $FC, $8D, $00, $20, $4C, $9D
-    .byte $91
+Bank3_Label_9003:
+    .addr Bank3_Label_9009-1
+    .addr Bank3_Label_9067-1
+    .addr Bank3_Label_908A-1
+
+Bank3_Label_9009:
+    LDA NmiOamDmaRequest
+    BEQ Bank3_Label_905B
+    LDA PpuCtrlShadow
+    STA a:PPU_CTRL
+    LDA PpuMaskShadow
+    STA a:PPU_MASK
+    LDA PpuScrollXShadow
+    STA a:PPU_SCROLL
+    LDA PpuScrollYShadow
+    STA a:PPU_SCROLL
+    LDA $0D
+    BEQ Bank3_Label_905B
+    LDY $0E
+    JSR Bank3_Label_905C
+    LDA $0F
+    ASL A
+    ROL A
+    AND #$01
+    ORA PpuCtrlShadow
+    STA a:PPU_CTRL
+    LDA $0F
+    ASL A
+    STA a:PPU_SCROLL
+    LDA PpuScrollYShadow
+    STA a:PPU_SCROLL
+    LDY $10
+    JSR Bank3_Label_905C
+    LDA $11
+    ASL A
+    ROL A
+    AND #$01
+    ORA PpuCtrlShadow
+    STA a:PPU_CTRL
+    LDA $11
+    ASL A
+    STA a:PPU_SCROLL
+    LDA PpuScrollYShadow
+    STA a:PPU_SCROLL
+
+Bank3_Label_905B:
+    RTS
+
+Bank3_Label_905C:
+    LDX #$15
+
+Bank3_Label_905E:
+    DEX
+    BNE Bank3_Label_905E
+    NOP
+    NOP
+    DEY
+    BNE Bank3_Label_905C
+    RTS
+
+Bank3_Label_9067:
+    JSR Bank3_Label_9103
+    JSR Bank3_Label_912C
+    JSR Bank3_Label_90D7
+    LDA PpuCtrlShadow
+    AND #$FC
+    STA a:PPU_CTRL
+    LDA PpuMaskShadow
+    STA a:PPU_MASK
+    LDA PpuScrollXShadow
+    STA a:PPU_SCROLL
+    LDA PpuScrollYShadow
+    STA a:PPU_SCROLL
+    JSR Shell_HideAllOamEntries
+    RTS
+
+Bank3_Label_908A:
+    JSR Bank3_Label_91AF
+    JSR Bank3_Label_90D7
+    LDA PpuScrollXShadow
+    STA a:PPU_SCROLL
+    LDA PpuScrollYShadow
+    STA a:PPU_SCROLL
+    LDA PpuMaskShadow
+    STA a:PPU_MASK
+    LDA $42
+    BEQ Bank3_Label_90BA
+    LDA PpuCtrlShadow
+    AND #$E0
+    STA a:PPU_CTRL
+
+Bank3_Label_90AA:
+    BIT a:PPU_STATUS
+    BVS Bank3_Label_90AA
+
+Bank3_Label_90AF:
+    BIT a:PPU_STATUS
+    BVC Bank3_Label_90AF
+    LDX #$00
+
+Bank3_Label_90B6:
+    NOP
+    DEX
+    BNE Bank3_Label_90B6
+
+Bank3_Label_90BA:
+    LDA PpuCtrlShadow
+    AND #$FC
+    STA a:PPU_CTRL
+    JMP Bank3_Label_919D
 
 Shell_CopyPaletteToStaging:
     LDY #$00
@@ -43,7 +140,9 @@ Bank3_Label_90C6:
 Shell_UploadStagedPalette:
     JSR Bank3_WaitForVblank
     JMP Bank3_Label_90DC
-    .byte $AD, $08, $04, $F0, $26
+Bank3_Label_90D7:
+    LDA a:$0408
+    BEQ Bank3_Label_9102
 
 Bank3_Label_90DC:
     LDA #$3F
@@ -63,12 +162,53 @@ Bank3_Label_90E8:
     STY a:PPU_ADDR
     STY a:PPU_ADDR
     STA a:$0408
+
+Bank3_Label_9102:
     RTS
-    .byte $A5, $1C, $29, $07, $C9, $03, $D0, $F7, $AD, $80, $01, $F0, $F2, $8D, $06, $20
-    .byte $AD, $81, $01, $8D, $06, $20, $A2, $00, $BD, $82, $01, $8D, $07, $20, $E8, $E0
-    .byte $20, $90, $F5, $A9, $00, $8D, $80, $01, $60, $A5, $1C, $29, $07, $C9, $04, $D0
-    .byte $F7, $AD, $C0, $01, $F0, $F2, $A2, $23, $8E, $06, $20, $8D, $06, $20, $A2, $00
-    .byte $8E, $C0, $01, $BD, $C1, $01, $8D, $07, $20, $E8, $E0, $08, $90, $F5, $60
+
+Bank3_Label_9103:
+    LDA PpuScrollYShadow
+    AND #$07
+    CMP #$03
+    BNE Bank3_Label_9102
+    LDA a:$0180
+    BEQ Bank3_Label_9102
+    STA a:PPU_ADDR
+    LDA a:$0181
+    STA a:PPU_ADDR
+    LDX #$00
+
+Bank3_Label_911B:
+    LDA a:$0182,X
+    STA a:PPU_DATA
+    INX
+    CPX #$20
+    BCC Bank3_Label_911B
+    LDA #$00
+    STA a:$0180
+Bank3_Label_912B:
+    RTS
+
+Bank3_Label_912C:
+    LDA PpuScrollYShadow
+    AND #$07
+    CMP #$04
+    BNE Bank3_Label_912B
+    LDA a:$01C0
+    BEQ Bank3_Label_912B
+    LDX #$23
+    STX a:PPU_ADDR
+    STA a:PPU_ADDR
+    LDX #$00
+    STX a:$01C0
+
+Bank3_Label_9146:
+    LDA a:$01C1,X
+    STA a:PPU_DATA
+    INX
+    CPX #$08
+    BCC Bank3_Label_9146
+    RTS
 
 Shell_ClearBothNametables:
     LDA PpuCtrlShadow
@@ -112,10 +252,13 @@ Bank3_Label_9196:
     INX
     BNE Bank3_Label_9196
     RTS
-    .byte $A2, $04, $D0, $02
+Bank3_Label_919D:
+    LDX #$04
+    BNE Bank3_Label_91A3
 
 Shell_HideAllOamEntries:
     LDX #$00
+Bank3_Label_91A3:
     LDA #$F0
 
 Bank3_Label_91A5:
@@ -125,11 +268,43 @@ Bank3_Label_91A5:
     INX
     INX
     BNE Bank3_Label_91A5
+Bank3_Label_91AE:
     RTS
-    .byte $A5, $41, $F0, $FB, $A5, $40, $85, $00, $A9, $08, $06, $00, $06, $00, $06, $00
-    .byte $06, $00, $2A, $06, $00, $2A, $8D, $06, $20, $A5, $00, $8D, $06, $20, $A0, $00
-    .byte $B1, $3E, $8D, $07, $20, $C8, $C0, $20, $90, $F6, $A5, $3E, $18, $69, $20, $85
-    .byte $3E, $A5, $3F, $69, $00, $85, $3F, $A9, $00, $85, $41, $E6, $40, $60
+Bank3_Label_91AF:
+    LDA $41
+    BEQ Bank3_Label_91AE
+    LDA $40
+    STA $00
+    LDA #$08
+    ASL $00
+    ASL $00
+    ASL $00
+    ASL $00
+    ROL A
+    ASL $00
+    ROL A
+    STA a:PPU_ADDR
+    LDA $00
+    STA a:PPU_ADDR
+    LDY #$00
+
+Bank3_Label_91CF:
+    LDA ($3E),Y
+    STA a:PPU_DATA
+    INY
+    CPY #$20
+    BCC Bank3_Label_91CF
+    LDA $3E
+    CLC
+    ADC #$20
+    STA $3E
+    LDA $3F
+    ADC #$00
+    STA $3F
+    LDA #$00
+    STA $41
+    INC $40
+    RTS
 
 Bank3_Label_91ED:
     RTS

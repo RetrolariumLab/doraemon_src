@@ -13,7 +13,7 @@ Bank1_Label_966A:
 World2_EmitInventorySprite:
     LDA World2MetaspriteOriginY
     STA World2OamY
-    LDA a:$96E1,X
+    LDA a:Bank1_Label_96E1,X
     STA World2OamTile
     LDA World2MetaspriteAttributes
     STA World2OamAttributes
@@ -30,7 +30,7 @@ World2_EmitInventorySprite:
 World2_EmitDirectionalMetaspriteSprite:
     LDA World2MetaspriteOriginY
     STA World2OamY
-    LDA a:$96E1,X
+    LDA a:Bank1_Label_96E1,X
     BPL Bank1_Label_969B
     AND #$7F
     STA World2OamTile
@@ -87,6 +87,7 @@ World2_EmitOamEntry:
     STA a:OamBuffer,Y
     INY
     RTS
+Bank1_Label_96E1:
     .byte $00, $01, $10, $11, $20, $21, $04, $05, $10, $11, $20, $21, $00, $01, $10, $11
     .byte $14, $15, $04, $05, $10, $11, $14, $15, $03, $83, $13, $93, $23, $A3, $03, $83
     .byte $13, $93, $23, $A3, $02, $82, $12, $24, $22, $A2, $02, $82, $A4, $92, $22, $A2
@@ -97,10 +98,20 @@ World2_EmitOamEntry:
     .byte $29, $2A, $38, $26, $19, $1A, $29, $2A, $08, $88, $18, $98, $28, $A8, $08, $88
     .byte $18, $98, $28, $A8, $0B, $8B, $1B, $27, $2B, $AB, $0B, $8B, $A7, $9B, $2B, $AB
     .byte $08, $88, $18, $98, $28, $A8, $08, $88, $0C, $8C, $28, $A8, $D6, $D7, $E6, $E7
-    .byte $00, $00, $EA, $EA, $D0, $D0, $E0, $E0, $D4, $D5, $E4, $E5, $D0, $D0, $E0, $E0
+    .byte $00, $00, $EA, $EA, $D0, $D0, $E0, $E0, $D4, $D5, $E4, $E5
+Bank1_Label_978D:
+    .byte $D0, $D0, $E0, $E0
     .byte $D1, $D1, $00, $00, $E0, $E0, $D0, $D0, $00, $00, $D1, $D1, $D3, $D2, $E1, $00
-    .byte $E1, $00, $D3, $D2, $01, $41, $81, $C1, $FD, $FD, $FE, $FF, $00, $01, $02, $03
-    .byte $03, $03, $02, $01, $00, $FF, $FE, $FD, $FD, $FD, $FE, $FF, $C1, $C1, $C2, $C1
+    .byte $E1, $00, $D3, $D2
+Bank1_Label_97A5:
+    .byte $01, $41, $81, $C1
+Bank1_Label_97A9:
+    .byte $FD, $FD, $FE, $FF
+Bank1_Label_97AD:
+    .byte $00, $01, $02, $03
+    .byte $03, $03, $02, $01, $00, $FF, $FE, $FD, $FD, $FD, $FE, $FF
+Bank1_Label_97BD:
+    .byte $C1, $C1, $C2, $C1
     .byte $C2, $C2, $C1, $C2
 
 World2_UpdateBossEncounter:

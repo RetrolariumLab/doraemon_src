@@ -6,7 +6,7 @@ World1_IsObjectSpawnSuppressed:
     LDA World1CurrentPlacementId
     AND #$07
     TAX
-    LDA a:$8D9C,X
+    LDA a:Bank0_Label_8D9C,X
     STA $07
     LDA World1CurrentPlacementId
     LSR A
@@ -30,7 +30,7 @@ World1_MarkObjectSpawned:
     LDA $03
     AND #$07
     TAX
-    LDA a:$8D9C,X
+    LDA a:Bank0_Label_8D9C,X
     PHA
     LDA $03
     LSR A
@@ -51,7 +51,7 @@ World1_ReleaseObjectSpawn:
     LDA $03
     AND #$07
     TAX
-    LDA a:$8D9C,X
+    LDA a:Bank0_Label_8D9C,X
     EOR #$FF
     PHA
     LDA $03
@@ -72,7 +72,7 @@ World1_MarkObjectCollected:
     LDA $00
     AND #$07
     TAX
-    LDA a:$8D9C,X
+    LDA a:Bank0_Label_8D9C,X
     PHA
     LDA $00
     LSR A
@@ -85,6 +85,7 @@ World1_MarkObjectCollected:
     PLA
     TAX
     RTS
+Bank0_Label_8D9C:
     .byte $80, $40, $20, $10, $08, $04, $02, $01
 
 World1_EntitySpawnInitializerRtsTable:
@@ -139,9 +140,9 @@ Bank0_Label_8DE2:
     JMP Bank0_Label_8E1E
 
 Bank0_Label_8E1E:
-    LDA a:$8DA5,Y
+    LDA a:World1_EntitySpawnInitializerRtsTable+1,Y
     PHA
-    LDA a:$8DA4,Y
+    LDA a:World1_EntitySpawnInitializerRtsTable,Y
     PHA
     RTS
 

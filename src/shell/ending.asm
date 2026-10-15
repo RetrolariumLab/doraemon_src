@@ -30,7 +30,7 @@ Bank3_Label_8AAA:
     LDX #$E0
 
 Bank3_Label_8AB9:
-    LDA a:$8B3B,X
+    LDA a:Bank3_Label_8B3B,X
     STA a:$0130,X
     INX
     BNE Bank3_Label_8AB9
@@ -94,6 +94,7 @@ Bank3_EndingCreditsFrameLoop:
     STA $01
     JSR Shell_CopyPaletteToStaging
     LDA #$01
+Bank3_Label_8B3B = * + 1  ; overlapping entry $8B3B
     STA a:$0408
     LDA #$00
     STA PpuScrollYShadow
@@ -143,13 +144,14 @@ Ending_CopyStaticOamLayout:
     LDY #$00
 
 Bank3_Label_8B8E:
-    LDA a:$8B9B,Y
+    LDA a:Bank3_Label_8B9B,Y
     STA a:OamBuffer,X
     INX
     INY
     CPY #$80
     BCC Bank3_Label_8B8E
     RTS
+Bank3_Label_8B9B:
     .byte $58, $00, $20, $78, $58, $59, $20, $80, $60, $1C, $20, $78, $60, $69, $20, $80
     .byte $68, $2C, $20, $78, $68, $68, $20, $80, $68, $0E, $21, $5C, $68, $0F, $21, $64
     .byte $70, $1E, $21, $5C, $70, $1F, $21, $64, $78, $2E, $21, $5C, $78, $2F, $21, $64

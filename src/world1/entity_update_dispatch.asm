@@ -27,9 +27,9 @@ World1_DispatchEntityUpdate:
     AND #$1F
     ASL A
     TAY
-    LDA a:$88FC,Y
+    LDA a:Bank0_Label_88FB+1,Y
     PHA
-    LDA a:$88FB,Y
+    LDA a:Bank0_Label_88FB,Y
     PHA
     RTS
 
@@ -72,6 +72,7 @@ Bank0_Label_88EE:
     JSR World1_AddEncodedScore
 
 World1_EntityUpdateHandlerRtsTable = * + 1  ; overlapping entry $88FB
+Bank0_Label_88FB = * + 1  ; overlapping entry $88FB
     JMP Bank0_Label_88A1
     .byte $D9, $DB, $48, $DC, $B1, $DC, $28, $DD, $BA, $DE, $6F, $DF, $1E, $E0, $4A, $E1
     .byte $DF, $E1, $48, $E2, $D2, $DD, $07, $DF, $D9, $DB, $96, $D5, $96, $D5
@@ -118,15 +119,18 @@ World1_MoveEntityInDirection:
     AND #$07
     PHA
     TAY
-    LDA a:$8977,Y
+    LDA a:Bank0_Label_8977,Y
     JSR World1_MoveEntityXByA
     PLA
     TAY
-    LDA a:$897F,Y
+    LDA a:Bank0_Label_897F,Y
     JSR World1_MoveEntityYByA
     PLA
     RTS
-    .byte $00, $01, $01, $01, $00, $FF, $FF, $FF, $01, $01, $00, $FF, $FF, $FF, $00, $01
+Bank0_Label_8977:
+    .byte $00, $01, $01, $01, $00, $FF, $FF, $FF
+Bank0_Label_897F:
+    .byte $01, $01, $00, $FF, $FF, $FF, $00, $01
 
 World1_DirectionTowardPlayer:
     LDA a:World1EntityPositionHigh,X

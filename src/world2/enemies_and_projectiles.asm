@@ -323,14 +323,14 @@ World2_UpdateInventorySlot0Projectile:
     LDX World2InventorySlot0ProjectileDirection
     LDA World2InventorySlot0ProjectileX
     CLC
-    ADC a:$97AD,X
+    ADC a:Bank1_Label_97AD,X
     STA World2InventorySlot0ProjectileX
     CMP #$F8
     BCS Bank1_Label_9172
     STA $67
     LDA World2InventorySlot0ProjectileY
     CLC
-    ADC a:$97A9,X
+    ADC a:Bank1_Label_97A9,X
     STA $68
     STA World2InventorySlot0ProjectileY
     CMP #$E0
@@ -509,7 +509,7 @@ Bank1_Label_9242:
     STA $69
 
 Bank1_Label_924E:
-    LDA a:$9326,X
+    LDA a:Bank1_Label_9326,X
     BEQ Bank1_Label_9261
     LDA World2InventoryY+$02
     SEC
@@ -533,7 +533,7 @@ Bank1_Label_9261:
     STA $69
 
 Bank1_Label_9275:
-    LDA a:$9326,X
+    LDA a:Bank1_Label_9326,X
     BEQ Bank1_Label_9288
     LDA World2InventoryY+$02
     CLC
@@ -562,7 +562,7 @@ Bank1_Label_9295:
     STA $69
 
 Bank1_Label_92A1:
-    LDA a:$9326,X
+    LDA a:Bank1_Label_9326,X
     BEQ Bank1_Label_92B6
     LDA World2MetaspriteOriginX
     SEC
@@ -587,7 +587,7 @@ Bank1_Label_92B6:
     STA $69
 
 Bank1_Label_92CA:
-    LDA a:$9326,X
+    LDA a:Bank1_Label_9326,X
     BEQ Bank1_Label_92DF
     LDA World2InventoryX+$02
     CLC

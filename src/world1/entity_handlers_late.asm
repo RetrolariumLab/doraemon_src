@@ -105,7 +105,7 @@ World1_UpdateHerimeda:
     LSR A
     AND #$0F
     TAY
-    LDA a:$E231,Y
+    LDA a:Bank0_Label_E231,Y
     JSR World1_MoveEntityYByA
     LDA a:World1EntityPrimaryBehavior,X
     AND #$3F
@@ -138,6 +138,7 @@ Bank0_Label_E22A:
     DEC a:World1EntityActionCooldown,X
     INC a:World1EntityPrimaryBehavior,X
     RTS
+Bank0_Label_E231:
     .byte $03, $02, $01, $00, $00, $FF, $FE, $FD, $FD, $FE, $FF, $00, $00, $01, $02, $03
     .byte $A9, $80, $9D, $50, $05, $4C, $A0, $8E
 

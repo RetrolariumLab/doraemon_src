@@ -140,9 +140,10 @@ World2_RenderMidron:
     LSR A
     LSR A
     TAX
-    LDA a:$9C28,X
+    LDA a:Bank1_Label_9C28,X
     LDX World2SavedEntitySlot
     JMP World2_RenderEnemyMetaspriteIndex
+Bank1_Label_9C28:
     .byte $04, $05, $06, $05
 
 World2_UpdateTenkoumori:
@@ -158,7 +159,7 @@ Bank1_Label_9C38:
     TAY
     LDA a:World2EnemyY,X
     CLC
-    ADC a:$A5AE,Y
+    ADC a:Bank1_Label_A5AE,Y
     CMP #$F0
     BCS Bank1_Label_9C82
     STA $68
@@ -225,7 +226,7 @@ Bank1_Label_9CA5:
     TAY
     LDA a:World2EnemyY,X
     SEC
-    SBC a:$A5AE,Y
+    SBC a:Bank1_Label_A5AE,Y
     STA $68
     LDA a:World2EnemyPhaseCounter,X
     CMP #$52
@@ -297,7 +298,7 @@ World2_UpdateGurinko:
     TAY
     LDA a:World2EnemyY,X
     SEC
-    SBC a:$A5CE,Y
+    SBC a:Bank1_Label_A5CE,Y
     STA $68
     JSR World2_TestMetatileCollision
     BNE Bank1_Label_9D35

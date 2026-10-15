@@ -170,8 +170,8 @@ Bank2_Label_C61F:
     SBC a:AudioWorkByte
     ASL A
     TAY
-    LDA a:$C635,Y
+    LDA a:World3_MusicCommand_RtsDispatchTable+1,Y
     PHA
-    LDA a:$C634,Y
+    LDA a:World3_MusicCommand_RtsDispatchTable,Y
     PHA
     RTS

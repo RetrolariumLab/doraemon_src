@@ -23,8 +23,8 @@ World1_Audio_QueueEffectWithPriority:
     BMI Bank0_Label_E3B1
     STY $3D
     TAY
-    LDA a:$E316,X
-    CMP a:$E316,Y
+    LDA a:World1_AudioEffect_RequestPriority,X
+    CMP a:World1_AudioEffect_RequestPriority,Y
     BCC Bank0_Label_E3B7
     TYA
     LDY $3D
@@ -72,7 +72,7 @@ Bank0_Label_E3D7:
     BCS Bank0_Label_E414
     LDA a:AudioCurrentEffectPriority
     BEQ Bank0_Label_E3FD
-    LDA a:$E316,X
+    LDA a:World1_AudioEffect_RequestPriority,X
     CMP a:AudioCurrentEffectPriority
     BCC Bank0_Label_E3FD
     BNE Bank0_Label_E414
@@ -80,7 +80,7 @@ Bank0_Label_E3D7:
     BNE Bank0_Label_E414
 
 Bank0_Label_E3FD:
-    LDA a:$E316,X
+    LDA a:World1_AudioEffect_RequestPriority,X
     STA a:AudioCurrentEffectPriority
     TAX
     LDA #$00
@@ -98,9 +98,9 @@ Bank0_Label_E414:
 Bank0_Label_E419:
     CPX #$68
     BCS World1_Audio_StopCurrentEffect
-    LDA a:$E331,X
+    LDA a:World1_AudioEffect_RtsDispatchTable+1,X
     PHA
-    LDA a:$E330,X
+    LDA a:World1_AudioEffect_RtsDispatchTable,X
     PHA
     RTS
 
@@ -343,9 +343,9 @@ World1_AudioEffect_UpdatePulse1Sequence:
     BEQ World1_AudioEffect_AdvanceSequencePointer
     ASL A
     TAY
-    LDA a:$EE34,Y
+    LDA a:Bank0_Label_EE34,Y
     STA a:APU_PL1_LO,X
-    LDA a:$EE35,Y
+    LDA a:Bank0_Label_EE34+1,Y
     ORA #$08
     STA a:APU_PL1_HI,X
 

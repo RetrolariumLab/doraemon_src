@@ -260,8 +260,8 @@ Bank3_SelectPrgBank:
 Bank3_WriteMapper:
     LDA MapperSelection
     TAX
-    LDA a:$8261,X
-    STA a:$8261,X
+    LDA a:Bank3_MapperValueTable,X
+    STA a:Bank3_MapperValueTable,X
     NOP
     NOP
     NOP

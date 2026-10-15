@@ -71,11 +71,11 @@ Bank0_Label_A56E:
     JSR World1_ReadBlockAttributeAndStepDown
     AND #$03
     TAY
-    LDA a:$A7D3,Y
+    LDA a:Bank0_Label_A7D3,Y
     LDY $74
-    AND a:$A7D7,Y
+    AND a:Bank0_Label_A7D7,Y
     STA $5F
-    LDA a:$A7D7,Y
+    LDA a:Bank0_Label_A7D7,Y
     EOR #$FF
     AND a:World1AttributeTableCache,X
     ORA $5F
@@ -212,11 +212,11 @@ Bank0_Label_A65B:
     JSR World1_ReadBlockAttributeAndStepRight
     AND #$03
     TAY
-    LDA a:$A7D3,Y
+    LDA a:Bank0_Label_A7D3,Y
     LDY $74
-    AND a:$A7D7,Y
+    AND a:Bank0_Label_A7D7,Y
     STA $5F
-    LDA a:$A7D7,Y
+    LDA a:Bank0_Label_A7D7,Y
     EOR #$FF
     AND a:World1AttributeTableCache,X
     ORA $5F
@@ -441,7 +441,10 @@ World1_SelectBigBlock:
     ADC World1CurrentBigBlockPointer+$01
     STA World1CurrentBigBlockPointer+$01
     RTS
-    .byte $00, $55, $AA, $FF, $03, $0C, $30, $C0
+Bank0_Label_A7D3:
+    .byte $00, $55, $AA, $FF
+Bank0_Label_A7D7:
+    .byte $03, $0C, $30, $C0
 
 World1_PrefillMapViewport:
     LDA #$00

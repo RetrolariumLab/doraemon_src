@@ -417,13 +417,13 @@ Bank0_Label_9B7A:
     LDA a:World1EntityPrimaryBehavior+$1E,X
     ASL A
     TAY
-    LDA a:$9BC3,Y
+    LDA a:Bank0_Label_9BC3,Y
     CLC
     ADC a:World1EntityX+$1E,X
     CMP #$F8
     BCS Bank0_Label_9BB8
     STA a:World1EntityX+$1E,X
-    LDA a:$9BC4,Y
+    LDA a:Bank0_Label_9BC3+1,Y
     CLC
     ADC a:World1EntityY+$1E,X
     CMP #$08
@@ -454,6 +454,7 @@ Bank0_Label_9BBD:
     CPX #$08
     BNE Bank0_Label_9B56
     RTS
+Bank0_Label_9BC3:
     .byte $00, $04, $00, $FC, $FC, $00, $04, $00
 
 World1_ReadPlayerProjectileCollisionProperty:
@@ -482,7 +483,7 @@ World1_ReadPlayerProjectileCollisionProperty:
     LDY $A2
     JSR World1_LookupMapTile
     LDX $A4
-    LDA a:$DADA,Y
+    LDA a:Bank0_Label_DADA,Y
     RTS
 
 World1_UpdateWeaponAndTryFire:

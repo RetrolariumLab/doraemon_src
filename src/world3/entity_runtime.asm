@@ -23,7 +23,7 @@ World3_InitializeRoomObjectRegistry:
     LDX #$00
 
 Bank2_Label_8B7D:
-    LDA a:$D96B,X
+    LDA a:World3_InitialRoomObjectRegistry,X
     STA a:World3RoomObjectRoom,X
     INX
     CPX #$41
@@ -472,7 +472,13 @@ Bank2_Label_8EB4:
     RTS
 
 World3_EntityHitPointsByType:
-    .byte $01, $02, $01, $02, $02, $00, $00, $00, $08, $00, $00, $00, $10, $10, $10, $10
+    .byte $01, $02, $01, $02
+Bank2_Label_8EB9:
+    .byte $02, $00, $00, $00
+Bank2_Label_8EBD:
+    .byte $08, $00, $00, $00
+Bank2_Label_8EC1:
+    .byte $10, $10, $10, $10
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
 World3_EntityMetaspriteByType:

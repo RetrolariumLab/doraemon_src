@@ -116,9 +116,9 @@ World3_AudioEffect_UpdatePulse1Sequence:
     BEQ World3_AudioEffect_AdvanceSequencePointer
     ASL A
     TAY
-    LDA a:$C92C,Y
+    LDA a:Bank2_Label_C92C,Y
     STA a:APU_PL1_LO,X
-    LDA a:$C92D,Y
+    LDA a:Bank2_Label_C92C+1,Y
     ORA #$08
     STA a:APU_PL1_HI,X
 
@@ -257,9 +257,9 @@ Bank2_Label_C1CE:
     STA a:APU_PL1_VOL,X
     LDA #$00
     STA a:APU_PL1_SWEEP,X
-    LDA a:$C92C,Y
+    LDA a:Bank2_Label_C92C,Y
     STA a:APU_PL1_LO,X
-    LDA a:$C92D,Y
+    LDA a:Bank2_Label_C92C+1,Y
     ORA #$08
     STA a:APU_PL1_HI,X
 
@@ -357,7 +357,7 @@ Bank2_Label_C285:
     LDX #$8B
     JSR World3_Apu_WritePulse2ControlSweep
     LDY a:AudioEffectWork1
-    LDX a:$C2A3,Y
+    LDX a:Bank2_Label_C2A3,Y
     LDA #$10
     JSR World3_Apu_WritePulse2Timer
     LDA #$04
@@ -366,6 +366,7 @@ Bank2_Label_C285:
 Bank2_Label_C29F:
     DEC a:AudioEffectWork0
     RTS
+Bank2_Label_C2A3:
     .incbin "assets/generated/audio/sfx/prg3-tone-low.bin", $0, $4  ; rom-asset .byte
 
 World3_AudioEffect_InitPulse2PitchSequenceBase:
@@ -392,9 +393,9 @@ World3_AudioEffect_UpdatePulse2PitchSequence:
     LDA #$DF
     LDX #$8C
     JSR World3_Apu_WritePulse2ControlSweep
-    LDA a:$C2EA,Y
+    LDA a:Bank2_Label_C2EA,Y
     TAX
-    LDA a:$C2EB,Y
+    LDA a:Bank2_Label_C2EA+1,Y
     ORA #$88
     JSR World3_Apu_WritePulse2Timer
     DEC a:AudioEffectWork0
@@ -406,6 +407,7 @@ Bank2_Label_C2E6:
 
 Bank2_Label_C2E7:
     JMP World3_Audio_StopCurrentEffect
+Bank2_Label_C2EA:
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $0, $10  ; rom-asset .byte
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $10, $10  ; rom-asset .byte
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $20, $10  ; rom-asset .byte
@@ -499,11 +501,12 @@ World3_AudioEffect_UpdatePulse2VolumeFade:
     LDA #$04
     STA a:AudioEffectWork1
     LDY a:AudioEffectWork0
-    LDA a:$C3E7,Y
+    LDA a:Bank2_Label_C3E7,Y
     STA a:APU_PL2_VOL
     DEC a:AudioEffectWork0
     BPL Bank2_Label_C447
     JMP World3_Audio_StopCurrentEffect
+Bank2_Label_C3E7:
     .byte $00
 
 World3_AudioEffect_InitPulse1Alternator:
@@ -519,19 +522,21 @@ World3_AudioEffect_UpdatePulse1Alternator:
     EOR #$04
     STA a:AudioEffectWork0
     TAY
-    LDA a:$C42C,Y
+    LDA a:Bank2_Label_C42B+1,Y
     STA a:AudioEffectWork1
     LDA #$DF
-    LDX a:$C429,Y
+    LDX a:Bank2_Label_C429,Y
     JSR World3_Apu_WritePulse1ControlSweep
-    LDX a:$C42A,Y
-    LDA a:$C42B,Y
+    LDX a:Bank2_Label_C429+1,Y
+    LDA a:Bank2_Label_C42B,Y
     JMP World3_Apu_WritePulse1Timer
 
 Bank2_Label_C417:
     RTS
     .byte $A9, $08, $D0, $CE, $A9, $10, $D0, $CA, $4C, $F2, $C3, $4C, $1C, $C4, $4C, $F2
     .byte $C3
+Bank2_Label_C429:
     .incbin "assets/generated/audio/sfx/prg2-pulse-control.bin", $0, $2  ; rom-asset .byte
+Bank2_Label_C42B:
     .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin", $0, $D  ; rom-asset .byte
     .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin", $D, $9  ; rom-asset .byte

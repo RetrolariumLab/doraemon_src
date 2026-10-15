@@ -141,11 +141,11 @@ World2_ExpandMetatileToTransferBuffers:
     TAY
     LDA a:World2_MetatileTiles_00_3F,Y
     STA a:$0510,X
-    LDA a:$BAA0,Y
+    LDA a:Bank1_Label_BAA0,Y
     STA a:$0520,X
-    LDA a:$BAA1,Y
+    LDA a:Bank1_Label_BAA0+1,Y
     STA a:$0530,X
-    LDA a:$BAA2,Y
+    LDA a:Bank1_Label_BAA2,Y
     STA a:$0540,X
     INX
     RTS
@@ -154,11 +154,11 @@ Bank1_Label_8524:
     TAY
     LDA a:World2_MetatileTiles_40_7F,Y
     STA a:$0510,X
-    LDA a:$BBA0,Y
+    LDA a:Bank1_Label_BBA0,Y
     STA a:$0520,X
-    LDA a:$BBA1,Y
+    LDA a:Bank1_Label_BBA0+1,Y
     STA a:$0530,X
-    LDA a:$BBA2,Y
+    LDA a:Bank1_Label_BBA2,Y
     STA a:$0540,X
     INX
     RTS
@@ -169,11 +169,11 @@ Bank1_Label_853F:
     TAY
     LDA a:World2_MetatileTiles_80_BF,Y
     STA a:$0510,X
-    LDA a:$BCA0,Y
+    LDA a:Bank1_Label_BCA0,Y
     STA a:$0520,X
-    LDA a:$BCA1,Y
+    LDA a:Bank1_Label_BCA0+1,Y
     STA a:$0530,X
-    LDA a:$BCA2,Y
+    LDA a:Bank1_Label_BCA2,Y
     STA a:$0540,X
     INX
     RTS
@@ -182,11 +182,11 @@ Bank1_Label_855D:
     TAY
     LDA a:World2_MetatileTiles_C0_CF,Y
     STA a:$0510,X
-    LDA a:$BDA0,Y
+    LDA a:Bank1_Label_BDA0,Y
     STA a:$0520,X
-    LDA a:$BDA1,Y
+    LDA a:Bank1_Label_BDA0+1,Y
     STA a:$0530,X
-    LDA a:$BDA2,Y
+    LDA a:Bank1_Label_BDA2,Y
     STA a:$0540,X
     INX
     RTS
@@ -230,7 +230,7 @@ Bank1_Label_85B0:
 
 Bank1_Label_85B6:
     LDX $50
-    LDA a:$85F5,X
+    LDA a:Bank1_Label_85F5,X
     STA $4D
     LDA a:$0500,Y
     LDX $50
@@ -269,6 +269,7 @@ Bank1_Label_85EF:
     CPY #$0F
     BNE Bank1_Label_85B6
     RTS
+Bank1_Label_85F5:
     .byte $FC, $F3
 
 World2_UploadVerticalTileColumnsBAndAttributes:
@@ -359,7 +360,7 @@ Bank1_Label_8686:
 
 Bank1_Label_868C:
     LDX $50
-    LDA a:$86C7,X
+    LDA a:Bank1_Label_86C7,X
     STA $4D
     LDA a:$0500,Y
     LDX $50
@@ -396,6 +397,7 @@ Bank1_Label_86C1:
     CPY #$10
     BNE Bank1_Label_868C
     RTS
+Bank1_Label_86C7:
     .byte $FC, $CF
 
 World2_UploadHorizontalTileRowsA:

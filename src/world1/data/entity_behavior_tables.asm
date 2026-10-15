@@ -2,6 +2,7 @@
 ; World 1 entity collision and behavior parameter tables
 ; Generated deterministically from pinned Ghidra/GhidraNes facts
 
+Bank0_Label_DADA:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00

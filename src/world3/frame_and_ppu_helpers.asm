@@ -71,10 +71,10 @@ Bank2_Label_B210:
     BNE Bank2_Label_B210
     STA $D6
     TAX
-    LDA a:$B1FE,X
+    LDA a:World3_InitializeHardwareAndRam,X
     STA $D7
     TAX
-    LDA a:$B1FE,X
+    LDA a:World3_InitializeHardwareAndRam,X
     STA $D8
     LDX #$3C
     LDA #$00

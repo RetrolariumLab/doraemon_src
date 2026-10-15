@@ -101,7 +101,7 @@ Shell_UpdateTransitionAnimation:
     BNE Bank3_Label_8CFB
     INC $05
     LDX $05
-    LDA a:$8D36,X
+    LDA a:Bank3_Label_8D36,X
     JSR Audio_QueueEffect
 
 Bank3_Label_8CFB:
@@ -115,10 +115,10 @@ Bank3_Label_8CFB:
 Bank3_Label_8D08:
     LDA $06
     CLC
-    ADC a:$8D2E,X
+    ADC a:Bank3_Label_8D2E,X
     STA $06
     LDA $07
-    ADC a:$8D32,X
+    ADC a:Bank3_Label_8D32,X
     AND #$03
     STA $07
     ASL A
@@ -130,14 +130,19 @@ Bank3_Label_8D08:
     LDY #$00
 
 Bank3_Label_8D21:
-    LDA a:$8ED4,X
+    LDA a:Bank3_Label_8ED4,X
     STA a:$0210,Y
     INX
     INY
     CPY #$20
     BCC Bank3_Label_8D21
     RTS
-    .byte $20, $40, $80, $00, $00, $00, $00, $01, $15, $16, $17, $18
+Bank3_Label_8D2E:
+    .byte $20, $40, $80, $00
+Bank3_Label_8D32:
+    .byte $00, $00, $00, $01
+Bank3_Label_8D36:
+    .byte $15, $16, $17, $18
 
 Shell_UpdateTransitionPosition:
     LDA $05
@@ -154,7 +159,7 @@ Shell_UpdateTransitionPosition:
     STX a:ShellTransitionMotionIndex
     LDA a:ShellTransitionOriginX
     CLC
-    ADC a:$8DA1,X
+    ADC a:Bank3_Label_8DA1,X
     STA a:ShellTransitionOriginX
 
 Bank3_Label_8D5A:
@@ -195,14 +200,19 @@ Bank3_Label_8D7A:
 
 Bank3_Label_8D8B:
     LDX a:ShellTransitionSettleStep
-    LDA a:$8D9B,X
+    LDA a:Bank3_Label_8D9B,X
     STA a:ShellTransitionOriginX
-    LDA a:$8D9E,X
+    LDA a:Bank3_Label_8D9E,X
     STA a:ShellTransitionOriginY
 
 Bank3_Label_8D9A:
     RTS
-    .byte $70, $78, $7C, $80, $84, $80, $01, $01, $01, $01, $FF, $FF, $FF, $FF, $FF, $FF
+Bank3_Label_8D9B:
+    .byte $70, $78, $7C
+Bank3_Label_8D9E:
+    .byte $80, $84, $80
+Bank3_Label_8DA1:
+    .byte $01, $01, $01, $01, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $01, $01, $01, $01
 
 Shell_DrawTransitionSprites:
@@ -211,9 +221,9 @@ Shell_DrawTransitionSprites:
     BCS Bank3_Label_8D9A
     ASL A
     TAX
-    LDA a:$8DF3,X
+    LDA a:Bank3_Label_8DF3,X
     STA $00
-    LDA a:$8DF4,X
+    LDA a:Bank3_Label_8DF3+1,X
     STA $01
     JSR Shell_DrawRelativeOamStream
     LDA $08
@@ -221,9 +231,9 @@ Shell_DrawTransitionSprites:
     LDA a:ShellTransitionSettleStep
     ASL A
     TAX
-    LDA a:$8DFF,X
+    LDA a:Bank3_Label_8DFF,X
     STA $00
-    LDA a:$8E00,X
+    LDA a:Bank3_Label_8DFF+1,X
     STA $01
     JSR Shell_DrawRelativeOamStream
     LDA $08
@@ -231,12 +241,17 @@ Shell_DrawTransitionSprites:
     LDA a:ShellTransitionSettleStep
     ASL A
     TAX
-    LDA a:$8DF9,X
+    LDA a:Bank3_Label_8DF9,X
     STA $00
-    LDA a:$8DFA,X
+    LDA a:Bank3_Label_8DF9+1,X
     STA $01
     JMP Shell_DrawRelativeOamStream
-    .byte $33, $8E, $68, $8E, $79, $8E, $7E, $8E, $A3, $8E, $B4, $8E, $B9, $8E, $C6, $8E
+Bank3_Label_8DF3:
+    .byte $33, $8E, $68, $8E, $79, $8E
+Bank3_Label_8DF9:
+    .byte $7E, $8E, $A3, $8E, $B4, $8E
+Bank3_Label_8DFF:
+    .byte $B9, $8E, $C6, $8E
     .byte $CF, $8E
 
 Shell_DrawRelativeOamStream:
@@ -275,7 +290,9 @@ Bank3_Label_8E07:
     .byte $A8, $2A, $00, $00, $AC, $2B, $08, $00, $B0, $3A, $00, $08, $B4, $3B, $08, $08
     .byte $00, $A8, $0C, $00, $00, $00, $98, $60, $18, $08, $9C, $63, $18, $10, $A0, $78
     .byte $18, $18, $00, $98, $1F, $08, $00, $9C, $6F, $08, $08, $00, $98, $0D, $00, $00
-    .byte $00, $05, $15, $25, $35, $05, $15, $25, $35, $05, $15, $25, $35, $05, $15, $25
+    .byte $00
+Bank3_Label_8ED4:
+    .byte $05, $15, $25, $35, $05, $15, $25, $35, $05, $15, $25, $35, $05, $15, $25
     .byte $35, $05, $0F, $26, $30, $05, $0F, $26, $21, $05, $01, $26, $29, $05, $00, $10
     .byte $20, $35, $05, $15, $25, $35, $15, $25, $35, $35, $15, $25, $35, $35, $15, $25
     .byte $35, $35, $0F, $26, $30, $35, $0F, $26, $21, $35, $01, $26, $29, $35, $00, $10

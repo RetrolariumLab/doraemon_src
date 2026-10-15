@@ -143,9 +143,9 @@ Bank0_Label_C9CE:
     TYA
     ASL A
     TAY
-    LDA a:$CBF4,Y
+    LDA a:World1_DescriptorInteractionHandlerTable,Y
     STA $00
-    LDA a:$CBF5,Y
+    LDA a:World1_DescriptorInteractionHandlerTable+1,Y
     STA $01
 
 World1_JumpToCityItemHandler:

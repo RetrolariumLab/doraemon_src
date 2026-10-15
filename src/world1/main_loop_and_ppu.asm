@@ -251,9 +251,10 @@ Bank0_Label_841D:
 World1_StartAreaMusic:
     LDA $29
     TAX
-    LDA a:$8445,X
+    LDA a:Bank0_Label_8445,X
     STA a:AudioMusicState
     RTS
+Bank0_Label_8445:
     .byte $01, $04, $05, $02, $02, $02, $02, $02, $03, $03, $02, $02
 
 World1_DemoEntry:

@@ -170,9 +170,9 @@ Bank3_Label_A002:
     SBC a:AudioWorkByte
     ASL A
     TAY
-    LDA a:$A018,Y
+    LDA a:MusicCommand_RtsDispatchTable+1,Y
     PHA
-    LDA a:$A017,Y
+    LDA a:MusicCommand_RtsDispatchTable,Y
     PHA
     RTS
 
@@ -223,7 +223,7 @@ Bank3_Label_A077:
 
 Bank3_Label_A080:
     LDY a:AudioWorkByte
-    LDA a:$A3D6,Y
+    LDA a:Bank3_Label_A3D6,Y
     ORA #$80
     STA a:AudioChannelEnvelopeSteps,X
 
@@ -258,14 +258,14 @@ Bank3_Label_A0B9:
     LDY #$00
 
 Bank3_Label_A0BB:
-    CMP a:$A3A6,Y
+    CMP a:Bank3_Label_A3A6,Y
     BCS Bank3_Label_A0C4
     INY
     INY
     BNE Bank3_Label_A0BB
 
 Bank3_Label_A0C4:
-    LDA a:$A3A7,Y
+    LDA a:Bank3_Label_A3A6+1,Y
 
 Bank3_Label_A0C7:
     STA a:AudioChannelLengthBits,X
@@ -318,7 +318,7 @@ Bank3_Label_A0FC:
     LDY #$00
 
 Bank3_Label_A10E:
-    LDA a:$A3B6,X
+    LDA a:Bank3_Label_A3B6,X
     STA a:APU_NOISE_VOL,Y
     INX
     INY
@@ -345,16 +345,16 @@ Bank3_Label_A12B:
     STA a:APU_PL1_SWEEP,Y
     LDA a:AudioWorkByte
     CLC
-    ADC a:$A3A3,X
+    ADC a:Bank3_Label_A3A3,X
     CLC
     ADC $46,X
     CLC
     ADC a:AudioChannelPitchOffsets,X
     ASL A
     TAX
-    LDA a:$A30F,X
+    LDA a:Bank3_Label_A30F,X
     STA a:APU_PL1_LO,Y
-    LDA a:$A310,X
+    LDA a:Bank3_Label_A30F+1,X
     LDX a:AudioChannelIndex
     ORA a:AudioChannelLengthBits,X
     STA a:APU_PL1_HI,Y
@@ -516,9 +516,9 @@ MusicCommand_SelectTrackChannelStream:
     LDA a:AudioChannelIndex
     ASL A
     TAX
-    LDA a:$A4D6,Y
+    LDA a:MusicTrackHeaders,Y
     STA AudioStreamPointers,X
-    LDA a:$A4D7,Y
+    LDA a:MusicTrackHeaders+1,Y
     STA AudioStreamPointers+$01,X
     JMP Music_UpdateChannelStream
 

@@ -230,7 +230,7 @@ Bank0_Label_CD1F:
     JSR World1_RefreshObjectSpawnMask
     LDA $81
     TAY
-    LDA a:$CDA9,Y
+    LDA a:Bank0_Label_CDA9,Y
     BPL Bank0_Label_CD42
     CMP #$FF
     BNE Bank0_Label_CD35
@@ -240,7 +240,7 @@ Bank0_Label_CD35:
     JSR World1_RandomByte
     AND #$03
     TAY
-    LDA a:$CDB1,Y
+    LDA a:Bank0_Label_CDB1,Y
     CMP $81
     BEQ Bank0_Label_CD35
 
@@ -248,18 +248,18 @@ Bank0_Label_CD42:
     ASL A
     ASL A
     TAY
-    LDA a:$CD89,Y
+    LDA a:Bank0_Label_CD89,Y
     STA World1CameraTileX
     INY
-    LDA a:$CD89,Y
+    LDA a:Bank0_Label_CD89,Y
     STA World1CameraTileY
     INY
-    LDA a:$CD89,Y
+    LDA a:Bank0_Label_CD89,Y
     INY
     CLC
     ADC #$08
     STA World1PlayerX
-    LDA a:$CD89,Y
+    LDA a:Bank0_Label_CD89,Y
     CLC
     ADC #$10
     STA World1PlayerY
@@ -282,6 +282,10 @@ Bank0_Label_CD7D:
     LDX #$7F
     TXS
     JMP Bank0_World1CityFrameLoop
+Bank0_Label_CD89:
     .byte $B0, $86, $70, $60, $1C, $C2, $70, $60, $02, $A4, $70, $60, $70, $20, $70, $60
     .byte $B8, $5C, $70, $40, $8C, $8C, $70, $60, $1D, $5C, $70, $40, $0C, $D8, $70, $60
-    .byte $80, $05, $06, $FF, $80, $01, $02, $80, $00, $05, $04, $07
+Bank0_Label_CDA9:
+    .byte $80, $05, $06, $FF, $80, $01, $02, $80
+Bank0_Label_CDB1:
+    .byte $00, $05, $04, $07

@@ -12,7 +12,7 @@ Bank0_Label_9205:
     BEQ Bank0_Label_9250
     BMI Bank0_Label_9250
     TAY
-    LDA a:$9317,Y
+    LDA a:Bank0_Label_9317,Y
     STA $02
     LDA a:World1EntityX+$1E,X
     STA $00
@@ -80,7 +80,7 @@ World1_ResolvePlayerProjectileEnemyHit:
     RTS
 
 Bank0_Label_927A:
-    CMP a:$92F9,X
+    CMP a:Bank0_Label_92F9,X
     BCS Bank0_Label_9259
 
 Bank0_Label_927F:
@@ -94,7 +94,7 @@ Bank0_Label_927F:
     RTS
 
 Bank0_Label_928D:
-    CMP a:$9308,X
+    CMP a:Bank0_Label_9308,X
     BCS Bank0_Label_9259
 
 Bank0_Label_9292:
@@ -149,9 +149,14 @@ Bank0_Label_92F0:
     STA a:World1EntityType+$1E,X
     PLA
     PLA
+Bank0_Label_92F9 = * + 2  ; overlapping entry $92F9
     JMP Bank0_Label_9250
-    .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $24, $0C, $0C
-    .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $28, $0C, $04, $08
+    .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $24
+Bank0_Label_9308:
+    .byte $0C, $0C
+    .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $28
+Bank0_Label_9317:
+    .byte $0C, $04, $08
     .byte $0C
 
 World1_ScanPlayerContacts:
@@ -291,7 +296,7 @@ World1_ResolveEnemyPlayerContact:
     BCS Bank0_Label_93F2
 
 Bank0_Label_93ED:
-    CMP a:$9442,Y
+    CMP a:Bank0_Label_9442,Y
     BCS Bank0_Label_942A
 
 Bank0_Label_93F2:
@@ -304,7 +309,7 @@ Bank0_Label_93F2:
     BCS Bank0_Label_9405
 
 Bank0_Label_9400:
-    CMP a:$9452,Y
+    CMP a:Bank0_Label_9452,Y
     BCS Bank0_Label_942A
 
 Bank0_Label_9405:
@@ -344,7 +349,9 @@ Bank0_Label_942B:
     TXA
     TAY
     JMP World1_SpawnEnemyDefeatReward
+Bank0_Label_9442:
     .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $2C, $0C, $0C
+Bank0_Label_9452:
     .byte $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $1E, $0C, $0C
 
 World1_SpawnEnemyDefeatReward:
