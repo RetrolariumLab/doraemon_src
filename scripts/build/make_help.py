@@ -22,6 +22,7 @@ TARGET_GROUPS = (
         (
             ("format", "normalize authored source and metadata"),
             ("lint", "check style, layout, and repository policy"),
+            ("hooks", "install the Git hooks: stop words, lint before each commit"),
             ("scaffold-check", "run the ROM-less repository gate"),
             ("quality-check", "run lint and the complete unit suite"),
             ("public-command-smoke", "run lint in a disposable tracked-only clone"),
