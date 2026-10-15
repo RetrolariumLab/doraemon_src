@@ -1,7 +1,7 @@
 # Official revision profiles
 
-Source Reconstruction 2.0 supports the original Japanese release and the
-official Revision A cartridge as separate, byte-identical build profiles. The
+The source supports the original Japanese release and the official
+Revision A cartridge as separate, byte-identical build profiles. The
 private reference images remain outside version control.
 
 | Profile | PRG CRC32 | CHR CRC32 | Payload CRC32 |
@@ -27,35 +27,15 @@ Revision A enters World 3, executes the changed `$AB53` encounter helper, and
 reaches the first `$838E` frame-loop probe, but resets in that same frame and
 returns to the Bank 3 shell. The sequence repeats independently in two traces.
 World 1 and World 2 remain steady under the shared scenarios. The original
-profile alone reaches the World 3 steady loop and ending credits. See
-`docs/revision_runtime.md`; this observed result is preserved rather than
-silently treating the two programs as behaviorally identical.
+profile alone reaches the World 3 steady loop and ending credits. Releases 1.0
+to 3.0 recorded this with FCEUX traces; the observed result is preserved rather
+than silently treating the two programs as behaviorally identical.
 
 No map, metatile, object, palette, text, audio, or graphics data difference is
 present in the two known images. There are therefore no revision-specific
 binary source assets to extract at this time. The revision splitter deliberately
 emits none; future data-only differences must be declared and checksum-pinned
 as `source_assets` before extraction.
-
-Canonical Ghidra regeneration remains based on the original PRG0 image. For
-the two source files named by the classified code windows, the disassembly
-checker projects each explicit Revision A conditional onto its original branch
-before comparison. `make disassemble` preserves a declared overlay only when
-that projection still equals fresh canonical output; if the original branch
-changes, regeneration stops instead of silently deleting or carrying forward
-stale Revision A bytes. Both complete profile builds then verify the alternate
-branches byte for byte.
-
-The original-profile ld65 debug inventory consequently includes one additional
-source file and four absolute profile equates (`DORAEMON_REVISION` plus the
-three profile-ID constants). Program, RAM, and per-bank FCEUX label counts and
-addresses remain unchanged; `config/debugger/debug_symbols.json` pins both the expected
-metadata increase and the stable debugger-facing symbol sets.
-
-The reconstruction inventory counts label identities per bank rather than raw
-definition lines. A symbol repeated in mutually exclusive original/Revision A
-branches therefore remains one navigable label and does not inflate semantic
-or neutral naming progress.
 
 Audit the two private references with:
 
@@ -70,12 +50,5 @@ byte-identical images are checked together with:
 make verify-revisions
 ```
 
-Capture and validate both runtime profiles with:
-
-```console
-make runtime-revision-matrix
-```
-
-Build products are isolated under `build/revisions/<profile>/`. The historical
-`make build` and `make verify` targets remain aliases for the original Source
-Reconstruction 1.0 baseline.
+Build products are isolated under `build/revisions/<profile>/`. `make build`
+and `make verify` build and check the original revision.

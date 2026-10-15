@@ -1,5 +1,10 @@
 # Data formats
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 CadEditor offsets are offsets in the complete `.nes` file, including its
 16-byte iNES header. CPU addresses in this repository therefore subtract the
 header and the physical 32 KiB bank base.

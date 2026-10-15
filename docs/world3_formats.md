@@ -1,5 +1,10 @@
 # World 3 Data and Entity Formats
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 This chapter joins the behavior bytecode, entity types, persistent and transient object records, spawn initializers, update-handler data, metasprites, and palettes used by World 3. The `config/authoring/world3/` manifests and checked-in `data/world3/` documents remain authoritative.
 
 ## Contents

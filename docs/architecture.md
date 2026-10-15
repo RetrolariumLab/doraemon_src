@@ -1,5 +1,10 @@
 # Architecture
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 ## Cartridge mapping
 
 Doraemon uses mapper 66 (`HVC-GNROM`). One 32 KiB PRG bank occupies the entire
@@ -43,8 +48,7 @@ it to mapper bits `xxPPxxCC`.
 The deterministic `boot-title` runtime trace observes the initial switch from
 FCEUX's power-on PRG 0 to PRG 3, then a PRG 3 / CHR 3 selection before NMI is
 enabled. A hook on the instruction after `STA` fingerprints the newly mapped
-bank, independently confirming the selector interpretation. See
-`docs/runtime_evidence.md`.
+bank, independently confirming the selector interpretation.
 
 ## Bank roles
 
@@ -62,8 +66,7 @@ duplicated across banks.
 Runtime chapter-entry traces establish shell edges to all three gameplay banks:
 PRG3 -> PRG0 for the natural World 1 path, PRG3 -> PRG1 for the one-Select
 shortcut, and PRG3 -> PRG2 for the two-Select shortcut. Worlds 2 and 3 both make
-short PRG3 calls and return to their own banks during initialization. The
-detailed selectors and frames are recorded in `docs/runtime_evidence.md`.
+short PRG3 calls and return to their own banks during initialization.
 
 ## Cross-bank gateways
 
@@ -79,6 +82,12 @@ The 152-byte range `$8000-$8097` is byte-identical in every bank (SHA-1
 | `$8048` | switch to PRG 3 and jump through bank-3 `$8271` |
 | `$8053/$8065` | save selector, call PRG 3 `$8277/$827D`, restore selector |
 | `$8077/$8082/$808D` | switch to PRG 3 and jump through `$8280/$8283/$8286` |
+
+After a switch to PRG 3 the call or jump runs in bank 3, so the source names
+its target with bank 3's label (`Bank3_GameOverDispatch`,
+`Bank3_EndingDispatch`, `Bank3_World1TransitionDispatch`,
+`Bank3_World2TransitionDispatch`), not with whatever label the calling bank has
+at the same address.
 
 `config/reconstruction/common/bank_gateways.json` records the exact stub bytes and all 31 direct call
 sites currently represented as instructions. `make validate-bank-gateways`

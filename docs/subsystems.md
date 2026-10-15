@@ -1,5 +1,10 @@
 # Subsystems
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 ## Common bank prefix
 
 All banks expose reset at `$8098`, NMI at `$813C`, mapper switching at `$81BB`,

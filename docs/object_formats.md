@@ -1,5 +1,10 @@
 # Object formats
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 ## World 1 map placements
 
 City initialization installs `$D989` as the active placement pointer, while

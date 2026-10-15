@@ -1,5 +1,10 @@
 # World 1 Data and Rendering Formats
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 This chapter joins the persistent object, map, streaming, sprite, palette, room, and weapon formats used by World 1. The `config/authoring/world1/` manifests and checked-in `data/world1/` documents remain the canonical schemas and editable representations.
 
 ## Contents

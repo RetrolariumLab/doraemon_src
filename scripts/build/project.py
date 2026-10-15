@@ -19,82 +19,10 @@ import zlib
 ROOT = Path(__file__).resolve().parents[2]
 PRG_BANK_SIZE = 0x8000
 PRG_BANK_COUNT = 4
-PRG_DATA_KINDS = {"data", "map", "padding", "table", "text", "vectors"}
 
 
 class ProjectError(ValueError):
     """A validation error that should be shown without a traceback."""
-
-
-def load_prg_data_ranges(path: Path) -> list[tuple[str, int, int, int, str]]:
-    try:
-        lines = path.read_text(encoding="utf-8").splitlines()
-    except OSError as exc:
-        raise ProjectError(f"cannot read typed PRG ranges {path}: {exc}") from exc
-    ranges: list[tuple[str, int, int, int, str]] = []
-    previous_end = {bank: 0x7FFF for bank in range(PRG_BANK_COUNT)}
-    previous_key = (-1, 0x7FFF)
-    for line_number, raw in enumerate(lines, 1):
-        line = raw.strip()
-        if not line or line.startswith("#"):
-            continue
-        fields = line.split()
-        if len(fields) != 5 or fields[0] not in PRG_DATA_KINDS:
-            raise ProjectError(f"invalid typed PRG range at {path}:{line_number}")
-        try:
-            bank = int(fields[1], 10)
-            start, end = int(fields[2], 16), int(fields[3], 16)
-        except ValueError as exc:
-            raise ProjectError(f"invalid typed PRG address at {path}:{line_number}") from exc
-        if not 0 <= bank < PRG_BANK_COUNT or not 0x8000 <= start <= end <= 0xFFFF:
-            raise ProjectError(f"typed PRG range is out of bounds at {path}:{line_number}")
-        if (bank, start) <= previous_key or start <= previous_end[bank]:
-            raise ProjectError(
-                f"typed PRG ranges overlap or are unsorted at {path}:{line_number}"
-            )
-        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", fields[4]):
-            raise ProjectError(f"invalid typed PRG range name at {path}:{line_number}")
-        ranges.append((fields[0], bank, start, end, fields[4]))
-        previous_end[bank] = end
-        previous_key = (bank, start)
-    if not ranges:
-        raise ProjectError(f"typed PRG range registry is empty: {path}")
-    return ranges
-
-
-def load_prg_code_entries(path: Path) -> list[tuple[int, int, str]]:
-    try:
-        lines = path.read_text(encoding="utf-8").splitlines()
-    except OSError as exc:
-        raise ProjectError(f"cannot read PRG code entries {path}: {exc}") from exc
-    entries: list[tuple[int, int, str]] = []
-    previous_key = (-1, 0x7FFF)
-    names: set[str] = set()
-    for line_number, raw in enumerate(lines, 1):
-        line = raw.strip()
-        if not line or line.startswith("#"):
-            continue
-        fields = line.split()
-        if len(fields) != 4 or fields[0] != "entry":
-            raise ProjectError(f"invalid PRG code entry at {path}:{line_number}")
-        try:
-            bank = int(fields[1], 10)
-            address = int(fields[2], 16)
-        except ValueError as exc:
-            raise ProjectError(f"invalid PRG code address at {path}:{line_number}") from exc
-        name = fields[3]
-        if not 0 <= bank < PRG_BANK_COUNT or not 0x8000 <= address <= 0xFFFF:
-            raise ProjectError(f"PRG code entry is out of bounds at {path}:{line_number}")
-        if (bank, address) <= previous_key:
-            raise ProjectError(f"PRG code entries are duplicate or unsorted at {path}:{line_number}")
-        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name) or name.lower() in names:
-            raise ProjectError(f"invalid or duplicate PRG code entry name at {path}:{line_number}")
-        entries.append((bank, address, name))
-        previous_key = (bank, address)
-        names.add(name.lower())
-    if not entries:
-        raise ProjectError(f"PRG code entry registry is empty: {path}")
-    return entries
 
 
 def digest(data: bytes, algorithm: str = "sha1") -> str:
@@ -311,155 +239,6 @@ def command_clean(args: argparse.Namespace) -> None:
         print(f"[CLEAN] {target}")
 
 
-def validate_tool_layout(root: Path) -> None:
-    scripts_root = root / "scripts"
-    expected_root_files = {"__init__.py", "run.py"}
-    actual_root_files = {path.name for path in scripts_root.glob("*.py")}
-    if actual_root_files != expected_root_files:
-        raise ProjectError(
-            "scripts root must contain only package metadata and run.py: "
-            + ", ".join(sorted(actual_root_files))
-        )
-    package_dirs = {
-        scripts_root,
-        *(path.parent for path in scripts_root.rglob("*.py")),
-    }
-    missing_markers = sorted(
-        path.relative_to(root).as_posix()
-        for path in package_dirs
-        if "__pycache__" not in path.parts and not (path / "__init__.py").is_file()
-    )
-    if missing_markers:
-        raise ProjectError(
-            "Python tool directories lack __init__.py: "
-            + ", ".join(missing_markers)
-        )
-
-
-def validate_test_layout(root: Path) -> None:
-    tests_root = root / "tests"
-    expected_root_tests = {"test_script_runner.py"}
-    actual_root_tests = {path.name for path in tests_root.glob("test_*.py")}
-    if actual_root_tests != expected_root_tests:
-        raise ProjectError(
-            "tests root must contain only the script-runner contract: "
-            + ", ".join(sorted(actual_root_tests))
-        )
-
-    package_dirs = {
-        tests_root,
-        *(path.parent for path in tests_root.rglob("*.py")),
-    }
-    missing_markers = sorted(
-        path.relative_to(root).as_posix()
-        for path in package_dirs
-        if "__pycache__" not in path.parts and not (path / "__init__.py").is_file()
-    )
-    if missing_markers:
-        raise ProjectError(
-            "Python test directories lack __init__.py: "
-            + ", ".join(missing_markers)
-        )
-
-    tools_by_stem: dict[str, list[Path]] = {}
-    for tool in (root / "scripts").rglob("*.py"):
-        if tool.name in {"__init__.py", "run.py"} or "__pycache__" in tool.parts:
-            continue
-        tools_by_stem.setdefault(tool.stem, []).append(tool.parent.relative_to(root / "scripts"))
-
-    special_locations = {
-        "test_debugger_runtime.py": Path("runtime"),
-        "test_runtime_scenarios.py": Path("runtime"),
-        "test_disassembly.py": Path("workflow"),
-        "test_source_2_contract.py": Path("validation/release"),
-    }
-    mismatches: list[str] = []
-    for test in tests_root.rglob("test_*.py"):
-        if test.parent == tests_root:
-            continue
-        expected = special_locations.get(test.name)
-        if expected is None:
-            stem = test.stem.removeprefix("test_")
-            candidates = tools_by_stem.get(stem, [])
-            if len(candidates) != 1:
-                mismatches.append(
-                    f"{test.relative_to(root).as_posix()} has {len(candidates)} matching tools"
-                )
-                continue
-            expected = candidates[0]
-        actual = test.parent.relative_to(tests_root)
-        if actual != expected:
-            mismatches.append(
-                f"{test.relative_to(root).as_posix()} should be under tests/{expected.as_posix()}"
-            )
-    if mismatches:
-        raise ProjectError("test layout does not mirror scripts: " + "; ".join(mismatches))
-
-
-def command_lint(_args: argparse.Namespace) -> None:
-    required = (
-        "README.md", "Makefile", "assets/manifest.json", "config/linker/gnrom.cfg",
-        "config/reconstruction/symbols.json",
-        "config/reconstruction/prg_data_ranges.txt",
-        "config/reconstruction/prg_code_entries.txt",
-        "config/reconstruction/source_modules.json",
-        "config/reconstruction/source_classification.json",
-        "docs/source_classification.md", "docs/verification.md",
-        "tools/disassembly.lock.json", "src/main.asm", "scripts/run.py",
-        "config/lint.json", "scripts/build/verify_rom.py",
-        "scripts/workflow/generate_disassembly.py",
-        "scripts/workflow/run_ghidra.py", "scripts/validation/map_data.py",
-        "tools/ghidra_scripts/ClearKnownData.java", "tools/ghidra_scripts/ApplyKnownCode.java",
-    )
-    missing = [name for name in required if not (ROOT / name).is_file()]
-    if missing:
-        raise ProjectError("missing project files: " + ", ".join(missing))
-    validate_tool_layout(ROOT)
-    validate_test_layout(ROOT)
-    manifest = load_manifest(ROOT / "assets/manifest.json")
-    reference = manifest.get("reference_rom")
-    if not isinstance(reference, dict) or reference.get("mapper") != 66:
-        raise ProjectError("manifest does not describe mapper 66")
-    load_prg_data_ranges(ROOT / "config/reconstruction/prg_data_ranges.txt")
-    load_prg_code_entries(ROOT / "config/reconstruction/prg_code_entries.txt")
-    symbols = json.loads(
-        (ROOT / "config/reconstruction/symbols.json").read_text(encoding="utf-8")
-    )
-    if symbols.get("schema_version") != 1 or not symbols.get("symbols"):
-        raise ProjectError("invalid or empty symbol registry")
-    module_document = json.loads(
-        (ROOT / "config/reconstruction/source_modules.json").read_text(encoding="utf-8")
-    )
-    if module_document.get("schema_version") != 1:
-        raise ProjectError("invalid source module registry")
-    modules_by_bank: dict[int, list[Path]] = {}
-    for module in module_document.get("modules", []):
-        path = ROOT / "src" / str(module["path"])
-        modules_by_bank.setdefault(int(module["bank"]), []).append(path)
-    for bank in range(PRG_BANK_COUNT):
-        relative = f"src/banks/bank_{bank}.asm"
-        source = (ROOT / relative).read_text(encoding="utf-8")
-        semantic_source = "\n".join(
-            path.read_text(encoding="utf-8") for path in modules_by_bank.get(bank, [])
-        )
-        complete_source = source + "\n" + semantic_source
-        for marker in (f'.segment "PRG{bank}"', f"Bank{bank}_Reset:", f"Bank{bank}_Nmi:"):
-            if marker not in complete_source:
-                raise ProjectError(f"{relative} is missing required marker: {marker}")
-        if ".incbin" in complete_source.lower():
-            raise ProjectError(f"{relative} must not contain .incbin")
-    try:
-        tracked = subprocess.run(
-            ["git", "ls-files", "*.nes", "*.chr", "*.hdr", "*.prg", "*.o", "tools/ghidra/**"],
-            cwd=ROOT, check=True, capture_output=True, text=True,
-        ).stdout.splitlines()
-    except (OSError, subprocess.CalledProcessError) as exc:
-        raise ProjectError(f"cannot inspect tracked binary files: {exc}") from exc
-    if tracked:
-        raise ProjectError("ROM/build binaries must not be tracked: " + ", ".join(tracked))
-    print("[OK] project structure, GNROM source contract, and binary policy")
-
-
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -486,8 +265,6 @@ def build_parser() -> argparse.ArgumentParser:
     clean = subparsers.add_parser("clean")
     clean.add_argument("--path", required=True)
     clean.set_defaults(handler=command_clean)
-    lint = subparsers.add_parser("lint")
-    lint.set_defaults(handler=command_lint)
     return parser
 
 

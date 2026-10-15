@@ -1,5 +1,10 @@
 # World 3 Runtime
 
+The validation targets (`make validate-...`), machine-readable contracts
+(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
+this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
+those tags. The findings stand; the source is now edited directly.
+
 This chapter joins the frame, room, player, interaction, entity, formation, rendering, transition, and PPU-queue contracts that cooperate in the World 3 gameplay loop. Machine-readable routine ranges and RAM ownership remain authoritative in `config/reconstruction/world3/`.
 
 ## Contents

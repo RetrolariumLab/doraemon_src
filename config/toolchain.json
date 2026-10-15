@@ -32,35 +32,6 @@
       "version_output_contains": "ld65 V2.19 - Git 0fca835",
       "kit_tool": "nes/ld65",
       "kit_release": "2026.10.11"
-    },
-    {
-      "id": "fceux",
-      "role": "runtime_emulator",
-      "version": "automation fork at ec507d86c57acd8979547bc35e9627fb199fac9a",
-      "source": "https://github.com/oranguthang/fceux_automation",
-      "source_commit": "ec507d86c57acd8979547bc35e9627fb199fac9a",
-      "provenance": "external_unbundled",
-      "path": "../fceux_automation/vc/x64/Release/fceux64.exe",
-      "size": 5499904,
-      "binary_sha256": "97aadff4970e98a413377810a296c045fab717661dd8270f84d58190f43a232e"
-    },
-    {
-      "id": "ghidra",
-      "role": "static_analysis",
-      "version": "12.1.3",
-      "source": "https://github.com/NationalSecurityAgency/ghidra",
-      "source_commit": null,
-      "provenance": "external_unbundled",
-      "archive_lock": "tools/disassembly.lock.json#ghidra"
-    },
-    {
-      "id": "ghidranes",
-      "role": "static_analysis_loader",
-      "version": "v20260531",
-      "source": "https://github.com/kylewlacy/GhidraNes",
-      "source_commit": "4c41964",
-      "provenance": "external_unbundled",
-      "archive_lock": "tools/disassembly.lock.json#nes_loader"
     }
   ],
   "hosts": [
