@@ -271,3 +271,10 @@ include mk/reconstruction-world1.mk mk/reconstruction-world23.mk \
 
 clean:
 	$(RUN_TOOL) build.project clean --path build
+
+# `make hooks`, once per clone, makes Git check every commit and push for stop
+# words and run `make lint` and `make format-check` first (Retrolarium Kit's
+# rltool hooks; the stop-word list lives outside the repositories).
+.PHONY: hooks
+hooks:
+	$(RLTOOL) hooks install --project .
