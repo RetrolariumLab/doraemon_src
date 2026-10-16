@@ -34,22 +34,23 @@ You need Python 3, GNU Make and Retrolarium Kit (`rltool` on `PATH`, or
 `Doraemon (Japan) (Rev A).nes` into the repository root, then:
 
 ```bash
-make split              # unpack the private assets (once)
+make split              # cut the private assets out of the ROMs (once)
 make verify             # build the original revision and compare byte for byte
 make verify-revisions   # both revisions
 ```
 
-ROMs, extracted assets and build products are ignored by Git.
+`assets/manifest.json` names both ROMs and the assets cut out of them
+(`rltool assets`, Retrolarium Kit). ROMs, extracted assets and build products
+are ignored by Git.
 
 ## Targets
 
 ```bash
 make build / verify                    # the original revision
-make verify-revisions                  # both revisions (PROFILE=original|rev_a for one)
-make audit-revisions                   # compare the two reference ROMs
+make build-revision REVISION=<id> / verify-revision / verify-revisions
 make studio-check                      # open and rebuild both revisions in the kit
 make test                              # the checks
-make lint / format / format-check / hooks / rom-info / bank-info / clean / help
+make lint / format / format-check / hooks / clean / help
 ```
 
 `make test` (well under a minute) runs the unit tests, verifies both revisions
