@@ -9,7 +9,7 @@ those tags. The findings stand; the source is now edited directly.
 
 The original Japanese `PRG0` dump was inspected locally on 2026-08-31, and the
 Revision A image was added for Source Reconstruction 2.0. Complete hashes are
-recorded in `assets/manifest.json` and `config/revision_profiles.json`. The
+recorded in `assets/manifest.json`. The
 source builds independently reproduce both full files.
 
 The locally present Chinese image is a 524,304-byte mapper-4 expansion with

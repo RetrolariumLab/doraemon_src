@@ -10,8 +10,8 @@ private reference images remain outside version control.
 | `rev_a` | `FE90D6EB` | `761F994E` | `336093EF` |
 
 The iNES header and all 32 KiB of CHR are identical. Exactly 50 PRG bytes
-differ, all in physical PRG bank 2. The comparison contract in
-`config/revision_profiles.json` confines them to two source windows:
+differ, all in physical PRG bank 2. They lie in two source
+windows:
 
 - CPU `$AB3B-$AB60` in `src/world3/room_collision_helpers.asm`;
 - CPU `$AF40-$AF5F` in `src/world3/chapter_transition.asm`.
@@ -33,18 +33,13 @@ than silently treating the two programs as behaviorally identical.
 
 No map, metatile, object, palette, text, audio, or graphics data difference is
 present in the two known images. There are therefore no revision-specific
-binary source assets to extract at this time. The revision splitter deliberately
-emits none; future data-only differences must be declared and checksum-pinned
-as `source_assets` before extraction.
+binary source assets to extract at this time. Future data-only differences
+must be declared in `assets/manifest.json`, with their hashes, before
+extraction.
 
-Audit the two private references with:
-
-```console
-make audit-revisions
-```
-
-Build or verify one profile with `PROFILE=original` or `PROFILE=rev_a`. Both
-byte-identical images are checked together with:
+Build or verify one revision with `REVISION=original` or `REVISION=rev_a`
+(`make build-revision`, `make verify-revision`); both are checked together
+with:
 
 ```console
 make verify-revisions
