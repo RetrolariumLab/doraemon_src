@@ -31,7 +31,7 @@ not where it is now. PRG files contain instructions, explicit `.byte` data, or
 source includes only; they never include extracted binaries.
 
 From 3.1 the source is the authority and is edited directly; `make test`
-rebuilds both revisions byte for byte.
+rebuilds the ROM byte for byte.
 
 World 2 separates the stage
 sequence and standard pointer table from three contiguous storage shards for

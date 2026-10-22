@@ -1,23 +1,21 @@
 # Doraemon NES source reconstruction
 
 A byte-identical ca65 reconstruction of Hudson Soft's 1986 Famicom game
-**Doraemon** (`HFC-DO`), edited in Retrolarium Studio. Both known Japanese
-revisions build from shared source; the ROM-derived assets stay private.
+**Doraemon** (`HFC-DO`), edited in Retrolarium Studio. The source builds the
+Japanese release; the ROM-derived assets stay private.
 
 ## Status
 
 Source Reconstruction 3.1. Editing happens in Retrolarium Studio:
-`doraemon.rlj` opens both revisions
-([`docs/retrolarium.md`](docs/retrolarium.md)).
+`doraemon.rlj` opens it ([`docs/retrolarium.md`](docs/retrolarium.md)).
 
 3.1 keeps only what builds and checks the source. The earlier releases' Ghidra
 regeneration pipeline and its ledgers, audits, authoring contracts and editable
 JSON, FCEUX runtime scenarios and debugger exports remain in the history (tags
 `source-reconstruction-1.0` to `3.0`); the source is now edited directly.
 
-The cartridge uses GNROM mapper 66 with 128 KiB of PRG and 32 KiB of CHR. The
-two revisions share their header and CHR; 50 classified PRG bytes differ in
-bank 2 ([`docs/revisions.md`](docs/revisions.md)).
+The cartridge uses GNROM mapper 66 with 128 KiB of PRG and 32 KiB of CHR
+([`docs/revisions.md`](docs/revisions.md)).
 
 The source does not yet survive moving its code. ROM addresses in instruction
 operands, the bank 3 entry points the other banks call, and the NMI services
@@ -29,28 +27,26 @@ in the checks.
 ## Quick start
 
 You need Python 3, GNU Make and Retrolarium Kit (`rltool` on `PATH`, or
-`RLTOOL=...`); the kit supplies and verifies ca65 and ld65. Copy `Doraemon (J) (PRG0) [!].nes` and
-`Doraemon (Japan) (Rev A).nes` into the repository root, then:
+`RLTOOL=...`); the kit supplies and verifies ca65 and ld65. Copy
+`Doraemon (J) (PRG0) [!].nes` into the repository root, then:
 
 ```bash
-make split              # cut the private assets out of the ROMs (once)
-make verify             # build the original revision and compare byte for byte
-make verify-revisions   # every revision whose ROM is here
+make split     # cut the private assets out of the ROM (once)
+make verify    # build the ROM and compare it byte for byte
 ```
 
-`make` alone lists the targets. Builds go to `build/revisions/<id>/`.
+`make` alone lists the targets. The build goes to `build/revisions/original/`.
 
-`assets/manifest.json` names both ROMs and the assets cut out of them
+`assets/manifest.json` names the ROM and the assets cut out of it
 (`rltool assets`, Retrolarium Kit). ROMs, extracted assets and build products
 are ignored by Git.
 
 ## Targets
 
 ```bash
-make build [REVISION=<id>]    # original unless given; rev_a is the other
-make verify [REVISION=<id>]   # build it and compare it with its ROM
-make verify-revisions         # every revision whose ROM is here
-make studio-check             # open and rebuild those revisions in the kit
+make build                    # build the ROM
+make verify                   # build it and compare it with the ROM
+make studio-check             # open and rebuild doraemon.rlj in the kit
 make profile-check            # the profile's table places against the builds
 make test                     # all of the above
 make lint / format / hooks / clean

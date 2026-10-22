@@ -9,10 +9,9 @@ over from the original.
 
 ## Revisions
 
-| Revision   | ROM                            |
-| ---------- | ------------------------------ |
-| `original` | `Doraemon (J) (PRG0) [!].nes`  |
-| `rev_a`    | `Doraemon (Japan) (Rev A).nes` |
+| Revision   | ROM                           |
+| ---------- | ----------------------------- |
+| `original` | `Doraemon (J) (PRG0) [!].nes` |
 
 ## What is edited
 

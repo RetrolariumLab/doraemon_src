@@ -2,10 +2,9 @@
 
 ## Exact local reference
 
-The original Japanese `PRG0` dump was inspected locally on 2026-08-31, and the
-Revision A image was added for Source Reconstruction 2.0. Complete hashes are
-recorded in `assets/manifest.json`. The
-source builds independently reproduce both full files.
+The original Japanese `PRG0` dump was inspected locally on 2026-08-31. Its
+complete hashes are recorded in `assets/manifest.json`, and the source
+reproduces the full file.
 
 The locally present Chinese image is a 524,304-byte mapper-4 expansion with
 262,144-byte PRG and CHR regions. It is ignored by Git and is not treated as an
@@ -16,10 +15,10 @@ original game revision.
 - NES Cart Database Doraemon profiles: board/chip identity, revision, and
   physical CRCs: <https://nescartdb.com/profile/view/1493/doraemon>
 - NESdev mapper 66 documentation: GNROM bank fields and bus conflicts
-- No-Intro naming/revision metadata: original and Revision A separation
+- No-Intro naming/revision metadata
 
-The exact local dumps confirm mapper 66, vertical mirroring, original PRG CRC32
-`B00ABE1C`, Revision A PRG CRC32 `FE90D6EB`, and shared CHR CRC32 `761F994E`.
+The local dump confirms mapper 66, vertical mirroring, PRG CRC32 `B00ABE1C`
+and CHR CRC32 `761F994E`.
 
 ## Map evidence
 

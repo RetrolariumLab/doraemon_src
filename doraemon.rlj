@@ -15,13 +15,8 @@ id = "original"
 label = "Japan · original"
 rom = "Doraemon (J) (PRG0) [!].nes"
 
-[[revisions]]
-id = "rev_a"
-label = "Japan · Rev A"
-rom = "Doraemon (Japan) (Rev A).nes"
-
-# The assets both revisions build from: the kit cuts them out of the original
-# ROM by assets/manifest.json, as `make split` does.
+# The assets the build takes: the kit cuts them out of the ROM by
+# assets/manifest.json, as `make split` does.
 [split]
 revision = "original"
 manifest = "assets/manifest.json"

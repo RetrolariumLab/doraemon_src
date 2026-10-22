@@ -22,18 +22,6 @@ original addresses rather than labels:
 
 The pointer immediates and pushed return addresses are labels already.
 
-## REV-A - is Revision A a good dump?
-
-- Known: CHR and the header are identical; 50 PRG bytes in bank 2 differ, in
-  two windows of World 3 code ([revisions](revisions.md)). 49 of them only
-  set bits, and the second window becomes all `$FF`, which looks like a
-  failing chip rather than a publisher's patch.
-- Known: the 1.0-3.0 traces show Revision A resetting to the shell in the
-  frame it enters World 3.
-- Unknown: whether a cartridge database confirms this image (SHA-1
-  `20c5e40a...`, payload CRC32 `336093EF`). If it is a bad dump, the revision
-  goes; if it is good, World 3's reset is the cartridge's own behavior.
-
 ## BANK-001 - power-on bank
 
 - Known: every bank contains compatible vectors and reset bytes.

@@ -2,7 +2,8 @@
 
 ## Builds
 
-- [Revisions](revisions.md) — the original and Revision A
+- [Revisions](revisions.md) — the one release the source builds, and the
+  damaged image it does not
   identities and their shared-source strategy.
 - [Editing in Retrolarium](retrolarium.md) — how the game is edited.
 - [Provenance](provenance.md) — the local references and the external sources.

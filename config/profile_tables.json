@@ -4,11 +4,6 @@
       "engine": "doraemon",
       "dbg": "build/revisions/original/doraemon.dbg",
       "offsets": "image"
-    },
-    "rev_a": {
-      "engine": "doraemon",
-      "dbg": "build/revisions/rev_a/doraemon.dbg",
-      "offsets": "image"
     }
   },
   "engines": {
