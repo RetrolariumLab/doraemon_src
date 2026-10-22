@@ -19,15 +19,6 @@
       "sha256": "6ed579c9c98a1f2db52fd3d2488a491953073e8ace1e3c1dc5884669cecca274",
       "container": "ines",
       "mapper": 66
-    },
-    {
-      "id": "rev_a",
-      "name": "Doraemon (Japan, Revision A)",
-      "size": 163856,
-      "sha1": "20c5e40ab706a637d0572b1549eeff9a0048a065",
-      "sha256": "c070fa0e07a4b8be107ecc2f514e4c64f5bbb2a15754b6c6214e7259a1b30920",
-      "container": "ines",
-      "mapper": 66
     }
   ],
   "resources": [

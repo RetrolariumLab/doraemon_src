@@ -1,7 +1,7 @@
 # Contributing
 
-The project reconstructs the original Japanese release and Revision A from
-one shared source tree; both must keep building byte for byte.
+The project reconstructs the Japanese release; it must keep building byte for
+byte.
 For each change:
 
 ```bash

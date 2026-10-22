@@ -1,16 +1,6 @@
-; Doraemon (Japan) source, assembled through a revision's entry file,
-; src/revisions/<id>.asm
+; Doraemon (Japan) source
 
 .setcpu "6502"
-
-DORAEMON_REVISION_ORIGINAL = 0
-DORAEMON_REVISION_REV_A = 1
-
-.ifndef DORAEMON_REVISION
-    .error "assemble a revision's entry file, src/revisions/<id>.asm"
-.endif
-
-.assert DORAEMON_REVISION = DORAEMON_REVISION_ORIGINAL .or DORAEMON_REVISION = DORAEMON_REVISION_REV_A, error, "unsupported Doraemon revision"
 
 .segment "HEADER"
 
