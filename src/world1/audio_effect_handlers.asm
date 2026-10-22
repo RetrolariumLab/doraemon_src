@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $E68D-$E948
 ; World 1 remaining audio-effect handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $E68D-$E948
 
 World1_AudioEffect_InitIndexedTonalSequenceAlt:
     LDA #$78

@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $BA9F-$BDDE
 ; World 2 exact 208-entry metatile CHR-tile quads
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $BA9F-$BDDE
 
 World2_MetatileTiles_00_3F:
     .byte $00

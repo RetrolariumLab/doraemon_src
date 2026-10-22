@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $C634-$C92B
 ; World 3 music RTS table, command handlers, and stream reader
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $C634-$C92B
 
 World3_MusicCommand_RtsDispatchTable:
     .byte $95, $C7, $71, $C8, $AC, $C7, $E5, $C7, $CA, $C7, $0D, $C8, $23, $C8, $36, $C8

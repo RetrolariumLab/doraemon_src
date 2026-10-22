@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $D7A5-$D924
 ; World 1 twelve-record full PPU palette table
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $D7A5-$D924
 
 World1PaletteSets:
     .byte $0F, $01, $11, $1B, $0F, $09, $19, $29, $0F, $09, $19, $1B, $0F, $01, $11, $21

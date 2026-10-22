@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $C4F5-$C633
 ; World 3 four-channel music sequencer and stream interpreter
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $C4F5-$C633
 
 World3_Audio_UpdateMusic:
     LDA a:AudioMusicControl

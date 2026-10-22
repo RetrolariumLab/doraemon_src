@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $8B68-$8F54
 ; World 3 entity storage, persistent records, and random-spawn scheduling
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $8B68-$8F54
 
 World3_ClearEntitySlot:
     TXA

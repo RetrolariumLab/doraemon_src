@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $8A6C-$8D21
 ; World 1 object coordinate stepping, animation, and collision helpers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $8A6C-$8D21
 
 World1_MoveEntityXByA:
     ORA #$00

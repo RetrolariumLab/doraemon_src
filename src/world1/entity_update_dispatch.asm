@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $888F-$8A6B
 ; World 1 entity traversal, low-state RTS dispatch, and shared update helpers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $888F-$8A6B
 
 World1_UpdateEntities:
     LDX #$00

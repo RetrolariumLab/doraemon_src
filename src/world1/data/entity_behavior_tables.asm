@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $DADA-$DBD9
 ; World 1 entity collision and behavior parameter tables
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $DADA-$DBD9
 
 Bank0_Label_DADA:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00

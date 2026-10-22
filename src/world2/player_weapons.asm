@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $8C5D-$8F4A
 ; World 2 player animation, weapon state, and projectile creation
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $8C5D-$8F4A
 
 World2_UpdatePlayerDamageEffect:
     LDA World2PlayerDamageEffect

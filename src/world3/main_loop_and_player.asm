@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $82AD-$875B
 ; World 3 initialization, frame loop, player state, and map position
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $82AD-$875B
 
 World3_DemoEntry:
     LDX #$7F

@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $9C1D-$9ED7
 ; Remaining audio-effect handlers and APU write helpers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $9C1D-$9ED7
 
 AudioEffect_InitPulse2PitchSequenceBase:
     LDY #$14

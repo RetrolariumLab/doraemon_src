@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $9F84-$A0DB
 ; World 2 late indirect enemy-state handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $9F84-$A0DB
 
 World2_RenderPotta:
     LDA a:World2EnemyPhaseCounter,X

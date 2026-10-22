@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $BFCC-$D52C
 ; World 2 early compressed screen streams with embedded enemy tokens
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $BFCC-$D52C
 
 World2_CompressedScreenStreams:
     .byte $F2, $00, $D0, $F3, $00, $D0, $F2, $00, $15, $05, $01, $FB, $00, $16, $06, $01

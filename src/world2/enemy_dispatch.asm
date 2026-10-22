@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $98F8-$9B45
 ; World 2 entity-pool clearing, enemy traversal, and collision dispatch
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $98F8-$9B45
 
 World2_ClearEntityPools:
     LDX #$06

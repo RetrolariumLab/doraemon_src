@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $A8B0-$AB3A
 ; World 3 room updates and early entity collision adjustment
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $A8B0-$AB3A
 
 World3_FadePaletteIn:
     LDX #$00

@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $D925-$D988
 ; World 1 underground three-byte object placement records and terminator
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $D925-$D988
 
 World1_UndergroundObjectPlacements:
     .byte $7B, $39, $85, $A3, $29, $C5, $D0, $55, $83, $3B, $4D, $C5, $9B, $55, $C4, $BB

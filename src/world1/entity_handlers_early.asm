@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $DBDA-$DEBA
 ; World 1 low-state entity handlers at DBDA through DEBA
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $DBDA-$DEBA
 
 World1_UpdateYuubouOrDormantState0D:
     LDA FrameCounter

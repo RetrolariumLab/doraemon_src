@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $9384-$9783
 ; Complete 32 by 32 ending-opening nametable
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $9384-$9783
 
 EndingOpening_Nametable:
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF

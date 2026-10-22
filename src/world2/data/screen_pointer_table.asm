@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $BEDE-$BFCB
 ; World 2 standard 119-entry compressed-screen pointer table
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $BEDE-$BFCB
 
 World2_ScreenPointerTable:
     .byte $CC, $BF, $40, $C0, $BB, $C0, $8D, $C1, $27, $C2, $C9, $C2, $4E, $C3, $F2, $C3

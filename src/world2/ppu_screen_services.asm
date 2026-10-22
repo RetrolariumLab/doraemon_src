@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $8444-$88A3
 ; World 2 compressed row expansion, palette catalog, PPU transfer services, and RTS dispatch tables
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $8444-$88A3
 
 World2_DecodeScreenToken:
     LDA (World2ScreenStreamPointer),Y

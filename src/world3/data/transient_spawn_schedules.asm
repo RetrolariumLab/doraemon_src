@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $D66B-$D96A
 ; World 3 four-channel room-indexed transient entity type count and delay tables
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $D66B-$D96A
 
 World3_TransientSpawnType0ByRoom:
     .byte $00, $00, $00, $01, $00, $01, $00, $00, $04, $00, $01, $00, $01, $00, $01, $00

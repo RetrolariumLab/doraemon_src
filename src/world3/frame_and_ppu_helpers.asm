@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $B1BB-$B405
 ; World 3 frame synchronization, PPU buffers, and metatile update helpers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $B1BB-$B405
 
 World3_WaitFrames:
     INC $D6

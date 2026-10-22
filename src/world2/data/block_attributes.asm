@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $B9CE-$BA9E
 ; World 2 unindexed CadEditor prefix and exact 208-entry metatile palette table
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $B9CE-$BA9E
 
 World2_UnindexedAttributePrefix:
     .byte $FF

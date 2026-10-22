@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $DBBC-$ED3B
 ; Second and final contiguous part of the active ending credit stream
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $DBBC-$ED3B
 
     .byte $20, $20, $20, $20, $20, $20, $20, $20, $20, $20, $53, $45, $54, $53, $55, $4F
     .byte $20, $4F, $4B, $41, $44, $41, $20, $20, $20, $20, $20, $20, $20, $20, $20, $20

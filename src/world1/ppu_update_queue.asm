@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $A87E-$A9EE
 ; World 1 buffered PPU update packet construction
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $A87E-$A9EE
 
 World1_DrainMapPpuUpdates:
     LDA a:World1EdgeUpdateQueue

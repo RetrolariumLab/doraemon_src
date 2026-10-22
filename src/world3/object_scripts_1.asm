@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $9A3B-$9D18
 ; World 3 object script decoding and early behavior handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $9A3B-$9D18
 
 World3_RunEntityBehaviorScript:
     LDX $07

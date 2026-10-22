@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $8F55-$9191
 ; World 3 random-spawn initializer dispatch and handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $8F55-$9191
 
 World3_InitializeSpawnedEntity:
     LDA #$00

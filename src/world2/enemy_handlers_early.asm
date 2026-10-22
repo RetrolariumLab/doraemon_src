@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $9B46-$9D4D
 ; World 2 early indirect enemy-state handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $9B46-$9D4D
 
 World2_RenderAnkodori:
     LDA #$00

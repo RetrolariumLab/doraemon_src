@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $E9FD-$EB64
 ; World 1 four-channel music sequencer and command dispatch
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $E9FD-$EB64
 
 World1_Audio_UpdateMusic:
     LDA a:AudioMusicControl

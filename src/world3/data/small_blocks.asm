@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $DEF2-$E2F1
 ; World 3 CadEditor small metatile table
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $DEF2-$E2F1
 
 World3_SmallBlocks:
     .byte $00, $00, $00, $00, $01, $01, $01, $01, $01, $01, $14, $14, $B4, $B5, $DE, $DF

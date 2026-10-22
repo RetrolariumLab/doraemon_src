@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $A0DC-$A611
 ; World 2 later enemy handlers, metasprites, and movement tables
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $A0DC-$A611
 
 World2_ApplyScrollingToEnemy:
     LDA World2ScrollingActive

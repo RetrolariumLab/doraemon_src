@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $8A17-$8A87
 ; Returning game-over presentation service
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $8A17-$8A87
 
 Bank3_ShowGameOver:
     JSR Bank3_DisableRenderingForUpdate

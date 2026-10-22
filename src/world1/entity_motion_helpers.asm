@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $8F9E-$9200
 ; World 1 entity direction, motion, and bounds helpers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $8F9E-$9200
 
 World1_UpdateFallingTransientEntity:
     LDA a:World1EntityPrimaryBehavior,X

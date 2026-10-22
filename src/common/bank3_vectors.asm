@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $FFFA-$FFFF
 ; Bank 3 NMI, RESET, and IRQ vectors
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $FFFA-$FFFF
 
 Bank3_NmiVector:
     .addr Bank3_Nmi

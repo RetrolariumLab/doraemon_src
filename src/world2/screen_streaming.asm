@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $827D-$8443
 ; World 2 stage sequence, compressed-screen selection, and row decoding control
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $827D-$8443
 
 World2_CommitNmiPpuState:
     JSR World2_ApplyPendingBackgroundPalette

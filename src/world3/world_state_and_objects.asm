@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $875C-$8B67
 ; World 3 world-state progression, object spawning, and player interactions
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $875C-$8B67
 
 World3_ClearFormationArenaTiles:
     STX $44

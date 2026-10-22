@@ -1,6 +1,4 @@
-; Address-ordered Doraemon PRG bank 2 semantic include map
-; Generated deterministically from config/reconstruction/source_modules.json
-; Keep byte-identical through make verify
+; PRG bank 2: its modules in CPU order
 
 .segment "PRG2"
 

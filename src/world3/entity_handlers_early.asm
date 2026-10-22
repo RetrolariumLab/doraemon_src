@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $931F-$968B
 ; World 3 shared indirect trampoline and early entity-type handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $931F-$968B
 
 World3_CallIndirect:
     JMP ($0040)

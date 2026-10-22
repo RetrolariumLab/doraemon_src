@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $A50A-$A87D
 ; World 1 metatile decoding and incremental nametable streaming
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $A50A-$A87D
 
 World1_BuildColumnAttributeUpdate:
     PHA

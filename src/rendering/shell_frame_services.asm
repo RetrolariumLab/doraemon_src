@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $8FF2-$9247
 ; Shell PPU updates, palette staging, and ending-credit row streaming
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $8FF2-$9247
 
 Shell_NmiFrameServices:
     LDA $09

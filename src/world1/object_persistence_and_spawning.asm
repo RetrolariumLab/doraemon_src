@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $8D22-$8F9D
 ; World 1 persistent object masks, spawning, and entity-slot initialization
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $8D22-$8F9D
 
 World1_IsObjectSpawnSuppressed:
     LDA World1CurrentPlacementId
