@@ -1,0 +1,4 @@
+# Commits that only change layout; git blame --ignore-revs-file and GitHub skip them
+
+# Format every file with the shared formatters
+f6497f1def297d5cc35959eff73936bcbf6e764c

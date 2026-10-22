@@ -56,7 +56,7 @@ profile-check:
 	$(RLTOOL) profile tables --check
 
 lint:
-	$(RLTOOL) lint --only assembly --only text
+	$(RLTOOL) lint
 
 format:
 	$(RLTOOL) lint --fix
