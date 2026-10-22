@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $DEBB-$E14A
 ; World 1 low-state entity handlers at DEBB through E14A
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $DEBB-$E14A
 
 World1_UpdateNaameCity:
     LDA #$02

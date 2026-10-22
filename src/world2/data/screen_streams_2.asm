@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $D52D-$EA4E
 ; World 2 middle compressed screen streams with embedded enemy tokens
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $D52D-$EA4E
 
     .byte $FB, $00, $41, $05, $8D, $F4, $00, $D0, $F6, $00, $58, $5D, $FB, $00, $1F, $5D
     .byte $69, $FB, $00, $1D, $4A, $4C, $F3, $00, $D0, $F6, $00, $77, $4C, $7D, $FC, $00

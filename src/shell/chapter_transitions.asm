@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $8C3B-$8FF1
 ; World transitions and interstitial cutscenes
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $8C3B-$8FF1
 
 Shell_RunWorld1OpeningTransition:
     LDA #$80

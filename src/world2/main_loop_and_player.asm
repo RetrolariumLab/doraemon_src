@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $88A4-$8C5C
 ; World 2 initialization, frame loop, and player flight state
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $88A4-$8C5C
 
 Bank1_World2Main:
     LDX #$7F

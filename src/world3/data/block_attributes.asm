@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $DDF2-$DEF1
 ; World 3 CadEditor block attribute table
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $DDF2-$DEF1
 
 World3_BlockAttributes:
     .byte $00, $02, $02, $00, $00, $02, $01, $02, $02, $02, $02, $02, $02, $02, $01, $02

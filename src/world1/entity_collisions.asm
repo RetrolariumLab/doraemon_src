@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $9201-$95CA
 ; World 1 entity collision scans, damage resolution, and interaction helpers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $9201-$95CA
 
 World1_ScanPlayerProjectileHits:
     LDA #$00

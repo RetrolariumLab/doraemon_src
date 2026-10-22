@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $95CB-$9909
 ; World 1 frame synchronization, PPU preparation, and sprite traversal
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $95CB-$9909
 
 World1_HandlePause:
     LDA World1PressedButtons

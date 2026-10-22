@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $D9CC-$DDF1
 ; World 3 packed behavior streams for entity types below sixteen
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $D9CC-$DDF1
 
 World3_EntityBehaviorStreams:
     .byte $63, $C0, $64, $05, $62, $71, $78, $B2, $C0, $78, $0D, $79, $B0, $E0, $21, $00

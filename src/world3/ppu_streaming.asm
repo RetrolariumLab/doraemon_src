@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $A5DF-$A8AF
 ; World 3 audio wrappers, nametable streaming, and PPU update preparation
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $A5DF-$A8AF
 
 World3_QueuePriorityEffectPreserveXY:
     STX World3AudioSavedX

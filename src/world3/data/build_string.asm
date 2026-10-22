@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $827D-$82AC
 ; Embedded World 3 build identification string
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $827D-$82AC
 
 World3_BuildString:
     .byte $44, $4F, $52

@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $A30F-$B1BB
 ; Shell APU tables, track headers, header-reachable streams, and adjacent unclassified data
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $A30F-$B1BB
 
 Bank3_Label_A30F:
     .byte $00, $00, $AE, $06, $4E, $06, $F3, $05, $9F, $05, $4D, $05, $01, $05, $B9, $04

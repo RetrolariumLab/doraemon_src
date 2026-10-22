@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $9ED8-$A30E
 ; Four-channel music sequencer and stream interpreter
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $9ED8-$A30E
 
 Audio_UpdateMusic:
     LDA a:AudioMusicControl

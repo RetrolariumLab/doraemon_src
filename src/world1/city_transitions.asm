@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $CB61-$CDB4
 ; World 1 city item interactions and door transition sequence
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $CB61-$CDB4
 
 World1_CollectProgrammerFaceAndClearProjectiles:
     TXA

@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $856C-$888E
 ; World 1 player state, directional movement, and camera-relative positioning
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $856C-$888E
 
 World1_UpdateCityPlayer:
     JSR World1_UpdateWeaponAndTryFire

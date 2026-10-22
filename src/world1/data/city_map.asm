@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $B2EF-$C2EE
 ; World 1 64 by 64 city map
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $B2EF-$C2EE
 
 World1_CityMap:
     .byte $3C, $32, $32, $32, $32, $35, $3C, $32, $32, $36, $32, $32, $35, $34, $37, $32

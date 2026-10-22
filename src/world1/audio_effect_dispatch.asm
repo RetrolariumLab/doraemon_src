@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $E316-$E68C
 ; World 1 audio-effect arbitration, RTS dispatch, and early handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $E316-$E68C
 
 World1_AudioEffect_RequestPriority:
     .byte $00, $54, $64, $4C, $40, $44, $04, $38, $34, $3C, $1C, $50, $58, $60, $2C, $28

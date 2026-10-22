@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $9248-$9383
 ; Title nametable command stream and fixed text records
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $9248-$9383
 
 TitleScreen_PpuStream:
     .byte $20, $84, $15, $80, $81, $82, $83, $83, $85, $86, $87, $86, $89, $8A, $8B, $8C

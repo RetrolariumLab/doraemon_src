@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $A21D-$A5DE
 ; World 3 player-state dispatch, handlers, and interaction state
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $A21D-$A5DE
 
 World3_UpdatePlayerState:
     LDA World3PlayerState

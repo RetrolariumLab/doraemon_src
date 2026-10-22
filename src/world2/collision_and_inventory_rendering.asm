@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $92EC-$9660
 ; World 2 metatile collision, player/inventory sprite composition, and OAM services
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $92EC-$9660
 
 World2_RenderSlot2VerticalAttackSegment:
     STA World2OamY

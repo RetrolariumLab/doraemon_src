@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $ACE4-$AE22
 ; World 2 four-channel music sequencer and stream interpreter
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $ACE4-$AE22
 
 World2_Audio_UpdateMusic:
     LDA a:AudioMusicControl

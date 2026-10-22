@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $9D4E-$9F83
 ; World 2 middle indirect enemy-state handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $9D4E-$9F83
 
 World2_UpdateBorukka:
     LDA a:World2EnemyBehaviorParameter,X

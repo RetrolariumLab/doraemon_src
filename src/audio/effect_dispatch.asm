@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $9784-$9C1C
 ; Audio-effect request tables, arbitration, and primary handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $9784-$9C1C
 
 AudioEffect_RequestPriority:
     .byte $00, $54, $64, $4C, $40, $44, $04, $38, $34, $3C, $1C, $50, $58, $60, $2C, $28

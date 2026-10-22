@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $9192-$931E
 ; World 3 entity traversal, per-type dispatch, and spawn-position selection
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $9192-$931E
 
 World3_UpdateStopwatchEffect:
     LDA World3StopwatchActive

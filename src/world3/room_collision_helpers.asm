@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $AB3B-$AE11
 ; World 3 room collision helpers and movement state tables
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $AB3B-$AE11
 
 World3_StepWorkXTowardTarget:
 .if DORAEMON_REVISION = DORAEMON_REVISION_ORIGINAL

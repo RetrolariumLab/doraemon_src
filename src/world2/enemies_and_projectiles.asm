@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $8F4B-$92EB
 ; World 2 enemy and projectile behavior handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $8F4B-$92EB
 
 World2_TryStartInventorySlot0Projectile:
     LDA World2InventoryState

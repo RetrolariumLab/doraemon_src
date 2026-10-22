@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $990A-$A380
 ; World 1 metasprite composition, OAM placement, and animation data
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $990A-$A380
 
 World1_RenderEntitySlot38_47:
     LDA a:World1EntityPositionHigh+$26,Y

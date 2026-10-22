@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $827D-$856B
 ; World 1 initialization, main frame loop, and queued PPU writes
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $827D-$856B
 
 World1_Audio_UpdateFrameWithExtraLifeCue:
     LDA ExtraLifeSoundCounter

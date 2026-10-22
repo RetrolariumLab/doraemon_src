@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $D9AC-$D9CB
 ; World 3 sixteen-entry entity behavior-stream pointer table
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $D9AC-$D9CB
 
 World3_EntityBehaviorPointerTable:
     .byte $CC, $D9, $F4, $D9, $6B, $DA, $63, $DB, $78, $DB, $D8, $DB, $0F, $DC, $07, $DD

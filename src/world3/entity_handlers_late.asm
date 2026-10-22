@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $968C-$9A3A
 ; World 3 later entity-type collision, reward, and interaction handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $968C-$9A3A
 
 World3_UpdateType0FPoseidonLowerRight:
     LDA a:World3EntityFollowAnchorFlag,X

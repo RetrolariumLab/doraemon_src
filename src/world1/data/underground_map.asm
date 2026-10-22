@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $C2EF-$C92E
 ; World 1 64 by 25 underground map
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $C2EF-$C92E
 
 World1_UndergroundMap:
     .byte $C7, $C6, $C7, $C6, $C7, $C6, $C7, $C6, $AF, $D9, $A8, $A8, $A8, $A8, $A8, $A8

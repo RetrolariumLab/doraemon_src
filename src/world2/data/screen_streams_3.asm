@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $EA4F-$FFF9
 ; World 2 late compressed screen streams ending at the vector overlap
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $EA4F-$FFF9
 
     .byte $AE, $89, $F2, $88, $8A, $F9, $AE, $AE, $84, $F2, $88, $86, $F9, $AE, $32, $F4
     .byte $00, $73, $F3, $24, $98, $3F, $24, $3F, $24, $98, $FA, $00, $D2, $F2, $00, $72

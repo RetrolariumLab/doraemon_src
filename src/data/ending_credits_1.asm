@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $BDBC-$DBBB
 ; First contiguous part of the ending credit stream
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $BDBC-$DBBB
 
 EndingCredits_Rows:
     .byte $20, $20, $20, $20, $20, $20, $20, $45, $58, $45, $43, $55, $54, $49, $56, $45

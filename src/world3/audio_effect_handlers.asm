@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $C016-$C440
 ; World 3 remaining audio-effect handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $C016-$C440
 
 World3_AudioEffect_InitPulse2PitchSequenceLong:
     LDY #$60

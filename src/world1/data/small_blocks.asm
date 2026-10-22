@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $AAEF-$AEEE
 ; World 1 CadEditor small metatile table
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $AAEF-$AEEE
 
 World1_SmallBlocks:
     .byte $00, $00, $00, $00, $10, $10, $10, $10, $F7, $F7, $F7, $F7, $10, $10, $10, $10

@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $B6BA-$BE0D
 ; World 3 OAM writer, metasprite tables, and palettes
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $B6BA-$BE0D
 
 World3_AppendOamEntry:
     LDA World3OamWriteIndex

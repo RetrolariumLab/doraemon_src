@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $ED3C-$F9BB
 ; Typed presentation data beyond the active ending-credit stop pointer
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $ED3C-$F9BB
 
 PostCredit_PresentationData:
     .byte $20, $20, $48, $20, $20, $20, $20, $20, $20, $48, $20, $20, $20, $20, $20, $20

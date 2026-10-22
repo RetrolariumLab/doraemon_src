@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $E6F2-$F6F1
 ; World 3 64 by 64 underwater map
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $E6F2-$F6F1
 
 World3_Map:
     .byte $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01

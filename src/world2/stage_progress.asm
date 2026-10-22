@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $A612-$A80A
 ; World 2 scrolling, stage progress, and boss-state services
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $A612-$A80A
 
 World2_CheckChapterCompletionExit:
     LDA World2CurrentScreenId

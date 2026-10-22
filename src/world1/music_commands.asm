@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $EB65-$EE33
 ; World 1 music command handlers and stream reader
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $EB65-$EE33
 
 World1_MusicCommand_LoadExtendedDuration:
     JSR World1_Audio_ReadStreamByte

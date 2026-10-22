@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $D3A9-$D76F
 ; World 1 underground room changes, completion paths, and entity updates
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $D3A9-$D76F
 
 World1_EnterUndergroundFinale:
     LDX #$00

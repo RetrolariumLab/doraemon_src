@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $D113-$D3A8
 ; World 1 underground collision tests and manhole return transition
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $D113-$D3A8
 
 World1_CheckUndergroundGroundSupport:
     LDA World1UndergroundFinaleFloorActive

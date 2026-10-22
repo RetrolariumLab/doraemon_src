@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $D96B-$D9AB
 ; World 3 five-field initial registry for thirteen persistent room objects
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $D96B-$D9AB
 
 World3_InitialRoomObjectRegistry:
     .byte $07, $0B, $0C, $19, $02, $11, $14, $17, $22, $27, $28, $34, $3F, $18, $19, $1A

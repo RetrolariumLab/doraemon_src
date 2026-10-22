@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $AE12-$B1BA
 ; World 3 completion sequence, transition loop, and support routines
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $AE12-$B1BA
 
 World3_RunChapterCompletionSequence:
     JSR World3_InitializePlayerState

@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $D989-$DAD9
 ; World 1 city three-byte object placement records and terminator
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $D989-$DAD9
 
 World1_CityObjectPlacements:
     .byte $BE, $92, $81, $2A, $CE, $C1, $10, $B0, $81, $7E, $1C, $C1, $C6, $64, $C1, $9A

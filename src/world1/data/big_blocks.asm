@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $AEEF-$B2EE
 ; World 1 CadEditor large metatile table
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $AEEF-$B2EE
 
 World1_BigBlocks:
     .byte $00, $00, $00, $00, $04, $04, $04, $04, $05, $06, $0A, $0E, $23, $07, $0E, $0E

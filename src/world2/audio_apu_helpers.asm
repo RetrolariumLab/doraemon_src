@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $AC30-$ACE3
 ; World 2 APU write helpers, presentation data, and channel reset
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $AC30-$ACE3
 
 World2_Apu_WritePulse1ControlSweep:
     STA a:APU_PL1_VOL

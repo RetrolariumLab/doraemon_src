@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $9D19-$A0C3
 ; World 3 object traversal, animation, and later behavior handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $9D19-$A0C3
 
 World3_RenderEntities:
     LDA World3FormationActive

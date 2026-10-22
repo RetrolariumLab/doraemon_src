@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $BDDF-$BEDD
 ; World 2 stage bytecode and 208-bit metatile collision bitmap
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $BDDF-$BEDD
 
 World2_StageSequenceData:
     .byte $32

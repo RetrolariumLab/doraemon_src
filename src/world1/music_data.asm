@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $EE34-$FFF9
 ; World 1 APU tables, track headers, header-reachable streams, and adjacent unclassified data
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $EE34-$FFF9
 
 Bank0_Label_EE34:
     .byte $00, $00, $AE, $06, $4E, $06, $F3, $05, $9F, $05, $4D, $05, $01, $05, $B9, $04

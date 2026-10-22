@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $C92C-$D66A
 ; World 3 APU tables, track headers, header-reachable streams, and adjacent unclassified data
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $C92C-$D66A
 
 Bank2_Label_C92C:
     .byte $00, $00, $AE, $06, $4E, $06, $F3, $05, $9F, $05, $4D, $05, $01, $05, $B9, $04

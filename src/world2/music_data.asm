@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $B11B-$B9CD
 ; World 2 APU tables, track headers, header-reachable streams, and adjacent unclassified data
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $B11B-$B9CD
 
 Bank1_Label_B11B:
     .byte $00, $00, $AE, $06, $4E, $06, $F3, $05, $9F, $05, $4D, $05, $01, $05, $B9, $04

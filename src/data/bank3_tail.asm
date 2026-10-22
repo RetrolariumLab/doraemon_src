@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $F9BC-$FFF9
 ; Trailing bank 3 data pending format classification
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $F9BC-$FFF9
 
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF

@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $A381-$A509
 ; World 1 scroll advancement and nametable edge selection
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $A381-$A509
 
 World1_TryScrollCameraRight:
     LDA World1CameraTileX

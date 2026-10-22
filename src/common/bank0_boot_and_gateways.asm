@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $8000-$827C
 ; Bank 0 reset, NMI, input, mapper switching, and cross-bank gateways
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $8000-$827C
 
 Bank0_EnterWorld1:
     JSR Bank0_DisableNmiAndRendering

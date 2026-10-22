@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $B406-$B6B9
 ; World 3 HUD composition, number rendering, and presentation tables
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $B406-$B6B9
 
 World3_RenderScoreAndLives:
     LDY #$00

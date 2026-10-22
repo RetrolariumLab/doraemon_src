@@ -1,6 +1,5 @@
-; Doraemon PRG bank 1 $9661-$98F7
 ; World 2 metasprite composition, OAM placement, and entity spawning
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 1, original CPU range $9661-$98F7
 
 World2_RenderMetaspriteRow:
     JSR World2_EmitDirectionalMetaspriteSprite

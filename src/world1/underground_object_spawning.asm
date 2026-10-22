@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $D770-$D7A4
 ; World 1 underground transient-object allocation and positioning
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $D770-$D7A4
 
 World1_SpawnBullRoboExplosion:
     LDX #$00

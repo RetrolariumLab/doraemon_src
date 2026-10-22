@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $B1BC-$BDBB
 ; Three complete chapter-help nametables and their fixed item names
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $B1BC-$BDBB
 
 World1Help_Nametable:
     .byte $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F, $7F

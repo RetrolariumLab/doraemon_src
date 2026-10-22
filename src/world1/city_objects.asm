@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $C92F-$CB60
 ; World 1 city object state initialization and interaction handlers
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $C92F-$CB60
 
 World1_ClearWorkingScoreUnlessDemo:
     LDA DemoModeActive

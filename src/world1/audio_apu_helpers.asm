@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $E949-$E9FC
 ; World 1 APU write helpers and channel reset
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $E949-$E9FC
 
 World1_Apu_WritePulse1ControlSweep:
     STA a:APU_PL1_VOL

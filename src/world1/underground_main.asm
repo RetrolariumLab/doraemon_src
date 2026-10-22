@@ -1,6 +1,5 @@
-; Doraemon PRG bank 0 $CDB5-$D112
 ; World 1 side-view underground initialization, frame loop, and movement
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 0, original CPU range $CDB5-$D112
 
 Bank0_InitWorld1SideView:
     LDX #$00

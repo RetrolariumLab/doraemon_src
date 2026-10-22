@@ -1,6 +1,5 @@
-; Doraemon PRG bank 2 $A0C4-$A21C
 ; World 3 hierarchical map lookup and tile collision
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 2, original CPU range $A0C4-$A21C
 
 World3_LookupMapTileAtPixel:
     TXA

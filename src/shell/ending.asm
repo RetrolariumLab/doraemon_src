@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $8A88-$8C3A
 ; Ending initialization and credits scroll loop
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $8A88-$8C3A
 
 Bank3_RunEnding:
     LDX #$7F

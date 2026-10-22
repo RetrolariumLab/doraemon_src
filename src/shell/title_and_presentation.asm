@@ -1,6 +1,5 @@
-; Doraemon PRG bank 3 $827D-$8A16
 ; Title flow, menus, and common presentation services
-; Generated deterministically from pinned Ghidra/GhidraNes facts
+; PRG bank 3, original CPU range $827D-$8A16
 
 Bank3_GameOverDispatch:
     JMP Bank3_ShowGameOver
