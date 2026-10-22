@@ -15,28 +15,28 @@ and weapon formats used by World 1.
 The thirteen descriptor records at `$CC0A` represent two portals and eleven
 collectible or hidden objects. Their identities are fixed by joining the exact
 descriptor fields with placement frequency, the five selector slots at
-`$94D4-$94D8`, direct metasprites, the type `$03-$0D` interaction dispatch,
-and each handler's concrete state change.
+`$94D4-$94D8`, direct metasprites, the type `$03-$0D` interaction dispatch, and
+each handler's concrete state change.
 
-| Descriptor | Runtime type | Identity | Placement / selector | Decisive local effect |
-| ---: | ---: | --- | --- | --- |
-| `$00` | `$01` | Manhole | 9 placements | A-button portal type 1 |
-| `$01` | `$02` | Anywhere Door | 8 placements | A-button portal type 2 |
-| `$02` | `$03` | Stopwatch | selector 3 | freeze flag plus `$F0` timer |
-| `$03` | `$04` | Genki Candy | 2 placements | expands the health meter |
-| `$04` | `$05` | 1UP | 1 placement | increments lives |
-| `$05` | `$06` | weapon upgrade | 3 placements | increments weapon level |
-| `$06` | `$07` | Dorayaki | 4 placements, selector 0 | refills health |
-| `$07` | `$08` | Rapid-Fire Drink | 3 placements | increments shot limit |
-| `$08` | `$09` | Flash Light / Small Light | 1 placement | sets World 2 carry-forward flag |
-| `$09` | `$0A` | programmer's face | 1 hidden placement | microphone plus projectile gate |
-| `$0A` | `$0B` | Gold Bar | selector 1 | awards encoded score `$31` |
-| `$0B` | `$0C` | Diamond | 1 placement, selector 2 | awards encoded score `$32` |
-| `$0C` | `$0D` | invulnerability | secret selector 4 | sets `World1InvulnerabilityTimer` to `$FF` |
+| Descriptor | Runtime type | Identity                  | Placement / selector     | Decisive local effect                      |
+| ---------: | -----------: | ------------------------- | ------------------------ | ------------------------------------------ |
+|      `$00` |        `$01` | Manhole                   | 9 placements             | A-button portal type 1                     |
+|      `$01` |        `$02` | Anywhere Door             | 8 placements             | A-button portal type 2                     |
+|      `$02` |        `$03` | Stopwatch                 | selector 3               | freeze flag plus `$F0` timer               |
+|      `$03` |        `$04` | Genki Candy               | 2 placements             | expands the health meter                   |
+|      `$04` |        `$05` | 1UP                       | 1 placement              | increments lives                           |
+|      `$05` |        `$06` | weapon upgrade            | 3 placements             | increments weapon level                    |
+|      `$06` |        `$07` | Dorayaki                  | 4 placements, selector 0 | refills health                             |
+|      `$07` |        `$08` | Rapid-Fire Drink          | 3 placements             | increments shot limit                      |
+|      `$08` |        `$09` | Flash Light / Small Light | 1 placement              | sets World 2 carry-forward flag            |
+|      `$09` |        `$0A` | programmer's face         | 1 hidden placement       | microphone plus projectile gate            |
+|      `$0A` |        `$0B` | Gold Bar                  | selector 1               | awards encoded score `$31`                 |
+|      `$0B` |        `$0C` | Diamond                   | 1 placement, selector 2  | awards encoded score `$32`                 |
+|      `$0C` |        `$0D` | invulnerability           | secret selector 4        | sets `World1InvulnerabilityTimer` to `$FF` |
 
 Descriptor `$05` deliberately stores metasprite zero. Materialization replaces
-it with `World1WeaponLevel` plus `$2A`, selecting metasprites `$2A-$2C`
-for the Shock Gun, Air Gun, and Power Fan. It is therefore a single dynamic
+it with `World1WeaponLevel` plus `$2A`, selecting metasprites `$2A-$2C` for the
+Shock Gun, Air Gun, and Power Fan. It is therefore a single dynamic
 weapon-upgrade descriptor rather than three descriptor records.
 
 The first four selector slots are random post-defeat rewards. Slot 4 is reached
@@ -63,30 +63,30 @@ World 1 map placements whose type byte has bit 7 set use a second object
 materialization path. The low nibble selects one of thirteen four-byte records
 at `$CC0A-$CC3D` in PRG bank 0. The table is stored record-major:
 
-| Byte | Field | Runtime use |
-| ---: | --- | --- |
-| 0 | `runtime_type` | Base type written to the entity slot |
-| 1 | `metasprite_base` | Initial metasprite; zero selects the dynamic `$7B + $2A` fallback |
-| 2 | `render_flags` | Initial renderer flags |
-| 3 | `primary_behavior` | Initial primary behavior/state byte |
+| Byte | Field              | Runtime use                                                       |
+| ---: | ------------------ | ----------------------------------------------------------------- |
+|    0 | `runtime_type`     | Base type written to the entity slot                              |
+|    1 | `metasprite_base`  | Initial metasprite; zero selects the dynamic `$7B + $2A` fallback |
+|    2 | `render_flags`     | Initial renderer flags                                            |
+|    3 | `primary_behavior` | Initial primary behavior/state byte                               |
 
 The exact records are:
 
 | Index | Runtime type | Metasprite | Render flags | Primary behavior |
-| ---: | ---: | ---: | ---: | ---: |
-| `$00` | `$01` | `$29` | `$01` | `$03` |
-| `$01` | `$02` | `$25` | `$01` | `$03` |
-| `$02` | `$03` | `$2E` | `$01` | `$03` |
-| `$03` | `$04` | `$2D` | `$00` | `$03` |
-| `$04` | `$05` | `$2F` | `$01` | `$10` |
-| `$05` | `$06` | `$00` | `$01` | `$02` |
-| `$06` | `$07` | `$30` | `$01` | `$02` |
-| `$07` | `$08` | `$34` | `$01` | `$02` |
-| `$08` | `$09` | `$16` | `$01` | `$04` |
-| `$09` | `$0A` | `$14` | `$01` | `$20` |
-| `$0A` | `$0B` | `$28` | `$01` | `$02` |
-| `$0B` | `$0C` | `$17` | `$00` | `$02` |
-| `$0C` | `$0D` | `$35` | `$03` | `$02` |
+| ----: | -----------: | ---------: | -----------: | ---------------: |
+| `$00` |        `$01` |      `$29` |        `$01` |            `$03` |
+| `$01` |        `$02` |      `$25` |        `$01` |            `$03` |
+| `$02` |        `$03` |      `$2E` |        `$01` |            `$03` |
+| `$03` |        `$04` |      `$2D` |        `$00` |            `$03` |
+| `$04` |        `$05` |      `$2F` |        `$01` |            `$10` |
+| `$05` |        `$06` |      `$00` |        `$01` |            `$02` |
+| `$06` |        `$07` |      `$30` |        `$01` |            `$02` |
+| `$07` |        `$08` |      `$34` |        `$01` |            `$02` |
+| `$08` |        `$09` |      `$16` |        `$01` |            `$04` |
+| `$09` |        `$0A` |      `$14` |        `$01` |            `$20` |
+| `$0A` |        `$0B` |      `$28` |        `$01` |            `$02` |
+| `$0B` |        `$0C` |      `$17` |        `$00` |            `$02` |
+| `$0C` |        `$0D` |      `$35` |        `$03` |            `$02` |
 
 ### Placement type encoding
 
@@ -99,16 +99,16 @@ bits 4-5 reserved; both are zero in canonical placements
 bits 0-3 descriptor index ($00-$0C)
 ```
 
-The city and underground lists contain 33 descriptor-backed placements; 21
-set bit 6. Their combined descriptor-index frequencies are:
+The city and underground lists contain 33 descriptor-backed placements; 21 set
+bit 6. Their combined descriptor-index frequencies are:
 
 | Index | Count | Index | Count |
-| ---: | ---: | ---: | ---: |
-| `$00` | 9 | `$06` | 4 |
-| `$01` | 8 | `$07` | 3 |
-| `$03` | 2 | `$08` | 1 |
-| `$04` | 1 | `$09` | 1 |
-| `$05` | 3 | `$0B` | 1 |
+| ----: | ----: | ----: | ----: |
+| `$00` |     9 | `$06` |     4 |
+| `$01` |     8 | `$07` |     3 |
+| `$03` |     2 | `$08` |     1 |
+| `$04` |     1 | `$09` |     1 |
+| `$05` |     3 | `$0B` |     1 |
 
 Indexes `$02`, `$0A`, and `$0C` do not occur in the two persistent placement
 lists. A separate transient spawn path selects descriptor indexes
@@ -122,13 +122,13 @@ definitions absent from persistent placement lists.
 Five adjacent tables define collision extents for the descriptor runtime-type
 domain:
 
-| Address | Entries | Index | Use |
-| ---: | ---: | --- | --- |
-| `$CC3D` | 14 | runtime type `$00-$0D` | projectile X extent |
-| `$CC4A` | 14 | runtime type `$00-$0D` | projectile Y extent |
-| `$CC58` | 13 | runtime type minus one | interaction X extent |
-| `$CC65` | 13 | runtime type minus one | negative interaction Y extent |
-| `$CC72` | 13 | runtime type minus one | positive interaction Y extent |
+| Address | Entries | Index                  | Use                           |
+| ------: | ------: | ---------------------- | ----------------------------- |
+| `$CC3D` |      14 | runtime type `$00-$0D` | projectile X extent           |
+| `$CC4A` |      14 | runtime type `$00-$0D` | projectile Y extent           |
+| `$CC58` |      13 | runtime type minus one | interaction X extent          |
+| `$CC65` |      13 | runtime type minus one | negative interaction Y extent |
+| `$CC72` |      13 | runtime type minus one | positive interaction Y extent |
 
 The storage deliberately overlaps twice. Byte `$CC3D` is both the primary
 behavior field of descriptor `$0C` and the index-zero entry of the projectile-X
@@ -140,13 +140,13 @@ errors: an edit must keep both views of either byte equal.
 
 World 1 uses one bank-local decoder for the city and underground maps. The
 active map pointer selects either `World1_CityMap` at `$B2EF` or
-`World1_UndergroundMap` at `$C2EF`; both feed the shared big-block,
-small-block, and CHR-tile tables.
+`World1_UndergroundMap` at `$C2EF`; both feed the shared big-block, small-block,
+and CHR-tile tables.
 
 ### Coordinate decomposition
 
-`World1_LookupMapTile` receives an 8-pixel world-tile X coordinate in `X` and
-Y in `Y`. It decomposes them as follows:
+`World1_LookupMapTile` receives an 8-pixel world-tile X coordinate in `X` and Y
+in `Y`. It decomposes them as follows:
 
 ```text
 map column              = X >> 2
@@ -162,30 +162,30 @@ continue horizontally or vertically without recomputing the hierarchy.
 
 ### RAM ABI
 
-| Symbol | Address | Size | Role |
-| --- | ---: | ---: | --- |
-| `World1MapDataPointer` | `$0066` | 2 | Active 64-byte-row map base |
-| `World1CurrentSmallBlockPointer` | `$006A` | 2 | `World1_SmallBlocks + id * 4` |
-| `World1CurrentBigBlockPointer` | `$006C` | 2 | `World1_BigBlocks + id * 4` |
-| `World1MapRowPointer` | `$006E` | 2 | Active map plus the current row offset |
-| `World1TileQuadrantIndex` | `$0070` | 1 | Row-major tile index within a small block |
-| `World1SmallBlockQuadrantIndex` | `$0071` | 1 | Row-major small-block index within a big block |
-| `World1MapColumnIndex` | `$0072` | 1 | Six-bit map-column index |
+| Symbol                           | Address | Size | Role                                           |
+| -------------------------------- | ------: | ---: | ---------------------------------------------- |
+| `World1MapDataPointer`           | `$0066` |    2 | Active 64-byte-row map base                    |
+| `World1CurrentSmallBlockPointer` | `$006A` |    2 | `World1_SmallBlocks + id * 4`                  |
+| `World1CurrentBigBlockPointer`   | `$006C` |    2 | `World1_BigBlocks + id * 4`                    |
+| `World1MapRowPointer`            | `$006E` |    2 | Active map plus the current row offset         |
+| `World1TileQuadrantIndex`        | `$0070` |    1 | Row-major tile index within a small block      |
+| `World1SmallBlockQuadrantIndex`  | `$0071` |    1 | Row-major small-block index within a big block |
+| `World1MapColumnIndex`           | `$0072` |    1 | Six-bit map-column index                       |
 
 The holes at `$0068-$0069` are not part of this decoder contract.
 
 ### Entry points
 
-| Routine | Address | Direct calls | Operation |
-| --- | ---: | ---: | --- |
-| `World1_LookupMapTile` | `$A6A7` | 9 | Initialize the cursor and return its CHR tile |
-| `World1_ReadCurrentMapTile` | `$A6E2` | 5 | Return the current CHR tile without advancing |
-| `World1_ReadMapTileAndStepRight` | `$A6E8` | 7 | Return a tile and carry the cursor right |
-| `World1_ReadMapTileAndStepDown` | `$A719` | 3 | Return a tile and carry the cursor down |
-| `World1_ReadBlockAttributeAndStepRight` | `$A74E` | 1 | Return a small-block attribute and step right |
-| `World1_ReadBlockAttributeAndStepDown` | `$A772` | 1 | Return a small-block attribute and step down |
-| `World1_SelectSmallBlock` | `$A79B` | 3 | Build the current small-block pointer |
-| `World1_SelectBigBlock` | `$A7B7` | 5 | Build the current big-block pointer |
+| Routine                                 | Address | Direct calls | Operation                                     |
+| --------------------------------------- | ------: | -----------: | --------------------------------------------- |
+| `World1_LookupMapTile`                  | `$A6A7` |            9 | Initialize the cursor and return its CHR tile |
+| `World1_ReadCurrentMapTile`             | `$A6E2` |            5 | Return the current CHR tile without advancing |
+| `World1_ReadMapTileAndStepRight`        | `$A6E8` |            7 | Return a tile and carry the cursor right      |
+| `World1_ReadMapTileAndStepDown`         | `$A719` |            3 | Return a tile and carry the cursor down       |
+| `World1_ReadBlockAttributeAndStepRight` | `$A74E` |            1 | Return a small-block attribute and step right |
+| `World1_ReadBlockAttributeAndStepDown`  | `$A772` |            1 | Return a small-block attribute and step down  |
+| `World1_SelectSmallBlock`               | `$A79B` |            3 | Build the current small-block pointer         |
+| `World1_SelectBigBlock`                 | `$A7B7` |            5 | Build the current big-block pointer           |
 
 The downstream row/column packet builders and NMI consumer are documented in
 `docs/world1_formats.md`.
@@ -202,15 +202,15 @@ and writes ordinary four-byte NES OAM entries.
 Bank 0 reserves the contiguous 16-byte workspace `$0041-$0050` for sprite
 composition, in this field order:
 
-| Range | Role |
-| --- | --- |
-| `$0041-$0044` | staged OAM Y, tile, attributes, and X bytes |
+| Range         | Role                                                   |
+| ------------- | ------------------------------------------------------ |
+| `$0041-$0044` | staged OAM Y, tile, attributes, and X bytes            |
 | `$0045-$0048` | metasprite origin X/Y low bytes and derived high bytes |
-| `$0049-$004A` | metasprite index and render flags |
-| `$004B-$004C` | resolved record pointer |
-| `$004D-$004E` | X/Y mirror extents from the record header |
-| `$004F` | remaining piece count |
-| `$0050` | even-valued OAM write index |
+| `$0049-$004A` | metasprite index and render flags                      |
+| `$004B-$004C` | resolved record pointer                                |
+| `$004D-$004E` | X/Y mirror extents from the record header              |
+| `$004F`       | remaining piece count                                  |
+| `$0050`       | even-valued OAM write index                            |
 
 `World1_EmitOamEntry` doubles the write index to obtain a four-byte OAM offset,
 stores the staged tuple, and adds two to the index. Bit 7 therefore marks the
@@ -221,34 +221,34 @@ share this workspace and emitter.
 
 The table contains 115 two-byte entries for indexes `$00-$72`.
 
-| Encoded high byte | Meaning |
-| --- | --- |
-| `$04-$FF` | little-endian pointer to a metasprite record |
-| `$00-$03` | alias: low byte is another index and high byte is the flip mode |
+| Encoded high byte | Meaning                                                         |
+| ----------------- | --------------------------------------------------------------- |
+| `$04-$FF`         | little-endian pointer to a metasprite record                    |
+| `$00-$03`         | alias: low byte is another index and high byte is the flip mode |
 
-Flip mode 0 draws normally, 1 mirrors horizontally, 2 mirrors vertically, and
-3 mirrors on both axes. The renderer resolves exactly one alias level. All 42
+Flip mode 0 draws normally, 1 mirrors horizontally, 2 mirrors vertically, and 3
+mirrors on both axes. The renderer resolves exactly one alias level. All 42
 aliases in the original table point directly to one of the other 73 entries;
 there are no nested aliases.
 
 Every `metasprite_base` in the 13-record World 1 descriptor catalog selects a
-direct entry. Animation or state code can then select neighboring indexes in
-the shared namespace.
+direct entry. Animation or state code can then select neighboring indexes in the
+shared namespace.
 
 ### Variable-length records
 
 `$9D9C-$A380` contains 73 contiguous records. A record consists of this header:
 
-| Byte | Meaning |
-| --- | --- |
-| 0 | number of eight-by-eight sprite pieces |
-| 1 | X extent used by horizontal reflection |
-| 2 | Y extent used by vertical reflection |
+| Byte | Meaning                                |
+| ---- | -------------------------------------- |
+| 0    | number of eight-by-eight sprite pieces |
+| 1    | X extent used by horizontal reflection |
+| 2    | Y extent used by vertical reflection   |
 
-The header is followed by `count` triples in Y-offset, X-offset, CHR-tile
-order. Bit 7 of an offset requests the matching OAM flip after the renderer
-strips it from the coordinate. Alias flip modes reflect offsets around the
-header extents and invert those piece flips.
+The header is followed by `count` triples in Y-offset, X-offset, CHR-tile order.
+Bit 7 of an offset requests the matching OAM flip after the renderer strips it
+from the coordinate. Alias flip modes reflect offsets around the header extents
+and invert those piece flips.
 
 All 73 direct entries point to distinct record starts, and every record is
 referenced. Most records contain four or six pieces; six very large animation
@@ -265,10 +265,10 @@ another alias.
 
 ## World 1 palettes
 
-World 1 stores twelve complete 32-byte PPU palettes at `$D7A5-$D924` in PRG
-bank 0. The area index at `$0029` selects a record directly. The loader at
-`$83BD` multiplies that index by 32, adds `$D7A5`, and copies the selected
-record into the palette staging buffer at `$0210-$022F`.
+World 1 stores twelve complete 32-byte PPU palettes at `$D7A5-$D924` in PRG bank
+0\. The area index at `$0029` selects a record directly. The loader at `$83BD`
+multiplies that index by 32, adds `$D7A5`, and copies the selected record into
+the palette staging buffer at `$0210-$022F`.
 
 The palette table starts four bytes before the former chapter-table source
 boundary. Those bytes are data, not a tail of the preceding Bull Robo explosion
@@ -291,10 +291,10 @@ rendering disabled.
 
 ### Packet geometry
 
-| Edge | Queue code | Tile bytes | PPU increment | Attribute bytes |
-| --- | ---: | ---: | ---: | ---: |
-| vertical column | 1 | 30 | 32 | 8 |
-| horizontal row | 2 | 33 | 1 | 9 |
+| Edge            | Queue code | Tile bytes | PPU increment | Attribute bytes |
+| --------------- | ---------: | ---------: | ------------: | --------------: |
+| vertical column |          1 |         30 |            32 |               8 |
+| horizontal row  |          2 |         33 |             1 |               9 |
 
 Each packet family has a flags byte. Bit 0 marks its tile address/data as
 pending, and bit 1 marks its attribute address/data. Producers can therefore
@@ -302,27 +302,27 @@ prepare the two halves on different 8-pixel camera phases. The consumer clears
 only the half it writes and preserves the other bit.
 
 The 30-tile column uses `PPUCTRL` increment 32. If it crosses the vertical
-nametable boundary, the consumer changes the destination nametable and
-continues the remaining bytes. Its eight attributes are written one at a time
-with an address stride of 8. The 33-tile row and nine-byte attribute row use
-increment 1 and split at horizontal nametable boundaries.
+nametable boundary, the consumer changes the destination nametable and continues
+the remaining bytes. Its eight attributes are written one at a time with an
+address stride of 8. The 33-tile row and nine-byte attribute row use increment 1
+and split at horizontal nametable boundaries.
 
 ### RAM layout
 
-| Range | Symbol | Role |
-| --- | --- | --- |
-| `$0230` | `World1ColumnUpdateFlags` | column tile/attribute pending bits |
-| `$0231-$0232` | `World1ColumnTilePpuAddress` | little-endian tile destination |
-| `$0233-$0250` | `World1ColumnTileData` | 30 decoded CHR-tile indexes |
+| Range         | Symbol                            | Role                                |
+| ------------- | --------------------------------- | ----------------------------------- |
+| `$0230`       | `World1ColumnUpdateFlags`         | column tile/attribute pending bits  |
+| `$0231-$0232` | `World1ColumnTilePpuAddress`      | little-endian tile destination      |
+| `$0233-$0250` | `World1ColumnTileData`            | 30 decoded CHR-tile indexes         |
 | `$0253-$0254` | `World1ColumnAttributePpuAddress` | little-endian attribute destination |
-| `$0255-$025C` | `World1ColumnAttributeData` | 8 packed attribute bytes |
-| `$025E` | `World1ColumnAddressScratch` | column wrap-count calculation |
-| `$025F` | `World1EdgeUpdateQueue` | two packed 4-bit edge codes |
-| `$0260` | `World1RowUpdateFlags` | row tile/attribute pending bits |
-| `$0261-$0262` | `World1RowTilePpuAddress` | little-endian tile destination |
-| `$0263-$0283` | `World1RowTileData` | 33 decoded CHR-tile indexes |
-| `$0284-$0285` | `World1RowAttributePpuAddress` | little-endian attribute destination |
-| `$0286-$028E` | `World1RowAttributeData` | 9 packed attribute bytes |
+| `$0255-$025C` | `World1ColumnAttributeData`       | 8 packed attribute bytes            |
+| `$025E`       | `World1ColumnAddressScratch`      | column wrap-count calculation       |
+| `$025F`       | `World1EdgeUpdateQueue`           | two packed 4-bit edge codes         |
+| `$0260`       | `World1RowUpdateFlags`            | row tile/attribute pending bits     |
+| `$0261-$0262` | `World1RowTilePpuAddress`         | little-endian tile destination      |
+| `$0263-$0283` | `World1RowTileData`               | 33 decoded CHR-tile indexes         |
+| `$0284-$0285` | `World1RowAttributePpuAddress`    | little-endian attribute destination |
+| `$0286-$028E` | `World1RowAttributeData`          | 9 packed attribute bytes            |
 
 `$0251-$0252` and `$025D` are gaps and are not claimed by the packet ABI.
 
@@ -343,45 +343,45 @@ The six validated entry points are:
 
 ## World 1 underground room profiles
 
-World 1's side-view mode has nine room IDs. Two contiguous four-byte tables
-at `$D1EF-$D236` define each room's initial camera state, player position, and
-the city-return profile selected at either end of its scrolling axis. A third
-table at `$D37E-$D3A1` defines the nine city camera/manhole destinations.
+World 1's side-view mode has nine room IDs. Two contiguous four-byte tables at
+`$D1EF-$D236` define each room's initial camera state, player position, and the
+city-return profile selected at either end of its scrolling axis. A third table
+at `$D37E-$D3A1` defines the nine city camera/manhole destinations.
 
 ### Format
 
 The camera table is row-major with one record per room:
 
-| Offset | Field | Consumer |
-| ---: | --- | --- |
-| 0 | `camera_tile_x` | Initial `World1CameraTileX` |
-| 1 | `camera_tile_y` | Initial `World1CameraTileY` |
-| 2 | `axis_scroll_limit` | Positive coarse-axis boundary |
-| 3 | `axis_scroll_start` | Initial coarse-axis position |
+| Offset | Field               | Consumer                      |
+| -----: | ------------------- | ----------------------------- |
+|      0 | `camera_tile_x`     | Initial `World1CameraTileX`   |
+|      1 | `camera_tile_y`     | Initial `World1CameraTileY`   |
+|      2 | `axis_scroll_limit` | Positive coarse-axis boundary |
+|      3 | `axis_scroll_start` | Initial coarse-axis position  |
 
 The adjacent entry table uses the same room ordering:
 
-| Offset | Field | Consumer |
-| ---: | --- | --- |
-| 0 | `player_x` | Initial screen-space player X |
-| 1 | `player_y` | Initial screen-space player Y |
-| 2 | `negative_axis_city_return_id` | City return selected when coarse-axis position is zero |
-| 3 | `positive_axis_city_return_id` | City return selected when coarse-axis position is nonzero |
+| Offset | Field                          | Consumer                                                  |
+| -----: | ------------------------------ | --------------------------------------------------------- |
+|      0 | `player_x`                     | Initial screen-space player X                             |
+|      1 | `player_y`                     | Initial screen-space player Y                             |
+|      2 | `negative_axis_city_return_id` | City return selected when coarse-axis position is zero    |
+|      3 | `positive_axis_city_return_id` | City return selected when coarse-axis position is nonzero |
 
-Return ID `$FF` means that side has no exit and is represented as `null` in
-the authoring JSON. Other values select city-return records 0-8; they are not
+Return ID `$FF` means that side has no exit and is represented as `null` in the
+authoring JSON. Other values select city-return records 0-8; they are not
 underground room IDs. The loader multiplies `World1UndergroundRoomId` by four
 and reads all eight fields. The exit path chooses between the final two fields
 using `World1UndergroundAxisScrollCoarse`.
 
 Each city-return record is also four bytes:
 
-| Offset | Field | Consumer |
-| ---: | --- | --- |
-| 0 | `camera_tile_x` | Restored city camera X |
-| 1 | `camera_tile_y` | Restored city camera Y |
-| 2 | `manhole_x` | Player/manhole screen X |
-| 3 | `manhole_y` | Player/manhole screen Y |
+| Offset | Field           | Consumer                |
+| -----: | --------------- | ----------------------- |
+|      0 | `camera_tile_x` | Restored city camera X  |
+|      1 | `camera_tile_y` | Restored city camera Y  |
+|      2 | `manhole_x`     | Player/manhole screen X |
+|      3 | `manhole_y`     | Player/manhole screen Y |
 
 `World1_ReturnFromUndergroundToCity` consumes the selected record, restores the
 city renderer and object state, animates the player out of the manhole, then
@@ -389,9 +389,9 @@ resumes the city main loop.
 
 ### Editing
 
-The Studio edits the two adjacent room tables as `world1-underground-rooms`
-and the separate return table as `world1-city-returns` (both
-`nes.record-table.v1`), 108 bytes in all, each in its place.
+The Studio edits the two adjacent room tables as `world1-underground-rooms` and
+the separate return table as `world1-city-returns` (both `nes.record-table.v1`),
+108 bytes in all, each in its place.
 
 ## World 1 weapon profiles
 
@@ -400,10 +400,10 @@ three-level projectile catalog.
 
 ### Physical layout
 
-| Range | Bytes | Contents |
-| --- | ---: | --- |
-| `$9C83-$9C85` | 3 | sound effect ID for weapon levels 1-3 |
-| `$9C86-$9CB5` | 48 | 3 levels × 4 directions × 4 profile fields |
+| Range         | Bytes | Contents                                   |
+| ------------- | ----: | ------------------------------------------ |
+| `$9C83-$9C85` |     3 | sound effect ID for weapon levels 1-3      |
+| `$9C86-$9CB5` |    48 | 3 levels × 4 directions × 4 profile fields |
 
 The sound instruction indexes from `$9C82`, one byte before the actual sound
 data, because weapon levels begin at 1. That byte is also the final `RTS` of
@@ -421,5 +421,5 @@ slot.
 
 The Studio edits the table as `world1-weapon-sounds` and `world1-weapon-shots`
 (`nes.record-table.v1`): 51 contiguous bytes in physical order. Level IDs are
-1-3, every level has all four directions in runtime order, and every field is
-an unsigned byte.
+1-3, every level has all four directions in runtime order, and every field is an
+unsigned byte.

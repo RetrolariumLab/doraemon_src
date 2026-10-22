@@ -17,8 +17,8 @@ original game revision.
 - NESdev mapper 66 documentation: GNROM bank fields and bus conflicts
 - No-Intro naming/revision metadata
 
-The local dump confirms mapper 66, vertical mirroring, PRG CRC32 `B00ABE1C`
-and CHR CRC32 `761F994E`.
+The local dump confirms mapper 66, vertical mirroring, PRG CRC32 `B00ABE1C` and
+CHR CRC32 `761F994E`.
 
 ## Map evidence
 
@@ -68,6 +68,5 @@ split, and 20-dorayaki exit into one closed path.
 
 ## Toolchain
 
-The source builds with the ca65 and ld65 that Retrolarium Kit builds, ships
-and verifies (`rltool build-tools path nes ca65`); the kit carries cc65's
-notice.
+The source builds with the ca65 and ld65 that Retrolarium Kit builds, ships and
+verifies (`rltool build-tools path nes ca65`); the kit carries cc65's notice.

@@ -2,9 +2,8 @@
 
 ## Builds
 
-- [Revisions](revisions.md) — the one release the source builds, and the
-  damaged image it does not
-  identities and their shared-source strategy.
+- [Revisions](revisions.md) — the one release the source builds, and the damaged
+  image it does not identities and their shared-source strategy.
 - [Editing in Retrolarium](retrolarium.md) — how the game is edited.
 - [Provenance](provenance.md) — the local references and the external sources.
 
@@ -35,6 +34,6 @@
 - [World 3 data and entity formats](world3_formats.md)
 - [Audio system](audio_system.md)
 
-The reference pages describe findings made during Source Reconstruction 1.0
-to 3.0. The validation targets and machine-readable contracts that checked
-them remain at those tags.
+The reference pages describe findings made during Source Reconstruction 1.0 to
+3.0. The validation targets and machine-readable contracts that checked them
+remain at those tags.

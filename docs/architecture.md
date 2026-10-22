@@ -8,10 +8,10 @@ Switching PRG therefore also replaces the interrupt vectors.
 
 Every PRG bank contains the same vector values:
 
-| Vector | Address |
-| --- | --- |
-| NMI | `$813C` |
-| RESET | `$8098` |
+| Vector  | Address |
+| ------- | ------- |
+| NMI     | `$813C` |
+| RESET   | `$8098` |
 | IRQ/BRK | `$8098` |
 
 The common code and vectors are duplicated, not fixed by hardware. Banks 0, 2,
@@ -47,12 +47,12 @@ bank, independently confirming the selector interpretation.
 
 ## Bank roles
 
-| Bank | Confirmed landmarks | Working role |
-| --- | --- | --- |
-| 0 | city/underground maps and shared metatiles | world 1 |
-| 1 | stage sequence, 119 compressed screens, and metatile collision bits | world 2 cave shooter |
-| 2 | `DORAEMON WORLD3...` build string and underwater map | world 3 |
-| 3 | title strings, item names, credits, common presentation | shell/title/ending |
+| Bank | Confirmed landmarks                                                 | Working role         |
+| ---- | ------------------------------------------------------------------- | -------------------- |
+| 0    | city/underground maps and shared metatiles                          | world 1              |
+| 1    | stage sequence, 119 compressed screens, and metatile collision bits | world 2 cave shooter |
+| 2    | `DORAEMON WORLD3...` build string and underwater map                | world 3              |
+| 3    | title strings, item names, credits, common presentation             | shell/title/ending   |
 
 These are evidence-backed roles, not exclusive ownership boundaries. The NMI,
 mapper routine, input polling, score helpers, and dispatch table prefix are
@@ -68,24 +68,24 @@ short PRG3 calls and return to their own banks during initialization.
 The 152-byte range `$8000-$8097` is byte-identical in every bank (SHA-1
 `96d7be7487db1a145abc7e128c2ab58235345310`). It contains 14 entry stubs:
 
-| Entries | Operation |
-| --- | --- |
-| `$8000/$800B/$8016` | switch to PRG 0/1/2 and jump through local `$8271` |
-| `$8021` | jump through current-bank `$8274` without switching |
-| `$8024/$802F/$803A` | switch to PRG 0/1/2 and jump through local `$8277` |
-| `$8045` | jump through current-bank `$827A` without switching |
-| `$8048` | switch to PRG 3 and jump through bank-3 `$8271` |
-| `$8053/$8065` | save selector, call PRG 3 `$8277/$827D`, restore selector |
-| `$8077/$8082/$808D` | switch to PRG 3 and jump through `$8280/$8283/$8286` |
+| Entries             | Operation                                                 |
+| ------------------- | --------------------------------------------------------- |
+| `$8000/$800B/$8016` | switch to PRG 0/1/2 and jump through local `$8271`        |
+| `$8021`             | jump through current-bank `$8274` without switching       |
+| `$8024/$802F/$803A` | switch to PRG 0/1/2 and jump through local `$8277`        |
+| `$8045`             | jump through current-bank `$827A` without switching       |
+| `$8048`             | switch to PRG 3 and jump through bank-3 `$8271`           |
+| `$8053/$8065`       | save selector, call PRG 3 `$8277/$827D`, restore selector |
+| `$8077/$8082/$808D` | switch to PRG 3 and jump through `$8280/$8283/$8286`      |
 
-After a switch to PRG 3 the call or jump runs in bank 3, so the source names
-its target with bank 3's label (`Bank3_GameOverDispatch`,
-`Bank3_EndingDispatch`, `Bank3_World1TransitionDispatch`,
-`Bank3_World2TransitionDispatch`), not with whatever label the calling bank has
-at the same address.
+After a switch to PRG 3 the call or jump runs in bank 3, so the source names its
+target with bank 3's label (`Bank3_GameOverDispatch`, `Bank3_EndingDispatch`,
+`Bank3_World1TransitionDispatch`, `Bank3_World2TransitionDispatch`), not with
+whatever label the calling bank has at the same address.
 
-The gateway stubs have 31 direct call sites. The static PRG graph is `{0,1,2}->3` plus `3->{0,1,2,3}`; runtime traces exercise
-the shell-to-chapter edges and callable shell returns.
+The gateway stubs have 31 direct call sites. The static PRG graph is
+`{0,1,2}->3` plus `3->{0,1,2,3}`; runtime traces exercise the shell-to-chapter
+edges and callable shell returns.
 
 The adjacent `$8098-$8270` runtime is also identical in all four banks: its
 reset, NMI, rendering transition, OAM, mapper, and score services

@@ -12,17 +12,17 @@ contracts that cooperate in the World 1 gameplay loop.
 
 ## World 1 camera scrolling
 
-World 1 uses four directional routines for the city and underground camera.
-Each routine attempts one pixel of movement, returns without changing state at
-the corresponding world boundary, and prepares a row or column update when a
-new map edge becomes visible.
+World 1 uses four directional routines for the city and underground camera. Each
+routine attempts one pixel of movement, returns without changing state at the
+corresponding world boundary, and prepares a row or column update when a new map
+edge becomes visible.
 
 ### Coordinate model
 
-| Axis | Pixel scroll | Coarse coordinate | Inclusive range |
-| --- | --- | --- | ---: |
-| horizontal | `PpuScrollXShadow` | `World1CameraTileX` | `$00-$E0` |
-| vertical | `PpuScrollYShadow` | `World1CameraTileY` | `$00-$E2` |
+| Axis       | Pixel scroll       | Coarse coordinate   | Inclusive range |
+| ---------- | ------------------ | ------------------- | --------------: |
+| horizontal | `PpuScrollXShadow` | `World1CameraTileX` |       `$00-$E0` |
+| vertical   | `PpuScrollYShadow` | `World1CameraTileY` |       `$00-$E2` |
 
 The low three scroll bits are a sub-cell offset, so the coarse coordinate
 changes every eight pixels. Horizontal byte wrap toggles `World1NametableX`.
@@ -35,40 +35,40 @@ signed delta, keeping objects fixed in world space while the viewport moves.
 
 ### Directional entry points
 
-| Routine | Address | Bytes | Direct calls | Edge packet |
-| --- | ---: | ---: | ---: | --- |
-| `World1_TryScrollCameraRight` | `$A381` | 96 | 3 | column, code 1 |
-| `World1_TryScrollCameraLeft` | `$A3E1` | 78 | 3 | column, code 1 |
-| `World1_TryScrollCameraDown` | `$A42F` | 85 | 5 | row, code 2 |
-| `World1_TryScrollCameraUp` | `$A484` | 66 | 5 | row, code 2 |
+| Routine                       | Address | Bytes | Direct calls | Edge packet    |
+| ----------------------------- | ------: | ----: | -----------: | -------------- |
+| `World1_TryScrollCameraRight` | `$A381` |    96 |            3 | column, code 1 |
+| `World1_TryScrollCameraLeft`  | `$A3E1` |    78 |            3 | column, code 1 |
+| `World1_TryScrollCameraDown`  | `$A42F` |    85 |            5 | row, code 2    |
+| `World1_TryScrollCameraUp`    | `$A484` |    66 |            5 | row, code 2    |
 
-Column tile data is built on the coarse eight-pixel boundary; column
-attributes are built on the matching 16-pixel phase. Row tile and attribute
-data use corresponding vertical phases. A completed edge shifts the existing
-low nibble of `World1EdgeUpdateQueue` into the high nibble and appends code 1
-for a column or code 2 for a row.
+Column tile data is built on the coarse eight-pixel boundary; column attributes
+are built on the matching 16-pixel phase. Row tile and attribute data use
+corresponding vertical phases. A completed edge shifts the existing low nibble
+of `World1EdgeUpdateQueue` into the high nibble and appends code 1 for a column
+or code 2 for a row.
 
 ### Underground player tracking
 
 Two room-orientation entry points select the directional primitives above.
-`World1_TrackUndergroundHorizontalCamera` holds the player in X `$6E-$82`
-and can request at most two camera pixels per update. The vertical-room
-counterpart holds Y in `$6E-$92` and can request at most six pixels. Both
-reduce the distance outside the band to a per-update budget, stop at axis
-position zero or the room-specific limit, and then apply the accumulated
-screen delta to the player and all active entities.
+`World1_TrackUndergroundHorizontalCamera` holds the player in X `$6E-$82` and
+can request at most two camera pixels per update. The vertical-room counterpart
+holds Y in `$6E-$92` and can request at most six pixels. Both reduce the
+distance outside the band to a per-update budget, stop at axis position zero or
+the room-specific limit, and then apply the accumulated screen delta to the
+player and all active entities.
 
 The two orientations deliberately overlay one four-byte axis workspace.
 `World1UndergroundAxisScrollCoarse` advances whenever the low-three-bit
 `World1UndergroundAxisScrollFine` phase wraps. The positive direction stops at
 `World1UndergroundAxisScrollLimit`; the fourth byte is the temporary pixel
-budget. Horizontal rooms call the left/right primitives, while the vertical
-room calls up/down.
+budget. Horizontal rooms call the left/right primitives, while the vertical room
+calls up/down.
 
-| Tracking routine | Address | Bytes | Direct calls | Player band | Max pixels |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| `World1_TrackUndergroundHorizontalCamera` | `$CF08` | 114 | 1 | X `$6E-$82` | 2 |
-| `World1_TrackUndergroundVerticalCamera` | `$D47C` | 114 | 1 | Y `$6E-$92` | 6 |
+| Tracking routine                          | Address | Bytes | Direct calls | Player band | Max pixels |
+| ----------------------------------------- | ------: | ----: | -----------: | ----------: | ---------: |
+| `World1_TrackUndergroundHorizontalCamera` | `$CF08` |   114 |            1 | X `$6E-$82` |          2 |
+| `World1_TrackUndergroundVerticalCamera`   | `$D47C` |   114 |            1 | Y `$6E-$92` |          6 |
 
 The normal player-camera path, initial viewport prefill, and scripted movement
 all call these same routines.
@@ -78,30 +78,29 @@ consumer side of this camera model.
 
 ## World 1 camera entity projection
 
-World 1 keeps the player and all active entities in screen-relative
-coordinates. Camera movement accumulates signed X/Y deltas; the tracking path
-applies those deltas to the player and to every active entity after each
-camera decision.
+World 1 keeps the player and all active entities in screen-relative coordinates.
+Camera movement accumulates signed X/Y deltas; the tracking path applies those
+deltas to the player and to every active entity after each camera decision.
 
 ### Player tracking window
 
 `World1_UpdateCameraFromPlayer` clears both deltas, then attempts two camera
 pixels on each axis when the player leaves this window:
 
-| Axis | Negative direction | No-scroll interval | Positive direction |
-| --- | --- | --- | --- |
-| X | player below `$50` | `$50-$9F` | player at or above `$A0` |
-| Y | player below `$48` | `$48-$8F` | player at or above `$90` |
+| Axis | Negative direction | No-scroll interval | Positive direction       |
+| ---- | ------------------ | ------------------ | ------------------------ |
+| X    | player below `$50` | `$50-$9F`          | player at or above `$A0` |
+| Y    | player below `$48` | `$48-$8F`          | player at or above `$90` |
 
-The directional routines may reject movement at a world boundary. The
-resulting signed deltas, rather than the requested two pixels, are added back
-to `World1PlayerX` and `World1PlayerY`.
+The directional routines may reject movement at a world boundary. The resulting
+signed deltas, rather than the requested two pixels, are added back to
+`World1PlayerX` and `World1PlayerY`.
 
 ### Entity projection and culling
 
 `World1_ApplyCameraDeltaToEntities` traverses all 48 slots from 47 down to 0.
-For each nonzero `World1EntityType`, it adds the signed delta to the low X and
-Y bytes and propagates carry or borrow into the matching two-bit fields of
+For each nonzero `World1EntityType`, it adds the signed delta to the low X and Y
+bytes and propagates carry or borrow into the matching two-bit fields of
 `World1EntityPositionHigh`. Its X field occupies bits 0-1 and Y occupies bits
 2-3.
 
@@ -109,21 +108,21 @@ The routine falls directly into `World1_CullOffscreenEntities`. Culling retains
 one adjacent coordinate page as a spawn margin:
 
 | Axis | Negative margin | Positive margin | Always rejected page |
-| --- | --- | --- | --- |
-| X | 64 pixels | 64 pixels | page 2 |
-| Y | 64 pixels | 32 pixels | page 2 |
+| ---- | --------------- | --------------- | -------------------- |
+| X    | 64 pixels       | 64 pixels       | page 2               |
+| Y    | 64 pixels       | 32 pixels       | page 2               |
 
-When a removed entity has a nonnegative `World1EntitySourceObjectId`, the
-low seven bits identify the map object passed to `World1_ReleaseObjectSpawn`.
+When a removed entity has a nonnegative `World1EntitySourceObjectId`, the low
+seven bits identify the map object passed to `World1_ReleaseObjectSpawn`.
 Transient entities use a negative source ID and need no map-bit release.
 
 ### Validated routines
 
-| Routine | Address | Bytes | Direct calls |
-| --- | ---: | ---: | ---: |
-| `World1_UpdateCameraFromPlayer` | `$8706` | 74 | 3 |
-| `World1_ApplyCameraDeltaToEntities` | `$8750` | 168 | 7 |
-| `World1_CullOffscreenEntities` | `$87F8` | 84 | 3 |
+| Routine                             | Address | Bytes | Direct calls |
+| ----------------------------------- | ------: | ----: | -----------: |
+| `World1_UpdateCameraFromPlayer`     | `$8706` |    74 |            3 |
+| `World1_ApplyCameraDeltaToEntities` | `$8750` |   168 |            7 |
+| `World1_CullOffscreenEntities`      | `$87F8` |    84 |            3 |
 
 ## World 1 core routines
 
@@ -132,14 +131,13 @@ sprite-composition path that the city and underground loops share.
 
 The initialization group distinguishes normal entry from the demo entry, then
 names the shared gameplay-RAM/OAM clear, audio reset, area palette lookup, map
-source setup, health/pose reset, and area music selection. The input routine
-has two explicit modes: real input computes newly pressed button edges, while
-demo input consumes duration/button pairs and returns to the shell at its
-terminator.
+source setup, health/pose reset, and area music selection. The input routine has
+two explicit modes: real input computes newly pressed button edges, while demo
+input consumes duration/button pairs and returns to the shell at its terminator.
 
 The rendering group names the Start-button pause loop, rendering enable/disable
-boundaries, the alternating frame-order dispatcher, player and HUD emitters,
-and four adapters for entity slots 0-9, 10-29, 30-37, and 38-47. The adapters
+boundaries, the alternating frame-order dispatcher, player and HUD emitters, and
+four adapters for entity slots 0-9, 10-29, 30-37, and 38-47. The adapters
 convert each structure-of-arrays pool into the common metasprite workspace;
 their separate names make the four different base offsets visible at callsites.
 
@@ -159,15 +157,15 @@ For an ordinary three-byte placement, `World1_MaterializePlacement` writes
 `placement_type + 1` as the runtime state and loads three parallel 16-byte
 tables:
 
-| Address | Field |
-| ---: | --- |
+| Address | Field                    |
+| ------: | ------------------------ |
 | `$8E70` | initial metasprite index |
-| `$8E80` | initial render flags |
-| `$8E90` | initial health |
+| `$8E80` | initial render flags     |
+| `$8E90` | initial health           |
 
 Only placement types `$00-$0B` occur. They account for 112 records: 77 in the
-city and 35 underground. The remaining four property slots are zero padding.
-All 12 initial metasprite indexes resolve directly in the World 1 metasprite
+city and 35 underground. The remaining four property slots are zero padding. All
+12 initial metasprite indexes resolve directly in the World 1 metasprite
 catalog.
 
 The placement type, not the resulting runtime state, also selects one of eight
@@ -190,17 +188,15 @@ five bits. The overlapping RTS-minus-one table at `$88FB` has 16 entries: state
 Two pairs of directly placed states deliberately share initial artwork while
 using different handlers: `$04/$0B` both start at metasprite `$60`, and
 `$05/$0C` both start at `$58`. Their placement split matches the distinct city
-and underground movement systems and is preserved as separate lifecycle
-states.
+and underground movement systems and is preserved as separate lifecycle states.
 
 ### Rewards and checks
 
 When an ordinary enemy finishes its defeated-state sequence, its low six state
-bits select the encoded score table at `$891B`. The handler contract records
-all entries `$01-$0F` and joins each handler to the evidence-backed identity
-catalog in `world1_runtime.md`. The generated assembly therefore uses
-enemy names while keeping dormant state `$0D` explicit in the shared Yuubou
-handler name.
+bits select the encoded score table at `$891B`. The handler contract records all
+entries `$01-$0F` and joins each handler to the evidence-backed identity catalog
+in `world1_runtime.md`. The generated assembly therefore uses enemy names while
+keeping dormant state `$0D` explicit in the shared Yuubou handler name.
 
 ## World 1 enemy identities
 
@@ -213,23 +209,23 @@ placement has been found.
 
 ### State catalog
 
-| State | Identity | Context | Stored health | Score | Base metasprite |
-| ---: | --- | --- | ---: | ---: | ---: |
-| `$01` | ユーボウ / Yuubou | city | 2 | 200 | `$64` |
-| `$02` | スネラー / Suneraa | city | 1 | 200 | `$5C` |
-| `$03` | メカノッソ / Mekanosso | city | 2 | 500 | `$56` |
-| `$04` | ゴズラ / Gozura | city movement | 4 | 100 | `$60` |
-| `$05` | ナーメ / Naame | city movement | 1 | 200 | `$58` |
-| `$06` | コブーン / Kobuun | city | 1 | 50 | `$4C` |
-| `$07` | ネズミ / Nezumi | underground | 2 | 800 | `$54` |
-| `$08` | ドバック / Dobakku | underground | 1 | 50 | `$70` |
-| `$09` | ヘリメダ / Herimeda | underground | 2 | 1,000 | `$6C` |
-| `$0A` | ギラーミン / Giraamin | underground | 4 | 50 | `$3E` |
-| `$0B` | ゴズラ / Gozura | underground movement | 4 | 50 | `$60` |
-| `$0C` | ナーメ / Naame | underground movement | 1 | 50 | `$58` |
-| `$0D` | dormant state | no proven writer | n/a | 10,000 | n/a |
-| `$0E` | ブルロボ / Bull Robo | scripted boss state | script | 50 | script |
-| `$0F` | ブルロボ / Bull Robo | scripted boss state | script | 50 | script |
+| State | Identity               | Context              | Stored health |  Score | Base metasprite |
+| ----: | ---------------------- | -------------------- | ------------: | -----: | --------------: |
+| `$01` | ユーボウ / Yuubou      | city                 |             2 |    200 |           `$64` |
+| `$02` | スネラー / Suneraa     | city                 |             1 |    200 |           `$5C` |
+| `$03` | メカノッソ / Mekanosso | city                 |             2 |    500 |           `$56` |
+| `$04` | ゴズラ / Gozura        | city movement        |             4 |    100 |           `$60` |
+| `$05` | ナーメ / Naame         | city movement        |             1 |    200 |           `$58` |
+| `$06` | コブーン / Kobuun      | city                 |             1 |     50 |           `$4C` |
+| `$07` | ネズミ / Nezumi        | underground          |             2 |    800 |           `$54` |
+| `$08` | ドバック / Dobakku     | underground          |             1 |     50 |           `$70` |
+| `$09` | ヘリメダ / Herimeda    | underground          |             2 |  1,000 |           `$6C` |
+| `$0A` | ギラーミン / Giraamin  | underground          |             4 |     50 |           `$3E` |
+| `$0B` | ゴズラ / Gozura        | underground movement |             4 |     50 |           `$60` |
+| `$0C` | ナーメ / Naame         | underground movement |             1 |     50 |           `$58` |
+| `$0D` | dormant state          | no proven writer     |           n/a | 10,000 |             n/a |
+| `$0E` | ブルロボ / Bull Robo   | scripted boss state  |        script |     50 |          script |
+| `$0F` | ブルロボ / Bull Robo   | scripted boss state  |        script |     50 |          script |
 
 The repeated Gozura and Naame records are intentional. States `$04/$0B` share
 metasprite base `$60`, and states `$05/$0C` share base `$58`, but each pair has
@@ -243,21 +239,23 @@ The six bytes at `$94D9` are `$06,$06,$05,$04,$01,$06`. The defeat routine at
 `$9462` compares the low six bits of the defeated runtime state against this
 table and resets progress on a mismatch. Completing the sequence sets selector
 index `$04`; the adjacent fifth selector byte at `$94D8` is `$0C`, so the
-spawned reward is descriptor `$0C`, whose handler enables invulnerability.
-After joining state identities, the exact sequence is:
+spawned reward is descriptor `$0C`, whose handler enables invulnerability. After
+joining state identities, the exact sequence is:
 
 `Kobuun, Kobuun, Naame, Gozura, Yuubou, Kobuun`.
 
-This ROM-resident sequence independently anchors four otherwise visually
-derived assignments: Kobuun `$06`, Naame `$05`, Gozura `$04`, and Yuubou `$01`.
+This ROM-resident sequence independently anchors four otherwise visually derived
+assignments: Kobuun `$06`, Naame `$05`, Gozura `$04`, and Yuubou `$01`.
 
 ### Evidence policy and validation
 
-The [Japanese WikiWiki guide](https://wikiwiki.jp/neskouryaku1/%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93)
+The
+[Japanese WikiWiki guide](https://wikiwiki.jp/neskouryaku1/%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93)
 provides Japanese names and behavior descriptions. The
 [GameFAQs guide](https://gamefaqs.gamespot.com/nes/578343-doraemon/faqs/48568)
 independently records scores, durability, visual labels, and the six-enemy
-secret. [StrategyWiki's image set](https://strategywiki.org/wiki/Category:Doraemon_images)
+secret.
+[StrategyWiki's image set](https://strategywiki.org/wiki/Category:Doraemon_images)
 provides another visual reference. Published names alone never select a state:
 each confirmed mapping also requires local ROM evidence from metasprites,
 properties, placement context, behavior, or the secret table.
@@ -273,10 +271,10 @@ matching facing metasprite. The collision layer converts packed entity
 coordinates to world-map cells and dispatches bottom, right, top, or left edge
 probes, pairing cardinal probes for diagonal movement.
 
-Three projectile constructors are now distinct: a probabilistic directional
-shot in the source entity's corresponding transient slot, a random upward arc
-in any free transient slot, and a fixed-point aimed shot. The aimed path records
-its minor-over-major restoring division and the unusual guard that unwinds its
+Three projectile constructors are now distinct: a probabilistic directional shot
+in the source entity's corresponding transient slot, a random upward arc in any
+free transient slot, and a fixed-point aimed shot. The aimed path records its
+minor-over-major restoring division and the unusual guard that unwinds its
 caller when the source entity is outside the active screen.
 
 Entry prefixes that intentionally fall through to another helper are recorded as
@@ -293,10 +291,10 @@ controller, emits randomized defeat explosions, and transfers to World 2. Its
 death path also records the life-loss, game-over, and return-to-city behavior.
 
 The handler-local layer contains an offset map collision test, Chebyshev
-distance to the player, two-step direction motion with and without reversal,
-and fine-scroll-relative vertical tile alignment. The intentional fallthrough
-from the reversing entry to the two-step mover is represented by two
-non-overlapping code spans.
+distance to the player, two-step direction motion with and without reversal, and
+fine-scroll-relative vertical tile alignment. The intentional fallthrough from
+the reversing entry to the two-step mover is represented by two non-overlapping
+code spans.
 
 Five newly named Bank 0 fields cover the finale floor flag, sequence/reveal
 counters, jump phase, and attack timer. With this contract, Bank 0 has no
@@ -315,8 +313,8 @@ freeze/invulnerability paths.
 The presentation path names the full nametable clear, attribute-cache clear,
 pending PPU-queue wait, and the direct-versus-NMI-queued palette upload. These
 routines make the initialization calls in the World 1 core readable without
-claiming semantics for the still-unclassified command-stream decoder bytes
-that follow them.
+claiming semantics for the still-unclassified command-stream decoder bytes that
+follow them.
 
 Seven existing Bank 0 RAM symbols tie the path to camera coordinates, player
 damage/render state, and the two timed powerups.
@@ -329,16 +327,16 @@ The city path is a four-way, two-pixel update with collision rollback.
 
 ### City movement
 
-`World1_UpdateCityPlayer` checks held directions in strict priority order:
-up, down, left, then right. It moves two pixels and clamps the player to X
-`$05-$EB` and Y `$28-$C8` before collision probes run.
+`World1_UpdateCityPlayer` checks held directions in strict priority order: up,
+down, left, then right. It moves two pixels and clamps the player to X `$05-$EB`
+and Y `$28-$C8` before collision probes run.
 
 | Direction | Encoded value | Collision probes |
-| --- | ---: | ---: |
-| up | 1 | 3 |
-| down | 0 | 3 |
-| left | 2 | 2 |
-| right | 3 | 2 |
+| --------- | ------------: | ---------------: |
+| up        |             1 |                3 |
+| down      |             0 |                3 |
+| left      |             2 |                2 |
+| right     |             3 |                2 |
 
 Each probe calls `World1_RollbackCityPlayerOnCollision`. The wrapper calls
 `World1_TestPlayerMapCollisionAtOffset` and restores both pre-movement player
@@ -355,21 +353,20 @@ recovery sequence ends at `$16`. A negative value is the separate death state.
 `World1_UpdateUndergroundPlayer` gives held left priority over held right and
 uses `World1PlayerXSubpixel` to move 1.5 pixels per update: the integer X
 coordinate always changes once and changes a second time on each `$80`
-fractional carry or borrow. The same `$05-$EB` horizontal bounds apply as in
-the city. Three probes at the leading wall edge cover Y offsets `$02`, `$0E`,
-and `$19`; a collision restores the pre-movement X coordinate.
+fractional carry or borrow. The same `$05-$EB` horizontal bounds apply as in the
+city. Three probes at the leading wall edge cover Y offsets `$02`, `$0E`, and
+`$19`; a collision restores the pre-movement X coordinate.
 
 A new press of A (`$80`) calls `World1_StartUndergroundJump`, sets signed
 vertical velocity to -24, marks the player airborne, queues sound `$12`, and
 falls directly into `World1_IntegrateUndergroundVerticalMotion` for the first
-physics update. Airborne updates add signed velocity divided by four to Y,
-then add gravity 1 and clamp downward velocity to +24. Two X probes at offsets
-`$04` and `$0A` test the ceiling at Y `$02` and the floor at Y `$1A`.
-Ceiling contact aligns the player below the tile and clears velocity; floor
-contact aligns to the fine-scroll grid, clears `World1PlayerAirborne`, and
-returns to grounded movement. `World1_CheckUndergroundGroundSupport` runs the
-same two floor probes while grounded and begins a zero-velocity fall when both
-miss.
+physics update. Airborne updates add signed velocity divided by four to Y, then
+add gravity 1 and clamp downward velocity to +24. Two X probes at offsets `$04`
+and `$0A` test the ceiling at Y `$02` and the floor at Y `$1A`. Ceiling contact
+aligns the player below the tile and clears velocity; floor contact aligns to
+the fine-scroll grid, clears `World1PlayerAirborne`, and returns to grounded
+movement. `World1_CheckUndergroundGroundSupport` runs the same two floor probes
+while grounded and begins a zero-velocity fall when both miss.
 
 ### Input edges and weapon firing
 
@@ -385,25 +382,25 @@ transient `$FF` source-object ID, then starts `World1WeaponPoseTimer` at 6.
 
 ### Validated routines
 
-| Routine | Address | Bytes | Direct calls |
-| --- | ---: | ---: | ---: |
-| `World1_UpdateCityPlayer` | `$856C` | 396 | 1 |
-| `World1_RollbackCityPlayerOnCollision` | `$86F8` | 14 | 10 |
-| `World1_UpdateWeaponAndTryFire` | `$9BFC` | 135 | 2 |
-| `World1_TestPlayerMapCollisionAtOffset` | `$D1C3` | 44 | 13 |
-| `World1_UpdateUndergroundPlayer` | `$CF7A` | 409 | 5 |
-| `World1_CheckUndergroundGroundSupport` | `$D113` | 37 | 1 |
-| `World1_StartUndergroundJump` | `$D138` | 13 | 1 |
-| `World1_IntegrateUndergroundVerticalMotion` | `$D145` | 126 | 1 |
+| Routine                                     | Address | Bytes | Direct calls |
+| ------------------------------------------- | ------: | ----: | -----------: |
+| `World1_UpdateCityPlayer`                   | `$856C` |   396 |            1 |
+| `World1_RollbackCityPlayerOnCollision`      | `$86F8` |    14 |           10 |
+| `World1_UpdateWeaponAndTryFire`             | `$9BFC` |   135 |            2 |
+| `World1_TestPlayerMapCollisionAtOffset`     | `$D1C3` |    44 |           13 |
+| `World1_UpdateUndergroundPlayer`            | `$CF7A` |   409 |            5 |
+| `World1_CheckUndergroundGroundSupport`      | `$D113` |    37 |            1 |
+| `World1_StartUndergroundJump`               | `$D138` |    13 |            1 |
+| `World1_IntegrateUndergroundVerticalMotion` | `$D145` |   126 |            1 |
 
 ## World 1 pseudorandom generators
 
 PRG bank 0 contains two independent byte-producing pseudorandom routines.
 
-| Routine | Address | State | Frame mixed | Direct calls |
-| --- | ---: | --- | --- | ---: |
-| `World1_FrameRandomByte` | `$962F` | `$0052-$0053` (`World1FrameRandomState`) | yes | 7 |
-| `World1_RandomByte` | `$964A` | `$0054-$0057` (`World1RandomState`) | no | 18 |
+| Routine                  | Address | State                                    | Frame mixed | Direct calls |
+| ------------------------ | ------: | ---------------------------------------- | ----------- | -----------: |
+| `World1_FrameRandomByte` | `$962F` | `$0052-$0053` (`World1FrameRandomState`) | yes         |            7 |
+| `World1_RandomByte`      | `$964A` | `$0054-$0057` (`World1RandomState`)      | no          |           18 |
 
 `World1_FrameRandomByte` increments one state byte, decrements the other, and
 mixes both with `FrameCounter`. Calls made with the same initial state can
@@ -414,5 +411,5 @@ previous state alone.
 Both ranges are cleared by the normal chapter initialization and explicitly by
 the demo-entry path. The adjacent layout does not make them one six-byte
 generator: neither routine accesses the other routine's state. The static
-callsite totals describe exhaustive bank-wide `JSR` byte-pattern coverage,
-not runtime invocation frequency.
+callsite totals describe exhaustive bank-wide `JSR` byte-pattern coverage, not
+runtime invocation frequency.

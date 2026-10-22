@@ -195,128 +195,67 @@
     "world2_animations": [
       {
         "name": "Ankodori",
-        "frames": [
-          0,
-          1
-        ]
+        "frames": [0, 1]
       },
       {
         "name": "Takkon",
-        "frames": [
-          2,
-          3
-        ]
+        "frames": [2, 3]
       },
       {
         "name": "Midron",
-        "frames": [
-          4,
-          5,
-          6
-        ]
+        "frames": [4, 5, 6]
       },
       {
         "name": "Tenkoumori",
-        "frames": [
-          7,
-          8
-        ]
+        "frames": [7, 8]
       },
       {
         "name": "Zenmaiuo",
-        "frames": [
-          9,
-          10,
-          11
-        ]
+        "frames": [9, 10, 11]
       },
       {
         "name": "Gurinko",
-        "frames": [
-          12,
-          13
-        ]
+        "frames": [12, 13]
       },
       {
         "name": "Borukka",
-        "frames": [
-          14,
-          15
-        ]
+        "frames": [14, 15]
       },
       {
         "name": "Gangan",
-        "frames": [
-          17,
-          18
-        ]
+        "frames": [17, 18]
       },
       {
         "name": "Jura",
-        "frames": [
-          23,
-          24,
-          25
-        ]
+        "frames": [23, 24, 25]
       },
       {
         "name": "Potta",
-        "frames": [
-          30,
-          31
-        ]
+        "frames": [30, 31]
       },
       {
         "name": "Kyon",
-        "frames": [
-          32,
-          33,
-          34,
-          35
-        ]
+        "frames": [32, 33, 34, 35]
       },
       {
         "name": "Tosshin",
-        "frames": [
-          36,
-          37
-        ]
+        "frames": [36, 37]
       },
       {
         "name": "Joki",
-        "frames": [
-          38,
-          39
-        ]
+        "frames": [38, 39]
       },
       {
         "name": "Big Robo Ship",
-        "frames": [
-          40,
-          41,
-          42,
-          44,
-          45,
-          46
-        ]
+        "frames": [40, 41, 42, 44, 45, 46]
       },
       {
         "name": "Centaurus",
-        "frames": [
-          48,
-          49,
-          50,
-          52,
-          53,
-          54
-        ]
+        "frames": [48, 49, 50, 52, 53, 54]
       },
       {
         "name": "Robo Ship",
-        "frames": [
-          56,
-          57
-        ]
+        "frames": [56, 57]
       }
     ],
     "world2_state_metasprites": {
@@ -335,26 +274,8 @@
       "14": 23,
       "15": 17
     },
-    "world2_invisible_states": [
-      9
-    ],
-    "world2_sound_requests": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      8,
-      9,
-      10,
-      11,
-      14,
-      15,
-      16,
-      17
-    ]
+    "world2_invisible_states": [9],
+    "world2_sound_requests": [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 14, 15, 16, 17]
   },
   "guard": [
     "Ankodori",
