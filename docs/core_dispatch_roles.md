@@ -10,7 +10,7 @@ uploads, and palette application.
 
 World 3 has five player-state handlers: frozen, controlled movement, alternate
 movement, damage recovery, and death. The names describe directly observed
-state-machine behavior and do not claim unproved story meaning for the
-alternate movement mode.
+state-machine behavior and do not claim unproved story meaning for the alternate
+movement mode.
 
 Audio effect entries are a separate subsystem ([audio](audio_system.md)).

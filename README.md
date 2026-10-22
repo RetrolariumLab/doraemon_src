@@ -6,8 +6,8 @@ Japanese release; the ROM-derived assets stay private.
 
 ## Status
 
-Source Reconstruction 3.1. Editing happens in Retrolarium Studio:
-`doraemon.rlj` opens it ([`docs/retrolarium.md`](docs/retrolarium.md)).
+Source Reconstruction 3.1. Editing happens in Retrolarium Studio: `doraemon.rlj`
+opens it ([`docs/retrolarium.md`](docs/retrolarium.md)).
 
 3.1 keeps only what builds and checks the source. The earlier releases' Ghidra
 regeneration pipeline and its ledgers, audits, authoring contracts and editable
@@ -18,11 +18,11 @@ The cartridge uses GNROM mapper 66 with 128 KiB of PRG and 32 KiB of CHR
 ([`docs/revisions.md`](docs/revisions.md)).
 
 The source does not yet survive moving its code. ROM addresses in instruction
-operands, the bank 3 entry points the other banks call, and the NMI services
-of bank 3 are symbolic, but many pointer tables (RTS dispatch tables, pointer
+operands, the bank 3 entry points the other banks call, and the NMI services of
+bank 3 are symbolic, but many pointer tables (RTS dispatch tables, pointer
 loads, pointers inside data streams) are still raw bytes, so a build whose
-modules move does not run. Until they are labelled there is no emulator run
-in the checks.
+modules move does not run. Until they are labelled there is no emulator run in
+the checks.
 
 ## Quick start
 
@@ -68,10 +68,10 @@ Start with the [documentation index](docs/index.md).
 
 ## Research and rights
 
-Published CadEditor map and table information, cartridge databases and
-community guides provide external boundary evidence; the sources and how they
-are used are listed in [Provenance](docs/provenance.md). External tools and
-references are not copied into this repository.
+Published CadEditor map and table information, cartridge databases and community
+guides provide external boundary evidence; the sources and how they are used are
+listed in [Provenance](docs/provenance.md). External tools and references are
+not copied into this repository.
 
 Original game code, graphics, music, text, and data remain property of their
 respective rights holders. This repository does not distribute ROM images or

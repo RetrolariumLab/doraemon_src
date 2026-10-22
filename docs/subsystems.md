@@ -11,13 +11,12 @@ Runtime traces establish `$8271` as the top-level chapter entry and show `$8274`
 and `$827A` called from NMI in every active bank. `$8277` is used both by the
 World 1 attract path and by short calls into bank-3 presentation code. All
 sixteen targets now have semantic names and a machine-checked relation to their
-bank-local jump stubs.
-For gameplay banks, the title's attract loop selects PRG 0, 1, or 2 through
-`$8024/$802F/$803A`; the bank-local `$8277` gateways then enter
-`World1_DemoEntry`, `World2_DemoEntry`, or `World3_DemoEntry`. Bank 3's `$8277`
-remains a distinct callable presentation gateway.
-The copied reset/NMI/PPU/mapper routines and all sixteen bank-local dispatch
-stubs now have evidence-backed names; see `docs/common_runtime.md`.
+bank-local jump stubs. For gameplay banks, the title's attract loop selects PRG
+0, 1, or 2 through `$8024/$802F/$803A`; the bank-local `$8277` gateways then
+enter `World1_DemoEntry`, `World2_DemoEntry`, or `World3_DemoEntry`. Bank 3's
+`$8277` remains a distinct callable presentation gateway. The copied
+reset/NMI/PPU/mapper routines and all sixteen bank-local dispatch stubs now have
+evidence-backed names; see `docs/common_runtime.md`.
 
 ## World 1 / bank 0
 
@@ -37,9 +36,9 @@ Bank0_World1Main
 
 The A-button dispatcher distinguishes object type 2 (door) from type 1
 (manhole). The tracked start-area scenario executes the manhole branch and
-side-view initializer in that order while PRG0/CHR0 stays selected.
-The city loop at `$82C1` and side-view loop at `$CE55` each execute exactly once
-per emulated frame in their tracked scenarios; the latter begins only after the
+side-view initializer in that order while PRG0/CHR0 stays selected. The city
+loop at `$82C1` and side-view loop at `$CE55` each execute exactly once per
+emulated frame in their tracked scenarios; the latter begins only after the
 accepted manhole transition and side-view initialization.
 
 ## World 2 / bank 1
@@ -53,19 +52,19 @@ flight, projectiles, and this screen pipeline form a chapter-specific
 object/update system. Runtime reaches the bank-local main entry at `$88A4` and
 then repeats the frame loop at `$8959` once per frame with PRG1/CHR1 selected.
 The 119 selector views share one globally unambiguous 16,431-byte token pool
-([World 2 formats](world2_formats.md)).
-The stage terminates with a stopped `$7F` sentinel. Its adjacent 26-byte bitmap
-classifies all 208 metatiles for collision, and that bitmap is editable alongside
-the palette and CHR-tile fields.
+([World 2 formats](world2_formats.md)). The stage terminates with a stopped
+`$7F` sentinel. Its adjacent 26-byte bitmap classifies all 208 metatiles for
+collision, and that bitmap is editable alongside the palette and CHR-tile
+fields.
 
 ## World 3 / bank 2
 
 The embedded build string identifies this bank explicitly as world 3. It owns a
 separate 64x64 map and metatile hierarchy. Bank-local NMI dispatch jumps to the
-high `$AFxx` region, confirming a different frame implementation.
-The `$8271` dispatch jumps across the build string to the runtime-proven main
-entry at `$82F6`; after initialization, execution repeats the frame loop at
-`$838E` once per frame with PRG2/CHR2 selected.
+high `$AFxx` region, confirming a different frame implementation. The `$8271`
+dispatch jumps across the build string to the runtime-proven main entry at
+`$82F6`; after initialization, execution repeats the frame loop at `$838E` once
+per frame with PRG2/CHR2 selected.
 
 ## Shell and presentation / bank 3
 
@@ -83,12 +82,12 @@ named; see [Bank 3 shell runtime](shell_runtime.md).
 
 The shared audio request tables begin at `$9784` and executable driver entry
 points begin at `$982A`. Requests 0-25 are accepted through `$02A0`; the first
-table maps each request to an even dispatch index and
-therefore also acts as its priority. The per-frame routine at `$983B` services
-four effect timers at `$02A3-$02A6`, then dispatches by pushing a little-endian
-address from `$979E` and returning through `RTS`. The table contains 52 slots
-and 44 unique destinations; its stored values are one less than their actual
-entry addresses because `RTS` increments the pulled address.
+table maps each request to an even dispatch index and therefore also acts as its
+priority. The per-frame routine at `$983B` services four effect timers at
+`$02A3-$02A6`, then dispatches by pushing a little-endian address from `$979E`
+and returning through `RTS`. The table contains 52 slots and 44 unique
+destinations; its stored values are one less than their actual entry addresses
+because `RTS` increments the pulled address.
 
 The recovered handlers write the pulse 1, pulse 2, triangle, and noise APU
 registers. Music state is separate at `$02AA-$02FF`: `$9EAB` resets channel
@@ -100,8 +99,8 @@ structural names and explicit operand widths derived from their state changes
 and control flow. The shared four-channel ABI covers 92 bytes of duration,
 event, envelope, fixed-pitch, loop, call, and stream-pointer state.
 
-World 3 carries a relocated, non-identical copy at `$BE90-$CAxx` in bank 2.
-It preserves the same 26-value priority table, 52-slot effect dispatch, and 17
+World 3 carries a relocated, non-identical copy at `$BE90-$CAxx` in bank 2. It
+preserves the same 26-value priority table, 52-slot effect dispatch, and 17
 commands. Its exclusive track-ID limit is nine, yielding eight playable tracks
 instead of bank 3's four. Its effect table is at `$BE28`, its command table at
 `$C634`, and its stream reader at `$C91E`.
@@ -115,8 +114,8 @@ World 1 carries the fourth driver in bank 0. It restores the 26-request and
 52-slot shape, with its priority table at `$E316`, effect table at `$E330`, and
 38 unique effect handlers. The music command table is at `$EB3C`, the stream
 reader at `$EE26`, and track IDs 1-8 are playable. Across the four banks, ID
-zero stops music and the playable counts are eight for World 1, six for World
-2, eight for World 3, and four for the shell. All copies are validated
+zero stops music and the playable counts are eight for World 1, six for World 2,
+eight for World 3, and four for the shell. All copies are validated
 independently; shared structure does not imply byte identity or a callable
 cross-bank sound service.
 
@@ -128,10 +127,10 @@ have an evidence-backed source symbol.
 World 1 uses one 48-slot structure-of-arrays split into four traversal classes:
 slots 0-9, 10-29, 30-37, and 38-47. Each class has a dedicated clear and render
 routine, while signed X/Y stepping and metasprite composition are shared. The
-field layout and exact capacities are recorded in `docs/ram_fields.md`.
-City entity types `$03-$0D` select eleven interaction handlers through the
-ordinary pointer table at `$CBF4` and `JMP ($0000)` at `$C9DD`; this table is
-also covered by the object-dispatch manifest.
+field layout and exact capacities are recorded in `docs/ram_fields.md`. City
+entity types `$03-$0D` select eleven interaction handlers through the ordinary
+pointer table at `$CBF4` and `JMP ($0000)` at `$C9DD`; this table is also
+covered by the object-dispatch manifest.
 
 The ten actively updated city slots use a separate low-state dispatcher at
 `$88A7`. It masks the entity type to five bits and uses a 16-slot
@@ -183,14 +182,14 @@ without moving rooms or coordinates; the final slot retains type `$1F`.
 
 Types below `$10` additionally select a behavior stream through the pointer
 table at `$D9AC`. Its sixteen targets span the packed stream region
-`$D9CC-$DDF1`. `World3_RunEntityBehaviorScript` decodes the command high
-nibble, while the low nibble and following bytes control motion, delays,
-direction, loops, branches, position, animation variants, and termination.
-The per-entity script offset, wait/rate counters, directions, loop state, HP,
-render flags, and persistence field are named in the complete active-pool RAM
-grid. Recursive control-flow decoding accounts for all 1,062 stream bytes as
-532 instructions; the exact opcode contract and editable form are documented
-in `docs/world3_formats.md`.
+`$D9CC-$DDF1`. `World3_RunEntityBehaviorScript` decodes the command high nibble,
+while the low nibble and following bytes control motion, delays, direction,
+loops, branches, position, animation variants, and termination. The per-entity
+script offset, wait/rate counters, directions, loop state, HP, render flags, and
+persistence field are named in the complete active-pool RAM grid. Recursive
+control-flow decoding accounts for all 1,062 stream bytes as 532 instructions;
+the exact opcode contract and editable form are documented in
+`docs/world3_formats.md`.
 
 Five contiguous 32-byte columns at `$8EB5-$8F54` provide the per-type hit
 points, base metasprite, render flags, contact damage, and score reward code.

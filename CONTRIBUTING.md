@@ -1,8 +1,7 @@
 # Contributing
 
 The project reconstructs the Japanese release; it must keep building byte for
-byte.
-For each change:
+byte. For each change:
 
 ```bash
 make format

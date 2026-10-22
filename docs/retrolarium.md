@@ -38,8 +38,8 @@ The studio builds a revision from its original ROM and the documents in
 `hack/<revision>/`; it does not assemble `src/`. `make build` assembles `src/`
 and never reads `hack/`. So an edit to the source shows in `make build`, not in
 the studio, and a studio edit stays in the studio's documents until someone
-writes it into the source by hand. Use the studio for content (levels,
-graphics, text, music) and the source for code.
+writes it into the source by hand. Use the studio for content (levels, graphics,
+text, music) and the source for code.
 
 ## The game's names and tables
 
@@ -58,15 +58,16 @@ made from it; Retrolarium keeps no copy.
 
 `config/profile_tables.json` names, by label, the tables the kit reads from the
 image built from this source. `rltool profile tables` prints their offsets in
-each revision's build, the values of `config/game_profile.json`; `make
-profile-check` (part of `make test`) compares the two, so a source change that
-moves such a table fails until the profile is updated. The profile's other
+each revision's build, the values of `config/game_profile.json`;
+`make profile-check` (part of `make test`) compares the two, so a source change
+that moves such a table fails until the profile is updated. The profile's other
 offsets are not derived from labels yet.
 
 ## Checking the repository
 
 `make studio-check` runs `rltool studio check doraemon.rlj --present`. In a
-throwaway copy of the repository it prepares every revision whose ROM is here, decodes and validates each
-document and rebuilds each revision with no edits, requiring the original ROM
-byte for byte. It needs the revisions' ROMs and the Retrolarium kit (`rltool` on
-`PATH`, or `RLTOOL=...`), and never reads or writes `hack/` or `.retrolarium/`.
+throwaway copy of the repository it prepares every revision whose ROM is here,
+decodes and validates each document and rebuilds each revision with no edits,
+requiring the original ROM byte for byte. It needs the revisions' ROMs and the
+Retrolarium kit (`rltool` on `PATH`, or `RLTOOL=...`), and never reads or writes
+`hack/` or `.retrolarium/`.

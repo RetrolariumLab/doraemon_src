@@ -5,11 +5,7 @@
   "id": "doraemon",
   "name": "Doraemon (Famicom)",
   "platform": "nes",
-  "capabilities": [
-    "levels",
-    "graphics",
-    "exact-round-trip"
-  ],
+  "capabilities": ["levels", "graphics", "exact-round-trip"],
   "revisions": [
     {
       "id": "original",
@@ -977,9 +973,7 @@
               {
                 "name": "damage_threshold",
                 "label": "Damage threshold",
-                "locked": [
-                  0
-                ]
+                "locked": [0]
               }
             ]
           },
@@ -989,9 +983,7 @@
               {
                 "name": "score_reward",
                 "label": "Score reward",
-                "locked": [
-                  0
-                ]
+                "locked": [0]
               }
             ]
           }
@@ -1323,9 +1315,7 @@
                   }
                 ],
                 "unique": true,
-                "locked": [
-                  0
-                ]
+                "locked": [0]
               }
             ]
           }
@@ -1410,9 +1400,7 @@
                   }
                 ],
                 "unique": true,
-                "locked": [
-                  0
-                ]
+                "locked": [0]
               }
             ]
           }
@@ -1541,9 +1529,7 @@
                   }
                 ],
                 "unique": true,
-                "locked": [
-                  0
-                ]
+                "locked": [0]
               }
             ]
           }
@@ -1672,9 +1658,7 @@
                   }
                 ],
                 "unique": true,
-                "locked": [
-                  0
-                ]
+                "locked": [0]
               }
             ]
           }
@@ -1689,24 +1673,7 @@
       "parameters": {
         "file_offset": 88540,
         "size": 1062,
-        "stream_sizes": [
-          40,
-          119,
-          248,
-          21,
-          96,
-          55,
-          248,
-          1,
-          14,
-          1,
-          34,
-          1,
-          130,
-          18,
-          18,
-          18
-        ]
+        "stream_sizes": [40, 119, 248, 21, 96, 55, 248, 1, 14, 1, 34, 1, 130, 18, 18, 18]
       }
     },
     {
