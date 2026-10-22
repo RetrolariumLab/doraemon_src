@@ -49,13 +49,13 @@ Bank0_Label_D3CB:
     STA World1EnemyFreezeTimer
     STA World1InvulnerabilityTimer
     JSR World1_DisableGameplayRendering
-    LDA #$EF
+    LDA #<World1_UndergroundMap
     STA World1MapDataPointer
-    LDA #$C2
+    LDA #>World1_UndergroundMap
     STA World1MapDataPointer+$01
-    LDA #$25
+    LDA #<World1_UndergroundObjectPlacements
     STA World1ObjectPlacementList
-    LDA #$D9
+    LDA #>World1_UndergroundObjectPlacements
     STA World1ObjectPlacementList+$01
     LDA #$02
     STA $29

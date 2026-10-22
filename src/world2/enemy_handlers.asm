@@ -391,9 +391,9 @@ Bank1_Label_A330:
     PLA
     ASL A
     TAX
-    LDA #$A3
+    LDA #>(World2_EnemyRenderDispatchContinuation - 1)
     PHA
-    LDA #$54
+    LDA #<(World2_EnemyRenderDispatchContinuation - 1)
     PHA
     LDA a:World2_EnemyRenderHandlerRtsTable+1,X
     PHA

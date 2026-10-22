@@ -290,13 +290,13 @@ World1_ReturnFromUndergroundToCity:
     LDA #$00
     STA World1PlayerAnimationCounter
     JSR World1_DisableGameplayRendering
-    LDA #$EF
+    LDA #<World1_CityMap
     STA World1MapDataPointer
-    LDA #$B2
+    LDA #>World1_CityMap
     STA World1MapDataPointer+$01
-    LDA #$89
+    LDA #<World1_CityObjectPlacements
     STA World1ObjectPlacementList
-    LDA #$D9
+    LDA #>World1_CityObjectPlacements
     STA World1ObjectPlacementList+$01
     LDA #$00
     STA $29

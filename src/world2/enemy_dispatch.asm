@@ -61,9 +61,9 @@ Bank1_Label_9946:
     STA World2CurrentEnemyStateIndex
     ASL A
     TAX
-    LDA #$99
+    LDA #>(World2_EnemyUpdateDispatchContinuation - 1)
     PHA
-    LDA #$64
+    LDA #<(World2_EnemyUpdateDispatchContinuation - 1)
     PHA
     LDA a:World2_EnemyUpdateHandlerRtsTable+1,X
     PHA
