@@ -1,11 +1,7 @@
 # World 1 Runtime
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
-This chapter joins the camera, player, entity, enemy, frame, and random-number contracts that cooperate in the World 1 gameplay loop. Machine-readable addresses, call graphs, byte signatures, and RAM ownership remain authoritative in `config/reconstruction/world1/`.
+This chapter joins the camera, player, entity, enemy, frame, and random-number
+contracts that cooperate in the World 1 gameplay loop.
 
 ## Contents
 
@@ -75,18 +71,10 @@ room calls up/down.
 | `World1_TrackUndergroundVerticalCamera` | `$D47C` | 114 | 1 | Y `$6E-$92` | 6 |
 
 The normal player-camera path, initial viewport prefill, and scripted movement
-all call these same routines. `config/reconstruction/world1/world1_camera.json` pins all 553 routine
-bytes, the twelve state symbols and ownership scopes, the coordinate geometry,
-the underground tracking bands, and all 18 direct callsites. Run the focused
-contract with:
-
-```text
-make validate-world1-camera
-```
+all call these same routines.
 
 Player tracking, entity coordinate projection, and offscreen culling form the
-consumer side of this camera model. Their exact contract is documented in
-`docs/world1_runtime.md`.
+consumer side of this camera model.
 
 ## World 1 camera entity projection
 
@@ -137,19 +125,10 @@ Transient entities use a negative source ID and need no map-bit release.
 | `World1_ApplyCameraDeltaToEntities` | `$8750` | 168 | 7 |
 | `World1_CullOffscreenEntities` | `$87F8` | 84 | 3 |
 
-`config/reconstruction/world1/world1_camera_entities.json` pins all 326 routine bytes, the complete
-13-call graph, the fallthrough edge, tracking thresholds, culling margins, and
-244 RAM bytes across the player, delta, and five entity arrays. Run:
-
-```text
-make validate-world1-camera-entities
-```
-
 ## World 1 core routines
 
-`config/reconstruction/world1/world1_core_routines.json` fixes the high-level initialization, input,
-render-state, and sprite-composition path used by both the city and underground
-loops. It replaces twenty address-only routine names with behavioral contracts.
+Twenty routines form the high-level initialization, input, render-state and
+sprite-composition path that the city and underground loops share.
 
 The initialization group distinguishes normal entry from the demo entry, then
 names the shared gameplay-RAM/OAM clear, audio reset, area palette lookup, map
@@ -164,16 +143,7 @@ and four adapters for entity slots 0-9, 10-29, 30-37, and 38-47. The adapters
 convert each structure-of-arrays pool into the common metasprite workspace;
 their separate names make the four different base offsets visible at callsites.
 
-For every routine the contract checks its exact address range and CRC32,
-semantic registry entry, complete direct JSR/JMP caller set from current Ghidra
-facts, and encoded callsite bytes. It also ties the path to the existing
-pressed-button, damage-state, and OAM-index RAM fields.
-
-Run:
-
-```text
-make validate-world1-core-routines
-```
+The path uses the pressed-button, damage-state and OAM-index RAM fields.
 
 ## World 1 enemy handlers
 
@@ -206,10 +176,9 @@ therefore reuse initializer slots 0-3.
 
 ### Runtime dispatch
 
-`World1_UpdateEntities` walks the ten update slots and masks each active type
-to five bits. The overlapping RTS-minus-one table at `$88FB` has 16 entries:
-state 0 is the inactive loop tail, and states `$01-$0F` form the catalog in
-`config/reconstruction/world1/world1_enemy_handlers.json`.
+`World1_UpdateEntities` walks the ten update slots and masks each active type to
+five bits. The overlapping RTS-minus-one table at `$88FB` has 16 entries: state
+0 is the inactive loop tail, and states `$01-$0F` are the handlers below.
 
 - States `$01-$0C` are produced directly from map placements.
 - State `$0D` has a dispatch entry sharing the state-1 handler, but no ordinary
@@ -232,11 +201,6 @@ all entries `$01-$0F` and joins each handler to the evidence-backed identity
 catalog in `world1_runtime.md`. The generated assembly therefore uses
 enemy names while keeping dormant state `$0D` explicit in the shared Yuubou
 handler name.
-
-Run `make validate-world1-enemy-handlers` to verify the dispatch bytes and
-registered symbols, all four property tables and CRCs, the complete placement
-histogram, metasprite-base relationships, lifecycle partition, and the normal
-materializer plus scripted-boss code signatures.
 
 ## World 1 enemy identities
 
@@ -298,17 +262,10 @@ provides another visual reference. Published names alone never select a state:
 each confirmed mapping also requires local ROM evidence from metasprites,
 properties, placement context, behavior, or the secret table.
 
-`make validate-world1-enemy-identities` checks the 15-state lifecycle join,
-metasprite bases, stored health and score codes, the exact direct-enemy roster,
-the secret bytes and semantic order, its checker signature, and evidence
-provenance. It is part of `make release-check`.
-
 ## World 1 entity helpers
 
-`config/reconstruction/world1/world1_entity_helpers.json` fixes the movement, aiming, map-probe, and
-enemy-projectile primitives shared by the semantically named World 1 entity
-handlers. It replaces seventeen address-only routine names with behavioral
-contracts.
+Seventeen routines are the movement, aiming, map-probe and enemy-projectile
+primitives that the World 1 entity handlers share.
 
 The direction layer converts player-relative deltas to an eight-way direction,
 applies unit-vector movement, reverses horizontal direction, and selects a
@@ -322,24 +279,13 @@ in any free transient slot, and a fixed-point aimed shot. The aimed path records
 its minor-over-major restoring division and the unusual guard that unwinds its
 caller when the source entity is outside the active screen.
 
-The machine contract pins exact code spans and CRC32 values, all direct JSR/JMP
-callers from the current Ghidra facts, encoded callsite bytes, and nine existing
-Bank 0 RAM symbols covering the player, camera, and shared entity structure.
-Entry prefixes that intentionally fall through to another helper are recorded
-as separate non-overlapping spans.
-
-Run:
-
-```text
-make validate-world1-entity-helpers
-```
+Entry prefixes that intentionally fall through to another helper are recorded as
+separate non-overlapping spans.
 
 ## World 1 final routines
 
-`config/reconstruction/world1/world1_final_routines.json` closes the remaining ten address-only
-routine entries in Bank 0. Five routines own the vertical underground finale
-and scripted Bull Robo battle; five are entity-handler geometry and movement
-helpers.
+Five routines own the vertical underground finale and scripted Bull Robo battle;
+five are entity-handler geometry and movement helpers.
 
 The finale path swaps the city and underground persistence masks, establishes
 the special bottom boundary, reveals Bull Robo, runs its hop/patrol/projectile
@@ -352,31 +298,19 @@ and fine-scroll-relative vertical tile alignment. The intentional fallthrough
 from the reversing entry to the two-step mover is represented by two
 non-overlapping code spans.
 
-The machine contract pins 965 executable bytes, 19 direct JSR/JMP callers, and
-21 RAM records. Five newly named Bank 0 fields cover the finale floor flag,
-sequence/reveal counters, jump phase, and attack timer. With this contract,
-Bank 0 has no remaining neutral routine entry labels; address-qualified local
-branches remain lower-priority implementation detail.
-
-Run:
-
-```text
-make validate-world1-final-routines
-```
+Five newly named Bank 0 fields cover the finale floor flag, sequence/reveal
+counters, jump phase, and attack timer. With this contract, Bank 0 has no
+remaining neutral routine entry labels; address-qualified local branches remain
+lower-priority implementation detail.
 
 ## World 1 frame mechanics
 
-`config/reconstruction/world1/world1_frame_mechanics.json` fixes the high-level motion, collision,
-damage, reward, and PPU preparation services shared by the city and underground
-frame loops. It replaces twenty-three address-only routine names with
-behavioral contracts.
+Twenty-three routines make up the frame mechanics.
 
 The object path distinguishes main enemies in slots 0-9, transient enemy
 projectiles and effects in slots 10-29, player projectiles in slots 30-37, and
-city objects in slots 38-47. The contract names transient motion integrators,
-map-property probes, both collision scan directions, player/enemy damage
-resolution, reward spawning, and object removal. It also exposes the common
-player death and timed freeze/invulnerability paths.
+city objects in slots 38-47. It also exposes the common player death and timed
+freeze/invulnerability paths.
 
 The presentation path names the full nametable clear, attribute-cache clear,
 pending PPU-queue wait, and the direct-versus-NMI-queued palette upload. These
@@ -384,17 +318,8 @@ routines make the initialization calls in the World 1 core readable without
 claiming semantics for the still-unclassified command-stream decoder bytes
 that follow them.
 
-For every entry the machine contract checks its exact address range and CRC32,
-semantic registry entry, complete direct JSR/JMP caller set from current Ghidra
-facts, and encoded callsite bytes. Seven existing Bank 0 RAM symbols tie the
-path to camera coordinates, player damage/render state, and the two timed
-powerups.
-
-Run:
-
-```text
-make validate-world1-frame-mechanics
-```
+Seven existing Bank 0 RAM symbols tie the path to camera coordinates, player
+damage/render state, and the two timed powerups.
 
 ## World 1 player controls
 
@@ -457,9 +382,6 @@ Firing requires a nonzero `World1WeaponLevel` and a free slot within the first
 eight projectile slots, further limited by `World1ProjectileMaxSlot`. The
 routine initializes type, position, metasprite, render flags, direction, and a
 transient `$FF` source-object ID, then starts `World1WeaponPoseTimer` at 6.
-The three level sounds and twelve direction-specific spawn profiles are
-losslessly editable through `data/world1/weapons.json`; see
-`docs/world1_formats.md`.
 
 ### Validated routines
 
@@ -474,21 +396,9 @@ losslessly editable through `data/world1/weapons.json`; see
 | `World1_StartUndergroundJump` | `$D138` | 13 | 1 |
 | `World1_IntegrateUndergroundVerticalMotion` | `$D145` | 126 | 1 |
 
-`config/reconstruction/world1/world1_player_controls.json` pins all 1,174 routine bytes, all 34 direct
-callsites, sixteen state fields, city and underground movement constants, ten
-city probes, twelve underground probes, the solid threshold, and weapon
-timing. Run:
-
-```text
-make validate-world1-player-controls
-```
-
 ## World 1 pseudorandom generators
 
 PRG bank 0 contains two independent byte-producing pseudorandom routines.
-Their RAM ranges, exact machine-code bodies, and every direct `JSR` occurrence
-are fixed by `config/reconstruction/world1/world1_random.json` and checked by
-`scripts/validation/world1/world1_random.py`.
 
 | Routine | Address | State | Frame mixed | Direct calls |
 | --- | ---: | --- | --- | ---: |
@@ -506,9 +416,3 @@ the demo-entry path. The adjacent layout does not make them one six-byte
 generator: neither routine accesses the other routine's state. The static
 callsite totals describe exhaustive bank-wide `JSR` byte-pattern coverage,
 not runtime invocation frequency.
-
-Run the focused contract with:
-
-```text
-make validate-world1-random
-```

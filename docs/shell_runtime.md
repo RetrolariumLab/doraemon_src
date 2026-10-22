@@ -1,14 +1,7 @@
 # Bank 3 shell runtime
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
 PRG Bank 3 owns the title/attract shell, game-over and ending presentation,
-the two chapter-completion interstitials, and common shell PPU/OAM helpers.
-`config/reconstruction/common/shell_runtime.json` pins the sixteen formerly neutral routine entries
-that complete the bank's routine-level naming pass.
+the two chapter-completion interstitials, and common shell PPU/OAM helpers in sixteen named routines.
 
 The names are based on observable contracts rather than location alone:
 
@@ -28,14 +21,6 @@ The names are based on observable contracts rather than location alone:
 - the ending helper copies the fixed 128-byte cast layout into the upper half
   of OAM before the credits row streamer begins.
 
-The contract validates each routine's exact PRG span and CRC32, its semantic
-entry in `config/reconstruction/symbols.json`, and the complete set of direct JSR/JMP callers
-reported by the current Bank 3 Ghidra facts. It also fixes eight Bank 3-private
-RAM fields: chapter-select index/latch, ending credit source pointer, and the
-transition completion/motion/origin/settle state.
-
-Run:
-
-```text
-make validate-shell-runtime
-```
+Eight Bank 3-private RAM fields belong to them: chapter-select index/latch,
+ending credit source pointer, and the transition completion/motion/origin/settle
+state.

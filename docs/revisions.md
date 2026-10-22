@@ -1,7 +1,8 @@
-# Official revision profiles
+# Revisions
 
-The source supports the original Japanese release and the official
-Revision A cartridge as separate, byte-identical build profiles. The
+The source builds the original Japanese release and Revision A, each byte
+for byte. Whether Revision A is a good dump is open
+([unknowns](unknowns.md), REV-A). The
 private reference images remain outside version control.
 
 | Profile | PRG CRC32 | CHR CRC32 | Payload CRC32 |
@@ -37,13 +38,7 @@ binary source assets to extract at this time. Future data-only differences
 must be declared in `assets/manifest.json`, with their hashes, before
 extraction.
 
-Build or verify one revision with `REVISION=original` or `REVISION=rev_a`
-(`make build-revision`, `make verify-revision`); both are checked together
-with:
-
-```console
-make verify-revisions
-```
-
-Build products are isolated under `build/revisions/<profile>/`. `make build`
-and `make verify` build and check the original revision.
+Build or verify one revision with `make build REVISION=rev_a` or `make verify
+REVISION=rev_a` (the original unless given), each into
+`build/revisions/<id>/`; `make verify-revisions` checks every revision whose
+ROM is here.

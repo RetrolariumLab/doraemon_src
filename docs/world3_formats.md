@@ -1,11 +1,8 @@
 # World 3 Data and Entity Formats
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
-This chapter joins the behavior bytecode, entity types, persistent and transient object records, spawn initializers, update-handler data, metasprites, and palettes used by World 3. The `config/authoring/world3/` manifests and checked-in `data/world3/` documents remain authoritative.
+This chapter joins the behavior bytecode, entity types, persistent and transient
+object records, spawn initializers, update-handler data, metasprites, and
+palettes used by World 3.
 
 ## Contents
 
@@ -34,7 +31,7 @@ operands are absolute eight-bit offsets from the selected stream base.
 | `$6n` | 1 | Set the packed execution-rate counter to `n` |
 | `$7n` | 1 | Set or randomize direction flags, then continue in the same frame |
 | `$80 cc` | 2 | Load loop count `cc` and save the following offset as the loop body |
-| `$81-$8F` | 1 | Decrement the loop count and return to the saved body while nonzero |
+| `$81-$8F` | 1 | If the loop count is nonzero, decrement it and return to the saved body |
 | `$9n xx yy` | 3 | Add direction-adjusted X/Y deltas; `n` is ignored |
 | `$An xx yy` | 3 | Set absolute X/Y and clear the activation timer; `n` is ignored |
 | `$Bn` | 1 | Write `n` to the two-step metasprite variant field |
@@ -46,6 +43,10 @@ operands are absolute eight-bit offsets from the selected stream base.
 | `$En` | 1 | Toggle the one-step metasprite variant; `n` is ignored |
 | `$F0` | 1 | Stop interpreting without deactivating the entity |
 | `$F1-$FF` | 1 | Stop and deactivate the entity unless its active state is four |
+
+The loop end tests the count before it decrements it, so `cc` is the number of
+extra passes: `$80,$00,<body>,$81` runs the body once and `$80,$01,<body>,$81`
+twice. Loops do not nest; one count and one saved offset serve the entity.
 
 Direction command parameters `$70` and `$71` randomize the horizontal and
 vertical flags respectively. `$78` clears both; `$79` sets horizontal; `$7A`
@@ -68,33 +69,16 @@ opcode and operand byte. The canonical payload yields:
 - 12 stop instructions;
 - no branch or jump into an operand or outside its stream.
 
-Commands `$1n` and `$5n` are implemented by the interpreter but absent from
-the reachable canonical streams. `config/authoring/world3/world3_behavior.json` records the
-complete per-stream CRC, instruction count, branch count, terminator count,
-and aggregate opcode histogram.
+Commands `$1n` and `$5n` are implemented by the interpreter but absent from the
+reachable canonical streams.
 
-### Lossless authoring format
+### Editing
 
-`data/world3/behavior_streams.json` stores every stream as editable instruction
-records with explicit offsets, opcodes, semantic command names, and operands.
-The checked-in document round-trips to the exact 1,062 ROM bytes.
-
-Decode the canonical PRG:
-
-```text
-python scripts/run.py validation.world3.world3_behavior decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world3/world3_behavior.json --output data/world3/behavior_streams.json
-```
-
-Encode an edited document to a raw stream payload:
-
-```text
-python scripts/run.py validation.world3.world3_behavior encode --input data/world3/behavior_streams.json --output build/world3_behavior.bin
-```
-
-The encoder rejects wrong operand counts, overlaps, uncovered bytes, stale
-command names, invalid control-flow targets, and instruction boundaries that
-change after encoding. `make validate-world3-behavior` verifies the checked-in
-authoring document against the canonical PRG.
+The Studio edits every stream as `world3-behavior`
+(`doraemon.world3-behavior.v1`): instruction records with offsets, opcodes,
+command names and operands, 1,062 bytes in all. It refuses wrong operand
+counts, overlaps, uncovered bytes, invalid control-flow targets and
+instruction boundaries that would move.
 
 ## World 3 entity types
 
@@ -102,11 +86,6 @@ World 3 uses one byte-valued type domain `$00-$1F` across its eight active
 entity slots. The type selects per-type properties and the 32-slot update
 handler table at `$92DF`. Types below `$10` additionally select both a random
 spawn initializer at `$8F6C` and a packed behavior stream at `$D9AC`.
-
-`config/authoring/world3/world3_entity_types.json` joins those three dispatch views with five
-contiguous 32-byte property columns. `scripts/validation/world3/world3_entity_types.py` validates
-the catalog against the canonical PRG, the ordinary object-dispatch manifest,
-and the persistent registry manifest.
 
 ### Per-type property columns
 
@@ -124,8 +103,6 @@ as operand symbols; the deterministic generator therefore emits symbolic
 indexed loads while leaving unrelated numeric PRG operands untouched.
 
 ### Lifecycle domains
-
-The catalog partitions every type ID exactly once:
 
 | Types | Evidence-backed role |
 | --- | --- |
@@ -180,39 +157,13 @@ the collectible dorayaki branch, and collecting 20 dorayaki exits. The
 machine-readable catalog records the evidence sources, forms, Japanese names,
 confidence, and chest-to-companion links for every type.
 
-### Validation
+### Evidence
 
-Run the focused contract with:
-
-```text
-make validate-world3-entity-types
-```
-
-It proves five property columns, 16 initializer pointers, 16 behavior pointers,
-32 update pointers, four nonoverlapping lifecycle domains, the exact initial
-persistent type multiset, both encoded type transformations, and 32 contiguous
-identity records. Three additional code relationships pin the punishment-room
-entry, type `$06` collision split, and exit conditions. Confirmed identities
-must cite both local-ROM evidence and an external source; base graphics, named
-chest transformations, and punishment behavior are checked against the binary
-catalogs and code signatures.
-
-For editing, `data/world3/object_catalog.json` joins each type's five property
-values into one record and also joins the five persistent registry columns into
-thirteen object records. `make validate-world3-object-catalog` transposes that
-representation back to the original ROM layout and requires a byte-exact match.
-
-The optional Pillow-backed research renderer reproduces the type contact sheet
-from the private CHR input and decoded metasprites without tracking the image:
-
-```text
-python -B scripts/run.py validation.world3.world3_metasprites render-types \
-  --prg assets/generated/prg/doraemon.prg \
-  --chr assets/generated/chr/doraemon.chr \
-  --manifest config/authoring/world3/world3_metasprites.json \
-  --entity-types config/authoring/world3/world3_entity_types.json \
-  --output build/research/world3_entity_types.png
-```
+The types have five property columns, 16 initializer pointers, 16 behavior
+pointers, 32 update pointers, four nonoverlapping lifecycle domains and both
+encoded type transformations. Three code relationships tie the punishment-room
+entry, the type `$06` collision split and the exit conditions together. A
+confirmed identity cites both local-ROM evidence and an external source.
 
 ## World 3 metasprites and palettes
 
@@ -236,8 +187,7 @@ horizontal aliases. It references 64 distinct record addresses.
 
 Alias resolution is deliberately one level deep. Index `$07` points to index
 `$04`, which is itself an alias; no proven runtime base or variant selects
-`$07`. The contract records this exceptional dormant entry instead of treating
-the table as recursively resolvable.
+`$07`.
 
 All 32 base indexes in the entity-type catalog resolve directly. Animation
 adds the per-entity zero-to-three variant fields after selecting that base, so
@@ -271,27 +221,18 @@ selector by 32, adds `$BCAE`, and copies the full result to the palette staging
 buffer at `$0705-$0724`. Every selector is in `$00-$0A`; final rooms use palette
 10 at `$BDEE`, which the transition path can also upload directly.
 
-### Lossless authoring
+### Editing
 
-`data/world3/metasprites.json` exposes all index entries, record headers,
-sprite-piece coordinates and tile numbers, palette colors, and room selectors.
-Its four physical ranges cover 1,911 bytes with combined CRC32 `5d1903b6`.
-
-Run `make validate-world3-metasprites` to prove:
-
-- the direct-pointer and alias partition for all 188 indexes;
-- exact variable-record boundaries and pointer targets;
-- entity-type base-index cross-references;
-- the palette domain and room-selector histogram;
-- renderer, OAM writer, and palette-loader code signatures;
-- a byte-exact decode/encode round trip of all four ranges.
+The Studio edits the index entries, record headers, piece coordinates and tile
+numbers as `world3-metasprites` (`doraemon.metasprites.v1`), the room palette
+selectors as `world3-room-palette-selectors` and the palettes as
+`world3-palette-00` to `world3-palette-10`. The four physical ranges hold
+1,911 bytes; all 188 indexes keep their direct-pointer and alias partition.
 
 ## World 3 object catalog
 
-World 3's static object data uses two independent structure-of-arrays layouts
-in PRG bank 2. The lossless authoring file
-`data/world3/object_catalog.json` presents both as row-oriented records while
-preserving their exact physical addresses.
+World 3's static object data uses two independent structure-of-arrays layouts in
+PRG bank 2.
 
 ### Persistent registry
 
@@ -305,10 +246,7 @@ The 65 bytes at `$D96B-$D9AB` are five consecutive thirteen-byte columns:
 | Y | `$D992-$D99E` | saved vertical position |
 | state | `$D99F-$D9AB` | initial persistence/materialization state |
 
-The authoring encoder transposes thirteen records back into these columns. It
-does not apply the runtime shuffles: the JSON represents the canonical initial
-ROM order, while `config/authoring/world3/world3_object_data.json` independently validates the
-two shuffle multisets and fixed final slot.
+The authoring encoder transposes thirteen records back into these columns.
 
 ### Entity type properties
 
@@ -323,17 +261,7 @@ records into the contiguous property columns at `$8EB5-$8F54`:
 | contact damage | `$8F15-$8F34` |
 | score reward code | `$8F35-$8F54` |
 
-The catalog covers 225 unique ROM bytes: 65 registry bytes and 160 property
-bytes. Behavior scripts remain in `data/world3/behavior_streams.json`; dispatch
-pointers and lifecycle domains remain independently checked by the structural
-manifests.
-
 ### Commands
-
-`make validate-world3-object-catalog` verifies the manifests and lossless JSON
-against the canonical PRG. `scripts/validation/world3/world3_object_catalog.py decode` regenerates
-the JSON, while `encode` applies edited catalog regions to a supplied base PRG
-without changing unrelated bytes.
 
 ## World 3 spawn initializers
 
@@ -367,12 +295,10 @@ initializers create them and the dispatch table covers the complete low-type
 domain. Function names preserve the numeric ID while appending the recovered
 identity, for example `World3_InitTransientType0CPoseidon`.
 
-The room schedule directly activates eleven types: `$00-$08`, `$0A`, and
-`$0C`. Their active room/channel record counts are 20, 13, 3, 8, 33, 45, 1,
-2, 3, 3, and 1 respectively. Their corresponding byte-count budgets total
-140, 98, 300, 78, 197, 45, 250, 2, 3, 3, and 1. The validator derives these
-figures from `data/world3/transient_spawns.json` rather than duplicating the
-schedule decoder.
+The room schedule directly activates eleven types: `$00-$08`, `$0A`, and `$0C`.
+Their active room/channel record counts are 20, 13, 3, 8, 33, 45, 1, 2, 3, 3,
+and 1 respectively. Their corresponding byte-count budgets total 140, 98, 300,
+78, 197, 45, 250, 2, 3, 3, and 1.
 
 ### Formation data
 
@@ -394,14 +320,12 @@ type `$0A/$0B` table. The type `$08` initializer requires a low enough free-slot
 index, then emits one or two four-entry groups from its type `$08/$09` table and
 records each group's ending slot as a collision scan bound.
 
-### Lossless authoring
+### Editing
 
-`data/world3/spawn_initializer_data.json` transposes all four physical column
-sets into row-oriented records while preserving 152 bytes with combined CRC32
-`f8157287`. Run `make validate-world3-spawn-initializers` to verify all sixteen
-dispatch targets, initializer code signatures, table CRCs, boolean room flags,
-scheduled type frequencies and budgets, and the complete authoring round trip.
-The tool also provides `decode` and `encode` subcommands.
+The Studio edits the 64 type-`$03` room flags as a column of `world3-rooms`
+and the three formations as `world3-type0c-formation`,
+`world3-type0a-formation` and `world3-type08-formation`
+(`nes.record-table.v1`), 152 bytes in all.
 
 ## World 3 transient spawn schedules
 
@@ -435,9 +359,8 @@ attempted. If no active-entity slot is free, the budget is not consumed and a
 nonzero-delay channel waits through the newly reloaded interval. A zero-delay
 channel bypasses the prescaler and retries every frame.
 
-The four phase counters are deliberately not cleared by the room-load path.
-They retain their cadence across rooms. The manifest pins this detail with the
-actual scheduler instruction signatures.
+The four phase counters are deliberately not cleared by the room-load path. They
+retain their cadence across rooms.
 
 After a successful allocation the routine:
 
@@ -459,12 +382,7 @@ of 874, 66, 132, and 45. Three active channel-zero records use delay zero. The
 large budgets, including 100 and 250, are byte values and are preserved without
 interpreting them as a different encoding.
 
-`data/world3/transient_spawns.json` presents all 64 rooms as row-oriented
-records while encoding back to the original twelve-column layout. Run
-`make validate-world3-transient-spawns` to check table CRCs and domains,
-contiguity, scheduler signatures, timing, initializer capacity, metrics, and
-the complete lossless round trip. The tool also provides `decode` and `encode`
-subcommands for controlled edits.
+The tool also provides `decode` and `encode` subcommands for controlled edits.
 
 ## World 3 entity update handlers
 
@@ -514,7 +432,7 @@ which pins an enabled object beside the player with a small vertical animation.
 State 4 consistently routes through `World3_FollowActiveGhost`, tying the
 persistent and low-type dispatch domains to the type `$05` capture mechanic.
 
-### Lossless handler data
+### Handler data
 
 Three non-contiguous data ranges belong to these updates:
 
@@ -524,8 +442,6 @@ Three non-contiguous data ranges belong to these updates:
 | `$93E7-$93EE` | four type-`$05` signed X/Y held-motion vectors |
 | `$9550-$958F` | 64 type-`$05` relocation-blocked flags |
 
-`data/world3/update_handler_data.json` transposes all 136 bytes into editable
-records while preserving combined CRC32 `14de971d`. Run
-`make validate-world3-update-handlers` to verify the dispatch mapping, all 32
-roles, representative code signatures, boolean domains and counts, motion
-vectors, table CRCs, and full authoring round trip.
+Each flag is `$00` or `$01`. The Studio edits the two flag tables as columns
+of `world3-rooms` and the motion vectors as `world3-type05-motion` (both
+`nes.record-table.v1`).

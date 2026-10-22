@@ -1,15 +1,9 @@
 # Common reset, NMI, and bank gateways
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
 All four PRG banks contain the same 473 bytes at `$8098-$8270`. This is the
 interrupt-safe runtime copied into every GNROM window: reset, vblank waits,
 rendering transitions, OAM clearing, NMI/controller polling, mapper selection,
-and score handling. `config/reconstruction/common/common_runtime.json` records the exact SHA-1 of the
-range and ten routine boundaries.
+and score handling, in ten routines.
 
 The mapper API separates CHR and PRG selection. `SelectChrBank` converts its
 low two input bits to mapper bits 2-3 and falls through to `SelectPrgBank`;
@@ -31,6 +25,3 @@ address:
 The NMI calls `$8274`, polls both controllers and the Famicom microphone edge,
 then calls `$827A`. Every target now has a semantic source symbol: chapter or
 shell main, NMI frame services, demo/status entry, and audio frame service.
-`make validate-common-runtime` verifies all copied bytes, the ten shared
-service boundaries, 40 bank-qualified service symbols, and both sides of all
-16 bank-local jumps.

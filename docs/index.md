@@ -2,7 +2,7 @@
 
 ## Builds
 
-- [Official revision profiles](revisions.md) — the original and Revision A
+- [Revisions](revisions.md) — the original and Revision A
   identities and their shared-source strategy.
 - [Editing in Retrolarium](retrolarium.md) — how the game is edited.
 - [Provenance](provenance.md) — the local references and the external sources.
@@ -35,5 +35,5 @@
 - [Audio system](audio_system.md)
 
 The reference pages describe findings made during Source Reconstruction 1.0
-to 3.0; the validation targets and machine-readable contracts they cite remain
-at those tags.
+to 3.0. The validation targets and machine-readable contracts that checked
+them remain at those tags.

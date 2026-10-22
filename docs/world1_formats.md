@@ -1,11 +1,7 @@
 # World 1 Data and Rendering Formats
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
-This chapter joins the persistent object, map, streaming, sprite, palette, room, and weapon formats used by World 1. The `config/authoring/world1/` manifests and checked-in `data/world1/` documents remain the canonical schemas and editable representations.
+This chapter joins the persistent object, map, streaming, sprite, palette, room,
+and weapon formats used by World 1.
 
 ## Contents
 
@@ -60,11 +56,6 @@ records placements, scores, and effects; its
 [secret list](https://gamefaqs.gamespot.com/nes/578343-doraemon/cheats/)
 documents both special rewards. Every mapping additionally requires local ROM
 evidence; external names alone do not choose a descriptor.
-
-`make validate-world1-descriptor-identities` checks all thirteen descriptor
-fields, placement counts, selector slots, direct and dynamic metasprites,
-eleven dispatch targets, thirteen effect signatures, and evidence provenance.
-It is part of `make release-check`.
 
 ## World 1 descriptor objects
 
@@ -143,19 +134,7 @@ The storage deliberately overlaps twice. Byte `$CC3D` is both the primary
 behavior field of descriptor `$0C` and the index-zero entry of the projectile-X
 table. That 14-byte table then ends at `$CC4A`, the same byte at which the
 projectile-Y table begins. These are real shared bytes, not disassembly boundary
-errors. The lossless authoring encoder requires both views of either byte to
-agree and rejects conflicting edits.
-
-`config/authoring/world1/object_placements.json` is the canonical structural
-catalog. Run
-`make validate-object-placements` to compare the descriptors, selector table,
-collision tables, placement encoding, usage counts, and CRCs with the canonical
-PRG and to round-trip the editable representation in
-`data/world1/object_data.json`. The tool also supports `decode` and `encode`;
-encoding applies the sparse object regions to a supplied base PRG so unrelated
-bank bytes remain intact. The evidence-backed identity and effect join is
-documented in `world1_formats.md` and enforced by a separate
-release gate.
+errors: an edit must keep both views of either byte equal.
 
 ## World 1 hierarchical map decoder
 
@@ -208,17 +187,8 @@ The holes at `$0068-$0069` are not part of this decoder contract.
 | `World1_SelectSmallBlock` | `$A79B` | 3 | Build the current small-block pointer |
 | `World1_SelectBigBlock` | `$A7B7` | 5 | Build the current big-block pointer |
 
-`config/reconstruction/world1/world1_map_decoder.json` pins the exact routine bodies, all 34 direct
-`JSR` occurrences, RAM ownership, and the four map-pointer loads. Its validator
-also joins those facts to the lossless hierarchy in `config/authoring/world_data.json`.
 The downstream row/column packet builders and NMI consumer are documented in
 `docs/world1_formats.md`.
-
-Run the focused contract with:
-
-```text
-make validate-world1-map-decoder
-```
 
 ## World 1 metasprites
 
@@ -230,8 +200,7 @@ and writes ordinary four-byte NES OAM entries.
 ### Renderer RAM ABI
 
 Bank 0 reserves the contiguous 16-byte workspace `$0041-$0050` for sprite
-composition. Its exact field order is part of the validated metasprite
-contract:
+composition, in this field order:
 
 | Range | Role |
 | --- | --- |
@@ -286,24 +255,13 @@ referenced. Most records contain four or six pieces; six very large animation
 frames contain 20, 24, or 26 pieces. Across the catalog, the records use 234
 distinct tiles from CHR bank 0's sprite pattern table.
 
-### Lossless authoring
+### Editing
 
-`data/world1/metasprites.json` exposes every index, pointer, alias mode, record
-header, piece coordinate, and tile number. Its two adjacent physical ranges
-cover 1,739 bytes with combined CRC32 `afe6e215`.
-
-Run `make validate-world1-metasprites` to prove:
-
-- the exact 73-direct/42-alias partition;
-- record boundaries, pointer targets, and absence of nested aliases;
-- all descriptor-base cross-references;
-- the exact 16-byte renderer workspace and OAM-emitter symbol ownership;
-- the pinned CHR bank and renderer code signature;
-- a byte-exact decode/encode round trip over the full catalog.
-
-For research, `scripts/validation/world1/world1_metasprites.py render` produces a contact sheet
-of all 115 indexes. Descriptor bases are outlined in gold; the image is a build
-artifact and is not committed.
+The Studio edits the catalog as `world1-metasprites`
+(`doraemon.metasprites.v1`): every index, pointer, alias mode, record header,
+piece coordinate and tile number of the two adjacent ranges (1,739 bytes). The
+73 direct and 42 alias indexes keep their partition, and no alias points to
+another alias.
 
 ## World 1 palettes
 
@@ -321,11 +279,8 @@ four-color universal-background position. Nine records are unique; IDs 8 and 9
 match, and IDs 7, 10, and 11 match. Duplicate records remain separate because
 the runtime indexes all twelve physical area slots.
 
-`data/world1/palettes.json` exposes each full palette as one fixed-width hex
-row. Run `make validate-world1-palettes` to verify the table CRC, geometry,
-loader signature, NES color domain, universal-background positions, and exact
-decode/encode round trip. The encoder permits same-size palette edits while
-preserving the rest of PRG bank 0.
+The encoder permits same-size palette edits while preserving the rest of PRG
+bank 0.
 
 ## World 1 map PPU streaming
 
@@ -386,14 +341,6 @@ The six validated entry points are:
 - `World1_PrefillMapViewport` at `$A7DB`;
 - `World1_DrainMapPpuUpdates` at `$A87E`.
 
-`config/reconstruction/world1/world1_ppu_streaming.json` pins all 1,013 routine bytes, the complete
-20-call graph, both packet layouts, queue capacity, and 92 owned RAM bytes.
-Run the focused contract with:
-
-```text
-make validate-world1-ppu-streaming
-```
-
 ## World 1 underground room profiles
 
 World 1's side-view mode has nine room IDs. Two contiguous four-byte tables
@@ -436,31 +383,20 @@ Each city-return record is also four bytes:
 | 2 | `manhole_x` | Player/manhole screen X |
 | 3 | `manhole_y` | Player/manhole screen Y |
 
-`World1_ReturnFromUndergroundToCity` consumes the selected record, restores
-the city renderer and object state, animates the player out of the manhole,
-then resumes the city main loop. Its exact 187 bytes and both direct jumps are
-part of the manifest contract.
+`World1_ReturnFromUndergroundToCity` consumes the selected record, restores the
+city renderer and object state, animates the player out of the manhole, then
+resumes the city main loop.
 
-### Lossless authoring
+### Editing
 
-`data/world1/underground_rooms.json` combines the two adjacent room tables and
-the separate city-return table into editable rows. Encoding writes all three
-back to their physical ROM locations. The validator pins all CRC32 values,
-the room-table boundary, loader and selector signatures, table/routine
-symbols, all 108 data bytes, the return routine and its two callers, and an
-exact decode/encode round trip.
-
-Run:
-
-```text
-make validate-world1-underground-rooms
-```
+The Studio edits the two adjacent room tables as `world1-underground-rooms`
+and the separate return table as `world1-city-returns` (both
+`nes.record-table.v1`), 108 bytes in all, each in its place.
 
 ## World 1 weapon profiles
 
 The city and underground player paths share one firing routine and the same
-three-level projectile catalog. `data/world1/weapons.json` presents the compact
-physical tables as level records with four named directions.
+three-level projectile catalog.
 
 ### Physical layout
 
@@ -481,25 +417,9 @@ The index is `(weapon_level - 1) * 16 + direction * 4`, where direction values
 player position and copies the remaining fields into the allocated projectile
 slot.
 
-### Lossless authoring
+### Editing
 
-The authoring encoder preserves physical order and emits exactly 51 contiguous
-bytes. Level IDs must be 1-3, every level must contain all four directions in
-runtime order, and every field is an unsigned byte. Edits can be applied to a
-base PRG with:
-
-```text
-python scripts/run.py validation.world1.world1_weapons encode \
-  --input data/world1/weapons.json \
-  --manifest config/authoring/world1/world1_weapons.json \
-  --base-prg assets/generated/prg/doraemon.prg \
-  --output build/world1-weapons.prg
-```
-
-The release gate checks both table CRCs, the complete authoring round trip,
-both operand symbols, and three code signatures covering the biased sound
-lookup, level/direction index arithmetic, and four-field loader. Run:
-
-```text
-make validate-world1-weapons
-```
+The Studio edits the table as `world1-weapon-sounds` and `world1-weapon-shots`
+(`nes.record-table.v1`): 51 contiguous bytes in physical order. Level IDs are
+1-3, every level has all four directions in runtime order, and every field is
+an unsigned byte.

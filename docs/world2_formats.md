@@ -1,18 +1,13 @@
 # World 2 Data and Rendering Formats
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
-This chapter joins the inventory, compressed-screen, stage-sequence, branch, metatile, metasprite, and palette formats used by World 2. The `config/authoring/world2/` manifests and checked-in `data/world2/` documents remain the canonical schemas and editable representations.
+This chapter joins the inventory, compressed-screen, stage-sequence, branch,
+metatile, metasprite, and palette formats used by World 2.
 
 ## Contents
 
 - Inventory and companion state
 - Compressed screens and conditional stage flow
 - Metatiles, metasprites, and palettes
-- Lossless authoring boundaries
 
 ## World 2 inventory and companions
 
@@ -43,10 +38,6 @@ The routine at `$A65E` searches it backwards before trying to activate a free
 inventory slot at X `$78`, Y `$F0`. The table identifies eligible screens; it
 does not map table index directly to inventory index.
 
-`data/world2/inventory_spawn_screens.json` is the lossless editable view. Run
-`make validate-world2-inventory` to verify its round trip, the zero-page pool
-layout, all five state transitions, and the code signatures tying them together.
-
 ## World 2 metasprites
 
 World 2 uses a fixed 16-by-16 metasprite format for the player, enemies,
@@ -70,22 +61,16 @@ two-bit palette. Horizontal reflection XORs the tile and attribute indexes
 with three and toggles the OAM horizontal-flip bit. Tile zero suppresses the
 OAM append, which accounts for four empty pieces in the canonical catalog.
 
-The catalog contains 118 distinct CHR tile numbers. Its descriptors select all
-four sprite palettes with histogram 11, 22, 10, and 15. World 2 explicitly
-selects CHR bank 1 and configures 8-by-8 sprites from pattern table `$0000`.
+Its descriptors select all four sprite palettes with histogram 11, 22, 10, and
+15. World 2 explicitly selects CHR bank 1 and configures 8-by-8 sprites from
+pattern table `$0000`.
 
 ### Enemy-state references
 
 The 20 ordinary enemy states directly select 45 of the 58 metasprite indexes.
-`config/authoring/world2/world2_metasprites.json` records each exact
-state-to-index set,
-including the six-index composite renderers for states `$12` and `$13` and
-the invisible states `$09` and `$11`.
 
-The remaining thirteen indexes are not unused globally. Most participate in
-the `$70-$7A` enemy defeat/effect path or sit between the grouped composite
-frames. The contract therefore calls them only *not directly selected by the
-ordinary enemy-state render handlers*.
+The remaining thirteen indexes are not unused globally. Most participate in the
+`$70-$7A` enemy defeat/effect path or sit between the grouped composite frames.
 
 ### Shared storage
 
@@ -100,25 +85,11 @@ Both views are checked against the enemy-state and object-dispatch contracts.
 The source keeps labels at each semantic boundary, so the overlap remains
 visible in the assembled representation.
 
-### Lossless authoring and rendering
+### Editing
 
-`data/world2/metasprites.json` exposes all 58 tile quads and descriptors plus
-all 36 OAM attribute bytes. The three physical ranges cover 326 unique bytes
-with combined CRC32 `512433b5` and round-trip without loss.
-
-Run `make validate-world2-metasprites` for the full data, overlap, CHR, palette,
-enemy-reference, renderer-signature, and authoring checks. A research contact
-sheet can be generated without adding ROM-derived graphics to Git:
-
-```text
-python -B scripts/run.py validation.world2.world2_metasprites render \
-  --prg assets/generated/prg/doraemon.prg \
-  --chr assets/generated/chr/doraemon.chr \
-  --manifest config/authoring/world2/world2_metasprites.json \
-  --palette-authoring data/world2/palettes.json \
-  --palette-record 7 \
-  --output build/world2_metasprites.png
-```
+The Studio edits all 58 tile quads and descriptors and all 36 OAM attribute
+bytes as `world2-enemy-metasprites` (`doraemon.world2-metasprites.v1`); the
+three physical ranges hold 326 bytes.
 
 ## World 2 metatiles
 
@@ -158,26 +129,11 @@ All 208 palette values are in `$00-$03`. Their canonical counts are 123, 20,
 records (`$27`, `$38`, `$44`, `$51`, and `$79`) are not referenced by those
 streams. `$7F` is a stopped terminal sentinel and does not add another stream.
 
-### Lossless authoring
+### Editing
 
-`data/world2/metatiles.json` stores the prefix and 208 row-oriented records.
-Each record contains its palette, four CHR indexes, solid flag, and whether a
-standard ROM stream references the ID. Decode it with:
-
-```text
-python scripts/run.py validation.world2.world2_metatiles decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world2/world2_metatiles.json --screen-authoring data/world2/compressed_screens.json --output data/world2/metatiles.json
-```
-
-An edited catalog can be applied to a base PRG:
-
-```text
-python scripts/run.py validation.world2.world2_metatiles encode --input data/world2/metatiles.json --base-prg assets/generated/prg/doraemon.prg --output build/world2_metatiles.prg
-```
-
-`make validate-world2-metatiles` locks all four data CRCs, the complete
-124-byte renderer signature, table boundaries, palette domain and histogram,
-screen cross-references, collision lookup and bit order, authoring metadata,
-and the 1,067-byte round trip.
+The Studio edits the prefix and the 208 records as `world2-metatiles`
+(`doraemon.world2-metatiles.v1`): each record's palette, four CHR indexes and
+solid flag, 1,067 bytes in all.
 
 ## World 2 palettes
 
@@ -211,24 +167,11 @@ Sprite offsets are added to `$87F1`; the resulting addresses are `$8801`,
 `$8811`, and `$8821`. All 144 palette bytes are valid `$00-$3F` NES colors,
 all nine sets are distinct, and every set begins with universal color `$0F`.
 
-### Lossless authoring
+### Editing
 
-`data/world2/palettes.json` stores nine ordered color arrays and the three
-chapter selector pairs. Decode the canonical data with:
-
-```text
-python scripts/run.py validation.world2.world2_palettes decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world2/world2_palettes.json --stage-authoring data/world2/stage_sequence.json --output data/world2/palettes.json
-```
-
-Apply an edited catalog to a base PRG with:
-
-```text
-python scripts/run.py validation.world2.world2_palettes encode --input data/world2/palettes.json --base-prg assets/generated/prg/doraemon.prg --output build/world2_palettes.prg
-```
-
-`make validate-world2-palettes` verifies data CRCs, both code signatures,
-chapter lookup arithmetic, the seven stage palette commands, NES color limits,
-and the complete 150-byte authoring round trip.
+The Studio edits the nine palettes as `world2-palette-00` to `world2-palette-08`
+(`nes.palette-table.v1`) and the three chapter selector pairs as
+`world2-chapters` (`doraemon.world2-chapters.v1`), 150 bytes in all.
 
 ## World 2 conditional stage branches
 
@@ -258,16 +201,11 @@ increments `World2StageSequenceOffset` before fetching its next byte. An `$F7`
 stage command restores `World2SavedStageSequenceOffset`; decoder control flow
 then increments that saved value before its next fetch.
 
-### Lossless authoring
+### Editing
 
-`data/world2/stage_branches.json` gives every branch a row-oriented record while
-preserving the four physical ROM columns. `null` in `return_offset_override`
-represents the ROM byte zero and therefore means “save the current offset.”
-
-Run `make validate-world2-stage-branches` to verify the routine signature,
-table CRCs, coordinate-condition contract, stage-offset bounds, and complete
-68-byte authoring round trip. The script also provides `decode` and `encode`
-subcommands for controlled edits.
+The Studio edits every branch as one record of `world2-branches`
+(`doraemon.world2-branches.v1`) and writes the four physical columns back. A
+return offset of zero means "save the current offset".
 
 ## World 2 stage sequence
 
@@ -319,17 +257,11 @@ the most recent ID so the frame loop can restore it after a stage transition.
 The palette catalog and exact selector relationships are documented in
 `docs/world2_formats.md`.
 
-### Lossless authoring
+### Editing
 
-`data/world2/stage_sequence.json` records every byte with its offset, raw token,
-decoded command, and command-specific fields. Raw and semantic fields must
-agree, so stale edits are rejected. The file also owns the three start-offset
-bytes, for 232 losslessly covered bytes in total.
-
-Run `make validate-world2-stage-sequence` to prove the decoder signatures,
-opcode partition, command counts, start offsets, CRCs, and authoring round trip.
-The `decode` and `encode` subcommands in `scripts/validation/world2/world2_stage_sequence.py`
-regenerate the JSON or apply edited bytes to a supplied base PRG.
+The Studio edits the sequence and its three start-offset bytes as
+`world2-stage` (`doraemon.world2-stage.v1`), 232 bytes in all, as commands
+with their fields.
 
 ## World 2 compressed screens
 
@@ -403,36 +335,14 @@ observes no call to the token decoder afterward. Bytes `$BEC4-$BEDD` are a
 separate metatile collision bitmap, so their leading `$7B` byte is not a stage
 selector at all.
 
-### Lossless authoring format
+### Editing
 
-`data/world2/compressed_screens.json` represents shared storage once rather
-than duplicating overlapping screens. It contains:
-
-- all 119 selector pointers and their alias relationships;
-- sixteen row boundaries and decoded widths per selector;
-- one global pool of 13,048 literal, spawn, row-end, and RLE tokens.
-
-Token records use compact forms such as `0000:L:25`, `0010:S:D4`, `0020:E`,
-and `0030:R:F6:00`. Offsets are relative to `$BFCC`. Row records use
-`start-end:width`, with an exclusive end offset.
-
-Decode the canonical data:
-
-```text
-python scripts/run.py validation.world2.world2_streaming decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world2/world2_streaming.json --code-entries config/reconstruction/prg_code_entries.txt --output data/world2/compressed_screens.json
-```
-
-Encode an edited document:
-
-```text
-python scripts/run.py validation.world2.world2_streaming encode --input data/world2/compressed_screens.json --output build/world2_screens.bin
-```
-
-The output is the contiguous 238-byte standard pointer table followed by the
-16,431-byte compressed region. Literal values can be edited directly. Changes
-that alter token sizes require consistent offsets, pointers, and row metadata;
-the encoder rejects gaps, overlaps, invalid token ranges, bad aliases, and row
-views that no longer decode as declared.
-
-`make validate-world2-streaming` also compares the checked-in authoring payload
-and its CRC with the canonical PRG.
+The Studio edits the screens as `world2-screens` (`doraemon.world2-screens.v1`).
+Shared storage is kept once rather than duplicating overlapping screens: the
+119 selector pointers with their aliases, sixteen row boundaries and widths
+per selector, and one pool of 13,048 literal, spawn, row-end and RLE tokens.
+It writes back the contiguous 238-byte standard pointer table followed by the
+16,431-byte compressed region. Literal values can change freely; a change of
+token sizes moves the offsets, pointers and row boundaries after it, and an
+edit that leaves gaps, overlaps, bad aliases or rows that no longer decode as
+declared is refused.
