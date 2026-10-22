@@ -1,1 +1,0 @@
-"""Build-tool tests."""

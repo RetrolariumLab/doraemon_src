@@ -29,15 +29,16 @@ in the checks.
 ## Quick start
 
 You need Python 3, GNU Make and Retrolarium Kit (`rltool` on `PATH`, or
-`RLTOOL=...`); the kit supplies the pinned ca65 and ld65 of
-`config/toolchain.json`. Copy `Doraemon (J) (PRG0) [!].nes` and
+`RLTOOL=...`); the kit supplies and verifies ca65 and ld65. Copy `Doraemon (J) (PRG0) [!].nes` and
 `Doraemon (Japan) (Rev A).nes` into the repository root, then:
 
 ```bash
 make split              # cut the private assets out of the ROMs (once)
 make verify             # build the original revision and compare byte for byte
-make verify-revisions   # both revisions
+make verify-revisions   # every revision whose ROM is here
 ```
+
+`make` alone lists the targets. Builds go to `build/revisions/<id>/`.
 
 `assets/manifest.json` names both ROMs and the assets cut out of them
 (`rltool assets`, Retrolarium Kit). ROMs, extracted assets and build products
@@ -46,24 +47,23 @@ are ignored by Git.
 ## Targets
 
 ```bash
-make build / verify                    # the original revision
-make build-revision REVISION=<id> / verify-revision / verify-revisions
-make studio-check                      # open and rebuild both revisions in the kit
-make test                              # the checks
-make lint / format / format-check / hooks / clean / help
+make build [REVISION=<id>]    # original unless given; rev_a is the other
+make verify [REVISION=<id>]   # build it and compare it with its ROM
+make verify-revisions         # every revision whose ROM is here
+make studio-check             # open and rebuild those revisions in the kit
+make profile-check            # the profile's table places against the builds
+make test                     # all of the above
+make lint / format / hooks / clean
 ```
 
-`make test` (well under a minute) runs the unit tests, verifies both revisions
-byte for byte and runs the studio check.
+`make test` takes well under a minute.
 
 ## Repository map
 
 ```text
 src/           ca65 source (main.asm, one include map per PRG bank)
-config/        linker layout, revisions, toolchain, lint, names, profile
+config/        linker layout, lint, names, Studio profile and its tables
 assets/        manifest.json (the extracted assets are ignored)
-scripts/build/ split, verification and revision scripts
-tests/         their unit tests
 docs/          architecture, subsystems, RAM, data formats, worlds
 doraemon.rlj   the Retrolarium project
 ```
