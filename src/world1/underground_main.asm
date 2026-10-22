@@ -65,13 +65,13 @@ Bank0_Label_CDE3:
     LDA #$00
     STA World1UndergroundFinaleFloorActive
     JSR World1_DisableGameplayRendering
-    LDA #$EF
+    LDA #<World1_UndergroundMap
     STA World1MapDataPointer
-    LDA #$C2
+    LDA #>World1_UndergroundMap
     STA World1MapDataPointer+$01
-    LDA #$25
+    LDA #<World1_UndergroundObjectPlacements
     STA World1ObjectPlacementList
-    LDA #$D9
+    LDA #>World1_UndergroundObjectPlacements
     STA World1ObjectPlacementList+$01
     JSR World1_RefreshObjectSpawnMask
     JSR World1_LoadAreaPalette

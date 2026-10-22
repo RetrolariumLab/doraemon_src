@@ -43,9 +43,9 @@ Bank1_Label_82C0:
     ASL A
     AND #$1E
     TAX
-    LDA #$82
+    LDA #>(Bank1_Label_8280 - 1)
     PHA
-    LDA #$7F
+    LDA #<(Bank1_Label_8280 - 1)
     PHA
     LDA a:World2_ForwardScreenServiceRtsTable+1,X
     PHA
@@ -73,9 +73,9 @@ Bank1_Label_82EB:
     ASL A
     AND #$1E
     TAX
-    LDA #$82
+    LDA #>(Bank1_Label_8280 - 1)
     PHA
-    LDA #$7F
+    LDA #<(Bank1_Label_8280 - 1)
     PHA
     LDA a:World2_ReverseScreenServiceRtsTable+1,X
     PHA
@@ -136,9 +136,9 @@ Bank1_Label_8353:
     ASL A
     AND #$1E
     TAX
-    LDA #$82
+    LDA #>(Bank1_Label_8280 - 1)
     PHA
-    LDA #$7F
+    LDA #<(Bank1_Label_8280 - 1)
     PHA
 
 World2_DispatchFrameScreenService:

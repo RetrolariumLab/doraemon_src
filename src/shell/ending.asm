@@ -64,9 +64,9 @@ Bank3_Label_8AE9:
 
 Bank3_Label_8AFA:
     JSR Shell_ClearBothNametables
-    LDA #$BC
+    LDA #<EndingCredits_Rows
     STA EndingCreditSourcePointer
-    LDA #$BD
+    LDA #>EndingCredits_Rows
     STA EndingCreditSourcePointer+$01
     LDA #$03
     STA a:AudioMusicState

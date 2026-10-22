@@ -112,13 +112,13 @@ World1_InitializeDemoState:
 
 World1_InitializeCityMapSources:
     JSR World1_LoadAreaPalette
-    LDA #$EF
+    LDA #<World1_CityMap
     STA World1MapDataPointer
-    LDA #$B2
+    LDA #>World1_CityMap
     STA World1MapDataPointer+$01
-    LDA #$89
+    LDA #<World1_CityObjectPlacements
     STA World1ObjectPlacementList
-    LDA #$D9
+    LDA #>World1_CityObjectPlacements
     STA World1ObjectPlacementList+$01
     RTS
 
