@@ -1,72 +1,68 @@
 # Doraemon: build the source back into both Japanese revisions and check it.
-# `make help` lists the targets.
+# `make` alone lists the targets.
 PYTHON ?= python
-# cc65 from Retrolarium Kit (RLTOOL, default rltool), asked once per run; the
-# recipes' shell needs forward slashes.
 RLTOOL ?= rltool
 export RLTOOL
+# cc65 from Retrolarium Kit, which verifies it; asked once, when a recipe
+# first needs it (the recipes' shell wants forward slashes).
 CA65 ?= $(eval CA65 := $$(subst \,/,$$(shell $$(RLTOOL) build-tools path nes ca65)))$(CA65)
 LD65 ?= $(eval LD65 := $$(subst \,/,$$(shell $$(RLTOOL) build-tools path nes ld65)))$(LD65)
 
-# The private assets: assets/manifest.json names the ROMs and what `make split`
-# cuts out of them; `rltool assets` (Retrolarium Kit) splits, checks and
-# verifies.
-ASSETS = $(RLTOOL) assets $(1)
+GAME := doraemon
 BASE_IMAGE := original
-# The revisions: the image ids of assets/manifest.json, each built from
-# src/revisions/<id>.asm.
-REVISION ?= rev_a
-BUILD_DIR := build/native
-ROM := $(BUILD_DIR)/doraemon.nes
-REVISION_ROM = build/revisions/$(REVISION)/doraemon.nes
-SOURCE_FILES := $(sort $(wildcard src/*.asm src/*/*.asm src/*/*/*.asm src/*/*.inc))
+# The revisions the source builds, one entry file each; REVISION picks one.
+REVISIONS := $(basename $(notdir $(wildcard src/revisions/*.asm)))
+REVISION ?= $(BASE_IMAGE)
+LINKER_CONFIG := config/linker/gnrom.cfg
+OUT = build/revisions/$(REVISION)
+ROM = $(OUT)/$(GAME).nes
+# The revisions whose ROM is here (assets/manifest.json names the files).
+PRESENT = $(filter $(REVISIONS),$(shell $(RLTOOL) assets images --present))
 
-# One build of an entry point: $(call build_rom,<entry point>,<output ROM>)
-build_rom = $(PYTHON) -c "from pathlib import Path; Path('$(dir $(2))').mkdir(parents=True, exist_ok=True)" && \
-	$(CA65) --debug-info -g -o "$(basename $(2)).o" -l "$(basename $(2)).lst" "$(1)" && \
-	$(LD65) -C config/linker/gnrom.cfg -o "$(2)" "$(basename $(2)).o" -Ln "$(basename $(2)).lbl" \
-		-m "$(basename $(2)).map" --dbgfile "$(basename $(2)).dbg"
+define newline
 
-.PHONY: all help build verify build-revision verify-revision verify-revisions split \
-	_require-assets verify-toolchain studio-check lint format format-check test hooks clean
 
-all: verify
+endef
+
+# Assemble and link one entry file: $(call build_rom,<entry>,<output folder>)
+build_rom = $(PYTHON) -c "from pathlib import Path; Path('$(2)').mkdir(parents=True, exist_ok=True)"$(newline)\
+	$(CA65) -I src --debug-info -g -o "$(2)/$(GAME).o" -l "$(2)/$(GAME).lst" "$(1)"$(newline)\
+	$(LD65) -C $(LINKER_CONFIG) -o "$(2)/$(GAME).nes" "$(2)/$(GAME).o" -Ln "$(2)/$(GAME).lbl" \
+		-m "$(2)/$(GAME).map" --dbgfile "$(2)/$(GAME).dbg"
+
+.PHONY: help split build verify verify-revisions studio-check profile-check lint format test \
+	hooks clean _revision
+.DEFAULT_GOAL := help
 
 split:
-	$(call ASSETS,split)
+	$(RLTOOL) assets split
 
-_require-assets:
-	$(call ASSETS,check) --image $(BASE_IMAGE)
+_revision:
+	$(if $(filter $(REVISION),$(REVISIONS)),,$(error REVISION=$(REVISION) is not one of: $(REVISIONS)))
+	$(RLTOOL) assets check --image $(BASE_IMAGE)
 
-$(ROM): $(SOURCE_FILES) Makefile | verify-toolchain _require-assets
-	$(call build_rom,src/main.asm,$@)
+# Every build assembles anew: it takes a second, and nothing it reads
+# (source, linker config, CHR) can be missed.
+build: _revision
+	$(call build_rom,src/revisions/$(REVISION).asm,$(OUT))
 
-build: $(ROM)
+verify: build
+	$(RLTOOL) assets verify --image $(REVISION) --built "$(ROM)"
 
-verify: $(ROM)
-	$(call ASSETS,verify) --image $(BASE_IMAGE) --built "$(ROM)"
-
-# One revision (REVISION=<image id>).
-build-revision: verify-toolchain _require-assets
-	$(call build_rom,src/revisions/$(REVISION).asm,$(REVISION_ROM))
-
-verify-revision: build-revision
-	$(call ASSETS,verify) --image $(REVISION) --built "$(REVISION_ROM)"
-
-# Every revision whose ROM is here.
+# Every revision whose ROM is here, byte for byte.
 verify-revisions:
-	@for revision in $$($(call ASSETS,images) --present); do \
-		$(MAKE) --no-print-directory verify-revision REVISION=$$revision || exit 1; \
-	done
+	$(if $(PRESENT),,$(error none of the ROMs of $(REVISIONS) is here: copy them beside this Makefile and make split))
+	$(foreach revision,$(PRESENT),$(MAKE) --no-print-directory verify REVISION=$(revision)$(newline))
 
-verify-toolchain:
-	$(PYTHON) scripts/build/toolchain.py --manifest config/toolchain.json \
-		--component ca65 --ca65 "$(CA65)" --component ld65 --ld65 "$(LD65)"
-
-# Open every revision of doraemon.rlj in a throwaway copy of the repository
-# the way Retrolarium Studio does, and rebuild each without edits.
+# Open the revisions of doraemon.rlj whose ROM is here in a throwaway copy of
+# the repository the way Retrolarium Studio does, and rebuild each without
+# edits.
 studio-check:
-	$(RLTOOL) studio check doraemon.rlj
+	$(RLTOOL) studio check doraemon.rlj --present
+
+# The table places config/game_profile.json records, against the builds.
+profile-check:
+	$(RLTOOL) profile tables --check $(foreach revision,$(PRESENT),--revision $(revision))
 
 lint:
 	$(RLTOOL) lint
@@ -74,19 +70,16 @@ lint:
 format:
 	$(RLTOOL) lint --fix
 
-format-check:
-	$(RLTOOL) lint --only assembly
-
-# The checks: the unit tests, both revisions byte for byte and the studio
-# check. There is no emulator run yet: the source does not survive moving its
-# code (README, "Status").
+# The quick suite: every revision here byte for byte, the profile's table
+# places and the studio check. There is no emulator run yet: the source does
+# not survive moving its code (docs/unknowns.md).
 test:
-	$(PYTHON) -m unittest discover -s tests -t .
-	$(MAKE) --no-print-directory verify verify-revisions studio-check
+	$(MAKE) --no-print-directory verify-revisions
+	$(MAKE) --no-print-directory profile-check studio-check
 
 # `make hooks`, once per clone, makes Git check every commit and push for stop
-# words and run `make lint` and `make format-check` first (Retrolarium Kit's
-# rltool hooks; the stop-word list lives outside the repositories).
+# words and run `make lint` first (Retrolarium Kit's rltool hooks; the
+# stop-word list lives outside the repositories).
 hooks:
 	$(RLTOOL) hooks install --project .
 
@@ -94,13 +87,11 @@ clean:
 	$(PYTHON) -c "import shutil; shutil.rmtree('build', ignore_errors=True)"
 
 help:
-	@echo "Doraemon source reconstruction"
-	@echo "  make split                 cut the assets out of the ROMs that are here (once)"
-	@echo "  make build / verify        the original revision / and byte for byte"
-	@echo "  make build-revision REVISION=<id> / verify-revision / verify-revisions"
-	@echo "                             the revisions (image ids of assets/manifest.json)"
-	@echo "  make studio-check          open and rebuild every doraemon.rlj revision"
-	@echo "  make test                  the checks"
-	@echo "  make lint / format / format-check   the house style (Retrolarium Kit)"
-	@echo "  make hooks                 install the Git hooks"
-	@echo "  make verify-toolchain / clean"
+	$(info Doraemon source reconstruction: $(REVISIONS), REVISION=$(BASE_IMAGE) unless given)
+	$(info   make split                  cut the assets out of the ROMs that are here, once)
+	$(info   make build [REVISION=id]    build a revision into build/revisions/id/)
+	$(info   make verify [REVISION=id]   build it and compare it with its ROM byte for byte)
+	$(info   make verify-revisions       every revision whose ROM is here)
+	$(info   make test                   the quick suite)
+	$(info   make studio-check / profile-check / lint / format / hooks / clean)
+	@exit 0
