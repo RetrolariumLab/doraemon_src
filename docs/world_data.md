@@ -1,10 +1,5 @@
 # World 1 and World 3 hierarchical data
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
 World 1 and World 3 use the same three-level background representation:
 
 ```text
@@ -70,34 +65,13 @@ All upper property bits are zero in both canonical tables. Their runtime
 meaning is not claimed here; naming them collision flags would go beyond the
 current evidence. The actual NES palette colors are separate data.
 
-## Lossless authoring
+## Editing
 
-The editable documents are:
-
-- `data/world1/hierarchical_world.json`
-- `data/world3/hierarchical_world.json`
-
-Attribute entries expose `palette` and `properties`. Small-block and big-block
-entries expose four row-major values. Maps are arrays of fixed-width hexadecimal
-rows, so changing one cell does not require editing a generated assembly list.
-
-Decode either canonical payload:
-
-```text
-python scripts/run.py validation.reconstruction.world_data decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world_data.json --world world1 --output data/world1/hierarchical_world.json
-python scripts/run.py validation.reconstruction.world_data decode --prg assets/generated/prg/doraemon.prg --manifest config/authoring/world_data.json --world world3 --output data/world3/hierarchical_world.json
-```
-
-Encode an edited document to a contiguous binary payload:
-
-```text
-python scripts/run.py validation.reconstruction.world_data encode --input data/world1/hierarchical_world.json --output build/world1_data.bin
-```
-
-The encoder rejects invalid IDs, byte values, map dimensions, and noncontiguous
-component addresses. `make validate-world-data` proves the checked-in documents
-encode to the exact 8,000 and 6,400 bytes in the canonical PRG.
+The Studio edits the two hierarchies as `world1-hierarchy` and
+`world3-hierarchy` (`doraemon.hierarchy.v1`). Attribute entries hold a palette
+and properties, small and big blocks four row-major values each, and the maps
+fixed-width rows of cells; they write back the exact 8,000 and 6,400 bytes.
 
 World 2 is deliberately excluded from this format. Its CadEditor tables overlap
-the runtime screen data, and its actual compressed screen storage is documented
-and edited separately in `docs/world2_formats.md`.
+the runtime screen data, and its actual compressed screen storage is described
+in [World 2 formats](world2_formats.md).

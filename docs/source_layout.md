@@ -24,15 +24,14 @@
 | `src/graphics/chr.asm` | four 8 KiB banks | private CHR payload |
 | `src/memory/*.inc` | no bytes | hardware and evidence-backed RAM aliases |
 
-Each PRG bank maps to `$8000-$FFFF` in its own linker memory area. Generated
+Each PRG bank maps to `$8000-$FFFF` in its own linker memory area. Fallback
 labels are bank-qualified because identical CPU addresses can identify different
-physical bytes. PRG files contain instructions, explicit `.byte` data, or
-generated source includes only; they never include extracted binaries.
+physical bytes; the hex in such a label is the address it had in the original,
+not where it is now. PRG files contain instructions, explicit `.byte` data, or
+source includes only; they never include extracted binaries.
 
-Releases 1.0 to 3.0 regenerated every module from Ghidra facts and a symbol
-registry and audited the result; that pipeline remains at those tags. From
-3.1 the source is the authority and is edited directly; `make test` rebuilds
-both revisions byte for byte.
+From 3.1 the source is the authority and is edited directly; `make test`
+rebuilds both revisions byte for byte.
 
 World 2 separates the stage
 sequence and standard pointer table from three contiguous storage shards for

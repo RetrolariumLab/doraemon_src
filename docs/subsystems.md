@@ -1,10 +1,5 @@
 # Subsystems
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
 ## Common bank prefix
 
 All banks expose reset at `$8098`, NMI at `$813C`, mapper switching at `$81BB`,
@@ -57,9 +52,8 @@ forward, reverse, and per-frame screen services. Automatic scrolling, player
 flight, projectiles, and this screen pipeline form a chapter-specific
 object/update system. Runtime reaches the bank-local main entry at `$88A4` and
 then repeats the frame loop at `$8959` once per frame with PRG1/CHR1 selected.
-The 119 selector views share one globally unambiguous 16,431-byte token pool;
-its lossless authoring representation is described in
-`docs/world2_formats.md`.
+The 119 selector views share one globally unambiguous 16,431-byte token pool
+([World 2 formats](world2_formats.md)).
 The stage terminates with a stopped `$7F` sentinel. Its adjacent 26-byte bitmap
 classifies all 208 metatiles for collision, and that bitmap is editable alongside
 the palette and CHR-tile fields.
@@ -77,18 +71,13 @@ entry at `$82F6`; after initialization, execution repeats the frame loop at
 
 This bank contains title text, item names, the long ending credit stream, and
 common presentation material. RESET execution is expected to begin here on
-power-on, but every bank retains compatible vectors for interrupt safety.
-The recovered `$8A88` ending entry initializes the credits pointer to `$BDBC`;
+power-on, but every bank retains compatible vectors for interrupt safety. The
+recovered `$8A88` ending entry initializes the credits pointer to `$BDBC`;
 runtime reaches its `$8B18` scroll loop through the World 3 completion gateway.
-The loop reads 380 fixed 32-byte rows and stops at `$ED3C`. Title PPU records,
-game-over text, the ending-opening nametable, all three chapter-help screens,
-and those active credits have a lossless fixed-size authoring contract in
-`data/shell/text.json`; see `docs/shell_text.md`.
+The loop reads 380 fixed 32-byte rows and stops at `$ED3C`.
 
-The title/attract, transition, ending, nametable, and OAM routines now have a
-complete Bank 3 routine-level naming contract. Exact spans and all direct
-Ghidra callers are checked together with eight private RAM fields; see
-`docs/shell_runtime.md`.
+The title/attract, transition, ending, nametable, and OAM routines are all
+named; see [Bank 3 shell runtime](shell_runtime.md).
 
 ## Audio / all four banks
 
@@ -131,18 +120,8 @@ zero stops music and the playable counts are eight for World 1, six for World
 independently; shared structure does not imply byte identity or a callable
 cross-bank sound service.
 
-`config/authoring/audio/audio_dispatch.json` records the complete indirect edge set, while
-`make validate-audio-dispatch` proves the ROM tables and Ghidra seed registry
-remain synchronized. `config/authoring/audio/audio_effects.json` joins all 93 effect requests
-to 26 structural synthesis roles and all 145 unique handlers, including their
-timer leases, APU writes, shared updates, and no-lease exceptions. Every audio
-effect indirect entry and all sixteen bank-local effect helpers now have an
-evidence-backed source symbol.
-`config/authoring/audio/audio_music.json` and `docs/audio_system.md` record the shared command
-grammar and RAM ABI; `make validate-audio-music` verifies all 68 bank-local
-command targets and the common helper contracts. The state-aware
-`make validate-audio-streams` gate additionally proves all 26 headers and
-10,016 header-reachable stream bytes round-trip losslessly.
+Every audio effect indirect entry and all sixteen bank-local effect helpers now
+have an evidence-backed source symbol.
 
 ## Object storage and lifecycle
 
@@ -169,29 +148,23 @@ index as the persistence ID. Nonnegative types enter slots 0-9 and dispatch
 through eight spawn initializers at `$8DA4`; high-bit types enter slots 38-47
 through a 13-entry descriptor table at `$CC0A`. Its runtime type, metasprite,
 render flags, and primary behavior fields are joined to the placement encoding,
-the transient selector table, and five collision-extent tables. The exact 145
-placements and all descriptor contracts are validated by
-`config/authoring/world1/object_placements.json`; see
-`docs/world1_formats.md`.
+the transient selector table, and five collision-extent tables.
 
 World 2 uses three smaller pools: seven enemies, six enemy projectiles, and
 seven player projectiles. Its main frame path independently updates the enemy
 and player-projectile pools, and initialization clears all three active fields.
 Enemy records are embedded directly in compressed screen streams: token values
 `$D0-$EE` become the new enemy state while the decoder emits an empty map cell.
-Across the 119 standard selectors, the decoder encounters 738 such spawn
-tokens. This ties enemy materialization to scrolling rather than to a separate
-fixed-size placement list.
-The overlapping screen views contain 685 unique physical spawn-token bytes,
-all in `$D0-$DE`. The delayed spawn path maps them exactly to states `$01-$0F`;
-five further states `$10-$14` arise internally. Three 21-slot property tables
-provide attack periods, damage thresholds, and score reward codes across the
-complete state domain.
-Enemy states use overlapping target-minus-one tables: rendering indexes a base
-at `$A548` (reachable states `$01-$14` begin at `$A54A`), while updating indexes
-21 slots at `$A570`. The shared bytes at `$A570-$A571`, 36 unique destinations,
-and manually pushed continuations `$A355` and `$9965` are validated and supplied
-as static-analysis entry points by `config/reconstruction/common/object_dispatch.json`.
+Across the 119 standard selectors, the decoder encounters 738 such spawn tokens.
+This ties enemy materialization to scrolling rather than to a separate
+fixed-size placement list. The overlapping screen views contain 685 unique
+physical spawn-token bytes, all in `$D0-$DE`. The delayed spawn path maps them
+exactly to states `$01-$0F`; five further states `$10-$14` arise internally.
+Three 21-slot property tables provide attack periods, damage thresholds, and
+score reward codes across the complete state domain. Enemy states use
+overlapping target-minus-one tables: rendering indexes a base at `$A548`
+(reachable states `$01-$14` begin at `$A54A`), while updating indexes 21 slots
+at `$A570`.
 
 World 3 separates eight active entities from thirteen persistent room-object
 records. Room entry materializes matching records into free active slots; room
@@ -207,8 +180,6 @@ The thirteen-record registry begins as a 65-byte ROM image at `$D96B`: five
 parallel room/type/X/Y/state arrays are copied directly to `$06B0-$06F0`.
 Initialization then shuffles types in a four-slot group and an eight-slot group
 without moving rooms or coordinates; the final slot retains type `$1F`.
-`config/authoring/world3/world3_object_data.json` validates this bootstrap representation and
-the adjacent sixteen-entry behavior-stream pointer table.
 
 Types below `$10` additionally select a behavior stream through the pointer
 table at `$D9AC`. Its sixteen targets span the packed stream region
@@ -223,10 +194,6 @@ in `docs/world3_formats.md`.
 
 Five contiguous 32-byte columns at `$8EB5-$8F54` provide the per-type hit
 points, base metasprite, render flags, contact damage, and score reward code.
-`config/authoring/world3/world3_entity_types.json` joins those columns to all three type-indexed
-dispatch views and proves a complete four-domain partition of `$00-$1F`.
-The catalog and its encoded type transformations are documented in
-`docs/world3_formats.md`.
 
 Those type bases feed a 188-entry metasprite index at `$B6D7`. Direct entries
 point into 65 contiguous variable-length records, while a high byte below four

@@ -1,10 +1,5 @@
 # RAM Fields
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
 This registry lists high-confidence shared RAM roles. Addresses are CPU RAM
 addresses; array symbols may be indexed by channel, digit, or sprite slot at the
 use site. Chapter-local zero-page overlays remain numeric until their lifetime
@@ -78,8 +73,7 @@ entry points set it. The same flag selects demo input, damage, and exit paths.
 | `ShellTransitionSettleStep` | `$040C` | Selects the final three position and sprite-record stages |
 
 These aliases are Bank 3-scoped because the gameplay banks overlay the same
-addresses with unrelated chapter state. The exact consumers are validated by
-`config/reconstruction/common/shell_runtime.json`.
+addresses with unrelated chapter state.
 
 ## World 1 camera state
 
@@ -110,9 +104,7 @@ nametable selector used by the edge-streaming address builders.
 The four directional entry points are `World1_TryScrollCameraRight`,
 `World1_TryScrollCameraLeft`, `World1_TryScrollCameraDown`, and
 `World1_TryScrollCameraUp`. Together they own 325 bytes and have 16 exhaustive
-direct callsites. Their exact bounds, wrap behavior, packet phases, routine
-bodies, and call graph are documented in `docs/world1_runtime.md` and enforced
-by the release gate.
+direct callsites.
 
 The underground room tracker adds a four-byte axis overlay:
 
@@ -162,8 +154,7 @@ points are documented in `docs/world1_runtime.md`.
 Both sequences are zero-initialized with the chapter RAM and cleared again on
 the World 1 demo path. They are separate generators rather than one six-byte
 state: the routines access disjoint fields and have disjoint direct-call
-graphs. The bank-wide validator pins the complete seven-call and eighteen-call
-sets as well as both machine-code bodies.
+graphs (seven and eighteen direct calls).
 
 ## World 1 hierarchical map decoder
 
@@ -202,9 +193,7 @@ map selections are machine-validated. See `docs/world1_formats.md`.
 
 The map decoder populates these buffers as camera coordinates cross tile and
 attribute phases. NMI drains at most the selected edge packet while preserving
-an independently pending tile or attribute half. Exact routine bodies, packet
-sizes, flags, queue capacity, and all direct calls are documented in
-`docs/world1_formats.md` and enforced by the release gate.
+an independently pending tile or attribute half.
 
 ## Shared rendering and score state
 
@@ -236,8 +225,7 @@ sizes, flags, queue capacity, and all direct calls are documented in
 
 The player, HUD, and all four World 1 entity-slot classes populate the same
 bank-local workspace. `World1_EmitOamEntry` writes its first four bytes to
-`OamBuffer`; the metasprite validator pins the complete field geometry,
-symbol ownership, emitter address, and emitter machine-code signature.
+`OamBuffer`.
 
 ## World 1 entity slots
 
@@ -263,14 +251,13 @@ collision, and metasprite helpers.
 | `World1EntityActionCooldown` | `$0610` | 48 | Randomized countdown gating low-state actions and projectile spawns |
 | `World1EntityReservedBehavior` | `$0640` | 48 | Cleared on entity materialization; no read has been proven |
 
-These aliases apply only to PRG bank 0. The manifest proves that entity storage
-is a 13-field structure-of-arrays grid from `$0400-$066F`, with a 48-byte
-stride. The last six columns are deliberate overlays: slots 0-9 use health,
-damage recovery, direction, and action timing, while transient slots 10-29
-reuse the same addresses for motion vectors and acceleration. The names retain
-both proven roles instead of pretending that every slot class shares one entity
-schema. `$0640-$066F` is clear-only in all currently recovered code and remains
-explicitly reserved until a read path is demonstrated.
+These aliases apply only to PRG bank 0. The last six columns are deliberate
+overlays: slots 0-9 use health, damage recovery, direction, and action timing,
+while transient slots 10-29 reuse the same addresses for motion vectors and
+acceleration. The names retain both proven roles instead of pretending that
+every slot class shares one entity schema. `$0640-$066F` is clear-only in all
+currently recovered code and remains explicitly reserved until a read path is
+demonstrated.
 
 ## World 1 object persistence and attribute cache
 
@@ -456,8 +443,8 @@ collision, and render loops establish three pools.
 
 These are three complete structure-of-arrays grids: seven enemy fields from
 `$0558-$0588` with stride 7, seven enemy-projectile fields from `$0589-$05B2`
-with stride 6, and four player-projectile fields from `$05B3-$05CE` with
-stride 7. The manifest accounts for every field base in all three layouts.
+with stride 6, and four player-projectile fields from `$05B3-$05CE` with stride
+7.
 
 ## World 3 active and persistent objects
 
@@ -522,21 +509,15 @@ position in the global modulo-four cadence. See
 | `World3RoomObjectState` | `$06E4` | 13 | State restored on materialization and saved on room exit |
 
 The active storage is a fully classified 22-field structure-of-arrays grid from
-`$0600` through `$06AF`, with an eight-byte stride. The manifest checks every
-field base so accidental gaps cannot be mistaken for completed analysis. The
-persistent registry is likewise a complete five-field grid from `$06B0`
-through `$06F0`, with a 13-byte stride.
+`$0600` through `$06AF`, with an eight-byte stride. The persistent registry is
+likewise a complete five-field grid from `$06B0` through `$06F0`, with a 13-byte
+stride.
 
 Initialization copies this grid byte-for-byte from the matching five-array ROM
-image at `$D96B-$D9AB`, then randomizes two type-only slot groups. The exact
-initial rooms, types, coordinates, zero states, and shuffle multisets are fixed
-by `config/authoring/world3/world3_object_data.json`.
+image at `$D96B-$D9AB`, then randomizes two type-only slot groups.
 
 The active `World3EntityType` value also indexes five complete ROM columns for
 hit points, base metasprite, render flags, contact damage, and score reward.
-Their 32-entry contents and the four lifecycle domains spanning `$00-$1F` are
-validated by `config/authoring/world3/world3_entity_types.json` and described in
-`docs/world3_formats.md`.
 
 | Formation field | Address | Role |
 | --- | ---: | --- |
@@ -615,8 +596,4 @@ The active four little-endian stream cursors occupy zero page `$002F-$0036` as
 the audio update and therefore remain an explicitly documented overlay rather
 than a single misleading global alias.
 
-The semantic operand mapping is machine-readable in `config/reconstruction/symbols.json`.
-`src/memory/ram.inc` supplies the ca65 definitions used by generated source.
-`config/reconstruction/common/object_pools.json` binds the chapter capacities, fields, slot groups,
-and lifecycle routines; `make validate-object-pools` checks that contract
-against the symbol registry.
+`src/memory/ram.inc` holds the ca65 definitions.

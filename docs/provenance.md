@@ -1,10 +1,5 @@
 # Provenance
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
 ## Exact local reference
 
 The original Japanese `PRG0` dump was inspected locally on 2026-08-31, and the
@@ -65,28 +60,15 @@ controller byte, accepted manhole branch, and side-view initializer.
   <https://w.atwiki.jp/gcmatome/pages/3438.html>
 
 These sources supply names and independent sprite/gameplay descriptions. They
-are not used to infer binary layouts. Each identity in
-`config/authoring/world3/world3_entity_types.json` must also agree with locally rendered CHR,
-metasprite selection, dispatch behavior, formation data, or type conversion.
-Type `$06` has no standalone published character name, so its descriptive
-symbol remains structural in wording. Its role is nevertheless confirmed:
-both guides identify a forced punishment room filled with skulls and dorayaki,
-while the ROM ties the 20-treasure trigger, room `$12`, type `$06` schedule,
-two graphics, damaging/collectible collision split, and 20-dorayaki exit into
-one closed path.
+are not used to infer binary layouts. Type `$06` has no standalone published
+character name, so its descriptive symbol remains structural in wording. Its
+role is nevertheless confirmed: both guides identify a forced punishment room
+filled with skulls and dorayaki, while the ROM ties the 20-treasure trigger,
+room `$12`, type `$06` schedule, two graphics, damaging/collectible collision
+split, and 20-dorayaki exit into one closed path.
 
-## Toolchain evidence
+## Toolchain
 
-`tools/disassembly.lock.json` pins Ghidra and GhidraNes archives by version,
-size, and SHA-256. Ghidra facts are treated as classification evidence, never as
-authority over ROM bytes: the generator checks every emitted instruction byte.
-
-`config/toolchain.json` is the release toolchain contract. It pins the ca65
-and ld65 executables Retrolarium Kit builds and ships (`CA65` and `LD65` default
-to `$(RLTOOL) build-tools path nes ca65` and `ld65`; the kit carries cc65's
-notice) by upstream revision, kit release, size, version output, and SHA-256, and pins the external FCEUX automation executable by its source commit,
-size, and SHA-256. `make verify-build-toolchain` verifies the exact `CA65` and
-`LD65` paths selected for the build before either executable runs; an override
-must therefore have the same pinned identity. `make verify-runtime-toolchain`
-applies the equivalent rule before any release trace. The supported release
-host is Windows 11 x86-64 with PowerShell, GNU Make 4.4.1, and Python 3.14.6.
+The source builds with the ca65 and ld65 that Retrolarium Kit builds, ships
+and verifies (`rltool build-tools path nes ca65`); the kit carries cc65's
+notice.

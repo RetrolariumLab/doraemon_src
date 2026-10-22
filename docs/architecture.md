@@ -1,10 +1,5 @@
 # Architecture
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
 ## Cartridge mapping
 
 Doraemon uses mapper 66 (`HVC-GNROM`). One 32 KiB PRG bank occupies the entire
@@ -89,15 +84,13 @@ its target with bank 3's label (`Bank3_GameOverDispatch`,
 `Bank3_World2TransitionDispatch`), not with whatever label the calling bank has
 at the same address.
 
-`config/reconstruction/common/bank_gateways.json` records the exact stub bytes and all 31 direct call
-sites currently represented as instructions. `make validate-bank-gateways`
-checks the four copies, source calls, and possible graph edges. The resulting
-static PRG graph is `{0,1,2}->3` plus `3->{0,1,2,3}`; runtime traces exercise
+The gateway stubs have 31 direct call sites. The static PRG graph is `{0,1,2}->3` plus `3->{0,1,2,3}`; runtime traces exercise
 the shell-to-chapter edges and callable shell returns.
 
-The adjacent `$8098-$8270` runtime is also identical in all four banks. Its
-reset, NMI, rendering transition, OAM, mapper, and score services are validated
-and named by `config/reconstruction/common/common_runtime.json`.
+The adjacent `$8098-$8270` runtime is also identical in all four banks: its
+reset, NMI, rendering transition, OAM, mapper, and score services
+([common runtime](common_runtime.md)). Nothing checks that the four copies stay
+identical; an edit must change all four.
 
 ## Three gameplay systems
 

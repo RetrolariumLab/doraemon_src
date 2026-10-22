@@ -1,11 +1,8 @@
 # World 3 Runtime
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
-This chapter joins the frame, room, player, interaction, entity, formation, rendering, transition, and PPU-queue contracts that cooperate in the World 3 gameplay loop. Machine-readable routine ranges and RAM ownership remain authoritative in `config/reconstruction/world3/`.
+This chapter joins the frame, room, player, interaction, entity, formation,
+rendering, transition, and PPU-queue contracts that cooperate in the World 3
+gameplay loop.
 
 ## Contents
 
@@ -15,11 +12,6 @@ This chapter joins the frame, room, player, interaction, entity, formation, rend
 - Rendering, PPU queueing, and dormant code
 
 ## World 3 collision and rendering
-
-`config/reconstruction/world3/world3_collision_rendering.json` fixes all twenty-two formerly
-address-named routine entries in `object_scripts_2.asm`. The exact contract
-covers 808 executable bytes, 50 direct calls or tail jumps, and twenty
-Bank 2-private RAM symbols covering 21 bytes.
 
 The collision convention is now explicit: carry set means the sampled edge is
 passable, while carry clear rejects movement or turns a projectile into its
@@ -36,12 +28,6 @@ The rendering half pins forward/reverse entity traversal, one-slot state and
 metasprite composition, the complete 15-byte metasprite/OAM workspace, and the
 deliberate one-byte no-op hook at `$9DCD`. Scratch coordinates shared with
 unrelated routines remain numeric.
-
-Run:
-
-```text
-make validate-world3-collision-rendering
-```
 
 ## World 3 dormant code islands
 
@@ -79,11 +65,8 @@ entry from dormant without changing its reconstructed bytes.
 
 ## World 3 entity runtime
 
-`config/reconstruction/world3/world3_entity_runtime.json` fixes ten formerly address-named World 3
-entity-lifecycle helpers. The exact contract covers 545 executable bytes,
-17 direct calls or tail jumps, and seven already established Bank 2-private
-RAM fields. A 64-entry room table now names the horizontal clamp policy used
-for persistent objects during room load.
+A 64-entry room table now names the horizontal clamp policy used for persistent
+objects during room load.
 
 The persistent-object path consumes the Passing Hoop flag carried from World
 2, finds its type `$19` registry record, and materializes it at the player in
@@ -105,19 +88,7 @@ Passing Hoop boundary helper separately probes tile `$26` at the left and right
 room edges, then converts the matching pixel coordinate into an eight-row PPU
 opening using the shared blank-barrier row.
 
-Run:
-
-```text
-make validate-world3-entity-runtime
-```
-
 ## World 3 formation runtime
-
-`config/reconstruction/world3/world3_formation_runtime.json` fixes thirteen formerly address-named
-World 3 formation, chain-motion, and encounter helpers. The exact contract
-covers 679 executable bytes and 28 direct calls. It also checks twelve
-established RAM fields and names six formation-specific scalar fields plus the
-64-room encounter exclusion mask.
 
 The type `$08/$09` giant-octopus formation occupies contiguous active slots.
 Its head stores the slot limit for the tentacle, while each following segment
@@ -141,17 +112,7 @@ coordinates. Its contiguous type `$0B` segments follow their predecessor when
 either axis separates by at least six pixels. The formation head slot and X/Y
 offsets now have explicit Bank 2 RAM ownership.
 
-Run:
-
-```text
-make validate-world3-formation-runtime
-```
-
 ## World 3 frame core
-
-`config/reconstruction/world3/world3_frame_core.json` fixes eighteen formerly address-named Bank 2
-routine entries. The contract covers 938 executable bytes, 42 direct calls,
-and 22 Bank 2-private RAM fields.
 
 The slice connects the World 3 entry and frame loop to:
 
@@ -168,18 +129,10 @@ the runtime (`$27`, `$28`, and `$34`). The room `$16` microphone event names
 describe only its proven object relocation and marker behavior; no character
 identity is inferred.
 
-Run:
-
-```text
-make validate-world3-frame-core
-```
-
 ## World 3 interaction runtime
 
-`config/reconstruction/world3/world3_interaction_runtime.json` fixes nine formerly address-named
-World 3 interaction entries. The exact contract covers 1,016 executable bytes,
-26 direct calls, and eight Bank 2-private RAM bytes. Two blank-tile rows used
-by the arena and barrier updates are also named in the symbol registry.
+Two blank-tile rows used by the arena and barrier updates are also named in the
+symbol registry.
 
 The frame loop now exposes the complete room `$3C` rescue condition. All three
 active companion types `$1C-$1E` must be present before the game flashes the
@@ -203,17 +156,8 @@ post-defeat items. Type `$10` starts the stopwatch, `$11` refills health,
 `$13` advances the same counter without the mass defeat. All remaining harmful
 contacts feed the documented damage-recovery or death player states.
 
-Run:
-
-```text
-make validate-world3-interaction-runtime
-```
-
 ## World 3 player runtime
 
-`config/reconstruction/world3/world3_player_runtime.json` fixes thirteen formerly address-named
-World 3 player and map-lookup entries. The exact contract covers 690 executable
-bytes, 25 direct `JSR` or `JMP` edges, and fourteen Bank 2-private RAM bytes.
 Four additional conditional branches enter adjacent routines directly and are
 preserved symbolically in the source rather than counted as call instructions.
 
@@ -237,12 +181,6 @@ the death restart gateway. `World3_LookupMapTileAtPixel` documents the runtime
 counterpart of the lossless World 3 map format: a pixel coordinate is resolved
 through the 64-by-64 large-block map, large-block composition, small-block
 composition, and finally the terrain tile id used by collision.
-
-Run:
-
-```text
-make validate-world3-player-runtime
-```
 
 ## World 3 PPU update queue
 
@@ -285,18 +223,10 @@ tiles. They return the computed nametable or attribute PPU address in
 `World3PpuAddressHigh:World3PpuAddressLow`; the attribute helper additionally
 returns the matching RAM-shadow offset.
 
-`config/reconstruction/world3/world3_ppu_queue.json` makes this model executable. The release gate
-checks the record geometry and capacity invariant, all 15 owned RAM symbols,
-23 active or dormant PPU-path routines, and 13 code signatures against the
-canonical PRG and semantic symbol registry.
-
 ## World 3 room rendering
 
-`config/reconstruction/world3/world3_room_rendering.json` fixes eight formerly address-named World 3
-room-rendering routines. The exact contract covers 351 executable bytes and
-ten direct calls. It also fixes the current-room map pointer, the two
-hierarchical row selectors, the zero-through-29 output row, and both 32-byte
-palette copies.
+Its state is the current-room map pointer, the two hierarchical row selectors,
+the zero-through-29 output row, and both 32-byte palette copies.
 
 Room loading first derives an eight-cell-wide window in the 64x64 large-block
 map from the six-bit room index. Thirty output rows then walk the large-block
@@ -314,19 +244,7 @@ The palette-in routine is the inverse room-load half of
 room target, uploads all 32 bytes every three frames, and repeats until the
 copies match.
 
-Run:
-
-```text
-make validate-world3-room-rendering
-```
-
 ## World 3 room runtime
-
-`config/reconstruction/world3/world3_room_runtime.json` fixes fifteen formerly address-named World 3
-routines covering input and audio wrappers, player rendering, all four room
-edges, room-entry persistence policy, full room reconstruction, music
-selection, and the palette fade. The exact contract covers 607 executable
-bytes, 76 direct calls, and ten Bank 2-private RAM bytes.
 
 ### Room transition transaction
 
@@ -365,19 +283,10 @@ World3CurrentRoom
   -> World3RoomMusicTrack
 ```
 
-Run:
-
-```text
-make validate-world3-room-runtime
-```
-
 ## World 3 transition runtime
 
-`config/reconstruction/world3/world3_transition_runtime.json` fixes the final five address-named
-World 3 routines. The exact contract covers 374 executable bytes, twelve
-direct calls or tail jumps, and ten Bank 2-private RAM fields. It also names
-the two blank completion-wipe sources, the eight-record debug OAM image, and
-the room `$3F` marker blink counter.
+Its data are the two blank completion-wipe sources, the eight-record debug OAM
+image, and the room `$3F` marker blink counter.
 
 After the final formation delay expires, the completion sequence resets the
 player state and runs an eight-frame inward wipe. Each step queues one blank
@@ -400,9 +309,3 @@ The controller-two `$C0` debug hook has a separate sprite-test setup path. It
 disables rendering, uploads the final-room palette, clears both nametables and
 attribute tables, copies eight fixed OAM records to page `$03`, restarts music
 track seven, and returns to the debug input handshake.
-
-Run:
-
-```text
-make validate-world3-transition-runtime
-```

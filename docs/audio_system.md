@@ -1,11 +1,7 @@
 # Audio System
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
-This chapter joins the music-driver ABI, effect-request ABI, and APU arbitration rules because they share one frame service and hardware ownership boundary. `config/authoring/audio/` remains the machine-readable authority; music and effects are edited in Retrolarium (see `docs/retrolarium.md`).
+This chapter joins the music-driver ABI, effect-request ABI, and APU arbitration
+rules because they share one frame service and hardware ownership boundary.
 
 ## Contents
 
@@ -35,10 +31,6 @@ Subsequent music writes return to the timer-guarded paths.
 reset paths clear it. `$02A7-$02A9` are effect-private work bytes whose more
 specific meanings vary by handler, so their names remain structural.
 
-`make validate-audio-arbitration` verifies all four effect-before-music frame
-paths, their common timer tick, twelve music-write guards, the unguarded reset
-prefix, seven shared RAM fields, and the semantic source symbols.
-
 ## Audio effect request ABI
 
 The four bank-local effect drivers map a request ID through an even priority
@@ -47,11 +39,10 @@ table. The stored priority is therefore both an arbitration rank and the byte
 offset of the pair. World 1, World 3, and the shell expose 26 requests; World 2
 uses a 15-request subset with its own permutation.
 
-`config/authoring/audio/audio_effects.json` assigns all 93 request IDs to 26 conservative
-structural roles. Each role records its handler pair, effect-timer leases, APU
-channels actually written, and directly observed synthesis behavior. These
-names deliberately describe register and state transitions rather than
-unproved in-game sound identities.
+Each role records its handler pair, effect-timer leases, APU channels actually
+written, and directly observed synthesis behavior. These names deliberately
+describe register and state transitions rather than unproved in-game sound
+identities.
 
 The distinction between timer leases and APU writes matters. The
 `pulse1_tone_triangle_lease` role writes pulse 1 while reserving the triangle
@@ -60,19 +51,11 @@ registers without acquiring any timer lease, so music can overwrite those
 channels in the same arbitration model. Reset request zero clears every timer
 instead of acquiring a lease.
 
-Several request roles share one update entry, such as the generic timed stop
-or the parameterized pulse-2 pitch sequence. The validator rejects two roles
-that assign incompatible meanings to the same target, derives all 145 unique
-dispatch-handler symbols from the request graph, and also requires the sixteen
-bank-local noise-onset, pointer, sequence-gate, and indexed-tonal helpers in the
-canonical source registry.
+Several request roles share one update entry, such as the generic timed stop or
+the parameterized pulse-2 pitch sequence.
 
-`make validate-audio-effects` checks the complete request-to-pair permutation,
-all channel contracts, shared-handler consistency, and semantic symbols.
 Exact gameplay identities for the effects remain intentionally open until
-runtime call-site/audio evidence supports them. Source 1.0 requires exact
-request routing, synthesis behavior, channel ownership, and lossless music
-streams; it does not require speculative external names for every sound.
+runtime call-site/audio evidence supports them.
 
 ## Music driver ABI
 
@@ -99,6 +82,17 @@ and continue decoding. Bytes `$00-$7F` then emit a tonal/noise event (`$00`
 takes the rest path) and reload its countdown. Bytes `$EF-$FF` dispatch through
 a target-minus-one `PHA`/`PHA`/`RTS` table.
 
+An event's meaning depends on the channel. On pulse 1, pulse 2 and the
+triangle, `$01-$7F` is a pitch: the driver adds the channel's fixed base
+offset, the tonal offset of `$F5` and the channel's own offset of `$F4`, then
+reads the little-endian timer value at twice that index in its period table;
+the high byte is ORed with the length bits (`$F2`). On the noise channel the
+high nibble selects a four-byte record of `$400C-$400F` values in the noise
+table (zero is silent) and the low nibble `n` is how many times the hit plays,
+each for one duration, before the stream is read again; `n = 0` plays it 256
+times. `$00` is a rest everywhere. While a sound effect holds a channel
+(`AudioEffectTimers`), the event keeps its time but writes no register.
+
 ### Command grammar
 
 | Byte | Operands | Structural role |
@@ -122,8 +116,7 @@ a target-minus-one `PHA`/`PHA`/`RTS` table.
 | `$EF` | 1 | Set base volume and envelope mode |
 
 The names describe direct state mutations and control flow; they do not claim
-musical intent. `config/authoring/audio/audio_music.json` joins every opcode to all four exact
-dispatch targets and their semantic source labels.
+musical intent.
 
 ### State and validation
 
@@ -139,15 +132,9 @@ overlay: gameplay code reuses those bytes for World 1 metasprite coordinates
 and the World 2 stream pointer. Treating one role as globally canonical would
 make other bank-local code misleading.
 
-`make validate-audio-music` verifies the grammar, shared RAM symbols, track-ID
-limits, header-table loads, all 68 command targets, and 980 bytes of envelope,
-duration/event, and stream-position helpers.
-
 ### Reachable streams
 
-`data/audio/music_streams.json` is a lossless editable representation of all
-26 track headers and every byte reached from their 104 channel entries. The
-static interpreter models counted loops, saved-position loops, channel-start
+The static interpreter models counted loops, saved-position loops, channel-start
 jumps, and the single-level call/return slot. It classifies 8,929 unique events
 covering 10,016 stream bytes plus 208 header bytes.
 
@@ -157,10 +144,7 @@ Bank 1 deliberately shares its `$B9CE` `EndChannel` byte with the unindexed
 World 2 metatile-attribute prefix. The authoring format records this byte once
 as an audio event while the physical source retains its adjacent data owner.
 
-`make validate-audio-streams` re-decodes the PRG state graph and checks exact
-document equality plus a 10,224-byte sparse-payload round trip. Together with
-the effect and arbitration contracts, this completes the Source 1.0 audio
-milestone. Exact in-game effect names and classification of data outside the
+Exact in-game effect names and classification of data outside the
 header-reachable spans remain explicit non-blocking unknowns; no musical intent
 is inferred from the structural driver evidence. Effect-versus-music APU
 ownership is separately proven in `docs/audio_system.md`.

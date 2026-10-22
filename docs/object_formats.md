@@ -1,10 +1,5 @@
 # Object formats
 
-The validation targets (`make validate-...`), machine-readable contracts
-(`config/authoring/`, `config/reconstruction/`) and editable JSON (`data/`)
-this page cites belonged to Source Reconstruction 1.0 to 3.0 and remain at
-those tags. The findings stand; the source is now edited directly.
-
 ## World 1 map placements
 
 City initialization installs `$D989` as the active placement pointer, while
@@ -40,12 +35,10 @@ by `x_cell`, allowing horizontal scans to stop once the requested column has
 been passed. The underground list has only 33 records; the city list has 112,
 of which its 67-record tail satisfies the ordering invariant.
 
-`config/authoring/world1/object_placements.json` fixes both ranges, counts, terminators, CRCs,
-all thirteen descriptors, and their collision tables.
-`make validate-object-placements` proves these contracts and the sorted-tail
-invariant directly against the canonical PRG. The same command losslessly
-round-trips the editable placements, descriptors, transient selectors, and
-collision extents in `data/world1/object_data.json`.
+The Studio edits the placements as `world1-city-objects` and
+`world1-underground-objects` (`doraemon.world1-placements.v1`, which keeps the
+city list's sorted tail), the thirteen descriptors as `world1-descriptors` and
+the enemy properties as `world1-enemy-properties`.
 
 ## World 2 embedded enemy spawns
 
@@ -66,22 +59,18 @@ into the enemy allocator. Each standard screen expands sixteen rows, stopping
 each row after at least fifteen cells. Because a final run is not clipped, row
 width can reach 22 cells.
 
-`config/authoring/world2/world2_streaming.json` fixes all 119 standard
-selectors, 116 unique ROM
-streams, three screen-service RTS tables, 738 spawn tokens, 3,623 run tokens,
-and the final read at `$FFFA`. `make validate-world2-streaming` checks those
-invariants and every indirect dispatch target against the canonical PRG.
-The shared token storage and all selector row views also round-trip through
-`data/world2/compressed_screens.json` as documented in
-`docs/world2_formats.md`.
+The 119 standard selectors address 116 unique ROM streams holding 738 spawn
+tokens and 3,623 run tokens, read through `$FFFA`; three screen-service RTS
+tables dispatch them. The Studio edits them as `world2-screens`
+([World 2 formats](world2_formats.md)).
 
 Only physical tokens `$D0-$DE` occur. After their delayed negative-state phase,
 the normalization at `$9A32` maps them one-to-one to runtime states `$01-$0F`.
 States `$10-$14` are internal-only extensions of the same render/update and
 property-table domain. The exact token frequencies, transformation signature,
 three state property tables, and overlapping dispatch storage are documented in
-`docs/world2_runtime.md`. Their 21 row-oriented state records are losslessly
-editable in `data/world2/enemy_states.json`.
+`docs/world2_runtime.md`. The Studio edits their 21
+state records as `world2-enemy-states`.
 
 ## World 3 initial persistent registry
 
@@ -106,23 +95,19 @@ type arrays are shuffled.
 Types below `$10` select one of sixteen packed behavior streams through the
 little-endian pointer table at `$D9AC`. The table targets are strictly
 increasing from `$D9CC` through `$DDE0`, within the 1,062-byte stream region
-ending at `$DDF1`. `make validate-world3-object-data` proves the five initial
-arrays, shuffle groups, fixed slot, pointer table, and stream payload.
+ending at `$DDF1`. The Studio edits the five initial arrays as
+`world3-objects` and the streams as `world3-behavior`.
 
-The behavior bytecode is fully decoded in `docs/world3_formats.md`. Its
-machine contract covers all 1,062 bytes as 532 instructions and operands, and
-`data/world3/behavior_streams.json` provides a lossless editable round trip.
+The behavior bytecode is fully decoded in
+[World 3 formats](world3_formats.md): all 1,062 bytes are 532 instructions and
+operands.
 
-The full `$00-$1F` type domain is joined in
-`config/authoring/world3/world3_entity_types.json`. Five 32-byte property columns supply hit
-points, base metasprites, render flags, contact damage, and score reward codes.
-The catalog also proves the initializer/behavior/update dispatch cardinalities,
+Across the full `$00-$1F` type domain, five 32-byte property columns supply
+hit points, base metasprites, render flags, contact damage, and score reward
+codes. The types also fix the initializer/behavior/update dispatch cardinalities,
 partitions all types into lifecycle domains, and fixes the `$10-$13` post-defeat
 and `$1C-$1E` persistent transformations. See
-`docs/world3_formats.md`. The row-oriented editable view in
-`data/world3/object_catalog.json` losslessly transposes both the thirteen
-persistent records and all 32 five-property type records back into their ROM
-structure-of-arrays layouts.
+[World 3 formats](world3_formats.md).
 
 ## World 3 transient room schedules
 
@@ -137,27 +122,20 @@ initializes an active entity through the 16-entry table at `$8F6C`, and marks
 the channel complete after its last scheduled entity. The phase counters are
 not reset when a new room schedule is loaded.
 
-`config/authoring/world3/world3_transient_spawns.json` pins the scheduler code, all table CRCs
-and domains, initializer bounds, timing, and aggregate spawn budgets.
-`data/world3/transient_spawns.json` losslessly transposes the full 768-byte
-column layout into 64 editable room records. See
-`docs/world3_formats.md`.
+The Studio edits the full 768-byte column layout as 64 room records of
+`world3-schedule`; see [World 3 formats](world3_formats.md).
 
 The 16 initializer slots are independently classified and tied back to the
 schedule's per-type record counts and spawn budgets. Initializers `$07` and
 `$08` are room/progression gated; `$0A` expands a type `$0A/$0B` encounter;
-and `$0C` expands a four-corner type `$0C-$0F` formation. Their four data
-regions transpose losslessly through
-`data/world3/spawn_initializer_data.json`; see
-`docs/world3_formats.md`.
+and `$0C` expands a four-corner type `$0C-$0F` formation. See
+[World 3 formats](world3_formats.md) for their four data regions.
 
-The 32-entry update dispatch is classified separately in
-`config/authoring/world3/world3_update_handlers.json`. It covers script-only low types,
+The 32-entry update dispatch covers script-only low types,
 formation members, encounter and persistence transitions, object relocation,
 terrain-trigger behavior, pushing, and player-following derived types. Its
-three handler-owned table regions are losslessly editable in
-`data/world3/update_handler_data.json`; see
-`docs/world3_formats.md`.
+three handler-owned table regions are in
+[World 3 formats](world3_formats.md).
 
 The entity catalog's base metasprite column is cross-checked against the full
 188-entry sprite index at `$B6D7`. Every type base resolves directly to one of
