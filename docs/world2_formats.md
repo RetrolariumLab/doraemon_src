@@ -101,7 +101,6 @@ selector into the nametable attribute cache.
 
 | Region                       |       Address |                Size |
 | ---------------------------- | ------------: | ------------------: |
-| unindexed CadEditor prefix   |       `$B9CE` |              1 byte |
 | palette selectors            | `$B9CF-$BA9E` |           208 bytes |
 | 2x2 CHR-tile quads           | `$BA9F-$BDDE` |         208x4 bytes |
 | stage sequence               | `$BDDF-$BEC3` |           229 bytes |
@@ -120,9 +119,9 @@ into `id >> 3` and an MSB-first mask `$80 >> (id & 7)`, then tests the byte at
 `$BEC4`. A set bit is treated as solid by movement and projectile callers. The
 canonical bitmap marks 100 of 208 metatiles solid.
 
-The byte `$FF` at `$B9CE` is the first byte of CadEditor's declared attribute
-view, but the renderer indexes from `$B9CF`. It is preserved losslessly and
-explicitly classified as unindexed; no gameplay meaning is inferred.
+CadEditor's declared attribute view starts at `$B9CE`, the preceding music
+stream's `$FF` (`EndChannel`) byte. The renderer reads the palette selector
+table from `$B9CF`.
 
 All 208 palette values are in `$00-$03`. Their canonical counts are 123, 20, 28,
 and 37. The standard ROM screen streams reference 203 metatile IDs. Five records

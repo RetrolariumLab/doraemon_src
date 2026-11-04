@@ -1,5 +1,5 @@
 ; World 2 APU tables, track headers, header-reachable streams, and adjacent unclassified data
-; PRG bank 1, original CPU range $B11B-$B9CD
+; PRG bank 1, original CPU range $B11B-$B9CE
 
 Bank1_Label_B11B:
     .byte $00, $00, $AE, $06, $4E, $06, $F3, $05, $9F, $05, $4D, $05, $01, $05, $B9, $04
@@ -157,3 +157,7 @@ World2_MusicTrackHeaders:
     .incbin "assets/generated/audio/music/prg1-b900.bin", $A3, $10  ; rom-asset .byte
     .incbin "assets/generated/audio/music/prg1-b900.bin", $B3, $10  ; rom-asset .byte
     .incbin "assets/generated/audio/music/prg1-b900.bin", $C3, $B  ; rom-asset .byte
+
+; Ends track $06's triangle stream and serves as an empty noise stream
+World2_MusicEndChannelByte:
+    .incbin "assets/generated/audio/music/prg1-b900.bin", $CE, $1  ; rom-asset .byte

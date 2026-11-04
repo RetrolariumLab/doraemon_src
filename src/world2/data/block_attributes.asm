@@ -1,8 +1,5 @@
-; World 2 unindexed CadEditor prefix and exact 208-entry metatile palette table
-; PRG bank 1, original CPU range $B9CE-$BA9E
-
-World2_UnindexedAttributePrefix:
-    .byte $FF
+; World 2 metatile palette selectors (208 entries)
+; PRG bank 1, original CPU range $B9CF-$BA9E
 
 World2_MetatilePaletteSelectors:
     .byte $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00

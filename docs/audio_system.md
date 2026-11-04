@@ -138,10 +138,10 @@ jumps, and the single-level call/return slot. It classifies 8,929 unique events
 covering 10,016 stream bytes plus 208 header bytes.
 
 The reachable spans are `$F03B-$FCBE` in bank 0, `$B313-$B8E1` and `$B900-$B9CE`
-in bank 1, `$CB33-$D66A` in bank 2, and `$A4F6-$ADBB` in bank 3. Bank 1
-deliberately shares its `$B9CE` `EndChannel` byte with the unindexed World 2
-metatile-attribute prefix. The authoring format records this byte once as an
-audio event while the physical source retains its adjacent data owner.
+in bank 1, `$CB33-$D66A` in bank 2, and `$A4F6-$ADBB` in bank 3. In World 2,
+`$B9CE` is the `EndChannel` byte at the end of track `$06`'s triangle stream.
+Tracks `$01` through `$04` and `$06` also use it as their entire noise stream.
+The metatile palette table starts at `$B9CF`.
 
 Exact in-game effect names and classification of data outside the
 header-reachable spans remain explicit non-blocking unknowns; no musical intent

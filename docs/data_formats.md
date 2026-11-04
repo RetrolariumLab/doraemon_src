@@ -39,8 +39,7 @@ codecs). The world pages describe the formats: [World 1](world1_formats.md),
 | World 3 metasprite records         | `World3_MetaspriteRecords`           |      1,119 | `world3-metasprites`            |
 | World 3 palette sets               | `World3_PaletteSets`                 |      11x32 | `world3-palette-00` to `-10`    |
 
-`World2_UnindexedAttributePrefix` (the byte before the metatile palettes) and
-`World2_CadEditorScreenRegion` are not runtime tables; see below.
+`World2_CadEditorScreenRegion` describes a tool view; see below.
 
 ## CadEditor offsets
 
@@ -68,9 +67,9 @@ a selector.
 The metatile renderer fixes the table boundary independently of CadEditor.
 Literal IDs `$00-$CF` select 208 palette bytes and 208 row-major 2x2 CHR-tile
 records; the stage sequence follows them directly. The 208 MSB-first solid flags
-occupy `World2_MetatileCollisionBits`. The `$FF` byte before the palette bytes
-(`World2_UnindexedAttributePrefix`) is preserved but not indexed by the
-renderer.
+occupy `World2_MetatileCollisionBits`. CadEditor's palette view starts at
+`$B9CE`, the music driver's `EndChannel` byte. The renderer indexes palette
+selectors starting at `$B9CF`.
 
 Each standard stream decodes sixteen rows of at least fifteen cells. Bytes below
 `$D0` are literal cells, `$D0-$EE` emit an empty cell and spawn an enemy, `$EF`
