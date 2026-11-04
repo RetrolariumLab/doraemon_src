@@ -136,7 +136,7 @@ Bank2_Label_9279:
     LDX $07
     JSR World3_ResolvePlayerEntityContact
     LDX $07
-    JSR World3_CheckPlayerProjectilesAgainstEntity
+    JSR World3_CheckPlayerShotsVsEntity
 
 Bank2_Label_9283:
     INC $07

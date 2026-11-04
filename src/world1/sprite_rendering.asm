@@ -438,7 +438,7 @@ Bank0_Label_9B7A:
     STA $00
 
 Bank0_Label_9BAB:
-    JSR World1_ReadPlayerProjectileCollisionProperty
+    JSR World1_ReadPlayerShotCollisionProperty
     BEQ Bank0_Label_9BBD
     LDA #$80
     STA a:World1EntityType+$1E,X
@@ -456,7 +456,7 @@ Bank0_Label_9BBD:
 Bank0_Label_9BC3:
     .byte $00, $04, $00, $FC, $FC, $00, $04, $00
 
-World1_ReadPlayerProjectileCollisionProperty:
+World1_ReadPlayerShotCollisionProperty:
     LDA PpuScrollXShadow
     AND #$07
     CLC

@@ -318,7 +318,7 @@ World3_Music_SaveStreamPosition:
     STA a:AudioSavedStreamPointers+$01,X
     RTS
 
-World3_MusicCommand_RestoreStreamPosition:
+World3_MusicCmd_RestoreStreamPosition:
     LDA a:AudioChannelIndex
     ASL A
     TAX
@@ -328,7 +328,7 @@ World3_MusicCommand_RestoreStreamPosition:
     STA AudioStreamPointers+$01,X
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_SelectTrackChannelStream:
+World3_MusicCmd_SelectTrackChannelStream:
     LDA a:AudioMusicState
     ASL A
     ASL A
@@ -375,7 +375,7 @@ World3_MusicCommand_ReturnFromStream:
     STA AudioStreamPointers+$01,X
     JMP World3_Music_UpdateChannelStream
 
-World3_MusicCommand_SetChannelPitchOffset:
+World3_MusicCmd_SetChannelPitchOffset:
     JSR World3_Audio_ReadStreamByte
     LDX a:AudioChannelIndex
     CPX #$03

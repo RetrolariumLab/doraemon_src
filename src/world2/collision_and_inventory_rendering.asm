@@ -22,7 +22,7 @@ Bank1_Label_9302:
     LDA World2MetaspriteOriginX
     JMP World2_SetSpriteXBeforeFlickerEmit
 
-World2_PrepareSlot2HorizontalAttackSegment:
+World2_PrepareSlot2HorizAttackSegment:
     LDA World2InventoryY+$02
     STA World2OamY
     LDA a:Bank1_Label_9326,X
@@ -144,7 +144,7 @@ World2_RenderPlayerDamageEffect:
     CLC
     ADC #$18
     STA $68
-    JMP World2_RenderTwoSpriteEffectAtProbePosition
+    JMP World2_RenderTwoSpriteEffectAtProbe
 
 Bank1_Label_9408:
     CLC
@@ -156,7 +156,7 @@ Bank1_Label_9408:
     SEC
     SBC #$10
     STA $68
-    JMP World2_RenderTwoSpriteEffectAtProbePosition
+    JMP World2_RenderTwoSpriteEffectAtProbe
 
 Bank1_Label_941A:
     CLC
@@ -170,12 +170,12 @@ Bank1_Label_941A:
     CLC
     ADC #$10
     STA $67
-    JSR World2_RenderTwoSpriteEffectAtProbePosition
+    JSR World2_RenderTwoSpriteEffectAtProbe
 
 Bank1_Label_942F:
     RTS
 
-World2_RenderTwoSpriteEffectAtProbePosition:
+World2_RenderTwoSpriteEffectAtProbe:
     LDA $67
     STA World2MetaspriteOriginX
     STX $67

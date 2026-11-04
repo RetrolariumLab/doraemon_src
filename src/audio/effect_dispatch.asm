@@ -376,7 +376,7 @@ AudioEffect_InitPulse2FixedToneA:
     LDA #$08
     JMP Apu_WritePulse2Timer
 
-AudioEffect_InitPulse1ToneWithTriangleLease:
+Sfx_InitPulse1ToneWithTriLease:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectWork0
@@ -425,7 +425,7 @@ AudioEffect_InitIndexedTonalSequenceAlt:
     LDA #$01
     STA a:AudioEffectWork0
 
-AudioEffect_UpdateIndexedTonalSequenceAlt:
+Sfx_UpdateIndexedTonalSequenceAlt:
     DEC a:AudioEffectWork0
     BNE Bank3_Label_9AFA
     LDY #$00

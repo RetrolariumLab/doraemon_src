@@ -137,7 +137,7 @@ Bank2_Label_8829:
 Bank2_Label_8847:
     RTS
 
-World3_CheckPlayerProjectilesAgainstEntity:
+World3_CheckPlayerShotsVsEntity:
     STX World3ProjectileCollisionEntityIndex
     LDA #$00
     STA $05
@@ -294,7 +294,7 @@ Bank2_Label_895C:
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR World3_AwardEncodedScorePreserveEntityLoop
+    JSR World3_AwardEncodedScoreKeepEntityLoop
     RTS
 
 Bank2_Label_896C:
@@ -321,7 +321,7 @@ World3_StartEntityDefeat:
     JSR World3_QueuePriorityEffectPreserveXY
     RTS
 
-World3_AwardEncodedScorePreserveEntityLoop:
+World3_AwardEncodedScoreKeepEntityLoop:
     STX World3ScoreSavedX
     LDX $07
     STX World3ScoreSavedEntityLoopIndex
@@ -366,7 +366,7 @@ World3_ResolvePlayerEntityContact:
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR World3_AwardEncodedScorePreserveEntityLoop
+    JSR World3_AwardEncodedScoreKeepEntityLoop
     LDA World3PunishmentDorayakiRemaining
     BEQ Bank2_Label_89E6
     DEC World3PunishmentDorayakiRemaining
@@ -387,7 +387,7 @@ Bank2_Label_89EA:
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR World3_AwardEncodedScorePreserveEntityLoop
+    JSR World3_AwardEncodedScoreKeepEntityLoop
     LDA #$0E
     JSR World3_QueueEffectPreserveXY
     LDA World3CurrentRoom
@@ -467,7 +467,7 @@ Bank2_Label_8A60:
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR World3_AwardEncodedScorePreserveEntityLoop
+    JSR World3_AwardEncodedScoreKeepEntityLoop
     LDA #$01
     STA World3StopwatchActive
     LDA #$00
@@ -483,7 +483,7 @@ Bank2_Label_8A87:
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR World3_AwardEncodedScorePreserveEntityLoop
+    JSR World3_AwardEncodedScoreKeepEntityLoop
     LDA #$0E
     JSR World3_QueueEffectPreserveXY
     LDA #$08
@@ -513,7 +513,7 @@ Bank2_Label_8AB7:
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR World3_AwardEncodedScorePreserveEntityLoop
+    JSR World3_AwardEncodedScoreKeepEntityLoop
     LDA #$13
     JSR World3_QueueEffectPreserveXY
     INC World3TreasurePenaltyCounter
@@ -527,7 +527,7 @@ Bank2_Label_8AD7:
     LDA a:World3EntityType,X
     TAY
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR World3_AwardEncodedScorePreserveEntityLoop
+    JSR World3_AwardEncodedScoreKeepEntityLoop
     LDA #$0E
     JSR World3_QueueEffectPreserveXY
     INC World3TreasurePenaltyCounter

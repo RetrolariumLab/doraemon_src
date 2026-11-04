@@ -212,7 +212,7 @@ Bank2_Label_BFCF:
     STA a:AudioEffectWork0
     RTS
 
-World3_AudioEffect_InitTriangleNoiseBurst:
+World3_Sfx_InitTriangleNoiseBurst:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03

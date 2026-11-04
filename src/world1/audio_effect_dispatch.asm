@@ -212,7 +212,7 @@ Bank0_Label_E4D7:
     STA a:AudioEffectWork0
     RTS
 
-World1_AudioEffect_InitTriangleNoiseBurst:
+World1_Sfx_InitTriangleNoiseBurst:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03
@@ -228,13 +228,13 @@ World1_AudioEffect_InitTriangleNoiseBurst:
     STA a:APU_NOISE_HI
     RTS
 
-World1_AudioEffect_InitPulse2PitchSequenceLong:
+World1_Sfx_InitPulse2PitchSequenceLong:
     LDY #$60
     LDA #$17
     LDX #$00
     BEQ Bank0_Label_E52C
 
-World1_AudioEffect_InitPulse2PitchSequenceShort:
+World1_Sfx_InitPulse2PitchSequenceShort:
     LDY #$08
     LDA #$01
     LDX #$05
@@ -246,7 +246,7 @@ Bank0_Label_E52C:
     LDA #$01
     STA a:AudioEffectWork1
     JSR World1_AudioEffect_InitNoiseOnset
-    JMP World1_AudioEffect_UpdatePulse2PitchSequence
+    JMP World1_Sfx_UpdatePulse2PitchSequence
 
 World1_AudioEffect_InitNoiseOnset:
     LDA #$08
@@ -261,7 +261,7 @@ World1_AudioEffect_InitNoiseOnset:
 Bank0_Label_E554:
     RTS
 
-World1_AudioEffect_InitPulse1AlternatingBurst:
+World1_Sfx_InitPulse1AlternatingBurst:
     LDA #$48
     STA a:AudioEffectTimers
     STA a:AudioEffectTimers+$01
@@ -272,7 +272,7 @@ World1_AudioEffect_InitPulse1AlternatingBurst:
     LDA #$04
     STA a:AudioEffectWork1
 
-World1_AudioEffect_UpdatePulse1AlternatingBurst:
+World1_Sfx_UpdatePulse1AlternatingBurst:
     LDA a:AudioEffectWork1
     BNE Bank0_Label_E575
     JMP World1_AudioEffect_UpdateTimedStop
@@ -339,7 +339,7 @@ World1_AudioEffect_UpdatePulse1Sequence:
     STA a:APU_PL1_SWEEP,X
     LDY #$00
     LDA ($2D),Y
-    BEQ World1_AudioEffect_AdvanceSequencePointer
+    BEQ World1_Sfx_AdvanceSequencePointer
     ASL A
     TAY
     LDA a:Bank0_Label_EE34,Y
@@ -348,7 +348,7 @@ World1_AudioEffect_UpdatePulse1Sequence:
     ORA #$08
     STA a:APU_PL1_HI,X
 
-World1_AudioEffect_AdvanceSequencePointer:
+World1_Sfx_AdvanceSequencePointer:
     INC $2D
     BNE Bank0_Label_E5FC
     INC $2E
@@ -397,7 +397,7 @@ World1_AudioEffect_InitPulse2FixedToneA:
     LDA #$08
     JMP World1_Apu_WritePulse2Timer
 
-World1_AudioEffect_InitPulse1ToneWithTriangleLease:
+World1_Sfx_InitPulse1ToneWithTriLease:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectWork0

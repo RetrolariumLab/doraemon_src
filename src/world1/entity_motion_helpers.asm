@@ -95,10 +95,10 @@ World1_ReadEntityCenterCollisionProperty:
     LDA a:Bank0_Label_DADA,Y
     RTS
 
-World1_TrySpawnDirectionalEnemyProjectile:
+World1_TrySpawnDirectedEnemyProjectile:
     JSR World1_DirectionTowardPlayer
     STA $AA
-    JSR World1_AbortProjectileSpawnIfSourceOffscreen
+    JSR World1_AbortShotSpawnIfSourceOffscreen
     LDA a:World1EntityType+$0A,X
     BNE Bank0_Label_90AF
     JSR World1_FrameRandomByte
@@ -143,7 +143,7 @@ Bank0_Label_90B2:
     RTS
 
 Bank0_Label_90BE:
-    JSR World1_AbortProjectileSpawnIfSourceOffscreen
+    JSR World1_AbortShotSpawnIfSourceOffscreen
     LDA #$02
     STA a:World1EntityType+$0A,Y
     LDA #$32
@@ -195,7 +195,7 @@ Bank0_Label_912E:
 World1_TrySpawnAimedEnemyProjectile:
     LDA a:World1EntityType+$0A,X
     BNE Bank0_Label_912E
-    JSR World1_AbortProjectileSpawnIfSourceOffscreen
+    JSR World1_AbortShotSpawnIfSourceOffscreen
     LDA #$00
     STA $AD
     LDA a:World1EntityX,X
@@ -299,7 +299,7 @@ Bank0_Label_91DB:
     BNE Bank0_Label_91D6
     RTS
 
-World1_AbortProjectileSpawnIfSourceOffscreen:
+World1_AbortShotSpawnIfSourceOffscreen:
     LDA a:World1EntityPositionHigh,X
     AND #$0F
     BNE Bank0_Label_91FD

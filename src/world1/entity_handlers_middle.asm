@@ -44,7 +44,7 @@ Bank0_Label_DEE6:
 
 Bank0_Label_DF03:
     PLA
-    JSR World1_TrySpawnDirectionalEnemyProjectile
+    JSR World1_TrySpawnDirectedEnemyProjectile
     RTS
 
 World1_UpdateNaameUnderground:
@@ -97,7 +97,7 @@ Bank0_Label_DF4C:
     LDA a:World1EntityMetasprite,X
     EOR #$02
     STA a:World1EntityMetasprite,X
-    JSR World1_TrySpawnDirectionalEnemyProjectile
+    JSR World1_TrySpawnDirectedEnemyProjectile
     RTS
 
 Bank0_Label_DF5E:
@@ -108,7 +108,7 @@ Bank0_Label_DF5E:
     JSR World1_TestEntityMapCollisionAtOffset
     BCC Bank0_Label_DF4C
     PLA
-    JSR World1_TrySpawnDirectionalEnemyProjectile
+    JSR World1_TrySpawnDirectedEnemyProjectile
     RTS
 
 World1_UpdateKobuun:
@@ -250,7 +250,7 @@ Bank0_Label_E064:
     LDA a:World1EntitySecondaryBehavior,X
     JSR World1_TestEntityDirectionCollision
     BCC Bank0_Label_E07B
-    JSR World1_ReverseEntityDirectionAndMoveTwice
+    JSR World1_ReverseEntityDirAndMoveTwice
 
 Bank0_Label_E07B:
     LDA a:World1EntityPrimaryBehavior,X
@@ -297,7 +297,7 @@ Bank0_Label_E0C0:
     LDA a:World1EntitySecondaryBehavior,X
     JSR World1_TestEntityDirectionCollision
     BCC Bank0_Label_E0D7
-    JSR World1_ReverseEntityDirectionAndMoveTwice
+    JSR World1_ReverseEntityDirAndMoveTwice
 
 Bank0_Label_E0D7:
     INC a:World1EntityY,X
@@ -323,7 +323,7 @@ Bank0_Label_E100:
     RTS
     .byte $20, $D4, $8A, $BD, $80, $05, $4C, $45, $8B
 
-World1_ReverseEntityDirectionAndMoveTwice:
+World1_ReverseEntityDirAndMoveTwice:
     LDA a:World1EntityMetasprite,X
     EOR #$02
     STA a:World1EntityMetasprite,X
@@ -357,7 +357,7 @@ World1_SnapEntityYToTileBoundary:
     STA a:World1EntityY,X
     RTS
 
-World1_InitializeEntityRandomPrimaryBehavior:
+World1_InitEntityRandomPrimaryBehavior:
     JSR World1_RandomByte
     STA a:World1EntityPrimaryBehavior,X
     JMP World1_InitializeEntityPosition

@@ -130,7 +130,7 @@ World2_Audio_ResetEffects:
     STA a:APU_STATUS
     RTS
 
-World2_AudioEffect_InitTriangleNoiseBurst:
+World2_Sfx_InitTriangleNoiseBurst:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03
@@ -146,13 +146,13 @@ World2_AudioEffect_InitTriangleNoiseBurst:
     STA a:APU_NOISE_HI
     RTS
 
-World2_AudioEffect_InitPulse2PitchSequenceLong:
+World2_Sfx_InitPulse2PitchSequenceLong:
     LDY #$60
     LDA #$17
     LDX #$00
     BEQ Bank1_Label_A94F
 
-World2_AudioEffect_InitPulse2PitchSequenceShort:
+World2_Sfx_InitPulse2PitchSequenceShort:
     LDY #$08
     LDA #$01
     LDX #$05
@@ -164,7 +164,7 @@ Bank1_Label_A94F:
     LDA #$01
     STA a:AudioEffectWork1
     JSR World2_AudioEffect_InitNoiseOnset
-    JMP World2_AudioEffect_UpdatePulse2PitchSequence
+    JMP World2_Sfx_UpdatePulse2PitchSequence
 
 World2_AudioEffect_InitNoiseOnset:
     LDA #$08
@@ -179,7 +179,7 @@ World2_AudioEffect_InitNoiseOnset:
 Bank1_Label_A977:
     RTS
 
-World2_AudioEffect_InitPulse1AlternatingBurst:
+World2_Sfx_InitPulse1AlternatingBurst:
     LDA #$48
     STA a:AudioEffectTimers
     STA a:AudioEffectTimers+$01
@@ -190,7 +190,7 @@ World2_AudioEffect_InitPulse1AlternatingBurst:
     LDA #$04
     STA a:AudioEffectWork1
 
-World2_AudioEffect_UpdatePulse1AlternatingBurst:
+World2_Sfx_UpdatePulse1AlternatingBurst:
     LDA a:AudioEffectWork1
     BNE Bank1_Label_A998
     JMP World2_AudioEffect_UpdateTimedStop
@@ -257,7 +257,7 @@ World2_AudioEffect_UpdatePulse1Sequence:
     STA a:APU_PL1_SWEEP,X
     LDY #$00
     LDA ($2D),Y
-    BEQ World2_AudioEffect_AdvanceSequencePointer
+    BEQ World2_Sfx_AdvanceSequencePointer
     ASL A
     TAY
     LDA a:Bank1_Label_B11B,Y
@@ -266,7 +266,7 @@ World2_AudioEffect_UpdatePulse1Sequence:
     ORA #$08
     STA a:APU_PL1_HI,X
 
-World2_AudioEffect_AdvanceSequencePointer:
+World2_Sfx_AdvanceSequencePointer:
     INC $2D
     BNE Bank1_Label_AA1F
     INC $2E
@@ -303,7 +303,7 @@ World2_AudioEffect_InitPulse2FixedToneA:
     LDA #$08
     JMP World2_Apu_WritePulse2Timer
 
-World2_AudioEffect_InitPulse1ToneWithTriangleLease:
+World2_Sfx_InitPulse1ToneWithTriLease:
     LDA #$04
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectWork0
@@ -344,7 +344,7 @@ Bank1_Label_AA94:
 Bank1_Label_AA97:
     RTS
 
-World2_AudioEffect_InitIndexedTonalSequenceAlt:
+World2_Sfx_InitIndexedTonalSequenceAlt:
     LDA #$5F
     STA $2D
     LDA #$AC
@@ -352,7 +352,7 @@ World2_AudioEffect_InitIndexedTonalSequenceAlt:
     LDA #$01
     STA a:AudioEffectWork0
 
-World2_AudioEffect_UpdateIndexedTonalSequenceAlt:
+World2_Sfx_UpdateIndexedTonalSequenceAlt:
     DEC a:AudioEffectWork0
     BNE Bank1_Label_AA97
     LDY #$00
@@ -364,12 +364,12 @@ World2_AudioEffect_UpdateIndexedTonalSequenceAlt:
     STA a:AudioEffectTimers+$01
     STA a:AudioEffectTimers+$02
     STA a:AudioEffectTimers+$03
-    JSR World2_AudioEffect_AdvanceSequencePointer
+    JSR World2_Sfx_AdvanceSequencePointer
     LDX #$00
-    JSR World2_AudioEffect_WriteIndexedTonalEvent
-    JSR World2_AudioEffect_WriteIndexedTonalEvent
+    JSR World2_Sfx_WriteIndexedTonalEvent
+    JSR World2_Sfx_WriteIndexedTonalEvent
 
-World2_AudioEffect_WriteIndexedTonalEvent:
+World2_Sfx_WriteIndexedTonalEvent:
     LDY #$00
     LDA ($2D),Y
     BEQ Bank1_Label_AAF7
@@ -400,7 +400,7 @@ Bank1_Label_AAF7:
     INX
     INX
     INX
-    JMP World2_AudioEffect_AdvanceSequencePointer
+    JMP World2_Sfx_AdvanceSequencePointer
 
 World2_AudioEffect_InitPulse2FixedToneB:
     LDA #$18
@@ -461,7 +461,7 @@ Bank1_Label_AB6A:
 Bank1_Label_AB6E:
     .incbin "assets/generated/audio/sfx/prg3-tone-low.bin", $0, $4  ; rom-asset .byte
 
-World2_AudioEffect_InitPulse2PitchSequenceBase:
+World2_Sfx_InitPulse2PitchSequenceBase:
     LDY #$14
     LDA #$04
     LDX #$03
@@ -471,7 +471,7 @@ World2_AudioEffect_InitPulse2PitchSequenceBase:
     LDA #$01
     STA a:AudioEffectWork1
 
-World2_AudioEffect_UpdatePulse2PitchSequence:
+World2_Sfx_UpdatePulse2PitchSequence:
     DEC a:AudioEffectWork1
     BNE Bank1_Label_ABB1
     LDA a:AudioEffectWork0
@@ -504,7 +504,7 @@ Bank1_Label_ABB5:
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $30, $10  ; rom-asset .byte
     .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $40, $A  ; rom-asset .byte
 
-World2_AudioEffect_InitTrianglePitchDescent:
+World2_Sfx_InitTrianglePitchDescent:
     LDA #$10
     STA a:AudioEffectTimers+$02
     LDA #$40
@@ -514,7 +514,7 @@ World2_AudioEffect_InitTrianglePitchDescent:
     LDA #$30
     STA a:AudioEffectWork2
 
-World2_AudioEffect_UpdateTrianglePitchDescent:
+World2_Sfx_UpdateTrianglePitchDescent:
     LDY #$01
     LDX a:AudioEffectWork0
     LDA #$08

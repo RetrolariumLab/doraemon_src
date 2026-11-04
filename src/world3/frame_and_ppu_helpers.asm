@@ -230,7 +230,7 @@ Bank2_Label_B311:
     BNE Bank2_Label_B311
     RTS
 
-World3_DormantQueuePpuBlockFromParameters:
+World3_DormantQueuePpuBlockFromParams:
     LDX $00
     LDY $01
     JSR World3_CalculateNametableAddress
@@ -296,7 +296,7 @@ World3_DormantQueuePpuByteFromParameters:
     JSR World3_DrainPpuQueueIfRenderingDisabled
     RTS
 
-World3_DormantQueueAttributeFromParameters:
+World3_DormantQueueAttrFromParams:
     LDX $00
     LDY $01
     LDA $02

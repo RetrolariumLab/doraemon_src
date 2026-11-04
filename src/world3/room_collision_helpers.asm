@@ -27,7 +27,7 @@ Bank2_Label_AB50:
 Bank2_Label_AB52:
     RTS
 
-World3_AdvanceRandomEncounterRoomTowardPlayer:
+World3_StepRandomEncounterTowardPlayer:
     JSR World3_RandomByte
     AND #$07
     TAX
@@ -185,7 +185,7 @@ World3_DragonFormationY:
 World3_DragonFormationType:
     .byte $0A, $0B, $0B, $0B, $0B, $0B, $0B, $0B
 
-World3_CreateGiantOctopusFormationTypes08To09:
+World3_CreateGiantOctopusFormation08To09:
     LDA #$00
     STA $3F
     CPX #$06

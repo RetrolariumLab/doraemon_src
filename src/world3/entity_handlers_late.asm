@@ -130,7 +130,7 @@ Bank2_Label_973A:
     JSR World3_RunPaletteFlash
     LDY #$0A
     LDA a:World3_EntityScoreRewardCodeByType,Y
-    JSR World3_AwardEncodedScorePreserveEntityLoop
+    JSR World3_AwardEncodedScoreKeepEntityLoop
     RTS
 
 World3_UpdateType19PassingHoop:

@@ -33,7 +33,7 @@ World1_StartUndergroundJump:
     LDA #$12
     JSR World1_Audio_QueueEffect
 
-World1_IntegrateUndergroundVerticalMotion:
+World1_IntegrateUndergroundYMotion:
     LDA World1PlayerYVelocity
     AND #$80
     STA $00
@@ -148,10 +148,10 @@ World1_UndergroundRoomCameraProfiles:
 World1_UndergroundRoomCameraTileYField:
     .byte $22
 
-World1_UndergroundRoomAxisScrollLimitField:
+World1_UndergroundRoomScrollLimitField:
     .byte $20
 
-World1_UndergroundRoomAxisScrollStartField:
+World1_UndergroundRoomScrollStartField:
     .byte $00, $80, $22, $20, $00, $CA, $22, $20, $0A, $00, $42, $20, $00, $40, $42, $40
     .byte $00, $20, $02, $C0, $00, $E0, $02, $C0, $C0, $A0, $42, $40, $40, $60, $42, $40
     .byte $00
@@ -162,10 +162,10 @@ World1_UndergroundRoomEntryProfiles:
 World1_UndergroundRoomPlayerYField:
     .byte $10
 
-World1_UndergroundRoomNegativeAxisCityReturnIdField:
+World1_UndergroundRoomNegCityReturnField:
     .byte $00
 
-World1_UndergroundRoomPositiveAxisCityReturnIdField:
+World1_UndergroundRoomPosCityReturnField:
     .byte $FF, $38, $10, $01, $FF, $78, $10, $02, $02, $38, $10, $03, $FF, $18, $10, $04
     .byte $FF, $18, $10, $05, $06, $B8, $10, $05, $06, $D8, $10, $08, $07, $18, $10, $08
     .byte $07

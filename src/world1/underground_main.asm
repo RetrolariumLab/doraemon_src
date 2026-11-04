@@ -40,17 +40,17 @@ Bank0_Label_CDE3:
     STA World1PlayerX
     LDA a:World1_UndergroundRoomPlayerYField,Y
     STA World1PlayerY
-    LDA a:World1_UndergroundRoomNegativeAxisCityReturnIdField,Y
-    STA World1UndergroundNegativeAxisCityReturnId
-    LDA a:World1_UndergroundRoomPositiveAxisCityReturnIdField,Y
-    STA World1UndergroundPositiveAxisCityReturnId
+    LDA a:World1_UndergroundRoomNegCityReturnField,Y
+    STA World1UndergroundNegAxisCityReturnId
+    LDA a:World1_UndergroundRoomPosCityReturnField,Y
+    STA World1UndergroundPosAxisCityReturnId
     LDA a:World1_UndergroundRoomCameraProfiles,Y
     STA World1CameraTileX
     LDA a:World1_UndergroundRoomCameraTileYField,Y
     STA World1CameraTileY
-    LDA a:World1_UndergroundRoomAxisScrollLimitField,Y
+    LDA a:World1_UndergroundRoomScrollLimitField,Y
     STA World1UndergroundAxisScrollLimit
-    LDA a:World1_UndergroundRoomAxisScrollStartField,Y
+    LDA a:World1_UndergroundRoomScrollStartField,Y
     STA World1UndergroundAxisScrollCoarse
     LDA #$00
     STA World1UndergroundAxisScrollFine
@@ -123,11 +123,11 @@ Bank0_Label_CE9E:
 Bank0_Label_CEAB:
     LDA World1UndergroundVerticalPage
     BNE Bank0_Label_CEE5
-    LDA World1UndergroundNegativeAxisCityReturnId
+    LDA World1UndergroundNegAxisCityReturnId
     STA $00
     LDA World1UndergroundAxisScrollCoarse
     BEQ Bank0_Label_CEBB
-    LDA World1UndergroundPositiveAxisCityReturnId
+    LDA World1UndergroundPosAxisCityReturnId
     STA $00
 
 Bank0_Label_CEBB:
@@ -322,7 +322,7 @@ Bank0_Label_CFDF:
     STA $07
     LDA World1PlayerAirborne
     BEQ Bank0_Label_CFF5
-    JSR World1_IntegrateUndergroundVerticalMotion
+    JSR World1_IntegrateUndergroundYMotion
     JMP Bank0_Label_D004
 
 Bank0_Label_CFF5:

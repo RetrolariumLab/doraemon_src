@@ -49,8 +49,8 @@ World3_EnterRoomLeft:
     STA World3TransitionTargetRoom
     DEC World3TransitionTargetRoom
     JSR World3_DropFollowerBeforeCrowdedRoom
-    JSR World3_ResetPersistentObjectsForFinalRoomEntry
-    JSR World3_ResetPersistentObjectsForActiveBossRoom
+    JSR World3_ResetPersistObjsOnFinalRoomEntry
+    JSR World3_ResetPersistObjsForActiveBossRoom
     JSR World3_SaveRoomObjectsState0
     DEC World3CurrentRoom
     JSR World3_SaveRoomObjectsState1
@@ -68,8 +68,8 @@ World3_EnterRoomRight:
     STA World3TransitionTargetRoom
     INC World3TransitionTargetRoom
     JSR World3_DropFollowerBeforeCrowdedRoom
-    JSR World3_ResetPersistentObjectsForFinalRoomEntry
-    JSR World3_ResetPersistentObjectsForActiveBossRoom
+    JSR World3_ResetPersistObjsOnFinalRoomEntry
+    JSR World3_ResetPersistObjsForActiveBossRoom
     JSR World3_SaveRoomObjectsState0
     INC World3CurrentRoom
     JSR World3_SaveRoomObjectsState1
@@ -89,8 +89,8 @@ World3_EnterRoomAbove:
     SBC #$08
     STA World3TransitionTargetRoom
     JSR World3_DropFollowerBeforeCrowdedRoom
-    JSR World3_ResetPersistentObjectsForFinalRoomEntry
-    JSR World3_ResetPersistentObjectsForActiveBossRoom
+    JSR World3_ResetPersistObjsOnFinalRoomEntry
+    JSR World3_ResetPersistObjsForActiveBossRoom
     JSR World3_SaveRoomObjectsState0
     LDA World3CurrentRoom
     SEC
@@ -114,8 +114,8 @@ World3_EnterRoomBelow:
     ADC #$08
     STA World3TransitionTargetRoom
     JSR World3_DropFollowerBeforeCrowdedRoom
-    JSR World3_ResetPersistentObjectsForFinalRoomEntry
-    JSR World3_ResetPersistentObjectsForActiveBossRoom
+    JSR World3_ResetPersistObjsOnFinalRoomEntry
+    JSR World3_ResetPersistObjsForActiveBossRoom
     JSR World3_SaveRoomObjectsState0
     LDA World3CurrentRoom
     CLC
@@ -127,7 +127,7 @@ World3_EnterRoomBelow:
 Bank2_Label_A6B4:
     RTS
 
-World3_ResetPersistentObjectsForFinalRoomEntry:
+World3_ResetPersistObjsOnFinalRoomEntry:
     LDA World3TransitionTargetRoom
     CMP #$3F
     BNE Bank2_Label_A6BE
@@ -136,7 +136,7 @@ World3_ResetPersistentObjectsForFinalRoomEntry:
 Bank2_Label_A6BE:
     RTS
 
-World3_ResetPersistentObjectsForActiveBossRoom:
+World3_ResetPersistObjsForActiveBossRoom:
     LDA World3TransitionTargetRoom
     CMP #$27
     BEQ Bank2_Label_A6CE
@@ -234,7 +234,7 @@ World3_LoadCurrentRoom:
     JSR World3_ClearEntityStorage
     JSR World3_ClampPersistentObjectsAtRoomEdges
     JSR World3_MaterializeRoomObjects
-    JSR World3_AdvanceRandomEncounterRoomTowardPlayer
+    JSR World3_StepRandomEncounterTowardPlayer
     JSR World3_TrySpawnDragonEncounter
     LDA World3FinalCompanionsFreed
     BEQ Bank2_Label_A761

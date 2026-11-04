@@ -108,7 +108,7 @@ World1_CheckCityObjectInteraction:
     RTS
 
 Bank0_Label_C9AA:
-    CMP a:World1_ObjectInteractionHitboxXByTypeMinusOne,Y
+    CMP a:World1_ObjectHitboxXByTypeMinus1,Y
     BCS Bank0_Label_C9CD
 
 Bank0_Label_C9AF:
@@ -116,12 +116,12 @@ Bank0_Label_C9AF:
     SEC
     SBC a:World1EntityY+$26,X
     BCS Bank0_Label_C9BD
-    CMP a:World1_ObjectInteractionHitboxYNegativeByTypeMinusOne,Y
+    CMP a:World1_ObjectHitboxYNegByTypeMinus1,Y
     BCS Bank0_Label_C9C2
     RTS
 
 Bank0_Label_C9BD:
-    CMP a:World1_ObjectInteractionHitboxYPositiveByTypeMinusOne,Y
+    CMP a:World1_ObjectHitboxYPosByTypeMinus1,Y
     BCS Bank0_Label_C9CD
 
 Bank0_Label_C9C2:
@@ -153,7 +153,7 @@ World1_JumpToCityItemHandler:
 Bank0_Label_C9E0:
     RTS
 
-World1_ResolvePlayerProjectileCityObjectHit:
+World1_ResolveProjectileCityObjectHit:
     AND #$7F
     TAX
     LDA a:World1EntityPositionHigh+$26,Y
@@ -220,7 +220,7 @@ Bank0_Label_CA37:
     STA a:World1EntityType+$26,Y
     CMP #$0A
     BNE Bank0_Label_CA59
-    JSR World1_CollectProgrammerFaceAndClearProjectiles
+    JSR World1_CollectProgrammerFaceClearShots
     JMP Bank0_Label_CA5E
 
 Bank0_Label_CA59:

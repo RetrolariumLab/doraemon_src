@@ -26,7 +26,7 @@ Bank0_Label_9222:
     LDA a:World1EntityType+$26,Y
     BEQ Bank0_Label_9230
     BPL Bank0_Label_9230
-    JSR World1_ResolvePlayerProjectileCityObjectHit
+    JSR World1_ResolveProjectileCityObjectHit
 
 Bank0_Label_9230:
     INC $96

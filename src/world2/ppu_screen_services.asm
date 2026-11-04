@@ -271,7 +271,7 @@ Bank1_Label_85EF:
 Bank1_Label_85F5:
     .byte $FC, $F3
 
-World2_UploadVerticalTileColumnsBAndAttributes:
+World2_UploadVertTileColumnsBAndAttrs:
     LDA PpuCtrlShadow
     ORA #$04
     STA a:PPU_CTRL

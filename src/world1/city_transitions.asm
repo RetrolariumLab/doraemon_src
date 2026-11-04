@@ -1,7 +1,7 @@
 ; World 1 city item interactions and door transition sequence
 ; PRG bank 0, original CPU range $CB61-$CDB4
 
-World1_CollectProgrammerFaceAndClearProjectiles:
+World1_CollectProgrammerFaceClearShots:
     TXA
     PHA
     TYA
@@ -108,7 +108,7 @@ World1_ObjectDescriptorMetaspriteField:
 World1_ObjectDescriptorRenderFlagsField:
     .byte $01
 
-World1_ObjectDescriptorPrimaryBehaviorField:
+World1_ObjectDescPrimaryBehaviorField:
     .byte $03, $02, $25, $01, $03, $03, $2E, $01, $03, $04, $2D, $00, $03, $05, $2F, $01
     .byte $10, $06, $00, $01, $02, $07, $30, $01, $02, $08, $34, $01, $02, $09, $16, $01
     .byte $04, $0A, $14, $01, $20, $0B, $28, $01, $02, $0C, $17, $00, $02, $0D, $35, $03
@@ -119,13 +119,13 @@ World1_ObjectProjectileHitboxXByType:
 World1_ObjectProjectileHitboxYByType:
     .byte $0C, $05, $28, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
 
-World1_ObjectInteractionHitboxXByTypeMinusOne:
+World1_ObjectHitboxXByTypeMinus1:
     .byte $14, $1C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
 
-World1_ObjectInteractionHitboxYNegativeByTypeMinusOne:
+World1_ObjectHitboxYNegByTypeMinus1:
     .byte $E8, $FF, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC, $EC
 
-World1_ObjectInteractionHitboxYPositiveByTypeMinusOne:
+World1_ObjectHitboxYPosByTypeMinus1:
     .byte $00, $18, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C, $0C
 
 World1_TryEnterAnywhereDoor:

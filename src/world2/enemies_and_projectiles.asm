@@ -419,7 +419,7 @@ Bank1_Label_91C8:
 Bank1_Label_91CC:
     RTS
 
-World2_RenderProjectilesAndInventoryAttacks:
+World2_RenderShotsAndInventoryAttacks:
     JSR World2_RenderInventorySlot2Attack
     JSR World2_RenderInventorySlot0Projectile
     LDY #$D8
@@ -567,7 +567,7 @@ Bank1_Label_92A1:
     SEC
     SBC $6D
     BCC Bank1_Label_92B6
-    JSR World2_PrepareSlot2HorizontalAttackSegment
+    JSR World2_PrepareSlot2HorizAttackSegment
     SEC
     SBC $6D
     JSR World2_SetSpriteXBeforeFlickerEmit
@@ -592,7 +592,7 @@ Bank1_Label_92CA:
     CLC
     ADC $6D
     BCS Bank1_Label_92DF
-    JSR World2_PrepareSlot2HorizontalAttackSegment
+    JSR World2_PrepareSlot2HorizAttackSegment
     CLC
     ADC $6D
     JSR World2_SetSpriteXBeforeFlickerEmit

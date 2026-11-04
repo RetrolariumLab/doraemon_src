@@ -120,7 +120,7 @@ Bank2_Label_8C24:
 
 World3_ClampPersistentObjectsAtRoomEdges:
     LDX World3CurrentRoom
-    LDA a:World3_RoomObjectHorizontalClampModeByRoom,X
+    LDA a:World3_ObjectHorizClampModeByRoom,X
     BEQ Bank2_Label_8C6C
     TAX
     LDY #$00
@@ -161,7 +161,7 @@ Bank2_Label_8C67:
 Bank2_Label_8C6C:
     RTS
 
-World3_RoomObjectHorizontalClampModeByRoom:
+World3_ObjectHorizClampModeByRoom:
     .byte $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
     .byte $01, $02, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $01, $02, $00
     .byte $01, $02, $00, $00, $00, $01, $02, $00, $00, $00, $00, $00, $00, $00, $00, $00
@@ -245,7 +245,7 @@ Bank2_Label_8D29:
     LDA a:World3EntityPersistentState,X
     CMP $3E
     BNE Bank2_Label_8D4C
-    JSR World3_CarryPersistentObjectIntoTargetRoom
+    JSR World3_CarryPersistentObjectToTargetRoom
     BCS Bank2_Label_8D46
     LDA World3CurrentRoom
     STA a:World3RoomObjectRoom,Y
@@ -264,7 +264,7 @@ Bank2_Label_8D4C:
     BNE Bank2_Label_8D03
     RTS
 
-World3_CarryPersistentObjectIntoTargetRoom:
+World3_CarryPersistentObjectToTargetRoom:
     STX $3F
     LDA World3FollowerActive
     BEQ Bank2_Label_8DA4

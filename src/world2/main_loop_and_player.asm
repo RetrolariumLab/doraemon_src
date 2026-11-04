@@ -112,7 +112,7 @@ Bank1_World2FrameLoop:
     JSR World2_CheckStageBranch
     JSR World2_UpdateInventorySpawns
     JSR World2_RenderFrame
-    JSR World2_UpdateMicrophoneAttackAndExtraLifeSound
+    JSR World2_UpdateMicAttackAndExtraLifeSound
     JSR World2_CheckChapterCompletionExit
     LDA World2ChapterComplete
     BNE Bank1_Label_89D1
@@ -212,7 +212,7 @@ World2_WaitAndRenderFrame:
 
 World2_RenderFrame:
     JSR World2_HideAllSpriteBuffers
-    JSR World2_RenderProjectilesAndInventoryAttacks
+    JSR World2_RenderShotsAndInventoryAttacks
     JSR World2_RenderPriorityInventorySlots2And3
     JSR World2_RenderEnemies
     JSR World2_RenderEnemyProjectiles
@@ -369,7 +369,7 @@ Bank1_Label_8B14:
     JSR World2_ExpandVerticalMetatileColumn
     JSR World2_UploadVerticalTileColumnsA
     JSR World2_MergeVerticalAttributes
-    JSR World2_UploadVerticalTileColumnsBAndAttributes
+    JSR World2_UploadVertTileColumnsBAndAttrs
     LDA World2ScrollX
     CLC
     ADC #$10
@@ -414,7 +414,7 @@ Bank1_Label_8B58:
 Bank1_Label_8B64:
     RTS
 
-World2_UpdateMicrophoneAttackAndExtraLifeSound:
+World2_UpdateMicAttackAndExtraLifeSound:
     LDA World2MicrophoneAttackUsed
     BNE Bank1_Label_8B92
     LDA World2InventoryState

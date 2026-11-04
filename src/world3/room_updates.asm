@@ -260,10 +260,10 @@ World3_UpdateGiantOctopusTentacle:
     STA World3OctopusTerminalAnchorY
 
 Bank2_Label_AA4E:
-    JSR World3_ConstrainGiantOctopusTentacleSegments
+    JSR World3_ClampGiantOctopusTentacleSegments
     RTS
 
-World3_ConstrainGiantOctopusTentacleSegments:
+World3_ClampGiantOctopusTentacleSegments:
     LDY #$F2
     LDA a:World3EntityX,X
     CMP $00
@@ -332,7 +332,7 @@ World3_UpdateTentacleSegmentPosition:
     JSR World3_AdvancePackedRateCounter
     STA a:World3EntityFrameCounter,X
     BCC Bank2_Label_AAF0
-    JSR World3_StepWorkPositionTowardNearestAnchor
+    JSR World3_StepWorkPosTowardNearestAnchor
     LDX $02
     LDA $3C
     SEC
@@ -352,7 +352,7 @@ World3_UpdateTentacleSegmentPosition:
 Bank2_Label_AAF0:
     RTS
 
-World3_StepWorkPositionTowardNearestAnchor:
+World3_StepWorkPosTowardNearestAnchor:
     LDA $3C
     SEC
     SBC $08

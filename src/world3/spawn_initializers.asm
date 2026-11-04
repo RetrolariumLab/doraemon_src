@@ -20,7 +20,7 @@ Bank2_Label_8F6D:
     .byte $8F, $A3, $8F, $BF, $8F, $DB, $8F, $28, $90, $2E, $90, $2F, $90, $44, $90
     .byte $71, $90, $AA, $90, $AB, $90, $AE, $90, $AF, $90, $B2, $90, $B2, $90, $B2, $90
 
-World3_InitTransientType00TurtleOrBattleFish:
+World3_InitType00TurtleOrBattleFish:
     LDA World3CurrentRoom
     CMP #$10
     BCC Bank2_Label_8FA2
@@ -72,7 +72,7 @@ World3_InitTransientType02VolcanicRock:
 Bank2_Label_8FDA:
     RTS
 
-World3_InitTransientType03GyokkunOrGansuke:
+World3_InitType03GyokkunOrGansuke:
     LDY World3CurrentRoom
     LDA a:World3_Type03GansukeMetaspriteByRoom,Y
     BEQ Bank2_Label_8FE7
@@ -96,7 +96,7 @@ World3_InitTransientType04Skull:
 World3_InitTransientType05Ghost:
     RTS
 
-World3_InitTransientType06PunishmentRoomSwarm:
+World3_InitType06PunishmentRoomSwarm:
     JSR World3_RandomByte
     CMP #$64
     BCS Bank2_Label_9043
@@ -167,7 +167,7 @@ Bank2_Label_9092:
     JMP Bank2_Label_90A4
 
 Bank2_Label_9099:
-    JSR World3_CreateGiantOctopusFormationTypes08To09
+    JSR World3_CreateGiantOctopusFormation08To09
     BCC Bank2_Label_90A4
     LDA #$03
     STA a:AudioMusicState
@@ -188,12 +188,12 @@ World3_InitTransientType0BDragonSegment:
     RTS
 
 World3_InitTransientType0CPoseidon:
-    JSR World3_CreatePoseidonFormationTypes0CTo0F
+    JSR World3_CreatePoseidonFormation0CTo0F
 
 World3_InitTransientTypes0DTo0F:
     RTS
 
-World3_CreatePoseidonFormationTypes0CTo0F:
+World3_CreatePoseidonFormation0CTo0F:
     LDY #$00
     JMP Bank2_Label_90BD
 

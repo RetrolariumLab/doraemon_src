@@ -85,7 +85,7 @@ World2_EnemyUpdateDispatchContinuation:
     STA $98
     LDA a:World2EnemyY,X
     STA $99
-    JSR World2_TestCurrentEnemyAgainstPlayerAttacks
+    JSR World2_TestCurrentEnemyVsPlayerAttacks
     BCC Bank1_Label_99E0
     INC a:World2EnemyDamageCounter,X
     LDA a:World2EnemyState,X
@@ -213,7 +213,7 @@ Bank1_Label_9A3F:
 Bank1_Label_9A45:
     RTS
 
-World2_TestCurrentEnemyAgainstPlayerAttacks:
+World2_TestCurrentEnemyVsPlayerAttacks:
     STX World2EnemyCollisionSlot
     LDA DemoModeActive
     BNE Bank1_Label_9A52

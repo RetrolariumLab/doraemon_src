@@ -183,7 +183,7 @@ Bank0_Label_8E5F:
     LDA World1CurrentPlacementId
     STA a:World1EntitySourceObjectId,X
     JSR World1_MarkObjectSpawned
-    LDA a:World1_ObjectDescriptorPrimaryBehaviorField,Y
+    LDA a:World1_ObjectDescPrimaryBehaviorField,Y
     STA a:World1EntityPrimaryBehavior,X
     JMP World1_InitializeEntityPosition
 
