@@ -22,10 +22,12 @@ the matching effect countdown and skip the physical write while that countdown
 is nonzero. Thus the timer is an APU ownership lease, not a pause of the logical
 music interpreter.
 
-Track initialization is the deliberate exception. `Audio_ResetChannels` and its
-three world-local copies initialize all four APU channels without testing the
-effect timers, so a new track can overwrite an effect on its first frame.
-Subsequent music writes return to the timer-guarded paths.
+Track initialization is the deliberate exception. `Audio_ResetChannels`
+initializes all four APU channels without testing the effect timers, so a new
+track can overwrite an effect on its first frame. Subsequent music writes return
+to the timer-guarded paths. The banks assemble their APU writers and channel
+reset from [the same source](../src/audio/apu_macros.inc), with the local sound
+sequences between the two blocks.
 
 `$02A2` rejects an equal-priority retrigger while an effect is active; stop and
 reset paths clear it. `$02A7-$02A9` are effect-private work bytes whose more

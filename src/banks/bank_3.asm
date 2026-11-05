@@ -20,8 +20,10 @@
 .include "../data/ending_opening_nametable.asm"
 ; $9784-$9C1C: Audio-effect request tables, arbitration, and primary handlers
 .include "../audio/effect_dispatch.asm"
-; $9C1D-$9ED7: Remaining audio-effect handlers and APU write helpers
+; $9C1D-$9E23: Remaining audio-effect handlers
 .include "../audio/effect_handlers.asm"
+; $9E24-$9ED7: APU write helpers, sound sequences, and channel reset
+.include "../audio/apu_helpers.asm"
 ; $9ED8-$A30E: Music sequencer, commands, and stream reader
 .include "../audio/music_engine.asm"
 ; $A30F-$B1BB: Shell APU tables, track headers, header-reachable streams, and adjacent unclassified data
