@@ -572,4 +572,4 @@ Bank3_Label_9C15:
     DEC a:AudioEffectWork0
     RTS
 Bank3_Label_9C19:
-    .incbin "assets/generated/audio/sfx/prg3-tone-low.bin", $0, $4  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-tone-low.bin"

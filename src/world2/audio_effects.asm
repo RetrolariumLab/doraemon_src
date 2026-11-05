@@ -459,7 +459,7 @@ Bank1_Label_AB6A:
     DEC a:AudioEffectWork0
     RTS
 Bank1_Label_AB6E:
-    .incbin "assets/generated/audio/sfx/prg3-tone-low.bin", $0, $4  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg1-tone-low.bin"
 
 World2_Sfx_InitPulse2PitchSequenceBase:
     LDY #$14
@@ -498,11 +498,7 @@ Bank1_Label_ABB1:
 Bank1_Label_ABB2:
     JMP World2_Audio_StopCurrentEffect
 Bank1_Label_ABB5:
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $10, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $20, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $30, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $40, $A  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg1-pitch-periods.bin"
 
 World2_Sfx_InitTrianglePitchDescent:
     LDA #$10

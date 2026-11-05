@@ -157,7 +157,7 @@ Bank0_Label_E7A7:
     DEC a:AudioEffectWork0
     RTS
 Bank0_Label_E7AB:
-    .incbin "assets/generated/audio/sfx/prg3-tone-low.bin", $0, $4  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg0-tone-low.bin"
 
 World1_Sfx_InitPulse2PitchSequenceBase:
     LDY #$14
@@ -199,13 +199,8 @@ Bank0_Label_E7EF:
     JMP World1_Audio_StopCurrentEffect
 
 World1_AudioEffectPitchPeriods:
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $0, $1  ; rom-asset .byte
-Bank0_Label_E7F3:
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $1, $F  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $10, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $20, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $30, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $40, $A  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg0-pitch-periods.bin"
+Bank0_Label_E7F3 = World1_AudioEffectPitchPeriods + 1
 
 World1_Sfx_InitTrianglePitchDescent:
     LDA #$10
@@ -329,7 +324,6 @@ Bank0_Label_E91F:
     .byte $A9, $08, $D0, $CE, $A9, $10, $D0, $CA, $4C, $FA, $E8, $4C, $24, $E9, $4C, $FA
     .byte $E8
 Bank0_Label_E931:
-    .incbin "assets/generated/audio/sfx/prg0-pulse-control.bin", $0, $2  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg0-pulse-control.bin"
 Bank0_Label_E933:
-    .incbin "assets/generated/audio/sfx/prg0-pulse-steps.bin", $0, $D  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg0-pulse-steps.bin", $D, $9  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg0-pulse-steps.bin"

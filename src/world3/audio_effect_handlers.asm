@@ -366,7 +366,7 @@ Bank2_Label_C29F:
     DEC a:AudioEffectWork0
     RTS
 Bank2_Label_C2A3:
-    .incbin "assets/generated/audio/sfx/prg3-tone-low.bin", $0, $4  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg2-tone-low.bin"
 
 World3_Sfx_InitPulse2PitchSequenceBase:
     LDY #$14
@@ -407,11 +407,7 @@ Bank2_Label_C2E6:
 Bank2_Label_C2E7:
     JMP World3_Audio_StopCurrentEffect
 Bank2_Label_C2EA:
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $10, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $20, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $30, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $40, $A  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg2-pitch-periods.bin"
 
 World3_Sfx_InitTrianglePitchDescent:
     LDA #$10
@@ -535,7 +531,6 @@ Bank2_Label_C417:
     .byte $A9, $08, $D0, $CE, $A9, $10, $D0, $CA, $4C, $F2, $C3, $4C, $1C, $C4, $4C, $F2
     .byte $C3
 Bank2_Label_C429:
-    .incbin "assets/generated/audio/sfx/prg2-pulse-control.bin", $0, $2  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg2-pulse-control.bin"
 Bank2_Label_C42B:
-    .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin", $0, $D  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin", $D, $9  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg2-pulse-steps.bin"

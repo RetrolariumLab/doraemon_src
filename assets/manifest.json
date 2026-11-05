@@ -54,6 +54,13 @@
       "sha1": "1f70c58110a45b1ce2fa686695283c91c2dbe7c9"
     },
     {
+      "path": "audio/sfx/prg0-tone-low.bin",
+      "image": "original",
+      "offset": 26555,
+      "size": 4,
+      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf"
+    },
+    {
       "path": "audio/sfx/prg0-pulse-control.bin",
       "image": "original",
       "offset": 26945,
@@ -66,6 +73,34 @@
       "offset": 26947,
       "size": 22,
       "sha1": "c8758c07ae56406f13b247f7470151cb18fd4cc8"
+    },
+    {
+      "path": "audio/sfx/prg1-tone-low.bin",
+      "image": "original",
+      "offset": 43902,
+      "size": 4,
+      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf"
+    },
+    {
+      "path": "audio/sfx/prg1-pitch-periods.bin",
+      "image": "original",
+      "offset": 43973,
+      "size": 74,
+      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8"
+    },
+    {
+      "path": "audio/sfx/prg2-tone-low.bin",
+      "image": "original",
+      "offset": 82611,
+      "size": 4,
+      "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf"
+    },
+    {
+      "path": "audio/sfx/prg2-pitch-periods.bin",
+      "image": "original",
+      "offset": 82682,
+      "size": 74,
+      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8"
     },
     {
       "path": "audio/sfx/prg2-pulse-control.bin",
@@ -89,11 +124,32 @@
       "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8"
     },
     {
+      "path": "audio/sfx/prg3-pulse-control.bin",
+      "image": "original",
+      "offset": 106012,
+      "size": 2,
+      "sha1": "7df32e720763ca992447dbb8cf9c15196d6c093c"
+    },
+    {
+      "path": "audio/sfx/prg3-pulse-steps.bin",
+      "image": "original",
+      "offset": 106014,
+      "size": 22,
+      "sha1": "c8758c07ae56406f13b247f7470151cb18fd4cc8"
+    },
+    {
       "path": "audio/sfx/prg3-tone-low.bin",
       "image": "original",
       "offset": 105513,
       "size": 4,
       "sha1": "75aef09328d3508b6d18853ee22896312fc95bdf"
+    },
+    {
+      "path": "audio/sfx/prg0-pitch-periods.bin",
+      "image": "original",
+      "offset": 26626,
+      "size": 74,
+      "sha1": "0faf586b1bcc0b56bef6e0108652fbf21eac8bb8"
     }
   ]
 }

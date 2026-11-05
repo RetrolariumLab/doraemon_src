@@ -40,11 +40,7 @@ Bank3_Label_9C5C:
 Bank3_Label_9C5D:
     JMP Audio_StopCurrentEffect
 Bank3_Label_9C60:
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $10, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $20, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $30, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin", $40, $A  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pitch-periods.bin"
 
 AudioEffect_InitTrianglePitchDescent:
     LDA #$10
@@ -244,10 +240,9 @@ AudioEffect_InitPulsePairNoiseTail:
     LDA #$0A
     JMP Apu_WritePulse2Timer
 Bank3_Label_9E0C:
-    .incbin "assets/generated/audio/sfx/prg0-pulse-control.bin", $0, $2  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pulse-control.bin"
 Bank3_Label_9E0E:
-    .incbin "assets/generated/audio/sfx/prg0-pulse-steps.bin", $0, $E  ; rom-asset .byte
-    .incbin "assets/generated/audio/sfx/prg0-pulse-steps.bin", $E, $8  ; rom-asset .byte
+    .incbin "assets/generated/audio/sfx/prg3-pulse-steps.bin"
 
 Apu_WritePulse1ControlSweep:
     STA a:APU_PL1_VOL

@@ -44,218 +44,36 @@ World1_MusicTrackHeaderIndexBase:
     .byte $01
 
 World1_MusicTrackHeaders:
-    .byte $E2, $F9, $9F, $FA, $66, $FB, $2A, $FC, $3B, $F0, $69, $F0, $7B, $F0, $C2, $F0
-    .byte $03, $F1, $0E, $F1, $15, $F1, $61, $F9, $4D, $F1, $00, $F2, $B4, $F2, $56, $F3
-    .byte $B6, $F3, $B0, $F4, $75, $F5, $E0, $F5, $08, $F6, $39, $F7, $5A, $F8, $61, $F9
-    .byte $13, $F9, $2F, $F9, $41, $F9, $61, $F9, $62, $F9, $88, $F9, $AD, $F9, $CF, $F9
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $10, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $20, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $30, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $40, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $50, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $60, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $70, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $80, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $90, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $100, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $110, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $120, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $130, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $140, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $150, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $160, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $170, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $180, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $190, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $1A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $1B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $1C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $1D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $1E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $1F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $200, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $210, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $220, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $230, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $240, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $250, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $260, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $270, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $280, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $290, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $2A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $2B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $2C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $2D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $2E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $2F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $300, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $310, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $320, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $330, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $340, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $350, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $360, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $370, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $380, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $390, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $3A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $3B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $3C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $3D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $3E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $3F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $400, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $410, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $420, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $430, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $440, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $450, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $460, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $470, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $480, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $490, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $4A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $4B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $4C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $4D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $4E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $4F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $500, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $510, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $520, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $530, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $540, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $550, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $560, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $570, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $580, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $590, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $5A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $5B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $5C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $5D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $5E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $5F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $600, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $610, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $620, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $630, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $640, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $650, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $660, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $670, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $680, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $690, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $6A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $6B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $6C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $6D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $6E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $6F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $700, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $710, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $720, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $730, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $740, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $750, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $760, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $770, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $780, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $790, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $7A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $7B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $7C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $7D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $7E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $7F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $800, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $810, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $820, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $830, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $840, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $850, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $860, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $870, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $880, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $890, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $8A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $8B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $8C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $8D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $8E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $8F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $900, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $910, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $920, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $930, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $940, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $950, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $960, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $970, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $980, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $990, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $9A0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $9B0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $9C0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $9D0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $9E0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $9F0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A00, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A10, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A20, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A30, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A40, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A50, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A60, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A70, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A80, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $A90, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $AA0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $AB0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $AC0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $AD0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $AE0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $AF0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B00, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B10, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B20, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B30, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B40, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B50, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B60, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B70, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B80, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $B90, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $BA0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $BB0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $BC0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $BD0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $BE0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $BF0, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C00, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C10, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C20, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C30, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C40, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C50, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C60, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C70, $10  ; rom-asset .byte
-    .incbin "assets/generated/audio/music/prg0-f03b.bin", $C80, $4  ; rom-asset .byte
-    .byte $15, $00, $01, $44, $0B, $05, $03, $04, $26, $02, $9E, $48
-    .byte $03, $0A, $3A, $02, $01, $06, $12, $04, $02, $46, $1C, $02, $26, $04, $02, $06
-    .byte $1D, $04, $0E, $01, $0B, $08, $04, $48, $08, $40, $12, $00, $61, $42, $0D, $08
-    .byte $0F, $40, $36, $02, $0F, $00, $35, $41, $0F, $00, $22, $02, $2F, $40, $26, $01
-    .byte $20, $40, $19, $02, $60, $40, $19, $08, $01, $41, $03, $41, $08, $40, $19, $00
-    .byte $12, $04, $55, $05, $1C, $01, $10, $05, $01, $41, $09, $00, $06, $01, $0A, $40
-    .byte $21, $00, $09, $01, $00, $00, $00, $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+    .addr World1_MusicStreams + $09A7, World1_MusicStreams + $0A64
+    .addr World1_MusicStreams + $0B2B, World1_MusicStreams + $0BEF
+    .addr World1_MusicStreams, World1_MusicStreams + $002E
+    .addr World1_MusicStreams + $0040, World1_MusicStreams + $0087
+    .addr World1_MusicStreams + $00C8, World1_MusicStreams + $00D3
+    .addr World1_MusicStreams + $00DA, World1_MusicStreams + $0926
+    .addr World1_MusicStreams + $0112, World1_MusicStreams + $01C5
+    .addr World1_MusicStreams + $0279, World1_MusicStreams + $031B
+    .addr World1_MusicStreams + $037B, World1_MusicStreams + $0475
+    .addr World1_MusicStreams + $053A, World1_MusicStreams + $05A5
+    .addr World1_MusicStreams + $05CD, World1_MusicStreams + $06FE
+    .addr World1_MusicStreams + $081F, World1_MusicStreams + $0926
+    .addr World1_MusicStreams + $08D8, World1_MusicStreams + $08F4
+    .addr World1_MusicStreams + $0906, World1_MusicStreams + $0926
+    .addr World1_MusicStreams + $0927, World1_MusicStreams + $094D
+    .addr World1_MusicStreams + $0972, World1_MusicStreams + $0994
+
+World1_MusicStreams:
+    .incbin "assets/generated/audio/music/prg0-f03b.bin"
+.assert * - World1_MusicStreams = $0C84, error, "music slice size changed"
+.assert World1_MusicStreams = $F03B, lderror, "music slice address changed"
+
+; Adjacent bytes outside the decoded stream ranges
+    .byte $15, $00, $01, $44, $0B, $05, $03, $04, $26, $02, $9E, $48, $03, $0A, $3A, $02
+    .byte $01, $06, $12, $04, $02, $46, $1C, $02, $26, $04, $02, $06, $1D, $04, $0E, $01
+    .byte $0B, $08, $04, $48, $08, $40, $12, $00, $61, $42, $0D, $08, $0F, $40, $36, $02
+    .byte $0F, $00, $35, $41, $0F, $00, $22, $02, $2F, $40, $26, $01, $20, $40, $19, $02
+    .byte $60, $40, $19, $08, $01, $41, $03, $41, $08, $40, $19, $00, $12, $04, $55, $05
+    .byte $1C, $01, $10, $05, $01, $41, $09, $00, $06, $01, $0A, $40, $21, $00, $09, $01
+    .byte $00, $00, $00, $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
@@ -300,4 +118,4 @@ World1_MusicTrackHeaders:
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
     .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
+    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF

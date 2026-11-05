@@ -133,6 +133,10 @@ other bank-local code misleading.
 
 ### Reachable streams
 
+`make split` extracts the five reachable music spans and the indexed SFX pitch,
+control and step tables from Japan PRG0 into `assets/generated/audio/`. The
+source retains the channel pointers, effect dispatch and direct APU writes.
+
 The static interpreter models counted loops, saved-position loops, channel-start
 jumps, and the single-level call/return slot. It classifies 8,929 unique events
 covering 10,016 stream bytes plus 208 header bytes.
