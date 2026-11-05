@@ -41,6 +41,10 @@ table. The stored priority is therefore both an arbitration rank and the byte
 offset of the pair. World 1, World 3, and the shell expose 26 requests; World 2
 uses a 15-request subset with its own permutation.
 
+The banks assemble their queues, timer arbitration, dispatch, and reset from
+[one source](../src/audio/sfx_dispatch_shared.inc). Each bank supplies its own
+request limit, scratch bytes, and table addresses.
+
 Each role records its handler pair, effect-timer leases, APU channels actually
 written, and directly observed synthesis behavior. These names deliberately
 describe register and state transitions rather than unproved in-game sound

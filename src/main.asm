@@ -17,6 +17,7 @@
 .include "memory/ram.inc"
 .include "common/boot_macros.inc"
 .include "audio/apu_macros.inc"
+.include "audio/sfx_dispatch_macros.inc"
 .include "audio/music_macros.inc"
 
 .include "banks/bank_0.asm"

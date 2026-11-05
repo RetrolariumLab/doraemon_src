@@ -15,124 +15,20 @@ World3_AudioEffect_RtsDispatchTable:
     .byte $1B, $C2, $2F, $C2, $F3, $BF, $22, $BF
 
 World3_Audio_QueueEffectWithPriority:
-    CMP #$1A
-    BCS Bank2_Label_BEAE
-    STX $D1
-    LDX a:AudioEffectRequestState
-    BMI Bank2_Label_BEA9
-    STY $D2
-    TAY
-    LDA a:World3_AudioEffect_RequestPriority,X
-    CMP a:World3_AudioEffect_RequestPriority,Y
-    BCC Bank2_Label_BEAF
-    TYA
-    LDY $D2
+.define SfxCorePrefix "World3_"
+.scope Bank2SfxDispatch
+SfxBank = 2
+SfxCoreCpuBase = $BE90
+SfxRequestLimit = $1A
+SfxDispatchLimit = SfxRequestLimit * 4
+SfxSavedX = $D1
+SfxSavedY = SfxSavedX + 1
+RequestPriority = ::World3_AudioEffect_RequestPriority
+EffectDispatchTable = ::World3_AudioEffect_RtsDispatchTable
 
-Bank2_Label_BEA9:
-    STA a:AudioEffectRequestState
-
-Bank2_Label_BEAC:
-    LDX $D1
-
-Bank2_Label_BEAE:
-    RTS
-
-Bank2_Label_BEAF:
-    LDY $D2
-    JMP Bank2_Label_BEAC
-
-World3_Audio_QueueEffect:
-    CMP #$1A
-    BCS Bank2_Label_BEAE
-    STX $D1
-    LDX #$00
-    STX a:AudioCurrentEffectPriority
-    STA a:AudioEffectRequestState
-    LDX $D1
-    RTS
-
-World3_Audio_UpdateEffects:
-    LDX #$03
-
-Bank2_Label_BEC7:
-    LDA a:AudioEffectTimers,X
-    BEQ Bank2_Label_BECF
-    DEC a:AudioEffectTimers,X
-
-Bank2_Label_BECF:
-    DEX
-    BPL Bank2_Label_BEC7
-    LDA a:AudioEffectRequestState
-    BMI Bank2_Label_BF0C
-    TAX
-    ORA #$80
-    STA a:AudioEffectRequestState
-    CPX #$1A
-    BCS Bank2_Label_BF0C
-    LDA a:AudioCurrentEffectPriority
-    BEQ Bank2_Label_BEF5
-    LDA a:World3_AudioEffect_RequestPriority,X
-    CMP a:AudioCurrentEffectPriority
-    BCC Bank2_Label_BEF5
-    BNE Bank2_Label_BF0C
-    LDA a:AudioEffectRetriggerLock
-    BNE Bank2_Label_BF0C
-
-Bank2_Label_BEF5:
-    LDA a:World3_AudioEffect_RequestPriority,X
-    STA a:AudioCurrentEffectPriority
-    TAX
-    LDA #$00
-    STA a:AudioEffectTimers
-    STA a:AudioEffectTimers+$01
-    STA a:AudioEffectTimers+$02
-    STA a:AudioEffectTimers+$03
-    BEQ Bank2_Label_BF11
-
-Bank2_Label_BF0C:
-    LDX a:AudioCurrentEffectPriority
-    INX
-    INX
-
-Bank2_Label_BF11:
-    CPX #$68
-    BCS World3_Audio_StopCurrentEffect
-    LDA a:World3_AudioEffect_RtsDispatchTable+1,X
-    PHA
-    LDA a:World3_AudioEffect_RtsDispatchTable,X
-    PHA
-    RTS
-
-World3_AudioEffect_UpdateTimedStop:
-    DEC a:AudioEffectWork0
-    BNE World3_AudioEffect_NoOp
-
-World3_Audio_StopCurrentEffect:
-    LDA #$00
-    STA a:AudioCurrentEffectPriority
-    STA a:AudioEffectRetriggerLock
-
-World3_AudioEffect_NoOp:
-    RTS
-
-World3_Audio_ResetEffects:
-    LDA #$00
-    STA a:AudioEffectRetriggerLock
-    STA a:$4011
-    STA a:AudioEffectTimers
-    STA a:AudioEffectTimers+$01
-    STA a:AudioEffectTimers+$02
-    STA a:AudioEffectTimers+$03
-    STA a:APU_TRI_LINEAR
-    STA a:APU_NOISE_VOL
-    LDA #$18
-    STA a:APU_TRI_HI
-    LDA #$10
-    STA a:APU_PL1_VOL
-    STA a:APU_PL2_VOL
-    LDA #$0F
-    STA a:APU_STATUS
-    RTS
+    .include "../audio/sfx_dispatch_shared.inc"
+.endscope
+.undefine SfxCorePrefix
 
 World3_AudioEffect_InitNoiseSweep:
     LDA #$18

@@ -12,106 +12,22 @@ AudioEffect_RtsDispatchTable:
     .byte $DA, $9C, $F5, $9C, $B1, $9A, $93, $98, $83, $9A, $93, $98, $CA, $9A, $E1, $9A
     .byte $8B, $99, $30, $9C, $93, $99, $30, $9C, $A9, $9C, $BD, $9C, $9B, $9A, $93, $98
     .byte $60, $9B, $93, $98, $7B, $9B, $93, $98, $CE, $98, $F0, $98, $CE, $98, $39, $99
-    .byte $91, $9B, $A5, $9B, $69, $99, $98, $98, $C9, $1A, $B0, $1A, $86, $49, $AE, $A0
-    .byte $02, $30, $0E, $84, $4A, $A8, $BD, $84, $97, $D9, $84, $97, $90, $09, $98, $A4
-    .byte $4A, $8D, $A0, $02, $A6, $49
+    .byte $91, $9B, $A5, $9B, $69, $99, $98, $98
 
-Bank3_Label_9824:
-    RTS
-    .byte $A4, $4A, $4C, $22, $98
+.define SfxCorePrefix ""
+.scope Bank3SfxDispatch
+SfxBank = 3
+SfxCoreCpuBase = $9806
+SfxRequestLimit = $1A
+SfxDispatchLimit = SfxRequestLimit * 4
+SfxSavedX = $49
+SfxSavedY = SfxSavedX + 1
+RequestPriority = ::AudioEffect_RequestPriority
+EffectDispatchTable = ::AudioEffect_RtsDispatchTable
 
-Audio_QueueEffect:
-    CMP #$1A
-    BCS Bank3_Label_9824
-    STX $49
-    LDX #$00
-    STX a:AudioCurrentEffectPriority
-    STA a:AudioEffectRequestState
-    LDX $49
-    RTS
-
-Audio_UpdateEffects:
-    LDX #$03
-
-Bank3_Label_983D:
-    LDA a:AudioEffectTimers,X
-    BEQ Bank3_Label_9845
-    DEC a:AudioEffectTimers,X
-
-Bank3_Label_9845:
-    DEX
-    BPL Bank3_Label_983D
-    LDA a:AudioEffectRequestState
-    BMI Bank3_Label_9882
-    TAX
-    ORA #$80
-    STA a:AudioEffectRequestState
-    CPX #$1A
-    BCS Bank3_Label_9882
-    LDA a:AudioCurrentEffectPriority
-    BEQ Bank3_Label_986B
-    LDA a:AudioEffect_RequestPriority,X
-    CMP a:AudioCurrentEffectPriority
-    BCC Bank3_Label_986B
-    BNE Bank3_Label_9882
-    LDA a:AudioEffectRetriggerLock
-    BNE Bank3_Label_9882
-
-Bank3_Label_986B:
-    LDA a:AudioEffect_RequestPriority,X
-    STA a:AudioCurrentEffectPriority
-    TAX
-    LDA #$00
-    STA a:AudioEffectTimers
-    STA a:AudioEffectTimers+$01
-    STA a:AudioEffectTimers+$02
-    STA a:AudioEffectTimers+$03
-    BEQ Bank3_Label_9887
-
-Bank3_Label_9882:
-    LDX a:AudioCurrentEffectPriority
-    INX
-    INX
-
-Bank3_Label_9887:
-    CPX #$68
-    BCS Audio_StopCurrentEffect
-    LDA a:AudioEffect_RtsDispatchTable+1,X
-    PHA
-    LDA a:AudioEffect_RtsDispatchTable,X
-    PHA
-    RTS
-
-AudioEffect_UpdateTimedStop:
-    DEC a:AudioEffectWork0
-    BNE AudioEffect_NoOp
-
-Audio_StopCurrentEffect:
-    LDA #$00
-    STA a:AudioCurrentEffectPriority
-    STA a:AudioEffectRetriggerLock
-
-AudioEffect_NoOp:
-    RTS
-
-Audio_ResetEffects:
-    LDA #$00
-    STA a:AudioEffectRetriggerLock
-    STA a:$4011
-    STA a:AudioEffectTimers
-    STA a:AudioEffectTimers+$01
-    STA a:AudioEffectTimers+$02
-    STA a:AudioEffectTimers+$03
-    STA a:APU_TRI_LINEAR
-    STA a:APU_NOISE_VOL
-    LDA #$18
-    STA a:APU_TRI_HI
-    LDA #$10
-    STA a:APU_PL1_VOL
-    STA a:APU_PL2_VOL
-    LDA #$0F
-    STA a:APU_STATUS
-    RTS
+    .include "sfx_dispatch_shared.inc"
+.endscope
+.undefine SfxCorePrefix
 
 AudioEffect_InitNoiseSweep:
     LDA #$18
