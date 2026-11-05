@@ -70,10 +70,8 @@
 .include "../world1/audio_effect_handlers.asm"
 ; $E949-$E9FC: World 1 APU write helpers and channel reset
 .include "../world1/audio_apu_helpers.asm"
-; $E9FD-$EB64: World 1 four-channel music sequencer and command dispatch
+; $E9FD-$EE33: Music sequencer, commands, and stream reader
 .include "../world1/music_engine.asm"
-; $EB65-$EE33: World 1 music command handlers and stream reader
-.include "../world1/music_commands.asm"
 ; $EE34-$FFF9: World 1 APU tables, track headers, header-reachable streams, and adjacent unclassified data
 .include "../world1/music_data.asm"
 ; $FFFA-$FFFF: Bank 0 NMI, RESET, and IRQ vectors

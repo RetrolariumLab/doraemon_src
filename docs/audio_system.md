@@ -74,6 +74,12 @@ Track ID zero means stopped. The compare operands `$09`, `$07`, `$09`, and `$05`
 are exclusive upper bounds, not playable-track counts. Each nonzero ID selects
 one eight-byte header containing four little-endian channel pointers.
 
+All four banks assemble the same
+[sequencer and interpreter](../src/audio/music_engine_shared.inc). Each bank
+binds its own tables and APU entry points and sets the track limit and the base
+of the three global pitch offsets (`$3E`, `$B5`, `$D3`, or `$46`). The engine
+and its bank-local data keep their original CPU addresses.
+
 Each frame decrements four channel durations. An expired duration enters the
 stream interpreter; otherwise the tonal channels can advance their signed
 volume-envelope step. Stream cursors are four little-endian pointers at

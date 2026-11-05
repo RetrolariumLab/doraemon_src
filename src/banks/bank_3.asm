@@ -22,7 +22,7 @@
 .include "../audio/effect_dispatch.asm"
 ; $9C1D-$9ED7: Remaining audio-effect handlers and APU write helpers
 .include "../audio/effect_handlers.asm"
-; $9ED8-$A30E: Four-channel music sequencer and stream interpreter
+; $9ED8-$A30E: Music sequencer, commands, and stream reader
 .include "../audio/music_engine.asm"
 ; $A30F-$B1BB: Shell APU tables, track headers, header-reachable streams, and adjacent unclassified data
 .include "../audio/music_data.asm"

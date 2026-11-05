@@ -34,10 +34,8 @@
 .include "../world2/audio_effects.asm"
 ; $AC30-$ACE3: World 2 APU write helpers, presentation data, and channel reset
 .include "../world2/audio_apu_helpers.asm"
-; $ACE4-$AE22: World 2 four-channel music sequencer and stream interpreter
+; $ACE4-$B11A: Music sequencer, commands, and stream reader
 .include "../world2/music_engine.asm"
-; $AE23-$B11A: World 2 music RTS table, command handlers, and stream reader
-.include "../world2/music_commands.asm"
 ; $B11B-$B9CE: World 2 APU tables, track headers, header-reachable streams, and adjacent unclassified data
 .include "../world2/music_data.asm"
 ; $B9CF-$BA9E: World 2 metatile palette selectors (208 entries)

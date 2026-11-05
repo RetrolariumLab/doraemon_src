@@ -48,10 +48,8 @@
 .include "../world3/audio_effect_handlers.asm"
 ; $C441-$C4F4: World 3 APU write helpers, presentation data, and channel reset
 .include "../world3/audio_apu_helpers.asm"
-; $C4F5-$C633: World 3 four-channel music sequencer and stream interpreter
+; $C4F5-$C92B: Music sequencer, commands, and stream reader
 .include "../world3/music_engine.asm"
-; $C634-$C92B: World 3 music RTS table, command handlers, and stream reader
-.include "../world3/music_commands.asm"
 ; $C92C-$D66A: World 3 APU tables, track headers, header-reachable streams, and adjacent unclassified data
 .include "../world3/music_data.asm"
 ; $D66B-$D96A: World 3 four-channel room-indexed transient entity type count and delay tables

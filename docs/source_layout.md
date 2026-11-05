@@ -21,6 +21,7 @@
 | `src/shell/*.asm`                        | PRG bank 3           | title, game over, ending, and transitions                          |
 | `src/rendering/*.asm`                    | PRG bank 3           | shell PPU/text/frame services                                      |
 | `src/audio/*.asm`                        | PRG bank 3           | effect driver, music engine, and streams                           |
+| `src/audio/music_*.inc`                  | all PRG banks        | shared music sequencer, interpreter, and symbol macros             |
 | `src/data/*.asm`                         | PRG bank 3           | title/help/ending screens, credits, and typed trailing data        |
 | `src/graphics/chr.asm`                   | four 8 KiB banks     | private CHR payload                                                |
 | `src/memory/*.inc`                       | no bytes             | hardware and evidence-backed RAM aliases                           |
