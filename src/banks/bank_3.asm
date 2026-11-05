@@ -37,4 +37,4 @@
 ; $F9BC-$FFF9: Trailing bank 3 data pending format classification
 .include "../data/bank3_tail.asm"
 ; $FFFA-$FFFF: Bank 3 NMI, RESET, and IRQ vectors
-.include "../common/bank3_vectors.asm"
+    EmitBankVectors "Bank3_", Bank3_Nmi, Bank3_Reset

@@ -15,6 +15,7 @@
 
 .include "memory/hardware.inc"
 .include "memory/ram.inc"
+.include "common/boot_macros.inc"
 
 .include "banks/bank_0.asm"
 .include "banks/bank_1.asm"

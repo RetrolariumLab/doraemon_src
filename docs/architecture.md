@@ -89,8 +89,10 @@ edges and callable shell returns.
 
 The adjacent `$8098-$8270` runtime is also identical in all four banks: its
 reset, NMI, rendering transition, OAM, mapper, and score services
-([common runtime](common_runtime.md)). Nothing checks that the four copies stay
-identical; an edit must change all four.
+([common runtime](common_runtime.md)). All four banks assemble the gateways and
+runtime from [one source](../src/common/boot_runtime.inc) at `$8000`. Each bank
+supplies its own four jump destinations at `$8271-$827C`. The assembler checks
+the fixed addresses used across bank switches.
 
 ## Three gameplay systems
 

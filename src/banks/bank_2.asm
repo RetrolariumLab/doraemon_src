@@ -73,4 +73,4 @@
 ; $F6F2-$FFF9: World 3 trailing chapter data and unused fill
 .include "../world3/data/bank_tail.asm"
 ; $FFFA-$FFFF: Bank 2 NMI, RESET, and IRQ vectors
-.include "../common/bank2_vectors.asm"
+    EmitBankVectors "Bank2_", Bank2_Nmi, Bank2_Reset

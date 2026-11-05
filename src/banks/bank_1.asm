@@ -55,4 +55,4 @@
 ; $EA4F-$FFF9: World 2 late compressed screen streams ending at the vector overlap
 .include "../world2/data/screen_streams_3.asm"
 ; $FFFA-$FFFF: Bank 1 NMI, RESET, and IRQ vectors
-.include "../common/bank1_vectors.asm"
+    EmitBankVectors "Bank1_", Bank1_Nmi, Bank1_Reset

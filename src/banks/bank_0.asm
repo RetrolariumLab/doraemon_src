@@ -77,4 +77,4 @@
 ; $EE34-$FFF9: World 1 APU tables, track headers, header-reachable streams, and adjacent unclassified data
 .include "../world1/music_data.asm"
 ; $FFFA-$FFFF: Bank 0 NMI, RESET, and IRQ vectors
-.include "../common/bank0_vectors.asm"
+    EmitBankVectors "Bank0_", Bank0_Nmi, Bank0_Reset
