@@ -45,6 +45,11 @@ The banks assemble their queues, timer arbitration, dispatch, and reset from
 [one source](../src/audio/sfx_dispatch_shared.inc). Each bank supplies its own
 request limit, scratch bytes, and table addresses.
 
+World 1 and World 3 also share their
+[handler source](../src/audio/sfx_handlers_shared.inc) and
+[52-entry dispatch layout](../src/audio/sfx_world13_tables.inc). Each bank binds
+its own APU routines and uses sound tables extracted from its ROM ranges.
+
 Each role records its handler pair, effect-timer leases, APU channels actually
 written, and directly observed synthesis behavior. These names deliberately
 describe register and state transitions rather than unproved in-game sound

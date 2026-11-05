@@ -42,10 +42,8 @@
 .include "../world3/hud_rendering.asm"
 ; $B6BA-$BE0D: World 3 OAM writer, metasprite tables, and palettes
 .include "../world3/sprite_data.asm"
-; $BE0E-$C015: World 3 audio-effect arbitration, RTS dispatch, and early handlers
+; $BE0E-$C440: Audio-effect tables, arbitration, and handlers
 .include "../world3/audio_effect_dispatch.asm"
-; $C016-$C440: World 3 remaining audio-effect handlers
-.include "../world3/audio_effect_handlers.asm"
 ; $C441-$C4F4: World 3 APU write helpers, presentation data, and channel reset
 .include "../world3/audio_apu_helpers.asm"
 ; $C4F5-$C92B: Music sequencer, commands, and stream reader

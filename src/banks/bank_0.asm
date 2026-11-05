@@ -64,10 +64,8 @@
 .include "../world1/entity_handlers_middle.asm"
 ; $E14B-$E315: World 1 low-state entity handlers at E14B through E315
 .include "../world1/entity_handlers_late.asm"
-; $E316-$E68C: World 1 audio-effect arbitration, RTS dispatch, and early handlers
+; $E316-$E948: Audio-effect tables, arbitration, and handlers
 .include "../world1/audio_effect_dispatch.asm"
-; $E68D-$E948: World 1 remaining audio-effect handlers
-.include "../world1/audio_effect_handlers.asm"
 ; $E949-$E9FC: World 1 APU write helpers and channel reset
 .include "../world1/audio_apu_helpers.asm"
 ; $E9FD-$EE33: Music sequencer, commands, and stream reader
