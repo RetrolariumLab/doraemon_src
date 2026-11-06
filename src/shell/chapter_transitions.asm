@@ -311,25 +311,7 @@ Bank3_Label_8F5C:
     .byte $A9, $00
 
 Shell_FillTwoNametables:
-    PHA
-    LDA PpuCtrlShadow
-    AND #$FB
-    STA a:PPU_CTRL
-    LDA #$20
-    STA a:PPU_ADDR
-    LDA #$00
-    STA a:PPU_ADDR
-    LDY #$00
-    LDX #$08
-    PLA
-
-Bank3_Label_8F7A:
-    STA a:PPU_DATA
-    DEY
-    BNE Bank3_Label_8F7A
-    DEX
-    BNE Bank3_Label_8F7A
-    RTS
+    EmitNametableFill $08, Bank3_Label_8F7A
 
 Shell_UploadPpuCommandStream:
     LDA PpuCtrlShadow

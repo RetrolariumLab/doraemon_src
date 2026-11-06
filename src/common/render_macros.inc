@@ -80,3 +80,25 @@ emitTile:
     CPY #$08
     BNE emitTile
 .endmacro
+
+.macro EmitNametableFill pageCount, writeByte
+    PHA
+    LDA PpuCtrlShadow
+    AND #$FB
+    STA a:PPU_CTRL
+    LDA #$20
+    STA a:PPU_ADDR
+    LDA #$00
+    STA a:PPU_ADDR
+    LDY #$00
+    LDX #pageCount
+    PLA
+
+writeByte:
+    STA a:PPU_DATA
+    DEY
+    BNE writeByte
+    DEX
+    BNE writeByte
+    RTS
+.endmacro

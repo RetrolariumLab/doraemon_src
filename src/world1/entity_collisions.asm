@@ -442,25 +442,7 @@ Bank0_Label_94F3:
 
 World1_ClearNametables:
     LDA #$00
-    PHA
-    LDA PpuCtrlShadow
-    AND #$FB
-    STA a:PPU_CTRL
-    LDA #$20
-    STA a:PPU_ADDR
-    LDA #$00
-    STA a:PPU_ADDR
-    LDY #$00
-    LDX #$10
-    PLA
-
-Bank0_Label_9511:
-    STA a:PPU_DATA
-    DEY
-    BNE Bank0_Label_9511
-    DEX
-    BNE Bank0_Label_9511
-    RTS
+    EmitNametableFill $10, Bank0_Label_9511
 
 World1_ClearAttributeCache:
     LDX #$00
