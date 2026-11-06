@@ -1,6 +1,8 @@
 ; World 1 frame synchronization, PPU preparation, and sprite traversal
 ; PRG bank 0, original CPU range $95CB-$9909
 
+.include "sprite_slot_macros.inc"
+
 World1_HandlePause:
     LDA World1PressedButtons
     AND #$10
@@ -223,45 +225,10 @@ World1_RenderEntitySlots00_09:
     RTS
 
 Bank0_Label_979A:
-    LDA FrameCounter
-    AND #$01
-    BNE Bank0_Label_97BB
-    LDA #$00
-    STA $0A
-
-Bank0_Label_97A4:
-    LDY $0A
-    LDA a:World1EntityType,Y
-    BEQ Bank0_Label_97B2
-    JSR World1_RenderEntitySlot00_09
-    LDA World1OamWriteIndex
-    BMI Bank0_Label_97D1
-
-Bank0_Label_97B2:
-    INC $0A
-    LDA $0A
-    CMP #$0A
-    BNE Bank0_Label_97A4
-    RTS
-
-Bank0_Label_97BB:
-    LDA #$09
-    STA $0A
-
-Bank0_Label_97BF:
-    LDY $0A
-    LDA a:World1EntityType,Y
-    BEQ Bank0_Label_97CD
-    JSR World1_RenderEntitySlot00_09
-    LDA World1OamWriteIndex
-    BMI Bank0_Label_97D1
-
-Bank0_Label_97CD:
-    DEC $0A
-    BPL Bank0_Label_97BF
-
-Bank0_Label_97D1:
-    RTS
+.scope RenderSlots00_09
+SlotRenderCpuBase = $979A
+    EmitEntitySlotTraversal $00, $0A, World1_RenderEntitySlot00_09, 0
+.endscope
 
 World1_RenderEntitySlot00_09:
     LDA a:World1EntityType,Y
@@ -301,45 +268,10 @@ Bank0_Label_980C:
     LDA #$00
     STA World1MetaspriteOriginXHigh
     STA World1MetaspriteOriginYHigh
-    LDA FrameCounter
-    AND #$01
-    BNE Bank0_Label_9833
-    LDA #$00
-    STA $0A
-
-Bank0_Label_981C:
-    LDY $0A
-    LDA a:World1EntityType+$0A,Y
-    BEQ Bank0_Label_982A
-    JSR World1_RenderEntitySlot10_29
-    LDA World1OamWriteIndex
-    BMI Bank0_Label_9849
-
-Bank0_Label_982A:
-    INC $0A
-    LDA $0A
-    CMP #$14
-    BNE Bank0_Label_981C
-    RTS
-
-Bank0_Label_9833:
-    LDA #$13
-    STA $0A
-
-Bank0_Label_9837:
-    LDY $0A
-    LDA a:World1EntityType+$0A,Y
-    BEQ Bank0_Label_9845
-    JSR World1_RenderEntitySlot10_29
-    LDA World1OamWriteIndex
-    BMI Bank0_Label_9849
-
-Bank0_Label_9845:
-    DEC $0A
-    BPL Bank0_Label_9837
-
-Bank0_Label_9849:
-    RTS
+.scope RenderSlots10_29
+SlotRenderCpuBase = $9812
+    EmitEntitySlotTraversal $0A, $14, World1_RenderEntitySlot10_29, 0
+.endscope
 
 World1_RenderEntitySlot10_29:
     LDA a:World1EntityPositionHigh+$0A,Y
@@ -361,45 +293,10 @@ World1_RenderEntitySlots30_37:
     LDA #$00
     STA World1MetaspriteOriginXHigh
     STA World1MetaspriteOriginYHigh
-    LDA FrameCounter
-    AND #$01
-    BNE Bank0_Label_9891
-    LDA #$00
-    STA $0A
-
-Bank0_Label_987A:
-    LDY $0A
-    LDA a:World1EntityType+$1E,Y
-    BEQ Bank0_Label_9888
-    JSR World1_RenderEntitySlot30_37
-    LDA World1OamWriteIndex
-    BMI Bank0_Label_98A7
-
-Bank0_Label_9888:
-    INC $0A
-    LDA $0A
-    CMP #$08
-    BNE Bank0_Label_987A
-    RTS
-
-Bank0_Label_9891:
-    LDA #$07
-    STA $0A
-
-Bank0_Label_9895:
-    LDY $0A
-    LDA a:World1EntityType+$1E,Y
-    BEQ Bank0_Label_98A3
-    JSR World1_RenderEntitySlot30_37
-    LDA World1OamWriteIndex
-    BMI Bank0_Label_98A7
-
-Bank0_Label_98A3:
-    DEC $0A
-    BPL Bank0_Label_9895
-
-Bank0_Label_98A7:
-    RTS
+.scope RenderSlots30_37
+SlotRenderCpuBase = $9870
+    EmitEntitySlotTraversal $1E, $08, World1_RenderEntitySlot30_37, 0
+.endscope
 
 World1_RenderEntitySlot30_37:
     LDA a:World1EntityPositionHigh+$1E,Y
@@ -421,44 +318,7 @@ World1_RenderEntitySlots38_47:
     LDA #$00
     STA World1MetaspriteOriginXHigh
     STA World1MetaspriteOriginYHigh
-    LDA FrameCounter
-    AND #$01
-    BNE Bank0_Label_98F1
-    LDA #$00
-    STA $0A
-
-Bank0_Label_98D8:
-    LDY $0A
-    LDA a:World1EntityType+$26,Y
-    BMI Bank0_Label_98E8
-    BEQ Bank0_Label_98E8
-    JSR World1_RenderEntitySlot38_47
-    LDA World1OamWriteIndex
-    BMI Bank0_Label_9909
-
-Bank0_Label_98E8:
-    INC $0A
-    LDA $0A
-    CMP #$0A
-    BNE Bank0_Label_98D8
-    RTS
-
-Bank0_Label_98F1:
-    LDA #$09
-    STA $0A
-
-Bank0_Label_98F5:
-    LDY $0A
-    LDA a:World1EntityType+$26,Y
-    BMI Bank0_Label_9905
-    BEQ Bank0_Label_9905
-    JSR World1_RenderEntitySlot38_47
-    LDA World1OamWriteIndex
-    BMI Bank0_Label_9909
-
-Bank0_Label_9905:
-    DEC $0A
-    BPL Bank0_Label_98F5
-
-Bank0_Label_9909:
-    RTS
+.scope RenderSlots38_47
+SlotRenderCpuBase = $98CE
+    EmitEntitySlotTraversal $26, $0A, World1_RenderEntitySlot38_47, 1
+.endscope
