@@ -191,61 +191,7 @@ Bank0_Label_96DB:
     ORA #$30
     STA World1OamTile
     JSR World1_EmitOamEntry
-    LDA PlayerHealthCapacityIndex
-    ASL A
-    ASL A
-    CLC
-    ADC #$50
-    STA World1OamY
-    LDA #$EC
-    STA World1OamX
-    LDA #$00
-    STA World1OamAttributes
-    LDA #$04
-    STA $0A
-    LDA PlayerHealth
-    STA World1OamTile
-    LDY #$07
-
-Bank0_Label_9730:
-    LDA World1OamTile
-    SEC
-    SBC #$04
-    BCC Bank0_Label_9743
-    STA World1OamTile
-    LDA #$3F
-    STA a:$000A,Y
-    DEY
-    BPL Bank0_Label_9730
-    BMI Bank0_Label_9754
-
-Bank0_Label_9743:
-    CLC
-    ADC #$3F
-    STA a:$000A,Y
-    DEY
-    BMI Bank0_Label_9754
-    LDA #$3B
-
-Bank0_Label_974E:
-    STA a:$000A,Y
-    DEY
-    BPL Bank0_Label_974E
-
-Bank0_Label_9754:
-    LDY PlayerHealthCapacityIndex
-
-Bank0_Label_9756:
-    LDA a:$000A,Y
-    STA World1OamTile
-    JSR World1_EmitOamEntry
-    LDA World1OamY
-    CLC
-    ADC #$08
-    STA World1OamY
-    INY
-    CPY #$08
-    BNE Bank0_Label_9756
+    EmitHealthGauge World1OamY, World1OamX, World1OamAttributes, World1OamTile, World1_EmitOamEntry, Bank0_Label_9730, Bank0_Label_9743, Bank0_Label_974E, Bank0_Label_9754, Bank0_Label_9756
     LDA FrameCounter
     AND #$10
     BEQ Bank0_Label_978E

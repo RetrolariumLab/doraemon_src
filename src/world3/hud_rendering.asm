@@ -53,61 +53,7 @@ Bank2_Label_B425:
     RTS
 
 World3_RenderHealth:
-    LDA PlayerHealthCapacityIndex
-    ASL A
-    ASL A
-    CLC
-    ADC #$50
-    STA World3OamY
-    LDA #$EC
-    STA World3OamX
-    LDA #$00
-    STA World3OamAttributes
-    LDA #$04
-    STA $0A
-    LDA PlayerHealth
-    STA World3OamTile
-    LDY #$07
-
-Bank2_Label_B47B:
-    LDA World3OamTile
-    SEC
-    SBC #$04
-    BCC Bank2_Label_B48E
-    STA World3OamTile
-    LDA #$3F
-    STA a:$000A,Y
-    DEY
-    BPL Bank2_Label_B47B
-    BMI Bank2_Label_B49F
-
-Bank2_Label_B48E:
-    CLC
-    ADC #$3F
-    STA a:$000A,Y
-    DEY
-    BMI Bank2_Label_B49F
-    LDA #$3B
-
-Bank2_Label_B499:
-    STA a:$000A,Y
-    DEY
-    BPL Bank2_Label_B499
-
-Bank2_Label_B49F:
-    LDY PlayerHealthCapacityIndex
-
-Bank2_Label_B4A1:
-    LDA a:$000A,Y
-    STA World3OamTile
-    JSR World3_AppendOamEntry
-    LDA World3OamY
-    CLC
-    ADC #$08
-    STA World3OamY
-    INY
-    CPY #$08
-    BNE Bank2_Label_B4A1
+    EmitHealthGauge World3OamY, World3OamX, World3OamAttributes, World3OamTile, World3_AppendOamEntry, Bank2_Label_B47B, Bank2_Label_B48E, Bank2_Label_B499, Bank2_Label_B49F, Bank2_Label_B4A1
     RTS
 
 World3_ComposeMetasprite:
