@@ -181,29 +181,7 @@ World1_LoadAreaPalette:
     LDA #$00
     STA $00
     LDA $29
-    LSR A
-    ROR $00
-    LSR A
-    ROR $00
-    LSR A
-    ROR $00
-    STA $01
-    LDA $00
-    CLC
-    ADC #$A5
-    STA $00
-    LDA $01
-    ADC #$D7
-    STA $01
-    LDY #$00
-
-Bank0_Label_83DD:
-    LDA ($00),Y
-    STA a:$0210,Y
-    INY
-    CPY #$20
-    BCC Bank0_Label_83DD
-    RTS
+    EmitPaletteLoad $00, World1PaletteSets, $0210, Bank0_Label_83DD, 1
 
 World1_InitializeAreaPresentation:
     JSR World1_DisableGameplayRendering

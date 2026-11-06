@@ -102,3 +102,33 @@ writeByte:
     BNE writeByte
     RTS
 .endmacro
+
+.macro EmitPaletteLoad palettePtr, paletteSets, paletteBuffer, copyByte, branchIfBelow
+    LSR A
+    ROR palettePtr
+    LSR A
+    ROR palettePtr
+    LSR A
+    ROR palettePtr
+    STA palettePtr+1
+    LDA palettePtr
+    CLC
+    ADC #<paletteSets
+    STA palettePtr
+    LDA palettePtr+1
+    ADC #>paletteSets
+    STA palettePtr+1
+    LDY #$00
+
+copyByte:
+    LDA (palettePtr),Y
+    STA a:paletteBuffer,Y
+    INY
+    CPY #$20
+    .if branchIfBelow
+        BCC copyByte
+    .else
+        BNE copyByte
+    .endif
+    RTS
+.endmacro

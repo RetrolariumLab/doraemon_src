@@ -342,29 +342,7 @@ World3_LoadRoomPalette:
     STA $40
     LDX World3CurrentRoom
     LDA a:World3_RoomPaletteSelector,X
-    LSR A
-    ROR $40
-    LSR A
-    ROR $40
-    LSR A
-    ROR $40
-    STA $41
-    LDA $40
-    CLC
-    ADC #$AE
-    STA $40
-    LDA $41
-    ADC #$BC
-    STA $41
-    LDY #$00
-
-Bank2_Label_A858:
-    LDA ($40),Y
-    STA a:World3PaletteTarget,Y
-    INY
-    CPY #$20
-    BNE Bank2_Label_A858
-    RTS
+    EmitPaletteLoad $40, World3_PaletteSets, World3PaletteTarget, Bank2_Label_A858, 0
 
 World3_FadePaletteToBlack:
     LDX #$80
