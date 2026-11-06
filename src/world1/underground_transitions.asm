@@ -107,79 +107,10 @@ Bank0_Label_D46F:
     JMP Bank0_Label_D3BF
 
 World1_TrackUndergroundVerticalCamera:
-    LDA #$00
-    STA World1ScreenDeltaX
-    STA World1ScreenDeltaY
-    LDA World1PlayerY
-    SEC
-    SBC #$6E
-    BCS Bank0_Label_D4B6
-    EOR #$FF
-    SEC
-    ADC #$00
-    STA World1UndergroundAxisScrollBudget
-    CMP #$07
-    BCC Bank0_Label_D498
-    LDA #$06
-    STA World1UndergroundAxisScrollBudget
-
-Bank0_Label_D498:
-    LDA World1UndergroundAxisScrollCoarse
-    ORA World1UndergroundAxisScrollFine
-    BEQ Bank0_Label_D4E3
-    LDA World1UndergroundAxisScrollFine
-    SEC
-    SBC #$01
-    AND #$07
-    STA World1UndergroundAxisScrollFine
-    CMP #$07
-    BNE Bank0_Label_D4AD
-    DEC World1UndergroundAxisScrollCoarse
-
-Bank0_Label_D4AD:
-    JSR World1_TryScrollCameraUp
-    DEC World1UndergroundAxisScrollBudget
-    BNE Bank0_Label_D498
-    BEQ Bank0_Label_D4E3
-
-Bank0_Label_D4B6:
-    LDA World1PlayerY
-    SEC
-    SBC #$92
-    BCC Bank0_Label_D4E3
-    STA World1UndergroundAxisScrollBudget
-    CMP #$06
-    BCC Bank0_Label_D4C7
-    LDA #$05
-    STA World1UndergroundAxisScrollBudget
-
-Bank0_Label_D4C7:
-    INC World1UndergroundAxisScrollBudget
-
-Bank0_Label_D4C9:
-    LDA World1UndergroundAxisScrollCoarse
-    CMP World1UndergroundAxisScrollLimit
-    BEQ Bank0_Label_D4E3
-    LDA World1UndergroundAxisScrollFine
-    CLC
-    ADC #$01
-    AND #$07
-    STA World1UndergroundAxisScrollFine
-    BNE Bank0_Label_D4DC
-    INC World1UndergroundAxisScrollCoarse
-
-Bank0_Label_D4DC:
-    JSR World1_TryScrollCameraDown
-    DEC World1UndergroundAxisScrollBudget
-    BNE Bank0_Label_D4C9
-
-Bank0_Label_D4E3:
-    LDA World1PlayerY
-    CLC
-    ADC World1ScreenDeltaY
-    STA World1PlayerY
-    JSR World1_ApplyCameraDeltaToEntities
-    RTS
+.scope UndergroundCameraY
+CameraCpuBase = $D47C
+    EmitUndergroundCamera World1PlayerY, World1ScreenDeltaY, $92, 6, World1_TryScrollCameraUp, World1_TryScrollCameraDown
+.endscope
 
 World1_RunBullRoboFinale:
     JSR World1_ClearEntitySlots10_29

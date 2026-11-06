@@ -172,79 +172,10 @@ Bank0_Label_CEE5:
     JMP Bank0_World1UndergroundFrameLoop
 
 World1_TrackUndergroundHorizontalCamera:
-    LDA #$00
-    STA World1ScreenDeltaX
-    STA World1ScreenDeltaY
-    LDA World1PlayerX
-    SEC
-    SBC #$6E
-    BCS Bank0_Label_CF42
-    EOR #$FF
-    SEC
-    ADC #$00
-    STA World1UndergroundAxisScrollBudget
-    CMP #$03
-    BCC Bank0_Label_CF24
-    LDA #$02
-    STA World1UndergroundAxisScrollBudget
-
-Bank0_Label_CF24:
-    LDA World1UndergroundAxisScrollCoarse
-    ORA World1UndergroundAxisScrollFine
-    BEQ Bank0_Label_CF6F
-    LDA World1UndergroundAxisScrollFine
-    SEC
-    SBC #$01
-    AND #$07
-    STA World1UndergroundAxisScrollFine
-    CMP #$07
-    BNE Bank0_Label_CF39
-    DEC World1UndergroundAxisScrollCoarse
-
-Bank0_Label_CF39:
-    JSR World1_TryScrollCameraLeft
-    DEC World1UndergroundAxisScrollBudget
-    BNE Bank0_Label_CF24
-    BEQ Bank0_Label_CF6F
-
-Bank0_Label_CF42:
-    LDA World1PlayerX
-    SEC
-    SBC #$82
-    BCC Bank0_Label_CF6F
-    STA World1UndergroundAxisScrollBudget
-    CMP #$02
-    BCC Bank0_Label_CF53
-    LDA #$01
-    STA World1UndergroundAxisScrollBudget
-
-Bank0_Label_CF53:
-    INC World1UndergroundAxisScrollBudget
-
-Bank0_Label_CF55:
-    LDA World1UndergroundAxisScrollCoarse
-    CMP World1UndergroundAxisScrollLimit
-    BEQ Bank0_Label_CF6F
-    LDA World1UndergroundAxisScrollFine
-    CLC
-    ADC #$01
-    AND #$07
-    STA World1UndergroundAxisScrollFine
-    BNE Bank0_Label_CF68
-    INC World1UndergroundAxisScrollCoarse
-
-Bank0_Label_CF68:
-    JSR World1_TryScrollCameraRight
-    DEC World1UndergroundAxisScrollBudget
-    BNE Bank0_Label_CF55
-
-Bank0_Label_CF6F:
-    LDA World1PlayerX
-    CLC
-    ADC World1ScreenDeltaX
-    STA World1PlayerX
-    JSR World1_ApplyCameraDeltaToEntities
-    RTS
+.scope UndergroundCameraX
+CameraCpuBase = $CF08
+    EmitUndergroundCamera World1PlayerX, World1ScreenDeltaX, $82, 2, World1_TryScrollCameraLeft, World1_TryScrollCameraRight
+.endscope
 
 World1_UpdateUndergroundPlayer:
     JSR World1_UpdateWeaponAndTryFire

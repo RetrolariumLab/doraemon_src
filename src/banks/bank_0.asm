@@ -2,6 +2,8 @@
 
 .segment "PRG0"
 
+.include "../world1/camera_macros.inc"
+
 ; $8000-$827C: Bank 0 reset, NMI, input, mapper switching, and cross-bank gateways
 .include "../common/bank0_boot_and_gateways.asm"
 ; $827D-$856B: World 1 initialization, main frame loop, and queued PPU writes
