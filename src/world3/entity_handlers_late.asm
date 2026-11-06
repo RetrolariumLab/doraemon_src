@@ -2,33 +2,7 @@
 ; PRG bank 2, original CPU range $968C-$9A3A
 
 World3_UpdateType0FPoseidonLowerRight:
-    LDA a:World3EntityFollowAnchorFlag,X
-    BEQ Bank2_Label_96BF
-    JSR World3_FindActivePoseidonAnchor
-    LDA a:World3EntityX,Y
-    CLC
-    ADC #$10
-    STA a:World3EntityX,X
-    LDA a:World3EntityY,Y
-    CLC
-    ADC #$18
-    STA a:World3EntityY,X
-    INC a:World3EntityFrameCounter,X
-    LDA a:World3EntityFrameCounter,X
-    LSR A
-    LSR A
-    LSR A
-    AND #$01
-    STA a:World3EntityMetaspriteVariantBit0,X
-    LDA a:World3EntityFrameCounter,X
-    LSR A
-    LSR A
-    LSR A
-    AND #$02
-    STA a:World3EntityMetaspriteVariantBit1,X
-
-Bank2_Label_96BF:
-    RTS
+    EmitPoseidonLowerHalf Bank2_Label_96BF, 1
 
 World3_FindActivePoseidonAnchor:
     LDY #$00

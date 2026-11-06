@@ -2,6 +2,8 @@
 
 .segment "PRG2"
 
+.include "../world3/entity_macros.inc"
+
 ; $8000-$827C: Bank 2 reset, NMI, input, mapper switching, and cross-bank gateways
 .include "../common/bank2_boot_and_gateways.asm"
 ; $827D-$82AC: Embedded World 3 build identification string
