@@ -19,28 +19,10 @@ SfxHandlerStart:
     RTS
 
     SfxCoreEntry AudioEffect_UpdateNoiseSweepSlow
-    LDX a:AudioEffectWork1
-    BEQ Local_052
-    DEX
-    BEQ Local_02D
-    JMP AudioEffect_UpdateTimedStop
+    EmitNoiseSweepPhaseCheck Local_052, Local_02D, AudioEffect_UpdateTimedStop
 
     SfxHandlerLocal Local_02D
-    DEC a:AudioEffectWork0
-    LDA a:AudioEffectWork0
-    STA a:APU_NOISE_LO
-    CMP #$08
-    BNE Local_06A
-    INC a:AudioEffectWork1
-    LDA #$1A
-    STA a:APU_NOISE_VOL
-    LDA #$03
-    STA a:APU_NOISE_LO
-    LDA #$F8
-    STA a:APU_NOISE_HI
-    LDA #$10
-    STA a:AudioEffectWork0
-    RTS
+    EmitNoiseSweepPhaseStep Local_06A, $03, $F8, $10
 
     SfxHandlerLocal Local_052
     DEC a:AudioEffectWork2
@@ -57,28 +39,10 @@ SfxHandlerStart:
     RTS
 
     SfxCoreEntry AudioEffect_UpdateNoiseSweepFast
-    LDX a:AudioEffectWork1
-    BEQ Local_052
-    DEX
-    BEQ Local_076
-    JMP AudioEffect_UpdateTimedStop
+    EmitNoiseSweepPhaseCheck Local_052, Local_076, AudioEffect_UpdateTimedStop
 
     SfxHandlerLocal Local_076
-    DEC a:AudioEffectWork0
-    LDA a:AudioEffectWork0
-    STA a:APU_NOISE_LO
-    CMP #$08
-    BNE Local_06A
-    INC a:AudioEffectWork1
-    LDA #$1A
-    STA a:APU_NOISE_VOL
-    LDA #$06
-    STA a:APU_NOISE_LO
-    LDA #$68
-    STA a:APU_NOISE_HI
-    LDA #$06
-    STA a:AudioEffectWork0
-    RTS
+    EmitNoiseSweepPhaseStep Local_06A, $06, $68, $06
 
     SfxCoreEntry Sfx_InitTriangleNoiseBurst
     LDA #$04

@@ -46,28 +46,10 @@ AudioEffect_InitNoiseSweep:
     RTS
 
 AudioEffect_UpdateNoiseSweepSlow:
-    LDX a:AudioEffectWork1
-    BEQ Bank3_Label_9921
-    DEX
-    BEQ Bank3_Label_98FC
-    JMP AudioEffect_UpdateTimedStop
+    EmitNoiseSweepPhaseCheck Bank3_Label_9921, Bank3_Label_98FC, AudioEffect_UpdateTimedStop
 
 Bank3_Label_98FC:
-    DEC a:AudioEffectWork0
-    LDA a:AudioEffectWork0
-    STA a:APU_NOISE_LO
-    CMP #$08
-    BNE Bank3_Label_9939
-    INC a:AudioEffectWork1
-    LDA #$1A
-    STA a:APU_NOISE_VOL
-    LDA #$03
-    STA a:APU_NOISE_LO
-    LDA #$F8
-    STA a:APU_NOISE_HI
-    LDA #$10
-    STA a:AudioEffectWork0
-    RTS
+    EmitNoiseSweepPhaseStep Bank3_Label_9939, $03, $F8, $10
 
 Bank3_Label_9921:
     DEC a:AudioEffectWork2
@@ -84,28 +66,10 @@ Bank3_Label_9939:
     RTS
 
 AudioEffect_UpdateNoiseSweepFast:
-    LDX a:AudioEffectWork1
-    BEQ Bank3_Label_9921
-    DEX
-    BEQ Bank3_Label_9945
-    JMP AudioEffect_UpdateTimedStop
+    EmitNoiseSweepPhaseCheck Bank3_Label_9921, Bank3_Label_9945, AudioEffect_UpdateTimedStop
 
 Bank3_Label_9945:
-    DEC a:AudioEffectWork0
-    LDA a:AudioEffectWork0
-    STA a:APU_NOISE_LO
-    CMP #$08
-    BNE Bank3_Label_9939
-    INC a:AudioEffectWork1
-    LDA #$1A
-    STA a:APU_NOISE_VOL
-    LDA #$06
-    STA a:APU_NOISE_LO
-    LDA #$68
-    STA a:APU_NOISE_HI
-    LDA #$06
-    STA a:AudioEffectWork0
-    RTS
+    EmitNoiseSweepPhaseStep Bank3_Label_9939, $06, $68, $06
 
 AudioEffect_InitTriangleNoiseBurst:
     LDA #$04
