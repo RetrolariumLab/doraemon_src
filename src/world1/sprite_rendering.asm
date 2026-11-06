@@ -371,23 +371,7 @@ Bank0_Label_9B34:
     RTS
 
 World1_EmitOamEntry:
-    LDA World1OamWriteIndex
-    BMI Bank0_Label_9B53
-    ASL A
-    TAX
-    LDA World1OamY
-    STA a:OamBuffer,X
-    LDA World1OamTile
-    STA a:$0301,X
-    LDA World1OamAttributes
-    STA a:$0302,X
-    LDA World1OamX
-    STA a:$0303,X
-    INC World1OamWriteIndex
-    INC World1OamWriteIndex
-
-Bank0_Label_9B53:
-    RTS
+    EmitOamWriter World1OamWriteIndex, World1OamY, World1OamTile, World1OamAttributes, World1OamX, Bank0_Label_9B53
 
 World1_UpdatePlayerProjectiles:
     LDX #$00

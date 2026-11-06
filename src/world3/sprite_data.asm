@@ -2,20 +2,7 @@
 ; PRG bank 2, original CPU range $B6BA-$BE0D
 
 World3_AppendOamEntry:
-    LDA World3OamWriteIndex
-    ASL A
-    TAX
-    LDA World3OamY
-    STA a:OamBuffer,X
-    LDA World3OamTile
-    STA a:$0301,X
-    LDA World3OamAttributes
-    STA a:$0302,X
-    LDA World3OamX
-    STA a:$0303,X
-    INC World3OamWriteIndex
-    INC World3OamWriteIndex
-    RTS
+    EmitOamWriter World3OamWriteIndex, World3OamY, World3OamTile, World3OamAttributes, World3OamX
 
 World3_MetaspriteIndex:
     .byte $79, $B8, $64, $B8, $4F, $B8, $00, $01, $01, $01, $02, $01, $8E, $B8, $04, $01

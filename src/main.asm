@@ -16,6 +16,7 @@
 .include "memory/hardware.inc"
 .include "memory/ram.inc"
 .include "common/boot_macros.inc"
+.include "common/render_macros.inc"
 .include "audio/apu_macros.inc"
 .include "audio/sfx_dispatch_macros.inc"
 .include "audio/sfx_handler_macros.inc"
