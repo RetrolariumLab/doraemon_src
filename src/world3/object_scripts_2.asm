@@ -1,6 +1,8 @@
 ; World 3 object traversal, animation, and later behavior handlers
 ; PRG bank 2, original CPU range $9D19-$A0C3
 
+.include "terrain_probe_macros.inc"
+
 World3_RenderEntities:
     LDA World3FormationActive
     BNE Bank2_Label_9D25
@@ -132,138 +134,23 @@ Bank2_Label_9DE4:
     RTS
 
 World3_ProbePlayerLeftEdge:
-    LDA World3PlayerY
-    STA $00
-    LDA #$03
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9DF4:
-    LDA World3PlayerX
-    CLC
-    ADC #$02
-    TAX
-    LDY $00
-    JSR World3_TestPlayerTerrainPoint
-    BCC Bank2_Label_9E39
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9DF4
-    JMP World3_ReturnTerrainPassable
+    EmitPlayerTerrainProbe 0, $02, Bank2_Label_9DF4
 
 World3_ProbePlayerRightEdge:
-    LDA World3PlayerY
-    STA $00
-    LDA #$03
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9E1E:
-    LDA World3PlayerX
-    CLC
-    ADC #$0E
-    TAX
-    LDY $00
-    JSR World3_TestPlayerTerrainPoint
-    BCC Bank2_Label_9E39
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9E1E
-    JMP World3_ReturnTerrainPassable
+    EmitPlayerTerrainProbe 0, $0E, Bank2_Label_9E1E
 
 Bank2_Label_9E39:
     CLC
     RTS
 
 World3_ProbePlayerTopEdge:
-    LDA World3PlayerX
-    STA $00
-    LDA #$02
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9E4A:
-    LDX $00
-    LDA World3PlayerY
-    CLC
-    ADC #$02
-    TAY
-    JSR World3_TestPlayerTerrainPoint
-    BCC Bank2_Label_9E39
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9E4A
-    JMP World3_ReturnTerrainPassable
+    EmitPlayerTerrainProbe 1, $02, Bank2_Label_9E4A
 
 World3_ProbePlayerBottomEdge:
-    LDA World3PlayerX
-    STA $00
-    LDA #$02
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9E74:
-    LDX $00
-    LDA World3PlayerY
-    CLC
-    ADC #$16
-    TAY
-    JSR World3_TestPlayerTerrainPoint
-    BCC Bank2_Label_9E39
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9E74
-    JMP World3_ReturnTerrainPassable
+    EmitPlayerTerrainProbe 1, $16, Bank2_Label_9E74
 
 World3_ProbePlayerHorizontalMidline:
-    LDA World3PlayerX
-    STA $00
-    LDA #$02
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9E9E:
-    LDX $00
-    LDA World3PlayerY
-    CLC
-    ADC #$0C
-    TAY
-    JSR World3_TestPlayerTerrainPoint
-    BCC Bank2_Label_9E39
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9E9E
-    JMP World3_ReturnTerrainPassable
+    EmitPlayerTerrainProbe 1, $0C, Bank2_Label_9E9E
 
 World3_ProbeCurrentEntityLeftEdge:
     LDA a:World3EntityX,X
@@ -272,32 +159,7 @@ World3_ProbeCurrentEntityLeftEdge:
     STA $47
 
 World3_ProbeEntityLeftEdge:
-    STX $44
-    LDA $47
-    STA $00
-    LDA #$02
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9ED4:
-    LDA $46
-    CLC
-    ADC #$02
-    TAX
-    LDY $00
-    JSR World3_TestEntityTerrainPoint
-    BCC Bank2_Label_9F29
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9ED4
-    LDX $44
-    JMP World3_ReturnTerrainPassable
+    EmitEntityTerrainProbe 0, $02, Bank2_Label_9ED4, World3_TestEntityTerrainPoint, Bank2_Label_9F29, 0
 
 World3_ProbeCurrentEntityRightEdge:
     LDA a:World3EntityX,X
@@ -306,32 +168,7 @@ World3_ProbeCurrentEntityRightEdge:
     STA $47
 
 World3_ProbeEntityRightEdge:
-    STX $44
-    LDA $47
-    STA $00
-    LDA #$02
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9F0C:
-    LDA $46
-    CLC
-    ADC #$0E
-    TAX
-    LDY $00
-    JSR World3_TestEntityTerrainPoint
-    BCC Bank2_Label_9F29
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9F0C
-    LDX $44
-    JMP World3_ReturnTerrainPassable
+    EmitEntityTerrainProbe 0, $0E, Bank2_Label_9F0C, World3_TestEntityTerrainPoint, Bank2_Label_9F29, 0
 
 Bank2_Label_9F29:
     LDX $44
@@ -345,33 +182,7 @@ World3_ProbeCurrentEntityTopEdge:
     STA $47
 
 World3_ProbeEntityTopEdge:
-    STX $44
-    LDA $46
-    STA $00
-    STA $00
-    LDA #$02
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9F4A:
-    LDA $47
-    CLC
-    ADC #$02
-    TAY
-    LDX $00
-    JSR World3_TestEntityTerrainPoint
-    BCC Bank2_Label_9F29
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9F4A
-    LDX $44
-    JMP World3_ReturnTerrainPassable
+    EmitEntityTerrainProbe 1, $02, Bank2_Label_9F4A, World3_TestEntityTerrainPoint, Bank2_Label_9F29, 1
 
 World3_ProbeCurrentEntityBottomEdge:
     LDA a:World3EntityX,X
@@ -380,64 +191,14 @@ World3_ProbeCurrentEntityBottomEdge:
     STA $47
 
 World3_ProbeEntityBottomEdge:
-    STX $44
-    LDA $46
-    STA $00
-    LDA #$02
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9F82:
-    LDA $47
-    CLC
-    ADC #$16
-    TAY
-    LDX $00
-    JSR World3_TestEntityTerrainPoint
-    BCC Bank2_Label_9F29
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9F82
-    LDX $44
-    JMP World3_ReturnTerrainPassable
+    EmitEntityTerrainProbe 1, $16, Bank2_Label_9F82, World3_TestEntityTerrainPoint, Bank2_Label_9F29, 0
 
 World3_DormantProbeEntityLowerEdge:
     LDA a:World3EntityX,X
     STA $46
     LDA a:World3EntityY,X
     STA $47
-    STX $44
-    LDA $46
-    STA $00
-    LDA #$02
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9FBA:
-    LDA $47
-    CLC
-    ADC #$08
-    TAY
-    LDX $00
-    JSR World3_TestEntityTerrainPoint
-    BCC Bank2_Label_9FD7
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9FBA
-    LDX $44
-    JMP World3_ReturnTerrainPassable
+    EmitEntityTerrainProbe 1, $08, Bank2_Label_9FBA, World3_TestEntityTerrainPoint, Bank2_Label_9FD7, 0
 
 Bank2_Label_9FD7:
     LDX $44
@@ -445,32 +206,7 @@ Bank2_Label_9FD7:
     RTS
 
 World3_ProbeProjectileCenterline:
-    STX $44
-    LDA $46
-    STA $00
-    LDA #$02
-    STA $01
-    LDA $00
-    CLC
-    ADC #$04
-    STA $00
-
-Bank2_Label_9FEC:
-    LDA $47
-    CLC
-    ADC #$08
-    TAY
-    LDX $00
-    JSR World3_TestPlayerTerrainPoint
-    BCC Bank2_Label_9FD7
-    LDA $00
-    CLC
-    ADC #$08
-    STA $00
-    DEC $01
-    BNE Bank2_Label_9FEC
-    LDX $44
-    JMP World3_ReturnTerrainPassable
+    EmitEntityTerrainProbe 1, $08, Bank2_Label_9FEC, World3_TestPlayerTerrainPoint, Bank2_Label_9FD7, 0
 
 World3_TestEntityTerrainPoint:
     JSR World3_LookupMapTileAtPixel
