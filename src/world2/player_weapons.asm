@@ -1,6 +1,8 @@
 ; World 2 player animation, weapon state, and projectile creation
 ; PRG bank 1, original CPU range $8C5D-$8F4A
 
+.include "inventory_macros.inc"
+
 World2_UpdatePlayerDamageEffect:
     LDA World2PlayerDamageEffect
     BEQ Bank1_Label_8C73
@@ -96,234 +98,34 @@ Bank1_Label_8CD6:
     RTS
 
 World2_UpdateDetachedInventorySlot2To6:
-    LDY World2ScrollDirection
-    BEQ Bank1_Label_8CEE
-    DEY
-    BEQ Bank1_Label_8CE5
-    DEC World2InventoryY,X
-    BEQ Bank1_Label_8CF6
-    RTS
-
-Bank1_Label_8CE5:
-    INC World2InventoryY,X
-    LDA World2InventoryY,X
-    CMP #$E0
-    BCS Bank1_Label_8CF6
-    RTS
-
-Bank1_Label_8CEE:
-    LDA World2HorizontalTransitionDelay
-    BNE Bank1_Label_8D00
-    DEC World2InventoryX,X
-    BNE Bank1_Label_8D00
-
-Bank1_Label_8CF6:
-    LDA World2InventoryState,X
-    CMP #$01
-    BEQ Bank1_Label_8D00
-    LDA #$00
-    STA World2InventoryState,X
-
-Bank1_Label_8D00:
-    RTS
+.scope DetachedIndexed
+InventoryCpuBase = $8CD9
+    EmitDetachedInventorySlot {World2InventoryState,X}, {World2InventoryX,X}, {World2InventoryY,X}
+.endscope
 
 World2_UpdateInventorySlot1:
-    LDY #$00
-    LDA World2InventoryState+$01
-    CMP #$01
-    BEQ Bank1_Label_8D4A
-    CMP #$04
-    BEQ Bank1_Label_8D4A
-    CMP #$02
-    BNE Bank1_Label_8D49
-    LDA World2PlayerHistoryWriteIndex
-    SEC
-    SBC #$17
-    BPL Bank1_Label_8D1A
-    ADC #$30
-
-Bank1_Label_8D1A:
-    TAX
-    LDA a:World2PlayerXHistory,X
-    CMP World2InventoryX+$01
-    BEQ Bank1_Label_8D2B
-    BCS Bank1_Label_8D28
-    DEC World2InventoryX+$01
-    DEC World2InventoryX+$01
-
-Bank1_Label_8D28:
-    INC World2InventoryX+$01
-    INY
-
-Bank1_Label_8D2B:
-    LDA a:World2PlayerYHistory,X
-    CMP World2InventoryY+$01
-    BEQ Bank1_Label_8D3B
-    BCS Bank1_Label_8D38
-    DEC World2InventoryY+$01
-    DEC World2InventoryY+$01
-
-Bank1_Label_8D38:
-    INC World2InventoryY+$01
-    INY
-
-Bank1_Label_8D3B:
-    TYA
-    BNE Bank1_Label_8D49
-    INC World2InventoryState+$01
-    LDA #$09
-    JSR World2_Audio_QueueEffectWithPriority
-    LDA #$00
-    STA World2InventoryDropHitCounter
-
-Bank1_Label_8D49:
-    RTS
-
-Bank1_Label_8D4A:
-    JSR World2_UpdateDetachedInventorySlot1
-    LDA World2InventoryState+$01
-    CMP #$01
-    BNE Bank1_Label_8D49
-    LDA World2InventoryY+$01
-    CMP #$67
-    BEQ Bank1_Label_8D5D
-    CMP #$79
-    BNE Bank1_Label_8D49
-
-Bank1_Label_8D5D:
-    INC World2InventoryState+$01
-    RTS
+.scope Inventory1
+InventoryCpuBase = $8D01
+    EmitHistoryInventorySlot World2InventoryState+1, World2InventoryX+1, World2InventoryY+1, $17, World2_UpdateDetachedInventorySlot1, 1
+.endscope
 
 World2_UpdateDetachedInventorySlot1:
-    LDY World2ScrollDirection
-    BEQ Bank1_Label_8D75
-    DEY
-    BEQ Bank1_Label_8D6C
-    DEC World2InventoryY+$01
-    BEQ Bank1_Label_8D7D
-    RTS
-
-Bank1_Label_8D6C:
-    INC World2InventoryY+$01
-    LDA World2InventoryY+$01
-    CMP #$E0
-    BCS Bank1_Label_8D7D
-    RTS
-
-Bank1_Label_8D75:
-    LDA World2HorizontalTransitionDelay
-    BNE Bank1_Label_8D87
-    DEC World2InventoryX+$01
-    BNE Bank1_Label_8D87
-
-Bank1_Label_8D7D:
-    LDA World2InventoryState+$01
-    CMP #$01
-    BEQ Bank1_Label_8D87
-    LDA #$00
-    STA World2InventoryState+$01
-
-Bank1_Label_8D87:
-    RTS
+.scope Detached1
+InventoryCpuBase = $8D60
+    EmitDetachedInventorySlot World2InventoryState+1, World2InventoryX+1, World2InventoryY+1
+.endscope
 
 World2_UpdateInventorySlot0:
-    LDY #$00
-    LDA World2InventoryState
-    CMP #$01
-    BEQ Bank1_Label_8DD1
-    CMP #$04
-    BEQ Bank1_Label_8DD1
-    CMP #$02
-    BNE Bank1_Label_8DD0
-    LDA World2PlayerHistoryWriteIndex
-    SEC
-    SBC #$2F
-    BPL Bank1_Label_8DA1
-    ADC #$30
-
-Bank1_Label_8DA1:
-    TAX
-    LDA a:World2PlayerXHistory,X
-    CMP World2InventoryX
-    BEQ Bank1_Label_8DB2
-    BCS Bank1_Label_8DAF
-    DEC World2InventoryX
-    DEC World2InventoryX
-
-Bank1_Label_8DAF:
-    INC World2InventoryX
-    INY
-
-Bank1_Label_8DB2:
-    LDA a:World2PlayerYHistory,X
-    CMP World2InventoryY
-    BEQ Bank1_Label_8DC2
-    BCS Bank1_Label_8DBF
-    DEC World2InventoryY
-    DEC World2InventoryY
-
-Bank1_Label_8DBF:
-    INC World2InventoryY
-    INY
-
-Bank1_Label_8DC2:
-    TYA
-    BNE Bank1_Label_8DD0
-    LDA #$09
-    JSR World2_Audio_QueueEffectWithPriority
-    LDA #$00
-    STA World2InventoryDropHitCounter
-    INC World2InventoryState
-
-Bank1_Label_8DD0:
-    RTS
-
-Bank1_Label_8DD1:
-    JSR World2_UpdateDetachedInventorySlot0
-    LDA World2InventoryState
-    CMP #$01
-    BNE Bank1_Label_8DD0
-    LDA World2InventoryY
-    CMP #$67
-    BEQ Bank1_Label_8DE4
-    CMP #$79
-    BNE Bank1_Label_8DD0
-
-Bank1_Label_8DE4:
-    INC World2InventoryState
-    RTS
+.scope Inventory0
+InventoryCpuBase = $8D88
+    EmitHistoryInventorySlot World2InventoryState, World2InventoryX, World2InventoryY, $2F, World2_UpdateDetachedInventorySlot0, 0
+.endscope
 
 World2_UpdateDetachedInventorySlot0:
-    LDY World2ScrollDirection
-    BEQ Bank1_Label_8DFC
-    DEY
-    BEQ Bank1_Label_8DF3
-    DEC World2InventoryY
-    BEQ Bank1_Label_8E04
-    RTS
-
-Bank1_Label_8DF3:
-    INC World2InventoryY
-    LDA World2InventoryY
-    CMP #$E0
-    BCS Bank1_Label_8E04
-    RTS
-
-Bank1_Label_8DFC:
-    LDA World2HorizontalTransitionDelay
-    BNE Bank1_Label_8E0E
-    DEC World2InventoryX
-    BNE Bank1_Label_8E0E
-
-Bank1_Label_8E04:
-    LDA World2InventoryState
-    CMP #$01
-    BEQ Bank1_Label_8E0E
-    LDA #$00
-    STA World2InventoryState
-
-Bank1_Label_8E0E:
-    RTS
+.scope Detached0
+InventoryCpuBase = $8DE7
+    EmitDetachedInventorySlot World2InventoryState, World2InventoryX, World2InventoryY
+.endscope
 
 World2_RecordPlayerPositionHistory:
     LDX World2PlayerHistoryWriteIndex
