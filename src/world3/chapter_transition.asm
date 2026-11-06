@@ -468,22 +468,22 @@ World3_AbsoluteValue8:
 Bank2_Label_B152:
     RTS
 
-World3_RandomByte:
-    INC $D6
-    DEC $D7
-    BNE Bank2_Label_B15D
+.macro EmitRandomByte stateBase, checkFirstCounter, mixCounters, mixFromRam
+    INC stateBase
+    DEC stateBase+1
+    BNE checkFirstCounter
     LDA #$75
-    STA $D7
+    STA stateBase+1
 
-Bank2_Label_B15D:
-    LDA $D6
+checkFirstCounter:
+    LDA stateBase
     CMP #$77
-    BNE Bank2_Label_B167
+    BNE mixCounters
     LDA #$01
-    STA $D6
+    STA stateBase
 
-Bank2_Label_B167:
-    EOR $D7
+mixCounters:
+    EOR stateBase+1
     ASL A
     PHP
     LSR A
@@ -494,55 +494,28 @@ Bank2_Label_B167:
     LSR A
     PLP
     ROL A
-    EOR $D8
+    EOR stateBase+2
     SEC
-    SBC $D7
+    SBC stateBase+1
     CLC
-    ADC $D6
+    ADC stateBase
     CLC
-    ADC $D6
-    STA $D8
-    STX $E2
-    LDX $E1
-    EOR $00,X
-    LDX $E2
+    ADC stateBase
+    STA stateBase+2
+    .if mixFromRam
+        STX $E2
+        LDX $E1
+        EOR $00,X
+        LDX $E2
+    .endif
     RTS
+.endmacro
+
+World3_RandomByte:
+    EmitRandomByte $D6, Bank2_Label_B15D, Bank2_Label_B167, 1
 
 World3_DormantRandomByte:
-    INC $D9
-    DEC $DA
-    BNE Bank2_Label_B193
-    LDA #$75
-    STA $DA
-
-Bank2_Label_B193:
-    LDA $D9
-    CMP #$77
-    BNE Bank2_Label_B19D
-    LDA #$01
-    STA $D9
-
-Bank2_Label_B19D:
-    EOR $DA
-    ASL A
-    PHP
-    LSR A
-    PLP
-    ROL A
-    ASL A
-    PHP
-    LSR A
-    PLP
-    ROL A
-    EOR $DB
-    SEC
-    SBC $DA
-    CLC
-    ADC $D9
-    CLC
-    ADC $D9
-    STA $DB
-    RTS
+    EmitRandomByte $D9, Bank2_Label_B193, Bank2_Label_B19D, 0
 
 World3_DormantWaitFramesFromParameter:
     LDA $00
