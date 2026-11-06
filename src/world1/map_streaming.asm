@@ -1,6 +1,20 @@
 ; World 1 metatile decoding and incremental nametable streaming
 ; PRG bank 0, original CPU range $A50A-$A87D
 
+.macro MergeAttributeQuadrant
+    AND #$03
+    TAY
+    LDA a:Bank0_Label_A7D3,Y
+    LDY $74
+    AND a:Bank0_Label_A7D7,Y
+    STA $5F
+    LDA a:Bank0_Label_A7D7,Y
+    EOR #$FF
+    AND a:World1AttributeTableCache,X
+    ORA $5F
+    STA a:World1AttributeTableCache,X
+.endmacro
+
 World1_BuildColumnAttributeUpdate:
     PHA
     LDA #$00
@@ -68,17 +82,7 @@ Bank0_Label_A52F:
 
 Bank0_Label_A56E:
     JSR World1_ReadBlockAttributeAndStepDown
-    AND #$03
-    TAY
-    LDA a:Bank0_Label_A7D3,Y
-    LDY $74
-    AND a:Bank0_Label_A7D7,Y
-    STA $5F
-    LDA a:Bank0_Label_A7D7,Y
-    EOR #$FF
-    AND a:World1AttributeTableCache,X
-    ORA $5F
-    STA a:World1AttributeTableCache,X
+    MergeAttributeQuadrant
     LDA $74
     EOR #$02
     STA $74
@@ -209,17 +213,7 @@ World1_BuildRowAttributeUpdate:
 
 Bank0_Label_A65B:
     JSR World1_ReadBlockAttributeAndStepRight
-    AND #$03
-    TAY
-    LDA a:Bank0_Label_A7D3,Y
-    LDY $74
-    AND a:Bank0_Label_A7D7,Y
-    STA $5F
-    LDA a:Bank0_Label_A7D7,Y
-    EOR #$FF
-    AND a:World1AttributeTableCache,X
-    ORA $5F
-    STA a:World1AttributeTableCache,X
+    MergeAttributeQuadrant
     LDY $5D
     STA a:World1RowAttributeData,Y
     LDA $74
